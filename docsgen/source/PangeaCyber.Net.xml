@@ -1,0 +1,1118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PangeaCyber.Net</name>
+    </assembly>
+    <members>
+        <member name="T:PangeaCyber.Net.Audit.arweave.ArweaveRequest">
+            <kind>class</kind>
+            <summary>
+            ArweaveRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.ArweaveRequest.query">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.arweave.ArweaveRequest.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.Arweave">
+            <kind>class</kind>
+            <summary>
+            Arweave
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.arweave.Arweave.BaseURL">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Arweave.TreeName">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.arweave.Arweave.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.arweave.Arweave.GetPublishedRoots(System.Int32[])">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.GraphqlOutput">
+            <kind>class</kind>
+            <summary>
+            GraphqlOutput
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.GraphqlOutput.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.Data">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Data.Transactions">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.Transactions">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Transactions.Edges">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.Edge">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Edge.Node">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.Node">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Node.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Node.Tags">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.Tag">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Tag.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.Tag.Value">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.arweave.PublishedRoot">
+            <kind>class</kind>
+            <summary>
+            PublishedRoot
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.PublishedRoot.Size">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.PublishedRoot.RootHash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.PublishedRoot.PublishedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.PublishedRoot.ConsistencyProof">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.arweave.PublishedRoot.Source">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.arweave.PublishedRoot.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.arweave.PublishedRoot.#ctor(System.Int32,System.String,System.String,System.String[],System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.AuditClient">
+            <kind>class</kind>
+            <summary>
+            Audit Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.ServiceName">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Signer">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PublishedRoots">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.AllowServerRoots">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PrevUnpublishedRoot">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.TenantID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Config)">
+            Constructor
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Config,System.String)">
+            Constructor
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Config,System.String,System.String)">
+            Constructor
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.Event)">
+            <kind>method</kind>
+            <summary>
+            Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
+            </summary>
+            <remarks>Log an entry</remarks>
+            <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+            <returns>Response&lt;LogResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+                string msg = "Event's message";
+                Event event = new Event(msg);
+                var response = await client.log(event);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.Event,PangeaCyber.Net.SignMode,System.Boolean,System.Boolean)">
+            <kind>method</kind>
+            <summary>
+            Log an event to Audit Secure Log. Can select sign event or not and verbosity of the response.
+            </summary>
+            <remarks>Log an entry - event, sign, verbose</remarks>
+            <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+            <param name="signMode" type="PangeaCyber.Net.Audit.SignMode">"Unsigned" or "Local"</param>
+            <param name="verbose" type="System.Boolean">true to more verbose response</param>
+            <param name="verify" type="System.Boolean">true to verify the hashes</param>
+            <returns>Response&lt;LogResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+                string msg = "Event's message";
+                Event event = new Event(msg);
+                var response = await client.log(event, "Local", true, false);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.GetRoot">
+            <kind>method</kind>
+            <summary>Get last root from Pangea Server</summary>
+            <remarks>Get last root</remarks>
+            <returns>Response&lt;RootResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+                var response = await client.GetRoot();
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.GetRoot(System.Nullable{System.Int32})">
+            <kind>method</kind>
+            <summary>Get last root from Pangea Server</summary>
+            <remarks>Get root from three of treeSize from Pangea Server</remarks>
+            <param name="treeSize" type="System.Int32">tree size to get root</param>
+            <returns>Response&lt;RootResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+                var response = await client.GetRoot(treeSize);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Search(PangeaCyber.Net.Audit.SearchInput)">
+            <kind>method</kind>
+            <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
+            <remarks>Search</remarks>
+            <param name="input" type="PangeaCyber.Net.Audit.SearchInput">query filters to perform search</param>
+            <returns>Response&lt;SearchOutput&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+                var input = new SearchInput("message:Integration test msg");
+                input.setMaxResults(10);
+                var response = Client.Search(input);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Search(PangeaCyber.Net.Audit.SearchInput,System.Boolean,System.Boolean)">
+            <kind>method</kind>
+            <summary>Perform a search of logs according to input param. Allow to select to verify or nor consistency proof and events.</summary>
+            <remarks>Search - input, VerifyConsistency, verifyEvents</remarks>
+            <param name="input" type="PangeaCyber.Net.Audit.SearchInput">query filters to perform search</param>
+            <param name="VerifyConsistency" type="System.Boolean">true to verify logs consistency proofs</param>
+            <param name="verifyEvents" type="System.Boolean">true to verify logs hash and signature</param>
+            <returns>Response&lt;SearchOutput&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+                var input = new SearchInput("message:Integration test msg");
+                input.setMaxResults(10);
+                var response = Client.Search(input, true, true);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Results(System.String,System.Int32,System.Int32)">
+            <kind>method</kind>
+            <summary>Return result's page from search id.</summary>
+            <remarks>Results</remarks>
+            <param name="id" type="System.Int32">A search results identifier returned by the search call. By default verify events and do not verify consistency.</param>
+            <param name="limit" type="System.Int32">Number of audit records to include in a single set of results.</param>
+            <param name="offset" type="System.Int32">Offset from the start of the result set to start returning results from.</param>
+            <returns>Response&lt;ResultsOutput&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Results(System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <kind>method</kind>
+            <summary>"Return result's page from search id. Allow to select to verify or nor consistency proof and events.</summary>
+            <remarks>Results - id, limit, offset, VerifyConsistency, verifyEvents</remarks>
+            <param name="id" type="System.Int32">A search results identifier returned by the search call. By default verify events and do not verify consistency.</param>
+            <param name="limit" type="System.Int32">Number of audit records to include in a single set of results.</param>
+            <param name="offset" type="System.Int32">Offset from the start of the result set to start returning results from.</param>
+            <param name="VerifyConsistency" type="System.Boolean">true to verify logs consistency proofs.</param>
+            <param name="verifyEvents" type="System.Boolean">true to verify logs hash and signature.</param>
+            <returns>Response&lt;ResultsOutput&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.AuditClientBuilder">
+            <kind>class</kind>
+            <summary>
+            AuditClient Builder
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.WithPrivateKey(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.WithTenantID(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogSigner">
+            <kind>enum</kind>
+            <summary>
+            LogSigner
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.LogSigner.PrivateKeyFilename">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.LogSigner.PrivateKey">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.LogSigner.PublicKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogSigner.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogSigner.Sign(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogSigner.GetPublicKey">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Event">
+            <kind>class</kind>
+            <summary>
+            Event
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Actor">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Action">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.NewField">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Old">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Source">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Status">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Target">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.Timestamp">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Event.TenantID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Event.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Event.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Event.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Event.Canonicalize(PangeaCyber.Net.Audit.Event)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.EventEnvelope">
+            <kind>class</kind>
+            <summary>
+            EventEnvelope
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.EventEnvelope.RequestEvent">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.EventEnvelope.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.EventEnvelope.PublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.EventEnvelope.ReceivedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.#ctor(PangeaCyber.Net.Audit.Event,System.String,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.VerifySignature">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.FromRaw(System.Object)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.VerifyHash(System.Object,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.Canonicalize(System.Object)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogRequest">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.RequestEvent">
+                   
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.PublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.PrevRoot">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogRequest.#ctor(PangeaCyber.Net.Audit.Event,System.Boolean,System.String,System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogResult">
+            <kind>class</kind>
+            <summary>
+            LogResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.RawEnvelope">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.EventEnvelope">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.UnpublishedRoot">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.MembershipProof">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.ConsistencyProof">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.MembershipVerification">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.ConsistencyVerification">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogResult.SignatureVerification">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogResult.VerifySignature">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.ResultsOutput">
+            <kind>class</kind>
+            <summary>
+            ResultsOutput
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Events">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Root">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.UnpublishedRoot">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.ResultsRequest">
+            <kind>class</kind>
+            <summary>
+            ResultsRequest
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.ResultsRequest.ID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.ResultsRequest.Limit">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.ResultsRequest.Offset">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.ResultsRequest.#ctor(System.String,System.Int32,System.Int32)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Root">
+            <kind>class</kind>
+            <summary>
+            Root
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Root.TreeName">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Root.Size">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Root.RootHash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Root.URL">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Root.PublishedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Root.ConsistencyProof">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.RootRequest">
+            <kind>class</kind>
+            <summary>
+            RootRequest
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.RootRequest.TreeSize">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.RootRequest.#ctor(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.RootResult">
+            <kind>class</kind>
+            <summary>
+            RootResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.RootResult.Root">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchEvent">
+            <kind>class</kind>
+            <summary>
+            SearchEvent
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.RawEnvelope">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.EventEnvelope">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.LeafIndex">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.MembershipProof">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.published">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.MembershipVerification">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.ConsistencyVerification">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.SignatureVerification">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchEvent.VerifySignature">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchEvent.VerifyConsistency(System.Collections.Generic.Dictionary{System.Int32,PangeaCyber.Net.Audit.arweave.PublishedRoot})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchEvent.VerifyMembershipProof(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchInput">
+            <kind>class</kind>
+            <summary>
+            SearchInput
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.Query">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.End">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.Limit">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.MaxResults">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.SearchRestriction">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchInput.Verbose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchInput.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchOutput">
+            <kind>class</kind>
+            <summary>
+            SearchOutput
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchOutput.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchOutput.ExpiresAt">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchRestriction">
+            <kind>class</kind>
+            <summary>
+            SearchRestriction
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRestriction.Actor">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRestriction.source">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRestriction.target">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRestriction.status">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRestriction.action">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Utils.ConsistencyProof">
+            <kind>class</kind>
+            <summary>
+            ConsistencyProof
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Utils.ConsistencyProofItem">
+            <kind>class</kind>
+            <summary>
+            ConsistencyProof
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Utils.ConsistencyProofItem.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Utils.ConsistencyProofItem.MembershipProof">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.ConsistencyProofItem.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Utils.Hash">
+            <kind>class</kind>
+            <summary>
+            Hash
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Hash.GetHash(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Hash.Unhexlify(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Hash.Decode(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Hash.GetHash(System.Byte[],System.Byte[])">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Utils.MembershipProof">
+            <kind>class</kind>
+            <summary>
+            MembershipProof
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Utils.MembershipProofItem">
+            <kind>class</kind>
+            <summary>
+            MembershipProofItem
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Utils.MembershipProofItem.Side">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.Utils.MembershipProofItem.Hash">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.MembershipProofItem.#ctor(System.String,System.Byte[])">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Utils.Verification">
+            <kind>class</kind>
+            <summary>
+            Verification
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Verification.VerifyMembershipProof(System.String,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Verification.DecodeMembershipProof(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Verification.DecodeConsistencyProof(System.String[])">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Utils.Verification.VerifyConsistencyProof(System.String,System.String,PangeaCyber.Net.Audit.Utils.ConsistencyProof)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.Verifier">
+            <kind>class</kind>
+            <summary>
+            Verifier
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.Verifier.Verify(System.String,System.String,System.String)">
+                   
+        </member>
+        <member name="T:PangeaCyber.Net.EventVerification">
+            <kind>enum</kind>
+            <summary>
+            EventVerification
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.EventVerification.Success">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.EventVerification.Failed">
+                   
+        </member>
+        <member name="F:PangeaCyber.Net.EventVerification.NotVerified">
+                   
+        </member>
+        <member name="T:PangeaCyber.Net.SignMode">
+            <kind>enum</kind>
+            <summary>
+            SignMode
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.SignMode.Unsigned">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.SignMode.Local">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.SignMode.NotVerified">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Client">
+            <kind>class</kind>
+            <summary>
+            Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Client.HttpClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Client.#ctor(PangeaCyber.Net.Config,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Client.DoPost``1(System.String,System.Object)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Client.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Config">
+            <kind>class</kind>
+            <summary>
+            Config
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Config.Version">
+            <summary>
+            Version of the package.
+            </summary>
+            <value>Version of the package.</value>
+        </member>
+        <member name="M:PangeaCyber.Net.Config.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="!:Configuration" /> class
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Config.Token">
+                   
+        </member>
+        <member name="P:PangeaCyber.Net.Config.Domain">
+                   
+        </member>
+        <member name="P:PangeaCyber.Net.Config.Environment">
+                   
+        </member>
+        <member name="P:PangeaCyber.Net.Config.Insecure">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Config.ConnectionTimeout">
+                   
+        </member>
+        <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.FromEnvironment(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.FromIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.ErrorField">
+            <kind>class</kind>
+            <summary>
+            ErrorField
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.ErrorField.Code">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ErrorField.Detail">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ErrorField.Source">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ErrorField.Path">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.AuditException">
+            <kind>class</kind>
+            <summary>
+            AuditException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AuditException.#ctor(System.String,System.Exception)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.ConfigException">
+            <kind>class</kind>
+            <summary>
+            Config
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.ConfigException.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.EmbargoIPNotFoundException">
+            <kind>class</kind>
+            <summary>
+            EmbargoIPNotFoundException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.EmbargoIPNotFoundException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.InternalServiceErrorException">
+            <kind>class</kind>
+            <summary>
+            InternalServiceErrorException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.InternalServiceErrorException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.MissingConfigID">
+            <kind>class</kind>
+            <summary>
+            MissingConfigID
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.MissingConfigID.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.NoCreditException">
+            <kind>class</kind>
+            <summary>
+            NoCreditException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.NoCreditException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.PangeaAPIException">
+            <kind>class</kind>
+            <summary>
+            NoCreditException
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.PangeaAPIException.Response">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.PangeaAPIException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.PangeaException">
+            <kind>class</kind>
+            <summary>
+            PangeaException
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.PangeaException.Cause">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.PangeaException.#ctor(System.String,System.Exception)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.ParseResultFailed">
+            <kind>class</kind>
+            <summary>
+            ParseResultFailed
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.ParseResultFailed.Header">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.ParseResultFailed.#ctor(System.String,System.Exception,PangeaCyber.Net.ResponseHeader,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.ProviderErrorException">
+            <kind>class</kind>
+            <summary>
+            ProviderErrorException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.ProviderErrorException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.RateLimitException">
+            <kind>class</kind>
+            <summary>
+            RateLimitException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.RateLimitException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.ServiceNotAvailableException">
+            <kind>class</kind>
+            <summary>
+            ServiceNotAvailableException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.ServiceNotAvailableException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.ServiceNotEnabledException">
+            <kind>class</kind>
+            <summary>
+            ServiceNotEnabledException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.ServiceNotEnabledException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.SignerException">
+            <kind>class</kind>
+            <summary>
+            SignerException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.SignerException.#ctor(System.String,System.Exception)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.UnauthorizedException">
+            <kind>class</kind>
+            <summary>
+            UnauthorizedException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.UnauthorizedException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.ValidationException">
+            <kind>class</kind>
+            <summary>
+            ValidationException
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.ValidationException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.VerificationFailed">
+            <kind>class</kind>
+            <summary>
+            VerificationFailed
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.VerificationFailed.Hash">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.PangeaErrors">
+            <kind>class</kind>
+            <summary>
+            PangeaErrors
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Response`1">
+            <kind>class</kind>
+            <summary>
+            ResponseHeader
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Response`1.Result">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Response`1.HttpResponse">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Response`1.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.ResponseHeader">
+            <kind>class</kind>
+            <summary>
+            ResponseHeader
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.ResponseHeader.RequestId">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ResponseHeader.RequestTime">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ResponseHeader.ResponseTime">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ResponseHeader.Status">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ResponseHeader.Summary">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.ResponseHeader.IsOK">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.ResponseHeader.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.ResponseStatus">
+            <kind>enum</kind>
+            <summary>
+            ResponseStatus
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.Success">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.Failed">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.ValidationError">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.TooManyRequests">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.NoCredit">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.Unauthorized">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.ServiceNotEnabled">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.ProviderError">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.MissingConfigID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.MissingConfigIDScope">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.ServiceNotAvailable">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.TreeNotFound">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.IPNotFound">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.TestEnvironment">
+            <kind>enum</kind>
+            <summary>
+            TestEnvironment
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.TestEnvironment.LVE">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.TestEnvironment.DEV">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.TestEnvironment.STG">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.OrderedContractResolver">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.OrderedContractResolver.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+            
+        </member>
+    </members>
+</doc>
