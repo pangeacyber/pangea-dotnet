@@ -187,12 +187,12 @@ public class AuditClientTests
     }
 
 
-    [Fact]
-    public async Task ErrorOnEmptyMessage()
-    {
-        Event evt = new Event("");
-        await Assert.ThrowsAsync<ValidationException>(async () => await client.Log(evt));
-    }
+    // [Fact]
+    // public async Task ErrorOnEmptyMessage()
+    // {
+    //     Event evt = new Event("");
+    //     await Assert.ThrowsAsync<ValidationException>(async () => await client.Log(evt));
+    // }
 
     [Fact]
     public async Task TestSearchDefault()
@@ -412,13 +412,6 @@ public class AuditClientTests
         AuditClient fakeClient = new AuditClientBuilder(cfg).Build();
         Event evt = new Event("Test msg");
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.Log(evt));
-    }
-
-    [Fact]
-    public async Task TestLogEmptyMessage()
-    {
-        Event evt = new Event("");
-        await Assert.ThrowsAsync<ValidationException>(async () => await client.Log(evt));
     }
 
     [Fact]

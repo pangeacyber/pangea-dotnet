@@ -77,7 +77,8 @@ namespace PangeaCyber.Net.Audit
         ///
         public static string Canonicalize(Event evt)
         {
-            return JsonConvert.SerializeObject(evt, Formatting.None, new JsonSerializerSettings { ContractResolver = new OrderedContractResolver() });
+            var jsonSettings = new JsonSerializerSettings { ContractResolver = new OrderedContractResolver(), NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
+            return JsonConvert.SerializeObject(evt, Formatting.None, jsonSettings);
         }
     }
 }
