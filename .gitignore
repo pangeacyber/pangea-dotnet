@@ -403,7 +403,11 @@ FodyWeavers.xsd
 .vs
 .vscode
 
-DocsGenerator/
-
-*.sln
 *_sdk.json
+
+.nuget
+
+Dockerfile
+
+
+.DS_*

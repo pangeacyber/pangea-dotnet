@@ -1,0 +1,43 @@
+image:
+  name: mcr.microsoft.com/dotnet/sdk:6.0
+  entrypoint: [""]
+
+cache:
+  key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
+  paths:
+    - "./PangeaCyber.Net/obj/project.assets.json"
+    - "./PangeaCyber.Net/obj/*.csproj.nuget.*"
+    - ".nuget"
+  policy: pull-push
+
+before_script:
+  - dotnet restore --packages .nuget
+
+build:
+  stage: build
+  script:
+    - dotnet build --no-restore --configuration Release
+
+tests:
+  stage: test
+  script:
+    - dotnet test --no-restore
+
+publish:
+  stage: publish
+  script:
+    - PACKAGE_VERSION=`cat VERSION`
+    - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
+    - echo $NUGET_SIGNING_CERTIFICATE > certfile.pem
+    - openssl x509 -noout -inform pem -in certfile.pem -outform der -out certfile.der 2>/dev/null
+    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path certfile.der --timestamper http://timestamp.digicert.com
+    # - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+    - rm certfile.der
+    - rm certfile.pem
+  only:
+    - tags
+
+stages:
+  - build
+  - test
+  - publish

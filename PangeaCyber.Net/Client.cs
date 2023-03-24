@@ -41,7 +41,8 @@ namespace PangeaCyber.Net
             StringContent requestJson;
             try
             {
-                requestJson = new StringContent(JsonConvert.SerializeObject(request, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }), Encoding.UTF8, "application/json");
+                var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
+                requestJson = new StringContent(JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings), Encoding.UTF8, "application/json");
             }
             catch (Exception e)
             {
