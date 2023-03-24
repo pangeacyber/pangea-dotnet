@@ -12,11 +12,7 @@ cache:
 
 before_script:
   - dotnet restore --packages .nuget
-
-build:
-  stage: build
-  script:
-    - dotnet build --no-restore --configuration Release
+  - dotnet build --no-restore --configuration Release   
 
 tests:
   stage: test
@@ -38,6 +34,5 @@ publish:
     - tags
 
 stages:
-  - build
   - test
   - publish

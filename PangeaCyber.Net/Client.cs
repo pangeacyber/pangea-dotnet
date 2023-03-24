@@ -107,50 +107,50 @@ namespace PangeaCyber.Net
             }
             catch (Exception e)
             {
-                throw new ParseResultFailed("Failed to parse response errors", e, header, body);
+                throw new ParseResultFailed("Failed to parse response errors", e, header ?? default!, body);
             }
             response.HttpResponse = res;
 
-            if (header.Status.Equals(ResponseStatus.ValidationError.ToString()))
+            if (header != null)
             {
-                throw new Exceptions.ValidationException(summary, response);
+                if (header.Status.Equals(ResponseStatus.ValidationError.ToString()))
+                {
+                    throw new Exceptions.ValidationException(summary, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.TooManyRequests.ToString()))
+                {
+                    throw new RateLimitException(summary, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.NoCredit.ToString()))
+                {
+                    throw new NoCreditException(summary, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.Unauthorized.ToString()))
+                {
+                    throw new UnauthorizedException(this.serviceName, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.ServiceNotEnabled.ToString()))
+                {
+                    throw new ServiceNotEnabledException(this.serviceName, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.ProviderError.ToString()))
+                {
+                    throw new ProviderErrorException(summary, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.MissingConfigIDScope.ToString()) || header.Status.Equals(ResponseStatus.MissingConfigID.ToString()))
+                {
+                    throw new MissingConfigID(this.serviceName, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.ServiceNotAvailable.ToString()))
+                {
+                    throw new ServiceNotAvailableException(summary, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.IPNotFound.ToString()))
+                {
+                    throw new EmbargoIPNotFoundException(summary, response);
+                }
             }
-            else if (header.Status.Equals(ResponseStatus.TooManyRequests.ToString()))
-            {
-                throw new RateLimitException(summary, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.NoCredit.ToString()))
-            {
-                throw new NoCreditException(summary, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.Unauthorized.ToString()))
-            {
-                throw new UnauthorizedException(this.serviceName, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.ServiceNotEnabled.ToString()))
-            {
-                throw new ServiceNotEnabledException(this.serviceName, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.ProviderError.ToString()))
-            {
-                throw new ProviderErrorException(summary, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.MissingConfigIDScope.ToString()) || header.Status.Equals(ResponseStatus.MissingConfigID.ToString()))
-            {
-                throw new MissingConfigID(this.serviceName, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.ServiceNotAvailable.ToString()))
-            {
-                throw new ServiceNotAvailableException(summary, response);
-            }
-            else if (header.Status.Equals(ResponseStatus.IPNotFound.ToString()))
-            {
-                throw new EmbargoIPNotFoundException(summary, response);
-            }
-            else
-            {
-                throw new PangeaAPIException(String.Format("{0}: {1}", status, summary), response);
-            }
+            throw new PangeaAPIException(String.Format("{0}: {1}", status, summary), response);
         }
 
     }
