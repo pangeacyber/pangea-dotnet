@@ -46,9 +46,9 @@ public class AuditClientTests
         Assert.NotNull(response.Result.Hash);
         Assert.Null(response.Result.ConsistencyProof);
         Assert.Null(response.Result.MembershipProof);
-        Assert.Equal(response.Result.ConsistencyVerification, EventVerification.NotVerified);
-        Assert.Equal(response.Result.MembershipVerification, EventVerification.NotVerified);
-        Assert.Equal(response.Result.SignatureVerification, EventVerification.NotVerified);
+        Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
+        Assert.Equal(EventVerification.NotVerified, response.Result.MembershipVerification);
+        Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
     }
 
     [Fact]
@@ -65,9 +65,9 @@ public class AuditClientTests
         Assert.NotNull(response.Result.Hash);
         Assert.Null(response.Result.ConsistencyProof);
         Assert.Null(response.Result.MembershipProof);
-        Assert.Equal(response.Result.ConsistencyVerification, EventVerification.NotVerified);
-        Assert.Equal(response.Result.MembershipVerification, EventVerification.NotVerified);
-        Assert.Equal(response.Result.SignatureVerification, EventVerification.NotVerified);
+        Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
+        Assert.Equal(EventVerification.NotVerified, response.Result.MembershipVerification);
+        Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
     }
 
     [Fact]
@@ -366,7 +366,6 @@ public class AuditClientTests
         RootResult result = response.Result;
         Root root = result.Root;
         Assert.NotNull(root);
-        Assert.NotNull(root.Size);
         Assert.NotNull(root.TreeName);
         Assert.NotNull(root.RootHash);
     }
@@ -381,7 +380,6 @@ public class AuditClientTests
         RootResult result = response.Result;
         Root root = response.Result.Root;
         Assert.NotNull(root);
-        Assert.NotNull(root.Size);
         Assert.NotNull(root.TreeName);
         Assert.NotNull(root.RootHash);
         Assert.Equal(treeSize, root.Size);

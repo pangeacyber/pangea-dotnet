@@ -139,9 +139,9 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        ///     string msg = "Event's message";
-        ///     Event event = new Event(msg);
-        ///     var response = await client.log(event);
+        /// string msg = "Event's message";
+        /// Event event = new Event(msg);
+        /// var response = await client.log(event);
         /// </code>
         /// </example>
         public async Task<Response<LogResult>> Log(Event requestEvent)
@@ -163,9 +163,9 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        ///     string msg = "Event's message";
-        ///     Event event = new Event(msg);
-        ///     var response = await client.log(event, "Local", true, false);
+        /// string msg = "Event's message";
+        /// Event event = new Event(msg);
+        /// var response = await client.log(event, "Local", true, false);
         /// </code>
         /// </example>
         public async Task<Response<LogResult>> Log(Event requestEvent, SignMode signMode, bool verbose, bool verify)
@@ -186,7 +186,7 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        ///     var response = await client.GetRoot();
+        /// var response = await client.GetRoot();
         /// </code>
         /// </example>
         public async Task<Response<RootResult>> GetRoot()
@@ -203,7 +203,7 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        ///     var response = await client.GetRoot(treeSize);
+        /// var response = await client.GetRoot(treeSize);
         /// </code>
         /// </example>
         public async Task<Response<RootResult>> GetRoot(int? treeSize)
@@ -340,9 +340,9 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        ///     var input = new SearchInput("message:Integration test msg");
-        ///     input.setMaxResults(10);
-        ///     var response = Client.Search(input);
+        /// var input = new SearchInput("message:Integration test msg");
+        /// input.setMaxResults(10);
+        /// var response = Client.Search(input);
         /// </code>
         /// </example>
         public async Task<Response<SearchOutput>> Search(SearchInput input)
@@ -361,9 +361,9 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        ///     var input = new SearchInput("message:Integration test msg");
-        ///     input.setMaxResults(10);
-        ///     var response = Client.Search(input, true, true);
+        /// var input = new SearchInput("message:Integration test msg");
+        /// input.setMaxResults(10);
+        /// var response = Client.Search(input, true, true);
         /// </code>
         /// </example>
         public async Task<Response<SearchOutput>> Search(SearchInput input, bool VerifyConsistency, bool verifyEvents)

@@ -151,9 +151,9 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-                string msg = "Event's message";
-                Event event = new Event(msg);
-                var response = await client.log(event);
+            string msg = "Event's message";
+            Event event = new Event(msg);
+            var response = await client.log(event);
             </code>
             </example>
         </member>
@@ -172,9 +172,9 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-                string msg = "Event's message";
-                Event event = new Event(msg);
-                var response = await client.log(event, "Local", true, false);
+            string msg = "Event's message";
+            Event event = new Event(msg);
+            var response = await client.log(event, "Local", true, false);
             </code>
             </example>
         </member>
@@ -187,7 +187,7 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-                var response = await client.GetRoot();
+            var response = await client.GetRoot();
             </code>
             </example>
         </member>
@@ -201,7 +201,7 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-                var response = await client.GetRoot(treeSize);
+            var response = await client.GetRoot(treeSize);
             </code>
             </example>
         </member>
@@ -215,9 +215,9 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-                var input = new SearchInput("message:Integration test msg");
-                input.setMaxResults(10);
-                var response = Client.Search(input);
+            var input = new SearchInput("message:Integration test msg");
+            input.setMaxResults(10);
+            var response = Client.Search(input);
             </code>
             </example>
         </member>
@@ -233,9 +233,9 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-                var input = new SearchInput("message:Integration test msg");
-                input.setMaxResults(10);
-                var response = Client.Search(input, true, true);
+            var input = new SearchInput("message:Integration test msg");
+            input.setMaxResults(10);
+            var response = Client.Search(input, true, true);
             </code>
             </example>
         </member>

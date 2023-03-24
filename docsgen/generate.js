@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const { XMLParser, XMLBuilder, XMLValidator } = require("fast-xml-parser");
+const { XMLParser } = require("fast-xml-parser");
 const sourceXMLPath = "source/PangeaCyber.Net.xml";
 const destinationJSONPath = "./c#_sdk.json";
 
@@ -62,8 +62,8 @@ const getMethodsForClass = (entries, className) => {
         if (entry.kind === "method" && entry?.["@_name"]?.indexOf(className) > -1) {
             const methodSignature = parseMethodName(className, entry["@_name"]);
             if (methodSignature) {
-                const example = entry?.example?.code ? `{@code\n ${entry?.example?.code}\n }` : null;
-
+                const example = entry?.example?.code ? `{@code\n${entry?.example?.code}\n}` : null;
+                console.log(example);
                 const entryThrows = Array.isArray(entry?.exception) ? entry?.exception : [entry?.exception];
 
                 const throws = entryThrows.map(ex => ({
@@ -146,7 +146,8 @@ try {
     const results = [];
     const data = fs.readFileSync(sourceXMLPath, 'utf8');
     let content = new XMLParser({
-        ignoreAttributes: false
+        ignoreAttributes: false,
+        trimValues: true,
     }).parse(data);
     const entries = content.doc.members.member;
     const classes = getClasses(entries);
