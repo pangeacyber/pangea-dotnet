@@ -24,8 +24,7 @@ publish:
   script:
     - PACKAGE_VERSION=`cat VERSION`
     - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
-    - echo $NUGET_SIGNING_CERTIFICATE > certfile.pem
-    - openssl x509 -noout -inform pem -in certfile.pem -outform der -out certfile.der
+    - openssl x509 -noout -inform pem -in "$NUGET_CERT_PEM" -outform der -out certfile.der
     - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path certfile.der --timestamper http://timestamp.digicert.com
     # - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
     - rm certfile.der
