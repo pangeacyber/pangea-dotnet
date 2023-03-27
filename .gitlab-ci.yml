@@ -25,7 +25,7 @@ publish:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
     - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
-    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path .secure_files/cert.der --timestamper http://timestamp.digicert.com
+    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path .secure_files/nuget.der --timestamper http://timestamp.digicert.com
     # - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
     - rm -rf .secure_files
   artifacts:
