@@ -22,13 +22,12 @@ tests:
 publish:
   stage: publish
   script:
+    - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
     - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
-    - openssl x509 -noout -inform pem -in "$NUGET_CERT_PEM" -outform der -out certfile.der
-    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path certfile.der --timestamper http://timestamp.digicert.com
+    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path .secure_files/cert.der --timestamper http://timestamp.digicert.com
     # - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
-    - rm certfile.der
-    - rm certfile.pem
+    - rm -rf .secure_files
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
