@@ -197,7 +197,7 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchDefault()
     {
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int limit = 4;
         int maxResults = 6;
         input.MaxResults = limit;
@@ -240,7 +240,7 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchVerifyConsistency()
     {
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int limit = 10;
         input.MaxResults = limit;
         input.Order = "asc";
@@ -262,7 +262,7 @@ public class AuditClientTests
         SearchInput input = new SearchInput("message:" + MSG_SIGNED_LOCAL + " status:" + STATUS_SIGNED);
         int limit = 10;
         input.MaxResults = limit;
-        input.Order = "asc";
+        input.Order = "desc";
 
         var response = await client.Search(input, true, true);
         Assert.True(response.IsOK);
@@ -277,7 +277,7 @@ public class AuditClientTests
     [Fact]
     public async Task TestResultsDefault()
     {
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 10;
         input.MaxResults = searchLimit;
         input.Order = "asc";
@@ -301,7 +301,7 @@ public class AuditClientTests
     [Fact]
     public async Task TestResultsVerify()
     {
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 10;
         input.MaxResults = searchLimit;
         input.Order = "asc";
@@ -330,7 +330,7 @@ public class AuditClientTests
     [Fact]
     public async Task TestResultsNoVerify()
     {
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 10;
         input.MaxResults = searchLimit;
         input.Order = "asc";
@@ -415,7 +415,7 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchValidationException()
     {
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 100;
         input.MaxResults = searchLimit;
         input.Order = "notavalidorder";
@@ -428,7 +428,7 @@ public class AuditClientTests
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
         AuditClient fakeClient = new AuditClientBuilder(cfg).Build();
-        SearchInput input = new SearchInput("message:");
+        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 100;
         input.MaxResults = searchLimit;
         input.Order = "notavalidorder";
