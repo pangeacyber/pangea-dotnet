@@ -25,8 +25,10 @@ publish:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
     - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
-    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --certificate-path .secure_files/pangea-csr.der --timestamper http://timestamp.digicert.com
-    # - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+    - cp .secure_files/CodeSigning_CABundle.crt /usr/local/share/ca-certificates
+    - update-ca-certificates
+    - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --timestamper http://timestamp.sectigo.com --certificate-path .secure_files/pangea.pfx
+    - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
     - rm -rf .secure_files
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
