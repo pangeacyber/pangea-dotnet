@@ -1,23 +1,12 @@
-<p>
-  <br />
-  <a href="https://pangea.cloud?utm_source=github&utm_medium=csharp-sdk" target="_blank" rel="noopener noreferrer">
-    <img src="https://pangea-marketing.s3.us-west-2.amazonaws.com/pangea-color.svg" alt="Pangea Logo" height="40">
-  </a>
-  <br />
-</p>
+# Pangea .Net SDK
 
-<p>
-<br />
+This package helps .Net developers to use Pangea's security services in their applications. In order to use the services, developers need to [register](https://login.aws.us.pangea.cloud/signup) for a Pangea account and optain an API token.
 
-[![documentation](https://img.shields.io/badge/documentation-pangea-blue?style=for-the-badge&labelColor=551B76)](https://pangea.cloud/docs/sdk/dotnet/)
+## Supported Services
 
-<br />
-</p>
+- Pangea Secure Audit Log
 
-# Pangea .Net SDK Repo
-
-The Pangea repository for all things .Net
-
-## Pangea .Net SDK
-
-[.NET SDK](https://github.com/pangeacyber)
+## Links
+- [Pangea Registration](https://login.aws.us.pangea.cloud/signup)
+- [Pangea .NET SDK Repository](https://github.com/pangeacyber)
+- [Documentation](https://pangea.cloud/docs/sdk/dotnet/) Coming soon...

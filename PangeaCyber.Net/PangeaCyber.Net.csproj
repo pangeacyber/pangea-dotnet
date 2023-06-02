@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <PackageId>Pangea.SDK</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <Authors>Pangea Cyber Corporation</Authors>
     <Company>Pangea Cyber Corporation</Company>
     <Description>.Net SDK to access Pangea API services on pangea.cloud</Description>
@@ -15,6 +14,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- Build XML documentation for all combinations of target framework x configuration -->
@@ -38,6 +38,7 @@
     <None Remove="Exceptions\" />
     <None Remove="Utils\" />
     <None Remove="AuditLog\Models\" />
+    <None Include="..\README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
   <ItemGroup>
