@@ -9,4 +9,4 @@ This package helps .Net developers to use Pangea's security services in their ap
 ## Links
 - [Pangea Registration](https://login.aws.us.pangea.cloud/signup)
 - [Pangea .NET SDK Repository](https://github.com/pangeacyber)
-- [Documentation](https://pangea.cloud/docs/sdk/dotnet/) Coming soon...
+- [Documentation](https://pangea.cloud/docs/sdk/csharp/)
