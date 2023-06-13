@@ -1,6 +1,6 @@
 # Pangea .Net SDK
 
-This package helps .Net developers to use Pangea's security services in their applications. In order to use the services, developers need to [register](https://login.aws.us.pangea.cloud/signup) for a Pangea account and optain an API token.
+This package helps .Net developers to use Pangea's security services in their applications. In order to use the services, developers need to [register](https://login.aws.us.pangea.cloud/signup) for a Pangea account and obtain an API token.
 
 ## Supported Services
 
