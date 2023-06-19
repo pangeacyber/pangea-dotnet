@@ -1006,6 +1006,252 @@
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
+            <kind>class</kind>
+            <summary>
+            RedactDebugReport
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactDebugReport.SummaryCounts">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactDebugReport.RecognizerResults">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactRecognizerResult">
+            <kind>class</kind>
+            <summary>
+            RedactRecognizerResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.FieldType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.Score">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.End">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.Redacted">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactRecognizerResult.DateKey">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactStructuredRequest">
+            <kind>class</kind>
+            <summary>
+            RedactStructuredRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.Data">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.Jsonp">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.Format">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.Debug">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.Rules">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.ReturnResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.#ctor(PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder">
+            <kind>class</kind>
+            <summary>
+            RedactStructuredRequestBuilder
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.Data">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.Jsonp">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.Format">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.Debug">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.Rules">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.ReturnResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.#ctor(System.Object)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.SetJsonp(System.String[])">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.SetFormat(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.SetDebug(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.SetRules(System.String[])">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.SetReturnResult(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactStructuredRequest.RedactStructuredRequestBuilder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactStructuredResult">
+            <kind>class</kind>
+            <summary>
+            RedactStructuredResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredResult.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredResult.Report">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactStructuredResult.RedactedData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactTextRequest">
+            <kind>class</kind>
+            <summary>
+            RedactTextRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.Debug">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.Rules">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.ReturnResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactTextRequest.#ctor(PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder">
+            <kind>class</kind>
+            <summary>
+            RedactTextRequestBuilder
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.Debug">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.Rules">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.ReturnResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.SetDebug(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.SetRules(System.String[])">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.SetReturnResult(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactTextRequest.RedactTextRequestBuilder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactTextResult">
+            <kind>class</kind>
+            <summary>
+            RedactTextResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextResult.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextResult.Report">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Redact.RedactTextResult.RedactedText">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactClient">
+            <kind>class</kind>
+            <summary>
+            Redact Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Redact.RedactClient.ServiceName">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Redact.RedactClient.TenantID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.#ctor(PangeaCyber.Net.Config)">
+            Constructor
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.RedactText(PangeaCyber.Net.Redact.RedactTextRequest)">
+             <kind>method</kind>
+             <summary>
+             Redact sensitive information from provided text.
+             </summary>
+             <remarks>Redact sensitive information from provided text.</remarks>
+             <param name="request" type="PangeaCyber.Net.Redact.RedactTextRequest">RedactRequest with text and optional parameters</param>
+             <returns>Response&lt;RedactTextResult&gt;</returns>
+             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+             <example>
+             <code>
+             var request = new RedactTextRequest.RequestTextBuilder("Jenny Jenny... 415-867-5309").Build();
+             var response = await client.RedactText(request);
+            
+             </code>
+             </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.RedactStructured(PangeaCyber.Net.Redact.RedactStructuredRequest)">
+             <kind>method</kind>
+             <summary>
+             Redact sensitive information from provided structured data.
+             </summary>
+             <remarks>Redact sensitive information from structured data (e.g., JSON).</remarks>
+             <param name="request" type="PangeaCyber.Net.Redact.RedactTextRequest">RedactRequest with structured dadta</param>
+             <returns>Response&lt;RedactStructuredResult&gt;</returns>
+             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+             <example>
+             <code>
+             var request = new RedactStructuredRequest.RequestStructureBuilder("Jenny Jenny... 415-867-5309").Build();
+             var response = await client.RedactStructured(request);
+            
+             </code>
+             </example>
+        </member>
         <member name="T:PangeaCyber.Net.Response`1">
             <kind>class</kind>
             <summary>

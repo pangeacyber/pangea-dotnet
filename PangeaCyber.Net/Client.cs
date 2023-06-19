@@ -68,6 +68,7 @@ namespace PangeaCyber.Net
             var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
 
             string body = await res.Content.ReadAsStringAsync();
+            
             ResponseHeader header = default!;
 
             try

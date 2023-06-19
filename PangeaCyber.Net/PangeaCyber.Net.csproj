@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Pangea.SDK</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
     <Authors>Pangea Cyber Corporation</Authors>
     <Company>Pangea Cyber Corporation</Company>
     <Description>.Net SDK to access Pangea API services on pangea.cloud</Description>
@@ -38,7 +38,7 @@
     <None Remove="Exceptions\" />
     <None Remove="Utils\" />
     <None Remove="AuditLog\Models\" />
-    <None Include="..\README.md" Pack="true" PackagePath=""/>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,7 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>
