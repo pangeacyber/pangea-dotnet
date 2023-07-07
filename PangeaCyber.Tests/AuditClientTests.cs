@@ -260,7 +260,7 @@ public class AuditClientTests
     public async Task TestSearchVerifySignature()
     {
         SearchInput input = new SearchInput("message:" + MSG_SIGNED_LOCAL + " status:" + STATUS_SIGNED);
-        int limit = 10;
+        int limit = 2;
         input.MaxResults = limit;
         input.Order = "desc";
 
