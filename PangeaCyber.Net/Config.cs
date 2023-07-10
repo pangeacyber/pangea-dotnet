@@ -23,7 +23,7 @@ namespace PangeaCyber.Net
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Configuration" /> class
+        /// Initializes a new instance of the <see cref="Config" /> class
         /// </summary>
         public Config(string token, string domain)
         {

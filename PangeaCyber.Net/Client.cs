@@ -12,18 +12,36 @@ namespace PangeaCyber.Net
     /// </summary>
     public abstract class Client
     {
+        ///
         private readonly Config config;
 
+        ///
         private readonly string serviceName;
+
+        ///
+        private readonly bool SupportMultiConfig;
 
         ///
         protected readonly HttpClient HttpClient;
 
         ///
-        public Client(Config config, string serviceName)
+        public class ClientBuilder {
+            ///
+            public Config config {get; }
+
+            ///
+            public ClientBuilder(Config config){
+                this.config = config;
+            }
+        }
+
+
+        ///
+        public Client(ClientBuilder builder, string serviceName, bool SupportMultiConfig)
         {
-            this.config = config;
+            this.config = builder.config;
             this.serviceName = serviceName;
+            this.SupportMultiConfig = SupportMultiConfig;
             this.HttpClient = new HttpClient();
             this.HttpClient.BaseAddress = config.GetServiceUrl(serviceName, String.Empty);
             this.HttpClient.DefaultRequestHeaders.Add("User-Agent", "pangea-csharp/" + Config.Version);

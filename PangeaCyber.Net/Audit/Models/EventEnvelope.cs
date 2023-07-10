@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///
         [JsonProperty("event", Required = Required.Always)]
-        public Event RequestEvent { get; private set; } = default!;
+        public IEvent? Event { get; private set; } = default!;
 
         ///
         [JsonProperty("signature")]
@@ -27,9 +27,9 @@ namespace PangeaCyber.Net.Audit
         public string ReceivedAt { get; private set; } = default!;
 
         ///
-        public EventEnvelope(Event requestEvent, string signature, string publicKey, string receivedAt)
+        public EventEnvelope(IEvent @event, string signature, string publicKey, string receivedAt)
         {
-            this.RequestEvent = requestEvent;
+            this.Event = @event;
             this.Signature = signature;
             this.PublicKey = publicKey;
             this.ReceivedAt = receivedAt;
@@ -38,6 +38,10 @@ namespace PangeaCyber.Net.Audit
         ///
         public EventVerification VerifySignature()
         {
+            if( this.Event == null){
+                return EventVerification.NotVerified;
+            }
+
             // If does not have signature information, it's not verified
             if (this.Signature == null && this.PublicKey == null)
             {
@@ -58,34 +62,44 @@ namespace PangeaCyber.Net.Audit
             string canonicalJson;
             try
             {
-                canonicalJson = Event.Canonicalize(this.RequestEvent);
+                canonicalJson = IEvent.Canonicalize(this.Event);
             }
             catch (EncoderFallbackException)
             {
                 return EventVerification.Failed;
             }
-            Verifier verifier = new Verifier();
 
+            Verifier verifier = new Verifier();
             return verifier.Verify(this?.PublicKey ?? default!, this?.Signature ?? default!, canonicalJson);
         }
 
         ///
-        public static EventEnvelope FromRaw(object RawEnvelope)
+        public static EventEnvelope? FromRaw(Dictionary<string, object> RawEnvelope, Type customSchemaClass)
         {
+            if (!typeof(IEvent).IsAssignableFrom(customSchemaClass))
+            {
+                throw new ArgumentException("customSchemaClass must implement IEvent");
+            }
+
             if (RawEnvelope == null)
             {
                 return default!;
             }
-
+            var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
             EventEnvelope EventEnvelope;
             try
             {
-                var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-                EventEnvelope = JsonConvert.DeserializeObject<EventEnvelope>(JsonConvert.SerializeObject(RawEnvelope, jsonSettings), jsonSettings) ?? default!;
+                EventEnvelope = JsonConvert.DeserializeObject<EventEnvelope>(JsonConvert.SerializeObject(RawEnvelope, jsonSettings), jsonSettings) ?? null!;
             }
             catch (Exception e)
             {
                 throw new PangeaException("Failed to process event envelope", e);
+            }
+
+            object rawEvent;
+            if(RawEnvelope.TryGetValue("event", out rawEvent!)){
+                IEvent? @event = IEvent.FromRaw(rawEvent, customSchemaClass);
+                EventEnvelope.Event = @event;
             }
 
             return EventEnvelope;

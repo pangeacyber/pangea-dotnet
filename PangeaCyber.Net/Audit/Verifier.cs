@@ -21,7 +21,7 @@ namespace PangeaCyber.Net.Audit
             {
                 pubKey = new Ed25519PublicKeyParameters(Convert.FromBase64String(pubKeyBase64));
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return EventVerification.Failed;
             }
@@ -32,7 +32,7 @@ namespace PangeaCyber.Net.Audit
             {
                 byteMessage = Encoding.UTF8.GetBytes(message);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return EventVerification.Failed;
             }

@@ -13,7 +13,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///
         [JsonProperty("envelope", Required = Required.Always)]
-        public object RawEnvelope { get; private set; } = default!;
+        public Dictionary<string, object> RawEnvelope { get; private set; } = default!;
 
         ///
         public EventEnvelope EventEnvelope { get; set; } = default!;
@@ -32,7 +32,7 @@ namespace PangeaCyber.Net.Audit
 
         ///
         [JsonProperty("published")]
-        public bool published { get; private set; } = default!;
+        public bool Published { get; private set; } = default!;
 
         ///
         [JsonIgnore]
@@ -63,7 +63,7 @@ namespace PangeaCyber.Net.Audit
         public void VerifyConsistency(Dictionary<int, PublishedRoot> publishedRoots)
         {
             // This should never happen.
-            if (!this.published || !this.LeafIndex.HasValue)
+            if (!this.Published || !this.LeafIndex.HasValue)
             {
                 this.ConsistencyVerification = EventVerification.NotVerified;
                 return;

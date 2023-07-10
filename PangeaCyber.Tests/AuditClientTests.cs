@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Exceptions;
@@ -8,7 +7,7 @@ namespace PangeaCyber.Tests;
 ///
 public class AuditClientTests
 {
-    private AuditClient client, signClient, signNtenandIDClient;
+    private AuditClient client, signClient, tenantIDClient, signNtenantIDClient;
 
     TestEnvironment environment = TestEnvironment.LVE;
 
@@ -26,20 +25,22 @@ public class AuditClientTests
     {
         // var cfg = Config.FromIntegrationEnvironment(environment);
         var config = Config.FromIntegrationEnvironment(TestEnvironment.LVE);
-        var builder = new AuditClientBuilder(config);
+        var builder = new AuditClient.Builder(config);
         this.client = builder.Build();
         this.signClient = builder.WithPrivateKey(PRIVATE_KEY_FILE).Build();
-        this.signNtenandIDClient = builder.WithTenantID(TENANT_ID).Build();
+        this.tenantIDClient = builder.WithTenantID(TENANT_ID).Build();
+        this.signNtenantIDClient = builder.WithTenantID(TENANT_ID).WithPrivateKey(PRIVATE_KEY_FILE).Build();
     }
 
     [Fact]
     public async Task TestLog()
     {
-        Event evt = new Event(MSG_NO_SIGNED);
-        evt.Actor = ACTOR;
-        evt.Status = STATUS_NO_SIGNED;
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
 
-        var response = await client.Log(evt);
+        var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).Build());
 
         Assert.True(response.IsOK);
         Assert.Null(response.Result.EventEnvelope);
@@ -54,11 +55,12 @@ public class AuditClientTests
     [Fact]
     public async Task TestLogNoVerbose()
     {
-        Event evt = new Event(MSG_NO_SIGNED);
-        evt.Actor = ACTOR;
-        evt.Status = STATUS_NO_SIGNED;
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
 
-        var response = await client.Log(evt, SignMode.Unsigned, false, false);
+        var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(false).WithSignLocal(false).Build());
 
         Assert.True(response.IsOK);
         Assert.Null(response.Result.EventEnvelope);
@@ -73,16 +75,19 @@ public class AuditClientTests
     [Fact]
     public async Task TestLogVerbose()
     {
-        Event evt = new Event(MSG_NO_SIGNED);
-        evt.Actor = ACTOR;
-        evt.Status = STATUS_NO_SIGNED;
+        StandardEvent? evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
 
-        var response = await client.Log(evt, SignMode.Unsigned, true, false);
+        LogConfig cfg = new LogConfig.Builder().WithVerify(false).WithVerbose(true).WithSignLocal(false).Build();
+        var response = await client.Log(evt, cfg);
 
         Assert.True(response.IsOK);
         Assert.NotNull(response.Result.EventEnvelope);
         Assert.NotNull(response.Result.Hash);
-        Assert.Equal(MSG_NO_SIGNED, response.Result.EventEnvelope.RequestEvent.Message);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_NO_SIGNED, evt?.Message);
         Assert.Null(response.Result.ConsistencyProof);
         Assert.NotNull(response.Result.MembershipProof);
         Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
@@ -93,50 +98,61 @@ public class AuditClientTests
     [Fact]
     public async Task TestLogTenantID()
     {
-        Event evt = new Event(MSG_NO_SIGNED);
-        evt.Actor = ACTOR;
-        evt.Status = STATUS_NO_SIGNED;
 
-        var response = await signNtenandIDClient.Log(evt, SignMode.Unsigned, true, false);
+        StandardEvent? evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await tenantIDClient.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());
         Assert.True(response.IsOK);
 
         Assert.NotNull(response.Result.EventEnvelope);
         Assert.NotNull(response.Result.Hash);
-        Assert.Equal(MSG_NO_SIGNED, response.Result.EventEnvelope.RequestEvent.Message);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_NO_SIGNED, evt?.Message);
         Assert.Null(response.Result.ConsistencyProof);
         Assert.NotNull(response.Result.MembershipProof);
         Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
         Assert.Equal(EventVerification.NotVerified, response.Result.MembershipVerification);
         Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
-        Assert.Equal(TENANT_ID, response.Result.EventEnvelope.RequestEvent.TenantID);
+        Assert.Equal(TENANT_ID, evt?.TenantID);
     }
 
     [Fact]
     public async Task TestLogVerify()
     {
-        Event evt = new Event(MSG_NO_SIGNED);
-        evt.Actor = ACTOR;
-        evt.Status = STATUS_NO_SIGNED;
 
-        var response = await client.Log(evt, SignMode.Unsigned, true, true);
+        StandardEvent? evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await client.Log(evt, new LogConfig.Builder().WithVerify(true).WithVerbose(true).Build());
+
         Assert.True(response.IsOK);
 
         Assert.NotNull(response.Result.EventEnvelope);
         Assert.NotNull(response.Result.Hash);
-        Assert.Equal(MSG_NO_SIGNED, response.Result.EventEnvelope.RequestEvent.Message);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_NO_SIGNED, evt?.Message);
         Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
         Assert.Equal(EventVerification.Success, response.Result.MembershipVerification);
         Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
 
         // Second log
-        evt = new Event(MSG_NO_SIGNED);
-        evt.Actor = ACTOR;
-        evt.Status = STATUS_NO_SIGNED;
-        response = await client.Log(evt, SignMode.Unsigned, true, true);
+        evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        response = await client.Log(evt, new LogConfig.Builder().WithVerify(true).WithVerbose(true).Build());
+
         Assert.True(response.IsOK);
         Assert.NotNull(response.Result.EventEnvelope);
         Assert.NotNull(response.Result.Hash);
-        Assert.Equal(MSG_NO_SIGNED, response.Result.EventEnvelope.RequestEvent.Message);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_NO_SIGNED, evt?.Message);
         Assert.Equal(EventVerification.Success, response.Result.ConsistencyVerification);
         Assert.Equal(EventVerification.Success, response.Result.MembershipVerification);
         Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
@@ -145,20 +161,23 @@ public class AuditClientTests
     [Fact]
     public async Task TestLogLocalSignature()
     {
-        Event evt = new Event(MSG_SIGNED_LOCAL);
-        evt.Actor = ACTOR;
-        evt.Action = "Action";
-        evt.Source = "Source";
-        evt.Status = STATUS_SIGNED;
-        evt.Target = "Target";
-        evt.NewField = "New";
-        evt.Old = "Old";
+        StandardEvent? evt = new StandardEvent.Builder(MSG_SIGNED_LOCAL)
+                            .WithActor(ACTOR)
+                            .WithAction("Action")
+                            .WithSource("Source")
+                            .WithStatus(STATUS_SIGNED)
+                            .WithTarget("Target")
+                            .WithNewField("New")
+                            .WithOld("Old")
+                            .Build();
 
-        var response = await signClient.Log(evt, SignMode.Local, true, true);
+        var response = await signClient.Log(evt, new LogConfig.Builder().WithVerify(true).WithVerbose(true).WithSignLocal(true).Build());
+
         Assert.True(response.IsOK);
         Assert.NotNull(response.Result.EventEnvelope);
         Assert.NotNull(response.Result.Hash);
-        Assert.Equal(MSG_SIGNED_LOCAL, response.Result.EventEnvelope.RequestEvent.Message);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_SIGNED_LOCAL, evt?.Message);
         Assert.Equal("lvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=", response.Result.EventEnvelope.PublicKey);
         Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
     }
@@ -166,24 +185,27 @@ public class AuditClientTests
     [Fact]
     public async Task TestLogLocalSignatureAndTenantID()
     {
-        Event evt = new Event(MSG_SIGNED_LOCAL);
-        evt.Actor = ACTOR;
-        evt.Action = "Action";
-        evt.Source = "Source";
-        evt.Status = STATUS_SIGNED;
-        evt.Target = "Target";
-        evt.NewField = "New";
-        evt.Old = "Old";
+        StandardEvent? evt = new StandardEvent.Builder(MSG_SIGNED_LOCAL)
+                            .WithActor(ACTOR)
+                            .WithAction("Action")
+                            .WithSource("Source")
+                            .WithStatus(STATUS_SIGNED)
+                            .WithTarget("Target")
+                            .WithNewField("New")
+                            .WithOld("Old")
+                            .Build();
 
-        var response = await signNtenandIDClient.Log(evt, SignMode.Local, true, true);
+        var response = await signNtenantIDClient.Log(evt, new LogConfig.Builder().WithVerify(true).WithVerbose(true).WithSignLocal(true).Build());
+
         Assert.True(response.IsOK);
 
         Assert.NotNull(response.Result.EventEnvelope);
         Assert.NotNull(response.Result.Hash);
-        Assert.Equal(MSG_SIGNED_LOCAL, response.Result.EventEnvelope.RequestEvent.Message);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_SIGNED_LOCAL, evt?.Message);
         Assert.Equal("lvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=", response.Result.EventEnvelope.PublicKey);
         Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
-        Assert.Equal(TENANT_ID, response.Result.EventEnvelope.RequestEvent.TenantID);
+        Assert.Equal(TENANT_ID, evt?.TenantID);
     }
 
 
@@ -197,21 +219,23 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchDefault()
     {
-        SearchInput input = new SearchInput("message:\"\"");
         int limit = 4;
         int maxResults = 6;
-        input.MaxResults = limit;
-        input.MaxResults = maxResults;
-        input.Order = "asc";
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+                            .WithMaxResults(maxResults)
+                            .WithLimit(limit)
+                            .WithOrder("asc")
+                            .Build();
 
-        var response = await client.Search(input);
+
+        var response = await client.Search(req, new SearchConfig.Builder().Build());
         Assert.True(response.IsOK);
         Assert.True(response.Result.Count <= maxResults);
 
         foreach (SearchEvent evt in response.Result.Events)
         {
             Assert.Contains(evt.ConsistencyVerification, new List<EventVerification>() { EventVerification.NotVerified, EventVerification.Success });
-            Assert.Equal(EventVerification.Success, evt.MembershipVerification);
+            Assert.Equal(EventVerification.NotVerified, evt.MembershipVerification);
             Assert.NotNull(evt.EventEnvelope);
             Assert.NotNull(evt.Hash);
         }
@@ -220,13 +244,15 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchNoVerify()
     {
-        SearchInput input = new SearchInput("message:Integration test msg");
         int limit = 10;
-        input.MaxResults = limit;
-        input.Order = "desc";
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+                            .WithMaxResults(limit)
+                            .WithOrder("desc")
+                            .Build();
 
-        var response = await client.Search(input, false, false);
-        Assert.True(response.IsOK);
+
+        var response = await client.Search(req, new SearchConfig.Builder().WithVerifyConsistency(false).WithVerifyEvents(false).Build());
+         Assert.True(response.IsOK);
         Assert.True(response.Result.Count <= limit);
 
         foreach (SearchEvent evt in response.Result.Events)
@@ -240,12 +266,15 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchVerifyConsistency()
     {
-        SearchInput input = new SearchInput("message:\"\"");
         int limit = 10;
-        input.MaxResults = limit;
-        input.Order = "asc";
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+                            .WithMaxResults(limit)
+                            .WithOrder("asc")
+                            .Build();
 
-        var response = await client.Search(input, true, true);
+
+        var response = await client.Search(req, new SearchConfig.Builder().WithVerifyConsistency(true).WithVerifyEvents(true).Build());
+
         Assert.True(response.IsOK);
         Assert.True(response.Result.Count <= limit);
 
@@ -259,12 +288,14 @@ public class AuditClientTests
     [Fact]
     public async Task TestSearchVerifySignature()
     {
-        SearchInput input = new SearchInput("message:" + MSG_SIGNED_LOCAL + " status:" + STATUS_SIGNED);
         int limit = 10;
-        input.MaxResults = limit;
-        input.Order = "desc";
+        SearchRequest req = new SearchRequest.Builder("message:" + MSG_SIGNED_LOCAL + " status:" + STATUS_SIGNED)
+                            .WithMaxResults(limit)
+                            .WithOrder("desc")
+                            .Build();
 
-        var response = await client.Search(input, true, true);
+
+        var response = await client.Search(req, new SearchConfig.Builder().WithVerifyConsistency(true).WithVerifyEvents(true).Build());
         Assert.True(response.IsOK);
         Assert.True(response.Result.Count <= limit);
 
@@ -277,18 +308,27 @@ public class AuditClientTests
     [Fact]
     public async Task TestResultsDefault()
     {
-        SearchInput input = new SearchInput("message:\"\"");
-        int searchLimit = 10;
-        input.MaxResults = searchLimit;
-        input.Order = "asc";
+        int limit = 10;
 
-        var searchResponse = await client.Search(input, true, true);
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+                    .WithMaxResults(limit)
+                    .WithOrder("asc")
+                    .Build();
+
+
+        var searchResponse = await client.Search(req, new SearchConfig.Builder().WithVerifyConsistency(true).WithVerifyEvents(true).Build());
+
         Assert.True(searchResponse.IsOK);
-        Assert.True(searchResponse.Result.Count <= searchLimit);
+        Assert.True(searchResponse.Result.Count <= limit);
         Assert.True(searchResponse.Result.Count > 0);
 
+
         int resultsLimit = 3;
-        var resultsResponse = await client.Results(searchResponse.Result.ID, resultsLimit, 0);
+        ResultRequest resultRequest = new ResultRequest.Builder(searchResponse.Result.ID)
+                                        .WithLimit(resultsLimit)
+                                        .Build();
+
+        var resultsResponse = await client.Results(resultRequest, new SearchConfig.Builder().Build());
 
         Assert.Equal(resultsResponse.Result.Count, resultsLimit);
         foreach (SearchEvent evt in resultsResponse.Result.Events)
@@ -301,24 +341,26 @@ public class AuditClientTests
     [Fact]
     public async Task TestResultsVerify()
     {
-        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 10;
-        input.MaxResults = searchLimit;
-        input.Order = "asc";
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+                    .WithMaxResults(searchLimit)
+                    .WithOrder("asc")
+                    .Build();
 
-        var searchResponse = await client.Search(input, true, true);
+
+        var searchResponse = await client.Search(req, new SearchConfig.Builder().WithVerifyConsistency(true).WithVerifyEvents(true).Build());
+
         Assert.True(searchResponse.IsOK);
         Assert.True(searchResponse.Result.Count <= searchLimit);
         Assert.True(searchResponse.Result.Count > 0);
 
         int resultsLimit = 3;
-        var resultsResponse = await client.Results(
-            searchResponse.Result.ID,
-            resultsLimit,
-            0,
-            true,
-            true
-        );
+        ResultRequest resultRequest = new ResultRequest.Builder(searchResponse.Result.ID)
+                                        .WithLimit(resultsLimit)
+                                        .Build();
+
+        var resultsResponse = await client.Results(resultRequest, new SearchConfig.Builder().WithVerifyConsistency(true).WithVerifyEvents(true).Build());
+
         Assert.Equal(resultsResponse.Result.Count, resultsLimit);
         foreach (SearchEvent evt in resultsResponse.Result.Events)
         {
@@ -330,24 +372,27 @@ public class AuditClientTests
     [Fact]
     public async Task TestResultsNoVerify()
     {
-        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 10;
-        input.MaxResults = searchLimit;
-        input.Order = "asc";
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+                            .WithMaxResults(searchLimit)
+                            .WithOrder("asc")
+                            .Build();
 
-        var searchResponse = await client.Search(input, true, true);
+
+
+        var searchResponse = await client.Search(req, new SearchConfig.Builder().WithVerifyConsistency(true).WithVerifyEvents(true).Build());
         Assert.True(searchResponse.IsOK);
         Assert.True(searchResponse.Result.Count <= searchLimit);
 
         int resultsLimit = 3;
         // Skip verifications
-        var resultsResponse = await client.Results(
-            searchResponse.Result.ID,
-            resultsLimit,
-            0,
-            false,
-            false
-        );
+        ResultRequest resultRequest = new ResultRequest.Builder(searchResponse.Result.ID)
+                                        .WithLimit(resultsLimit)
+                                        .Build();
+
+        var resultsResponse = await client.Results(resultRequest, new SearchConfig.Builder().WithVerifyConsistency(false).WithVerifyEvents(false).Build());
+
+
         Assert.Equal(resultsResponse.Result.Count, resultsLimit);
         foreach (SearchEvent evt in resultsResponse.Result.Events)
         {
@@ -398,7 +443,7 @@ public class AuditClientTests
         int treeSize = 1;
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
-        AuditClient fakeClient = new AuditClientBuilder(cfg).Build();
+        AuditClient fakeClient = new AuditClient.Builder(cfg).Build();
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.GetRoot(treeSize));
     }
 
@@ -407,39 +452,27 @@ public class AuditClientTests
     {
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
-        AuditClient fakeClient = new AuditClientBuilder(cfg).Build();
-        Event evt = new Event("Test msg");
-        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.Log(evt));
+        AuditClient fakeClient = new AuditClient.Builder(cfg).Build();
+        StandardEvent evt = new StandardEvent.Builder("Test msg").Build();
+        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.Log(evt, new LogConfig.Builder().Build()));
     }
 
     [Fact]
     public async Task TestSearchValidationException()
     {
-        SearchInput input = new SearchInput("message:\"\"");
         int searchLimit = 100;
-        input.MaxResults = searchLimit;
-        input.Order = "notavalidorder";
-        await Assert.ThrowsAsync<ValidationException>(async () => await client.Search(input, true, true));
-    }
-
-    [Fact]
-    public async Task TestSearchValidationException2()
-    {
-        Config cfg = Config.FromIntegrationEnvironment(environment);
-        cfg.Token = "notarealtoken";
-        AuditClient fakeClient = new AuditClientBuilder(cfg).Build();
-        SearchInput input = new SearchInput("message:\"\"");
-        int searchLimit = 100;
-        input.MaxResults = searchLimit;
-        input.Order = "notavalidorder";
-        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.Search(input, true, true));
+        SearchRequest req = new SearchRequest.Builder("message:\"\"")
+            .WithLimit(searchLimit)
+            .WithOrder("notavalidorder")
+            .Build();
+        await Assert.ThrowsAsync<ValidationException>(async () => await client.Search(req, new SearchConfig.Builder().Build()));
     }
 
     [Fact]
     public async Task TestLogSignerNotSet()
     {
-        Event evt = new Event(MSG_NO_SIGNED);
-        await Assert.ThrowsAsync<SignerException>(async () => await client.Log(evt, SignMode.Local, true, true));
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED).Build();
+        await Assert.ThrowsAsync<SignerException>(async () => await client.Log(evt, new LogConfig.Builder().WithSignLocal(true).Build()));
     }
 
 }

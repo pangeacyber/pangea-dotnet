@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.Audit
 {
@@ -11,7 +10,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///        
         [JsonProperty("event", Required = Required.Always)]
-        public Event RequestEvent { get; set; } = default!;
+        public StandardEvent RequestEvent { get; set; } = default!;
 
         ///
         [JsonProperty("verbose")]
@@ -30,7 +29,7 @@ namespace PangeaCyber.Net.Audit
         public string PrevRoot { get; set; } = default!;
 
         ///
-        public LogRequest(Event requestEvent, bool verbose, string signature, string publicKey, string prevRoot)
+        public LogRequest(StandardEvent requestEvent, bool verbose, string signature, string publicKey, string prevRoot)
         {
             this.RequestEvent = requestEvent;
             this.Verbose = verbose;

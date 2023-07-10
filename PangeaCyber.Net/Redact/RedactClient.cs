@@ -12,10 +12,10 @@ namespace PangeaCyber.Net.Redact
         public static string ServiceName = "redact";
 
         ///
-        public string TenantID = default!;
+        private static bool SupportMultiConfig = true;
 
         /// Constructor
-        public RedactClient(Config config) : base(config, ServiceName)
+        public RedactClient(Builder builder) : base(builder, ServiceName, SupportMultiConfig)
         {
         }
 
@@ -70,6 +70,23 @@ namespace PangeaCyber.Net.Redact
         {
             return await this.structuredPost(request);
         }
-    }
+
+
+        ///
+        public class Builder : Client.ClientBuilder
+        {
+            ///
+            public Builder(Config config) : base(config)
+            {
+            }
+
+            ///
+            public RedactClient Build()
+            {
+                return new RedactClient(this);
+            }
+            
+        }
+    }   
 }
 

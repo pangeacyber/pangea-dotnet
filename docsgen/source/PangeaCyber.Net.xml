@@ -112,40 +112,41 @@
             Audit Client
             </summary>
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.ServiceName">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.serviceName">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.Signer">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.supportMultiConfig">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.PublishedRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.AllowServerRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.publishedRoots">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.PrevUnpublishedRoot">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.allowServerRoots">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.TenantID">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.prevUnpublishedRoot">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Config)">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.tenantID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
             Constructor
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Config,System.String)">
-            Constructor
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Config,System.String,System.String)">
-            Constructor
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.Event)">
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.StandardEvent,PangeaCyber.Net.Audit.LogConfig)">
             <kind>method</kind>
             <summary>
             Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
             </summary>
             <remarks>Log an entry</remarks>
             <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+            <param name="config"></param>
             <returns>Response&lt;LogResult&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
@@ -154,27 +155,6 @@
             string msg = "Event's message";
             Event event = new Event(msg);
             var response = await client.log(event);
-            </code>
-            </example>
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.Event,PangeaCyber.Net.SignMode,System.Boolean,System.Boolean)">
-            <kind>method</kind>
-            <summary>
-            Log an event to Audit Secure Log. Can select sign event or not and verbosity of the response.
-            </summary>
-            <remarks>Log an entry - event, sign, verbose</remarks>
-            <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
-            <param name="signMode" type="PangeaCyber.Net.Audit.SignMode">"Unsigned" or "Local"</param>
-            <param name="verbose" type="System.Boolean">true to more verbose response</param>
-            <param name="verify" type="System.Boolean">true to verify the hashes</param>
-            <returns>Response&lt;LogResult&gt;</returns>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
-            <example>
-            <code>
-            string msg = "Event's message";
-            Event event = new Event(msg);
-            var response = await client.log(event, "Local", true, false);
             </code>
             </example>
         </member>
@@ -205,11 +185,12 @@
             </code>
             </example>
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Search(PangeaCyber.Net.Audit.SearchInput)">
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Search(PangeaCyber.Net.Audit.SearchRequest,PangeaCyber.Net.Audit.SearchConfig)">
             <kind>method</kind>
             <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
             <remarks>Search</remarks>
-            <param name="input" type="PangeaCyber.Net.Audit.SearchInput">query filters to perform search</param>
+            <param name="request"></param>
+            <param name="config"></param>
             <returns>Response&lt;SearchOutput&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
@@ -221,64 +202,59 @@
             </code>
             </example>
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Search(PangeaCyber.Net.Audit.SearchInput,System.Boolean,System.Boolean)">
-            <kind>method</kind>
-            <summary>Perform a search of logs according to input param. Allow to select to verify or nor consistency proof and events.</summary>
-            <remarks>Search - input, VerifyConsistency, verifyEvents</remarks>
-            <param name="input" type="PangeaCyber.Net.Audit.SearchInput">query filters to perform search</param>
-            <param name="VerifyConsistency" type="System.Boolean">true to verify logs consistency proofs</param>
-            <param name="verifyEvents" type="System.Boolean">true to verify logs hash and signature</param>
-            <returns>Response&lt;SearchOutput&gt;</returns>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
-            <example>
-            <code>
-            var input = new SearchInput("message:Integration test msg");
-            input.setMaxResults(10);
-            var response = Client.Search(input, true, true);
-            </code>
-            </example>
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Results(System.String,System.Int32,System.Int32)">
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Results(PangeaCyber.Net.Audit.ResultRequest,PangeaCyber.Net.Audit.SearchConfig)">
             <kind>method</kind>
             <summary>Return result's page from search id.</summary>
             <remarks>Results</remarks>
-            <param name="id" type="System.Int32">A search results identifier returned by the search call. By default verify events and do not verify consistency.</param>
-            <param name="limit" type="System.Int32">Number of audit records to include in a single set of results.</param>
-            <param name="offset" type="System.Int32">Offset from the start of the result set to start returning results from.</param>
+            <param name="request"></param>
+            <param name="config"></param>
             <returns>Response&lt;ResultsOutput&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Results(System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
-            <kind>method</kind>
-            <summary>"Return result's page from search id. Allow to select to verify or nor consistency proof and events.</summary>
-            <remarks>Results - id, limit, offset, VerifyConsistency, verifyEvents</remarks>
-            <param name="id" type="System.Int32">A search results identifier returned by the search call. By default verify events and do not verify consistency.</param>
-            <param name="limit" type="System.Int32">Number of audit records to include in a single set of results.</param>
-            <param name="offset" type="System.Int32">Offset from the start of the result set to start returning results from.</param>
-            <param name="VerifyConsistency" type="System.Boolean">true to verify logs consistency proofs.</param>
-            <param name="verifyEvents" type="System.Boolean">true to verify logs hash and signature.</param>
-            <returns>Response&lt;ResultsOutput&gt;</returns>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
-        </member>
-        <member name="T:PangeaCyber.Net.Audit.AuditClientBuilder">
+        <member name="T:PangeaCyber.Net.Audit.AuditClient.Builder">
             <kind>class</kind>
             <summary>
             AuditClient Builder
             </summary>
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.#ctor(PangeaCyber.Net.Config)">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.privateKeyFilename">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.WithPrivateKey(System.String)">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.tenantID">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.WithTenantID(System.String)">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.customSchemaClass">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClientBuilder.Build">
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithPrivateKey(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithTenantID(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithCustomSchema``1">
+            FIXME: Test it
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.BaseRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.BaseRequest.ConfigID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.BaseRequest.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.BaseRequest.GetConfigID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.BaseRequest.SetConfigID(System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogSigner">
@@ -305,61 +281,13 @@
         <member name="M:PangeaCyber.Net.Audit.LogSigner.GetPublicKey">
             
         </member>
-        <member name="T:PangeaCyber.Net.Audit.Event">
-            <kind>class</kind>
-            <summary>
-            Event
-            </summary>
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Actor">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Action">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Message">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.NewField">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Old">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Source">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Status">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Target">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.Timestamp">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.Event.TenantID">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.Event.#ctor">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.Event.#ctor(System.String)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.Event.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.Event.Canonicalize(PangeaCyber.Net.Audit.Event)">
-            
-        </member>
         <member name="T:PangeaCyber.Net.Audit.EventEnvelope">
             <kind>class</kind>
             <summary>
             EventEnvelope
             </summary>
         </member>
-        <member name="P:PangeaCyber.Net.Audit.EventEnvelope.RequestEvent">
+        <member name="P:PangeaCyber.Net.Audit.EventEnvelope.Event">
             
         </member>
         <member name="P:PangeaCyber.Net.Audit.EventEnvelope.Signature">
@@ -371,13 +299,13 @@
         <member name="P:PangeaCyber.Net.Audit.EventEnvelope.ReceivedAt">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.#ctor(PangeaCyber.Net.Audit.Event,System.String,System.String,System.String)">
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.#ctor(PangeaCyber.Net.Audit.IEvent,System.String,System.String,System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.EventEnvelope.VerifySignature">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.FromRaw(System.Object)">
+        <member name="M:PangeaCyber.Net.Audit.EventEnvelope.FromRaw(System.Collections.Generic.Dictionary{System.String,System.Object},System.Type)">
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.EventEnvelope.VerifyHash(System.Object,System.String)">
@@ -386,28 +314,67 @@
         <member name="M:PangeaCyber.Net.Audit.EventEnvelope.Canonicalize(System.Object)">
             
         </member>
-        <member name="T:PangeaCyber.Net.Audit.LogRequest">
+        <member name="T:PangeaCyber.Net.Audit.IEvent">
             <kind>class</kind>
             <summary>
-            LogRequest
+            Event
             </summary>
         </member>
-        <member name="P:PangeaCyber.Net.Audit.LogRequest.RequestEvent">
-                   
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.LogRequest.Verbose">
+        <member name="P:PangeaCyber.Net.Audit.IEvent.TenantID">
             
         </member>
-        <member name="P:PangeaCyber.Net.Audit.LogRequest.Signature">
+        <member name="M:PangeaCyber.Net.Audit.IEvent.SetTenantID(System.String)">
             
         </member>
-        <member name="P:PangeaCyber.Net.Audit.LogRequest.PublicKey">
+        <member name="M:PangeaCyber.Net.Audit.IEvent.GetTenantID">
             
         </member>
-        <member name="P:PangeaCyber.Net.Audit.LogRequest.PrevRoot">
+        <member name="M:PangeaCyber.Net.Audit.IEvent.Canonicalize(PangeaCyber.Net.Audit.IEvent)">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.LogRequest.#ctor(PangeaCyber.Net.Audit.Event,System.Boolean,System.String,System.String,System.String)">
+        <member name="M:PangeaCyber.Net.Audit.IEvent.FromRaw(System.Object,System.Type)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogConfig">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogConfig.SignLocal">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogConfig.Verify">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogConfig.Verbose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogConfig.#ctor(PangeaCyber.Net.Audit.LogConfig.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogConfig.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogConfig.Builder.SignLocal">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogConfig.Builder.Verify">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogConfig.Builder.Verbose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogConfig.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogConfig.Builder.WithSignLocal(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogConfig.Builder.WithVerify(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogConfig.Builder.WithVerbose(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogConfig.Builder.Build">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogResult">
@@ -446,42 +413,6 @@
         <member name="M:PangeaCyber.Net.Audit.LogResult.VerifySignature">
             
         </member>
-        <member name="T:PangeaCyber.Net.Audit.ResultsOutput">
-            <kind>class</kind>
-            <summary>
-            ResultsOutput
-            </summary>
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Count">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Events">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Root">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.UnpublishedRoot">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Audit.ResultsRequest">
-            <kind>class</kind>
-            <summary>
-            ResultsRequest
-            </summary>
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.ResultsRequest.ID">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.ResultsRequest.Limit">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.ResultsRequest.Offset">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.ResultsRequest.#ctor(System.String,System.Int32,System.Int32)">
-            
-        </member>
         <member name="T:PangeaCyber.Net.Audit.Root">
             <kind>class</kind>
             <summary>
@@ -506,25 +437,37 @@
         <member name="P:PangeaCyber.Net.Audit.Root.ConsistencyProof">
             
         </member>
-        <member name="T:PangeaCyber.Net.Audit.RootRequest">
-            <kind>class</kind>
-            <summary>
-            RootRequest
-            </summary>
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.RootRequest.TreeSize">
+        <member name="T:PangeaCyber.Net.Audit.SearchConfig">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.RootRequest.#ctor(System.Nullable{System.Int32})">
+        <member name="P:PangeaCyber.Net.Audit.SearchConfig.VerifyConsistency">
             
         </member>
-        <member name="T:PangeaCyber.Net.Audit.RootResult">
-            <kind>class</kind>
-            <summary>
-            RootResult
-            </summary>
+        <member name="P:PangeaCyber.Net.Audit.SearchConfig.VerifyEvents">
+            
         </member>
-        <member name="P:PangeaCyber.Net.Audit.RootResult.Root">
+        <member name="M:PangeaCyber.Net.Audit.SearchConfig.#ctor(PangeaCyber.Net.Audit.SearchConfig.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchConfig.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchConfig.Builder.VerifyConsistency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchConfig.Builder.VerifyEvents">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchConfig.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchConfig.Builder.WithVerifyConsistency(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchConfig.Builder.WithVerifyEvents(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchConfig.Builder.Build">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.SearchEvent">
@@ -548,7 +491,7 @@
         <member name="P:PangeaCyber.Net.Audit.SearchEvent.MembershipProof">
             
         </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchEvent.published">
+        <member name="P:PangeaCyber.Net.Audit.SearchEvent.Published">
             
         </member>
         <member name="P:PangeaCyber.Net.Audit.SearchEvent.MembershipVerification">
@@ -567,54 +510,6 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.SearchEvent.VerifyMembershipProof(System.String)">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Audit.SearchInput">
-            <kind>class</kind>
-            <summary>
-            SearchInput
-            </summary>
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.Query">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.Order">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.OrderBy">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.Start">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.End">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.Limit">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.MaxResults">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.SearchRestriction">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchInput.Verbose">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.SearchInput.#ctor(System.String)">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Audit.SearchOutput">
-            <kind>class</kind>
-            <summary>
-            SearchOutput
-            </summary>
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchOutput.ID">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.SearchOutput.ExpiresAt">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.SearchRestriction">
@@ -636,6 +531,315 @@
             
         </member>
         <member name="P:PangeaCyber.Net.Audit.SearchRestriction.action">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.StandardEvent">
+            <kind>class</kind>
+            <summary>
+            Event
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Actor">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Action">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.NewField">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Old">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Source">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Status">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Target">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Timestamp">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.#ctor(PangeaCyber.Net.Audit.StandardEvent.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.StandardEvent.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Actor">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Action">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.NewField">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Old">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Source">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Status">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Target">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.Timestamp">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.StandardEvent.Builder.TenantID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithActor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithAction(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithNewField(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithOld(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithSource(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithStatus(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithTarget(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithTimestamp(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.WithTenantID(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.StandardEvent.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogRequest">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.RequestEvent">
+                   
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.PublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.PrevRoot">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogRequest.#ctor(PangeaCyber.Net.Audit.StandardEvent,System.Boolean,System.String,System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.ResultRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultRequest.Id">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultRequest.Limit">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultRequest.Offset">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.ResultRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultRequest.Builder.Id">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultRequest.Builder.Limit">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultRequest.Builder.Offset">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.ResultRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.ResultRequest.Builder.WithLimit(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.ResultRequest.Builder.WithOffset(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.ResultRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.RootRequest">
+            <kind>class</kind>
+            <summary>
+            RootRequest
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.RootRequest.TreeSize">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.RootRequest.#ctor(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Query">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.End">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Limit">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.MaxResults">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.SearchRestriction">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Verbose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.#ctor(PangeaCyber.Net.Audit.SearchRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.Query">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.End">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.Limit">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.MaxResults">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.SearchRestriction">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchRequest.Builder.Verbose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithOrder(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithOrderBy(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithStart(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithEnd(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithLimit(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithMaxResults(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithSearchRestriction(PangeaCyber.Net.Audit.SearchRestriction)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.WithVerbose(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.ResultsOutput">
+            <kind>class</kind>
+            <summary>
+            ResultsOutput
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Events">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.Root">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.ResultsOutput.UnpublishedRoot">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.RootResult">
+            <kind>class</kind>
+            <summary>
+            RootResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.RootResult.Root">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.SearchOutput">
+            <kind>class</kind>
+            <summary>
+            SearchOutput
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchOutput.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.SearchOutput.ExpiresAt">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.Utils.ConsistencyProof">
@@ -761,10 +965,28 @@
             Client
             </summary>
         </member>
+        <member name="F:PangeaCyber.Net.Client.config">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Client.serviceName">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Client.SupportMultiConfig">
+            
+        </member>
         <member name="F:PangeaCyber.Net.Client.HttpClient">
             
         </member>
-        <member name="M:PangeaCyber.Net.Client.#ctor(PangeaCyber.Net.Config,System.String)">
+        <member name="T:PangeaCyber.Net.Client.ClientBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Client.ClientBuilder.config">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Client.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Client.#ctor(PangeaCyber.Net.Client.ClientBuilder,System.String,System.Boolean)">
             
         </member>
         <member name="M:PangeaCyber.Net.Client.DoPost``1(System.String,System.Object)">
@@ -787,7 +1009,7 @@
         </member>
         <member name="M:PangeaCyber.Net.Config.#ctor(System.String,System.String)">
             <summary>
-            Initializes a new instance of the <see cref="!:Configuration" /> class
+            Initializes a new instance of the <see cref="T:PangeaCyber.Net.Config" /> class
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.Token">
@@ -1210,10 +1432,10 @@
         <member name="F:PangeaCyber.Net.Redact.RedactClient.ServiceName">
             
         </member>
-        <member name="F:PangeaCyber.Net.Redact.RedactClient.TenantID">
+        <member name="F:PangeaCyber.Net.Redact.RedactClient.SupportMultiConfig">
             
         </member>
-        <member name="M:PangeaCyber.Net.Redact.RedactClient.#ctor(PangeaCyber.Net.Config)">
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.#ctor(PangeaCyber.Net.Redact.RedactClient.Builder)">
             Constructor
         </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.RedactText(PangeaCyber.Net.Redact.RedactTextRequest)">
@@ -1251,6 +1473,15 @@
             
              </code>
              </example>
+        </member>
+        <member name="T:PangeaCyber.Net.Redact.RedactClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.Build">
+            
         </member>
         <member name="T:PangeaCyber.Net.Response`1">
             <kind>class</kind>
