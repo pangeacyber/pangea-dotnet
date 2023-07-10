@@ -46,6 +46,9 @@ namespace PangeaCyber.Net
         ///        
         public string Domain { get; set; }
 
+        ///
+        public string ConfigID {get; set;}
+
         ///        
         public string Environment { get; set; }
 

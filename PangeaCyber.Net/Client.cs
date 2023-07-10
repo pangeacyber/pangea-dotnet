@@ -54,8 +54,12 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public async Task<Response<TResult>> DoPost<TResult>(string path, object request)
+        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request)
         {
+            if(this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default) {
+                request.ConfigID = this.config.ConfigID;
+            }
+
             StringContent requestJson;
             try
             {

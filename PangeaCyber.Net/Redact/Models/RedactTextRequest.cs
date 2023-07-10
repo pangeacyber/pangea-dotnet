@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Redact
     /// <summary>
     /// RedactTextRequest
     /// </summary>
-    public class RedactTextRequest
+    public class RedactTextRequest : BaseRequest
     {
         ///
         [JsonProperty("text")]

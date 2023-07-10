@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Redact
     /// <summary>
     /// RedactStructuredRequest
     /// </summary>
-    public class RedactStructuredRequest
+    public class RedactStructuredRequest : BaseRequest
     {
         ///
         [JsonProperty("data")]
