@@ -277,7 +277,7 @@ public class AuditClientTests
         Assert.NotNull(response.Result.Hash);
         evt = (StandardEvent?)response.Result.EventEnvelope.Event;
         Assert.Equal(MSG_SIGNED_LOCAL, evt?.Message);
-        Assert.Equal("lvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=", response.Result.EventEnvelope.PublicKey);
+        Assert.Equal(@"{""algorithm"":""ED25519"",""key"":""-----BEGIN PUBLIC KEY-----\nlvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=\n-----END PUBLIC KEY-----\n""}", response.Result.EventEnvelope.PublicKey);
         Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
     }
 
@@ -298,7 +298,7 @@ public class AuditClientTests
         Assert.NotNull(response.Result.Hash);
         evt = (CustomEvent?)response.Result.EventEnvelope.Event;
         Assert.Equal(MSG_CUSTOM_SCHEMA_SIGNED_LOCAL, evt?.Message);
-        Assert.Equal("lvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=", response.Result.EventEnvelope.PublicKey);
+        Assert.Equal(@"{""algorithm"":""ED25519"",""key"":""-----BEGIN PUBLIC KEY-----\nlvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=\n-----END PUBLIC KEY-----\n""}", response.Result.EventEnvelope.PublicKey);
         Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
     }
 
@@ -348,7 +348,7 @@ public class AuditClientTests
         Assert.NotNull(response.Result.Hash);
         evt = (StandardEvent?)response.Result.EventEnvelope.Event;
         Assert.Equal(MSG_SIGNED_LOCAL, evt?.Message);
-        Assert.Equal("lvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=", response.Result.EventEnvelope.PublicKey);
+        Assert.Equal(@"{""algorithm"":""ED25519"",""key"":""-----BEGIN PUBLIC KEY-----\nlvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=\n-----END PUBLIC KEY-----\n""}", response.Result.EventEnvelope.PublicKey);
         Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
         Assert.Equal(TENANT_ID, evt?.TenantID);
     }

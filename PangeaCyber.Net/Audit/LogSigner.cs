@@ -2,6 +2,8 @@ using System.Text;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Crypto.Signers;
 using PangeaCyber.Net.Exceptions;
+using Org.BouncyCastle.Utilities.IO.Pem;
+
 
 namespace PangeaCyber.Net.Audit
 {
@@ -80,13 +82,38 @@ namespace PangeaCyber.Net.Audit
         }
 
         ///
+        // public string GetPublicKey()
+        // {
+        //     if (this.PrivateKey == null || this.PublicKey == null)
+        //     {
+        //         this.loadKeys();
+        //     }
+        //     return Convert.ToBase64String(this?.PublicKey?.GetEncoded() ?? default!);
+        // }
+
         public string GetPublicKey()
         {
-            if (this.PrivateKey == null || this.PublicKey == null)
+            try
             {
-                this.loadKeys();
+                var pemObject = new PemObject("PUBLIC KEY", this.PublicKey.GetEncoded());
+                var stringWriter = new StringWriter();
+                var pemWriter = new PemWriter(stringWriter);
+                pemWriter.WriteObject(pemObject);
+                pemWriter.Writer.Flush();
+                string publicKeyPem = stringWriter.ToString();
+                return publicKeyPem;
             }
-            return Convert.ToBase64String(this?.PublicKey?.GetEncoded() ?? default!);
+            catch (Exception e)
+            {
+                throw new SignerException("Failed to get encoded public key", e);
+            }
         }
+
+        ///
+        public string GetAlgorithm() {
+            return "ED25519";
+        }
+
+        
     }
 }

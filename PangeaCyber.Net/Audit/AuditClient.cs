@@ -1,6 +1,7 @@
 ﻿using PangeaCyber.Net.Audit.arweave;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Audit.Utils;
+using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.Audit
 {
@@ -34,6 +35,9 @@ namespace PangeaCyber.Net.Audit
         ///
         private Type customSchemaClass;
 
+        ///
+        private Dictionary<string, string> pkInfo;
+
         /// Constructor
         public AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
         {
@@ -41,6 +45,7 @@ namespace PangeaCyber.Net.Audit
             this.publishedRoots = new Dictionary<int, PublishedRoot>();
             this.customSchemaClass = builder.customSchemaClass;
             this.tenantID = builder.tenantID;
+            this.pkInfo = builder.pkInfo ?? new Dictionary<string, string>();
         }
 
         private async Task<Response<LogResult>> logPost(IEvent evt, bool? verbose, string signature, string publicKey, bool verify)
@@ -127,7 +132,7 @@ namespace PangeaCyber.Net.Audit
                 }
 
                 signature = this.signer.Sign(canEvent);
-                publicKey = this.signer.GetPublicKey();
+                publicKey = this.GetPublicKeyData();
             }
 
             Response<LogResult> response = await logPost(evt, config.Verbose, signature, publicKey, config.Verify);
@@ -323,6 +328,18 @@ namespace PangeaCyber.Net.Audit
             return response;
         }
 
+        private string GetPublicKeyData(){
+            try {
+                if(this.signer != null){
+                    this.pkInfo.Add("key", this.signer.GetPublicKey());
+                    this.pkInfo.Add("algorithm", this.signer.GetAlgorithm());
+                }
+                return JsonConvert.SerializeObject(this.pkInfo);
+            } catch (Exception e) {
+                throw new PangeaException("Failed to stringify public key info", e);
+            }
+        }
+
         /// <kind>class</kind>
         /// <summary>
         /// AuditClient Builder
@@ -338,6 +355,9 @@ namespace PangeaCyber.Net.Audit
 
             ///
             public Type customSchemaClass = typeof(StandardEvent);
+
+            ///
+            public Dictionary<string, string>? pkInfo = null;
 
             ///
             public Builder(Config config) : base(config)
@@ -358,7 +378,7 @@ namespace PangeaCyber.Net.Audit
                 return this;
             }
 
-            /// FIXME: Test it
+            ///
             public Builder WithCustomSchema<TEventType>() where TEventType : IEvent
             {
                 if (!typeof(IEvent).IsAssignableFrom(typeof(TEventType)))
@@ -371,16 +391,19 @@ namespace PangeaCyber.Net.Audit
             }
 
             ///
+            public Builder WithPKInfo(Dictionary<string, string> pkInfo){
+                this.pkInfo = pkInfo;
+                return this;
+            }
+
+            ///
             public AuditClient Build()
             {
                 return new AuditClient(this);
             }
         }
 
-
     }
-
-
 
 }
 

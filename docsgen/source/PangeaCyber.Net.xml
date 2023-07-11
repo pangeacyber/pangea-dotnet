@@ -136,6 +136,9 @@
         <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
             
         </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.pkInfo">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
             Constructor
         </member>
@@ -227,6 +230,9 @@
         <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.customSchemaClass">
             
         </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.pkInfo">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.#ctor(PangeaCyber.Net.Config)">
             
         </member>
@@ -237,7 +243,10 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithCustomSchema``1">
-            FIXME: Test it
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithPKInfo(System.Collections.Generic.Dictionary{System.String,System.String})">
+            
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.Build">
             
@@ -264,6 +273,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.LogSigner.GetPublicKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogSigner.GetAlgorithm">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.EventEnvelope">
