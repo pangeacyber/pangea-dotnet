@@ -58,6 +58,9 @@ namespace PangeaCyber.Net
         ///        
         public TimeSpan ConnectionTimeout { get; set; } = default!;
 
+        ///
+        public string CustomUserAgent {get; set; } = default!;
+
         #endregion Public Properties
 
         #region Public Methods
@@ -114,7 +117,9 @@ namespace PangeaCyber.Net
         {
             string token = GetTestToken(environment);
             string domain = GetTestDomain(environment);
-            return new Config(token, domain);
+            var cfg = new Config(token, domain);
+            cfg.CustomUserAgent = "test";
+            return cfg;
         }
 
         ///
@@ -122,7 +127,9 @@ namespace PangeaCyber.Net
         {
             string token = GetVaultSignatureTestToken(environment);
             string domain = GetTestDomain(environment);
-            return new Config(token, domain);
+            var cfg = new Config(token, domain);
+            cfg.CustomUserAgent = "test";
+            return cfg;
         }
 
         ///
@@ -130,7 +137,9 @@ namespace PangeaCyber.Net
         {
             string token = GetCustomSchemaTestToken(environment);
             string domain = GetTestDomain(environment);
-            return new Config(token, domain);
+            var cfg = new Config(token, domain);
+            cfg.CustomUserAgent = "test";
+            return cfg;
         }
 
         ///

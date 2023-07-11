@@ -971,6 +971,9 @@
         <member name="F:PangeaCyber.Net.Client.HttpClient">
             
         </member>
+        <member name="F:PangeaCyber.Net.Client.userAgent">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Client.ClientBuilder">
             
         </member>
@@ -1023,6 +1026,9 @@
         </member>
         <member name="P:PangeaCyber.Net.Config.ConnectionTimeout">
                    
+        </member>
+        <member name="P:PangeaCyber.Net.Config.CustomUserAgent">
+            
         </member>
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
             

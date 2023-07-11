@@ -25,6 +25,9 @@ namespace PangeaCyber.Net
         protected readonly HttpClient HttpClient;
 
         ///
+        private readonly string userAgent;
+
+        ///
         public class ClientBuilder {
             ///
             public Config config {get; }
@@ -44,7 +47,13 @@ namespace PangeaCyber.Net
             this.SupportMultiConfig = SupportMultiConfig;
             this.HttpClient = new HttpClient();
             this.HttpClient.BaseAddress = config.GetServiceUrl(serviceName, String.Empty);
-            this.HttpClient.DefaultRequestHeaders.Add("User-Agent", "pangea-csharp/" + Config.Version);
+
+            this.userAgent = "pangea-csharp/" + Config.Version;
+            if(config.CustomUserAgent != default){
+                this.userAgent += " " + config.CustomUserAgent;
+            }
+
+            this.HttpClient.DefaultRequestHeaders.Add("User-Agent", this.userAgent);
             this.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + config.Token);
 
             if (config.ConnectionTimeout != default(TimeSpan))
