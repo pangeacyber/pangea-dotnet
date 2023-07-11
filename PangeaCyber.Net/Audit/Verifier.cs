@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Crypto.Signers;
@@ -20,13 +19,11 @@ namespace PangeaCyber.Net.Audit
             if (pubKeyInput.StartsWith("-----")) {
                 if (pubKeyInput.StartsWith("-----BEGIN PUBLIC KEY-----")) {
                     // Ed25519 header format
-                    String publicKeyPEM = pubKeyInput
+                    string publicKeyPEM = pubKeyInput
                         .Replace("-----BEGIN PUBLIC KEY-----", "")
-                        .ReplaceLineEndings("")
+                        .Replace(System.Environment.NewLine, "")
                         .Replace("-----END PUBLIC KEY-----", "");
-                    // byte[] encoded = Base64.getMimeDecoder().decode(publicKeyPEM);
-                    var encoded = Convert.FromBase64String(publicKeyPEM);       //FIXME: Should I user another decoder?
-                    // pubKeyBytes = Arrays.copyOfRange(encoded, Math.Max(encoded.Length - 32, 0), encoded.Length);
+                    var encoded = Convert.FromBase64String(publicKeyPEM);
                     Array.Copy(encoded, Math.Max(encoded.Length - KeyLength, 0), pubKeyBytes, 0, KeyLength);
                 } else {
                     // Not supported formats
