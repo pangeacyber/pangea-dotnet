@@ -112,7 +112,7 @@
             Audit Client
             </summary>
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.serviceName">
+        <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
             
         </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.supportMultiConfig">
@@ -240,21 +240,6 @@
             FIXME: Test it
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.Build">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Audit.BaseRequest">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Audit.BaseRequest.ConfigID">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.BaseRequest.#ctor">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.BaseRequest.GetConfigID">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.BaseRequest.SetConfigID(System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogSigner">
@@ -959,6 +944,15 @@
         <member name="F:PangeaCyber.Net.SignMode.NotVerified">
             
         </member>
+        <member name="T:PangeaCyber.Net.BaseRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.BaseRequest.ConfigID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseRequest.#ctor">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Client">
             <kind>class</kind>
             <summary>
@@ -989,7 +983,7 @@
         <member name="M:PangeaCyber.Net.Client.#ctor(PangeaCyber.Net.Client.ClientBuilder,System.String,System.Boolean)">
             
         </member>
-        <member name="M:PangeaCyber.Net.Client.DoPost``1(System.String,System.Object)">
+        <member name="M:PangeaCyber.Net.Client.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
             
         </member>
         <member name="M:PangeaCyber.Net.Client.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
@@ -1018,6 +1012,9 @@
         <member name="P:PangeaCyber.Net.Config.Domain">
                    
         </member>
+        <member name="P:PangeaCyber.Net.Config.ConfigID">
+            
+        </member>
         <member name="P:PangeaCyber.Net.Config.Environment">
                    
         </member>
@@ -1030,10 +1027,34 @@
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
             
         </member>
+        <member name="M:PangeaCyber.Net.Config.GetTestDomain(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Config.FromEnvironment(System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.Config.FromIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.FromVaultIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.FromCustomSchemaIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.GetTestToken(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.GetVaultSignatureTestToken(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.GetMultiConfigTestToken(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.GetCustomSchemaTestToken(PangeaCyber.Net.TestEnvironment)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Config.GetConfigID(PangeaCyber.Net.TestEnvironment,System.String,System.Int32)">
             
         </member>
         <member name="T:PangeaCyber.Net.ErrorField">

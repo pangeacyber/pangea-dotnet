@@ -11,7 +11,7 @@ namespace PangeaCyber.Net.Audit
     public class AuditClient : Client
     {
         ///
-        private static string serviceName = "audit";
+        public static string ServiceName {get; }= "audit";
 
         ///
         private static bool supportMultiConfig = true;
@@ -35,7 +35,7 @@ namespace PangeaCyber.Net.Audit
         private Type customSchemaClass;
 
         /// Constructor
-        public AuditClient(AuditClient.Builder builder) : base(builder, serviceName, supportMultiConfig)
+        public AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
         {
             this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename)? new LogSigner(builder.privateKeyFilename!) : null;
             this.publishedRoots = new Dictionary<int, PublishedRoot>();
