@@ -139,13 +139,13 @@
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
             Constructor
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.StandardEvent,PangeaCyber.Net.Audit.LogConfig)">
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Log(PangeaCyber.Net.Audit.IEvent,PangeaCyber.Net.Audit.LogConfig)">
             <kind>method</kind>
             <summary>
             Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
             </summary>
             <remarks>Log an entry</remarks>
-            <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+            <param name="evt" type="PangeaCyber.Net.Audit.Event">Event to log</param>
             <param name="config"></param>
             <returns>Response&lt;LogResult&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
@@ -629,7 +629,7 @@
             LogRequest
             </summary>
         </member>
-        <member name="P:PangeaCyber.Net.Audit.LogRequest.RequestEvent">
+        <member name="P:PangeaCyber.Net.Audit.LogRequest.event">
                    
         </member>
         <member name="P:PangeaCyber.Net.Audit.LogRequest.Verbose">
@@ -644,7 +644,7 @@
         <member name="P:PangeaCyber.Net.Audit.LogRequest.PrevRoot">
             
         </member>
-        <member name="M:PangeaCyber.Net.Audit.LogRequest.#ctor(PangeaCyber.Net.Audit.StandardEvent,System.Boolean,System.String,System.String,System.String)">
+        <member name="M:PangeaCyber.Net.Audit.LogRequest.#ctor(PangeaCyber.Net.Audit.IEvent,System.Boolean,System.String,System.String,System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.ResultRequest">

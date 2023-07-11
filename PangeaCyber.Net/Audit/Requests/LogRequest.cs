@@ -10,7 +10,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///        
         [JsonProperty("event", Required = Required.Always)]
-        public StandardEvent RequestEvent { get; set; } = default!;
+        public IEvent @event { get; set; } = default!;
 
         ///
         [JsonProperty("verbose")]
@@ -29,9 +29,9 @@ namespace PangeaCyber.Net.Audit
         public string PrevRoot { get; set; } = default!;
 
         ///
-        public LogRequest(StandardEvent requestEvent, bool verbose, string signature, string publicKey, string prevRoot)
+        public LogRequest(IEvent evt, bool verbose, string signature, string publicKey, string prevRoot)
         {
-            this.RequestEvent = requestEvent;
+            this.@event = evt;
             this.Verbose = verbose;
             this.Signature = signature;
             this.PublicKey = publicKey;

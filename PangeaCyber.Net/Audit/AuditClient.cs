@@ -43,7 +43,7 @@ namespace PangeaCyber.Net.Audit
             this.tenantID = builder.tenantID;
         }
 
-        private async Task<Response<LogResult>> logPost(StandardEvent requestEvent, bool? verbose, string signature, string publicKey, bool verify)
+        private async Task<Response<LogResult>> logPost(IEvent evt, bool? verbose, string signature, string publicKey, bool verify)
         {
             string prevRoot = default!;
             if (verify)
@@ -51,7 +51,7 @@ namespace PangeaCyber.Net.Audit
                 verbose = true;
                 prevRoot = this.prevUnpublishedRoot;
             }
-            LogRequest request = new LogRequest(requestEvent, verbose ?? false, signature, publicKey, prevRoot);
+            LogRequest request = new LogRequest(evt, verbose ?? false, signature, publicKey, prevRoot);
             return await DoPost<LogResult>("/v1/log", request);
         }
 
@@ -89,7 +89,7 @@ namespace PangeaCyber.Net.Audit
         /// Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
         /// </summary>
         /// <remarks>Log an entry</remarks>
-        /// <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+        /// <param name="evt" type="PangeaCyber.Net.Audit.Event">Event to log</param>
         /// <param name="config"></param>
         /// <returns>Response&lt;LogResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
@@ -101,13 +101,13 @@ namespace PangeaCyber.Net.Audit
         /// var response = await client.log(event);
         /// </code>
         /// </example>
-        public async Task<Response<LogResult>> Log(StandardEvent requestEvent, LogConfig config)
+        public async Task<Response<LogResult>> Log(IEvent evt, LogConfig config)
         {
             string signature = default!;
             string publicKey = default!;
 
-            if(string.IsNullOrEmpty(requestEvent.GetTenantID()) && this.tenantID != default){
-                requestEvent.SetTenantID(this.tenantID);
+            if(string.IsNullOrEmpty(evt.GetTenantID()) && this.tenantID != default){
+                evt.SetTenantID(this.tenantID);
             }
 
             if (config.SignLocal && this.signer == null)
@@ -119,7 +119,7 @@ namespace PangeaCyber.Net.Audit
                 string canEvent;
                 try
                 {
-                    canEvent = IEvent.Canonicalize(requestEvent);
+                    canEvent = IEvent.Canonicalize(evt);
                 }
                 catch (Exception e)
                 {
@@ -130,7 +130,7 @@ namespace PangeaCyber.Net.Audit
                 publicKey = this.signer.GetPublicKey();
             }
 
-            Response<LogResult> response = await logPost(requestEvent, config.Verbose, signature, publicKey, config.Verify);
+            Response<LogResult> response = await logPost(evt, config.Verbose, signature, publicKey, config.Verify);
             await processLogResponse(response.Result, config.Verify);
             return response;
         }
