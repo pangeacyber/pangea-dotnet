@@ -48,15 +48,12 @@ namespace PangeaCyber.Net.Audit
                 return EventVerification.NotVerified;
             }
 
+            string? pubKeyValue = this.GetPublicKeyValue();
+
             // But if one field is missing, it's verification failed
-            if (this.Signature == null || this.PublicKey == null)
+            if (this.Signature == null || pubKeyValue == null)
             {
                 return EventVerification.Failed;
-            }
-
-            if (this.PublicKey != null && this.PublicKey.StartsWith("-----"))
-            {
-                return EventVerification.NotVerified;
             }
 
             string canonicalJson;
@@ -70,7 +67,26 @@ namespace PangeaCyber.Net.Audit
             }
 
             Verifier verifier = new Verifier();
-            return verifier.Verify(this?.PublicKey ?? default!, this?.Signature ?? default!, canonicalJson);
+            return verifier.Verify(pubKeyValue, this.Signature, canonicalJson);
+        }
+
+        private string? GetPublicKeyValue(){
+            if(this.PublicKey == null) {
+                return null;
+            }
+
+            string value;
+            Dictionary<string, string> dict;
+
+            try
+            {
+                dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(this.PublicKey)!;
+                return dict.TryGetValue("key", out value!)? value : null;
+            }
+            catch (Exception)
+            {
+                return this.PublicKey;
+            }
         }
 
         ///

@@ -13,6 +13,7 @@ public class AuditClientTests
     private const string ACTOR = "csharp-sdk";
     private const string MSG_NO_SIGNED = "test-message";
     private const string MSG_SIGNED_LOCAL = "sign-test-local";
+    private const string MSG_SIGNED_VAULT = "sign-test-vault";
     private const string STATUS_NO_SIGNED = "no-signed";
     private const string STATUS_SIGNED = "signed";
     private const string TENANT_ID = "test_tenant";
@@ -185,6 +186,31 @@ public class AuditClientTests
         evt = (StandardEvent?)response.Result.EventEnvelope.Event;
         Assert.Equal(MSG_SIGNED_LOCAL, evt?.Message);
         Assert.Equal("lvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=", response.Result.EventEnvelope.PublicKey);
+        Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
+    }
+
+        [Fact]
+    public async Task TestLogVaultSignature()
+    {
+        StandardEvent? evt = new StandardEvent.Builder(MSG_SIGNED_VAULT)
+                            .WithActor(ACTOR)
+                            .WithAction("Action")
+                            .WithSource("Source")
+                            .WithStatus(STATUS_SIGNED)
+                            .WithTarget("Target")
+                            .WithNewField("New")
+                            .WithOld("Old")
+                            .Build();
+
+        var response = await vaultSignClient.Log(evt, new LogConfig.Builder().WithVerify(true).WithVerbose(true).WithSignLocal(false).Build());
+
+        Assert.True(response.IsOK);
+        Assert.NotNull(response.Result.EventEnvelope);
+        Assert.NotNull(response.Result.Hash);
+        Assert.NotNull(response.Result.EventEnvelope.PublicKey);
+        Assert.NotNull(response.Result.EventEnvelope.Signature);
+        evt = (StandardEvent?)response.Result.EventEnvelope.Event;
+        Assert.Equal(MSG_SIGNED_VAULT, evt?.Message);
         Assert.Equal(EventVerification.Success, response.Result.SignatureVerification);
     }
 

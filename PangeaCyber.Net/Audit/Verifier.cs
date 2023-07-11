@@ -12,16 +12,38 @@ namespace PangeaCyber.Net.Audit
     public sealed class Verifier
     {
         ///        
-        public EventVerification Verify(string pubKeyBase64, string signatureBase64, string message)
+        public EventVerification Verify(string pubKeyInput, string signatureBase64, string message)
         {
+            const int KeyLength = 32;
+            byte[] pubKeyBytes = new byte[KeyLength];
+
+            if (pubKeyInput.StartsWith("-----")) {
+                if (pubKeyInput.StartsWith("-----BEGIN PUBLIC KEY-----")) {
+                    // Ed25519 header format
+                    String publicKeyPEM = pubKeyInput
+                        .Replace("-----BEGIN PUBLIC KEY-----", "")
+                        .ReplaceLineEndings("")
+                        .Replace("-----END PUBLIC KEY-----", "");
+                    // byte[] encoded = Base64.getMimeDecoder().decode(publicKeyPEM);
+                    var encoded = Convert.FromBase64String(publicKeyPEM);       //FIXME: Should I user another decoder?
+                    // pubKeyBytes = Arrays.copyOfRange(encoded, Math.Max(encoded.Length - 32, 0), encoded.Length);
+                    Array.Copy(encoded, Math.Max(encoded.Length - KeyLength, 0), pubKeyBytes, 0, KeyLength);
+                } else {
+                    // Not supported formats
+                    return EventVerification.NotVerified;
+                }
+            } else {
+                pubKeyBytes = Convert.FromBase64String(pubKeyInput);
+            }
+
             // verify the signature
             var verifier = new Ed25519Signer();
             Ed25519PublicKeyParameters pubKey = default!;
             try
             {
-                pubKey = new Ed25519PublicKeyParameters(Convert.FromBase64String(pubKeyBase64));
+                pubKey = new Ed25519PublicKeyParameters(pubKeyBytes);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return EventVerification.Failed;
             }
@@ -32,7 +54,7 @@ namespace PangeaCyber.Net.Audit
             {
                 byteMessage = Encoding.UTF8.GetBytes(message);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return EventVerification.Failed;
             }
