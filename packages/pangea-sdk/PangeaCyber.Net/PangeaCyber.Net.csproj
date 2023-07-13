@@ -19,7 +19,7 @@
 
   <!-- Build XML documentation for all combinations of target framework x configuration -->
   <PropertyGroup>
-    <DocumentationFile>..\docsgen\source\$(AssemblyName).xml
+    <DocumentationFile>.\docsgen\source\$(AssemblyName).xml
     </DocumentationFile>
   </PropertyGroup>
 

@@ -5,22 +5,30 @@ image:
 cache:
   key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
   paths:
-    - "./PangeaCyber.Net/obj/project.assets.json"
-    - "./PangeaCyber.Net/obj/*.csproj.nuget.*"
+    - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
+    - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
     - ".nuget"
   policy: pull-push
 
-before_script:
-  - dotnet restore --packages .nuget
-  - dotnet build --no-restore --configuration Release
+clean_n_build:
+  stage: build
+  before_script:
+    - cd packages/pangea-sdk
+  script:
+    - dotnet restore --packages .nuget
+    - dotnet build --no-restore --configuration Release
 
 tests:
   stage: test
+  before_script:
+    - cd packages/pangea-sdk
   script:
     - dotnet test --no-restore
 
 publish:
   stage: publish
+  before_script:
+    - cd packages/pangea-sdk
   script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
@@ -38,5 +46,6 @@ publish:
     - tags
 
 stages:
+  - clean_n_build
   - test
   - publish
