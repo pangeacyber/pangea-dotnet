@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Redact
         public static string ServiceName = "redact";
 
         ///
-        private static bool SupportMultiConfig = true;
+        private static bool SupportMultiConfig = false;
 
         /// Constructor
         public RedactClient(Builder builder) : base(builder, ServiceName, SupportMultiConfig)
@@ -55,7 +55,7 @@ namespace PangeaCyber.Net.Redact
         /// Redact sensitive information from provided structured data.
         /// </summary>
         /// <remarks>Redact sensitive information from structured data (e.g., JSON).</remarks>
-        /// <param name="request" type="PangeaCyber.Net.Redact.RedactTextRequest">RedactRequest with structured dadta</param>
+        /// <param name="request" type="PangeaCyber.Net.Redact.RedactTextRequest">RedactRequest with structured data</param>
         /// <returns>Response&lt;RedactStructuredResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
