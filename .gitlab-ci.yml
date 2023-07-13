@@ -10,7 +10,7 @@ cache:
     - ".nuget"
   policy: pull-push
 
-clean_n_build:
+build:
   stage: build
   before_script:
     - cd packages/pangea-sdk
@@ -46,6 +46,6 @@ publish:
     - tags
 
 stages:
-  - clean_n_build
+  - build
   - test
   - publish
