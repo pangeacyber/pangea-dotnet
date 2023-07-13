@@ -10,7 +10,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///
         [JsonProperty("envelope", NullValueHandling = NullValueHandling.Ignore)]
-        public object RawEnvelope { get; private set; } = default!;
+        public Dictionary<string, object> RawEnvelope { get; private set; } = default!;
 
         ///
         [JsonIgnore]

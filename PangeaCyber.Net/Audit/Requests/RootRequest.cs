@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Audit
     /// <summary>
     /// RootRequest
     /// </summary>
-    public sealed class RootRequest
+    public sealed class RootRequest : BaseRequest
     {
         ///
         [JsonProperty("tree_size")]

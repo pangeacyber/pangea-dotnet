@@ -23,7 +23,7 @@ namespace PangeaCyber.Net
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Configuration" /> class
+        /// Initializes a new instance of the <see cref="Config" /> class
         /// </summary>
         public Config(string token, string domain)
         {
@@ -46,6 +46,9 @@ namespace PangeaCyber.Net
         ///        
         public string Domain { get; set; }
 
+        ///
+        public string ConfigID {get; set;} = default!;
+
         ///        
         public string Environment { get; set; }
 
@@ -54,6 +57,9 @@ namespace PangeaCyber.Net
 
         ///        
         public TimeSpan ConnectionTimeout { get; set; } = default!;
+
+        ///
+        public string CustomUserAgent {get; set; } = default!;
 
         #endregion Public Properties
 
@@ -77,22 +83,30 @@ namespace PangeaCyber.Net
         #endregion Public Methods
 
         #region Static Methods
+
+        private static string LoadEnvironmentVariable(string envVarName){
+            string value = System.Environment.GetEnvironmentVariable(envVarName) ?? string.Empty;
+            if (String.IsNullOrEmpty(value))
+            {
+                throw new ConfigException("Need to set up " + envVarName + " environment variable");
+            }
+            return value;
+        }
+
+        ///
+        public static string GetTestDomain(TestEnvironment environment){
+            string domainEnvVarName = "PANGEA_INTEGRATION_DOMAIN_" + environment.ToString();
+            return LoadEnvironmentVariable(domainEnvVarName);
+        }
+
         ///
         public static Config FromEnvironment(string serviceName)
         {
-            string tokenEnvVarName = String.Format("PANGEA_{0}_TOKEN", serviceName.ToUpper()).Replace('-', '_');
+            string envVarName = String.Format("PANGEA_{0}_TOKEN", serviceName.ToUpper()).Replace('-', '_');
+            string domainEnvVarName = "PANGEA_DOMAIN";
 
-            string token = System.Environment.GetEnvironmentVariable(tokenEnvVarName) ?? string.Empty;
-            if (String.IsNullOrEmpty(token))
-            {
-                throw new ConfigException("Need to set up " + tokenEnvVarName + " environment variable");
-            }
-
-            string domain = System.Environment.GetEnvironmentVariable("PANGEA_DOMAIN") ?? string.Empty;
-            if (String.IsNullOrEmpty(domain))
-            {
-                throw new ConfigException("Need to set up PANGEA_DOMAIN environment variable");
-            }
+            string token = LoadEnvironmentVariable(envVarName);
+            string domain = LoadEnvironmentVariable(domainEnvVarName);
 
             Config config = new Config(token, domain);
             return config;
@@ -101,22 +115,61 @@ namespace PangeaCyber.Net
         ///
         public static Config FromIntegrationEnvironment(TestEnvironment environment)
         {
-            string tokenEnvVarName = "PANGEA_INTEGRATION_TOKEN_" + environment.ToString();
-            string token = System.Environment.GetEnvironmentVariable(tokenEnvVarName) ?? string.Empty;
-            if (String.IsNullOrEmpty(token))
-            {
-                throw new ConfigException("Need to set up " + tokenEnvVarName + " environment variable");
-            }
+            string token = GetTestToken(environment);
+            string domain = GetTestDomain(environment);
+            var cfg = new Config(token, domain);
+            cfg.CustomUserAgent = "test";
+            return cfg;
+        }
 
-            string domainEnvVarName = "PANGEA_INTEGRATION_DOMAIN_" + environment.ToString();
-            string domain = System.Environment.GetEnvironmentVariable(domainEnvVarName) ?? string.Empty;
-            if (String.IsNullOrEmpty(domain))
-            {
-                throw new ConfigException("Need to set up " + domainEnvVarName + " environment variable");
-            }
+        ///
+        public static Config FromVaultIntegrationEnvironment(TestEnvironment environment)
+        {
+            string token = GetVaultSignatureTestToken(environment);
+            string domain = GetTestDomain(environment);
+            var cfg = new Config(token, domain);
+            cfg.CustomUserAgent = "test";
+            return cfg;
+        }
 
-            Config config = new Config(token, domain);
-            return config;
+        ///
+        public static Config FromCustomSchemaIntegrationEnvironment(TestEnvironment environment)
+        {
+            string token = GetCustomSchemaTestToken(environment);
+            string domain = GetTestDomain(environment);
+            var cfg = new Config(token, domain);
+            cfg.CustomUserAgent = "test";
+            return cfg;
+        }
+
+        ///
+        public static string GetTestToken(TestEnvironment environment){
+            string envVarName = "PANGEA_INTEGRATION_TOKEN_" + environment.ToString();
+            return LoadEnvironmentVariable(envVarName);
+        }
+
+        ///
+        public static string GetVaultSignatureTestToken(TestEnvironment environment){
+            string envVarName = "PANGEA_INTEGRATION_VAULT_TOKEN_" + environment.ToString();
+            return LoadEnvironmentVariable(envVarName);
+        }
+
+        ///
+        public static string GetMultiConfigTestToken(TestEnvironment environment){
+            string envVarName = "PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_" + environment.ToString();
+            return LoadEnvironmentVariable(envVarName);
+        }
+
+        ///
+        public static string GetCustomSchemaTestToken(TestEnvironment environment){
+            string envVarName = "PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_" + environment.ToString();
+            return LoadEnvironmentVariable(envVarName);
+        }
+
+        ///
+        public static string GetConfigID(TestEnvironment environment, string service, int configNumber){
+            string envVarName = String.Format("PANGEA_{0}_CONFIG_ID_{1}_{2}", service.ToUpper().Replace('-', '_'), configNumber, environment.ToString());
+            return LoadEnvironmentVariable(envVarName);
         }
         #endregion Static Methods
     }

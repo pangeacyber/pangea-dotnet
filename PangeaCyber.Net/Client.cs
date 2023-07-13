@@ -12,21 +12,48 @@ namespace PangeaCyber.Net
     /// </summary>
     public abstract class Client
     {
+        ///
         private readonly Config config;
 
+        ///
         private readonly string serviceName;
+
+        ///
+        private readonly bool SupportMultiConfig;
 
         ///
         protected readonly HttpClient HttpClient;
 
         ///
-        public Client(Config config, string serviceName)
+        private readonly string userAgent;
+
+        ///
+        public class ClientBuilder {
+            ///
+            public Config config {get; }
+
+            ///
+            public ClientBuilder(Config config){
+                this.config = config;
+            }
+        }
+
+
+        ///
+        public Client(ClientBuilder builder, string serviceName, bool SupportMultiConfig)
         {
-            this.config = config;
+            this.config = builder.config;
             this.serviceName = serviceName;
+            this.SupportMultiConfig = SupportMultiConfig;
             this.HttpClient = new HttpClient();
             this.HttpClient.BaseAddress = config.GetServiceUrl(serviceName, String.Empty);
-            this.HttpClient.DefaultRequestHeaders.Add("User-Agent", "pangea-csharp/" + Config.Version);
+
+            this.userAgent = "pangea-csharp/" + Config.Version;
+            if(config.CustomUserAgent != default){
+                this.userAgent += " " + config.CustomUserAgent;
+            }
+
+            this.HttpClient.DefaultRequestHeaders.Add("User-Agent", this.userAgent);
             this.HttpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + config.Token);
 
             if (config.ConnectionTimeout != default(TimeSpan))
@@ -36,8 +63,12 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public async Task<Response<TResult>> DoPost<TResult>(string path, object request)
+        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request)
         {
+            if(this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default) {
+                request.ConfigID = this.config.ConfigID;
+            }
+
             StringContent requestJson;
             try
             {

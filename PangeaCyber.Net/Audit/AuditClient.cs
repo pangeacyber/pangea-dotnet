@@ -1,13 +1,7 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Mime;
-using System.Text;
-using Newtonsoft.Json;
-
-using PangeaCyber.Net;
-using PangeaCyber.Net.Audit.arweave;
+﻿using PangeaCyber.Net.Audit.arweave;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Audit.Utils;
+using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.Audit
 {
@@ -18,111 +12,78 @@ namespace PangeaCyber.Net.Audit
     public class AuditClient : Client
     {
         ///
-        public static string ServiceName = "audit";
+        public static string ServiceName {get; }= "audit";
 
         ///
-        public LogSigner Signer;
+        private static bool supportMultiConfig = true;
 
         ///
-        public Dictionary<int, PublishedRoot> PublishedRoots;
+        private LogSigner? signer;
 
         ///
-        public bool AllowServerRoots = true;    // In case of Arweave failure, ask the server for the roots
+        private Dictionary<int, PublishedRoot> publishedRoots;
 
         ///
-        public string PrevUnpublishedRoot = default!;
+        private bool allowServerRoots = true;    // In case of Arweave failure, ask the server for the roots
 
         ///
-        public string TenantID = default!;
+        private string prevUnpublishedRoot = default!;
+
+        ///
+        private string? tenantID;
+
+        ///
+        private Type customSchemaClass;
+
+        ///
+        private Dictionary<string, string> pkInfo;
 
         /// Constructor
-        public AuditClient(Config config) : base(config, ServiceName)
+        public AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
         {
-            this.Signer = default!;
-            this.PublishedRoots = new Dictionary<int, PublishedRoot>();
+            this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename)? new LogSigner(builder.privateKeyFilename!) : null;
+            this.publishedRoots = new Dictionary<int, PublishedRoot>();
+            this.customSchemaClass = builder.customSchemaClass;
+            this.tenantID = builder.tenantID;
+            this.pkInfo = builder.pkInfo ?? new Dictionary<string, string>();
         }
 
-        /// Constructor
-        public AuditClient(Config config, string privateKeyFilename) : base(config, ServiceName)
-        {
-            this.Signer = new LogSigner(privateKeyFilename);
-            this.PublishedRoots = new Dictionary<int, PublishedRoot>();
-        }
-
-        /// Constructor
-        public AuditClient(Config config, string privateKeyFilename, string tenantID) : base(config, ServiceName)
-        {
-            this.Signer = !string.IsNullOrEmpty(privateKeyFilename) ? new LogSigner(privateKeyFilename) : default!;
-            this.TenantID = tenantID;
-            this.PublishedRoots = new Dictionary<int, PublishedRoot>();
-        }
-
-        private async Task<Response<LogResult>> logPost(Event requestEvent, bool verbose, string signature, string publicKey, bool verify)
+        private async Task<Response<LogResult>> logPost(IEvent evt, bool? verbose, string signature, string publicKey, bool verify)
         {
             string prevRoot = default!;
             if (verify)
             {
                 verbose = true;
-                prevRoot = this.PrevUnpublishedRoot;
+                prevRoot = this.prevUnpublishedRoot;
             }
-            LogRequest request = new LogRequest(requestEvent, verbose, signature, publicKey, prevRoot);
+            LogRequest request = new LogRequest(evt, verbose ?? false, signature, publicKey, prevRoot);
             return await DoPost<LogResult>("/v1/log", request);
-        }
-
-        private async Task<Response<LogResult>> doLog(Event requestEvent, SignMode signMode, bool verbose, bool verify)
-        {
-            string signature = default!;
-            string publicKey = default!;
-
-            requestEvent.TenantID = this.TenantID;
-
-            if (signMode == SignMode.Local && this.Signer == null)
-            {
-                throw new SignerException("Signer not initialized", new Exception());
-            }
-            else if (signMode == SignMode.Local && this.Signer != null)
-            {
-                string canEvent;
-                try
-                {
-                    canEvent = Event.Canonicalize(requestEvent);
-                }
-                catch (Exception e)
-                {
-                    throw new SignerException("Failed to convert event to string", e);
-                }
-
-                signature = this.Signer.Sign(canEvent);
-                publicKey = this.Signer.GetPublicKey();
-            }
-
-            Response<LogResult> response = await logPost(requestEvent, verbose, signature, publicKey, verify);
-            await processLogResponse(response.Result, verify);
-            return response;
         }
 
         private Task processLogResponse(LogResult result, bool verify)
         {
             string newUnpublishedRoot = result.UnpublishedRoot;
-            result.EventEnvelope = EventEnvelope.FromRaw(result.RawEnvelope);
-            if (verify)
-            {
-                EventEnvelope.VerifyHash(result.RawEnvelope, result.Hash);
-                result.VerifySignature();
-                if (newUnpublishedRoot != null)
+            if(result.RawEnvelope != null){
+                result.EventEnvelope = EventEnvelope.FromRaw(result.RawEnvelope, this.customSchemaClass)!;
+                if (verify)
                 {
-                    result.MembershipVerification = Verification.VerifyMembershipProof(newUnpublishedRoot, result.Hash, result.MembershipProof);
-                    if (result.ConsistencyProof != null && this.PrevUnpublishedRoot != null)
+                    result.VerifySignature();
+                    EventEnvelope.VerifyHash(result.RawEnvelope, result.Hash);
+                    if (newUnpublishedRoot != null)
                     {
-                        ConsistencyProof conProof = Verification.DecodeConsistencyProof(result.ConsistencyProof);
-                        result.ConsistencyVerification = Verification.VerifyConsistencyProof(newUnpublishedRoot, this.PrevUnpublishedRoot, conProof);
+                        result.MembershipVerification = Verification.VerifyMembershipProof(newUnpublishedRoot, result.Hash, result.MembershipProof);
+                        if (result.ConsistencyProof != null && this.prevUnpublishedRoot != null)
+                        {
+                            ConsistencyProof conProof = Verification.DecodeConsistencyProof(result.ConsistencyProof);
+                            result.ConsistencyVerification = Verification.VerifyConsistencyProof(newUnpublishedRoot, this.prevUnpublishedRoot, conProof);
+                        }
                     }
                 }
-            }
 
-            if (newUnpublishedRoot != null)
-            {
-                this.PrevUnpublishedRoot = newUnpublishedRoot;
+                if (newUnpublishedRoot != null)
+                {
+                    this.prevUnpublishedRoot = newUnpublishedRoot;
+                }
             }
 
             return Task.CompletedTask;
@@ -133,7 +94,8 @@ namespace PangeaCyber.Net.Audit
         /// Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
         /// </summary>
         /// <remarks>Log an entry</remarks>
-        /// <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+        /// <param name="evt" type="PangeaCyber.Net.Audit.Event">Event to log</param>
+        /// <param name="config"></param>
         /// <returns>Response&lt;LogResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
@@ -144,33 +106,38 @@ namespace PangeaCyber.Net.Audit
         /// var response = await client.log(event);
         /// </code>
         /// </example>
-        public async Task<Response<LogResult>> Log(Event requestEvent)
+        public async Task<Response<LogResult>> Log(IEvent evt, LogConfig config)
         {
-            return await this.doLog(requestEvent, SignMode.Unsigned, false, false);
-        }
+            string signature = default!;
+            string publicKey = default!;
 
-        /// <kind>method</kind>
-        /// <summary>
-        /// Log an event to Audit Secure Log. Can select sign event or not and verbosity of the response.
-        /// </summary>
-        /// <remarks>Log an entry - event, sign, verbose</remarks>
-        /// <param name="requestEvent" type="PangeaCyber.Net.Audit.Event">Event to log</param>
-        /// <param name="signMode" type="PangeaCyber.Net.Audit.SignMode">"Unsigned" or "Local"</param>
-        /// <param name="verbose" type="System.Boolean">true to more verbose response</param>
-        /// <param name="verify" type="System.Boolean">true to verify the hashes</param>
-        /// <returns>Response&lt;LogResult&gt;</returns>
-        /// <exception cref="PangeaException"></exception>
-        /// <exception cref="PangeaAPIException"></exception>
-        /// <example>
-        /// <code>
-        /// string msg = "Event's message";
-        /// Event event = new Event(msg);
-        /// var response = await client.log(event, "Local", true, false);
-        /// </code>
-        /// </example>
-        public async Task<Response<LogResult>> Log(Event requestEvent, SignMode signMode, bool verbose, bool verify)
-        {
-            return await this.doLog(requestEvent, signMode, verbose, verify);
+            if(string.IsNullOrEmpty(evt.GetTenantID()) && this.tenantID != default){
+                evt.SetTenantID(this.tenantID);
+            }
+
+            if (config.SignLocal && this.signer == null)
+            {
+                throw new SignerException("Signer not initialized", new Exception("Signer not initialized"));
+            }
+            else if (config.SignLocal && this.signer != null)
+            {
+                string canEvent;
+                try
+                {
+                    canEvent = IEvent.Canonicalize(evt);
+                }
+                catch (Exception e)
+                {
+                    throw new SignerException("Failed to convert event to string", e);
+                }
+
+                signature = this.signer.Sign(canEvent);
+                publicKey = this.GetPublicKeyData();
+            }
+
+            Response<LogResult> response = await logPost(evt, config.Verbose, signature, publicKey, config.Verify);
+            await processLogResponse(response.Result, config.Verify);
+            return response;
         }
 
         private async Task<Response<RootResult>> rootPost(int? treeSize)
@@ -211,14 +178,14 @@ namespace PangeaCyber.Net.Audit
             return await rootPost(treeSize);
         }
 
-        private async Task processSearchResult(ResultsOutput result, bool VerifyConsistency, bool verifyEvents)
+        private async Task processSearchResult(ResultsOutput result, SearchConfig config)
         {
             foreach (SearchEvent searchEvent in result.Events)
             {
-                searchEvent.EventEnvelope = EventEnvelope.FromRaw(searchEvent.RawEnvelope);
+                searchEvent.EventEnvelope = EventEnvelope.FromRaw(searchEvent.RawEnvelope, this.customSchemaClass)!;
             }
 
-            if (verifyEvents)
+            if (config.VerifyEvents)
             {
                 foreach (SearchEvent searchEvent in result.Events)
                 {
@@ -230,7 +197,7 @@ namespace PangeaCyber.Net.Audit
             Root root = result.Root;
             Root UnpublishedRoot = result.UnpublishedRoot;
 
-            if (VerifyConsistency)
+            if (config.VerifyConsistency)
             {
                 if (root != null)
                 {
@@ -240,7 +207,7 @@ namespace PangeaCyber.Net.Audit
                 foreach (SearchEvent searchEvent in result.Events)
                 {
                     string rootHash = "";
-                    if (searchEvent.published)
+                    if (searchEvent.Published)
                     {
                         rootHash = root?.RootHash ?? "";
                     }
@@ -250,7 +217,7 @@ namespace PangeaCyber.Net.Audit
                     }
 
                     searchEvent.VerifyMembershipProof(rootHash);
-                    searchEvent.VerifyConsistency(this.PublishedRoots);
+                    searchEvent.VerifyConsistency(this.publishedRoots);
                 }
             }
         }
@@ -266,7 +233,7 @@ namespace PangeaCyber.Net.Audit
             HashSet<int> treeSizes = new HashSet<int>();
             foreach (SearchEvent searchEvent in result.Events)
             {
-                if (searchEvent.published)
+                if (searchEvent.Published)
                 {
                     int? LeafIndex = searchEvent.LeafIndex;
                     if (LeafIndex.HasValue)
@@ -282,7 +249,7 @@ namespace PangeaCyber.Net.Audit
             }
 
             treeSizes.Add(root.Size);
-            treeSizes.RemoveWhere(this.PublishedRoots.ContainsKey);
+            treeSizes.RemoveWhere(this.publishedRoots.ContainsKey);
 
             int[] sizes = new int[treeSizes.Count];
             treeSizes.CopyTo(sizes);
@@ -303,9 +270,9 @@ namespace PangeaCyber.Net.Audit
                 if (arweaveRoots.ContainsKey(treeSize))
                 {
                     arweaveRoots[treeSize].Source = "arweave";
-                    this.PublishedRoots.Add(treeSize, arweaveRoots[treeSize]);
+                    this.publishedRoots.Add(treeSize, arweaveRoots[treeSize]);
                 }
-                else if (AllowServerRoots)
+                else if (allowServerRoots)
                 {
                     Response<RootResult> response;
                     try
@@ -314,7 +281,7 @@ namespace PangeaCyber.Net.Audit
 
                         Root localRoot = response.Result.Root;
                         PublishedRoot pubRoot = new PublishedRoot(root.Size, root.RootHash, root.PublishedAt, root.ConsistencyProof, "pangea");
-                        this.PublishedRoots[treeSize] = pubRoot;
+                        this.publishedRoots[treeSize] = pubRoot;
                     }
                     catch (Exception)
                     {
@@ -324,17 +291,11 @@ namespace PangeaCyber.Net.Audit
             }
         }
 
-        private async Task<Response<SearchOutput>> SearchPost(SearchInput request, bool VerifyConsistency, bool verifyEvents)
-        {
-            Response<SearchOutput> response = await DoPost<SearchOutput>("/v1/search", request);
-            await processSearchResult(response.Result, VerifyConsistency, verifyEvents);
-            return response;
-        }
-
         /// <kind>method</kind>
         /// <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
         /// <remarks>Search</remarks>
-        /// <param name="input" type="PangeaCyber.Net.Audit.SearchInput">query filters to perform search</param>
+        /// <param name="request"></param>
+        /// <param name="config"></param>
         /// <returns>Response&lt;SearchOutput&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
@@ -345,113 +306,103 @@ namespace PangeaCyber.Net.Audit
         /// var response = Client.Search(input);
         /// </code>
         /// </example>
-        public async Task<Response<SearchOutput>> Search(SearchInput input)
+        public async Task<Response<SearchOutput>> Search(SearchRequest request, SearchConfig config)
         {
-            return await SearchPost(input, true, true);
-        }
-
-        /// <kind>method</kind>
-        /// <summary>Perform a search of logs according to input param. Allow to select to verify or nor consistency proof and events.</summary>
-        /// <remarks>Search - input, VerifyConsistency, verifyEvents</remarks>
-        /// <param name="input" type="PangeaCyber.Net.Audit.SearchInput">query filters to perform search</param>
-        /// <param name="VerifyConsistency" type="System.Boolean">true to verify logs consistency proofs</param>
-        /// <param name="verifyEvents" type="System.Boolean">true to verify logs hash and signature</param>
-        /// <returns>Response&lt;SearchOutput&gt;</returns>
-        /// <exception cref="PangeaException"></exception>
-        /// <exception cref="PangeaAPIException"></exception>
-        /// <example>
-        /// <code>
-        /// var input = new SearchInput("message:Integration test msg");
-        /// input.setMaxResults(10);
-        /// var response = Client.Search(input, true, true);
-        /// </code>
-        /// </example>
-        public async Task<Response<SearchOutput>> Search(SearchInput input, bool VerifyConsistency, bool verifyEvents)
-        {
-            if (VerifyConsistency)
-            {
-                input.Verbose = true;
-            }
-
-            return await SearchPost(input, VerifyConsistency, verifyEvents);
-        }
-
-        private async Task<Response<ResultsOutput>> resultPost(string id, int limit, int offset, bool VerifyConsistency, bool verifyEvents)
-        {
-            var request = new ResultsRequest(id, limit, offset);
-            var response = await DoPost<ResultsOutput>("/v1/results", request);
-            await processSearchResult(response.Result, VerifyConsistency, verifyEvents);
+            Response<SearchOutput> response = await DoPost<SearchOutput>("/v1/search", request);
+            await processSearchResult(response.Result, config);
             return response;
         }
 
         /// <kind>method</kind>
         /// <summary>Return result's page from search id.</summary>
         /// <remarks>Results</remarks>
-        /// <param name="id" type="System.Int32">A search results identifier returned by the search call. By default verify events and do not verify consistency.</param>
-        /// <param name="limit" type="System.Int32">Number of audit records to include in a single set of results.</param>
-        /// <param name="offset" type="System.Int32">Offset from the start of the result set to start returning results from.</param>
+        /// <param name="request"></param>
+        /// <param name="config"></param>
         /// <returns>Response&lt;ResultsOutput&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
-        public async Task<Response<ResultsOutput>> Results(string id, int limit, int offset)
+        public async Task<Response<ResultsOutput>> Results(ResultRequest request, SearchConfig config)
         {
-            return await resultPost(id, limit, offset, false, true);
+            var response = await DoPost<ResultsOutput>("/v1/results", request);
+            await processSearchResult(response.Result, config);
+            return response;
         }
 
-        /// <kind>method</kind>
-        /// <summary>"Return result's page from search id. Allow to select to verify or nor consistency proof and events.</summary>
-        /// <remarks>Results - id, limit, offset, VerifyConsistency, verifyEvents</remarks>
-        /// <param name="id" type="System.Int32">A search results identifier returned by the search call. By default verify events and do not verify consistency.</param>
-        /// <param name="limit" type="System.Int32">Number of audit records to include in a single set of results.</param>
-        /// <param name="offset" type="System.Int32">Offset from the start of the result set to start returning results from.</param>
-        /// <param name="VerifyConsistency" type="System.Boolean">true to verify logs consistency proofs.</param>
-        /// <param name="verifyEvents" type="System.Boolean">true to verify logs hash and signature.</param>
-        /// <returns>Response&lt;ResultsOutput&gt;</returns>
-        /// <exception cref="PangeaException"></exception>
-        /// <exception cref="PangeaAPIException"></exception>
-        public async Task<Response<ResultsOutput>> Results(string id, int limit, int offset, bool VerifyConsistency, bool verifyEvents)
-        {
-            return await resultPost(id, limit, offset, VerifyConsistency, verifyEvents);
-        }
-    }
-
-    /// <kind>class</kind>
-    /// <summary>
-    /// AuditClient Builder
-    /// </summary>
-    public class AuditClientBuilder
-    {
-        private Config config;
-        private string privateKeyFilename = default!;
-        private string tenantID = default!;
-
-        ///
-        public AuditClientBuilder(Config config)
-        {
-            this.config = config;
+        private string GetPublicKeyData(){
+            try {
+                if(this.signer != null){
+                    this.pkInfo.Add("key", this.signer.GetPublicKey());
+                    this.pkInfo.Add("algorithm", this.signer.GetAlgorithm());
+                }
+                return JsonConvert.SerializeObject(this.pkInfo);
+            } catch (Exception e) {
+                throw new PangeaException("Failed to stringify public key info", e);
+            }
         }
 
-        ///
-        public AuditClientBuilder WithPrivateKey(string privateKeyFilename)
+        /// <kind>class</kind>
+        /// <summary>
+        /// AuditClient Builder
+        /// </summary>
+        public class Builder : Client.ClientBuilder
         {
-            this.privateKeyFilename = privateKeyFilename;
-            return this;
+
+            ///
+            public string? privateKeyFilename = null;
+
+            ///
+            public string? tenantID = null;
+
+            ///
+            public Type customSchemaClass = typeof(StandardEvent);
+
+            ///
+            public Dictionary<string, string>? pkInfo = null;
+
+            ///
+            public Builder(Config config) : base(config)
+            {
+            }
+
+            ///
+            public Builder WithPrivateKey(string privateKeyFilename)
+            {
+                this.privateKeyFilename = privateKeyFilename;
+                return this;
+            }
+
+            ///
+            public Builder WithTenantID(string tenantID)
+            {
+                this.tenantID = tenantID;
+                return this;
+            }
+
+            ///
+            public Builder WithCustomSchema<TEventType>() where TEventType : IEvent
+            {
+                if (!typeof(IEvent).IsAssignableFrom(typeof(TEventType)))
+                {
+                    throw new ArgumentException("TEventType must implement IEvent");
+                }
+
+                customSchemaClass = typeof(TEventType);
+                return this;
+            }
+
+            ///
+            public Builder WithPKInfo(Dictionary<string, string> pkInfo){
+                this.pkInfo = pkInfo;
+                return this;
+            }
+
+            ///
+            public AuditClient Build()
+            {
+                return new AuditClient(this);
+            }
         }
 
-
-        ///
-        public AuditClientBuilder WithTenantID(string tenantID)
-        {
-            this.tenantID = tenantID;
-            return this;
-        }
-
-
-        ///
-        public AuditClient Build()
-        {
-            return new AuditClient(this.config, this.privateKeyFilename, this.tenantID);
-        }
     }
 
 }

@@ -4,10 +4,6 @@ using PangeaCyber.Net.Redact;
 
 class Program
 {
-    static async Task Log(AuditClient client, Event e)
-    {
-
-    }
 
     static async Task Main(string[] args)
     {
@@ -22,7 +18,7 @@ class Program
 
             // Redact sample
             var redactConfig = Config.FromEnvironment("redact");
-            RedactClient redactClient = new RedactClient(redactConfig);
+            RedactClient redactClient = new RedactClient.Builder(redactConfig).Build();
 
             // Redact text example
             // var request = new RedactTextRequest.RedactTextRequestBuilder("Jenny Jenny... 415-867-5309").SetReturnResult(true).Build();
