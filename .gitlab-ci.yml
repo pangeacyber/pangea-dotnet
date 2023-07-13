@@ -10,25 +10,18 @@ cache:
     - ".nuget"
   policy: pull-push
 
-build:
-  stage: build
-  before_script:
-    - cd packages/pangea-sdk
-  script:
-    - dotnet restore --packages .nuget
-    - dotnet build --no-restore --configuration Release
+before_script:
+  - cd packages/pangea-sdk
+  - dotnet restore --packages .nuget
+  - dotnet build --no-restore --configuration Release
 
 tests:
   stage: test
-  before_script:
-    - cd packages/pangea-sdk
   script:
     - dotnet test --no-restore
 
 publish:
   stage: publish
-  before_script:
-    - cd packages/pangea-sdk
   script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
@@ -46,6 +39,5 @@ publish:
     - tags
 
 stages:
-  - build
   - test
   - publish
