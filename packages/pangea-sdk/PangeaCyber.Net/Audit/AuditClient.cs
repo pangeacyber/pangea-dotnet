@@ -39,7 +39,7 @@ namespace PangeaCyber.Net.Audit
         private Dictionary<string, string> pkInfo;
 
         /// Constructor
-        public AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
+        protected AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
         {
             this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename)? new LogSigner(builder.privateKeyFilename!) : null;
             this.publishedRoots = new Dictionary<int, PublishedRoot>();
@@ -94,16 +94,16 @@ namespace PangeaCyber.Net.Audit
         /// Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
         /// </summary>
         /// <remarks>Log an entry</remarks>
-        /// <param name="evt" type="PangeaCyber.Net.Audit.Event">Event to log</param>
-        /// <param name="config"></param>
+        /// <param name="evt" type="PangeaCyber.Net.Audit.IEvent">Event to log</param>
+        /// <param name="config">Include verbosity, local signature and verify events setup</param>
         /// <returns>Response&lt;LogResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
         /// string msg = "Event's message";
-        /// Event event = new Event(msg);
-        /// var response = await client.log(event);
+        /// Event event = new Event.Builder(msg).Build();
+        /// var response = await client.log(event, new LogConfig.Builder().Build());
         /// </code>
         /// </example>
         public async Task<Response<LogResult>> Log(IEvent evt, LogConfig config)
@@ -294,8 +294,8 @@ namespace PangeaCyber.Net.Audit
         /// <kind>method</kind>
         /// <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
         /// <remarks>Search</remarks>
-        /// <param name="request"></param>
-        /// <param name="config"></param>
+        /// <param name="request">Request to be sent to /search endpoint</param>
+        /// <param name="config">Config include event and consistency verification setup</param>
         /// <returns>Response&lt;SearchOutput&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
@@ -316,8 +316,8 @@ namespace PangeaCyber.Net.Audit
         /// <kind>method</kind>
         /// <summary>Return result's page from search id.</summary>
         /// <remarks>Results</remarks>
-        /// <param name="request"></param>
-        /// <param name="config"></param>
+        /// <param name="request">Request to be sent to /results endpoint</param>
+        /// <param name="config">Config include event and consistency verification setup</param>
         /// <returns>Response&lt;ResultsOutput&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
@@ -364,21 +364,21 @@ namespace PangeaCyber.Net.Audit
             {
             }
 
-            ///
+            /// Add a private key in case want to use local signature
             public Builder WithPrivateKey(string privateKeyFilename)
             {
                 this.privateKeyFilename = privateKeyFilename;
                 return this;
             }
 
-            ///
+            /// Add a tenant ID to be sent in each logged event
             public Builder WithTenantID(string tenantID)
             {
                 this.tenantID = tenantID;
                 return this;
             }
 
-            ///
+            /// Setup user custom schema 
             public Builder WithCustomSchema<TEventType>() where TEventType : IEvent
             {
                 if (!typeof(IEvent).IsAssignableFrom(typeof(TEventType)))
@@ -390,13 +390,13 @@ namespace PangeaCyber.Net.Audit
                 return this;
             }
 
-            ///
+            /// Add extra public key information
             public Builder WithPKInfo(Dictionary<string, string> pkInfo){
                 this.pkInfo = pkInfo;
                 return this;
             }
 
-            ///
+            /// Build an AuditClient
             public AuditClient Build()
             {
                 return new AuditClient(this);

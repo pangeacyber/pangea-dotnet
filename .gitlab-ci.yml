@@ -5,12 +5,13 @@ image:
 cache:
   key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
   paths:
-    - "./PangeaCyber.Net/obj/project.assets.json"
-    - "./PangeaCyber.Net/obj/*.csproj.nuget.*"
+    - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
+    - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
     - ".nuget"
   policy: pull-push
 
 before_script:
+  - cd packages/pangea-sdk
   - dotnet restore --packages .nuget
   - dotnet build --no-restore --configuration Release
 
