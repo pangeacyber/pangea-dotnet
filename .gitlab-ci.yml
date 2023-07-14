@@ -37,8 +37,8 @@ publish:
       - PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg
   rules:
     - if: $CI_COMMIT_BRANCH == "release"
-      # changes:
-      #   - packages/pangea-sdk/**/*
+      changes:
+        - packages/pangea-sdk/**/*
       when: on_success
 
 stages:
