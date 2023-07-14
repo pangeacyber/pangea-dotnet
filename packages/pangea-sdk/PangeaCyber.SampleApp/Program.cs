@@ -21,7 +21,7 @@ class Program
             RedactClient redactClient = new RedactClient.Builder(redactConfig).Build();
 
             // Redact text example
-            // var request = new RedactTextRequest.RedactTextRequestBuilder("Jenny Jenny... 415-867-5309").SetReturnResult(true).Build();
+            // var request = new RedactTextRequest.RedactTextRequestBuilder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build();
             // var redactResponse = await redactClient.RedactText(request);
             // Console.WriteLine("Redact Response: " + redactResponse.Result.RedactedText);
 
@@ -30,7 +30,7 @@ class Program
             data.Add("Name", "My name is Andres");
             data.Add("Contact", "My phone number is 123-456-7890");
 
-            var structuredRequest = new RedactStructuredRequest.RedactStructuredRequestBuilder(data).SetReturnResult(true).Build();
+            var structuredRequest = new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build();
             var structuredResponse = await redactClient.RedactStructured(structuredRequest);
             Console.WriteLine("Redact Structured Response: " + structuredResponse.Result.RedactedData);
         }

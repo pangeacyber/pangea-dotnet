@@ -10,22 +10,22 @@ namespace PangeaCyber.Net.Redact
     {
         ///
         [JsonProperty("text")]
-        public string Text { get; private set; } = default!;
+        public string Text { get; private set; }
 
         ///
         [JsonProperty("debug")]
-        public bool Debug { get; private set; } = default!;
+        public bool? Debug { get; private set; }
 
         ///
         [JsonProperty("rules")]
-        public string[] Rules { get; private set; } = default!;
+        public string[]? Rules { get; private set; }
 
         ///
         [JsonProperty("return_result")]
-        public bool ReturnResult { get; private set; } = default!;
+        public bool? ReturnResult { get; private set; }
 
         ///
-        protected RedactTextRequest(RedactTextRequestBuilder builder)
+        protected RedactTextRequest(Builder builder)
         {
             this.Text = builder.Text;
             this.Debug = builder.Debug;
@@ -37,42 +37,42 @@ namespace PangeaCyber.Net.Redact
         /// <summary>
         /// RedactTextRequestBuilder
         /// </summary>
-        public class RedactTextRequestBuilder
+        public class Builder
         {
             ///
-            public string Text { get; private set; } = default!;
+            public string Text { get; private set; }
 
             ///
-            public bool Debug { get; private set; } = default!;
+            public bool? Debug { get; private set; }
 
             ///
-            public string[] Rules { get; private set; } = default!;
+            public string[]? Rules { get; private set; }
 
             ///
-            public bool ReturnResult { get; private set; } = default!;
+            public bool? ReturnResult { get; private set; }
 
             ///
-            public RedactTextRequestBuilder(string text)
+            public Builder(string text)
             {
                 this.Text = text;
             }
 
             ///
-            public RedactTextRequestBuilder SetDebug(bool debug)
+            public Builder WithDebug(bool debug)
             {
                 this.Debug = debug;
                 return this;
             }
 
             ///
-            public RedactTextRequestBuilder SetRules(string[] rules)
+            public Builder WithRules(string[] rules)
             {
                 this.Rules = rules;
                 return this;
             }
 
             ///
-            public RedactTextRequestBuilder SetReturnResult(bool returnResult)
+            public Builder WithReturnResult(bool returnResult)
             {
                 this.ReturnResult = returnResult;
                 return this;

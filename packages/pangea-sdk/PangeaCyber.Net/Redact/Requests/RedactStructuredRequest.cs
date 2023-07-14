@@ -10,30 +10,30 @@ namespace PangeaCyber.Net.Redact
     {
         ///
         [JsonProperty("data")]
-        public Object Data { get; private set; } = default!;
+        public Object Data { get; private set; }
 
         ///
         [JsonProperty("jsonp")]
-        public string[] Jsonp { get; private set; } = default!;
+        public string[]? Jsonp { get; private set; }
 
         ///
         [JsonProperty("format")]
-        public string Format { get; private set; } = default!;
+        public string? Format { get; private set; }
 
         ///
         [JsonProperty("debug")]
-        public bool Debug { get; private set; } = default!;
+        public bool? Debug { get; private set; }
 
         ///
         [JsonProperty("rules")]
-        public string[] Rules { get; private set; } = default!;
+        public string[]? Rules { get; private set; }
 
         ///
         [JsonProperty("return_result")]
-        public bool ReturnResult { get; private set; } = default!;
+        public bool? ReturnResult { get; private set; }
 
         ///
-        protected RedactStructuredRequest(RedactStructuredRequestBuilder builder)
+        protected RedactStructuredRequest(Builder builder)
         {
             this.Data = builder.Data;
             this.Jsonp = builder.Jsonp;
@@ -47,62 +47,62 @@ namespace PangeaCyber.Net.Redact
         /// <summary>
         /// RedactStructuredRequestBuilder
         /// </summary>
-        public class RedactStructuredRequestBuilder
+        public class Builder
         {
             ///
-            public Object Data { get; private set; } = default!;
+            public Object Data { get; private set; }
 
             ///
-            public string[] Jsonp { get; private set; } = default!;
+            public string[]? Jsonp { get; private set; } = null;
 
             ///
-            public string Format { get; private set; } = default!;
+            public string? Format { get; private set; } = null;
 
             ///
-            public bool Debug { get; private set; } = default!;
+            public bool? Debug { get; private set; } = null;
 
             ///
-            public string[] Rules { get; private set; } = default!;
+            public string[]? Rules { get; private set; } = null;
 
             ///
-            public bool ReturnResult { get; private set; } = default!;
+            public bool? ReturnResult { get; private set; } = null;
 
             ///
-            public RedactStructuredRequestBuilder(Object data)
+            public Builder(Object data)
             {
                 this.Data = data;
             }
 
             ///
-            public RedactStructuredRequestBuilder SetJsonp(string[] jsonp)
+            public Builder WithJsonp(string[] jsonp)
             {
                 this.Jsonp = jsonp;
                 return this;
             }
 
             ///
-            public RedactStructuredRequestBuilder SetFormat(string format)
+            public Builder WithFormat(string format)
             {
                 this.Format = format;
                 return this;
             }
 
             ///
-            public RedactStructuredRequestBuilder SetDebug(bool debug)
+            public Builder WithDebug(bool debug)
             {
                 this.Debug = debug;
                 return this;
             }
 
             ///
-            public RedactStructuredRequestBuilder SetRules(string[] rules)
+            public Builder WithRules(string[] rules)
             {
                 this.Rules = rules;
                 return this;
             }
 
             ///
-            public RedactStructuredRequestBuilder SetReturnResult(bool returnResult)
+            public Builder WithReturnResult(bool returnResult)
             {
                 this.ReturnResult = returnResult;
                 return this;
