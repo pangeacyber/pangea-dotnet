@@ -29,7 +29,7 @@ publish:
     - cp .secure_files/CodeSigning_CABundle.crt /usr/local/share/ca-certificates
     - update-ca-certificates
     - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --timestamper http://timestamp.sectigo.com --certificate-path .secure_files/pangea.pfx -v d
-    - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -k $NUGET_API_KEY -s https://api.nuget.org/v3/index.json
+    - dotnet nuget push ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg -s $NUGET_SOURCE -k $NUGET_API_KEY
     - rm -rf .secure_files
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
@@ -37,8 +37,8 @@ publish:
       - PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg
   rules:
     - if: $CI_COMMIT_BRANCH == "release"
-      changes:
-        - packages/pangea-sdk/**/*
+      # changes:
+      #   - packages/pangea-sdk/**/*
       when: on_success
 
 stages:
