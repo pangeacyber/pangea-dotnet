@@ -35,8 +35,11 @@ publish:
     name: "$CI_COMMIT_REF_NAME"
     paths:
       - PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg
-  only:
-    - tags
+  rules:
+    - if: $CI_COMMIT_BRANCH == "release"
+      changes:
+        - packages/pangea-sdk/**/*
+      when: on_success
 
 stages:
   - test
