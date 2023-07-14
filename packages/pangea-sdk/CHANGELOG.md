@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multiconfig support 
 - Custom user agent support
 
+# Changed
+
+- Redact requests builder rename to be called just "Builder" 
+
 
 [unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/2.0.0...main
 [2.0.0]: https://github.com/pangeacyber/pangea-dotnet/releases/tag/2.0.0
