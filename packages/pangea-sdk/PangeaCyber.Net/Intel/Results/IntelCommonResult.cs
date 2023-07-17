@@ -13,16 +13,5 @@ namespace PangeaCyber.Net.Intel
         [JsonProperty("raw_data")]
         public Dictionary<string, object>? RawData { get; set; }
 
-        ///
-        public Dictionary<string, object>? GetParameters()
-        {
-            return Parameters;
-        }
-
-        ///
-        public Dictionary<string, object>? GetRawData()
-        {
-            return RawData;
-        }
     }
 }

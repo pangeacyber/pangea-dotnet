@@ -7,25 +7,25 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public string URL { get; set; }
 
         ///
         protected URLReputationRequest(Builder builder)
             : base(builder)
         {
-            Url = builder.Url;
+            URL = builder.URL;
         }
 
         ///
         public class Builder : IntelCommonRequest<URLReputationRequest.Builder>.CommonBuilder
         {
             ///
-            public string Url { get; private set; }
+            public string URL { get; private set; }
 
             ///
             public Builder(string url)
             {
-                Url = url;
+                URL = url;
             }
 
             ///
@@ -33,12 +33,6 @@ namespace PangeaCyber.Net.Intel
             {
                 return new URLReputationRequest(this);
             }
-        }
-
-        ///
-        public string GetUrl()
-        {
-            return Url;
         }
     }
 }
