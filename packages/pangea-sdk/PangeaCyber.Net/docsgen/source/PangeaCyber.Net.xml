@@ -1252,6 +1252,132 @@
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelReputationData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationData.Category">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationData.Score">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationData.Verdict">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelReputationData.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.Provider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.Raw">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.#ctor(`0)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Provider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Raw">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithProvider(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithVerbose(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithRaw(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.Url">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.#ctor(PangeaCyber.Net.Intel.URLReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Url">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.GetUrl">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelCommonResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonResult.Parameters">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonResult.RawData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonResult.GetParameters">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonResult.GetRawData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationResult.Data">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.#ctor(PangeaCyber.Net.Intel.URLIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Reputation(PangeaCyber.Net.Intel.URLReputationRequest)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
             <kind>class</kind>
             <summary>
