@@ -1252,6 +1252,27 @@
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.FileIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.#ctor(PangeaCyber.Net.Intel.FileIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Reputation(PangeaCyber.Net.Intel.FileHashReputationRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.CalculateSHA256fromFile(System.String)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPIntelClient">
             
         </member>
@@ -1280,6 +1301,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Reputation(PangeaCyber.Net.Intel.IPReputationRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileReputationData">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelReputationData">
@@ -1343,6 +1367,33 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.HashType">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.#ctor(PangeaCyber.Net.Intel.FileHashReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.HashType">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.Build">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1">
@@ -1511,6 +1562,12 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileReputationResult.Data">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelCommonResult">
