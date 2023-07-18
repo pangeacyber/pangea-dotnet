@@ -1327,6 +1327,18 @@
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.HashType">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.SHA1">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.MD5">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IntelReputationData">
             
         </member>
@@ -1387,7 +1399,37 @@
         <member name="P:PangeaCyber.Net.Intel.IPVPNData.IsVPN">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.PasswordStatus">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.BREACHED">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.UNBREACHED">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.INCONCLUSIVE">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedData.FoundInBreach">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedData.BreachCount">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedData.FoundInBreach">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedData.BreachCount">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationRequest">
@@ -1606,6 +1648,99 @@
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Username">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Ip">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.PhoneNumber">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.End">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.#ctor(PangeaCyber.Net.Intel.UserBreachedRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Username">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.IP">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.PhoneNumber">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.End">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithUsername(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithIP(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithPhoneNumber(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithStart(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithEnd(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.HashType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.HashPrefix">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.#ctor(PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.HashType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.HashPrefix">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.#ctor(PangeaCyber.Net.Intel.HashType,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.Build">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationResult">
             
         </member>
@@ -1666,6 +1801,18 @@
         <member name="M:PangeaCyber.Net.Intel.URLReputationResult.#ctor">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedResult.Data">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.URLIntelClient">
             
         </member>
@@ -1682,6 +1829,30 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Reputation(PangeaCyber.Net.Intel.URLReputationRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.#ctor(PangeaCyber.Net.Intel.UserIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserBreachedRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserPasswordBreachedRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
