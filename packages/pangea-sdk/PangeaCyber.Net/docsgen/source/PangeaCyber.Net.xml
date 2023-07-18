@@ -1252,6 +1252,24 @@
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.#ctor(PangeaCyber.Net.Intel.DomainIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Reputation(PangeaCyber.Net.Intel.DomainReputationRequest)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.FileIntelClient">
             
         </member>
@@ -1301,6 +1319,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Reputation(PangeaCyber.Net.Intel.IPReputationRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationData">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
@@ -1367,6 +1388,27 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Domain">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.#ctor(PangeaCyber.Net.Intel.DomainReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Domain">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Build">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest">
@@ -1562,6 +1604,12 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.Data">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationResult">
