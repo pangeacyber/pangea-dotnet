@@ -1,8 +1,11 @@
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PangeaCyber.Net.Vault
 {
     ///
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AsymmetricAlgorithm
     {
         ///
@@ -81,8 +84,5 @@ namespace PangeaCyber.Net.Vault
         [EnumMember(Value = "RSA-PSS-4096-SHA512")]
         RSA4096_PSS_SHA512,
 
-        /// Deprecated, use RSA2048_PKCS1V15_SHA256 instead
-        [EnumMember(Value = "RSA-PKCS1V15-2048-SHA256")]
-        RSA
     }
 }

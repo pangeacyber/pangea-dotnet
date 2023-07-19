@@ -118,6 +118,7 @@ namespace PangeaCyber.Net
             string token = GetTestToken(environment);
             string domain = GetTestDomain(environment);
             var cfg = new Config(token, domain);
+            cfg.ConnectionTimeout = new TimeSpan(0, 0, 60);
             cfg.CustomUserAgent = "test";
             return cfg;
         }
@@ -129,6 +130,7 @@ namespace PangeaCyber.Net
             string domain = GetTestDomain(environment);
             var cfg = new Config(token, domain);
             cfg.CustomUserAgent = "test";
+            cfg.ConnectionTimeout = new TimeSpan(0, 0, 60);
             return cfg;
         }
 
@@ -138,6 +140,7 @@ namespace PangeaCyber.Net
             string token = GetCustomSchemaTestToken(environment);
             string domain = GetTestDomain(environment);
             var cfg = new Config(token, domain);
+            cfg.ConnectionTimeout = new TimeSpan(0, 0, 60);
             cfg.CustomUserAgent = "test";
             return cfg;
         }

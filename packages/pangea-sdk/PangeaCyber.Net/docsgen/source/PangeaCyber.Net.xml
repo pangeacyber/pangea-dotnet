@@ -1144,6 +1144,9 @@
         <member name="M:PangeaCyber.Net.Exceptions.PangeaAPIException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
             
         </member>
+        <member name="M:PangeaCyber.Net.Exceptions.PangeaAPIException.ToString">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Exceptions.PangeaException">
             <kind>class</kind>
             <summary>
@@ -1609,6 +1612,12 @@
         <member name="F:PangeaCyber.Net.TestEnvironment.STG">
             
         </member>
+        <member name="T:PangeaCyber.Net.Utils">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.StringToStringB64(System.String)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.OrderedContractResolver">
             
         </member>
@@ -1674,9 +1683,6 @@
         </member>
         <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA4096_PSS_SHA512">
             
-        </member>
-        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA">
-            Deprecated, use RSA2048_PKCS1V15_SHA256 instead
         </member>
         <member name="T:PangeaCyber.Net.Vault.ItemData">
             
@@ -1861,7 +1867,7 @@
         <member name="F:PangeaCyber.Net.Vault.KeyPurpose.Encryption">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.KeyPurpose.Jwt">
+        <member name="F:PangeaCyber.Net.Vault.KeyPurpose.JWT">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.ListItemData">
@@ -1898,9 +1904,6 @@
             
         </member>
         <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.AES256_GCM">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.AES">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.Tags">

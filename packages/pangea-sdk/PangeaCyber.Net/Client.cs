@@ -70,10 +70,12 @@ namespace PangeaCyber.Net
             }
 
             StringContent requestJson;
+            String requestStr;
             try
             {
                 var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-                requestJson = new StringContent(JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings), Encoding.UTF8, "application/json");
+                requestStr = JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings);
+                requestJson = new StringContent(requestStr, Encoding.UTF8, "application/json");
             }
             catch (Exception e)
             {
@@ -97,9 +99,8 @@ namespace PangeaCyber.Net
         public async Task<Response<TResult>> CheckResponse<TResult>(HttpResponseMessage res)
         {
             var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-
             string body = await res.Content.ReadAsStringAsync();
-            
+
             ResponseHeader header = default!;
 
             try
