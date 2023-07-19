@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [JsonProperty("id")]
-        public string Id { get; private set; }
+        public string ID { get; private set; }
 
         ///
         [JsonProperty("message")]
@@ -20,7 +20,7 @@ namespace PangeaCyber.Net.Vault
         ///
         private SignRequest(Builder builder)
         {
-            Id = builder.Id;
+            ID = builder.ID;
             Message = builder.Message;
             Version = builder.Version;
         }
@@ -29,7 +29,7 @@ namespace PangeaCyber.Net.Vault
         public class Builder
         {
             ///
-            public string Id { get; private set; }
+            public string ID { get; private set; }
 
             ///
             public string Message { get; private set; }
@@ -40,7 +40,7 @@ namespace PangeaCyber.Net.Vault
             ///
             public Builder(string id, string message)
             {
-                Id = id;
+                ID = id;
                 Message = message;
             }
 

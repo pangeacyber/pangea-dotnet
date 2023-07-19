@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [JsonProperty("id")]
-        public string Id { get; private set; }
+        public string ID { get; private set; }
 
         ///
         [JsonProperty("version")]
@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.Vault
         ///
         private JWKGetRequest(Builder builder)
         {
-            Id = builder.Id;
+            ID = builder.ID;
             Version = builder.Version;
         }
 
@@ -24,7 +24,7 @@ namespace PangeaCyber.Net.Vault
         public class Builder
         {
             ///
-            public string Id { get; private set; }
+            public string ID { get; private set; }
 
             ///
             public string Version { get; private set; }
@@ -32,7 +32,7 @@ namespace PangeaCyber.Net.Vault
             ///
             public Builder(string id, string version)
             {
-                Id = id;
+                ID = id;
                 Version = version;
             }
 

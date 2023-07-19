@@ -7,24 +7,24 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [JsonProperty("id")]
-        public string Id { get; private set; }
+        public string ID { get; private set; }
 
         ///
         private DeleteRequest(Builder builder)
         {
-            Id = builder.Id;
+            ID = builder.ID;
         }
 
         ///
         public class Builder
         {
             ///
-            public string Id { get; private set; }
+            public string ID { get; private set; }
 
             ///
             public Builder(string id)
             {
-                Id = id;
+                ID = id;
             }
 
             ///

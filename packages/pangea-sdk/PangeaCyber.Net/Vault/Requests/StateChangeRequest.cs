@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [JsonProperty("id")]
-        public string Id { get; private set; }
+        public string ID { get; private set; }
 
         ///
         [JsonProperty("version")]
@@ -20,7 +20,7 @@ namespace PangeaCyber.Net.Vault
         ///
         private StateChangeRequest(Builder builder)
         {
-            Id = builder.Id;
+            ID = builder.ID;
             Version = builder.Version;
             State = builder.State;
         }
@@ -29,7 +29,7 @@ namespace PangeaCyber.Net.Vault
         public class Builder
         {
             ///
-            public string Id { get; private set; }
+            public string ID { get; private set; }
 
             ///
             public int Version { get; private set; }
@@ -40,7 +40,7 @@ namespace PangeaCyber.Net.Vault
             ///
             public Builder(string id, int version, ItemVersionState state)
             {
-                Id = id;
+                ID = id;
                 Version = version;
                 State = state;
             }

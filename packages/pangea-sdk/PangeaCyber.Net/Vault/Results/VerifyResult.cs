@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [JsonProperty("id")]
-        public string Id { get; set; } = default!;
+        public string ID { get; set; } = default!;
 
         ///
         [JsonProperty("version")]
