@@ -15,11 +15,11 @@ namespace PangeaCyber.Net.Vault
 
         ///
         [JsonProperty("metadata")]
-        public Metadata Metadata { get; private set; }
+        public Metadata? Metadata { get; private set; }
 
         ///
         [JsonProperty("tags")]
-        public Tags Tags { get; private set; }
+        public Tags? Tags { get; private set; }
 
         ///
         protected FolderCreateRequest(Builder builder)

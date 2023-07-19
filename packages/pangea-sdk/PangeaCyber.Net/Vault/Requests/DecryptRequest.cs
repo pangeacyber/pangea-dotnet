@@ -19,7 +19,7 @@ namespace PangeaCyber.Net.Vault
 
         ///
         [JsonProperty("additional_data")]
-        public string AdditionalData { get; private set; }
+        public string? AdditionalData { get; private set; }
 
         ///
         protected DecryptRequest(Builder builder)
@@ -40,7 +40,7 @@ namespace PangeaCyber.Net.Vault
             ///
             public int? Version { get; private set; }
             ///
-            public string AdditionalData { get; private set; }
+            public string? AdditionalData { get; private set; }
 
             ///
             public Builder(string id, string cipherText)
