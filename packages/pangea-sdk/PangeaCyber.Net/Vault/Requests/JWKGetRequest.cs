@@ -11,7 +11,7 @@ namespace PangeaCyber.Net.Vault
 
         ///
         [JsonProperty("version")]
-        public string Version { get; private set; }
+        public string? Version { get; private set; }
 
         ///
         private JWKGetRequest(Builder builder)
@@ -27,13 +27,18 @@ namespace PangeaCyber.Net.Vault
             public string ID { get; private set; }
 
             ///
-            public string Version { get; private set; }
+            public string? Version { get; private set; }
 
             ///
-            public Builder(string id, string version)
+            public Builder(string id)
             {
                 ID = id;
+            }
+
+            ///
+            public Builder WithVersion(string version){
                 Version = version;
+                return this;
             }
 
             ///

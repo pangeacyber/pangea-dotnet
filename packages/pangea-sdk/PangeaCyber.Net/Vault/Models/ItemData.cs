@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.Vault
 {
@@ -6,63 +6,63 @@ namespace PangeaCyber.Net.Vault
     public class ItemData
     {
         ///
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; } = default!;
 
         ///
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public string? ID { get; set; }
 
         ///
-        [JsonPropertyName("current_version")]
+        [JsonProperty("current_version")]
         public ItemVersionData? CurrentVersion { get; set; }
 
         ///
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string? Name { get; set; }
 
         ///
-        [JsonPropertyName("folder")]
+        [JsonProperty("folder")]
         public string? Folder { get; set; }
 
         ///
-        [JsonPropertyName("metadata")]
+        [JsonProperty("metadata")]
         public Metadata? Metadata { get; set; }
 
         ///
-        [JsonPropertyName("tags")]
+        [JsonProperty("tags")]
         public Tags? Tags { get; set; }
 
         ///
-        [JsonPropertyName("rotation_frequency")]
+        [JsonProperty("rotation_frequency")]
         public string? RotationFrequency { get; set; }
 
         ///
-        [JsonPropertyName("rotation_state")]
+        [JsonProperty("rotation_state")]
         public string? RotationState { get; set; }
 
         ///
-        [JsonPropertyName("last_rotated")]
+        [JsonProperty("last_rotated")]
         public string? LastRotated { get; set; }
 
         ///
-        [JsonPropertyName("next_rotation")]
+        [JsonProperty("next_rotation")]
         public string? NextRotation { get; set; }
 
         ///
-        [JsonPropertyName("expiration")]
+        [JsonProperty("expiration")]
         public string? Expiration { get; set; }
 
         ///
-        [JsonPropertyName("created_at")]
+        [JsonProperty("created_at")]
         public string? CreatedAt { get; set; }
 
         ///
-        [JsonPropertyName("algorithm")]
+        [JsonProperty("algorithm")]
         public string? Algorithm { get; set; }
 
         ///
-        [JsonPropertyName("purpose")]
+        [JsonProperty("purpose")]
         public string? Purpose { get; set; }
     }
 }

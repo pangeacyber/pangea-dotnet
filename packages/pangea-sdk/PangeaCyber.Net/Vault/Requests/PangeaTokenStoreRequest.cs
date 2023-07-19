@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace PangeaCyber.Net.Vault.Requests
+namespace PangeaCyber.Net.Vault
 {
     ///
     public class PangeaTokenStoreRequest : CommonStoreRequest<PangeaTokenStoreRequest.Builder>

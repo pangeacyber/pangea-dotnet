@@ -1615,5 +1615,2006 @@
         <member name="M:PangeaCyber.Net.OrderedContractResolver.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
             
         </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricAlgorithm">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.ED25519">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.ES256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.ES384">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.ES512">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA2048_PKCS1V15_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA2048_OAEP_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.ES256K">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA2048_OAEP_SHA1">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA2048_OAEP_SHA512">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA3072_OAEP_SHA1">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA3072_OAEP_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA3072_OAEP_SHA512">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA4096_OAEP_SHA1">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA4096_OAEP_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA4096_OAEP_SHA512">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA2048_PSS_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA3072_PSS_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA4096_PSS_SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA4096_PSS_SHA512">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.AsymmetricAlgorithm.RSA">
+            Deprecated, use RSA2048_PKCS1V15_SHA256 instead
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ItemData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.CurrentVersion">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.LastRotated">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.NextRotation">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Expiration">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.CreatedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemData.Purpose">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ItemOrder">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrder.ASC">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrder.DESC">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ItemOrderBy">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.TYPE">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.CREATED_AT">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.DESTROY_AT">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.PURPOSE">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.EXPIRATION">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.LAST_ROTATED">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.NEXT_ROTATION">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.NAME">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.FOLDER">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.VERSION">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ItemType">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemType.ASYMMETRIC_KEY">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemType.SYMMETRIC_KEY">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemType.SECRET">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ItemVersionData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemVersionData.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemVersionData.State">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemVersionData.CreatedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemVersionData.DestroyAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemVersionData.Secret">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ItemVersionData.EncodedPublicKey">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ItemVersionState">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemVersionState.Active">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemVersionState.Deactivated">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemVersionState.Suspended">
+                   
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemVersionState.Compromised">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.ItemVersionState.Destroyed">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWK">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.Alg">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.Kty">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.Kid">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.Use">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.Crv">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.D">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.X">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.Y">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.N">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWK.E">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.KeyPurpose">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.KeyPurpose.Signing">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.KeyPurpose.Encryption">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.KeyPurpose.Jwt">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ListItemData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListItemData.CompromisedVersions">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.Metadata">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretAlgorithm">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SecretAlgorithm.BASE32">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricAlgorithm">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.HS256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.HS384">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.HS512">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.AES128_CFB">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.AES256_CFB">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.AES256_GCM">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.SymmetricAlgorithm.AES">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.Tags">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricGenerateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.#ctor(PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder.#ctor(PangeaCyber.Net.Vault.AsymmetricAlgorithm,PangeaCyber.Net.Vault.KeyPurpose,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder.WithAlgorithm(PangeaCyber.Net.Vault.AsymmetricAlgorithm)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricGenerateRequest.Builder.WithPurpose(PangeaCyber.Net.Vault.KeyPurpose)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricStoreRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Purpose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.EncodedPublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.EncodedPrivateKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricStoreRequest.#ctor(PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.Purpose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.EncodedPublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.EncodedPrivateKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.#ctor(System.String,System.String,PangeaCyber.Net.Vault.AsymmetricAlgorithm,PangeaCyber.Net.Vault.KeyPurpose,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricStoreRequest.Builder.WithPurpose(PangeaCyber.Net.Vault.KeyPurpose)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonGenerateRequest`1">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.Expiration">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.#ctor(`0)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.AutoRotate">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.Expiration">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithName(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithFolder(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithMetadata(PangeaCyber.Net.Vault.Metadata)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithTags(PangeaCyber.Net.Vault.Tags)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithAutoRotate(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithRotationFrequency(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithRotationState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateRequest`1.CommonBuilder.WithExpiration(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonRotateRequest`1">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateRequest`1.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateRequest`1.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateRequest`1.RotationFrequency">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonRotateRequest`1.#ctor(PangeaCyber.Net.Vault.CommonRotateRequest{`0}.CommonBuilder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.RotationFrequency">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.WithRotationState(PangeaCyber.Net.Vault.ItemVersionState)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonRotateRequest`1.CommonBuilder.WithRotationFrequency(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonStoreRequest`1">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.Expiration">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.#ctor(`0)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.AutoRotate">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.Expiration">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithFolder(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithMetadata(PangeaCyber.Net.Vault.Metadata)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithTags(PangeaCyber.Net.Vault.Tags)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithAutoRotate(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithRotationFrequency(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithRotationState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreRequest`1.CommonBuilder.WithExpiration(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.DecryptRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.CipherText">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.AdditionalData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DecryptRequest.#ctor(PangeaCyber.Net.Vault.DecryptRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.DecryptRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.Builder.CipherText">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.Builder.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptRequest.Builder.AdditionalData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DecryptRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DecryptRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DecryptRequest.Builder.WithVersion(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DecryptRequest.Builder.WithAdditionalData(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.DeleteRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DeleteRequest.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DeleteRequest.#ctor(PangeaCyber.Net.Vault.DeleteRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.DeleteRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DeleteRequest.Builder.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DeleteRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DeleteRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.EncryptRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.PlainText">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.AdditionalData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.EncryptRequest.#ctor(PangeaCyber.Net.Vault.EncryptRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.EncryptRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.Builder.PlainText">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.Builder.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptRequest.Builder.AdditionalData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.EncryptRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.EncryptRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.EncryptRequest.Builder.WithVersion(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.EncryptRequest.Builder.WithAdditionalData(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.FolderCreateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Tags">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.FolderCreateRequest.#ctor(PangeaCyber.Net.Vault.FolderCreateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.FolderCreateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.Tags">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.WithMetadata(PangeaCyber.Net.Vault.Metadata)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.FolderCreateRequest.Builder.WithTags(PangeaCyber.Net.Vault.Tags)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.GetRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.VersionState">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetRequest.#ctor(PangeaCyber.Net.Vault.GetRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.GetRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.Builder.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.Builder.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetRequest.Builder.VersionState">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetRequest.Builder.WithVersion(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetRequest.Builder.WithVerbose(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetRequest.Builder.WithVersionState(PangeaCyber.Net.Vault.ItemVersionState)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWKGetRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWKGetRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWKGetRequest.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWKGetRequest.#ctor(PangeaCyber.Net.Vault.JWKGetRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWKGetRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWKGetRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWKGetRequest.Builder.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWKGetRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWKGetRequest.Builder.WithVersion(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWKGetRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWTSignRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTSignRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTSignRequest.Payload">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTSignRequest.#ctor(PangeaCyber.Net.Vault.JWTSignRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWTSignRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTSignRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTSignRequest.Builder.Payload">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTSignRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTSignRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWTVerifyRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTVerifyRequest.JWS">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTVerifyRequest.#ctor(PangeaCyber.Net.Vault.JWTVerifyRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWTVerifyRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTVerifyRequest.Builder.JWS">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTVerifyRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTVerifyRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.KeyRotateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateRequest.EncodedPublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateRequest.EncodedPrivateKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateRequest.EncodedSymmetricKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateRequest.#ctor(PangeaCyber.Net.Vault.KeyRotateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.KeyRotateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.EncodedPublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.EncodedPrivateKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.EncodedSymmetricKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.#ctor(System.String,PangeaCyber.Net.Vault.ItemVersionState)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.WithEncodedPublicKey(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.WithEncodedPrivateKey(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateRequest.Builder.WithEncodedSymmetricKey(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ListRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Size">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.OrderBy">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.#ctor(PangeaCyber.Net.Vault.ListRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ListRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Builder.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Builder.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Builder.Size">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Builder.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListRequest.Builder.OrderBy">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.WithFilter(System.Collections.Generic.Dictionary{System.String,System.String})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.WithLast(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.WithSize(System.Int32)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.WithOrder(PangeaCyber.Net.Vault.ItemOrder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListRequest.Builder.WithOrderBy(PangeaCyber.Net.Vault.ItemOrderBy)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.PangeaTokenRotateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenRotateRequest.RotationGracePeriod">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenRotateRequest.#ctor(PangeaCyber.Net.Vault.PangeaTokenRotateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.PangeaTokenRotateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenRotateRequest.Builder.RotationGracePeriod">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenRotateRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenRotateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.PangeaTokenStoreRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Token">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.RotationGracePeriod">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.#ctor(PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder.Token">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder.RotationGracePeriod">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.PangeaTokenStoreRequest.Builder.WithRotationGracePeriod(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretRotateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretRotateRequest.Secret">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretRotateRequest.#ctor(PangeaCyber.Net.Vault.SecretRotateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretRotateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretRotateRequest.Builder.Secret">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretRotateRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretRotateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretRotateRequest.Builder.WithSecret(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretStoreRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretStoreRequest.Secret">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretStoreRequest.Type">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretStoreRequest.#ctor(PangeaCyber.Net.Vault.SecretStoreRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretStoreRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretStoreRequest.Builder.Secret">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretStoreRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretStoreRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SignRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignRequest.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignRequest.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SignRequest.#ctor(PangeaCyber.Net.Vault.SignRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SignRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignRequest.Builder.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignRequest.Builder.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SignRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SignRequest.Builder.WithVersion(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SignRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.StateChangeRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeRequest.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeRequest.State">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.StateChangeRequest.#ctor(PangeaCyber.Net.Vault.StateChangeRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.StateChangeRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeRequest.Builder.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeRequest.Builder.State">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.StateChangeRequest.Builder.#ctor(System.String,System.Int32,PangeaCyber.Net.Vault.ItemVersionState)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.StateChangeRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricGenerateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricGenerateRequest.#ctor(PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder.#ctor(PangeaCyber.Net.Vault.SymmetricAlgorithm,PangeaCyber.Net.Vault.KeyPurpose,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder.WithAlgorithm(PangeaCyber.Net.Vault.SymmetricAlgorithm)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricGenerateRequest.Builder.WithPurpose(PangeaCyber.Net.Vault.KeyPurpose)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricStoreRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.EncodedSymmetricKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricStoreRequest.#ctor(PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder.EncodedSymmetricKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder.#ctor(System.String,PangeaCyber.Net.Vault.SymmetricAlgorithm,PangeaCyber.Net.Vault.KeyPurpose,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricStoreRequest.Builder.WithPurpose(PangeaCyber.Net.Vault.KeyPurpose)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.UpdateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.RotationGracePeriod">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Expiration">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.#ctor(PangeaCyber.Net.Vault.UpdateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.UpdateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.Folder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.Metadata">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.Tags">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.AutoRotate">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.Expiration">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateRequest.Builder.RotationGracePeriod">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithName(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithFolder(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithMetadata(PangeaCyber.Net.Vault.Metadata)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithTags(PangeaCyber.Net.Vault.Tags)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithAutoRotate(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithRotationFrequency(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithRotationState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithExpiration(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateRequest.Builder.WithRotationGracePeriod(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.VerifyRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VerifyRequest.#ctor(PangeaCyber.Net.Vault.VerifyRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.VerifyRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Builder.Message">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Builder.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyRequest.Builder.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VerifyRequest.Builder.#ctor(System.String,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VerifyRequest.Builder.WithVersion(System.Int32)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VerifyRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricGenerateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateResult.Purpose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricGenerateResult.EncodedPublicKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricGenerateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.AsymmetricStoreResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreResult.Purpose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.AsymmetricStoreResult.EncodedPublicKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.AsymmetricStoreResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonGenerateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateResult.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonGenerateResult.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonGenerateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonRotateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateResult.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonRotateResult.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonRotateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.CommonStoreResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreResult.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.CommonStoreResult.Version">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.CommonStoreResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.DecryptResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptResult.PlainText">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptResult.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DecryptResult.Algorithm">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DecryptResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.DeleteResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.DeleteResult.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.DeleteResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.EncryptResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptResult.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptResult.CipherText">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.EncryptResult.Algorithm">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.EncryptResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.FolderCreateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.FolderCreateResult.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.FolderCreateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.GetResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetResult.Versions">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.GetResult.RotationGracePeriod">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.GetResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWKGetResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWKGetResult.Keys">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWKGetResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWTSignResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTSignResult.JWS">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTSignResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.JWTVerifyResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.JWTVerifyResult.ValidSignature">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.JWTVerifyResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.KeyRotateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateResult.EncodedPublicKey">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.KeyRotateResult.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.KeyRotateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.ListResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListResult.Items">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListResult.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.ListResult.Last">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListResult.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.ListResult.GetItems">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretRotateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretRotateResult.Secret">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretRotateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SecretStoreResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SecretStoreResult.Secret">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SecretStoreResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SignResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignResult.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignResult.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SignResult.EncodedPublicKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SignResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.StateChangeResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeResult.State">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeResult.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.StateChangeResult.DestroyAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.StateChangeResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricGenerateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricGenerateResult.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricGenerateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.SymmetricStoreResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.SymmetricStoreResult.Purpose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.SymmetricStoreResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.UpdateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.UpdateResult.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.UpdateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.VerifyResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyResult.Version">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyResult.Algorithm">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VerifyResult.ValidSignature">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VerifyResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.VaultClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.#ctor(PangeaCyber.Net.Vault.VaultClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.VaultClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.StateChange(System.String,System.Int32,PangeaCyber.Net.Vault.ItemVersionState)">
+            <summary>
+            State change
+            </summary>
+            <param name="id">Item id to change</param>
+            <param name="version">Item version to change</param>
+            <param name="state">State to set to item version</param>
+            <returns>StateChangeResponse</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Delete(System.String)">
+            <summary>
+            Delete
+            </summary>
+            <param name="id">Item id to delete</param>
+            <returns>DeleteResponse</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Get(PangeaCyber.Net.Vault.GetRequest)">
+            <summary>
+            Retrieve a secret or key, and any associated information.
+            </summary>
+            <param name="request">The request to the '/get' endpoint.</param>
+            <returns>The response containing the retrieved information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var getResponse = await client.Get(new GetRequest.Builder("id").Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.List(PangeaCyber.Net.Vault.ListRequest)">
+            <summary>
+            Retrieve a list of secrets, keys, and folders, and their associated information.
+            </summary>
+            <param name="request">The request parameters to send to the 'list' endpoint.</param>
+            <returns>The response containing the list of items and their information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var listResponse = await client.List(new ListRequest.Builder().Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Update(PangeaCyber.Net.Vault.UpdateRequest)">
+            <summary>
+            Update information associated with a secret or key.
+            </summary>
+            <param name="request">The request parameters to send to the update endpoint.</param>
+            <returns>The response containing the updated information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            UpdateResponse updateResponse = await client.Update(new UpdateRequest.Builder("id")
+                .WithFolder("updated")
+                .Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.SecretStore(PangeaCyber.Net.Vault.SecretStoreRequest)">
+            <summary>
+            Store a secret in the vault service.
+            </summary>
+            <param name="request">The request parameters to send to the '/secret/store' endpoint.</param>
+            <returns>The response containing the stored secret information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var storeResponse = await client.SecretStore(new SecretStoreRequest.Builder("mysecret", "mysecretname")
+                .Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.PangeaTokenStore(PangeaCyber.Net.Vault.PangeaTokenStoreRequest)">
+            <summary>
+            Store a Pangea Token in the vault service.
+            </summary>
+            <param name="request">The request parameters to send to the '/secret/store' endpoint.</param>
+            <returns>The response containing the stored token information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var storeResponse = await client.PangeaTokenStore(new PangeaTokenStoreRequest.Builder("mytoken", "mytokenname")
+                .Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.SecretRotate(PangeaCyber.Net.Vault.SecretRotateRequest)">
+            <summary>
+            Rotate a secret in the vault service.
+            </summary>
+            <param name="request">The secret rotate request.</param>
+            <returns>The response containing the rotated secret information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var rotateResponse = await client.SecretRotate(new SecretRotateRequest.Builder("secretid", "mynewsecret")
+                .WithRotationState(ItemVersionState.Suspended)
+                .Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.PangeaTokenRotate(PangeaCyber.Net.Vault.PangeaTokenRotateRequest)">
+            <summary>
+            Rotate a Pangea Token in the vault service.
+            </summary>
+            <param name="request">The Pangea token rotate request.</param>
+            <returns>The response containing the rotated token information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var rotateResponse = await client.PangeaTokenRotate(new PangeaTokenRotateRequest.Builder("tokenid", "3m")
+                .Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.SymmetricGenerate(PangeaCyber.Net.Vault.SymmetricGenerateRequest)">
+            <summary>
+            Generate a symmetric key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/generate' endpoint.</param>
+            <returns>The response containing the generated symmetric key information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            SymmetricGenerateRequest generateRequest = new SymmetricGenerateRequest.Builder(SymmetricAlgorithm.AES, KeyPurpose.Encryption, "keyname")
+                .Build();
+            var generateResponse = await client.SymmetricGenerate(generateRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.AsymmetricGenerate(PangeaCyber.Net.Vault.AsymmetricGenerateRequest)">
+            <summary>
+            Generate an asymmetric key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/generate' endpoint.</param>
+            <returns>The response containing the generated asymmetric key information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            AsymmetricGenerateRequest generateRequest = new AsymmetricGenerateRequest.Builder(AsymmetricAlgorithm.ED25519, KeyPurpose.Signing, "keyname")
+                .Build();
+            var generateResponse = await client.AsymmetricGenerate(generateRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.AsymmetricStore(PangeaCyber.Net.Vault.AsymmetricStoreRequest)">
+            <summary>
+            Import an asymmetric key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/store' endpoint.</param>
+            <returns>The response containing the stored asymmetric key information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            AsymmetricStoreRequest storeRequest = new AsymmetricStoreRequest.Builder("encodedprivatekey", "encodedpublickey", AsymmetricAlgorithm.ED25519, KeyPurpose.Signing, "keyname")
+                .Build();
+            var storeResponse = await client.AsymmetricStore(storeRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.SymmetricStore(PangeaCyber.Net.Vault.SymmetricStoreRequest)">
+            <summary>
+            Import a symmetric key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/store' endpoint.</param>
+            <returns>The response containing the stored symmetric key information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            SymmetricStoreRequest storeRequest = new SymmetricStoreRequest.Builder("encodedkey", SymmetricAlgorithm.AES, KeyPurpose.Encryption, "keyname")
+                .Build();
+            var storeResponse = await client.SymmetricStore(storeRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.KeyRotate(PangeaCyber.Net.Vault.KeyRotateRequest)">
+            <summary>
+            Manually rotate a symmetric or asymmetric key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/rotate' endpoint.</param>
+            <returns>The response containing the rotated key information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            KeyRotateRequest rotateRequest = new KeyRotateRequest.Builder("keyid", ItemVersionState.Suspended)
+                .Build();
+            var rotateResponse = await client.KeyRotate(rotateRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Encrypt(PangeaCyber.Net.Vault.EncryptRequest)">
+            <summary>
+            Encrypt a message using a key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/encrypt' endpoint.</param>
+            <returns>The response containing the encrypted message.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            EncryptRequest encryptRequest = new EncryptRequest.Builder("keyid", "base64message")
+                .WithVersion(2)
+                .Build();
+            var encryptResponse = await client.Encrypt(encryptRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Decrypt(PangeaCyber.Net.Vault.DecryptRequest)">
+            <summary>
+            Decrypt a message using a key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/decrypt' endpoint.</param>
+            <returns>The response containing the decrypted message.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            DecryptRequest decryptRequest = new DecryptRequest.Builder("keyid", "validciphertext")
+                .WithVersion(2)
+                .Build();
+            var decryptResponse = await client.Decrypt(decryptRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Sign(PangeaCyber.Net.Vault.SignRequest)">
+            <summary>
+            Sign a message using a key.
+            </summary>
+            <param name="request">The request parameters to send to the '/key/sign' endpoint.</param>
+            <returns>The response containing the signed message.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            SignRequest signRequest = new SignRequest.Builder("keyid", "base64data2sign").Build();
+            var signResponse = await client.Sign(signRequest);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.JWTSign(System.String,System.String)">
+            <summary>
+            Sign a JSON Web Token (JWT) using a key.
+            </summary>
+            <param name="id">The key ID to sign the payload.</param>
+            <param name="payload">The payload to sign.</param>
+            <returns>The response containing the signed JWT.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            string payload = "{\"message\": \"message to sign\", \"data\": \"Some extra data\"}";
+            var jwtSignResponse = await client.JwtSign("keyid", payload);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.Verify(PangeaCyber.Net.Vault.VerifyRequest)">
+            <summary>
+            Verify a signature using a key.
+            </summary>
+            <param name="request">The request containing the key ID, message, and signature to verify.</param>
+            <returns>The response indicating whether the signature is valid or not.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var request = new VerifyRequest.Builder("keyid", "data2verify", "signature").Build();
+            var verifyResponse = await client.Verify(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.JWTVerify(PangeaCyber.Net.Vault.JWTVerifyRequest)">
+            <summary>
+            Verify the signature of a JSON Web Token (JWT).
+            </summary>
+            <param name="request">The request containing the JWT signature to verify.</param>
+            <returns>The response containing the verification result.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var request = new JWTVerifyRequest.Builder(jws).Build();
+            var verifyResponse = await client.JWTVerify(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.JWKGet(PangeaCyber.Net.Vault.JWKGetRequest)">
+            <summary>
+            Retrieve a key in JWK format.
+            </summary>
+            <param name="request">The request containing the item ID and version to retrieve.</param>
+            <returns>The response containing the JWK key.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var request = new JWKGetRequest.Builder("jwkid").WithVersion(2).Builder();
+            var getResponse = await client.JWKGet(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.FolderCreate(PangeaCyber.Net.Vault.FolderCreateRequest)">
+            <summary>
+            Creates a folder.
+            </summary>
+            <param name="request">The request parameters to send to the '/folder/create' endpoint.</param>
+            <returns>The response containing the created folder information.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var request = new FolderCreateRequest.Builder("folder_name", "parent/folder/name").Build();
+            var createResponse = await client.FolderCreate(request);
+            </code>
+            </example>
+        </member>
     </members>
 </doc>
