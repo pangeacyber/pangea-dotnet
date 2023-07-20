@@ -146,7 +146,7 @@ namespace PangeaCyber.Net.Vault.Tests
 
             // Gets default
             var getResponse = await client.JWKGet(new JWKGetRequest.Builder(id).Build());
-            Assert.Equal(1, getResponse.Result.Keys.Length);
+            Assert.Single(getResponse.Result.Keys);
 
             // Gets all
             getResponse = await client.JWKGet(new JWKGetRequest.Builder(id).WithVersion("all").Build());
