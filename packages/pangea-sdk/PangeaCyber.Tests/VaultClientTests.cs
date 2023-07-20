@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.Vault.Tests
         TestEnvironment environment = TestEnvironment.LVE;
         string time;
         Random random;
-        const string actor = "JavaSDKTest";
+        const string actor = "CsharpSDKTest";
 
         public ITVaultTests()
         {
