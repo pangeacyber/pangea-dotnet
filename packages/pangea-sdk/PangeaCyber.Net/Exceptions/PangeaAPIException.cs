@@ -27,7 +27,7 @@ namespace PangeaCyber.Net.Exceptions
                 ret += "Errors: \n";
                 foreach (ErrorField errorField in this.Response.Result.Errors)
                 {
-                    ret += "\t " + errorField.Detail + "\n";
+                    ret += "\t - " + errorField.Detail + "\n";
                 }
             }
 
