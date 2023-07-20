@@ -1060,6 +1060,90 @@
         <member name="M:PangeaCyber.Net.Config.GetConfigID(PangeaCyber.Net.TestEnvironment,System.String,System.Int32)">
             
         </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.#ctor(PangeaCyber.Net.Embargo.EmbargoClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.ISOCheck(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.IPCheck(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanction">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.EmbargoedCountryISOCode">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.IssuingCountry">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.ListName">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.EmbargoedCountryName">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.Annotations">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotation">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotation.Reference">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotation.RestrictionName">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotationReference">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotationReference.Paragraph">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotationReference.Regulation">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanctions">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctions.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctions.Sanctions">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.IPCheckRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.IPCheckRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.IPCheckRequest.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.ISOCheckRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.ISOCheckRequest.IsoCode">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.ISOCheckRequest.#ctor(System.String)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.ErrorField">
             <kind>class</kind>
             <summary>
