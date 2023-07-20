@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PangeaCyber.Net.Exceptions
+﻿namespace PangeaCyber.Net.Exceptions
 {
     /// <kind>class</kind>
     /// <summary>
@@ -9,10 +7,10 @@ namespace PangeaCyber.Net.Exceptions
     public class PangeaException : Exception
     {
         ///
-        public Exception Cause { get; private set; }
+        public Exception? Cause { get; private set; }
 
         ///
-        public PangeaException(string message, Exception cause) : base(message)
+        public PangeaException(string message, Exception? cause) : base(message)
         {
             this.Cause = cause;
         }
