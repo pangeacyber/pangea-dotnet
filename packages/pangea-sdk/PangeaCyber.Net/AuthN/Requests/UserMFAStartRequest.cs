@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace PangeaCyber.Net.AuthN.Requests
+namespace PangeaCyber.Net.AuthN
 {
     ///
     public class UserMFAStartRequest : BaseRequest

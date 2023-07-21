@@ -7,6 +7,6 @@ namespace PangeaCyber.Net.AuthN
     {
         ///
         [JsonProperty("mfa_providers")]
-        public string[] MfaProviders { get; set; } = default!;
+        public string[] MFAProviders { get; set; } = default!;
     }
 }
