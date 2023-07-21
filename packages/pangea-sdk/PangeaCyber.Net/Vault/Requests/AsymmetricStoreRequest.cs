@@ -29,7 +29,7 @@ namespace PangeaCyber.Net.Vault
         protected AsymmetricStoreRequest(Builder builder)
             : base(builder)
         {
-            Type = ItemType.ASYMMETRIC_KEY;
+            Type = ItemType.AsymmetricKey;
             Algorithm = builder.Algorithm;
             Purpose = builder.Purpose;
             EncodedPublicKey = builder.EncodedPublicKey;

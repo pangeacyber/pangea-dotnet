@@ -21,7 +21,7 @@ namespace PangeaCyber.Net.Vault
         public SymmetricGenerateRequest(Builder builder)
             : base(builder)
         {
-            Type = ItemType.SYMMETRIC_KEY;
+            Type = ItemType.SymmetricKey;
             Algorithm = builder.Algorithm;
             Purpose = builder.Purpose;
         }

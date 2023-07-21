@@ -7,42 +7,42 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [EnumMember(Value = "type")]
-        TYPE,
+        Type,
 
         ///
         [EnumMember(Value = "created_at")]
-        CREATED_AT,
+        CreatedAt,
 
         ///
         [EnumMember(Value = "destroy_at")]
-        DESTROY_AT,
+        DestroyAt,
 
         ///
         [EnumMember(Value = "purpose")]
-        PURPOSE,
+        Purpose,
 
         ///
         [EnumMember(Value = "expiration")]
-        EXPIRATION,
+        Expiration,
 
         ///
         [EnumMember(Value = "last_rotated")]
-        LAST_ROTATED,
+        LastRotated,
 
         ///
         [EnumMember(Value = "next_rotation")]
-        NEXT_ROTATION,
+        NextRotation,
 
         ///
         [EnumMember(Value = "name")]
-        NAME,
+        Name,
 
         ///
         [EnumMember(Value = "folder")]
-        FOLDER,
+        Folder,
 
         ///
         [EnumMember(Value = "version")]
-        VERSION
+        Version
     }
 }

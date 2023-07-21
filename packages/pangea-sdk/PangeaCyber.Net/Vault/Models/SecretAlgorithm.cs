@@ -10,6 +10,6 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [EnumMember(Value = "base32")]
-        BASE32
+        Base32
     }
 }

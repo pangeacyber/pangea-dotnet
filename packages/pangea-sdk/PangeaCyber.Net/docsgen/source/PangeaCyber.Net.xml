@@ -1735,55 +1735,55 @@
         <member name="T:PangeaCyber.Net.Vault.ItemOrder">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrder.ASC">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrder.Asc">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrder.DESC">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrder.Desc">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.ItemOrderBy">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.TYPE">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.Type">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.CREATED_AT">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.CreatedAt">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.DESTROY_AT">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.DestroyAt">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.PURPOSE">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.Purpose">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.EXPIRATION">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.Expiration">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.LAST_ROTATED">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.LastRotated">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.NEXT_ROTATION">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.NextRotation">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.NAME">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.Name">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.FOLDER">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.Folder">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.VERSION">
+        <member name="F:PangeaCyber.Net.Vault.ItemOrderBy.Version">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.ItemType">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemType.ASYMMETRIC_KEY">
+        <member name="F:PangeaCyber.Net.Vault.ItemType.AsymmetricKey">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemType.SYMMETRIC_KEY">
+        <member name="F:PangeaCyber.Net.Vault.ItemType.SymmetricKey">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.ItemType.SECRET">
+        <member name="F:PangeaCyber.Net.Vault.ItemType.Secret">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.ItemVersionData">
@@ -1882,7 +1882,7 @@
         <member name="T:PangeaCyber.Net.Vault.SecretAlgorithm">
             
         </member>
-        <member name="F:PangeaCyber.Net.Vault.SecretAlgorithm.BASE32">
+        <member name="F:PangeaCyber.Net.Vault.SecretAlgorithm.Base32">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.SymmetricAlgorithm">

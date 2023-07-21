@@ -10,14 +10,14 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [EnumMember(Value = "asymmetric_key")]
-        ASYMMETRIC_KEY,
+        AsymmetricKey,
 
         ///
         [EnumMember(Value = "symmetric_key")]
-        SYMMETRIC_KEY,
+        SymmetricKey,
 
         ///
         [EnumMember(Value = "secret")]
-        SECRET
+        Secret
     }
 }

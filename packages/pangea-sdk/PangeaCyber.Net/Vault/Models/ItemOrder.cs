@@ -10,10 +10,10 @@ namespace PangeaCyber.Net.Vault
     {
         ///
         [EnumMember(Value = "asc")]
-        ASC,
+        Asc,
 
         ///
         [EnumMember(Value = "desc")]
-        DESC
+        Desc
     }
 }
