@@ -941,6 +941,45 @@
         <member name="F:PangeaCyber.Net.EventVerification.NotVerified">
                    
         </member>
+        <member name="T:PangeaCyber.Net.BaseClient`1">
+            <kind>class</kind>
+            <summary>
+            Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.config">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.serviceName">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.SupportMultiConfig">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.userAgent">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.config">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.BaseRequest">
             
         </member>
@@ -948,45 +987,6 @@
             
         </member>
         <member name="M:PangeaCyber.Net.BaseRequest.#ctor">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Client">
-            <kind>class</kind>
-            <summary>
-            Client
-            </summary>
-        </member>
-        <member name="F:PangeaCyber.Net.Client.config">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.serviceName">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.SupportMultiConfig">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.HttpClient">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.userAgent">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Client.ClientBuilder">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Client.ClientBuilder.config">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.#ctor(PangeaCyber.Net.Client.ClientBuilder,System.String,System.Boolean)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
             
         </member>
         <member name="T:PangeaCyber.Net.Config">
@@ -1058,6 +1058,90 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Config.GetConfigID(PangeaCyber.Net.TestEnvironment,System.String,System.Int32)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.#ctor(PangeaCyber.Net.Embargo.EmbargoClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.ISOCheck(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.IPCheck(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanction">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.EmbargoedCountryISOCode">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.IssuingCountry">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.ListName">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.EmbargoedCountryName">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanction.Annotations">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotation">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotation.Reference">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotation.RestrictionName">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotationReference">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotationReference.Paragraph">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctionAnnotationReference.Regulation">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.EmbargoSanctions">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctions.Count">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoSanctions.Sanctions">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.IPCheckRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.IPCheckRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.IPCheckRequest.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Embargo.ISOCheckRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.ISOCheckRequest.IsoCode">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Embargo.ISOCheckRequest.#ctor(System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.ErrorField">
@@ -1253,6 +1337,609 @@
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.#ctor(PangeaCyber.Net.Intel.DomainIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Reputation(PangeaCyber.Net.Intel.DomainReputationRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.#ctor(PangeaCyber.Net.Intel.FileIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Reputation(PangeaCyber.Net.Intel.FileHashReputationRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.CalculateSHA256fromFile(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.#ctor(PangeaCyber.Net.Intel.IPIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Geolocate(PangeaCyber.Net.Intel.IPGeolocateRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GetDomain(PangeaCyber.Net.Intel.IPDomainRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsVPN(PangeaCyber.Net.Intel.IPVPNRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsProxy(PangeaCyber.Net.Intel.IPProxyRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Reputation(PangeaCyber.Net.Intel.IPReputationRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.HashType">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.SHA256">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.SHA1">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.MD5">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelReputationData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationData.Category">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationData.Score">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationData.Verdict">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelReputationData.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainData.DomainFound">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainData.Domain">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.Country">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.City">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.Latitude">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.Longitude">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.PostalCode">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.CountryCode">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyData.IsProxy">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNData.IsVPN">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.PasswordStatus">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Breached">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Unbreached">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Inconclusive">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedData.FoundInBreach">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedData.BreachCount">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedData.FoundInBreach">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedData.BreachCount">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Domain">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.#ctor(PangeaCyber.Net.Intel.DomainReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Domain">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.HashType">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.#ctor(PangeaCyber.Net.Intel.FileHashReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.Hash">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.HashType">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.Provider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.Raw">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.#ctor(`0)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Provider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Raw">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithProvider(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithVerbose(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithRaw(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPDomainRequest.#ctor(PangeaCyber.Net.Intel.IPDomainRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainRequest.Builder.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPDomainRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPDomainRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPGeolocateRequest.#ctor(PangeaCyber.Net.Intel.IPGeolocateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateRequest.Builder.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPGeolocateRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPGeolocateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPProxyRequest.#ctor(PangeaCyber.Net.Intel.IPProxyRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyRequest.Builder.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPProxyRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPProxyRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPReputationRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPReputationRequest.#ctor(PangeaCyber.Net.Intel.IPReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPReputationRequest.Builder.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPReputationRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNRequest.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPVPNRequest.#ctor(PangeaCyber.Net.Intel.IPVPNRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNRequest.Builder.IP">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPVPNRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPVPNRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.URL">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.#ctor(PangeaCyber.Net.Intel.URLReputationRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.Builder.URL">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Username">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Ip">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.PhoneNumber">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.End">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.#ctor(PangeaCyber.Net.Intel.UserBreachedRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Username">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.IP">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.PhoneNumber">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Start">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.End">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithUsername(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithIP(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithPhoneNumber(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithStart(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithEnd(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.HashType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.HashPrefix">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.#ctor(PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.HashType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.HashPrefix">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.#ctor(PangeaCyber.Net.Intel.HashType,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileReputationResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelCommonResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonResult.Parameters">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelCommonResult.RawData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPReputationResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationResult.Data">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.#ctor(PangeaCyber.Net.Intel.URLIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Reputation(PangeaCyber.Net.Intel.URLReputationRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserIntelClient">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.#ctor(PangeaCyber.Net.Intel.UserIntelClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserIntelClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserBreachedRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserPasswordBreachedRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">

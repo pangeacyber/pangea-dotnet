@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Redact;
 using PangeaCyber.Net.Exceptions;
@@ -156,7 +155,6 @@ public class ITRedactTests
             { "Phone", "This is its number: 415-867-5309" }
         };
 
-
         var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithJsonp(new String[] { "Name", "Phone" }).WithRules(new String[] { "PHONE_NUMBER" }).WithReturnResult(true).Build());
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
@@ -172,7 +170,7 @@ public class ITRedactTests
         Assert.Null(response.Result.Report);
     }
 
-     [Fact]
+    [Fact]
     public async Task testRedactTextUnauthorized()
     {
         Config cfg = Config.FromIntegrationEnvironment(environment);
@@ -181,7 +179,7 @@ public class ITRedactTests
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build()));
     }
 
-     [Fact]
+    [Fact]
     public async Task TestRedactStructuredUnauthorized()
     {
         var data = new Dictionary<string, object>
