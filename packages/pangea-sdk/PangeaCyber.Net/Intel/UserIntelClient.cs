@@ -55,18 +55,18 @@ namespace PangeaCyber.Net.Intel
             if (rawData.TryGetValue(hash, out hashData!))
             {
                 // If hash is present in raw data, it's because it was breached
-                return PasswordStatus.BREACHED;
+                return PasswordStatus.Breached;
             }
             else if (rawData.Count >= 1000)
             {
                 // If it's not present, should check if I have all breached hash
                 // Server will return a maximum of 1000 hash, so if breached count is greater than that,
                 // I can't conclude if the password is breached or not
-                return PasswordStatus.INCONCLUSIVE;
+                return PasswordStatus.Inconclusive;
             }
             else
             {
-                return PasswordStatus.UNBREACHED;
+                return PasswordStatus.Unbreached;
             }
         }
     }
