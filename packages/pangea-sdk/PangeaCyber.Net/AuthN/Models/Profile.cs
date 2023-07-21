@@ -1,4 +1,4 @@
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Models
 {
     ///
     public class Profile : Dictionary<string, string>

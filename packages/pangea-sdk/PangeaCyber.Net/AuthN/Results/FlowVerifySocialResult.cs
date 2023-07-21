@@ -1,4 +1,4 @@
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Results
 {
     ///
     public class FlowVerifySocialResult : CommonFlowResult{}

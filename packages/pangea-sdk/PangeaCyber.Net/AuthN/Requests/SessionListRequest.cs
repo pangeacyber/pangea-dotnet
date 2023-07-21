@@ -1,4 +1,4 @@
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Requests
 {
     ///
     public class SessionListRequest : CommonSessionListRequest<SessionListRequest.Builder>

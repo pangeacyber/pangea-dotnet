@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Models
 {
     ///
     [JsonConverter(typeof(StringEnumConverter))]

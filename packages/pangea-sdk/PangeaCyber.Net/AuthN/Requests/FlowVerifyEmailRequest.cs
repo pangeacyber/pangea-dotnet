@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Requests
 {
     ///
     public class FlowVerifyEmailRequest : BaseRequest

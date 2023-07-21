@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Models
 {
     ///
     public class UserInvite

@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
+using PangeaCyber.Net.AuthN.Models;
 
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Requests
 {
     ///
     public class FlowEnrollMFAStartRequest : BaseRequest
@@ -15,7 +16,7 @@ namespace PangeaCyber.Net.AuthN
 
         ///
         [JsonProperty("phone")]
-        public string Phone { get; private set; }
+        public string? Phone { get; private set; }
 
         private FlowEnrollMFAStartRequest(Builder builder)
         {

@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
+using PangeaCyber.Net.AuthN.Models;
 
-namespace PangeaCyber.Net.AuthN
+namespace PangeaCyber.Net.AuthN.Requests
 {
     ///
     public class FlowStartRequest : BaseRequest
