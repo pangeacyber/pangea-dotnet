@@ -6,7 +6,7 @@ using PangeaCyber.Net.Vault.Results;
 namespace PangeaCyber.Net.Vault
 {
     ///
-    public class VaultClient : Client
+    public class VaultClient : BaseClient<VaultClient.Builder>
     {
         private const string ServiceName = "vault";
         private const bool SupportMultiConfig = false;
@@ -17,7 +17,7 @@ namespace PangeaCyber.Net.Vault
         }
 
         ///
-        public class Builder : Client.ClientBuilder
+        public class Builder : BaseClient<VaultClient.Builder>.ClientBuilder
         {
             ///
             public Builder(Config config) : base(config)
