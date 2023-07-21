@@ -4,10 +4,10 @@ namespace PangeaCyber.Net.Intel
     public enum PasswordStatus
     {
         ///
-        BREACHED,
+        Breached,
         ///
-        UNBREACHED,
+        Unbreached,
         ///
-        INCONCLUSIVE
+        Inconclusive
     }
 }
