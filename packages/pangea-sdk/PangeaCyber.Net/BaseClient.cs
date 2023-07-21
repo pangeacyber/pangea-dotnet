@@ -10,7 +10,7 @@ namespace PangeaCyber.Net
     /// <summary>
     /// Client
     /// </summary>
-    public abstract class Client
+    public abstract class BaseClient<TBuilder> where TBuilder : BaseClient<TBuilder>.ClientBuilder
     {
         ///
         private readonly Config config;
@@ -38,9 +38,8 @@ namespace PangeaCyber.Net
             }
         }
 
-
         ///
-        public Client(ClientBuilder builder, string serviceName, bool SupportMultiConfig)
+        protected BaseClient(ClientBuilder builder, string serviceName, bool SupportMultiConfig)
         {
             this.config = builder.config;
             this.serviceName = serviceName;

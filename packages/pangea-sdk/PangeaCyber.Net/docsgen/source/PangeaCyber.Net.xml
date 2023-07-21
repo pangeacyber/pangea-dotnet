@@ -941,6 +941,45 @@
         <member name="F:PangeaCyber.Net.EventVerification.NotVerified">
                    
         </member>
+        <member name="T:PangeaCyber.Net.BaseClient`1">
+            <kind>class</kind>
+            <summary>
+            Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.config">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.serviceName">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.SupportMultiConfig">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.userAgent">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.config">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.BaseRequest">
             
         </member>
@@ -948,45 +987,6 @@
             
         </member>
         <member name="M:PangeaCyber.Net.BaseRequest.#ctor">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Client">
-            <kind>class</kind>
-            <summary>
-            Client
-            </summary>
-        </member>
-        <member name="F:PangeaCyber.Net.Client.config">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.serviceName">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.SupportMultiConfig">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.HttpClient">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Client.userAgent">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Client.ClientBuilder">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Client.ClientBuilder.config">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.#ctor(PangeaCyber.Net.Client.ClientBuilder,System.String,System.Boolean)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Client.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
             
         </member>
         <member name="T:PangeaCyber.Net.Config">
