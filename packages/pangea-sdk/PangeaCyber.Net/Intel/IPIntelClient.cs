@@ -1,7 +1,7 @@
 namespace PangeaCyber.Net.Intel
 {
     ///
-    public class IPIntelClient : Client
+    public class IPIntelClient : BaseClient
     {
         private const string ServiceName = "ip-intel";
         private static readonly bool SupportMultiConfig = false;
@@ -13,7 +13,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : Client.ClientBuilder
+        public class Builder : BaseClient.ClientBuilder
         {
             ///
             public Builder(Config config)
