@@ -941,43 +941,43 @@
         <member name="F:PangeaCyber.Net.EventVerification.NotVerified">
                    
         </member>
-        <member name="T:PangeaCyber.Net.BaseClient">
+        <member name="T:PangeaCyber.Net.BaseClient`1">
             <kind>class</kind>
             <summary>
             Client
             </summary>
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient.config">
+        <member name="F:PangeaCyber.Net.BaseClient`1.config">
             
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient.serviceName">
+        <member name="F:PangeaCyber.Net.BaseClient`1.serviceName">
             
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient.SupportMultiConfig">
+        <member name="F:PangeaCyber.Net.BaseClient`1.SupportMultiConfig">
             
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient.HttpClient">
+        <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
             
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient.userAgent">
+        <member name="F:PangeaCyber.Net.BaseClient`1.userAgent">
             
         </member>
-        <member name="T:PangeaCyber.Net.BaseClient.ClientBuilder">
+        <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
             
         </member>
-        <member name="P:PangeaCyber.Net.BaseClient.ClientBuilder.config">
+        <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.config">
             
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
             
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient.#ctor(PangeaCyber.Net.BaseClient.ClientBuilder,System.String,System.Boolean)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
             
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
             
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
             
         </member>
         <member name="T:PangeaCyber.Net.BaseRequest">
@@ -1486,13 +1486,13 @@
         <member name="T:PangeaCyber.Net.Intel.PasswordStatus">
             
         </member>
-        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.BREACHED">
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Breached">
             
         </member>
-        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.UNBREACHED">
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Unbreached">
             
         </member>
-        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.INCONCLUSIVE">
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Inconclusive">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
