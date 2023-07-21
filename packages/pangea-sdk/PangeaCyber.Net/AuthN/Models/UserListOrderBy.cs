@@ -13,14 +13,14 @@ namespace PangeaCyber.Net.AuthN
 
         ///
         [JsonProperty("created_at")]
-        CREATED_AT,
+        CreatedAt,
 
         ///
         [JsonProperty("last_login_at")]
-        LAST_LOGIN_AT,
+        LastLoginAt,
 
         ///
         [JsonProperty("email")]
-        EMAIL
+        Email
     }
 }

@@ -10,10 +10,10 @@ namespace PangeaCyber.Net.AuthN
     {
         ///
         [EnumMember(Value = "asc")]
-        ASC,
+        Asc,
 
         ///
         [EnumMember(Value = "desc")]
-        DESC
+        Desc
     }
 }

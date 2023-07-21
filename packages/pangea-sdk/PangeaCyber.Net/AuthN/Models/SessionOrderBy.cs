@@ -13,26 +13,26 @@ namespace PangeaCyber.Net.AuthN
 
         ///
         [JsonProperty("created_at")]
-        CREATED_AT,
+        CreatetAt,
 
         ///
         [JsonProperty("type")]
-        TYPE,
+        Type,
 
         ///
         [JsonProperty("identity")]
-        IDENTITY,
+        Identity,
 
         ///
         [JsonProperty("email")]
-        EMAIL,
+        Email,
 
         ///
         [JsonProperty("expire")]
-        EXPIRE,
+        Expire,
 
         ///
         [JsonProperty("active_token_id")]
-        ACTIVE_TOKEN_ID
+        ActiveTokenID
     }
 }

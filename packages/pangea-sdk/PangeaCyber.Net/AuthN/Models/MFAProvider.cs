@@ -12,10 +12,10 @@ namespace PangeaCyber.Net.AuthN
         
         ///
         [JsonProperty("email_otp")]
-        EMAIL_OTP,
+        EmailOTP,
         
         ///
         [JsonProperty("sms_otp")]
-        SMS_OTP
+        SmsOTP
     }
 }

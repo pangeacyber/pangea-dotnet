@@ -13,34 +13,34 @@ namespace PangeaCyber.Net.AuthN
 
         ///
         [JsonProperty("created_at")]
-        CREATED_AT,
+        CreatedAt,
 
         ///
         [JsonProperty("type")]
-        TYPE,
+        Type,
 
         ///
         [JsonProperty("email")]
-        EMAIL,
+        Email,
 
         ///
         [JsonProperty("expire")]
-        EXPIRE,
+        Expire,
 
         ///
         [JsonProperty("callback")]
-        CALLBACK,
+        Callback,
 
         ///
         [JsonProperty("state")]
-        STATE,
+        State,
 
         ///
         [JsonProperty("inviter")]
-        INVITER,
+        Inviter,
 
         ///
         [JsonProperty("invite_org")]
-        INVITE_ORG
+        InviteOrg
     }
 }
