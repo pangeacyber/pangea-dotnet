@@ -1,4 +1,6 @@
 using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Net.Vault.Requests;
+using PangeaCyber.Net.Vault.Models;
 
 namespace PangeaCyber.Net.Vault.Tests
 {

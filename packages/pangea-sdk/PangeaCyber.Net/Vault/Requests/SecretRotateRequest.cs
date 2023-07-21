@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace PangeaCyber.Net.Vault
+namespace PangeaCyber.Net.Vault.Requests
 {
     ///
     public class SecretRotateRequest : CommonRotateRequest<SecretRotateRequest.Builder>

@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace PangeaCyber.Net.Vault
+namespace PangeaCyber.Net.Vault.Models
 {
     ///
     public enum ItemOrderBy

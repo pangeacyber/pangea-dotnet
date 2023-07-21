@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace PangeaCyber.Net.Vault
+namespace PangeaCyber.Net.Vault.Results
 {
     ///
     public class AsymmetricStoreResult : CommonStoreResult

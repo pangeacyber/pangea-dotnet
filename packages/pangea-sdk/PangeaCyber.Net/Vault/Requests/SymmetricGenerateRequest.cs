@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
+using PangeaCyber.Net.Vault.Models;
 
-namespace PangeaCyber.Net.Vault
+namespace PangeaCyber.Net.Vault.Requests
 {
     ///
     public class SymmetricGenerateRequest : CommonGenerateRequest<SymmetricGenerateRequest.Builder>
