@@ -1486,13 +1486,13 @@
         <member name="T:PangeaCyber.Net.Intel.PasswordStatus">
             
         </member>
-        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.BREACHED">
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Breached">
             
         </member>
-        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.UNBREACHED">
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Unbreached">
             
         </member>
-        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.INCONCLUSIVE">
+        <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Inconclusive">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
