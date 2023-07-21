@@ -941,6 +941,2064 @@
         <member name="F:PangeaCyber.Net.EventVerification.NotVerified">
                    
         </member>
+        <member name="T:PangeaCyber.Net.AuthN.AuthNClient">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.AuthNClient.User">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.AuthNClient.Flow">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.AuthNClient.Client">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.AuthNClient.Session">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.AuthNClient.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.AuthNClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.AuthNClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.AuthNClient.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.ServiceName">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.supportMultiConfig">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.#ctor(PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.Client">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Client.Session">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Client.Password">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Client.Token">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Client.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Client.Userinfo(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Client.Jwks">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.ClientPassword">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientPassword.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientPassword.Change(System.String,System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.ClientSession">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientSession.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientSession.Invalidate(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientSession.List(PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientSession.Logout(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientSession.Refresh(PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.ClientToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientToken.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.ClientToken.Check(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.Flow">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Flow.Enroll">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Flow.Signup">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Flow.Verify">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Flow.Reset">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Flow.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Flow.Complete(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Flow.Start(PangeaCyber.Net.AuthN.Requests.FlowStartRequest)">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.Flow.FlowCompleteRequest.FlowID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Flow.FlowCompleteRequest.#ctor(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowEnroll">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowEnroll.MFA">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowEnroll.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowEnrollMFA">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowEnrollMFA.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowEnrollMFA.Complete(PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowEnrollMFA.Start(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowReset">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowReset.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowReset.Password(PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowSignup">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowSignup.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowSignup.Password(System.String,System.String,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowSignup.Social(System.String,System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowVerify">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerify.MFA">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerify.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerify.Captcha(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerify.Email(PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerify.Password(PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerify.Social(PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowVerifyMFA">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifyMFA.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifyMFA.Complete(PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifyMFA.Start(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.Session">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Session.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Session.Invalidate(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Session.List(PangeaCyber.Net.AuthN.Requests.SessionListRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Session.Logout(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.User">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.User.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.User.Invites">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.User.MFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.User.Login">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.User.Password">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.Create(PangeaCyber.Net.AuthN.Requests.UserCreateRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.DeleteByEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.DeleteByID(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.Update(PangeaCyber.Net.AuthN.Requests.UserUpdateRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.Invite(PangeaCyber.Net.AuthN.Requests.UserInviteRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.List(PangeaCyber.Net.AuthN.Requests.UserListRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.User.Verify(PangeaCyber.Net.AuthN.Models.IDProvider,System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.UserInvite">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserInvite.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserInvite.List(PangeaCyber.Net.AuthN.Requests.UserInviteListRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserInvite.Delete(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.UserLogin">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserLogin.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserLogin.Password(System.String,System.String,PangeaCyber.Net.AuthN.Models.Profile)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserLogin.Social(PangeaCyber.Net.AuthN.Models.IDProvider,System.String,System.String,PangeaCyber.Net.AuthN.Models.Profile)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.UserMFA">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserMFA.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserMFA.Delete(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserMFA.Enroll(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserMFA.Start(PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserMFA.Verify(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.UserPassword">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserPassword.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserPassword.Reset(System.String,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.UserProfile">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserProfile.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserProfile.GetByEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserProfile.GetByID(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.UserProfile.Update(PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.CBState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.CBCode">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.#ctor(PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.CBState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.CBCode">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.WithCBState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.WithCBCode(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.EnrollMFAComplete">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.EnrollMFAComplete.TOTPSecret">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.EnrollMFAStart">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.EnrollMFAStart.MFAProviders">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.Filter">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FlowType">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.FlowType.Signin">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.FlowType.Signup">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.IDProvider">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.IDProvider.Facebook">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.IDProvider.Github">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.IDProvider.Google">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.IDProvider.Microsoft">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.IDProvider.Password">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.IDProviders">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.ItemOrder">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.ItemOrder.Asc">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.ItemOrder.Desc">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.JWK">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.Alg">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.Kty">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.Kid">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.Use">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.Crv">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.D">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.X">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.Y">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.N">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.JWK.E">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.ListOrder">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.ListOrder.Ascending">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.ListOrder.Descending">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.LoginToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Token">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Life">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Expire">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Identity">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.LoginToken.CreatedAt">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.MFAProvider">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.MFAProvider.TOTP">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.MFAProvider.EmailOTP">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.MFAProvider.SmsOTP">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.MFAProviders">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.PasswordSignup">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.PasswordSignup.CharsMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.PasswordSignup.CharsMax">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.PasswordSignup.LowerMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.PasswordSignup.UpperMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.PasswordSignup.PunctMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.PasswordSignup.NumberMin">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.Profile">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.Scopes">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.SessionItem">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Life">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Expire">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Identity">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.CreatedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionItem.ActiveToken">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.SessionOrderBy">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.ID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.CreatetAt">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.Type">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.Identity">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.Email">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.Expire">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.SessionOrderBy.ActiveTokenID">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.SessionToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Life">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Expire">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.CreatedAt">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.Signup">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.Signup.SocialSignup">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.Signup.PasswordSignup">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.SocialSignup">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SocialSignup.RedirectURI">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.TOTPsecret">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.TOTPsecret.QrImage">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.TOTPsecret.Secret">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.User">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.IDProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.MFAProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.LastLoginAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.User.CreatedAt">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.UserInvite">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.Inviter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.InviteOrg">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.Callback">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.State">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.CreatedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.UserInvite.Expire">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.ID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.CreatedAt">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.Type">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.Email">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.Expire">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.Callback">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.State">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.Inviter">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy.InviteOrg">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.UserListOrderBy">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserListOrderBy.ID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserListOrderBy.CreatedAt">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserListOrderBy.LastLoginAt">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.UserListOrderBy.Email">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.VerifyCaptcha">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyCaptcha.SiteKey">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.VerifyMFAStart">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyMFAStart.MFAProviders">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.VerifyPassword">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyPassword.CharsMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyPassword.CharsMax">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyPassword.LowerMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyPassword.UpperMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyPassword.PunctMin">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifyPassword.NumberMin">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.VerifySocial">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.VerifySocial.RedirectURI">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest.Token">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest.Builder.Token">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.RefreshToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.UserToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.#ctor(PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder.RefreshToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder.UserToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder.#ctor(System.String)">
+            Set the refresh token for the request
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder.WithUserToken(System.String)">
+            Set the user token for the request.
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest.Builder.Build">
+            Build the ClientSessionRefreshRequest instance.
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.Size">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.#ctor(PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest{`0}.CommonBuilder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Size">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithLast(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithOrder(PangeaCyber.Net.AuthN.Models.ListOrder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithOrderBy(PangeaCyber.Net.AuthN.Models.SessionOrderBy)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithSize(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Code">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Cancel">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder.Code">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder.Cancel">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFACompleteRequest.Builder.WithCancel(System.Boolean)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.MfaProvider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Phone">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder.MFAProvider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder.Phone">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder.#ctor(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowEnrollMFAStartRequest.Builder.WithPhone(System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Password">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Cancel">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.CBState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.CBCode">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.Password">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.Cancel">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.CBState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.CBCode">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.WithCBState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.WithCBCode(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowResetPasswordRequest.Builder.WithCancel(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowStartRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.CBUri">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.FlowType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Provider">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.CBUri">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.FlowType">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Provider">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithCBUri(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithFlowType(PangeaCyber.Net.AuthN.Models.FlowType)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithProvider(PangeaCyber.Net.AuthN.Models.IDProvider)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.CBState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.CBCode">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.CBState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.CBCode">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.#ctor(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.WithCBState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.WithCBCode(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyEmailRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Code">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Cancel">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder.Code">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder.Cancel">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder.WithCancel(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyMFACompleteRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Password">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Reset">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder.Password">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder.Reset">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder.WithReset(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowVerifyPasswordRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.SessionListRequest">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.SessionListRequest.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.SessionListRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.SessionListRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserCreateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Authenticator">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.IDProvider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Profile">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.Authenticator">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.IDProvider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.Profile">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.#ctor(System.String,System.String,PangeaCyber.Net.AuthN.Models.IDProvider)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.WithVerified(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.WithRequireMFA(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.WithScopes(PangeaCyber.Net.AuthN.Models.Scopes)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.WithProfile(PangeaCyber.Net.AuthN.Models.Profile)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserCreateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Size">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.Size">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithLast(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithOrder(PangeaCyber.Net.AuthN.Models.ItemOrder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithOrderBy(PangeaCyber.Net.AuthN.Models.UserInviteListOrderBy)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithSize(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserInviteRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Inviter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Callback">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.State">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.RequireMFA">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.Inviter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.Callback">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.State">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.RequireMFA">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.#ctor(System.String,System.String,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.WithRequireMFA(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserListRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Size">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.Size">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithLast(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithOrder(PangeaCyber.Net.AuthN.Models.ItemOrder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithOrderBy(PangeaCyber.Net.AuthN.Models.UserListOrderBy)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithSize(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserLoginRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Secret">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Scopes">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.#ctor(PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder.Secret">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder.Scopes">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder.#ctor(System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder.WithScopes(PangeaCyber.Net.AuthN.Models.Scopes)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserLoginRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.UserID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.MFAProvider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Enroll">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Phone">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.#ctor(PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.UserID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.MFAProvider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.Enroll">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.Phone">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.#ctor(System.String,PangeaCyber.Net.AuthN.Models.MFAProvider)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.WithEnroll(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.WithPhone(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserMFAStartRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.#ctor(PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.ID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.#ctor(PangeaCyber.Net.AuthN.Models.Profile)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.WithEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.WithId(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Authenticator">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Verified">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Authenticator">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Verified">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithId(PangeaCyber.Net.AuthN.Models.IDProvider)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithEmail(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithAuthenticator(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithDisabled(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithRequireMFA(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithVerified(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientJWKSResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientJWKSResult.Keys">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientJWKSResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientPasswordChangeResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientPasswordChangeResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientSessionInvalidateResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientSessionInvalidateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientSessionListResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientSessionListResult.Sessions">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientSessionListResult.Last">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientSessionListResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientSessionLogoutResult">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientSessionLogoutResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientSessionRefreshResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientSessionRefreshResult.RefreshToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientSessionRefreshResult.ActiveToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientSessionRefreshResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Life">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Expire">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Identity">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.CreatedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientTokenCheckResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.ClientUserinfoResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientUserinfoResult.RefreshToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.ClientUserinfoResult.ActiveToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.ClientUserinfoResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.CommonFlowResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.FlowID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.NextStep">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.Error">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.Complete">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.EnrollMFAStart">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.EnrollMFAComplete">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.Signup">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.VerifyCaptcha">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.VerifyEmail">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.VerifyMFAStart">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.VerifyMFAComplete">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.VerifyPassword">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.VerifySocial">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.CommonFlowResult.ResetPassword">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowCompleteResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.FlowCompleteResult.LoginToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.FlowCompleteResult.RefreshToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.FlowCompleteResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowEnrollMFACompleteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowEnrollMFAStartResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowResetPasswordResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowSignupPasswordResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowSignupSocialResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowStartResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowVerifyCaptchaResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowVerifyEmailResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowVerifyMFACompleteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowVerifyMFAStartResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowVerifyPasswordResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.FlowVerifySocialResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.SessionInvalidateResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.SessionListResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.SessionListResult.Sessions">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.SessionListResult.Last">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.SessionListResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.SessionLogoutResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserCreateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.IDProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.LastLoginAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.MFAProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserCreateResult.CreatedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserCreateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserDeleteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserInviteDeleteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserInviteListResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserInviteListResult.Invites">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserInviteListResult.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserInviteListResult.Count">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserInviteListResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserInviteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserListResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserListResult.Users">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserListResult.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserListResult.Count">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserListResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserLoginResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserLoginResult.RefreshToken">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserLoginResult.ActiveToken">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserLoginResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserMFADeleteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserMFAEnrollResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserMFAStartResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserMFAStartResult.TotpSecret">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserMFAStartResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserMFAVerifyResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserProfileGetResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.IDProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.MFAProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.LastLoginAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.CreatedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserProfileGetResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.IDProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.MFAProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.LastLoginAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.CreatedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserProfileUpdateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserUpdateResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.IDProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.MFAProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.LastLoginAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserUpdateResult.CreatedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserUpdateResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.UserVerifyResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.Email">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.Profile">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.Scopes">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.IDProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.MFAProviders">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.RequireMFA">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.Verified">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.Disabled">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.LastLoginAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.UserVerifyResult.CreatedAt">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.UserVerifyResult.#ctor">
+            
+        </member>
         <member name="T:PangeaCyber.Net.BaseClient`1">
             <kind>class</kind>
             <summary>
