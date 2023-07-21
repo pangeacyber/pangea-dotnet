@@ -4,7 +4,7 @@ using PangeaCyber.Net.Exceptions;
 namespace PangeaCyber.Net.Intel
 {
     ///
-    public class FileIntelClient : BaseClient
+    public class FileIntelClient : BaseClient<FileIntelClient.Builder>
     {
         private const string ServiceName = "file-intel";
         private static readonly bool SupportMultiConfig = false;
@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : BaseClient.ClientBuilder
+        public class Builder : BaseClient<FileIntelClient.Builder>.ClientBuilder
         {
             ///
             public Builder(Config config)

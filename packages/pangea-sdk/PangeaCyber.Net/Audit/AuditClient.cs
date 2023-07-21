@@ -9,7 +9,7 @@ namespace PangeaCyber.Net.Audit
     /// <summary>
     /// Audit Client
     /// </summary>
-    public class AuditClient : BaseClient
+    public class AuditClient : BaseClient<AuditClient.Builder>
     {
         ///
         public static string ServiceName {get; }= "audit";
@@ -344,7 +344,7 @@ namespace PangeaCyber.Net.Audit
         /// <summary>
         /// AuditClient Builder
         /// </summary>
-        public class Builder : BaseClient.ClientBuilder
+        public class Builder : BaseClient<AuditClient.Builder>.ClientBuilder
         {
 
             ///

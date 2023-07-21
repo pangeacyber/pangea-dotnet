@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Redact
     /// <summary>
     /// Redact Client
     /// </summary>
-    public class RedactClient : BaseClient
+    public class RedactClient : BaseClient<RedactClient.Builder>
     {
         ///
         public static string ServiceName = "redact";
@@ -73,7 +73,7 @@ namespace PangeaCyber.Net.Redact
 
 
         ///
-        public class Builder : BaseClient.ClientBuilder
+        public class Builder : BaseClient<RedactClient.Builder>.ClientBuilder
         {
             ///
             public Builder(Config config) : base(config)
