@@ -977,6 +977,12 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
             
         </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.Get``1(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String)">
+            
+        </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
             
         </member>
@@ -1026,6 +1032,12 @@
         </member>
         <member name="P:PangeaCyber.Net.Config.CustomUserAgent">
             
+        </member>
+        <member name="P:PangeaCyber.Net.Config.QueuedRetryEnabled">
+            Enable queued request retry support
+        </member>
+        <member name="F:PangeaCyber.Net.Config.PollResultTimeoutSecs">
+            Timeout used to poll results after 202 (in secs)
         </member>
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
             
@@ -1328,15 +1340,6 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.PangeaErrors">
-            <kind>class</kind>
-            <summary>
-            PangeaErrors
-            </summary>
-        </member>
-        <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
@@ -1940,6 +1943,15 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.PangeaErrors">
+            <kind>class</kind>
+            <summary>
+            PangeaErrors
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
