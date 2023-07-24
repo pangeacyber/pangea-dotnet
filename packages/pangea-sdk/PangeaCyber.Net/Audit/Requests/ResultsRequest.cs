@@ -10,11 +10,11 @@ namespace PangeaCyber.Net.Audit
         public string Id { get; }
 
         ///
-        [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("limit")]
         public int? Limit { get; }
 
         ///
-        [JsonProperty("offset", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("offset")]
         public int? Offset { get; }
 
         private ResultRequest(Builder builder)

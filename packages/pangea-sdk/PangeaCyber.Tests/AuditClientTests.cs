@@ -5,7 +5,7 @@ using PangeaCyber.Net.Exceptions;
 namespace PangeaCyber.Tests;
 
 ///
-public class AuditClientTests
+public class ITAuditTests
 {
     private AuditClient generalClient, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
 
@@ -25,7 +25,7 @@ public class AuditClientTests
 	private const string MSG_CUSTOM_SCHEMA_SIGNED_LOCAL = "java-sdk-custom-schema-sign-local";
 	private const string LONG_FIELD = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia, orci eget commodo commodo non.";
 
-    public AuditClientTests()
+    public ITAuditTests()
     {
         // Standard schema clients
         var generalCfg = Config.FromIntegrationEnvironment(environment);

@@ -9,7 +9,7 @@ namespace PangeaCyber.Net.Audit
     public sealed class LogResult
     {
         ///
-        [JsonProperty("envelope", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("envelope")]
         public Dictionary<string, object> RawEnvelope { get; private set; } = default!;
 
         ///

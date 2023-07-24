@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace PangeaCyber.Net
 {
@@ -9,7 +8,6 @@ namespace PangeaCyber.Net
     /// </summary>
     public class PangeaErrors
     {
-
         ///
         [JsonProperty("errors")]
         public ErrorField[] Errors { get; private set; } = default!;
