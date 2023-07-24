@@ -3388,15 +3388,6 @@
         <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
             
         </member>
-        <member name="T:PangeaCyber.Net.PangeaErrors">
-            <kind>class</kind>
-            <summary>
-            PangeaErrors
-            </summary>
-        </member>
-        <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
-            
-        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
             
         </member>
@@ -3998,6 +3989,15 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.PangeaErrors">
+            <kind>class</kind>
+            <summary>
+            PangeaErrors
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
