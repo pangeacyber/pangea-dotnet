@@ -1,6 +1,7 @@
 using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
 using PangeaCyber.Net.AuthN.Results;
+using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.AuthN.Clients
 {
@@ -43,6 +44,7 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserMFADeleteRequest : BaseRequest
         {
+            [JsonProperty("user_id")]
             public string UserID { get; private set; }
             public MFAProvider MFAProvider { get; private set; }
 
@@ -55,8 +57,13 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserMFAEnrollRequest : BaseRequest
         {
+            [JsonProperty("user_id")]
             public string UserID { get; private set; }
+
+            [JsonProperty("mfa_provider")]
             public MFAProvider MFAProvider { get; private set; }
+
+            [JsonProperty("code")]
             public string Code { get; private set; }
 
             public UserMFAEnrollRequest(string userID, MFAProvider mfaProvider, string code)
@@ -69,8 +76,13 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserMFAVerifyRequest : BaseRequest
         {
+            [JsonProperty("user_id")]
             public string UserID { get; private set; }
+
+            [JsonProperty("mfa_provider")]
             public MFAProvider MFAProvider { get; private set; }
+
+            [JsonProperty("code")]
             public string Code { get; private set; }
 
             public UserMFAVerifyRequest(string userID, MFAProvider mfaProvider, string code)

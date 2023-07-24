@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace PangeaCyber.Net.AuthN.Models
 {
@@ -8,39 +9,39 @@ namespace PangeaCyber.Net.AuthN.Models
     public enum UserInviteListOrderBy
     {
         ///
-        [JsonProperty("id")]
+        [EnumMember(Value = "id")]
         ID,
 
         ///
-        [JsonProperty("created_at")]
+        [EnumMember(Value = "created_at")]
         CreatedAt,
 
         ///
-        [JsonProperty("type")]
+        [EnumMember(Value = "type")]
         Type,
 
         ///
-        [JsonProperty("email")]
+        [EnumMember(Value = "email")]
         Email,
 
         ///
-        [JsonProperty("expire")]
+        [EnumMember(Value = "expire")]
         Expire,
 
         ///
-        [JsonProperty("callback")]
+        [EnumMember(Value = "callback")]
         Callback,
 
         ///
-        [JsonProperty("state")]
+        [EnumMember(Value = "state")]
         State,
 
         ///
-        [JsonProperty("inviter")]
+        [EnumMember(Value = "inviter")]
         Inviter,
 
         ///
-        [JsonProperty("invite_org")]
+        [EnumMember(Value = "invite_org")]
         InviteOrg
     }
 }

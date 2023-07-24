@@ -50,7 +50,7 @@ namespace PangeaCyber.Net.AuthN.Requests
             }
 
             ///
-            public Builder WithId(string id)
+            public Builder WithID(string id)
             {
                 this.ID = id;
                 return this;

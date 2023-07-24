@@ -19,12 +19,15 @@ namespace PangeaCyber.Net
         //     path(str): If verbose mode was enabled, a path to the JSON Schema used to validate the field
         // """
         ///
+        [JsonProperty("code")]
         public string Code { get; private set; } = default!;
 
         ///
+        [JsonProperty("detail")]
         public string Detail { get; private set; } = default!;
 
         ///
+        [JsonProperty("source")]
         public string Source { get; private set; } = default!;
 
         ///

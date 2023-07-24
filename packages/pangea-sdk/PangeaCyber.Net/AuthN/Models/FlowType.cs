@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace PangeaCyber.Net.AuthN.Models
 {
@@ -7,11 +8,11 @@ namespace PangeaCyber.Net.AuthN.Models
     public enum FlowType
     {
         ///
-        [JsonProperty("signin")]
+        [EnumMember(Value = "signin")]
         Signin,
 
         ///
-        [JsonProperty("signup")]
+        [EnumMember(Value = "signup")]
         Signup
     }
 }

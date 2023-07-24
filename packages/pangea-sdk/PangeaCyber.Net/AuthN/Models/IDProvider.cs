@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace PangeaCyber.Net.AuthN.Models
 {
@@ -7,23 +8,23 @@ namespace PangeaCyber.Net.AuthN.Models
     public enum IDProvider
     {
         ///
-        [JsonProperty("facebook")]
+        [EnumMember(Value = "facebook")]
         Facebook,
 
         ///
-        [JsonProperty("github")]
+        [EnumMember(Value = "github")]
         Github,
 
         ///
-        [JsonProperty("google")]
+        [EnumMember(Value = "google")]
         Google,
 
         ///
-        [JsonProperty("microsoftonline")]
+        [EnumMember(Value = "microsoftonline")]
         Microsoft,
 
         ///
-        [JsonProperty("password")]
+        [EnumMember(Value = "password")]
         Password
     }
 }

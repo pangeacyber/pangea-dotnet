@@ -2465,7 +2465,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.WithEmail(System.String)">
             
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.WithId(System.String)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.WithID(System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest.Builder.Build">
@@ -3284,6 +3284,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Exceptions.PangeaAPIException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.PangeaAPIException.ToString">
             
         </member>
         <member name="T:PangeaCyber.Net.Exceptions.PangeaException">

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace PangeaCyber.Net.AuthN.Models
 {
@@ -7,11 +8,11 @@ namespace PangeaCyber.Net.AuthN.Models
     public enum ListOrder
     {
         ///
-        [JsonProperty("asc")]
+        [EnumMember(Value = "asc")]
         Ascending,
         
         ///
-        [JsonProperty("desc")]
+        [EnumMember(Value = "desc")]
         Descending
     }
 }

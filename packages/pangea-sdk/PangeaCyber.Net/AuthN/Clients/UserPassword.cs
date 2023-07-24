@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace PangeaCyber.Net.AuthN.Clients
 {
     ///
@@ -16,7 +18,10 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserPasswordResetRequest : BaseRequest
         {
+            [JsonProperty("user_id")]
             public string UserID { get; private set; }
+
+            [JsonProperty("new_password")]
             public string NewPassword { get; private set; }
 
             public UserPasswordResetRequest(string userID, string newPassword)

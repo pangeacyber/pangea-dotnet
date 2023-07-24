@@ -11,7 +11,7 @@ namespace PangeaCyber.Net
     {
 
         ///
-        [JsonProperty("result")]
+        [JsonProperty("errors")]
         public ErrorField[] Errors { get; private set; } = default!;
 
     }

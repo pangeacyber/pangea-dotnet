@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace PangeaCyber.Net.AuthN.Models
 {
@@ -7,15 +8,15 @@ namespace PangeaCyber.Net.AuthN.Models
     public enum MFAProvider
     {
         ///
-        [JsonProperty("totp")]
+        [EnumMember(Value = "totp")]
         TOTP,
         
         ///
-        [JsonProperty("email_otp")]
+        [EnumMember(Value = "email_otp")]
         EmailOTP,
         
         ///
-        [JsonProperty("sms_otp")]
+        [EnumMember(Value = "sms_otp")]
         SmsOTP
     }
 }

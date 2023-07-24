@@ -1,5 +1,6 @@
 using PangeaCyber.Net.AuthN.Requests;
 using PangeaCyber.Net.AuthN.Results;
+using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.AuthN.Clients
 {
@@ -34,7 +35,10 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserProfileGetRequest : BaseRequest
         {
+            [JsonProperty("email")]
             public string? Email { get; private set; }
+
+            [JsonProperty("id")]
             public string? ID { get; private set; }
 
             public UserProfileGetRequest(string? email, string? id)
