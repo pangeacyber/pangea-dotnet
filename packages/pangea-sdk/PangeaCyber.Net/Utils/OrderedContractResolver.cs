@@ -1,5 +1,4 @@
-﻿using System;
-namespace PangeaCyber.Net
+﻿namespace PangeaCyber.Net
 {
 
     ///

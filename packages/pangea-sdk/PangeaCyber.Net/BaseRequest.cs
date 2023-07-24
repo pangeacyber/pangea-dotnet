@@ -6,7 +6,7 @@ namespace PangeaCyber.Net
     public class BaseRequest
     {
         ///
-        [JsonProperty("config_id", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("config_id")]
         public string ConfigID { get; set; } = default!;
 
         ///

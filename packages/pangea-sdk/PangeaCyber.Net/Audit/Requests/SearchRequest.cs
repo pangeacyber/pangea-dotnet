@@ -10,35 +10,35 @@ namespace PangeaCyber.Net.Audit
         public string Query { get; }
 
         ///
-        [JsonProperty("order", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("order")]
         public string? Order { get; }
 
         ///
-        [JsonProperty("order_by", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("order_by")]
         public string? OrderBy { get; }
 
         ///
-        [JsonProperty("start", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("start")]
         public string? Start { get; }
 
         ///
-        [JsonProperty("end", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("end")]
         public string? End { get; }
 
         ///
-        [JsonProperty("limit", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("limit")]
         public int? Limit { get; }
 
         ///
-        [JsonProperty("max_results", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("max_results")]
         public int? MaxResults { get; }
 
         ///
-        [JsonProperty("search_restriction", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("search_restriction")]
         public SearchRestriction? SearchRestriction { get; }
 
         ///
-        [JsonProperty("verbose", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("verbose")]
         public bool? Verbose { get; set; }
 
         ///
