@@ -91,15 +91,107 @@ namespace PangeaCyber.Net
                 throw new PangeaException("Failed to send request", e);
             }
 
+            if (res.StatusCode == System.Net.HttpStatusCode.Accepted && this.config.QueuedRetryEnabled) {
+    			res = await this.HandleQueued(res);
+	    	}
+
             return await CheckResponse<TResult>(res);
+        }
+
+        ///
+        public async Task<Response<TResult>> Get<TResult>(string path)
+        {
+            HttpResponseMessage httpResponse = await DoGet(path);
+            return await CheckResponse<TResult>(httpResponse);
+        }
+
+        ///
+        protected async Task<HttpResponseMessage> DoGet(String path){
+
+            HttpResponseMessage res = default!;
+            try
+            {
+                res = await this.HttpClient.GetAsync(path);
+            }
+            catch (Exception e)
+            {
+                throw new PangeaException("Failed to send get request", e);
+            }
+            return res;
+        }
+
+        private long GetDelay(int retryCounter, long startSecSinceEpoch)
+        {
+            long delay = retryCounter * retryCounter;
+            long now = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            if (now + delay >= startSecSinceEpoch + this.config.PollResultTimeoutSecs)
+            {
+                delay = startSecSinceEpoch + this.config.PollResultTimeoutSecs - now;
+            }
+            return delay;
+        }
+
+        private bool ReachedTimeout(long startSecSinceEpoch)
+        {
+            long now = DateTimeOffset.Now.ToUnixTimeSeconds();
+            return now >= startSecSinceEpoch + this.config.PollResultTimeoutSecs;
+        }
+
+        private string PollResultPath(string requestId)
+        {
+            return $"/request/{requestId}";
+        }
+
+        private async Task<HttpResponseMessage> HandleQueued(HttpResponseMessage response)
+        {
+            if (response.StatusCode != System.Net.HttpStatusCode.Accepted ||
+                !this.config.QueuedRetryEnabled ||
+                this.config.PollResultTimeoutSecs <= 1)
+            {
+                return response;
+            }
+
+            int retryCounter = 1;
+            long start = DateTimeOffset.Now.ToUnixTimeSeconds();
+            long delay;
+
+            var jsonSettings = GetJsonSerializerSettings();
+            string body = await response.Content.ReadAsStringAsync();
+            ResponseHeader header = default!;
+
+            try
+            {
+                header = JsonConvert.DeserializeObject<ResponseHeader>(body, jsonSettings) ?? default!;
+            }
+            catch (Exception e)
+            {
+                throw new PangeaException("Failed to parse response header", e);
+            }
+
+            string requestId = header.RequestId;
+            string path = PollResultPath(requestId);
+
+            while (response.StatusCode == System.Net.HttpStatusCode.Accepted && !ReachedTimeout(start))
+            {
+                delay = GetDelay(retryCounter, start);
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                response = await DoGet(path);
+                retryCounter++;
+            }
+
+            return response;
+        }
+
+        private JsonSerializerSettings GetJsonSerializerSettings(){
+            return new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
         }
 
         ///
         public async Task<Response<TResult>> CheckResponse<TResult>(HttpResponseMessage res)
         {
-            var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
+            var jsonSettings = GetJsonSerializerSettings();
             string body = await res.Content.ReadAsStringAsync();
-
             ResponseHeader header = default!;
 
             try
