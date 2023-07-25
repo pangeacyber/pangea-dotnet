@@ -94,6 +94,7 @@ namespace PangeaCyber.Net.Audit
         /// Log an event to Audit Secure Log. By default does not sign event and verbose is left as server default
         /// </summary>
         /// <remarks>Log an entry</remarks>
+        /// <operationid>audit_post_v1_log</operationid>
         /// <param name="evt" type="PangeaCyber.Net.Audit.IEvent">Event to log</param>
         /// <param name="config">Include verbosity, local signature and verify events setup</param>
         /// <returns>Response&lt;LogResult&gt;</returns>
@@ -162,8 +163,9 @@ namespace PangeaCyber.Net.Audit
         }
 
         /// <kind>method</kind>
-        /// <summary>Get last root from Pangea Server</summary>
-        /// <remarks>Get root from three of treeSize from Pangea Server</remarks>
+        /// <summary>Return current root hash and consistency proof.</summary>
+        /// <remarks>Tamperproof Verification</remarks>
+        /// <operationid>audit_post_v1_root</operationid>
         /// <param name="treeSize" type="System.Int32">tree size to get root</param>
         /// <returns>Response&lt;RootResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
@@ -294,6 +296,7 @@ namespace PangeaCyber.Net.Audit
         /// <kind>method</kind>
         /// <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
         /// <remarks>Search</remarks>
+        /// <operationid>audit_post_v1_search</operationid>
         /// <param name="request">Request to be sent to /search endpoint</param>
         /// <param name="config">Config include event and consistency verification setup</param>
         /// <returns>Response&lt;SearchOutput&gt;</returns>
@@ -316,6 +319,7 @@ namespace PangeaCyber.Net.Audit
         /// <kind>method</kind>
         /// <summary>Return result's page from search id.</summary>
         /// <remarks>Results</remarks>
+        /// <operationid>audit_post_v1_results</operationid>
         /// <param name="request">Request to be sent to /results endpoint</param>
         /// <param name="config">Config include event and consistency verification setup</param>
         /// <returns>Response&lt;ResultsOutput&gt;</returns>
