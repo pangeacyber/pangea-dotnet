@@ -107,9 +107,6 @@ namespace PangeaCyber.Net
 
         ///
         protected async Task<HttpResponseMessage> DoGet(String path){
-            // this.logger.debug(
-            //     String.format("{\"service\": \"%s\", \"action\": \"get\", \"path\": \"%s\"},", ServiceName, path)
-            // );
 
             HttpResponseMessage res = default!;
             try
@@ -118,14 +115,6 @@ namespace PangeaCyber.Net
             }
             catch (Exception e)
             {
-                // this.logger.error(
-                //         String.format(
-                //             "{\"service\": \"%s\", \"action\": \"get\", \"path\": \"%s\", \"message\": \"failed to send request\", \"exception\": \"%s\"},",
-                //             ServiceName,
-                //             path,
-                //             e.toString()
-                //         )
-                //     );
                 throw new PangeaException("Failed to send get request", e);
             }
             return res;
@@ -180,28 +169,16 @@ namespace PangeaCyber.Net
                 throw new PangeaException("Failed to parse response header", e);
             }
 
-            // this.logger.Info(
-            //     $"{{\"service\": \"{serviceName}\", \"action\": \"handle queued\", \"step\": \"start\", \"response\": {body}}},"
-            // );
-
             string requestId = header.RequestId;
             string path = PollResultPath(requestId);
 
             while (response.StatusCode == System.Net.HttpStatusCode.Accepted && !ReachedTimeout(start))
             {
-                // this.logger.Debug(
-                //     $"{{\"service\": \"{serviceName}\", \"action\": \"handle queued\", \"step\": \"{retryCounter}\"}},"
-                // );
-
                 delay = GetDelay(retryCounter, start);
                 await Task.Delay(TimeSpan.FromSeconds(5));
                 response = await DoGet(path);
                 retryCounter++;
             }
-
-            // this.logger.Debug(
-            //     $"{{\"service\": \"{serviceName}\", \"action\": \"handle queued\", \"step\": \"exit\"}},"
-            // );
 
             return response;
         }
