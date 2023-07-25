@@ -28,13 +28,25 @@ namespace PangeaCyber.Net
         private readonly string userAgent;
 
         ///
+        private NLog.Logger logger { get; }
+
+        ///
         public class ClientBuilder {
             ///
             public Config config {get; }
 
             ///
+            public NLog.Logger? logger {get; private set; } = null;
+
+            ///
             public ClientBuilder(Config config){
                 this.config = config;
+            }
+
+            ///
+            public ClientBuilder WithLogger(NLog.Logger _logger){
+                this.logger = _logger;
+                return (TBuilder)this;
             }
         }
 
@@ -42,6 +54,8 @@ namespace PangeaCyber.Net
         protected BaseClient(ClientBuilder builder, string serviceName, bool SupportMultiConfig)
         {
             this.config = builder.config;
+            // Set default logger
+            this.logger = builder.logger ?? this.GetDefaultLogger();
             this.serviceName = serviceName;
             this.SupportMultiConfig = SupportMultiConfig;
             this.HttpClient = new HttpClient();
@@ -59,6 +73,12 @@ namespace PangeaCyber.Net
             {
                 this.HttpClient.Timeout = config.ConnectionTimeout;
             }
+        }
+
+        private NLog.Logger GetDefaultLogger(){
+            NLog.Logger logger = NLog.LogManager.GetLogger("Pangea");
+            
+            return logger;
         }
 
         ///
@@ -81,6 +101,10 @@ namespace PangeaCyber.Net
                 throw new PangeaException("Failed to write request", e);
             }
 
+            this.logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"path\": \"{path}\", \"request\": {requestStr}}}"
+            );
+
             HttpResponseMessage res = default!;
             try
             {
@@ -88,6 +112,9 @@ namespace PangeaCyber.Net
             }
             catch (Exception e)
             {
+                this.logger.Error(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"path\": \"{path}\", \"message\": \"failed to send request\", \"exception\": \"{e.ToString()}\"}}"
+                );
                 throw new PangeaException("Failed to send request", e);
             }
 
@@ -101,15 +128,15 @@ namespace PangeaCyber.Net
         ///
         public async Task<Response<TResult>> Get<TResult>(string path)
         {
-            HttpResponseMessage httpResponse = await DoGet(path);
-            return await CheckResponse<TResult>(httpResponse);
+            HttpResponseMessage res = await DoGet(path);
+            return await CheckResponse<TResult>(res);
         }
 
         ///
         protected async Task<HttpResponseMessage> DoGet(String path){
-            // this.logger.debug(
-            //     String.format("{\"service\": \"%s\", \"action\": \"get\", \"path\": \"%s\"},", ServiceName, path)
-            // );
+            this.logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"get\", \"path\": \"{path}\"}}"
+            );
 
             HttpResponseMessage res = default!;
             try
@@ -118,14 +145,9 @@ namespace PangeaCyber.Net
             }
             catch (Exception e)
             {
-                // this.logger.error(
-                //         String.format(
-                //             "{\"service\": \"%s\", \"action\": \"get\", \"path\": \"%s\", \"message\": \"failed to send request\", \"exception\": \"%s\"},",
-                //             ServiceName,
-                //             path,
-                //             e.toString()
-                //         )
-                //     );
+                this.logger.Error(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"get\", \"path\": \"{path}\", \"message\": \"failed to send request\", \"exception\": \"{e.ToString()}\"}}"
+                );
                 throw new PangeaException("Failed to send get request", e);
             }
             return res;
@@ -180,18 +202,18 @@ namespace PangeaCyber.Net
                 throw new PangeaException("Failed to parse response header", e);
             }
 
-            // this.logger.Info(
-            //     $"{{\"service\": \"{serviceName}\", \"action\": \"handle queued\", \"step\": \"start\", \"response\": {body}}},"
-            // );
+            this.logger.Info(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"HandleQueued\", \"step\": \"start\", \"response\": {body} }}"
+            );
 
             string requestId = header.RequestId;
             string path = PollResultPath(requestId);
 
             while (response.StatusCode == System.Net.HttpStatusCode.Accepted && !ReachedTimeout(start))
             {
-                // this.logger.Debug(
-                //     $"{{\"service\": \"{serviceName}\", \"action\": \"handle queued\", \"step\": \"{retryCounter}\"}},"
-                // );
+                this.logger.Debug(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"HandleQueued\", \"step\": \"{retryCounter}\"}}"
+                );
 
                 delay = GetDelay(retryCounter, start);
                 await Task.Delay(TimeSpan.FromSeconds(5));
@@ -199,9 +221,9 @@ namespace PangeaCyber.Net
                 retryCounter++;
             }
 
-            // this.logger.Debug(
-            //     $"{{\"service\": \"{serviceName}\", \"action\": \"handle queued\", \"step\": \"exit\"}},"
-            // );
+            this.logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"HandleQueued\", \"step\": \"exit\"}}"
+            );
 
             return response;
         }
@@ -217,12 +239,19 @@ namespace PangeaCyber.Net
             string body = await res.Content.ReadAsStringAsync();
             ResponseHeader header = default!;
 
+            this.logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"checkResponse\", \"response\": {body} }}"
+            );
+
             try
             {
                 header = JsonConvert.DeserializeObject<ResponseHeader>(body, jsonSettings) ?? default!;
             }
             catch (Exception e)
             {
+                this.logger.Error(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"CheckResponse\", \"message\": \"failed to parse response header\", \"exception\": \"{e.ToString()}\"}}"
+                );
                 throw new PangeaException("Failed to parse response header", e);
             }
 
@@ -236,6 +265,9 @@ namespace PangeaCyber.Net
                 }
                 catch (Exception e)
                 {
+                    this.logger.Error(
+                        $"{{\"service\": \"{serviceName}\", \"action\": \"CheckResponse\", \"message\": \"failed to parse response result\", \"exception\": \"{e.ToString()}\"}}"
+                    );
                     throw new ParseResultFailed("Failed to parse response result", e, header, body);
                 }
 
@@ -254,6 +286,9 @@ namespace PangeaCyber.Net
             }
             catch (Exception e)
             {
+                this.logger.Error(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"CheckResponse\", \"message\": \"failed to parse response errors\", \"exception\": \"{e.ToString()}\"}}"
+                );
                 throw new ParseResultFailed("Failed to parse response errors", e, header ?? default!, body);
             }
             response.HttpResponse = res;

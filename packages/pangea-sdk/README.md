@@ -19,3 +19,18 @@ This package helps .Net developers to use Pangea's security services in their ap
 - [Pangea Registration](https://login.aws.us.pangea.cloud/signup)  
 - [Pangea .NET SDK Repository](https://github.com/pangeacyber/pangea-dotnet)  
 - [Documentation](https://pangea.cloud/docs/sdk/csharp/)  
+
+
+## Build 
+
+In order to build SDK run:
+
+```
+dotnet build
+```
+
+
+## SDK Logger setup
+
+For logging purpose this SDK use NLog package. In order to setup it copy [NLog.config](./NLog.config) file from this directory to your root app directory  
+In order to get more information about this configuration file, please visit https://github.com/NLog/NLog/wiki/Configuration-file 
