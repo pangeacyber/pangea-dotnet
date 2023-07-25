@@ -61,6 +61,12 @@ namespace PangeaCyber.Net
         ///
         public string CustomUserAgent {get; set; } = default!;
 
+    	/// Enable queued request retry support
+        public bool QueuedRetryEnabled {get; set; } = true; 
+
+        /// Timeout used to poll results after 202 (in secs)
+        public long PollResultTimeoutSecs = 30;
+
         #endregion Public Properties
 
         #region Public Methods

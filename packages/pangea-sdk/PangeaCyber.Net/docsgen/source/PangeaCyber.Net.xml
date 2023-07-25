@@ -3020,19 +3020,34 @@
         <member name="F:PangeaCyber.Net.BaseClient`1.userAgent">
             
         </member>
+        <member name="P:PangeaCyber.Net.BaseClient`1.logger">
+            
+        </member>
         <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
             
         </member>
         <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.config">
             
         </member>
+        <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.logger">
+            
+        </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.WithLogger(NLog.Logger)">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.Get``1(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
@@ -3084,6 +3099,12 @@
         </member>
         <member name="P:PangeaCyber.Net.Config.CustomUserAgent">
             
+        </member>
+        <member name="P:PangeaCyber.Net.Config.QueuedRetryEnabled">
+            Enable queued request retry support
+        </member>
+        <member name="F:PangeaCyber.Net.Config.PollResultTimeoutSecs">
+            Timeout used to poll results after 202 (in secs)
         </member>
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
             
