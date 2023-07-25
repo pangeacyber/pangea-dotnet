@@ -64,7 +64,7 @@ const parseMethodName = (className, method) => {
  * looks like: 
  * string msg = someCode;\n            var response = await moreCode();
  * 
- * To normalize everything, just replace the newline and space chars
+ * To normalize everything, just replace the newline and 12 space chars
  * with ONE newline, so the above string becomes:
  * string msg = someCode;\nvar response = await moreCode();
  * 
@@ -74,7 +74,9 @@ const parseMethodName = (className, method) => {
 const normalizeCodeExample = (code) => {
     if (typeof code === "undefined") return "";
 
-    return code.replace(/\n[ ]+/g, "\n");
+    // The XML here has an indentation level of 12 spaces
+    // Collapse those into one newline char
+    return code.replace(/\n[ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ]/g, "\n");
 }
 
 const getMethodsForClass = (entries, className) => {

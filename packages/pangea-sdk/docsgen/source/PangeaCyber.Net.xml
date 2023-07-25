@@ -1379,10 +1379,13 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
-            
+            <kind>class</kind>
+            <summary>
+            DomainIntel Client
+            </summary>
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.#ctor(PangeaCyber.Net.Intel.DomainIntelClient.Builder)">
-            
+            Constructor
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient.Builder">
             
@@ -1394,13 +1397,27 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.Reputation(PangeaCyber.Net.Intel.DomainReputationRequest)">
-            
+            <kind>method</kind>
+            <summary>Retrieve reputation for a domain from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>domain_intel_post_v1_reputation</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.DomainReputationRequest">DomainReputationRequest with a domain and provider</param>
+            <returns>Response&lt;DomainReputationResult&gt;</returns>
+            <example>
+            <code>
+            var request = new DomainReputationRequest.Builder("737updatesboeing.com").Build();
+            var response = await client.Reputation(request);
+            </code>
+            </example>
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileIntelClient">
-            
+            <kind>class</kind>
+            <summary>
+            FileIntel Client
+            </summary>
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileIntelClient.#ctor(PangeaCyber.Net.Intel.FileIntelClient.Builder)">
-            
+            Constructor
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileIntelClient.Builder">
             
@@ -1412,16 +1429,36 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileIntelClient.Reputation(PangeaCyber.Net.Intel.FileHashReputationRequest)">
-            
+            <kind>method</kind>
+            <summary>Retrieve a reputation score for a file hash from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>file_intel_post_v1_reputation</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.FileHashReputationRequest">FileHashReputationRequest with the hash of the file to be looked up</param>
+            <returns>Response&lt;FileReputationResult&gt;</returns>
+            <example>
+            <code>
+            var request = new FileHashReputationRequest.Builder(
+                "142b638c6a60b60c7f9928da4fb85a5a8e1422a9ffdc9ee49e17e56ccca9cf6e",
+                "sha256")
+                .WithProvider("reversinglabs")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.Reputation(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileIntelClient.CalculateSHA256fromFile(System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPIntelClient">
-            
+            <kind>class</kind>
+            <summary>
+            IPIntel Client
+            </summary>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.#ctor(PangeaCyber.Net.Intel.IPIntelClient.Builder)">
-            
+            Constructor
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPIntelClient.Builder">
             
@@ -1433,19 +1470,99 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Geolocate(PangeaCyber.Net.Intel.IPGeolocateRequest)">
-            
+            <kind>method</kind>
+            <summary>Retrieve location information associated with an IP address.</summary>
+            <remarks>Geolocate</remarks>
+            <operationid>ip_intel_post_v1_geolocate</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPGeolocateRequest">IPGeolocateRequest with the ip to be looked up</param>
+            <returns>Response&lt;IPGeolocateResult&gt;</returns>
+            <example>
+            <code>
+            var request = new IPGeolocateRequest.Builder(
+                "93.231.182.110")
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.Geolocate(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GetDomain(PangeaCyber.Net.Intel.IPDomainRequest)">
-            
+            <kind>method</kind>
+            <summary>Retrieve the domain name associated with an IP address.</summary>
+            <remarks>Domain</remarks>
+            <operationid>ip_intel_post_v1_domain</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPDomainRequest">IPDomainRequest with the ip to be looked up</param>
+            <returns>Response&lt;IPDomainResult&gt;</returns>
+            <example>
+            <code>
+            var request = new IPDomainRequest.Builder(
+                "24.235.114.61")
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.GetDomain(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsVPN(PangeaCyber.Net.Intel.IPVPNRequest)">
-            
+            <kind>method</kind>
+            <summary>Determine if an IP address originates from a VPN.</summary>
+            <remarks>VPN</remarks>
+            <operationid>ip_intel_post_v1_vpn</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPVPNRequest">IPVPNRequest with the ip to be looked up</param>
+            <returns>Response&lt;IPVPNResult&gt;</returns>
+            <example>
+            <code>
+            var request = new IPVPNRequest.Builder(
+                "2.56.189.74")
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.IsVPN(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsProxy(PangeaCyber.Net.Intel.IPProxyRequest)">
-            
+            <kind>method</kind>
+            <summary>Determine if an IP address originates from a proxy.</summary>
+            <remarks>Proxy</remarks>
+            <operationid>ip_intel_post_v1_proxy</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPProxyRequest">IPProxyRequest with the ip to be looked up</param>
+            <returns>Response&lt;IPProxyResult&gt;</returns>
+            <example>
+            <code>
+            var request = new IPProxyRequest.Builder(
+                "34.201.32.172")
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.IsProxy(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Reputation(PangeaCyber.Net.Intel.IPReputationRequest)">
-            
+            <kind>method</kind>
+            <summary>Retrieve a reputation score for an IP address from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>ip_intel_post_v1_reputation</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPReputationRequest">IPReputationRequest with the ip to be looked up</param>
+            <returns>Response&lt;IPReputationResult&gt;</returns>
+            <example>
+            <code>
+            var request = new IPReputationRequest.Builder(
+                "93.231.182.110")
+                .WithProvider("crowdstrike")
+                .WithVerbose(true)
+                .WithRaw(true)
+                .Build();
+            var response = await client.Reputation(request);
+            </code>
+            </example>
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationData">
             
@@ -1940,10 +2057,13 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLIntelClient">
-            
+            <kind>class</kind>
+            <summary>
+            URLIntel Client
+            </summary>
         </member>
         <member name="M:PangeaCyber.Net.Intel.URLIntelClient.#ctor(PangeaCyber.Net.Intel.URLIntelClient.Builder)">
-            
+            Constructor
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLIntelClient.Builder">
             
@@ -1955,13 +2075,29 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.URLIntelClient.Reputation(PangeaCyber.Net.Intel.URLReputationRequest)">
-            
+            <kind>method</kind>
+            <summary>Retrieve a reputation score for a URL from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>url_intel_post_v1_reputation</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.URLReputationRequest">URLReputationRequest with the URL to be looked up</param>
+            <returns>Response&lt;URLReputationResult&gt;</returns>
+            <example>
+            <code>
+            var request = new URLReputationRequest.Builder(
+                "http://113.235.101.11:54384")
+                .Build();
+            var response = await client.Reputation(request);
+            </code>
+            </example>
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserIntelClient">
-            
+            <kind>class</kind>
+            <summary>
+            UserIntel Client
+            </summary>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.#ctor(PangeaCyber.Net.Intel.UserIntelClient.Builder)">
-            
+            Constructor
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserIntelClient.Builder">
             
@@ -1973,10 +2109,39 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserBreachedRequest)">
-            
+            <kind>method</kind>
+            <summary>Determine if an email address, username, phone number, or IP address was exposed in a security breach.</summary>
+            <remarks>Look up breached users</remarks>
+            <operationid>user_intel_post_v1_user_breached</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.UserBreachedRequest">UserBreachedRequest with the user data to be looked up</param>
+            <returns>Response&lt;UserBreachedResult&gt;</returns>
+            <example>
+            <code>
+            var request = new UserBreachedRequest.Builder()
+                .WithPhoneNumber("8005550123")
+                .WithProvider("spycloud")
+                .Build();
+            var response = await client.Breached(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserPasswordBreachedRequest)">
-            
+            <kind>method</kind>
+            <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
+            <remarks>Look up breached passwords</remarks>
+            <operationid>user_intel_post_v1_password_breached</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.UserPasswordBreachedRequest">UserPasswordBreachedRequest with the password hash to be looked up</param>
+            <returns>Response&lt;UserPasswordBreachedResult&gt;</returns>
+            <example>
+            <code>
+            var request = new UserPasswordBreachedRequest.Builder(
+                HashType.SHA256,
+                "5baa6")
+                .WithProvider("spycloud")
+                .Build();
+            var response = await client.Breached(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
             
