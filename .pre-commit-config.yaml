@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-json
+      - id: end-of-file-fixer
+      -
+        id: trailing-whitespace
+        exclude: .md
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: detect-aws-credentials
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: no-commit-to-branch
+        args:
+          - --branch
+          - main
+  - repo: local
+    hooks:
+      - id: dotnet-format
+        name: dotnet-format
+        entry: bash -c 'cd packages/pangea-sdk && dotnet format && exit 0'
+        language: system
