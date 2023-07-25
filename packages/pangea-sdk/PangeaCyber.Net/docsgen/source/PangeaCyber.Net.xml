@@ -962,13 +962,22 @@
         <member name="F:PangeaCyber.Net.BaseClient`1.userAgent">
             
         </member>
+        <member name="P:PangeaCyber.Net.BaseClient`1.logger">
+            
+        </member>
         <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
             
         </member>
         <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.config">
             
         </member>
+        <member name="P:PangeaCyber.Net.BaseClient`1.ClientBuilder.logger">
+            
+        </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.WithLogger(NLog.Logger)">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
