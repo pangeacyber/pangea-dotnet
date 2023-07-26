@@ -46,6 +46,8 @@ namespace PangeaCyber.Net.AuthN.Clients
         {
             [JsonProperty("user_id")]
             public string UserID { get; private set; }
+
+            [JsonProperty("mfa_provider")]
             public MFAProvider MFAProvider { get; private set; }
 
             public UserMFADeleteRequest(string userID, MFAProvider mfaProvider)
