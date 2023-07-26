@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///
         [JsonProperty("event", Required = Required.Always)]
-        public IEvent? Event { get; private set; } = default!;
+        public IEvent Event { get; private set; } = default!;
 
         ///
         [JsonProperty("signature")]
