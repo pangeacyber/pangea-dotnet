@@ -174,7 +174,7 @@ public class ITRedactTests
     public async Task testRedactTextUnauthorized()
     {
         Config cfg = Config.FromIntegrationEnvironment(environment);
-		cfg.Token = "notarealtoken";
+        cfg.Token = "notarealtoken";
         var fakeClient = new RedactClient.Builder(cfg).Build();
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build()));
     }
@@ -189,7 +189,7 @@ public class ITRedactTests
         };
 
         Config cfg = Config.FromIntegrationEnvironment(environment);
-		cfg.Token = "notarealtoken";
+        cfg.Token = "notarealtoken";
         var fakeClient = new RedactClient.Builder(cfg).Build();
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactStructured(new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build()));
     }

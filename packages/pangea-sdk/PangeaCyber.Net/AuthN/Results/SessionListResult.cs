@@ -15,7 +15,7 @@ namespace PangeaCyber.Net.AuthN.Results
         public string? Last { get; private set; }
 
         ///
-        public SessionListResult(){}
+        public SessionListResult() { }
 
     }
 }

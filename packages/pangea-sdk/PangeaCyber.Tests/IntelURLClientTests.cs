@@ -195,4 +195,3 @@ namespace PangeaCyber.Tests.Intel
 
     }
 }
-

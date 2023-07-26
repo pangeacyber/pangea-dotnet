@@ -34,7 +34,7 @@ namespace PangeaCyber.Net.Intel
                 HashType = hashType;
                 HashPrefix = hashPrefix;
             }
-            
+
             ///
             public new UserPasswordBreachedRequest Build()
             {

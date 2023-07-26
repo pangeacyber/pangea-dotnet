@@ -7,7 +7,8 @@ using PangeaCyber.Net;
 
 namespace PangeaCyber.Tests;
 
-public static class Extentions {
+public static class Extentions
+{
     public static void Merge<T, S>(this Dictionary<T, S> source, Dictionary<T, S> collection) where T : notnull
     {
         if (collection == null)
@@ -18,12 +19,12 @@ public static class Extentions {
         foreach (var item in collection)
         {
             source.Add(item.Key, item.Value);
-        } 
+        }
     }
 }
 
 [TestCaseOrderer(
-    "RunTestsInOrder.XUnit.AlphabeticalTestOrderer", 
+    "RunTestsInOrder.XUnit.AlphabeticalTestOrderer",
     "RunTestsInOrder.XUnit")]
 public class ITAuthNTest
 {
@@ -56,7 +57,8 @@ public class ITAuthNTest
     }
 
     [Fact]
-    public async void TestCycle() {
+    public async void TestCycle()
+    {
         await ITAuthNTest.TestA_UserActions(client);
         await ITAuthNTest.TestB_ClientSessionList_n_Invalidate(client);
         await ITAuthNTest.TestC_SessionList_n_Invalidate(client);
@@ -116,7 +118,7 @@ public class ITAuthNTest
             // User verify
             var verifyResp = await client.User.Verify(IDProvider.Password, emailTest, passwordOld);
             Assert.True(verifyResp.IsOK);
-            Assert.True(verifyResp.Result.ID.Equals(userID));
+            Assert.Equal(verifyResp.Result.ID, userID);
 
             // Update password
             var passUpdateResp = await client

@@ -47,7 +47,7 @@ namespace PangeaCyber.Net.AuthN.Results
         public string CreatedAt { get; private set; } = default!;
 
         ///
-        public UserProfileGetResult(){}
+        public UserProfileGetResult() { }
 
     }
 }

@@ -25,7 +25,8 @@ namespace PangeaCyber.Tests
         public string? FieldTime { get; set; }
 
         ///
-        public CustomEvent() {
+        public CustomEvent()
+        {
             Message = default!;
         } // Needed for JSON deserialization
 

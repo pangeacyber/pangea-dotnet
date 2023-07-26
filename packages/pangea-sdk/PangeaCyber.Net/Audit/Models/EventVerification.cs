@@ -13,9 +13,9 @@ namespace PangeaCyber.Net
 
         ///
         Success,
-        ///        
+        ///
         Failed,
-        ///        
+        ///
         NotVerified
     }
 }

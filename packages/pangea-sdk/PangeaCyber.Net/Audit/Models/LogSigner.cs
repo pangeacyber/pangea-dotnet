@@ -110,10 +110,11 @@ namespace PangeaCyber.Net.Audit
         }
 
         ///
-        public string GetAlgorithm() {
+        public string GetAlgorithm()
+        {
             return "ED25519";
         }
 
-        
+
     }
 }

@@ -19,6 +19,6 @@ namespace PangeaCyber.Net.AuthN.Results
         public int? Count { get; private set; }
 
         ///
-        public UserListResult(){}
+        public UserListResult() { }
     }
 }

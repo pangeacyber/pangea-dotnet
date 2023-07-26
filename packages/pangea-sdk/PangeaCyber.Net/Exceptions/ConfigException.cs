@@ -13,4 +13,3 @@ namespace PangeaCyber.Net.Exceptions
         }
     }
 }
-

@@ -10,7 +10,8 @@ namespace PangeaCyber.Net
         public string ConfigID { get; set; } = default!;
 
         ///
-        public BaseRequest() {
+        public BaseRequest()
+        {
         }
 
     }

@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.Audit
     /// </summary>
     public sealed class LogRequest : BaseRequest
     {
-        ///        
+        ///
         [JsonProperty("event", Required = Required.Always)]
         public IEvent @event { get; set; } = default!;
 
@@ -39,4 +39,3 @@ namespace PangeaCyber.Net.Audit
         }
     }
 }
-

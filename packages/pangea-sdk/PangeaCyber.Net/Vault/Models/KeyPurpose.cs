@@ -15,7 +15,7 @@ namespace PangeaCyber.Net.Vault.Models
         ///
         [EnumMember(Value = "encryption")]
         Encryption,
-        
+
         ///
         [EnumMember(Value = "jwt")]
         JWT

@@ -3,10 +3,12 @@ using System.Text;
 namespace PangeaCyber.Net
 {
     ///
-    public class Utils {
+    public class Utils
+    {
 
         ///
-        public static string StringToStringB64(string input){
+        public static string StringToStringB64(string input)
+        {
             // Convert the string to a byte array
             byte[] bytes = Encoding.UTF8.GetBytes(input);
 

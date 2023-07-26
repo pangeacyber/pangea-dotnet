@@ -11,6 +11,6 @@ namespace PangeaCyber.Net.AuthN.Results
         public TOTPsecret? TotpSecret { get; private set; }
 
         ///
-        public UserMFAStartResult(){}
+        public UserMFAStartResult() { }
     }
 }

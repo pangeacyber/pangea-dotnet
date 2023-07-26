@@ -15,6 +15,6 @@ namespace PangeaCyber.Net.AuthN.Results
         public LoginToken? RefreshToken { get; private set; }
 
         ///
-        public FlowCompleteResult() {}
+        public FlowCompleteResult() { }
     }
 }

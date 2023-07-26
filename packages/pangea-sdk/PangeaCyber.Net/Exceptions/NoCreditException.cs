@@ -2,16 +2,15 @@
 using System;
 namespace PangeaCyber.Net.Exceptions
 {
-	/// <kind>class</kind>
+    /// <kind>class</kind>
     /// <summary>
     /// NoCreditException
     /// </summary>
-	public class NoCreditException : PangeaAPIException
+    public class NoCreditException : PangeaAPIException
     {
-		///
-		public NoCreditException(string message, Response<PangeaErrors> response): base(message, response)
-		{
-		}
-	}
+        ///
+        public NoCreditException(string message, Response<PangeaErrors> response) : base(message, response)
+        {
+        }
+    }
 }
-

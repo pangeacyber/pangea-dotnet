@@ -1,5 +1,5 @@
 namespace PangeaCyber.Net.AuthN.Results
 {
     ///
-    public class UserMFADeleteResult : CommonFlowResult{}
+    public class UserMFADeleteResult : CommonFlowResult { }
 }

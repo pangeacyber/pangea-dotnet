@@ -40,29 +40,29 @@ namespace PangeaCyber.Net
 
         #region Public Properties
 
-        ///        
+        ///
         public string Token { get; set; }
 
-        ///        
+        ///
         public string Domain { get; set; }
 
         ///
-        public string ConfigID {get; set;} = default!;
+        public string ConfigID { get; set; } = default!;
 
-        ///        
+        ///
         public string Environment { get; set; }
 
         ///
         public bool Insecure { get; set; } = default!;
 
-        ///        
+        ///
         public TimeSpan ConnectionTimeout { get; set; } = default!;
 
         ///
-        public string CustomUserAgent {get; set; } = default!;
+        public string CustomUserAgent { get; set; } = default!;
 
-    	/// Enable queued request retry support
-        public bool QueuedRetryEnabled {get; set; } = true; 
+        /// Enable queued request retry support
+        public bool QueuedRetryEnabled { get; set; } = true;
 
         /// Timeout used to poll results after 202 (in secs)
         public long PollResultTimeoutSecs = 30;
@@ -90,7 +90,8 @@ namespace PangeaCyber.Net
 
         #region Static Methods
 
-        private static string LoadEnvironmentVariable(string envVarName){
+        private static string LoadEnvironmentVariable(string envVarName)
+        {
             string value = System.Environment.GetEnvironmentVariable(envVarName) ?? string.Empty;
             if (String.IsNullOrEmpty(value))
             {
@@ -100,7 +101,8 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public static string GetTestDomain(TestEnvironment environment){
+        public static string GetTestDomain(TestEnvironment environment)
+        {
             string domainEnvVarName = "PANGEA_INTEGRATION_DOMAIN_" + environment.ToString();
             return LoadEnvironmentVariable(domainEnvVarName);
         }
@@ -152,31 +154,36 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public static string GetTestToken(TestEnvironment environment){
+        public static string GetTestToken(TestEnvironment environment)
+        {
             string envVarName = "PANGEA_INTEGRATION_TOKEN_" + environment.ToString();
             return LoadEnvironmentVariable(envVarName);
         }
 
         ///
-        public static string GetVaultSignatureTestToken(TestEnvironment environment){
+        public static string GetVaultSignatureTestToken(TestEnvironment environment)
+        {
             string envVarName = "PANGEA_INTEGRATION_VAULT_TOKEN_" + environment.ToString();
             return LoadEnvironmentVariable(envVarName);
         }
 
         ///
-        public static string GetMultiConfigTestToken(TestEnvironment environment){
+        public static string GetMultiConfigTestToken(TestEnvironment environment)
+        {
             string envVarName = "PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_" + environment.ToString();
             return LoadEnvironmentVariable(envVarName);
         }
 
         ///
-        public static string GetCustomSchemaTestToken(TestEnvironment environment){
+        public static string GetCustomSchemaTestToken(TestEnvironment environment)
+        {
             string envVarName = "PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_" + environment.ToString();
             return LoadEnvironmentVariable(envVarName);
         }
 
         ///
-        public static string GetConfigID(TestEnvironment environment, string service, int configNumber){
+        public static string GetConfigID(TestEnvironment environment, string service, int configNumber)
+        {
             string envVarName = String.Format("PANGEA_{0}_CONFIG_ID_{1}_{2}", service.ToUpper().Replace('-', '_'), configNumber, environment.ToString());
             return LoadEnvironmentVariable(envVarName);
         }

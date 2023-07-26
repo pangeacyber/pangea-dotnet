@@ -81,8 +81,7 @@ namespace PangeaCyber.Net.Redact
             {
                 return new RedactClient(this);
             }
-            
-        }
-    }   
-}
 
+        }
+    }
+}

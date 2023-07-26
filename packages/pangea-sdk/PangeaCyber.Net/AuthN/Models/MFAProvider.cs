@@ -10,11 +10,11 @@ namespace PangeaCyber.Net.AuthN.Models
         ///
         [EnumMember(Value = "totp")]
         TOTP,
-        
+
         ///
         [EnumMember(Value = "email_otp")]
         EmailOTP,
-        
+
         ///
         [EnumMember(Value = "sms_otp")]
         SmsOTP

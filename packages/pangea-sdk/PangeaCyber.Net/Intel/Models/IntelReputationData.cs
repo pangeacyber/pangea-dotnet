@@ -18,8 +18,9 @@ namespace PangeaCyber.Net.Intel
         public string Verdict { get; set; }
 
         ///
-        public IntelReputationData() {
-            Category = new string[] {};
+        public IntelReputationData()
+        {
+            Category = new string[] { };
             Verdict = default!;
         }
 

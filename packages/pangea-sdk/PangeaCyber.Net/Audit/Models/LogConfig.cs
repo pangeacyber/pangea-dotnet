@@ -15,8 +15,8 @@ namespace PangeaCyber.Net.Audit
         ///
         private LogConfig(Builder builder)
         {
-            this.SignLocal = builder.SignLocal ?? false ;
-            this.Verify = builder.Verify ?? false ;
+            this.SignLocal = builder.SignLocal ?? false;
+            this.Verify = builder.Verify ?? false;
             this.Verbose = builder.Verbose ?? null;
         }
 

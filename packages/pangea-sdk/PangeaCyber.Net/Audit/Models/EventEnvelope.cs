@@ -38,7 +38,8 @@ namespace PangeaCyber.Net.Audit
         ///
         public EventVerification VerifySignature()
         {
-            if( this.Event == null){
+            if (this.Event == null)
+            {
                 return EventVerification.NotVerified;
             }
 
@@ -70,8 +71,10 @@ namespace PangeaCyber.Net.Audit
             return verifier.Verify(pubKeyValue, this.Signature, canonicalJson);
         }
 
-        private string? GetPublicKeyValue(){
-            if(this.PublicKey == null) {
+        private string? GetPublicKeyValue()
+        {
+            if (this.PublicKey == null)
+            {
                 return null;
             }
 
@@ -81,7 +84,7 @@ namespace PangeaCyber.Net.Audit
             try
             {
                 dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(this.PublicKey)!;
-                return dict.TryGetValue("key", out value!)? value : null;
+                return dict.TryGetValue("key", out value!) ? value : null;
             }
             catch (Exception)
             {
@@ -113,8 +116,9 @@ namespace PangeaCyber.Net.Audit
             }
 
             object rawEvent;
-            if(RawEnvelope.TryGetValue("event", out rawEvent!)){
-                IEvent? @event = IEvent.FromRaw(rawEvent, customSchemaClass);
+            if (RawEnvelope.TryGetValue("event", out rawEvent!))
+            {
+                IEvent @event = IEvent.FromRaw(rawEvent, customSchemaClass)?? default!;
                 EventEnvelope.Event = @event;
             }
 
