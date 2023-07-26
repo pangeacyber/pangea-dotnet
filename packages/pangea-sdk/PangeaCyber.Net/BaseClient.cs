@@ -31,20 +31,23 @@ namespace PangeaCyber.Net
         private NLog.Logger logger { get; }
 
         ///
-        public class ClientBuilder {
+        public class ClientBuilder
+        {
             ///
-            public Config config {get; }
+            public Config config { get; }
 
             ///
-            public NLog.Logger? logger {get; private set; } = null;
+            public NLog.Logger? logger { get; private set; } = null;
 
             ///
-            public ClientBuilder(Config config){
+            public ClientBuilder(Config config)
+            {
                 this.config = config;
             }
 
             ///
-            public ClientBuilder WithLogger(NLog.Logger _logger){
+            public ClientBuilder WithLogger(NLog.Logger _logger)
+            {
                 this.logger = _logger;
                 return (TBuilder)this;
             }
@@ -62,7 +65,8 @@ namespace PangeaCyber.Net
             this.HttpClient.BaseAddress = config.GetServiceUrl(serviceName, String.Empty);
 
             this.userAgent = "pangea-csharp/" + Config.Version;
-            if(config.CustomUserAgent != default){
+            if (config.CustomUserAgent != default)
+            {
                 this.userAgent += " " + config.CustomUserAgent;
             }
 
@@ -75,16 +79,18 @@ namespace PangeaCyber.Net
             }
         }
 
-        private NLog.Logger GetDefaultLogger(){
+        private NLog.Logger GetDefaultLogger()
+        {
             NLog.Logger logger = NLog.LogManager.GetLogger("Pangea");
-            
+
             return logger;
         }
 
         ///
         public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request)
         {
-            if(this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default) {
+            if (this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default)
+            {
                 request.ConfigID = this.config.ConfigID;
             }
 
@@ -118,9 +124,10 @@ namespace PangeaCyber.Net
                 throw new PangeaException("Failed to send request", e);
             }
 
-            if (res.StatusCode == System.Net.HttpStatusCode.Accepted && this.config.QueuedRetryEnabled) {
-    			res = await this.HandleQueued(res);
-	    	}
+            if (res.StatusCode == System.Net.HttpStatusCode.Accepted && this.config.QueuedRetryEnabled)
+            {
+                res = await this.HandleQueued(res);
+            }
 
             return await CheckResponse<TResult>(res);
         }
@@ -133,7 +140,8 @@ namespace PangeaCyber.Net
         }
 
         ///
-        protected async Task<HttpResponseMessage> DoGet(String path){
+        protected async Task<HttpResponseMessage> DoGet(String path)
+        {
             this.logger.Debug(
                 $"{{\"service\": \"{serviceName}\", \"action\": \"get\", \"path\": \"{path}\"}}"
             );
@@ -228,7 +236,8 @@ namespace PangeaCyber.Net
             return response;
         }
 
-        private JsonSerializerSettings GetJsonSerializerSettings(){
+        private JsonSerializerSettings GetJsonSerializerSettings()
+        {
             return new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
         }
 

@@ -11,7 +11,7 @@ namespace PangeaCyber.Net.Intel
 
         ///
         [JsonProperty("city")]
-        public string City { get; set; }  = default!;
+        public string City { get; set; } = default!;
 
         ///
         [JsonProperty("latitude")]

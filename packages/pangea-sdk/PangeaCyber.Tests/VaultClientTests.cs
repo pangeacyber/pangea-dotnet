@@ -32,7 +32,7 @@ namespace PangeaCyber.Net.Vault.Tests
         private async Task EncryptingCycle(string id)
         {
             string message = "thisisamessagetoencrypt";
-            string dataB64 = Utils.StringToStringB64(message);  
+            string dataB64 = Utils.StringToStringB64(message);
 
             // Encrypt 1
             var encryptResponse1 = await client.Encrypt(new EncryptRequest.Builder(id, dataB64).Build());

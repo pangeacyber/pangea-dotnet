@@ -19,7 +19,7 @@ namespace PangeaCyber.Net.Embargo
 
         ///
         [JsonProperty("embargoed_country_name")]
-        public string EmbargoedCountryName { get; set; } = default!; 
+        public string EmbargoedCountryName { get; set; } = default!;
 
         ///
         [JsonProperty("annotations")]

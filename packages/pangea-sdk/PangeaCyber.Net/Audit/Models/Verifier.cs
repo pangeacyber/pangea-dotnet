@@ -10,14 +10,16 @@ namespace PangeaCyber.Net.Audit
     /// </summary>
     public sealed class Verifier
     {
-        ///        
+        ///
         public EventVerification Verify(string pubKeyInput, string signatureBase64, string message)
         {
             const int KeyLength = 32;
             byte[] pubKeyBytes = new byte[KeyLength];
 
-            if (pubKeyInput.StartsWith("-----")) {
-                if (pubKeyInput.StartsWith("-----BEGIN PUBLIC KEY-----")) {
+            if (pubKeyInput.StartsWith("-----"))
+            {
+                if (pubKeyInput.StartsWith("-----BEGIN PUBLIC KEY-----"))
+                {
                     // Ed25519 header format
                     string publicKeyPEM = pubKeyInput
                         .Replace("-----BEGIN PUBLIC KEY-----", "")
@@ -25,11 +27,15 @@ namespace PangeaCyber.Net.Audit
                         .Replace("-----END PUBLIC KEY-----", "");
                     var encoded = Convert.FromBase64String(publicKeyPEM);
                     Array.Copy(encoded, Math.Max(encoded.Length - KeyLength, 0), pubKeyBytes, 0, KeyLength);
-                } else {
+                }
+                else
+                {
                     // Not supported formats
                     return EventVerification.NotVerified;
                 }
-            } else {
+            }
+            else
+            {
                 pubKeyBytes = Convert.FromBase64String(pubKeyInput);
             }
 

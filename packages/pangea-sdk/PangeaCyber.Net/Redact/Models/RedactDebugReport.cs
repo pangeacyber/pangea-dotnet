@@ -13,7 +13,7 @@ namespace PangeaCyber.Net.Redact
         [JsonProperty("summary_counts")]
         public Dictionary<string, int> SummaryCounts { get; private set; } = default!;
 
-		///
+        ///
         [JsonProperty("recognizer_results")]
         public RedactRecognizerResult[] RecognizerResults { get; private set; } = default!;
     }

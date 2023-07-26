@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Audit
     public class AuditClient : BaseClient<AuditClient.Builder>
     {
         ///
-        public static string ServiceName {get; }= "audit";
+        public static string ServiceName { get; } = "audit";
 
         ///
         private static bool supportMultiConfig = true;
@@ -41,7 +41,7 @@ namespace PangeaCyber.Net.Audit
         /// Constructor
         protected AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
         {
-            this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename)? new LogSigner(builder.privateKeyFilename!) : null;
+            this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename) ? new LogSigner(builder.privateKeyFilename!) : null;
             this.publishedRoots = new Dictionary<int, PublishedRoot>();
             this.customSchemaClass = builder.customSchemaClass;
             this.tenantID = builder.tenantID;
@@ -63,7 +63,8 @@ namespace PangeaCyber.Net.Audit
         private Task processLogResponse(LogResult result, bool verify)
         {
             string newUnpublishedRoot = result.UnpublishedRoot;
-            if(result.RawEnvelope != null){
+            if (result.RawEnvelope != null)
+            {
                 result.EventEnvelope = EventEnvelope.FromRaw(result.RawEnvelope, this.customSchemaClass)!;
                 if (verify)
                 {
@@ -112,7 +113,8 @@ namespace PangeaCyber.Net.Audit
             string signature = default!;
             string publicKey = default!;
 
-            if(string.IsNullOrEmpty(evt.GetTenantID()) && this.tenantID != default){
+            if (string.IsNullOrEmpty(evt.GetTenantID()) && this.tenantID != default)
+            {
                 evt.SetTenantID(this.tenantID);
             }
 
@@ -332,14 +334,19 @@ namespace PangeaCyber.Net.Audit
             return response;
         }
 
-        private string GetPublicKeyData(){
-            try {
-                if(this.signer != null){
+        private string GetPublicKeyData()
+        {
+            try
+            {
+                if (this.signer != null)
+                {
                     this.pkInfo.Add("key", this.signer.GetPublicKey());
                     this.pkInfo.Add("algorithm", this.signer.GetAlgorithm());
                 }
                 return JsonConvert.SerializeObject(this.pkInfo);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 throw new PangeaException("Failed to stringify public key info", e);
             }
         }
@@ -382,7 +389,7 @@ namespace PangeaCyber.Net.Audit
                 return this;
             }
 
-            /// Setup user custom schema 
+            /// Setup user custom schema
             public Builder WithCustomSchema<TEventType>() where TEventType : IEvent
             {
                 if (!typeof(IEvent).IsAssignableFrom(typeof(TEventType)))
@@ -395,7 +402,8 @@ namespace PangeaCyber.Net.Audit
             }
 
             /// Add extra public key information
-            public Builder WithPKInfo(Dictionary<string, string> pkInfo){
+            public Builder WithPKInfo(Dictionary<string, string> pkInfo)
+            {
                 this.pkInfo = pkInfo;
                 return this;
             }
@@ -410,4 +418,3 @@ namespace PangeaCyber.Net.Audit
     }
 
 }
-

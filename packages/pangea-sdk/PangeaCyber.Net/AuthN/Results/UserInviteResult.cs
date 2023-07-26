@@ -3,5 +3,5 @@ using PangeaCyber.Net.AuthN.Models;
 namespace PangeaCyber.Net.AuthN.Results
 {
     ///
-    public class UserInviteResult: UserInvite{}
+    public class UserInviteResult : UserInvite { }
 }

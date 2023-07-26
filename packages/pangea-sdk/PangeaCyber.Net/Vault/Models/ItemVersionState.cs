@@ -11,19 +11,19 @@ namespace PangeaCyber.Net.Vault.Models
         ///
         [EnumMember(Value = "active")]
         Active,
-        
+
         ///
         [EnumMember(Value = "deactivated")]
         Deactivated,
 
-        ///        
+        ///
         [EnumMember(Value = "suspended")]
         Suspended,
-        
+
         ///
         [EnumMember(Value = "compromised")]
         Compromised,
-        
+
         ///
         [EnumMember(Value = "destroyed")]
         Destroyed

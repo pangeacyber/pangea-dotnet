@@ -137,7 +137,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.NotNull(response.Result.RawData);
         }
 
-                [Fact]
+        [Fact]
         public async Task TestFileReputationNotProvided()
         {
             var response = await client.Reputation(new FileHashReputationRequest.Builder(

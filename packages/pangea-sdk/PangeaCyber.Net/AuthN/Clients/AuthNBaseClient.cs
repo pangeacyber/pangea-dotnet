@@ -4,7 +4,7 @@ namespace PangeaCyber.Net.AuthN.Clients
     public class AuthNBaseClient : BaseClient<AuthNBaseClient.Builder>
     {
         ///
-        public static string ServiceName {get; }= "authn";
+        public static string ServiceName { get; } = "authn";
 
         ///
         protected const bool supportMultiConfig = false;
@@ -15,10 +15,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         }
 
         ///
-        public class Builder : BaseClient<AuthNBaseClient.Builder>.ClientBuilder {
+        public class Builder : BaseClient<AuthNBaseClient.Builder>.ClientBuilder
+        {
 
             ///
-            public Builder(Config config) : base(config){
+            public Builder(Config config) : base(config)
+            {
 
             }
         }

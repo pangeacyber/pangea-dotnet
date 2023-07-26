@@ -11,7 +11,7 @@ namespace PangeaCyber.Net.AuthN.Requests
         public class Builder : CommonSessionListRequest<SessionListRequest.Builder>.CommonBuilder
         {
             ///
-            public Builder() {}
+            public Builder() { }
 
             ///
             public new SessionListRequest Build()

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace PangeaCyber.Net.Intel
 {
     ///
-    public class IPDomainResult  : IntelCommonResult
+    public class IPDomainResult : IntelCommonResult
     {
         ///
         [JsonProperty("data")]

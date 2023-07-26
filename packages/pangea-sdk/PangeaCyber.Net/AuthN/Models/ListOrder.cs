@@ -10,7 +10,7 @@ namespace PangeaCyber.Net.AuthN.Models
         ///
         [EnumMember(Value = "asc")]
         Ascending,
-        
+
         ///
         [EnumMember(Value = "desc")]
         Descending

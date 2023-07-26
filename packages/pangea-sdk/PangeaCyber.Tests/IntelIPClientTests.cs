@@ -30,7 +30,7 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
-        public async Task  TestIPReputationMalicious_2()
+        public async Task TestIPReputationMalicious_2()
         {
             // With provider, not verbose by default, not raw by default;
             var response = await client.Reputation(
@@ -45,7 +45,7 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
-        public async Task  TestIPReputationMalicious_3()
+        public async Task TestIPReputationMalicious_3()
         {
             // Default provider, no verbose, no raw;
             var response = await client.Reputation(
@@ -60,7 +60,7 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
-        public async Task  TestIPReputationMalicious_4()
+        public async Task TestIPReputationMalicious_4()
         {
             // Default provider, verbose, no raw;
             var response = await client.Reputation(
@@ -679,4 +679,3 @@ namespace PangeaCyber.Tests.Intel
 
     }
 }
-

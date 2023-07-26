@@ -15,12 +15,14 @@ namespace PangeaCyber.Net.Audit
 
 
         ///
-        public void SetTenantID(String tenantID){
+        public void SetTenantID(String tenantID)
+        {
             TenantID = tenantID;
         }
 
         ///
-        public String? GetTenantID(){
+        public String? GetTenantID()
+        {
             return TenantID;
         }
 

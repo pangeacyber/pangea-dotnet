@@ -10,7 +10,7 @@ namespace PangeaCyber.Net.Audit
     {
         ///
         [JsonProperty("actor")]
-        public string? Actor { get; set;}
+        public string? Actor { get; set; }
 
         ///
         [JsonProperty("action")]
@@ -69,37 +69,38 @@ namespace PangeaCyber.Net.Audit
         public class Builder
         {
             ///
-            public string? Actor { get; private set;} = null;
+            public string? Actor { get; private set; } = null;
 
             ///
-            public string? Action { get; private set;} = null;
+            public string? Action { get; private set; } = null;
 
             ///
-            public string Message { get; private set;}
+            public string Message { get; private set; }
 
             ///
-            public string? NewField { get; private set;} = null;
+            public string? NewField { get; private set; } = null;
 
             ///
-            public string? Old { get; private set;} = null;
+            public string? Old { get; private set; } = null;
 
             ///
-            public string? Source { get; private set;} = null;
+            public string? Source { get; private set; } = null;
 
             ///
-            public string? Status { get; private set;} = null;
+            public string? Status { get; private set; } = null;
 
             ///
-            public string? Target { get; private set;} = null;
+            public string? Target { get; private set; } = null;
 
             ///
-            public string? Timestamp { get; private set;} = null;
+            public string? Timestamp { get; private set; } = null;
 
             ///
-            public string? TenantID { get; private set;} = null;
+            public string? TenantID { get; private set; } = null;
 
             ///
-            public Builder(string Message) {
+            public Builder(string Message)
+            {
                 this.Message = Message;
             }
 

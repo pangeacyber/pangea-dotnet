@@ -1,5 +1,5 @@
 namespace PangeaCyber.Net.AuthN.Results
 {
     ///
-    public class SessionLogoutResult{}
+    public class SessionLogoutResult { }
 }

@@ -1,5 +1,5 @@
 namespace PangeaCyber.Net.AuthN.Results
 {
     ///
-    public class FlowVerifyPasswordResult : CommonFlowResult{}
+    public class FlowVerifyPasswordResult : CommonFlowResult { }
 }

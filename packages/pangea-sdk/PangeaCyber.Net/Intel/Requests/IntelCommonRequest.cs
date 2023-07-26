@@ -38,7 +38,8 @@ namespace PangeaCyber.Net.Intel
             ///
             public bool? Raw { get; private set; }
 
-            private TBuilder Self() {
+            private TBuilder Self()
+            {
                 return (TBuilder)this;
             }
 

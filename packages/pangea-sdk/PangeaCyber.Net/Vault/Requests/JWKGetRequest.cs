@@ -36,7 +36,8 @@ namespace PangeaCyber.Net.Vault.Requests
             }
 
             ///
-            public Builder WithVersion(string version){
+            public Builder WithVersion(string version)
+            {
                 Version = version;
                 return this;
             }

@@ -90,8 +90,8 @@ namespace PangeaCyber.Net.Audit
             PublishedRoot currRoot = publishedRoots[LeafIndex.Value + 1];
             PublishedRoot prevRoot = publishedRoots[LeafIndex.Value];
             ConsistencyProof proof = Verification.DecodeConsistencyProof(currRoot.ConsistencyProof);
-            
-            
+
+
             this.ConsistencyVerification = Verification.VerifyConsistencyProof(currRoot.RootHash, prevRoot.RootHash, proof);
         }
 

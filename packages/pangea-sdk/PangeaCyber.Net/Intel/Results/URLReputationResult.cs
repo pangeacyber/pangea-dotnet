@@ -10,7 +10,8 @@ namespace PangeaCyber.Net.Intel
         public URLReputationData Data { get; set; }
 
         ///
-        public URLReputationResult(){
+        public URLReputationResult()
+        {
             Data = new URLReputationData();
         }
 

@@ -16,7 +16,8 @@
         }
 
         ///
-        public new string ToString() {
+        public new string ToString()
+        {
             String ret = "";
             ret += "message: " + this.Message + "\n";
             ret += "summary: " + this.Response.Summary + "\n";
@@ -31,7 +32,6 @@
             }
 
             return ret;
-        } 
+        }
     }
 }
-

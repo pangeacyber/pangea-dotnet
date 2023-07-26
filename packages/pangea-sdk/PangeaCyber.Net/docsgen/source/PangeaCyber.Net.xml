@@ -247,7 +247,7 @@
             Add a tenant ID to be sent in each logged event
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithCustomSchema``1">
-            Setup user custom schema 
+            Setup user custom schema
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithPKInfo(System.Collections.Generic.Dictionary{System.String,System.String})">
             Add extra public key information
@@ -610,7 +610,7 @@
             </summary>
         </member>
         <member name="M:PangeaCyber.Net.Audit.Verifier.Verify(System.String,System.String,System.String)">
-                   
+            
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogRequest">
             <kind>class</kind>
@@ -619,7 +619,7 @@
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.Audit.LogRequest.event">
-                   
+            
         </member>
         <member name="P:PangeaCyber.Net.Audit.LogRequest.Verbose">
             
@@ -940,10 +940,10 @@
             
         </member>
         <member name="F:PangeaCyber.Net.EventVerification.Failed">
-                   
+            
         </member>
         <member name="F:PangeaCyber.Net.EventVerification.NotVerified">
-                   
+            
         </member>
         <member name="T:PangeaCyber.Net.AuthN.AuthNClient">
             
@@ -3084,22 +3084,22 @@
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.Token">
-                   
+            
         </member>
         <member name="P:PangeaCyber.Net.Config.Domain">
-                   
+            
         </member>
         <member name="P:PangeaCyber.Net.Config.ConfigID">
             
         </member>
         <member name="P:PangeaCyber.Net.Config.Environment">
-                   
+            
         </member>
         <member name="P:PangeaCyber.Net.Config.Insecure">
             
         </member>
         <member name="P:PangeaCyber.Net.Config.ConnectionTimeout">
-                   
+            
         </member>
         <member name="P:PangeaCyber.Net.Config.CustomUserAgent">
             
@@ -4771,7 +4771,7 @@
             
         </member>
         <member name="F:PangeaCyber.Net.Vault.Models.ItemVersionState.Suspended">
-                   
+            
         </member>
         <member name="F:PangeaCyber.Net.Vault.Models.ItemVersionState.Compromised">
             

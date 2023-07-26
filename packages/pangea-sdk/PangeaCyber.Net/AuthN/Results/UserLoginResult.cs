@@ -15,6 +15,6 @@ namespace PangeaCyber.Net.AuthN.Results
         public LoginToken? ActiveToken { get; private set; }
 
         ///
-        public UserLoginResult(){}
+        public UserLoginResult() { }
     }
 }

@@ -58,17 +58,17 @@ const parseMethodName = (className, method) => {
 
 /**
  * normalizeCodeExample - removes all the space chars after newlines
- * 
+ *
  * For some reason, pulling the example code from the XML
  * preserves the XML indentation level, so initially you get a string that
- * looks like: 
+ * looks like:
  * string msg = someCode;\n            var response = await moreCode();
- * 
+ *
  * To normalize everything, just replace the newline and 12 space chars
  * with ONE newline, so the above string becomes:
  * string msg = someCode;\nvar response = await moreCode();
- * 
- * @param {string} code 
+ *
+ * @param {string} code
  * @returns string
  */
 const normalizeCodeExample = (code) => {
@@ -200,4 +200,3 @@ try {
 } catch (err) {
     console.error(err);
 }
-

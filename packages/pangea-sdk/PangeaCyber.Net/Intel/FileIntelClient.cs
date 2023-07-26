@@ -60,7 +60,8 @@ namespace PangeaCyber.Net.Intel
         ///
         public static string CalculateSHA256fromFile(string filepath)
         {
-            try{
+            try
+            {
                 using (var stream = File.OpenRead(filepath))
                 {
                     using (var sha256 = SHA256.Create())
@@ -69,7 +70,9 @@ namespace PangeaCyber.Net.Intel
                         return BitConverter.ToString(hashBytes).Replace("-", string.Empty);
                     }
                 }
-            } catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 throw new PangeaException(string.Format("Could not process file: {0}. error: {1}", filepath, e.ToString()), e);
             }
         }

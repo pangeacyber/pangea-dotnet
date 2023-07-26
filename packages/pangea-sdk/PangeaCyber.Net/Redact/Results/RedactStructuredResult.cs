@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Redact
         [JsonProperty("count")]
         public int Count { get; private set; } = default!;
 
-		///
+        ///
         [JsonProperty("report")]
         public RedactDebugReport Report { get; private set; } = default!;
 

@@ -22,8 +22,8 @@ public class ITAuditTests
     private const string TENANT_ID = "test_tenant";
     private const string PRIVATE_KEY_FILE = "./data/privkey";
     private const string MSG_CUSTOM_SCHEMA_NO_SIGNED = "java-sdk-custom-schema-no-signed";
-	private const string MSG_CUSTOM_SCHEMA_SIGNED_LOCAL = "java-sdk-custom-schema-sign-local";
-	private const string LONG_FIELD = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia, orci eget commodo commodo non.";
+    private const string MSG_CUSTOM_SCHEMA_SIGNED_LOCAL = "java-sdk-custom-schema-sign-local";
+    private const string LONG_FIELD = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia, orci eget commodo commodo non.";
 
     public ITAuditTests()
     {
@@ -45,12 +45,12 @@ public class ITAuditTests
         this.customSchemaNSignClient = new AuditClient.Builder(customSchemaCfg).WithCustomSchema<CustomEvent>().WithPrivateKey(PRIVATE_KEY_FILE).Build();
 
         this.customEvent =
-			new CustomEvent.Builder(MSG_CUSTOM_SCHEMA_NO_SIGNED)
-				.WithFieldInt(1)
-				.WithFieldBool(true)
-				.WithFieldStrShort(STATUS_NO_SIGNED)
-				.WithFieldStrLong(LONG_FIELD)
-				.Build();
+            new CustomEvent.Builder(MSG_CUSTOM_SCHEMA_NO_SIGNED)
+                .WithFieldInt(1)
+                .WithFieldBool(true)
+                .WithFieldStrShort(STATUS_NO_SIGNED)
+                .WithFieldStrLong(LONG_FIELD)
+                .Build();
     }
 
     [Fact]
@@ -421,7 +421,7 @@ public class ITAuditTests
 
 
         var response = await generalClient.Search(req, new SearchConfig.Builder().WithVerifyConsistency(false).WithVerifyEvents(false).Build());
-         Assert.True(response.IsOK);
+        Assert.True(response.IsOK);
         Assert.True(response.Result.Count <= limit);
 
         foreach (SearchEvent evt in response.Result.Events)
