@@ -2,13 +2,16 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.Intel
 {
-    ///
+    /// <kind>class</kind>
+    /// <summary>
+    /// UserIntel Client
+    /// </summary>
     public class UserIntelClient : BaseClient<UserIntelClient.Builder>
     {
         private const string ServiceName = "user-intel";
         private static readonly bool SupportMultiConfig = false;
 
-        ///
+        /// Constructor
         public UserIntelClient(Builder builder)
             : base(builder, ServiceName, SupportMultiConfig)
         {
@@ -30,13 +33,42 @@ namespace PangeaCyber.Net.Intel
             }
         }
 
-        ///
+        /// <kind>method</kind>
+        /// <summary>Determine if an email address, username, phone number, or IP address was exposed in a security breach.</summary>
+        /// <remarks>Look up breached users</remarks>
+        /// <operationid>user_intel_post_v1_user_breached</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.UserBreachedRequest">UserBreachedRequest with the user data to be looked up</param>
+        /// <returns>Response&lt;UserBreachedResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// var request = new UserBreachedRequest.Builder()
+        ///     .WithPhoneNumber("8005550123")
+        ///     .WithProvider("spycloud")
+        ///     .Build();
+        /// var response = await client.Breached(request);
+        /// </code>
+        /// </example>
         public Task<Response<UserBreachedResult>> Breached(UserBreachedRequest request)
         {
             return DoPost<UserBreachedResult>("/v1/user/breached", request);
         }
 
-        ///
+        /// <kind>method</kind>
+        /// <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
+        /// <remarks>Look up breached passwords</remarks>
+        /// <operationid>user_intel_post_v1_password_breached</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.UserPasswordBreachedRequest">UserPasswordBreachedRequest with the password hash to be looked up</param>
+        /// <returns>Response&lt;UserPasswordBreachedResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// var request = new UserPasswordBreachedRequest.Builder(
+        ///     HashType.SHA256,
+        ///     "5baa6")
+        ///     .WithProvider("spycloud")
+        ///     .Build();
+        /// var response = await client.Breached(request);
+        /// </code>
+        /// </example>
         public Task<Response<UserPasswordBreachedResult>> Breached(UserPasswordBreachedRequest request)
         {
             return DoPost<UserPasswordBreachedResult>("/v1/password/breached", request);
