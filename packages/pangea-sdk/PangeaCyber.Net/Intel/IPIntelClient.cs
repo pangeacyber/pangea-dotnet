@@ -6,7 +6,8 @@ namespace PangeaCyber.Net.Intel
     /// </summary>
     public class IPIntelClient : BaseClient<IPIntelClient.Builder>
     {
-        private const string ServiceName = "ip-intel";
+        ///
+        public static string ServiceName { get; } = "ip-intel";
         private static readonly bool SupportMultiConfig = false;
 
         /// Constructor

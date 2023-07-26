@@ -6,7 +6,8 @@ namespace PangeaCyber.Net.Intel
     /// </summary>
     public class URLIntelClient : BaseClient<URLIntelClient.Builder>
     {
-        private const string ServiceName = "url-intel";
+        ///
+        public static string ServiceName { get; } = "url-intel";
         private static readonly bool SupportMultiConfig = false;
 
         /// Constructor

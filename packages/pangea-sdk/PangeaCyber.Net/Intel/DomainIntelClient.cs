@@ -6,7 +6,8 @@ namespace PangeaCyber.Net.Intel
     /// </summary>
     public class DomainIntelClient : BaseClient<DomainIntelClient.Builder>
     {
-        private const string ServiceName = "domain-intel";
+        ///
+        public static string ServiceName { get; } = "domain-intel";
         private static readonly bool SupportMultiConfig = false;
 
         /// Constructor
