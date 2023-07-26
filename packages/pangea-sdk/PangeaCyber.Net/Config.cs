@@ -90,7 +90,8 @@ namespace PangeaCyber.Net
 
         #region Static Methods
 
-        private static string LoadEnvironmentVariable(string envVarName)
+        ///
+        public static string LoadEnvironmentVariable(string envVarName)
         {
             string value = System.Environment.GetEnvironmentVariable(envVarName) ?? string.Empty;
             if (String.IsNullOrEmpty(value))

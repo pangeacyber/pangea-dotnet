@@ -11,11 +11,11 @@ class Program
         // Audit sample
         try
         {
-            // Get token from environment variable. Setup PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_DEV environment variable or set your own token
-            var token = Config.GetCustomSchemaTestToken(TestEnvironment.DEV);
+            // Get token from environment variable. Setup PANGEA_AUDIT_CUSTOM_SCHEMA_TOKEN environment variable or set your own token
+            var token = Config.LoadEnvironmentVariable("PANGEA_AUDIT_CUSTOM_SCHEMA_TOKEN");
 
-            // Get domain from environment variable. Setup PANGEA_INTEGRATION_DOMAIN_DEV environment variable or set your own domain
-            var domain = Config.GetTestDomain(TestEnvironment.DEV);
+            // Get domain from environment variable. Setup PANGEA_DOMAIN environment variable or set your own domain
+            var domain = Config.LoadEnvironmentVariable("PANGEA_DOMAIN");
 
             // Create service config with domain and token
             var config = new Config(token, domain);
