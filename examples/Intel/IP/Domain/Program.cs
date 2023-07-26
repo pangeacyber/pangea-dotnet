@@ -17,23 +17,27 @@ class Program
             IPIntelClient client = new IPIntelClient.Builder(clientCfg).Build();
 
             // Create request
-            var req = new IPReputationRequest.Builder("93.231.182.110")
-                .WithProvider("crowdstrike")
+            var req = new IPDomainRequest.Builder("24.235.114.61")
+                .WithProvider("digitalelement")
                 .WithVerbose(true)
                 .WithRaw(true)
                 .Build();
 
             // Send request
-            var res = await client.Reputation(req);
+            var res = await client.GetDomain(req);
 
             // If success, print result
-            Console.WriteLine($"Success. Verdict: {res.Result.Data.Verdict}");
-            if( res.Result.RawData != null ) {
-                Console.WriteLine("Raw provider data:");
-                foreach (KeyValuePair<string, object> kvp in res.Result.RawData)
-                {
-                    Console.WriteLine("\"{0}\": {1}", kvp.Key, kvp.Value);
+            if(res.Result.Data.DomainFound){
+                Console.WriteLine($"Domain found: {res.Result.Data.Domain}");
+                if( res.Result.RawData != null ) {
+                    Console.WriteLine("Raw provider data:");
+                    foreach (KeyValuePair<string, object> kvp in res.Result.RawData)
+                    {
+                        Console.WriteLine("\"{0}\": {1}", kvp.Key, kvp.Value);
+                    }
                 }
+            } else {
+                Console.WriteLine("Domain was not found");
             }
         }
         catch (PangeaAPIException e)
