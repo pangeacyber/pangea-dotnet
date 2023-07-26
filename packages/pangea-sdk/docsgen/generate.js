@@ -56,6 +56,29 @@ const parseMethodName = (className, method) => {
     }
 };
 
+/**
+ * normalizeCodeExample - removes all the space chars after newlines
+ * 
+ * For some reason, pulling the example code from the XML
+ * preserves the XML indentation level, so initially you get a string that
+ * looks like: 
+ * string msg = someCode;\n            var response = await moreCode();
+ * 
+ * To normalize everything, just replace the newline and 12 space chars
+ * with ONE newline, so the above string becomes:
+ * string msg = someCode;\nvar response = await moreCode();
+ * 
+ * @param {string} code 
+ * @returns string
+ */
+const normalizeCodeExample = (code) => {
+    if (typeof code === "undefined") return "";
+
+    // The XML here has an indentation level of 12 spaces
+    // Collapse those into one newline char
+    return code.replace(/\n[ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ]/g, "\n");
+}
+
 const getMethodsForClass = (entries, className) => {
     let methods = [];
     entries.forEach(entry => {
@@ -63,7 +86,6 @@ const getMethodsForClass = (entries, className) => {
             const methodSignature = parseMethodName(className, entry["@_name"]);
             if (methodSignature) {
                 const example = entry?.example?.code ? `{@code\n${entry?.example?.code}\n}` : null;
-                console.log(example);
                 const entryThrows = Array.isArray(entry?.exception) ? entry?.exception : [entry?.exception];
 
                 const throws = entryThrows.map(ex => ({
@@ -108,6 +130,11 @@ const getMethodsForClass = (entries, className) => {
                     rawDocsArray.push(...(throws.map(t => `@throws ${t.text}`)));
                 }
 
+                if (entry?.operationid) {
+                    tags.push({ rawText: `@operationId ${entry?.operationid}`, kind: "UNKNOWN_BLOCK_TAG" });
+                    rawDocsArray.push(`@operationId ${entry.operationid}`);
+                }
+
                 if (example) {
                     tags.push({
                         data: {
@@ -125,13 +152,21 @@ const getMethodsForClass = (entries, className) => {
 
                 const method = {
                     "METHOD": methodSignature,
+                    summary: entry?.remarks,
                     description: entry?.summary,
                     returns: entry?.returns,
+                    // Add the operationId only if we have one
+                    ...(entry?.operationid && {
+                        operationId: entry.operationid,
+                    }),
                     rawDocString: rawDocsArray.join("\n"),
-                    fullBody: entry?.remarks,
                     throws,
                     params,
                     example,
+                    // Add a normalized code example if we have example code
+                    ...(entry?.example?.code && {
+                        code: normalizeCodeExample(entry.example.code),
+                    }),
                     tags,
                 };
 
