@@ -88,8 +88,8 @@ namespace PangeaCyber.Net
                 request.ConfigID = this.config.ConfigID;
             }
 
+            string requestStr;
             StringContent requestJson;
-            String requestStr;
             try
             {
                 var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
