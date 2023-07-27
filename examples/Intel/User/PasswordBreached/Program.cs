@@ -15,6 +15,7 @@ class Program
             // Load client config. Can create it manually with Config constructor and setters
             var clientCfg = Config.FromEnvironment("user-intel");
 
+            // Create client with builder
             UserIntelClient client = new UserIntelClient.Builder(clientCfg).Build();
 
             // Set the password you would like to check
