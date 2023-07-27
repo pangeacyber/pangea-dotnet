@@ -11,11 +11,11 @@ namespace PangeaCyber.Net.Vault.Results
 
         ///
         [JsonProperty("id")]
-        public string? ID { get; set; }
+        public string ID { get; set; } = default!;
 
         ///
         [JsonProperty("version")]
-        public int? Version { get; set; }
+        public int Version { get; set; }
 
         ///
         public CommonGenerateResult() { }
