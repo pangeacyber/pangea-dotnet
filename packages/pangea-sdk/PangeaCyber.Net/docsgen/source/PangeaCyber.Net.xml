@@ -3113,6 +3113,9 @@
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
             
         </member>
+        <member name="M:PangeaCyber.Net.Config.LoadEnvironmentVariable(System.String)">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Config.GetTestDomain(PangeaCyber.Net.TestEnvironment)">
             
         </member>
@@ -3148,6 +3151,9 @@
             <summary>
             Embargo Client
             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Embargo.EmbargoClient.ServiceName">
+            
         </member>
         <member name="M:PangeaCyber.Net.Embargo.EmbargoClient.#ctor(PangeaCyber.Net.Embargo.EmbargoClient.Builder)">
             Constructor
@@ -3442,6 +3448,9 @@
             DomainIntel Client
             </summary>
         </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainIntelClient.ServiceName">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.#ctor(PangeaCyber.Net.Intel.DomainIntelClient.Builder)">
             Constructor
         </member>
@@ -3473,6 +3482,9 @@
             <summary>
             FileIntel Client
             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileIntelClient.ServiceName">
+            
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileIntelClient.#ctor(PangeaCyber.Net.Intel.FileIntelClient.Builder)">
             Constructor
@@ -3514,6 +3526,9 @@
             <summary>
             IPIntel Client
             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPIntelClient.ServiceName">
+            
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.#ctor(PangeaCyber.Net.Intel.IPIntelClient.Builder)">
             Constructor
@@ -4120,6 +4135,9 @@
             URLIntel Client
             </summary>
         </member>
+        <member name="P:PangeaCyber.Net.Intel.URLIntelClient.ServiceName">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Intel.URLIntelClient.#ctor(PangeaCyber.Net.Intel.URLIntelClient.Builder)">
             Constructor
         </member>
@@ -4153,6 +4171,9 @@
             <summary>
             UserIntel Client
             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserIntelClient.ServiceName">
+            
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.#ctor(PangeaCyber.Net.Intel.UserIntelClient.Builder)">
             Constructor
@@ -4258,7 +4279,7 @@
             Redact Client
             </summary>
         </member>
-        <member name="F:PangeaCyber.Net.Redact.RedactClient.ServiceName">
+        <member name="P:PangeaCyber.Net.Redact.RedactClient.ServiceName">
             
         </member>
         <member name="F:PangeaCyber.Net.Redact.RedactClient.SupportMultiConfig">
@@ -4570,6 +4591,15 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Utils.StringToStringB64(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.Base64ToString(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetSHA256Hash(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetHashPrefix(System.String,System.Int32)">
             
         </member>
         <member name="T:PangeaCyber.Net.OrderedContractResolver">
@@ -6229,6 +6259,9 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.VaultClient">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.VaultClient.ServiceName">
             
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.#ctor(PangeaCyber.Net.Vault.VaultClient.Builder)">
