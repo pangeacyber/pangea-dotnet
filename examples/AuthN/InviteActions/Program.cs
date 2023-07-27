@@ -15,7 +15,6 @@ class Program
 
     static async Task Main(string[] args)
     {
-        // Audit sample
         try
         {
             // Load client config. Can create it manually with Config constructor and setters
