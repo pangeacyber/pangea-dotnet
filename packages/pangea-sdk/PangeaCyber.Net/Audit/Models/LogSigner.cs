@@ -1,8 +1,12 @@
 using System.Text;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Crypto.Signers;
+using Org.BouncyCastle.Asn1;
 using PangeaCyber.Net.Exceptions;
 using Org.BouncyCastle.Utilities.IO.Pem;
+
+using Org.BouncyCastle.Asn1.X509;
+
 
 
 namespace PangeaCyber.Net.Audit
@@ -82,26 +86,30 @@ namespace PangeaCyber.Net.Audit
         }
 
         ///
-        // public string GetPublicKey()
-        // {
-        //     if (this.PrivateKey == null || this.PublicKey == null)
-        //     {
-        //         this.loadKeys();
-        //     }
-        //     return Convert.ToBase64String(this?.PublicKey?.GetEncoded() ?? default!);
-        // }
-
         public string GetPublicKey()
         {
+            if (this.PrivateKey == null || this.PublicKey == null)
+            {
+                this.loadKeys();
+            }
+            if( this.PrivateKey == null ) {
+                return "";
+            } 
+
             try
             {
-                var pemObject = new PemObject("PUBLIC KEY", this.PublicKey.GetEncoded());
+                // Convert the public key to SubjectPublicKeyInfo format
+                // OID: "1.3.101.112" for Ed25519 algorithms
+                var publicKeyInfo = new SubjectPublicKeyInfo(new AlgorithmIdentifier(new DerObjectIdentifier("1.3.101.112")), this.PublicKey!.GetEncoded());
+
+                // Get the ASN.1 DER encoded bytes
+                byte[] publicKeyBytes = publicKeyInfo.GetEncoded();
+
                 var stringWriter = new StringWriter();
                 var pemWriter = new PemWriter(stringWriter);
-                pemWriter.WriteObject(pemObject);
+                pemWriter.WriteObject(new PemObject("PUBLIC KEY", publicKeyBytes));
                 pemWriter.Writer.Flush();
-                string publicKeyPem = stringWriter.ToString();
-                return publicKeyPem;
+                return  stringWriter.ToString();
             }
             catch (Exception e)
             {
