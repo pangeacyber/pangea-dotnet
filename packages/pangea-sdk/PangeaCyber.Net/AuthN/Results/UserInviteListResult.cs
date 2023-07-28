@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.AuthN.Results
 
         ///
         [JsonProperty("count")]
-        public int? Count { get; private set; }
+        public int Count { get; private set; }
 
         ///
         public UserInviteListResult() { }
