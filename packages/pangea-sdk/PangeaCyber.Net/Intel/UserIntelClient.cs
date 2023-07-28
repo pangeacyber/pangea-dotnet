@@ -8,7 +8,8 @@ namespace PangeaCyber.Net.Intel
     /// </summary>
     public class UserIntelClient : BaseClient<UserIntelClient.Builder>
     {
-        private const string ServiceName = "user-intel";
+        ///
+        public static string ServiceName { get; } = "user-intel";
         private static readonly bool SupportMultiConfig = false;
 
         /// Constructor

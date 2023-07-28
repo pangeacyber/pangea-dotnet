@@ -8,7 +8,8 @@ namespace PangeaCyber.Net.Vault
     ///
     public class VaultClient : BaseClient<VaultClient.Builder>
     {
-        private const string ServiceName = "vault";
+        ///
+        public static string ServiceName { get; } = "vault";
         private const bool SupportMultiConfig = false;
 
         ///

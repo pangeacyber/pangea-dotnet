@@ -6,7 +6,8 @@ namespace PangeaCyber.Net.Embargo
     /// </summary>
     public class EmbargoClient : BaseClient<EmbargoClient.Builder>
     {
-        private const string ServiceName = "embargo";
+        ///
+        public static string ServiceName { get; }= "embargo";
         private static readonly bool SupportMultiConfig = false;
 
         /// Constructor
