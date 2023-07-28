@@ -86,35 +86,10 @@ namespace PangeaCyber.Net
             return logger;
         }
 
-        ///
-        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request)
-        {
-            if (this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default)
-            {
-                request.ConfigID = this.config.ConfigID;
-            }
-
-            string requestStr;
-            StringContent requestJson;
+        private async Task<HttpResponseMessage> DoPost(string path, HttpContent content){
             try
             {
-                var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-                requestStr = JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings);
-                requestJson = new StringContent(requestStr, Encoding.UTF8, "application/json");
-            }
-            catch (Exception e)
-            {
-                throw new PangeaException("Failed to write request", e);
-            }
-
-            this.logger.Debug(
-                $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"path\": \"{path}\", \"request\": {requestStr}}}"
-            );
-
-            HttpResponseMessage res = default!;
-            try
-            {
-                res = await this.HttpClient.PostAsync(path, requestJson);
+                return await this.HttpClient.PostAsync(path, content);
             }
             catch (Exception e)
             {
@@ -123,6 +98,47 @@ namespace PangeaCyber.Net
                 );
                 throw new PangeaException("Failed to send request", e);
             }
+        }
+
+        private string SerializeRequest(BaseRequest request){
+            try
+            {
+                var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
+                return JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings);
+            }
+            catch (Exception e)
+            {
+                throw new PangeaException("Failed to write request", e);
+            }
+        }
+
+        ///
+        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, FileStream? fileStream = null)
+        {
+            if (this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default)
+            {
+                request.ConfigID = this.config.ConfigID;
+            }
+
+            string requestStr = SerializeRequest(request);
+            this.logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"path\": \"{path}\", \"request\": {requestStr}}}"
+            );            
+
+            HttpResponseMessage res = default!;
+
+            if(fileStream == null)
+            {
+                res = await DoPost(path, new StringContent(requestStr, Encoding.UTF8, "application/json"));
+            } else {
+                using (var formData = new MultipartFormDataContent())
+                {
+                    formData.Add(new StringContent(requestStr, null, "application/json"), "request");
+                    var fileContent = new StreamContent(fileStream);
+                    formData.Add(fileContent, "upload", "file.exe");
+                    res = await DoPost(path, formData);
+                }
+            }
 
             if (res.StatusCode == System.Net.HttpStatusCode.Accepted && this.config.QueuedRetryEnabled)
             {
@@ -130,6 +146,24 @@ namespace PangeaCyber.Net
             }
 
             return await CheckResponse<TResult>(res);
+        }
+    
+        private async Task<Response<TResult>> DoPollResult<TResult>(string requestID){
+            string path = PollResultPath(requestID);
+            HttpResponseMessage res = await DoGet(path);
+            return await CheckResponse<TResult>(res);
+        }
+
+        ///
+        public async Task<Response<TResult>> PollResult<TResult>(string requestID)
+        {
+            return await DoPollResult<TResult>(requestID);
+        }
+
+        ///
+        public async Task<Response<Dictionary<string, object>>> PollResult(string requestID)
+        {
+            return await DoPollResult<Dictionary<string, object>>(requestID);
         }
 
         ///
@@ -339,6 +373,10 @@ namespace PangeaCyber.Net
                 else if (header.Status.Equals(ResponseStatus.IPNotFound.ToString()))
                 {
                     throw new EmbargoIPNotFoundException(summary, response);
+                }
+                else if (header.Status.Equals(ResponseStatus.Accepted.ToString()))
+                {
+                    throw new AcceptedRequestException($"Summary: \"{summary}\". request_id: \"{response.RequestId}\".", response);                
                 }
             }
             throw new PangeaAPIException(String.Format("{0}: {1}", status, summary), response);

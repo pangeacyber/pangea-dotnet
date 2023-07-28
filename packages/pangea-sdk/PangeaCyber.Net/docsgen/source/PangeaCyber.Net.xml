@@ -3045,7 +3045,13 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
             
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.PollResult``1(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.PollResult(System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.Get``1(System.String)">
@@ -3272,6 +3278,15 @@
             
         </member>
         <member name="P:PangeaCyber.Net.ErrorField.Path">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.AcceptedRequestException">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedRequestException.RequestID">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AcceptedRequestException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
             
         </member>
         <member name="T:PangeaCyber.Net.Exceptions.AuditException">
@@ -3521,6 +3536,27 @@
         <member name="M:PangeaCyber.Net.Intel.FileIntelClient.CalculateSHA256fromFile(System.String)">
             
         </member>
+        <member name="T:PangeaCyber.Net.Intel.FileScanClient">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.FileScanClient.ServiceName">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanClient.#ctor(PangeaCyber.Net.Intel.FileScanClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileScanClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanClient.Scan(PangeaCyber.Net.Intel.FileScanRequest,System.IO.FileStream)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPIntelClient">
             <kind>class</kind>
             <summary>
@@ -3641,6 +3677,9 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileScanData">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.HashType">
@@ -3794,6 +3833,21 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileScanRequest">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanRequest.#ctor(PangeaCyber.Net.Intel.FileScanRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileScanRequest.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileScanRequest.Builder.Build">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1">
@@ -4067,6 +4121,12 @@
             
         </member>
         <member name="P:PangeaCyber.Net.Intel.FileReputationResult.Data">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileScanResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileScanResult.Data">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelCommonResult">
@@ -4570,6 +4630,9 @@
             
         </member>
         <member name="F:PangeaCyber.Net.ResponseStatus.IPNotFound">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.Accepted">
             
         </member>
         <member name="T:PangeaCyber.Net.TestEnvironment">
