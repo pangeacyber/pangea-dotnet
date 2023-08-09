@@ -1,13 +1,12 @@
 using PangeaCyber.Net.Exceptions;
-using System.Text;
 
 namespace PangeaCyber.Net.Intel.Tests
 {
     public class ITFileScanTest
     {
-        private const string EICAR = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*\n";
+        private const string TESTFILE_PATH = "./data/testfile.pdf";
         private FileScanClient client;
-        private TestEnvironment environment = TestEnvironment.DEV;
+        private readonly TestEnvironment environment = TestEnvironment.LVE;
 
         public ITFileScanTest()
         {
@@ -15,27 +14,10 @@ namespace PangeaCyber.Net.Intel.Tests
             client = new FileScanClient.Builder(config).Build();
         }
 
-        private FileStream Eicar()
-        {
-            string filePath = "file.exe";
-
-            // Convert the string to bytes
-            byte[] byteArray = Encoding.UTF8.GetBytes(EICAR);
-
-            // Create a FileStream and write the bytes to the file
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-            {
-                fileStream.Write(byteArray, 0, byteArray.Length);
-            }
-
-            // Return the FileStream opened in read mode
-            return new FileStream(filePath, FileMode.Open, FileAccess.Read);
-        }
-
         [Fact]
         public async Task TestFileScan_Scan()
         {
-            FileStream file = Eicar();
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
             var response = await client.Scan(new FileScanRequest.Builder().WithProvider("reversinglabs").Build(), file);
             Assert.True(response.IsOK);
 
@@ -52,7 +34,7 @@ namespace PangeaCyber.Net.Intel.Tests
             config.QueuedRetryEnabled = false;
             client = new FileScanClient.Builder(config).Build();
 
-            FileStream file = Eicar();
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
             await Assert.ThrowsAsync<AcceptedRequestException>(async () => {
                 var response = await client.Scan(new FileScanRequest.Builder().WithProvider("reversinglabs").Build(), file);
             });
@@ -65,7 +47,7 @@ namespace PangeaCyber.Net.Intel.Tests
             config.QueuedRetryEnabled = false;
             client = new FileScanClient.Builder(config).Build();
 
-            FileStream file = Eicar();
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
             AcceptedRequestException exception = default!;
             try
             {
@@ -77,8 +59,8 @@ namespace PangeaCyber.Net.Intel.Tests
                 exception = e;
             }
 
-            // Sleep 60 seconds until result is (should) be ready
-            await Task.Delay(60 * 1000);
+            // Sleep 20 seconds until result is (should) be ready
+            await Task.Delay(20 * 1000);
 
             // Poll result, this could raise another AcceptedRequestException if result is not ready
             var response = await client.PollResult<FileScanResult>(exception.RequestID);
