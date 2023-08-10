@@ -1,5 +1,3 @@
-using PangeaCyber.Net;
-
 namespace PangeaCyber.Net.Intel
 {
     ///

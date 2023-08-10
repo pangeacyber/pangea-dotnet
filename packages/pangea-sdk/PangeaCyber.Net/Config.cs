@@ -73,10 +73,10 @@ namespace PangeaCyber.Net
         ///
         public Uri GetServiceUrl(string serviceName, string path)
         {
-            StringBuilder b = new StringBuilder();
-            b.Append(!this.Insecure ? "https://" : "http://");
+            StringBuilder b = new();
+            b.Append(!Insecure ? "https://" : "http://");
 
-            if (!this.Environment.Equals("local", StringComparison.CurrentCultureIgnoreCase))
+            if (!Environment.Equals("local", StringComparison.CurrentCultureIgnoreCase))
             {
                 b.Append(serviceName);
                 b.Append('.');
@@ -94,7 +94,7 @@ namespace PangeaCyber.Net
         public static string LoadEnvironmentVariable(string envVarName)
         {
             string value = System.Environment.GetEnvironmentVariable(envVarName) ?? string.Empty;
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 throw new ConfigException("Need to set up " + envVarName + " environment variable");
             }
@@ -111,13 +111,13 @@ namespace PangeaCyber.Net
         ///
         public static Config FromEnvironment(string serviceName)
         {
-            string envVarName = String.Format("PANGEA_{0}_TOKEN", serviceName.ToUpper()).Replace('-', '_');
+            string envVarName = string.Format("PANGEA_{0}_TOKEN", serviceName.ToUpper()).Replace('-', '_');
             string domainEnvVarName = "PANGEA_DOMAIN";
 
             string token = LoadEnvironmentVariable(envVarName);
             string domain = LoadEnvironmentVariable(domainEnvVarName);
 
-            Config config = new Config(token, domain);
+            var config = new Config(token, domain);
             return config;
         }
 
@@ -126,9 +126,11 @@ namespace PangeaCyber.Net
         {
             string token = GetTestToken(environment);
             string domain = GetTestDomain(environment);
-            var cfg = new Config(token, domain);
-            cfg.ConnectionTimeout = new TimeSpan(0, 0, 60);
-            cfg.CustomUserAgent = "test";
+            var cfg = new Config(token, domain)
+            {
+                ConnectionTimeout = new TimeSpan(0, 0, 60),
+                CustomUserAgent = "test"
+            };
             return cfg;
         }
 
@@ -137,9 +139,11 @@ namespace PangeaCyber.Net
         {
             string token = GetVaultSignatureTestToken(environment);
             string domain = GetTestDomain(environment);
-            var cfg = new Config(token, domain);
-            cfg.CustomUserAgent = "test";
-            cfg.ConnectionTimeout = new TimeSpan(0, 0, 60);
+            var cfg = new Config(token, domain)
+            {
+                CustomUserAgent = "test",
+                ConnectionTimeout = new TimeSpan(0, 0, 60)
+            };
             return cfg;
         }
 
@@ -148,9 +152,11 @@ namespace PangeaCyber.Net
         {
             string token = GetCustomSchemaTestToken(environment);
             string domain = GetTestDomain(environment);
-            var cfg = new Config(token, domain);
-            cfg.ConnectionTimeout = new TimeSpan(0, 0, 60);
-            cfg.CustomUserAgent = "test";
+            var cfg = new Config(token, domain)
+            {
+                ConnectionTimeout = new TimeSpan(0, 0, 60),
+                CustomUserAgent = "test"
+            };
             return cfg;
         }
 
@@ -185,7 +191,7 @@ namespace PangeaCyber.Net
         ///
         public static string GetConfigID(TestEnvironment environment, string service, int configNumber)
         {
-            string envVarName = String.Format("PANGEA_{0}_CONFIG_ID_{1}_{2}", service.ToUpper().Replace('-', '_'), configNumber, environment.ToString());
+            string envVarName = string.Format("PANGEA_{0}_CONFIG_ID_{1}_{2}", service.ToUpper().Replace('-', '_'), configNumber, environment.ToString());
             return LoadEnvironmentVariable(envVarName);
         }
         #endregion Static Methods
