@@ -23,7 +23,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -39,7 +39,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -58,7 +58,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -77,7 +77,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -96,7 +96,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }
@@ -115,7 +115,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }
@@ -136,7 +136,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -156,7 +156,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.Equal("suspicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }
