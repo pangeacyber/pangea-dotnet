@@ -8,11 +8,15 @@ namespace PangeaCyber.Net.Vault.Results
     {
         ///
         [JsonProperty("versions")]
-        public ItemVersionData[] Versions { get; set; } = default!;
+        public ItemVersionData[] Versions { get; private set; } = default!;
 
         ///
         [JsonProperty("rotation_grace_period")]
-        public string? RotationGracePeriod { get; set; }
+        public string? RotationGracePeriod { get; private set; }
+
+        ///
+        [JsonProperty("inherited_settings")]
+        public InheritedSettings InheritedSettings {get; private set;} = default!;
 
         ///
         public GetResult()
