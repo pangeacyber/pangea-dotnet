@@ -1,5 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace PangeaCyber.Net
 {
@@ -33,5 +32,10 @@ namespace PangeaCyber.Net
         ///
         [JsonProperty("path")]
         public string Path { get; private set; } = default!;
+
+        /// 
+        public override string ToString() {
+            return Source + " " + Code + ": " + Detail + ".";
+        }
     }
 }
