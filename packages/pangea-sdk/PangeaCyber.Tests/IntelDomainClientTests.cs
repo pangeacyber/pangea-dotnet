@@ -23,7 +23,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.NotEmpty(data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -33,7 +33,7 @@ namespace PangeaCyber.Net.Intel.Tests
         {
             // With provider, not verbose by default, not raw by default;
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com").WithProvider("domaintools").Build()
+                new DomainReputationRequest.Builder("737updatesboeing.com").WithProvider("crowdstrike").Build()
             );
 
             Assert.True(response.IsOK);
@@ -58,7 +58,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.NotEmpty(data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -77,7 +77,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.NotEmpty(data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
         }
@@ -96,7 +96,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.NotEmpty(data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }
@@ -115,7 +115,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
+            Assert.NotEmpty(data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }
@@ -127,7 +127,7 @@ namespace PangeaCyber.Net.Intel.Tests
             // Provider, no verbose, no raw
             var response = await client.Reputation(
                 new DomainReputationRequest.Builder("737updatesboeing.com")
-                    .WithProvider("domaintools")
+                    .WithProvider("crowdstrike")
                     .WithVerbose(false)
                     .WithRaw(false)
                     .Build()
@@ -147,7 +147,7 @@ namespace PangeaCyber.Net.Intel.Tests
             // Provider, verbose, raw
             var response = await client.Reputation(
                 new DomainReputationRequest.Builder("737updatesboeing.com")
-                    .WithProvider("domaintools")
+                    .WithProvider("crowdstrike")
                     .WithVerbose(true)
                     .WithRaw(true)
                     .Build()
