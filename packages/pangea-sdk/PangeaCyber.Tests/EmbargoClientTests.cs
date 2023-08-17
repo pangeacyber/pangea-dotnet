@@ -61,6 +61,18 @@ namespace PangeaCyber.Net.Embargo.Tests
         }
 
         [Fact]
+        public async void TestPrintError()
+        {
+            try{
+                await client.IPCheck("");
+                Assert.True(false);
+            } catch(PangeaAPIException e){
+                Assert.NotEmpty(e.ToString());
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        [Fact]
         public async void TestUnauthorized()
         {
             Config cfg = Config.FromIntegrationEnvironment(environment);
