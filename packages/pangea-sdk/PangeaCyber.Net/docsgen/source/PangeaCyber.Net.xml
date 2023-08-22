@@ -3460,6 +3460,96 @@
         <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
             
         </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanClient">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.FileScan.FileScanClient.ServiceName">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.#ctor(PangeaCyber.Net.FileScan.FileScanClient.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanClient.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Builder.#ctor(PangeaCyber.Net.Config)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Scan(PangeaCyber.Net.FileScan.FileScanRequest,System.IO.FileStream)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanData.Category">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanData.Score">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanData.Verdict">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanData.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Provider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Raw">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Provider">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Verbose">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithProvider(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithVerbose(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanResult.Parameters">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanResult.RawData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanResult.Data">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
             <kind>class</kind>
             <summary>
@@ -3537,27 +3627,6 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileIntelClient.CalculateSHA256fromFile(System.String)">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.FileScanClient">
-            
-        </member>
-        <member name="F:PangeaCyber.Net.Intel.FileScanClient.ServiceName">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanClient.#ctor(PangeaCyber.Net.Intel.FileScanClient.Builder)">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.FileScanClient.Builder">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanClient.Builder.#ctor(PangeaCyber.Net.Config)">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanClient.Builder.Build">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanClient.Scan(PangeaCyber.Net.Intel.FileScanRequest,System.IO.FileStream)">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPIntelClient">
@@ -3680,9 +3749,6 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.FileScanData">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.HashType">
@@ -3836,21 +3902,6 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Intel.FileHashReputationRequest.Builder.Build">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.FileScanRequest">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanRequest.#ctor(PangeaCyber.Net.Intel.FileScanRequest.Builder)">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.FileScanRequest.Builder">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanRequest.Builder.#ctor">
-            
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.FileScanRequest.Builder.Build">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelCommonRequest`1">
@@ -4124,12 +4175,6 @@
             
         </member>
         <member name="P:PangeaCyber.Net.Intel.FileReputationResult.Data">
-            
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.FileScanResult">
-            
-        </member>
-        <member name="P:PangeaCyber.Net.Intel.FileScanResult.Data">
             
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelCommonResult">

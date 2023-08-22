@@ -1,4 +1,4 @@
-namespace PangeaCyber.Net.Intel
+namespace PangeaCyber.Net.FileScan
 {
     ///
     public class FileScanClient : BaseClient<FileScanClient.Builder>

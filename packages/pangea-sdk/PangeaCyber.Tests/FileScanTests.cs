@@ -1,6 +1,6 @@
 using PangeaCyber.Net.Exceptions;
 
-namespace PangeaCyber.Net.Intel.Tests
+namespace PangeaCyber.Net.FileScan.Tests
 {
     public class ITFileScanTest
     {
