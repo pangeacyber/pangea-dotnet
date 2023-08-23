@@ -1,8 +1,10 @@
+default:
+  tags:
+    - pangea-internal
+
 image:
   name: mcr.microsoft.com/dotnet/sdk:6.0
   entrypoint: [""]
-  tags:
-    - pangea-internal
 
 cache:
   key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
