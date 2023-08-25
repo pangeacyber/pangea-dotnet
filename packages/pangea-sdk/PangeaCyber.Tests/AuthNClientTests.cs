@@ -68,13 +68,13 @@ public class ITAuthNTest
 
     [Fact]
     public async Task TestAgreementsCycleEULA()
-    {   
+    {
         await AgreementsCycle(AgreementType.EULA);
     }
 
     [Fact]
     public async Task TestAgreementsCyclePP()
-    {   
+    {
         await AgreementsCycle(AgreementType.PrivacyPolicy);
     }
 

@@ -118,7 +118,7 @@ namespace PangeaCyber.Net.Audit
             object rawEvent;
             if (RawEnvelope.TryGetValue("event", out rawEvent!))
             {
-                IEvent @event = IEvent.FromRaw(rawEvent, customSchemaClass)?? default!;
+                IEvent @event = IEvent.FromRaw(rawEvent, customSchemaClass) ?? default!;
                 EventEnvelope.Event = @event;
             }
 

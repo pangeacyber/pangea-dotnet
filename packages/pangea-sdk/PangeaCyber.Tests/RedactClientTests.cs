@@ -164,7 +164,7 @@ public class ITRedactTests
             { "IP", "Its ip is 127.0.0.1"}
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithRules(new [] { "IP_ADDRESS" }).WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithRules(new[] { "IP_ADDRESS" }).WithReturnResult(true).Build());
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>

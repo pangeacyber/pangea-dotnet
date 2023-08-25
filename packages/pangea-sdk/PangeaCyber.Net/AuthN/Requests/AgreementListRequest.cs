@@ -50,7 +50,7 @@ namespace PangeaCyber.Net.AuthN.Requests
             public int? Size { get; private set; }
 
             ///
-            public Builder() {}
+            public Builder() { }
 
             ///
             public AgreementListRequest Build()
