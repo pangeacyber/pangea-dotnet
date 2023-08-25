@@ -960,6 +960,9 @@
         <member name="P:PangeaCyber.Net.AuthN.AuthNClient.Session">
             
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.AuthNClient.Agreements">
+            
+        </member>
         <member name="M:PangeaCyber.Net.AuthN.AuthNClient.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
             
         </member>
@@ -970,6 +973,24 @@
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.AuthNClient.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Clients.Agreements">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Agreements.#ctor(PangeaCyber.Net.AuthN.AuthNClient.Builder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Agreements.Create(PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Agreements.Delete(PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Agreements.Update(PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Clients.Agreements.List(PangeaCyber.Net.AuthN.Requests.AgreementListRequest)">
             
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient">
@@ -1312,6 +1333,54 @@
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.Build">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.ID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.CreatedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.UpdatedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.PublishedAt">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.Active">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.AgreementListOrderBy">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.AgreementListOrderBy.ID">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.AgreementListOrderBy.CreatedAt">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.AgreementListOrderBy.Name">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.AgreementListOrderBy.Text">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.AgreementType">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.AgreementType.EULA">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.AgreementType.PrivacyPolicy">
             
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.EnrollMFAComplete">
@@ -1741,6 +1810,177 @@
             
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.VerifySocial.RedirectURI">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Active">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.Active">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.#ctor(PangeaCyber.Net.AuthN.Models.AgreementType,System.String,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.WithActive(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementCreateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Id">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Builder.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Builder.Id">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Builder.#ctor(PangeaCyber.Net.AuthN.Models.AgreementType,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementDeleteRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementListRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Size">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.Filter">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.Order">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.OrderBy">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.Size">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithFilter(System.Collections.Generic.Dictionary{System.String,System.String})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithLast(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithOrder(PangeaCyber.Net.AuthN.Models.ListOrder)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithOrderBy(PangeaCyber.Net.AuthN.Models.AgreementListOrderBy)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithSize(System.Nullable{System.Int32})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Id">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Active">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.Type">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.Id">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.Text">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.Active">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.#ctor(PangeaCyber.Net.AuthN.Models.AgreementType,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.WithName(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.WithText(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementUpdateRequest.Builder.WithActive(System.Nullable{System.Boolean})">
             
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest">
@@ -2539,6 +2779,30 @@
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.AgreementCreateResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.AgreementDeleteResult">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.AgreementListResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.AgreementListResult.Agreements">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.AgreementListResult.Last">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Results.AgreementListResult.Count">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Results.AgreementListResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Results.AgreementUpdateResult">
             
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Results.ClientJWKSResult">
