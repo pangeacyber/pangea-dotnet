@@ -52,19 +52,75 @@ public class ITAuthNTest
 
     public ITAuthNTest()
     {
-        this.cfg = Config.FromIntegrationEnvironment(environment);
+        cfg = Config.FromIntegrationEnvironment(environment);
         client = new AuthNClient.Builder(cfg).Build();
     }
 
     [Fact]
     public async void TestCycle()
     {
-        await ITAuthNTest.TestA_UserActions(client);
-        await ITAuthNTest.TestB_ClientSessionList_n_Invalidate(client);
-        await ITAuthNTest.TestC_SessionList_n_Invalidate(client);
-        await ITAuthNTest.TestD_InviteActions(client);
-        await ITAuthNTest.TestE_ListUsers(client);
+        await TestA_UserActions(client);
+        await TestB_ClientSessionList_n_Invalidate(client);
+        await TestC_SessionList_n_Invalidate(client);
+        await TestD_InviteActions(client);
+        await TestE_ListUsers(client);
     }
+
+    [Fact]
+    public async Task TestAgreementsCycleEULA()
+    {   
+        await AgreementsCycle(AgreementType.EULA);
+    }
+
+    [Fact]
+    public async Task TestAgreementsCyclePP()
+    {   
+        await AgreementsCycle(AgreementType.PrivacyPolicy);
+    }
+
+    private async Task AgreementsCycle(AgreementType type)
+    {
+        string name = $"{type}_{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
+        string text = "This is agreement text";
+        bool active = false;
+
+        // Create agreement
+        var createResponse = await client.Agreements.Create(
+            new AgreementCreateRequest.Builder(type, name, text).WithActive(active).Build());
+        Assert.Equal(name, createResponse.Result.Name);
+        Assert.Equal(text, createResponse.Result.Text);
+        Assert.Equal(active, createResponse.Result.Active);
+        string id = createResponse.Result.ID;
+        Assert.NotNull(id);
+
+        // Update agreement
+        string new_name = $"{name}_v2";
+        string new_text = $"{text} v2";
+
+        var updateResponse = await client.Agreements.Update(
+            new AgreementUpdateRequest.Builder(type, id)
+                .WithName(new_name)
+                .WithText(new_text)
+                .WithActive(active)
+                .Build());
+        Assert.Equal(new_name, updateResponse.Result.Name);
+        Assert.Equal(new_text, updateResponse.Result.Text);
+        Assert.Equal(active, updateResponse.Result.Active);
+
+        // List
+        var listResponse = await client.Agreements.List(new AgreementListRequest.Builder().Build());
+        Assert.True(listResponse.Result.Count > 0);
+        Assert.True(listResponse.Result.Agreements.Length > 0);
+        int count = listResponse.Result.Count;
+
+        // Delete
+        var deleteResponse = await client.Agreements.Delete(new AgreementDeleteRequest.Builder(type, id).Build());
+
+        // List again
+        var listResponseAfterDelete = await client.Agreements.List(new AgreementListRequest.Builder().Build());
+        Assert.Equal(count - 1, listResponseAfterDelete.Result.Count);
+    }
+
 
     private static async Task TestA_UserActions(AuthNClient client)
     {
