@@ -18,7 +18,8 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public static string Base64ToString(string input){
+        public static string Base64ToString(string input)
+        {
             // Convert Base64 string to byte array
             byte[] bytes = Convert.FromBase64String(input);
 
@@ -45,8 +46,9 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public static string GetHashPrefix(string input, int len = 5){
-            if(string.IsNullOrEmpty(input))
+        public static string GetHashPrefix(string input, int len = 5)
+        {
+            if (string.IsNullOrEmpty(input))
             {
                 return input;
             }

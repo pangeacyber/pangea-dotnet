@@ -63,10 +63,13 @@ namespace PangeaCyber.Net.Embargo.Tests
         [Fact]
         public async void TestPrintError()
         {
-            try{
+            try
+            {
                 await client.IPCheck("");
                 Assert.True(false);
-            } catch(PangeaAPIException e){
+            }
+            catch (PangeaAPIException e)
+            {
                 Assert.NotEmpty(e.ToString());
                 Console.WriteLine(e.ToString());
             }
