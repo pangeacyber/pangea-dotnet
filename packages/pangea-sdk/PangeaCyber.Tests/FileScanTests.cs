@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.FileScan.Tests
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
         private FileScanClient client;
-        private readonly TestEnvironment environment = TestEnvironment.STG;
+        private readonly TestEnvironment environment = TestEnvironment.LVE;
 
         public ITFileScanTest()
         {
@@ -35,7 +35,8 @@ namespace PangeaCyber.Net.FileScan.Tests
             client = new FileScanClient.Builder(config).Build();
 
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
-            await Assert.ThrowsAsync<AcceptedRequestException>(async () => {
+            await Assert.ThrowsAsync<AcceptedRequestException>(async () =>
+            {
                 var response = await client.Scan(new FileScanRequest.Builder().WithProvider("crowdstrike").Build(), file);
             });
         }

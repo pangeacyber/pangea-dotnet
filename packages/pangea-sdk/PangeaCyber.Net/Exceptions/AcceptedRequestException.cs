@@ -1,5 +1,6 @@
 
-namespace PangeaCyber.Net.Exceptions{
+namespace PangeaCyber.Net.Exceptions
+{
 
     ///
     public class AcceptedRequestException : PangeaAPIException

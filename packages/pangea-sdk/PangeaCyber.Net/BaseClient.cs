@@ -86,7 +86,8 @@ namespace PangeaCyber.Net
             return logger;
         }
 
-        private async Task<HttpResponseMessage> DoPost(string path, HttpContent content){
+        private async Task<HttpResponseMessage> DoPost(string path, HttpContent content)
+        {
             try
             {
                 return await this.HttpClient.PostAsync(path, content);
@@ -100,7 +101,8 @@ namespace PangeaCyber.Net
             }
         }
 
-        private string SerializeRequest(BaseRequest request){
+        private string SerializeRequest(BaseRequest request)
+        {
             try
             {
                 var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
@@ -123,14 +125,16 @@ namespace PangeaCyber.Net
             string requestStr = SerializeRequest(request);
             this.logger.Debug(
                 $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"path\": \"{path}\", \"request\": {requestStr}}}"
-            );            
+            );
 
             HttpResponseMessage res = default!;
 
-            if(fileStream == null)
+            if (fileStream == null)
             {
                 res = await DoPost(path, new StringContent(requestStr, Encoding.UTF8, "application/json"));
-            } else {
+            }
+            else
+            {
                 using (var formData = new MultipartFormDataContent())
                 {
                     formData.Add(new StringContent(requestStr, null, "application/json"), "request");
@@ -147,8 +151,9 @@ namespace PangeaCyber.Net
 
             return await CheckResponse<TResult>(res);
         }
-    
-        private async Task<Response<TResult>> DoPollResult<TResult>(string requestID){
+
+        private async Task<Response<TResult>> DoPollResult<TResult>(string requestID)
+        {
             string path = PollResultPath(requestID);
             HttpResponseMessage res = await DoGet(path);
             return await CheckResponse<TResult>(res);
@@ -376,7 +381,7 @@ namespace PangeaCyber.Net
                 }
                 else if (header.Status.Equals(ResponseStatus.Accepted.ToString()))
                 {
-                    throw new AcceptedRequestException($"Summary: \"{summary}\". request_id: \"{response.RequestId}\".", response);                
+                    throw new AcceptedRequestException($"Summary: \"{summary}\". request_id: \"{response.RequestId}\".", response);
                 }
             }
             throw new PangeaAPIException(String.Format("{0}: {1}", status, summary), response);
