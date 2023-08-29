@@ -13,7 +13,7 @@ public class ITRedactTests
     ///
     public ITRedactTests()
     {
-        var config = Config.FromIntegrationEnvironment(TestEnvironment.LVE);
+        var config = Config.FromIntegrationEnvironment(environment);
         this.client = new RedactClient.Builder(config).Build();
     }
 
@@ -57,7 +57,8 @@ public class ITRedactTests
         var data = new Dictionary<string, object>
         {
             { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: 415-867-5309" }
+            { "Phone", "This is its number: 415-867-5309" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build());
@@ -66,7 +67,8 @@ public class ITRedactTests
         var expected = new Dictionary<string, object>
         {
             { "Name", "<PERSON>" },
-            { "Phone", "This is its number: <PHONE_NUMBER>" }
+            { "Phone", "This is its number: <PHONE_NUMBER>" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         Assert.True(response.IsOK);
@@ -81,7 +83,8 @@ public class ITRedactTests
         var data = new Dictionary<string, object>
         {
             { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: 415-867-5309" }
+            { "Phone", "This is its number: 415-867-5309" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithReturnResult(true).Build());
@@ -90,7 +93,8 @@ public class ITRedactTests
         var expected = new Dictionary<string, object>
         {
             { "Name", "<PERSON>" },
-            { "Phone", "This is its number: <PHONE_NUMBER>" }
+            { "Phone", "This is its number: <PHONE_NUMBER>" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         Assert.True(response.IsOK);
@@ -104,7 +108,8 @@ public class ITRedactTests
         var data = new Dictionary<string, object>
         {
             { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: 415-867-5309" }
+            { "Phone", "This is its number: 415-867-5309" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithDebug(true).WithReturnResult(true).Build());
@@ -113,7 +118,8 @@ public class ITRedactTests
         var expected = new Dictionary<string, object>
         {
             { "Name", "<PERSON>" },
-            { "Phone", "This is its number: <PHONE_NUMBER>" }
+            { "Phone", "This is its number: <PHONE_NUMBER>" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         Assert.True(response.IsOK);
@@ -128,7 +134,8 @@ public class ITRedactTests
         var data = new Dictionary<string, object>
         {
             { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: 415-867-5309" }
+            { "Phone", "This is its number: 415-867-5309" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithJsonp(new String[] { "Phone" }).WithReturnResult(true).Build());
@@ -137,7 +144,8 @@ public class ITRedactTests
         var expected = new Dictionary<string, object>
         {
             { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: <PHONE_NUMBER>" }
+            { "Phone", "This is its number: <PHONE_NUMBER>" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
         Assert.True(response.IsOK);
@@ -152,21 +160,23 @@ public class ITRedactTests
         var data = new Dictionary<string, object>
         {
             { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: 415-867-5309" }
+            { "Phone", "This is its number: 415-867-5309" },
+            { "IP", "Its ip is 127.0.0.1"}
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithJsonp(new String[] { "Name", "Phone" }).WithRules(new String[] { "PHONE_NUMBER" }).WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithRules(new[] { "IP_ADDRESS" }).WithReturnResult(true).Build());
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>
         {
-            { "Name", "Jenny Jenny" },
-            { "Phone", "This is its number: <PHONE_NUMBER>" }
+            { "Name", "<PERSON>" },
+            { "Phone", "This is its number: <PHONE_NUMBER>" },
+            { "IP", "Its ip is <IP_ADDRESS>"}
         };
 
         Assert.True(response.IsOK);
-        Assert.Equal(converted, expected);
-        Assert.Equal(1, response.Result.Count);
+        Assert.Equal(expected, converted);
+        Assert.Equal(3, response.Result.Count);
         Assert.Null(response.Result.Report);
     }
 

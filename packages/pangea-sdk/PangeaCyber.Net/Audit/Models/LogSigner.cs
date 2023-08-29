@@ -92,9 +92,10 @@ namespace PangeaCyber.Net.Audit
             {
                 this.loadKeys();
             }
-            if( this.PrivateKey == null ) {
+            if (this.PrivateKey == null)
+            {
                 return "";
-            } 
+            }
 
             try
             {
@@ -109,7 +110,7 @@ namespace PangeaCyber.Net.Audit
                 var pemWriter = new PemWriter(stringWriter);
                 pemWriter.WriteObject(new PemObject("PUBLIC KEY", publicKeyBytes));
                 pemWriter.Writer.Flush();
-                return  stringWriter.ToString();
+                return stringWriter.ToString();
             }
             catch (Exception e)
             {

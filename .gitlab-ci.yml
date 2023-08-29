@@ -19,6 +19,11 @@ before_script:
   - dotnet restore --packages .nuget
   - dotnet build --no-restore --configuration Release
 
+lint:
+  stage: lint
+  script:
+    - dotnet format --verify-no-changes
+
 tests:
   stage: test
   script:
@@ -46,5 +51,6 @@ publish:
       when: on_success
 
 stages:
+  - lint
   - test
   - publish
