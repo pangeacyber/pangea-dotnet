@@ -3309,7 +3309,13 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.PollResult``1(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.PollResult(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.Get``1(System.String)">
@@ -3541,6 +3547,15 @@
         <member name="M:PangeaCyber.Net.ErrorField.ToString">
 
         </member>
+        <member name="T:PangeaCyber.Net.Exceptions.AcceptedRequestException">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedRequestException.RequestID">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AcceptedRequestException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+
+        </member>
         <member name="T:PangeaCyber.Net.Exceptions.AuditException">
             <kind>class</kind>
             <summary>
@@ -3707,6 +3722,96 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanClient">
+
+        </member>
+        <member name="F:PangeaCyber.Net.FileScan.FileScanClient.ServiceName">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.#ctor(PangeaCyber.Net.FileScan.FileScanClient.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanClient.Builder">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Builder.#ctor(PangeaCyber.Net.Config)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Builder.Build">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Scan(PangeaCyber.Net.FileScan.FileScanRequest,System.IO.FileStream)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanData">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanData.Category">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanData.Score">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanData.Verdict">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanData.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Provider">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Verbose">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Raw">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Provider">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Verbose">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Build">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithProvider(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithVerbose(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanResult.Parameters">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanResult.RawData">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanResult.Data">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
@@ -4855,6 +4960,9 @@
 
         </member>
         <member name="F:PangeaCyber.Net.ResponseStatus.IPNotFound">
+
+        </member>
+        <member name="F:PangeaCyber.Net.ResponseStatus.Accepted">
 
         </member>
         <member name="T:PangeaCyber.Net.TestEnvironment">

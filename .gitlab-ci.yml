@@ -1,3 +1,7 @@
+default:
+  tags:
+    - pangea-internal
+
 image:
   name: mcr.microsoft.com/dotnet/sdk:6.0
   entrypoint: [""]
@@ -14,6 +18,11 @@ before_script:
   - cd packages/pangea-sdk
   - dotnet restore --packages .nuget
   - dotnet build --no-restore --configuration Release
+
+lint:
+  stage: lint
+  script:
+    - dotnet format --verify-no-changes
 
 tests:
   stage: test
@@ -42,5 +51,6 @@ publish:
       when: on_success
 
 stages:
+  - lint
   - test
   - publish
