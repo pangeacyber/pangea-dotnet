@@ -8,5 +8,10 @@ namespace PangeaCyber.Net.Intel
         ///
         [JsonProperty("data")]
         public DomainReputationData Data { get; set; } = new DomainReputationData();
+
+        ///
+        [JsonProperty("data_list")]
+        public DomainReputationDataItem[]? DataList { get; set; } = null;
+
     }
 }
