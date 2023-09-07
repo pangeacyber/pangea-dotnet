@@ -1335,6 +1335,9 @@
         <member name="M:PangeaCyber.Net.AuthN.Clients.FlowVerifySocialRequest.Builder.Build">
 
         </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.AgreementInfo">
+
+        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.AgreementInfo.Type">
 
         </member>
@@ -4989,7 +4992,19 @@
         <member name="M:PangeaCyber.Net.Utils.Base64ToString(System.String)">
 
         </member>
+        <member name="M:PangeaCyber.Net.Utils.Bytes2Hex(System.Byte[])">
+
+        </member>
         <member name="M:PangeaCyber.Net.Utils.GetSHA256Hash(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetSHA1Hash(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetSHA256HashFromFilepath(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetSHA1HashFromFilepath(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.Utils.GetHashPrefix(System.String,System.Int32)">
