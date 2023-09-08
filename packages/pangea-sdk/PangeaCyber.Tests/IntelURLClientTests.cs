@@ -26,6 +26,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -41,6 +42,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -59,6 +61,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -77,6 +80,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -95,6 +99,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -113,6 +118,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -132,6 +138,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
 
         [Fact]
@@ -151,7 +158,33 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+            Assert.Null(response.Result.DataList);
         }
+
+        [Fact]
+        public async Task TestUrlReputationMaliciousBulk()
+        {
+            string[] urlList = {"http://113.235.101.11:54384",
+                "http://45.14.49.109:54819",
+                "https://chcial.ru/uplcv?utm_term%3Dcost%2Bto%2Brezone%2Bland"};
+            var response = await client.Reputation(
+                new URLReputationRequest.Builder(urlList)
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            IntelReputationData data = response.Result.Data;
+            Assert.Equal("malicious", data.Verdict);
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.NotNull(response.Result.DataList);
+            Assert.Equal(3, response.Result.DataList.Count);
+        }
+
 
         [Fact]
         public async Task TestEmptyURL()

@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         [JsonProperty("data")]
-        public IPDomainData Data { get; set; } = new IPDomainData();
+        public IPDomainData Data { get; private set; } = new IPDomainData();
 
     }
 }

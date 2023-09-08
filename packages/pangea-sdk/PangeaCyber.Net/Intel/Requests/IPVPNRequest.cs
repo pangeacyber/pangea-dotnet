@@ -17,7 +17,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : IntelCommonRequest<IPVPNRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
             public string IP { get; private set; }

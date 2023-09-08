@@ -21,7 +21,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : IntelCommonRequest<FileHashReputationRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
             public string Hash { get; private set; }

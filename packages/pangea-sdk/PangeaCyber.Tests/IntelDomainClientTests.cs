@@ -190,7 +190,7 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
             Assert.NotNull(response.Result.DataList);
-            Assert.Equal(3, response.Result.DataList.Length);
+            Assert.Equal(3, response.Result.DataList.Count);
         }
 
         [Fact]

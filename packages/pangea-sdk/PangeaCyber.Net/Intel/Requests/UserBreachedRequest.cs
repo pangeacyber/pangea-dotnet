@@ -41,7 +41,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : IntelCommonRequest<UserBreachedRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
             public string? Email { get; set; }

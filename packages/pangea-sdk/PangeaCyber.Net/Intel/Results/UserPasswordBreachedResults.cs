@@ -7,6 +7,6 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         [JsonProperty("data")]
-        public UserPasswordBreachedData Data { get; set; } = new UserPasswordBreachedData();
+        public UserPasswordBreachedData Data { get; private set; } = new UserPasswordBreachedData();
     }
 }

@@ -21,7 +21,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : IntelCommonRequest<UserPasswordBreachedRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
             public HashType HashType { get; set; }

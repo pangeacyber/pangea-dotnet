@@ -7,11 +7,11 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         [JsonProperty("data")]
-        public DomainReputationData Data { get; set; } = new DomainReputationData();
+        public DomainReputationData Data { get; private set; } = new DomainReputationData();
 
         ///
         [JsonProperty("data_list")]
-        public DomainReputationDataItem[]? DataList { get; set; } = null;
+        public Dictionary<string, DomainReputationDataItem>? DataList { get; private set; } = null;
 
     }
 }

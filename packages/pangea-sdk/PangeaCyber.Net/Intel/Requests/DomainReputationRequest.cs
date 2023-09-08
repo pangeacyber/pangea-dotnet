@@ -22,26 +22,24 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : IntelCommonRequest<DomainReputationRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
-            public string? Domain { get; private set; }
+            public string? Domain { get; private set; } = null;
 
             ///
-            public string[]? DomainList { get; private set; }
+            public string[]? DomainList { get; private set; } = null;
 
 
             ///
             public Builder(string domain)
             {
                 Domain = domain;
-                DomainList = null;
             }
 
             ///
             public Builder(string[] domainList)
             {
-                Domain = null;
                 DomainList = domainList;
             }
 
