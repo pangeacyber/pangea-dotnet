@@ -4015,12 +4015,6 @@
         <member name="T:PangeaCyber.Net.Intel.DomainReputationDataItem">
 
         </member>
-        <member name="P:PangeaCyber.Net.Intel.DomainReputationDataItem.Indicator">
-
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.DomainReputationDataItem.#ctor">
-
-        </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
 
         </member>
@@ -4049,6 +4043,15 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.IntelReputationData.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IntelReputationDataItem">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IntelReputationDataItem.Indicator">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IntelReputationDataItem.#ctor">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPDomainData">
@@ -4109,6 +4112,9 @@
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationDataItem">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserBreachedData">
@@ -4339,6 +4345,9 @@
         <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.URL">
 
         </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.URLList">
+
+        </member>
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.#ctor(PangeaCyber.Net.Intel.URLReputationRequest.Builder)">
 
         </member>
@@ -4348,7 +4357,13 @@
         <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.Builder.URL">
 
         </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationRequest.Builder.URLList">
+
+        </member>
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.#ctor(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.#ctor(System.String[])">
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
@@ -4453,7 +4468,7 @@
         <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.Data">
 
         </member>
-        <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.DataList">
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.DataDetails">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationResult">
@@ -4507,7 +4522,7 @@
         <member name="P:PangeaCyber.Net.Intel.URLReputationResult.Data">
 
         </member>
-        <member name="M:PangeaCyber.Net.Intel.URLReputationResult.#ctor">
+        <member name="P:PangeaCyber.Net.Intel.URLReputationResult.DataDetails">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserBreachedResult">

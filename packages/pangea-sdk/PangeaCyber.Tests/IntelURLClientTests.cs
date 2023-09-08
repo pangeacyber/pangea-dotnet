@@ -26,7 +26,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -80,7 +80,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -118,7 +118,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -138,7 +138,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -158,7 +158,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.Null(response.Result.DataList);
+            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -181,8 +181,8 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.NotNull(response.Result.DataList);
-            Assert.Equal(3, response.Result.DataList.Count);
+            Assert.NotNull(response.Result.DataDetails);
+            Assert.Equal(3, response.Result.DataDetails.Count);
         }
 
 
