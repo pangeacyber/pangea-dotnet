@@ -3852,6 +3852,20 @@
             </code>
             </example>
         </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.WhoIs(PangeaCyber.Net.Intel.DomainWhoIsRequest)">
+            <kind>method</kind>
+            <summary>Retrieve who is for a domain from a provider, including an optional detailed report..</summary>
+            <remarks>WhoIs</remarks>
+            <operationid>domain_intel_post_v1_who_is</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.DomainWhoIsRequest">DomainWhoIsRequest with a domain and provider</param>
+            <returns>Response&lt;DomainWhoIsResult&gt;</returns>
+            <example>
+            <code>
+            var request = new DomainWhoIsResult.Builder("737updatesboeing.com").Build();
+            var response = await client.WhoIs(request);
+            </code>
+            </example>
+        </member>
         <member name="T:PangeaCyber.Net.Intel.FileIntelClient">
             <kind>class</kind>
             <summary>
@@ -4015,6 +4029,51 @@
         <member name="T:PangeaCyber.Net.Intel.DomainReputationData">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainWhoIsData">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.DomainName">
+            <summary>
+            Represents information about a domain.
+            </summary>
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.DomainAvailability">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.CreatedDate">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.UpdatedDate">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.ExpiresDate">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.HostNames">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.IPs">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.RegistrarName">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.ContactEmail">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.EstimatedDomainAge">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.RegistrantOrganization">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsData.RegistrantCountry">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainWhoIsData.#ctor">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
 
         </member>
@@ -4142,6 +4201,27 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainWhoIsRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsRequest.Domain">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainWhoIsRequest.#ctor(PangeaCyber.Net.Intel.DomainWhoIsRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainWhoIsRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsRequest.Builder.Domain">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainWhoIsRequest.Builder.#ctor(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainWhoIsRequest.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest">
@@ -4436,6 +4516,12 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.Data">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainWhoIsResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainWhoIsResult.Data">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationResult">

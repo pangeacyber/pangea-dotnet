@@ -5,7 +5,7 @@ namespace PangeaCyber.Net.Intel.Tests
     public class ITDomainIntelTest
     {
         private DomainIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITDomainIntelTest()
         {
@@ -162,7 +162,28 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
-        public async Task TestEmptyIP()
+        public async Task TestDomainWhoIs()
+        {
+            // Provider, verbose, raw
+            var response = await client.WhoIs(
+                new DomainWhoIsRequest.Builder("737updatesboeing.com")
+                    .WithProvider("whoisxml")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotEmpty(data.DomainName);
+            Assert.NotEmpty(data.DomainAvailability);
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestEmptyDomain()
         {
             await Assert.ThrowsAsync<ValidationException>(async () =>
             {
