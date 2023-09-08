@@ -5,14 +5,17 @@ using PangeaCyber.Net.Vault.Results;
 
 namespace PangeaCyber.Net.Vault
 {
-    ///
+    /// <kind>class</kind>
+    /// <remarks>
+    /// Vault Client
+    /// </remarks>
     public class VaultClient : BaseClient<VaultClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "vault";
         private const bool SupportMultiConfig = false;
 
-        ///
+        /// Constructor
         public VaultClient(Builder builder) : base(builder, ServiceName, SupportMultiConfig)
         {
         }
@@ -32,35 +35,51 @@ namespace PangeaCyber.Net.Vault
             }
         }
 
-        /// <summary>
-        /// State change
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>State change</remarks>
+        /// <summary>Change the state of a specific version of a secret or key.</summary>
+        /// <operationid>vault_post_v1_state_change</operationid>
         /// <param name="id">Item id to change</param>
         /// <param name="version">Item version to change</param>
         /// <param name="state">State to set to item version</param>
-        /// <returns>StateChangeResponse</returns>
+        /// <returns>Response&lt;StateChangeResponse&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
+        /// <example>
+        /// <code>
+        /// var response = await client.StateChange(
+        ///     "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
+        ///     1,
+        ///     ItemVersionState.Deactivated);
+        /// </code>
+        /// </example>
         public async Task<Response<StateChangeResult>> StateChange(string id, int version, ItemVersionState state)
         {
             return await DoPost<StateChangeResult>("/v1/state/change", new StateChangeRequest.Builder(id, version, state).Build());
         }
 
-        /// <summary>
-        /// Delete
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>Delete</remarks>
+        /// <summary>Delete a secret, key or folder.</summary>
+        /// <operationid>vault_post_v1_delete</operationid>
         /// <param name="id">Item id to delete</param>
-        /// <returns>DeleteResponse</returns>
+        /// <returns>Response&lt;DeleteResponse&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
+        /// <example>
+        /// <code>
+        /// var deleteResponse = await client.Delete("pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5");
+        /// </code>
+        /// </example>
         public async Task<Response<DeleteResult>> Delete(string id)
         {
             return await DoPost<DeleteResult>("/v1/delete", new DeleteRequest.Builder(id).Build());
         }
 
-        /// <summary>
-        /// Retrieve a secret or key, and any associated information.
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>Retrieve</remarks>
+        /// <summary>Retrieve a secret or key, and any associated information.</summary>
+        /// <operationid>vault_post_v1_get</operationid>
         /// <param name="request">The request to the '/get' endpoint.</param>
         /// <returns>The response containing the retrieved information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -75,9 +94,10 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<GetResult>("/v1/get", request);
         }
 
-        /// <summary>
-        /// Retrieve a list of secrets, keys, and folders, and their associated information.
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>List</remarks>
+        /// <summary>Retrieve a list of secrets, keys, and folders, and their associated information.</summary>
+        /// <operationid>vault_post_v1_list</operationid>
         /// <param name="request">The request parameters to send to the 'list' endpoint.</param>
         /// <returns>The response containing the list of items and their information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -92,16 +112,18 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<ListResult>("/v1/list", request);
         }
 
-        /// <summary>
-        /// Update information associated with a secret or key.
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>Update</remarks>
+        /// <summary>Update information associated with a secret or key.</summary>
+        /// <operationid>vault_post_v1_update</operationid>
         /// <param name="request">The request parameters to send to the update endpoint.</param>
         /// <returns>The response containing the updated information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// UpdateResponse updateResponse = await client.Update(new UpdateRequest.Builder("id")
+        /// UpdateResponse updateResponse = await client.Update(
+        ///     new UpdateRequest.Builder("id")
         ///     .WithFolder("updated")
         ///     .Build());
         /// </code>
@@ -111,16 +133,18 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<UpdateResult>("/v1/update", request);
         }
 
-        /// <summary>
-        /// Store a secret in the vault service.
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>Store a secret</remarks>
+        /// <summary>Store a secret in the vault service.</summary>
+        /// <operationid>vault_post_v1_secret_store 1</operationid>
         /// <param name="request">The request parameters to send to the '/secret/store' endpoint.</param>
         /// <returns>The response containing the stored secret information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var storeResponse = await client.SecretStore(new SecretStoreRequest.Builder("mysecret", "mysecretname")
+        /// var storeResponse = await client.SecretStore(
+        ///     new SecretStoreRequest.Builder("mysecret", "mysecretname")
         ///     .Build());
         /// </code>
         /// </example>
@@ -129,16 +153,18 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SecretStoreResult>("/v1/secret/store", request);
         }
 
-        /// <summary>
-        /// Store a Pangea Token in the vault service.
-        /// </summary>
+        /// <kind>method</kind>
+        /// <remarks>Store a token</remarks>
+        /// <summary>Store a Pangea Token in the vault service.</summary>
+        /// <operationid>vault_post_v1_secret_store 2</operationid>
         /// <param name="request">The request parameters to send to the '/secret/store' endpoint.</param>
         /// <returns>The response containing the stored token information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var storeResponse = await client.PangeaTokenStore(new PangeaTokenStoreRequest.Builder("mytoken", "mytokenname")
+        /// var storeResponse = await client.PangeaTokenStore(
+        ///     new PangeaTokenStoreRequest.Builder("mytoken", "mytokenname")
         ///     .Build());
         /// </code>
         /// </example>
@@ -147,9 +173,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SecretStoreResult>("/v1/secret/store", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Rotate a secret in the vault service.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The secret rotate request.</param>
         /// <returns>The response containing the rotated secret information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -166,9 +192,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SecretRotateResult>("/v1/secret/rotate", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Rotate a Pangea Token in the vault service.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The Pangea token rotate request.</param>
         /// <returns>The response containing the rotated token information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -184,9 +210,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SecretRotateResult>("/v1/secret/rotate", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Generate a symmetric key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/generate' endpoint.</param>
         /// <returns>The response containing the generated symmetric key information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -203,9 +229,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SymmetricGenerateResult>("/v1/key/generate", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Generate an asymmetric key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/generate' endpoint.</param>
         /// <returns>The response containing the generated asymmetric key information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -222,9 +248,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<AsymmetricGenerateResult>("/v1/key/generate", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Import an asymmetric key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/store' endpoint.</param>
         /// <returns>The response containing the stored asymmetric key information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -241,9 +267,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<AsymmetricStoreResult>("/v1/key/store", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Import a symmetric key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/store' endpoint.</param>
         /// <returns>The response containing the stored symmetric key information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -260,9 +286,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SymmetricStoreResult>("/v1/key/store", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Manually rotate a symmetric or asymmetric key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/rotate' endpoint.</param>
         /// <returns>The response containing the rotated key information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -279,9 +305,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<KeyRotateResult>("/v1/key/rotate", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Encrypt a message using a key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/encrypt' endpoint.</param>
         /// <returns>The response containing the encrypted message.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -299,9 +325,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<EncryptResult>("/v1/key/encrypt", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Decrypt a message using a key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/decrypt' endpoint.</param>
         /// <returns>The response containing the decrypted message.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -319,9 +345,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<DecryptResult>("/v1/key/decrypt", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Sign a message using a key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/key/sign' endpoint.</param>
         /// <returns>The response containing the signed message.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -337,9 +363,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<SignResult>("/v1/key/sign", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Sign a JSON Web Token (JWT) using a key.
-        /// </summary>
+        /// </remarks>
         /// <param name="id">The key ID to sign the payload.</param>
         /// <param name="payload">The payload to sign.</param>
         /// <returns>The response containing the signed JWT.</returns>
@@ -356,9 +382,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<JWTSignResult>("/v1/key/sign/jwt", new JWTSignRequest.Builder(id, payload).Build());
         }
 
-        /// <summary>
+        /// <remarks>
         /// Verify a signature using a key.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request containing the key ID, message, and signature to verify.</param>
         /// <returns>The response indicating whether the signature is valid or not.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -374,9 +400,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<VerifyResult>("/v1/key/verify", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Verify the signature of a JSON Web Token (JWT).
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request containing the JWT signature to verify.</param>
         /// <returns>The response containing the verification result.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -393,9 +419,9 @@ namespace PangeaCyber.Net.Vault
         }
 
 
-        /// <summary>
+        /// <remarks>
         /// Retrieve a key in JWK format.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request containing the item ID and version to retrieve.</param>
         /// <returns>The response containing the JWK key.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -411,9 +437,9 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<JWKGetResult>("/v1/get/jwk", request);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Creates a folder.
-        /// </summary>
+        /// </remarks>
         /// <param name="request">The request parameters to send to the '/folder/create' endpoint.</param>
         /// <returns>The response containing the created folder information.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
