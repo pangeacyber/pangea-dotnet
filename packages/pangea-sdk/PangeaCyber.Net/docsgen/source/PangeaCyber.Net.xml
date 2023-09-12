@@ -2233,6 +2233,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithFilter(System.Collections.Generic.Dictionary{System.String,System.String})">
+            @deprecated user WithFilter(FilterAgreementList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterAgreementList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithLast(System.String)">
@@ -2392,6 +2395,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+            @deprecated use WithFilter(FilterSessionList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterSessionList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithLast(System.String)">
@@ -2791,6 +2797,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+            @deprecated use WithFilter(FilterUserInviteList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterUserInviteList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithLast(System.String)">
@@ -2893,6 +2902,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+            @deprecated use WithFilter(FilterUserList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterUserList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithLast(System.String)">
