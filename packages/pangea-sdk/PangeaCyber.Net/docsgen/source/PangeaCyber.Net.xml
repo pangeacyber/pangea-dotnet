@@ -1410,133 +1410,121 @@
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.CreatedAt">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.CreatedAtGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.CreatedAtGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.CreatedAtLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.CreatedAtLte">
-
-        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.PublishedAt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.PublishedAtGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.PublishedAtGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.PublishedAtLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.PublishedAtLte">
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Type">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.TypeContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.TypeIn">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Id">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.IdContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.IdIn">
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.ID">
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Name">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.NameContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.NameIn">
-
-        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Text">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.TextContains">
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterAgreementList.#ctor">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.TextIn">
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterBase">
+
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.FilterBase.Name">
+
+        </member>
+        <member name="F:PangeaCyber.Net.AuthN.Models.FilterBase.Map">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterBase.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterEqual`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterEqual`1.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterEqual`1.Set(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterEqual`1.Get">
+
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterMatch`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.GetContains">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.SetContains(System.Collections.Generic.List{`0})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.GetIn">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.SetIn(System.Collections.Generic.List{`0})">
+
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterRange`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetLessThan(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetLessThan">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetLessThanEqual(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetLessThanEqual">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetGreaterThan(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetGreaterThan">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetGreaterThanEqual(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetGreaterThanEqual">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FilterSessionList">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ActiveTokenId">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ActiveTokenIdContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAtGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAtGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAtLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAtLte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Email">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.EmailContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Expire">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ExpireGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ExpireGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ExpireLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ExpireLte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Id">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.IdContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Identity">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.IdentityContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Scopes">
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ID">
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Type">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.TypeContains">
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Identity">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Email">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Expire">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Scopes">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterSessionList.#ctor">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FilterUserInviteList">
@@ -1545,172 +1533,79 @@
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Callback">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CallbackContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAtGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAtGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAtLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAtLte">
-
-        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Email">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.EmailContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Expire">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.ExpireGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.ExpireGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.ExpireLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.ExpireLte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Id">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.IdContains">
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.ID">
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.InviteOrg">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.InviteOrgContains">
-
-        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Inviter">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.InviterContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.IsSignup">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.RequireMfa">
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.State">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.StateContains">
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Signup">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.RequireMfa">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Expire">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAt">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.#ctor">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FilterUserList">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.AcceptedEulaId">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.AcceptedEulaIdContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.AcceptedEulaIdIn">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAtGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAtGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAtLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAtLte">
-
-        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Disabled">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Email">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.EmailContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Id">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.IdContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAtGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAtGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAtLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAtLte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginIp">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginIpContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCity">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCityContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCountry">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCountryContains">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCount">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCountGt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCountGte">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCountLt">
-
-        </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCountLte">
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.RequireMfa">
 
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Verified">
+
+        </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Scopes">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Verified">
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.EulaId">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Email">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginIp">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCity">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCountry">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCount">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterUserList.#ctor">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FlowType">
