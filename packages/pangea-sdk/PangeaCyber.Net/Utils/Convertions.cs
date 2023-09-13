@@ -28,20 +28,61 @@ namespace PangeaCyber.Net
         }
 
         ///
+        public static string Bytes2Hex(byte[] bytes)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                builder.Append(b.ToString("x2")); // Convert each byte to its hexadecimal representation
+            }
+            return builder.ToString();
+        }
+
+        ///
         public static string GetSHA256Hash(string input)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] inputBytes = Encoding.UTF8.GetBytes(input);
                 byte[] hashBytes = sha256.ComputeHash(inputBytes);
-                StringBuilder builder = new StringBuilder();
+                return Bytes2Hex(hashBytes);
+            }
+        }
 
-                foreach (byte b in hashBytes)
+        ///
+        public static string GetSHA1Hash(string input)
+        {
+            using (SHA1 sha1 = SHA1.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha1.ComputeHash(inputBytes);
+                return Bytes2Hex(hashBytes);
+            }
+        }
+
+        ///
+        public static string GetSHA256HashFromFilepath(string filepath)
+        {
+            using (FileStream stream = File.OpenRead(filepath))
+            {
+                using (SHA256 sha256 = SHA256.Create())
                 {
-                    builder.Append(b.ToString("x2")); // Convert each byte to its hexadecimal representation
+                    byte[] hashBytes = sha256.ComputeHash(stream);
+                    return Bytes2Hex(hashBytes);
                 }
+            }
+        }
 
-                return builder.ToString();
+        ///
+        public static string GetSHA1HashFromFilepath(string filepath)
+        {
+            using (FileStream stream = File.OpenRead(filepath))
+            {
+                using (SHA1 sha1 = SHA1.Create())
+                {
+                    byte[] hashBytes = sha1.ComputeHash(stream);
+                    return Bytes2Hex(hashBytes);
+                }
             }
         }
 

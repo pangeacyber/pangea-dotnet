@@ -8,19 +8,19 @@ namespace PangeaCyber.Net.AuthN.Requests
     {
         ///
         [JsonProperty("filter")]
-        public Dictionary<string, string> Filter { get; private set; }
+        public Dictionary<string, string>? Filter { get; private set; }
 
         ///
         [JsonProperty("last")]
-        public string Last { get; private set; }
+        public string? Last { get; private set; }
 
         ///
         [JsonProperty("order")]
-        public ListOrder Order { get; private set; }
+        public ListOrder? Order { get; private set; }
 
         ///
         [JsonProperty("order_by")]
-        public AgreementListOrderBy OrderBy { get; private set; }
+        public AgreementListOrderBy? OrderBy { get; private set; }
 
         ///
         [JsonProperty("size")]
@@ -39,13 +39,13 @@ namespace PangeaCyber.Net.AuthN.Requests
         public class Builder
         {
             ///
-            public Dictionary<string, string> Filter { get; private set; }
+            public Dictionary<string, string>? Filter { get; private set; }
             ///
-            public string Last { get; private set; }
+            public string? Last { get; private set; }
             ///
-            public ListOrder Order { get; private set; }
+            public ListOrder? Order { get; private set; }
             ///
-            public AgreementListOrderBy OrderBy { get; private set; }
+            public AgreementListOrderBy? OrderBy { get; private set; }
             ///
             public int? Size { get; private set; }
 
