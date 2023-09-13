@@ -1,3 +1,5 @@
+using PangeaCyber.Net.Filters;
+
 namespace PangeaCyber.Net.AuthN.Models
 {
     ///

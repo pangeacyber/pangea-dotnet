@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using PangeaCyber.Net.AuthN.Models;
+using PangeaCyber.Net.Filters;
 
 namespace PangeaCyber.Net.AuthN.Requests
 {

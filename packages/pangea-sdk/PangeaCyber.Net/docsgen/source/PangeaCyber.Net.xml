@@ -1398,9 +1398,6 @@
         <member name="P:PangeaCyber.Net.AuthN.Models.EnrollMFAStart.MFAProviders">
 
         </member>
-        <member name="T:PangeaCyber.Net.AuthN.Models.Filter">
-
-        </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FilterAgreementList">
 
         </member>
@@ -1426,78 +1423,6 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Models.FilterAgreementList.#ctor">
-
-        </member>
-        <member name="T:PangeaCyber.Net.AuthN.Models.FilterBase">
-
-        </member>
-        <member name="F:PangeaCyber.Net.AuthN.Models.FilterBase.Name">
-
-        </member>
-        <member name="F:PangeaCyber.Net.AuthN.Models.FilterBase.Map">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterBase.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
-
-        </member>
-        <member name="T:PangeaCyber.Net.AuthN.Models.FilterEqual`1">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterEqual`1.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterEqual`1.Set(`0)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterEqual`1.Get">
-
-        </member>
-        <member name="T:PangeaCyber.Net.AuthN.Models.FilterMatch`1">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.GetContains">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.SetContains(System.Collections.Generic.List{`0})">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.GetIn">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterMatch`1.SetIn(System.Collections.Generic.List{`0})">
-
-        </member>
-        <member name="T:PangeaCyber.Net.AuthN.Models.FilterRange`1">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.#ctor(System.String,PangeaCyber.Net.AuthN.Models.Filter)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetLessThan(`0)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetLessThan">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetLessThanEqual(`0)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetLessThanEqual">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetGreaterThan(`0)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetGreaterThan">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.SetGreaterThanEqual(`0)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.AuthN.Models.FilterRange`1.GetGreaterThanEqual">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FilterSessionList">
@@ -2289,7 +2214,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Build">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.Filters.Filter)">
             @deprecated use WithFilter(FilterSessionList filter) instead
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterSessionList)">
@@ -2691,7 +2616,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.#ctor">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.Filters.Filter)">
             @deprecated use WithFilter(FilterUserInviteList filter) instead
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterUserInviteList)">
@@ -2796,7 +2721,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.#ctor">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.Filters.Filter)">
             @deprecated use WithFilter(FilterUserList filter) instead
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterUserList)">
@@ -4034,6 +3959,81 @@
 
         </member>
         <member name="P:PangeaCyber.Net.FileScan.FileScanResult.Data">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.Filter">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterBase">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Filters.FilterBase.Name">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Filters.FilterBase.Map">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterBase.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterEqual`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterEqual`1.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterEqual`1.Set(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterEqual`1.Get">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterMatch`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.GetContains">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.SetContains(System.Collections.Generic.List{`0})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.GetIn">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.SetIn(System.Collections.Generic.List{`0})">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterRange`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetLessThan(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetLessThan">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetLessThanEqual(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetLessThanEqual">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetGreaterThan(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetGreaterThan">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetGreaterThanEqual(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetGreaterThanEqual">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">

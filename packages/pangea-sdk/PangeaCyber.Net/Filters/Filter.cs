@@ -1,4 +1,4 @@
-namespace PangeaCyber.Net.AuthN.Models
+namespace PangeaCyber.Net.Filters
 {
     ///
     public class Filter : Dictionary<string, object?>
