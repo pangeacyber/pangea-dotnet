@@ -5,7 +5,7 @@ namespace PangeaCyber.Net.Intel.Tests
     public class ITDomainIntelTest
     {
         private DomainIntelClient client;
-        private TestEnvironment environment = TestEnvironment.DEV;
+        private TestEnvironment environment = TestEnvironment.LVE;
 
         public ITDomainIntelTest()
         {
