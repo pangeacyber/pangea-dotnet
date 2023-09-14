@@ -4270,6 +4270,12 @@
         <member name="F:PangeaCyber.Net.Intel.HashType.MD5">
 
         </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.NTLM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.SHA512">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IntelReputationData">
 
         </member>
@@ -5239,6 +5245,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Utils.GetSHA1Hash(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetSHA512Hash(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.Utils.GetSHA256HashFromFilepath(System.String)">
