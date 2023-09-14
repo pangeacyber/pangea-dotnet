@@ -19,7 +19,7 @@ namespace PangeaCyber.Net
         private readonly string serviceName;
 
         ///
-        private readonly bool SupportMultiConfig;
+        public string ConfigID { get; protected set; } = default!;
 
         ///
         protected readonly HttpClient HttpClient;
@@ -54,13 +54,12 @@ namespace PangeaCyber.Net
         }
 
         ///
-        protected BaseClient(ClientBuilder builder, string serviceName, bool SupportMultiConfig)
+        protected BaseClient(ClientBuilder builder, string serviceName)
         {
             this.config = builder.config;
             // Set default logger
             this.logger = builder.logger ?? this.GetDefaultLogger();
             this.serviceName = serviceName;
-            this.SupportMultiConfig = SupportMultiConfig;
             this.HttpClient = new HttpClient();
             this.HttpClient.BaseAddress = config.GetServiceUrl(serviceName, String.Empty);
 
@@ -117,9 +116,9 @@ namespace PangeaCyber.Net
         ///
         public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, FileStream? fileStream = null)
         {
-            if (this.SupportMultiConfig && this.config.ConfigID != default && request.ConfigID == default)
+            if (ConfigID != default && request.ConfigID == default)
             {
-                request.ConfigID = this.config.ConfigID;
+                request.ConfigID = ConfigID;
             }
 
             string requestStr = SerializeRequest(request);

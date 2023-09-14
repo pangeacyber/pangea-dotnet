@@ -46,7 +46,7 @@ namespace PangeaCyber.Net
         ///
         public string Domain { get; set; }
 
-        ///
+        /// @deprecated set it on Service builder instead
         public string ConfigID { get; set; } = default!;
 
         ///

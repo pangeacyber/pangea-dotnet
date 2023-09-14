@@ -115,9 +115,6 @@
         <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.supportMultiConfig">
-
-        </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
 
         </member>
@@ -237,6 +234,9 @@
         <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.pkInfo">
 
         </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.configID">
+
+        </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.#ctor(PangeaCyber.Net.Config)">
 
         </member>
@@ -250,6 +250,9 @@
             Setup user custom schema
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithPKInfo(System.Collections.Generic.Dictionary{System.String,System.String})">
+            Add extra public key information
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithConfigID(System.String)">
             Add extra public key information
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.Build">
@@ -997,9 +1000,6 @@
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.ServiceName">
-
-        </member>
-        <member name="F:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.supportMultiConfig">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.#ctor(PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.Builder)">
@@ -3426,7 +3426,7 @@
         <member name="F:PangeaCyber.Net.BaseClient`1.serviceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient`1.SupportMultiConfig">
+        <member name="P:PangeaCyber.Net.BaseClient`1.ConfigID">
 
         </member>
         <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
@@ -3453,7 +3453,7 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.WithLogger(NLog.Logger)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
@@ -4895,9 +4895,6 @@
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.Redact.RedactClient.ServiceName">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Redact.RedactClient.SupportMultiConfig">
 
         </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.#ctor(PangeaCyber.Net.Redact.RedactClient.Builder)">
