@@ -60,21 +60,33 @@ namespace PangeaCyber.Net.FileScan.Tests
                 exception = e;
             }
 
-            // Sleep 20 seconds until result is (should) be ready
-            await Task.Delay(20 * 1000);
+            int maxRetry = 6;
+            for (int retry = 0; retry < maxRetry; retry++)
+            {
+                try
+                {
+                    // Sleep 10 seconds until result is (should) be ready
+                    await Task.Delay(10 * 1000);
 
-            // Poll result, this could raise another AcceptedRequestException if result is not ready
-            var response = await client.PollResult<FileScanResult>(exception.RequestID);
-            Assert.True(response.IsOK);
+                    // Poll result, this could raise another AcceptedRequestException if result is not ready
+                    var response = await client.PollResult<FileScanResult>(exception.RequestID);
+                    Assert.True(response.IsOK);
 
-            FileScanData data = response.Result.Data;
-            Assert.Equal("benign", data.Verdict);
-            Assert.NotNull(response.Result.Parameters);
-            Assert.NotNull(response.Result.RawData);
+                    FileScanData data = response.Result.Data;
+                    Assert.Equal("benign", data.Verdict);
+                    Assert.NotNull(response.Result.Parameters);
+                    Assert.NotNull(response.Result.RawData);
 
-            // Poll result in raw format
-            var responseDictionary = await client.PollResult(exception.RequestID);
-            Assert.True(responseDictionary.IsOK);
+                    // Poll result in raw format
+                    var responseDictionary = await client.PollResult(exception.RequestID);
+                    Assert.True(responseDictionary.IsOK);
+                    break;
+                }
+                catch (PangeaAPIException)
+                {
+                    Assert.True(retry < maxRetry - 1);
+                }
+            }
         }
 
         [Fact]
@@ -123,21 +135,32 @@ namespace PangeaCyber.Net.FileScan.Tests
                 exception = e;
             }
 
-            // Sleep 20 seconds until result is (should) be ready
-            await Task.Delay(20 * 1000);
+            int maxRetry = 6;
+            for (int retry = 0; retry < maxRetry; retry++)
+            {
+                try
+                {
+                    // Sleep 20 seconds until result is (should) be ready
+                    await Task.Delay(20 * 1000);
 
-            // Poll result, this could raise another AcceptedRequestException if result is not ready
-            var response = await client.PollResult<FileScanResult>(exception.RequestID);
-            Assert.True(response.IsOK);
+                    // Poll result, this could raise another AcceptedRequestException if result is not ready
+                    var response = await client.PollResult<FileScanResult>(exception.RequestID);
+                    Assert.True(response.IsOK);
 
-            FileScanData data = response.Result.Data;
-            Assert.Equal("benign", data.Verdict);
-            Assert.NotNull(response.Result.Parameters);
-            Assert.NotNull(response.Result.RawData);
+                    FileScanData data = response.Result.Data;
+                    Assert.Equal("benign", data.Verdict);
+                    Assert.NotNull(response.Result.Parameters);
+                    Assert.NotNull(response.Result.RawData);
 
-            // Poll result in raw format
-            var responseDictionary = await client.PollResult(exception.RequestID);
-            Assert.True(responseDictionary.IsOK);
+                    // Poll result in raw format
+                    var responseDictionary = await client.PollResult(exception.RequestID);
+                    Assert.True(responseDictionary.IsOK);
+                }
+                catch (PangeaAPIException)
+                {
+                    Assert.True(retry < maxRetry - 1);
+                }
+            }
         }
 
     }
