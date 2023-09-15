@@ -4,12 +4,12 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Tests.Intel
 {
-    public class IntelIPClientTests
+    public class ITIPIntelTest
     {
         private IPIntelClient client;
         private TestEnvironment environment = TestEnvironment.LVE;
 
-        public IntelIPClientTests()
+        public ITIPIntelTest()
         {
             var config = Config.FromIntegrationEnvironment(environment);
             client = new IPIntelClient.Builder(config).Build();
@@ -132,6 +132,22 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestIPReputationMalicious_NotFound()
+        {
+            // Provider, verbose, raw
+            var response = await client.Reputation(
+                new IPReputationRequest.Builder("127.0.0.1").WithProvider("crowdstrike").WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(data);
+            Assert.NotEmpty(data.Verdict);
+            Assert.NotNull(data.Category);
+            Assert.NotNull(response.Result.Parameters);
         }
 
         [Fact]
@@ -394,6 +410,22 @@ namespace PangeaCyber.Tests.Intel
             Assert.NotNull(response.Result.RawData);
         }
 
+
+        [Fact]
+        public async Task TestIPDomain_NotFound()
+        {
+            // Provider, verbose, raw
+            var response = await client.GetDomain(
+                new IPDomainRequest.Builder("127.0.0.1").WithProvider("digitalelement").WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.False(data.DomainFound);
+            Assert.Null(data.Domain);
+            Assert.NotNull(response.Result.Parameters);
+        }
+
         [Fact]
         public async Task TestIPVPN_1()
         {
@@ -517,6 +549,25 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestIPVPN_NotFound()
+        {
+            // Provider, verbose, raw
+            var response = await client.IsVPN(
+                new IPVPNRequest.Builder("127.0.0.1")
+                    .WithProvider("digitalelement")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(data);
+            Assert.False(data.IsVPN);
+            Assert.NotNull(response.Result.Parameters);
+        }
+
+        [Fact]
         public async Task TestIPProxy_1()
         {
             // Default provider, not verbose by default, not raw by default;
@@ -634,6 +685,24 @@ namespace PangeaCyber.Tests.Intel
             Assert.True(data.IsProxy);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestIPProxy_NotFound()
+        {
+            // Provider, verbose, raw
+            var response = await client.IsProxy(new IPProxyRequest.Builder("127.0.0.1")
+                .WithProvider("digitalelement")
+                .WithVerbose(true)
+                .WithRaw(true)
+                .Build());
+
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(data);
+            Assert.False(data.IsProxy);
+            Assert.NotNull(response.Result.Parameters);
         }
 
         [Fact]

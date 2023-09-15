@@ -4,7 +4,7 @@ using PangeaCyber.Net.Vault.Models;
 
 namespace PangeaCyber.Net.Vault.Tests
 {
-    public class ITVaultTests
+    public class ITVaultTest
     {
         VaultClient client;
         TestEnvironment environment = TestEnvironment.LVE;
@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Vault.Tests
         Random random;
         const string actor = "CsharpSDKTest";
 
-        public ITVaultTests()
+        public ITVaultTest()
         {
             client = new VaultClient.Builder(Config.FromIntegrationEnvironment(environment)).Build();
             time = DateTime.Now.ToString("yyyyMMdd_HHmmss");

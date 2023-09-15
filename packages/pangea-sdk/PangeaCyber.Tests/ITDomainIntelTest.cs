@@ -162,6 +162,27 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
+        public async Task TestDomainReputationMalicious_NotFound()
+        {
+            // Provider, verbose, raw
+            var response = await client.Reputation(
+                new DomainReputationRequest.Builder("thisshouldbeafakedomain123asd.com")
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(data);
+            Assert.NotEmpty(data.Verdict);
+            Assert.NotNull(data.Category);
+            Assert.NotNull(response.Result.Parameters);
+        }
+
+        [Fact]
         public async Task TestEmptyIP()
         {
             await Assert.ThrowsAsync<ValidationException>(async () =>
