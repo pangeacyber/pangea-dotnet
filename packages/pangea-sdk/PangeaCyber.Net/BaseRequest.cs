@@ -7,7 +7,7 @@ namespace PangeaCyber.Net
     {
         ///
         [JsonProperty("config_id")]
-        public string ConfigID { get; set; } = "";
+        public string? ConfigID { get; set; } = null;
 
         ///
         public BaseRequest()
