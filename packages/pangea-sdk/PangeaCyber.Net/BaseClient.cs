@@ -19,7 +19,7 @@ namespace PangeaCyber.Net
         private readonly string serviceName;
 
         ///
-        public string ConfigID { get; protected set; } = default!;
+        public string ConfigID { get; protected set; } = "";
 
         ///
         protected readonly HttpClient HttpClient;
@@ -116,7 +116,7 @@ namespace PangeaCyber.Net
         ///
         public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, FileStream? fileStream = null)
         {
-            if (ConfigID != default && request.ConfigID == default)
+            if (!string.IsNullOrEmpty(ConfigID) && string.IsNullOrEmpty(request.ConfigID))
             {
                 request.ConfigID = ConfigID;
             }

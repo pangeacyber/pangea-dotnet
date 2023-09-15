@@ -44,11 +44,11 @@ namespace PangeaCyber.Net.Audit
             this.tenantID = builder.tenantID;
             this.pkInfo = builder.pkInfo ?? new Dictionary<string, string>();
 
-            if (builder.configID != null)
+            if (!string.IsNullOrEmpty(builder.configID))
             {
                 ConfigID = builder.configID;
             }
-            else if (builder.config.ConfigID != default)
+            else if (!string.IsNullOrEmpty(builder.config.ConfigID))
             {
                 ConfigID = builder.config.ConfigID;
             }
@@ -378,7 +378,7 @@ namespace PangeaCyber.Net.Audit
             public Dictionary<string, string>? pkInfo = null;
 
             ///
-            public string? configID = null;
+            public string configID = "";
 
             ///
             public Builder(Config config) : base(config)
