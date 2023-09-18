@@ -34,7 +34,8 @@ namespace PangeaCyber.Net
         public string Path { get; private set; } = default!;
 
         /// 
-        public override string ToString() {
+        public override string ToString()
+        {
             return Source + " " + Code + ": " + Detail + ".";
         }
     }

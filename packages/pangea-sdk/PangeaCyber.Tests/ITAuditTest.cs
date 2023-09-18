@@ -5,7 +5,7 @@ using PangeaCyber.Net.Exceptions;
 namespace PangeaCyber.Tests;
 
 ///
-public class ITAuditTests
+public class ITAuditTest
 {
     private AuditClient generalClient, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
 
@@ -25,7 +25,7 @@ public class ITAuditTests
     private const string MSG_CUSTOM_SCHEMA_SIGNED_LOCAL = "java-sdk-custom-schema-sign-local";
     private const string LONG_FIELD = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia, orci eget commodo commodo non.";
 
-    public ITAuditTests()
+    public ITAuditTest()
     {
         // Standard schema clients
         var generalCfg = Config.FromIntegrationEnvironment(environment);
@@ -722,8 +722,8 @@ public class ITAuditTests
                             .Build();
 
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        cfg.ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
-        var client = new AuditClient.Builder(cfg).Build();
+        String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
+        var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());
 
@@ -748,8 +748,8 @@ public class ITAuditTests
                             .Build();
 
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        cfg.ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 2);
-        var client = new AuditClient.Builder(cfg).Build();
+        String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 2);
+        var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());
 

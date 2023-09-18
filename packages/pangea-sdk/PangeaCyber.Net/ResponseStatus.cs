@@ -35,6 +35,8 @@ namespace PangeaCyber.Net
         ///
         TreeNotFound,
         ///
-        IPNotFound
+        IPNotFound,
+        /// 
+        Accepted
     }
 }

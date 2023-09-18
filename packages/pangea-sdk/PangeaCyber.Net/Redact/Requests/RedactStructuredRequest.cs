@@ -29,6 +29,10 @@ namespace PangeaCyber.Net.Redact
         public string[]? Rules { get; private set; }
 
         ///
+        [JsonProperty("rulesets")]
+        public string[]? Rulesets { get; private set; }
+
+        ///
         [JsonProperty("return_result")]
         public bool? ReturnResult { get; private set; }
 
@@ -40,6 +44,7 @@ namespace PangeaCyber.Net.Redact
             this.Format = builder.Format;
             this.Debug = builder.Debug;
             this.Rules = builder.Rules;
+            this.Rulesets = builder.Rulesets;
             this.ReturnResult = builder.ReturnResult;
         }
 
@@ -63,6 +68,9 @@ namespace PangeaCyber.Net.Redact
 
             ///
             public string[]? Rules { get; private set; } = null;
+
+            ///
+            public string[]? Rulesets { get; private set; } = null;
 
             ///
             public bool? ReturnResult { get; private set; } = null;
@@ -98,6 +106,13 @@ namespace PangeaCyber.Net.Redact
             public Builder WithRules(string[] rules)
             {
                 this.Rules = rules;
+                return this;
+            }
+
+            ///
+            public Builder WithRulesets(string[] rulesets)
+            {
+                this.Rulesets = rulesets;
                 return this;
             }
 

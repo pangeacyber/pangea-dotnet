@@ -11,11 +11,8 @@ namespace PangeaCyber.Net.Redact
         ///
         public static string ServiceName { get; } = "redact";
 
-        ///
-        private static bool SupportMultiConfig = false;
-
         /// Constructor
-        public RedactClient(Builder builder) : base(builder, ServiceName, SupportMultiConfig)
+        public RedactClient(Builder builder) : base(builder, ServiceName)
         {
         }
 

@@ -18,12 +18,16 @@ namespace PangeaCyber.Net.AuthN
         public Session Session { get; private set; }
 
         ///
+        public Agreements Agreements { get; private set; }
+
+        ///
         public AuthNClient(Builder builder) : base(builder)
         {
             User = new User(builder);
             Flow = new Flow(builder);
             Client = new Client(builder);
             Session = new Session(builder);
+            Agreements = new Agreements(builder);
         }
 
         ///
