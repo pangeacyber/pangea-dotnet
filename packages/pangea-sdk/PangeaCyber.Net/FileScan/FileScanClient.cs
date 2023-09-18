@@ -8,10 +8,9 @@ namespace PangeaCyber.Net.FileScan
     {
         ///
         public static string ServiceName = "file-scan";
-        private static readonly bool SupportMultiConfig = false;
 
         ///
-        public FileScanClient(Builder builder) : base(builder, ServiceName, SupportMultiConfig)
+        public FileScanClient(Builder builder) : base(builder, ServiceName)
         {
         }
 
@@ -40,12 +39,12 @@ namespace PangeaCyber.Net.FileScan
         /// <example>
         /// <code>
         /// string filepath = "./path/to/file.pdf";
-        /// 
+        ///
         /// var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
-        /// 
+        ///
         /// var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
         /// var response = await client.Scan(request, file);
-        /// 
+        ///
         /// FileScanData data = response.Result.Data;
         /// </code>
         /// </example>

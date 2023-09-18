@@ -722,8 +722,8 @@ public class ITAuditTest
                             .Build();
 
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        cfg.ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
-        var client = new AuditClient.Builder(cfg).Build();
+        String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
+        var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());
 
@@ -748,8 +748,8 @@ public class ITAuditTest
                             .Build();
 
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        cfg.ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 2);
-        var client = new AuditClient.Builder(cfg).Build();
+        String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 2);
+        var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());
 

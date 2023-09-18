@@ -10,11 +10,10 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         public static string ServiceName { get; } = "user-intel";
-        private static readonly bool SupportMultiConfig = false;
 
         /// Constructor
         public UserIntelClient(Builder builder)
-            : base(builder, ServiceName, SupportMultiConfig)
+            : base(builder, ServiceName)
         {
         }
 
