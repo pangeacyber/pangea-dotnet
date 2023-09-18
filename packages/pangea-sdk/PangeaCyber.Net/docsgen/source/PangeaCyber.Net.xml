@@ -115,9 +115,6 @@
         <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.supportMultiConfig">
-
-        </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
 
         </member>
@@ -237,6 +234,9 @@
         <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.pkInfo">
 
         </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.configID">
+
+        </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.#ctor(PangeaCyber.Net.Config)">
 
         </member>
@@ -250,6 +250,9 @@
             Setup user custom schema
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithPKInfo(System.Collections.Generic.Dictionary{System.String,System.String})">
+            Add extra public key information
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithConfigID(System.String)">
             Add extra public key information
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.Build">
@@ -997,9 +1000,6 @@
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.ServiceName">
-
-        </member>
-        <member name="F:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.supportMultiConfig">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.#ctor(PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.Builder)">
@@ -3426,7 +3426,7 @@
         <member name="F:PangeaCyber.Net.BaseClient`1.serviceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient`1.SupportMultiConfig">
+        <member name="P:PangeaCyber.Net.BaseClient`1.ConfigID">
 
         </member>
         <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
@@ -3453,7 +3453,7 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.WithLogger(NLog.Logger)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
@@ -3507,7 +3507,7 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Config.ConfigID">
-
+            @deprecated set it on Service builder instead
         </member>
         <member name="P:PangeaCyber.Net.Config.Environment">
 
@@ -3893,25 +3893,25 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Scan(PangeaCyber.Net.FileScan.FileScanRequest,System.IO.FileStream)">
-            <kind>method</kind>
-            <summary>Scan a file for malicious content.</summary>
-            <remarks>Scan</remarks>
-            <operationid>file_scan_post_v1_scan</operationid>
-            <param name="request" type="PangeaCyber.Net.FileScan.FileScanRequest">FileScanRequest</param>
-            <param name="file" type="System.IO.FileStream">FileStream file</param>
-            <returns>Response&lt;FileScanResult&gt;</returns>
-            <example>
-            <code>
-            string filepath = "./path/to/file.pdf";
+             <kind>method</kind>
+             <summary>Scan a file for malicious content.</summary>
+             <remarks>Scan</remarks>
+             <operationid>file_scan_post_v1_scan</operationid>
+             <param name="request" type="PangeaCyber.Net.FileScan.FileScanRequest">FileScanRequest</param>
+             <param name="file" type="System.IO.FileStream">FileStream file</param>
+             <returns>Response&lt;FileScanResult&gt;</returns>
+             <example>
+             <code>
+             string filepath = "./path/to/file.pdf";
 
-            var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+             var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
-            var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-            var response = await client.Scan(request, file);
+             var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
+             var response = await client.Scan(request, file);
 
-            FileScanData data = response.Result.Data;
-            </code>
-            </example>
+             FileScanData data = response.Result.Data;
+             </code>
+             </example>
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
 
@@ -4901,9 +4901,6 @@
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.Redact.RedactClient.ServiceName">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Redact.RedactClient.SupportMultiConfig">
 
         </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.#ctor(PangeaCyber.Net.Redact.RedactClient.Builder)">
