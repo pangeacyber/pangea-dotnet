@@ -5,13 +5,13 @@ using PangeaCyber.Net.Exceptions;
 namespace PangeaCyber.Tests;
 
 ///
-public class ITRedactTests
+public class ITRedactTest
 {
     private RedactClient client;
     TestEnvironment environment = TestEnvironment.LVE;
 
     ///
-    public ITRedactTests()
+    public ITRedactTest()
     {
         var config = Config.FromIntegrationEnvironment(environment);
         this.client = new RedactClient.Builder(config).Build();

@@ -252,6 +252,9 @@
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithPKInfo(System.Collections.Generic.Dictionary{System.String,System.String})">
             Add extra public key information
         </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.WithConfigID(System.String)">
+            Add extra public key information
+        </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.Build">
             Build an AuditClient
         </member>
@@ -3363,7 +3366,6 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Config.ConfigID">
-
         </member>
         <member name="P:PangeaCyber.Net.Config.Environment">
 

@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using PangeaCyber.Net.AuthN.Models;
+using PangeaCyber.Net.Filters;
 
 namespace PangeaCyber.Net.AuthN.Requests
 {
@@ -8,7 +9,7 @@ namespace PangeaCyber.Net.AuthN.Requests
     {
         ///
         [JsonProperty("filter")]
-        public Filter? Filter { get; set; }
+        public FilterSessionList? Filter { get; set; }
 
         ///
         [JsonProperty("last")]
@@ -29,18 +30,18 @@ namespace PangeaCyber.Net.AuthN.Requests
         ///
         protected CommonSessionListRequest(CommonBuilder builder)
         {
-            this.Filter = builder.Filter;
-            this.Last = builder.Last;
-            this.Order = builder.Order;
-            this.OrderBy = builder.OrderBy;
-            this.Size = builder.Size;
+            Filter = builder.Filter;
+            Last = builder.Last;
+            Order = builder.Order;
+            OrderBy = builder.OrderBy;
+            Size = builder.Size;
         }
 
         ///
         public class CommonBuilder
         {
             ///
-            public Filter? Filter { get; private set; }
+            public FilterSessionList? Filter { get; private set; }
             ///
             public string? Last { get; private set; }
             ///
@@ -59,38 +60,53 @@ namespace PangeaCyber.Net.AuthN.Requests
                 return new CommonSessionListRequest<TBuilder>((TBuilder)this);
             }
 
-            ///
+            /// @deprecated use WithFilter(FilterSessionList filter) instead
             public TBuilder WithFilter(Filter filter)
             {
-                this.Filter = filter;
+                Filter = new FilterSessionList();
+                foreach (var kvp in filter)
+                {
+                    Filter.Add(kvp.Key, kvp.Value);
+                }
+                return (TBuilder)this;
+            }
+
+            ///
+            public TBuilder WithFilter(FilterSessionList filter)
+            {
+                Filter = new FilterSessionList();
+                foreach (var kvp in filter)
+                {
+                    Filter.Add(kvp.Key, kvp.Value);
+                }
                 return (TBuilder)this;
             }
 
             ///
             public TBuilder WithLast(string last)
             {
-                this.Last = last;
+                Last = last;
                 return (TBuilder)this;
             }
 
             ///
             public TBuilder WithOrder(ListOrder order)
             {
-                this.Order = order;
+                Order = order;
                 return (TBuilder)this;
             }
 
             ///
             public TBuilder WithOrderBy(SessionOrderBy orderBy)
             {
-                this.OrderBy = orderBy;
+                OrderBy = orderBy;
                 return (TBuilder)this;
             }
 
             ///
             public TBuilder WithSize(int? size)
             {
-                this.Size = size;
+                Size = size;
                 return (TBuilder)this;
             }
         }

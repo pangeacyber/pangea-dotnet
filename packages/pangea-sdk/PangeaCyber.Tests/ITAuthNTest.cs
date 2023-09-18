@@ -107,8 +107,10 @@ public class ITAuthNTest
         Assert.Equal(new_text, updateResponse.Result.Text);
         Assert.Equal(active, updateResponse.Result.Active);
 
+        var filter = new FilterAgreementList();
+
         // List
-        var listResponse = await client.Agreements.List(new AgreementListRequest.Builder().Build());
+        var listResponse = await client.Agreements.List(new AgreementListRequest.Builder().WithFilter(filter).Build());
         Assert.True(listResponse.Result.Count > 0);
         Assert.True(listResponse.Result.Agreements.Length > 0);
         int count = listResponse.Result.Count;
@@ -117,7 +119,7 @@ public class ITAuthNTest
         var deleteResponse = await client.Agreements.Delete(new AgreementDeleteRequest.Builder(type, id).Build());
 
         // List again
-        var listResponseAfterDelete = await client.Agreements.List(new AgreementListRequest.Builder().Build());
+        var listResponseAfterDelete = await client.Agreements.List(new AgreementListRequest.Builder().WithFilter(filter).Build());
         Assert.Equal(count - 1, listResponseAfterDelete.Result.Count);
     }
 
@@ -286,7 +288,8 @@ public class ITAuthNTest
             string token = loginResp.Result.ActiveToken.Token;
 
             // List client sessions
-            var listResp = await client.Client.Session.List(new ClientSessionListRequest.Builder(token).Build());
+            var filter = new FilterSessionList();
+            var listResp = await client.Client.Session.List(new ClientSessionListRequest.Builder(token).WithFilter(filter).Build());
             Assert.True(listResp.IsOK);
             Assert.True(listResp.Result.Sessions.Length > 0);
 
@@ -324,7 +327,8 @@ public class ITAuthNTest
             string token = loginResp.Result.ActiveToken.Token;
 
             // Session list
-            var listResp = await client.Session.List(new SessionListRequest.Builder().Build());
+            var filter = new FilterSessionList();
+            var listResp = await client.Session.List(new SessionListRequest.Builder().WithFilter(filter).Build());
             Assert.True(listResp.IsOK);
             Assert.True(listResp.Result.Sessions.Length > 0);
 
@@ -410,7 +414,8 @@ public class ITAuthNTest
         try
         {
             // List users invites
-            var inviteListResp1 = await client.User.Invites.List(new UserInviteListRequest.Builder().Build());
+            var filter = new FilterUserInviteList();
+            var inviteListResp1 = await client.User.Invites.List(new UserInviteListRequest.Builder().WithFilter(filter).Build());
             Assert.True(inviteListResp1.IsOK);
             Assert.NotNull(inviteListResp1.Result.Invites);
             Assert.True(inviteListResp1.Result.Invites.Length > 0);
@@ -433,7 +438,8 @@ public class ITAuthNTest
     {
         try
         {
-            var userListResp1 = await client.User.List(new UserListRequest.Builder().Build());
+            var filter = new FilterUserList();
+            var userListResp1 = await client.User.List(new UserListRequest.Builder().WithFilter(filter).Build());
             Assert.True(userListResp1.IsOK);
             Assert.True(userListResp1.Result.Users.Length > 0);
 

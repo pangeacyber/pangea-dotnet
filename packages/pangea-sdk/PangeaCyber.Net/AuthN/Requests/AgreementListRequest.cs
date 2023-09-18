@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.AuthN.Requests
     {
         ///
         [JsonProperty("filter")]
-        public Dictionary<string, string>? Filter { get; private set; }
+        public FilterAgreementList? Filter { get; private set; }
 
         ///
         [JsonProperty("last")]
@@ -28,18 +28,18 @@ namespace PangeaCyber.Net.AuthN.Requests
 
         private AgreementListRequest(Builder builder)
         {
-            this.Filter = builder.Filter;
-            this.Last = builder.Last;
-            this.Order = builder.Order;
-            this.OrderBy = builder.OrderBy;
-            this.Size = builder.Size;
+            Filter = builder.Filter;
+            Last = builder.Last;
+            Order = builder.Order;
+            OrderBy = builder.OrderBy;
+            Size = builder.Size;
         }
 
         ///
         public class Builder
         {
             ///
-            public Dictionary<string, string>? Filter { get; private set; }
+            public FilterAgreementList? Filter { get; private set; }
             ///
             public string? Last { get; private set; }
             ///
@@ -58,38 +58,53 @@ namespace PangeaCyber.Net.AuthN.Requests
                 return new AgreementListRequest(this);
             }
 
-            ///
+            /// @deprecated user WithFilter(FilterAgreementList filter) instead
             public Builder WithFilter(Dictionary<string, string> filter)
             {
-                this.Filter = filter;
+                Filter = new FilterAgreementList();
+                foreach (var kvp in filter)
+                {
+                    Filter.Add(kvp.Key, kvp.Value);
+                }
+                return this;
+            }
+
+            ///
+            public Builder WithFilter(FilterAgreementList filter)
+            {
+                Filter = new FilterAgreementList();
+                foreach (var kvp in filter)
+                {
+                    Filter.Add(kvp.Key, kvp.Value);
+                }
                 return this;
             }
 
             ///
             public Builder WithLast(string last)
             {
-                this.Last = last;
+                Last = last;
                 return this;
             }
 
             ///
             public Builder WithOrder(ListOrder order)
             {
-                this.Order = order;
+                Order = order;
                 return this;
             }
 
             ///
             public Builder WithOrderBy(AgreementListOrderBy orderBy)
             {
-                this.OrderBy = orderBy;
+                OrderBy = orderBy;
                 return this;
             }
 
             ///
             public Builder WithSize(int? size)
             {
-                this.Size = size;
+                Size = size;
                 return this;
             }
         }

@@ -1,45 +1,28 @@
+using PangeaCyber.Net;
+using PangeaCyber.Net.Intel;
 using PangeaCyber.Net.Exceptions;
 
-namespace PangeaCyber.Net.Intel.Tests
+namespace PangeaCyber.Tests.Intel
 {
-    public class ITDomainIntelTest
+    public class ITURLIntelTest
     {
-        private DomainIntelClient client;
+        private URLIntelClient client;
         private TestEnvironment environment = TestEnvironment.LVE;
 
-        public ITDomainIntelTest()
+        public ITURLIntelTest()
         {
-            client = new DomainIntelClient.Builder(Config.FromIntegrationEnvironment(environment)).Build();
+            var config = Config.FromIntegrationEnvironment(environment);
+            client = new URLIntelClient.Builder(config).Build();
         }
 
         [Fact]
-        public async Task TestDomainReputationMalicious_1()
+        public async Task TestUrlReputationMalicious_1()
         {
-            // Default provider, not verbose by default, not raw by default;
-            var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com").Build()
-            );
+            var response = await client.Reputation(new URLReputationRequest.Builder("http://113.235.101.11:54384").Build());
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
-            Assert.NotEmpty(data.Verdict);
-            Assert.Null(response.Result.Parameters);
-            Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
-        }
-
-        [Fact]
-        public async Task TestDomainReputationMalicious_2()
-        {
-            // With provider, not verbose by default, not raw by default;
-            var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com").WithProvider("crowdstrike").Build()
-            );
-
-            Assert.True(response.IsOK);
-
-            var data = response.Result.Data;
+            IntelReputationData data = response.Result.Data;
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
@@ -47,11 +30,26 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
-        public async Task TestDomainReputationMalicious_3()
+        public async Task TestUrlReputationMalicious_2()
         {
-            // Default provider, no verbose, no raw
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com")
+                new URLReputationRequest.Builder("http://113.235.101.11:54384").WithProvider("crowdstrike").Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            IntelReputationData data = response.Result.Data;
+            Assert.Equal("malicious", data.Verdict);
+            Assert.Null(response.Result.Parameters);
+            Assert.Null(response.Result.RawData);
+            Assert.Null(response.Result.DataDetails);
+        }
+
+        [Fact]
+        public async Task TestUrlReputationMalicious_3()
+        {
+            var response = await client.Reputation(
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
                     .WithVerbose(false)
                     .WithRaw(false)
                     .Build()
@@ -59,19 +57,18 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
-            Assert.NotEmpty(data.Verdict);
+            IntelReputationData data = response.Result.Data;
+            Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
             Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
-        public async Task TestDomainReputationMalicious_4()
+        public async Task TestUrlReputationMalicious_4()
         {
-            // Default provider, verbose, no raw
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com")
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
                     .WithVerbose(true)
                     .WithRaw(false)
                     .Build()
@@ -79,19 +76,18 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
-            Assert.NotEmpty(data.Verdict);
+            IntelReputationData data = response.Result.Data;
+            Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
             Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
-        public async Task TestDomainReputationMalicious_5()
+        public async Task TestUrlReputationMalicious_5()
         {
-            // Default provider, no verbose, raw
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com")
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
                     .WithVerbose(false)
                     .WithRaw(true)
                     .Build()
@@ -99,19 +95,18 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
-            Assert.NotEmpty(data.Verdict);
+            IntelReputationData data = response.Result.Data;
+            Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
             Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
-        public async Task TestDomainReputationMalicious_6()
+        public async Task TestUrlReputationMalicious_6()
         {
-            // Default provider, verbose, raw
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com")
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
                     .WithVerbose(true)
                     .WithRaw(true)
                     .Build()
@@ -119,20 +114,18 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
-            Assert.NotEmpty(data.Verdict);
+            IntelReputationData data = response.Result.Data;
+            Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
             Assert.Null(response.Result.DataDetails);
         }
 
-
         [Fact]
-        public async Task TestDomainReputationMalicious_7()
+        public async Task TestUrlReputationMalicious_7()
         {
-            // Provider, no verbose, no raw
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com")
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
                     .WithProvider("crowdstrike")
                     .WithVerbose(false)
                     .WithRaw(false)
@@ -141,7 +134,7 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
+            IntelReputationData data = response.Result.Data;
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
@@ -149,11 +142,10 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
-        public async Task TestDomainReputationMalicious_8()
+        public async Task TestUrlReputationMalicious_8()
         {
-            // Provider, verbose, raw
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder("737updatesboeing.com")
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
                     .WithProvider("crowdstrike")
                     .WithVerbose(true)
                     .WithRaw(true)
@@ -162,7 +154,7 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
+            IntelReputationData data = response.Result.Data;
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
@@ -170,13 +162,13 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
-        public async Task TestDomainReputationBulk()
+        public async Task TestUrlReputationMaliciousBulk()
         {
-            string[] domainList = { "pemewizubidob.cafij.co.za", "redbomb.com.tr", "kmbk8.hicp.net" };
-
-            // Provider, verbose, raw
+            string[] urlList = {"http://113.235.101.11:54384",
+                "http://45.14.49.109:54819",
+                "https://chcial.ru/uplcv?utm_term%3Dcost%2Bto%2Brezone%2Bland"};
             var response = await client.Reputation(
-                new DomainReputationRequest.Builder(domainList)
+                new URLReputationRequest.Builder(urlList)
                     .WithProvider("crowdstrike")
                     .WithVerbose(true)
                     .WithRaw(true)
@@ -185,7 +177,7 @@ namespace PangeaCyber.Net.Intel.Tests
 
             Assert.True(response.IsOK);
 
-            var data = response.Result.Data;
+            IntelReputationData data = response.Result.Data;
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
@@ -194,57 +186,65 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
-        public async Task TestEmptyIP()
+        public async Task TestUrlReputationMalicious_NotFound()
         {
-            await Assert.ThrowsAsync<ValidationException>(async () =>
-            {
-                var response = await client.Reputation(
-                    new DomainReputationRequest.Builder("")
-                        .Build()
-                );
-            });
+            var response = await client.Reputation(
+                new URLReputationRequest.Builder("http://thisshouldbeafakeurl123asd:54384")
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            IntelReputationData data = response.Result.Data;
+            Assert.NotNull(data);
+            Assert.NotEmpty(data.Verdict);
+            Assert.NotNull(data.Category);
+            Assert.NotNull(response.Result.Parameters);
+        }
+
+
+        [Fact]
+        public async Task TestEmptyURL()
+        {
+            await Assert.ThrowsAsync<ValidationException>(async () => await client.Reputation(
+                new URLReputationRequest.Builder("")
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+                )
+            );
         }
 
         [Fact]
         public async Task TestEmptyProvider()
         {
-            await Assert.ThrowsAsync<ValidationException>(async () =>
-            {
-                var response = await client.Reputation(
-                    new DomainReputationRequest.Builder("737updatesboeing.com")
-                        .WithProvider("")
-                        .Build()
-                );
-            });
+            await Assert.ThrowsAsync<ValidationException>(async () => await client.Reputation(
+                new URLReputationRequest.Builder("http://113.235.101.11:54384")
+                    .WithProvider("")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+                )
+            );
         }
 
         [Fact]
         public async Task TestEmptyNotValidProvider()
         {
             await Assert.ThrowsAsync<ValidationException>(async () =>
-            {
-                var response = await client.Reputation(
-                    new DomainReputationRequest.Builder("737updatesboeing.com")
+                await client.Reputation(
+                    new URLReputationRequest.Builder("http://113.235.101.11:54384")
                         .WithProvider("notavalidprovider")
+                        .WithVerbose(true)
+                        .WithRaw(true)
                         .Build()
-                );
-            });
+                )
+            );
         }
 
-        [Fact]
-        public async Task TestUnauthorized()
-        {
-            Config cfg = Config.FromIntegrationEnvironment(environment);
-            cfg = new Config("notarealtoken", cfg.Domain);
-            DomainIntelClient fakeClient = new DomainIntelClient.Builder(cfg).Build();
-
-            await Assert.ThrowsAsync<UnauthorizedException>(async () =>
-            {
-                var response = await fakeClient.Reputation(
-                    new DomainReputationRequest.Builder("737updatesboeing.com")
-                        .Build()
-                );
-            });
-        }
     }
 }

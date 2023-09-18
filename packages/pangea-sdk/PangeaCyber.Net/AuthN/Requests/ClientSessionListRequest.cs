@@ -11,11 +11,11 @@ namespace PangeaCyber.Net.AuthN.Requests
 
         private ClientSessionListRequest(Builder builder) : base(builder)
         {
-            this.Token = builder.Token;
+            Token = builder.Token;
         }
 
         ///
-        public class Builder : CommonSessionListRequest<ClientSessionListRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
             public string Token { get; private set; }
@@ -23,7 +23,7 @@ namespace PangeaCyber.Net.AuthN.Requests
             ///
             public Builder(string token)
             {
-                this.Token = token;
+                Token = token;
             }
 
             ///
