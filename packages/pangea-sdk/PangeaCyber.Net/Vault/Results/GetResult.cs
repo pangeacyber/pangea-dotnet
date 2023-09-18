@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.Vault.Results
 
         ///
         [JsonProperty("inherited_settings")]
-        public InheritedSettings? InheritedSettings {get; private set;} = null;
+        public InheritedSettings? InheritedSettings { get; private set; } = null;
 
         ///
         public GetResult()
