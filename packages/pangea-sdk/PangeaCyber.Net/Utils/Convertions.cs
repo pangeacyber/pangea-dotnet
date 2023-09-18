@@ -61,6 +61,17 @@ namespace PangeaCyber.Net
         }
 
         ///
+        public static string GetSHA512Hash(string input)
+        {
+            using (SHA512 sha1 = SHA512.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha1.ComputeHash(inputBytes);
+                return Bytes2Hex(hashBytes);
+            }
+        }
+
+        ///
         public static string GetSHA256HashFromFilepath(string filepath)
         {
             using (FileStream stream = File.OpenRead(filepath))

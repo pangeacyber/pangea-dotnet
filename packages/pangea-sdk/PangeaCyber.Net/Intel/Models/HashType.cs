@@ -18,6 +18,15 @@ namespace PangeaCyber.Net.Intel
 
         ///
         [EnumMember(Value = "md5")]
-        MD5
+        MD5,
+
+        ///
+        [EnumMember(Value = "ntlm")]
+        NTLM,
+
+        ///
+        [EnumMember(Value = "sha512")]
+        SHA512
+
     }
 }

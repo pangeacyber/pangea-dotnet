@@ -8,11 +8,10 @@ namespace PangeaCyber.Net.Embargo
     {
         ///
         public static string ServiceName { get; } = "embargo";
-        private static readonly bool SupportMultiConfig = false;
 
         /// Constructor
         public EmbargoClient(Builder builder)
-            : base(builder, ServiceName, SupportMultiConfig)
+            : base(builder, ServiceName)
         {
         }
 

@@ -7,10 +7,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         public static string ServiceName { get; } = "authn";
 
         ///
-        protected const bool supportMultiConfig = false;
-
-        ///
-        public AuthNBaseClient(AuthNBaseClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
+        public AuthNBaseClient(AuthNBaseClient.Builder builder) : base(builder, ServiceName)
         {
         }
 

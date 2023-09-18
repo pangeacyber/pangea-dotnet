@@ -8,11 +8,10 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         public static string ServiceName { get; } = "url-intel";
-        private static readonly bool SupportMultiConfig = false;
 
         /// Constructor
         public URLIntelClient(Builder builder)
-            : base(builder, ServiceName, SupportMultiConfig)
+            : base(builder, ServiceName)
         {
         }
 

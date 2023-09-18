@@ -15,9 +15,6 @@ namespace PangeaCyber.Net.Audit
         public static string ServiceName { get; } = "audit";
 
         ///
-        private static bool supportMultiConfig = true;
-
-        ///
         private LogSigner? signer;
 
         ///
@@ -39,13 +36,23 @@ namespace PangeaCyber.Net.Audit
         private Dictionary<string, string> pkInfo;
 
         /// Constructor
-        protected AuditClient(AuditClient.Builder builder) : base(builder, ServiceName, supportMultiConfig)
+        protected AuditClient(AuditClient.Builder builder) : base(builder, ServiceName)
         {
             this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename) ? new LogSigner(builder.privateKeyFilename!) : null;
             this.publishedRoots = new Dictionary<int, PublishedRoot>();
             this.customSchemaClass = builder.customSchemaClass;
             this.tenantID = builder.tenantID;
             this.pkInfo = builder.pkInfo ?? new Dictionary<string, string>();
+
+            if (!string.IsNullOrEmpty(builder.configID))
+            {
+                ConfigID = builder.configID;
+            }
+            else if (!string.IsNullOrEmpty(builder.config.ConfigID))
+            {
+                ConfigID = builder.config.ConfigID;
+            }
+
         }
 
         private async Task<Response<LogResult>> logPost(IEvent evt, bool? verbose, string signature, string publicKey, bool verify)
@@ -371,6 +378,9 @@ namespace PangeaCyber.Net.Audit
             public Dictionary<string, string>? pkInfo = null;
 
             ///
+            public string configID = "";
+
+            ///
             public Builder(Config config) : base(config)
             {
             }
@@ -405,6 +415,13 @@ namespace PangeaCyber.Net.Audit
             public Builder WithPKInfo(Dictionary<string, string> pkInfo)
             {
                 this.pkInfo = pkInfo;
+                return this;
+            }
+
+            /// Add extra public key information
+            public Builder WithConfigID(string configID)
+            {
+                this.configID = configID;
                 return this;
             }
 
