@@ -4,12 +4,12 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Tests.Intel
 {
-    public class IntelURLClientTests
+    public class ITURLIntelTest
     {
         private URLIntelClient client;
         private TestEnvironment environment = TestEnvironment.LVE;
 
-        public IntelURLClientTests()
+        public ITURLIntelTest()
         {
             var config = Config.FromIntegrationEnvironment(environment);
             client = new URLIntelClient.Builder(config).Build();
@@ -151,6 +151,26 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestUrlReputationMalicious_NotFound()
+        {
+            var response = await client.Reputation(
+                new URLReputationRequest.Builder("http://thisshouldbeafakeurl123asd:54384")
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            IntelReputationData data = response.Result.Data;
+            Assert.NotNull(data);
+            Assert.NotEmpty(data.Verdict);
+            Assert.NotNull(data.Category);
+            Assert.NotNull(response.Result.Parameters);
         }
 
         [Fact]
