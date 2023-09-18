@@ -115,9 +115,6 @@
         <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.supportMultiConfig">
-
-        </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
 
         </member>
@@ -235,6 +232,9 @@
 
         </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.pkInfo">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Builder.configID">
 
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.Builder.#ctor(PangeaCyber.Net.Config)">
@@ -1002,9 +1002,6 @@
         <member name="P:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.supportMultiConfig">
-
-        </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.#ctor(PangeaCyber.Net.AuthN.Clients.AuthNBaseClient.Builder)">
 
         </member>
@@ -1401,7 +1398,139 @@
         <member name="P:PangeaCyber.Net.AuthN.Models.EnrollMFAStart.MFAProviders">
 
         </member>
-        <member name="T:PangeaCyber.Net.AuthN.Models.Filter">
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterAgreementList">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Active">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.PublishedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Type">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Name">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterAgreementList.Text">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterAgreementList.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterSessionList">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Type">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Identity">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Email">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Expire">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterSessionList.Scopes">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterSessionList.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterUserInviteList">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Callback">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Email">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.InviteOrg">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Inviter">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.State">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Signup">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.RequireMfa">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.Expire">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.CreatedAt">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterUserInviteList.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.FilterUserList">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Disabled">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.RequireMfa">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Verified">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Scopes">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.EulaId">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.Email">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginIp">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCity">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginCountry">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LastLoginAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.FilterUserList.LoginCount">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FilterUserList.#ctor">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FlowType">
@@ -1924,6 +2053,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithFilter(System.Collections.Generic.Dictionary{System.String,System.String})">
+            @deprecated user WithFilter(FilterAgreementList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterAgreementList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.AgreementListRequest.Builder.WithLast(System.String)">
@@ -2082,7 +2214,10 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.Build">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.Filters.Filter)">
+            @deprecated use WithFilter(FilterSessionList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterSessionList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.CommonSessionListRequest`1.CommonBuilder.WithLast(System.String)">
@@ -2481,7 +2616,10 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.#ctor">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.Filters.Filter)">
+            @deprecated use WithFilter(FilterUserInviteList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterUserInviteList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserInviteListRequest.Builder.WithLast(System.String)">
@@ -2583,7 +2721,10 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.#ctor">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.Filter)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.Filters.Filter)">
+            @deprecated use WithFilter(FilterUserList filter) instead
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithFilter(PangeaCyber.Net.AuthN.Models.FilterUserList)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserListRequest.Builder.WithLast(System.String)">
@@ -3285,7 +3426,7 @@
         <member name="F:PangeaCyber.Net.BaseClient`1.serviceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient`1.SupportMultiConfig">
+        <member name="P:PangeaCyber.Net.BaseClient`1.ConfigID">
 
         </member>
         <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
@@ -3312,7 +3453,7 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.ClientBuilder.WithLogger(NLog.Logger)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String,System.Boolean)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
@@ -3366,6 +3507,7 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Config.ConfigID">
+            @deprecated set it on Service builder instead
         </member>
         <member name="P:PangeaCyber.Net.Config.Environment">
 
@@ -3751,25 +3893,25 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanClient.Scan(PangeaCyber.Net.FileScan.FileScanRequest,System.IO.FileStream)">
-            <kind>method</kind>
-            <summary>Scan a file for malicious content.</summary>
-            <remarks>Scan</remarks>
-            <operationid>file_scan_post_v1_scan</operationid>
-            <param name="request" type="PangeaCyber.Net.FileScan.FileScanRequest">FileScanRequest</param>
-            <param name="file" type="System.IO.FileStream">FileStream file</param>
-            <returns>Response&lt;FileScanResult&gt;</returns>
-            <example>
-            <code>
-            string filepath = "./path/to/file.pdf";
+             <kind>method</kind>
+             <summary>Scan a file for malicious content.</summary>
+             <remarks>Scan</remarks>
+             <operationid>file_scan_post_v1_scan</operationid>
+             <param name="request" type="PangeaCyber.Net.FileScan.FileScanRequest">FileScanRequest</param>
+             <param name="file" type="System.IO.FileStream">FileStream file</param>
+             <returns>Response&lt;FileScanResult&gt;</returns>
+             <example>
+             <code>
+             string filepath = "./path/to/file.pdf";
 
-            var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+             var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
-            var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-            var response = await client.Scan(request, file);
+             var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
+             var response = await client.Scan(request, file);
 
-            FileScanData data = response.Result.Data;
-            </code>
-            </example>
+             FileScanData data = response.Result.Data;
+             </code>
+             </example>
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
 
@@ -3838,6 +3980,81 @@
 
         </member>
         <member name="P:PangeaCyber.Net.FileScan.FileScanResult.Data">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.Filter">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterBase">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Filters.FilterBase.Name">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Filters.FilterBase.Map">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterBase.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterEqual`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterEqual`1.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterEqual`1.Set(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterEqual`1.Get">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterMatch`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.GetContains">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.SetContains(System.Collections.Generic.List{`0})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.GetIn">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterMatch`1.SetIn(System.Collections.Generic.List{`0})">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Filters.FilterRange`1">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.#ctor(System.String,PangeaCyber.Net.Filters.Filter)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetLessThan(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetLessThan">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetLessThanEqual(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetLessThanEqual">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetGreaterThan(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetGreaterThan">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.SetGreaterThanEqual(`0)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Filters.FilterRange`1.GetGreaterThanEqual">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainIntelClient">
@@ -4054,6 +4271,12 @@
 
         </member>
         <member name="F:PangeaCyber.Net.Intel.HashType.MD5">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.NTLM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Intel.HashType.SHA512">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IntelReputationData">
@@ -4716,9 +4939,6 @@
         <member name="P:PangeaCyber.Net.Redact.RedactClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.Redact.RedactClient.SupportMultiConfig">
-
-        </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.#ctor(PangeaCyber.Net.Redact.RedactClient.Builder)">
             Constructor
         </member>
@@ -5058,6 +5278,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Utils.GetSHA1Hash(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Utils.GetSHA512Hash(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.Utils.GetSHA256HashFromFilepath(System.String)">
