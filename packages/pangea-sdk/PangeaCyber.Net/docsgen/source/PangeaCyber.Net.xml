@@ -5323,16 +5323,16 @@
 
         </member>
         <member name="T:PangeaCyber.Net.Vault.Models.InheritedSettings">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationFrequency">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationState">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationGracePeriod">
-            
+
         </member>
         <member name="T:PangeaCyber.Net.Vault.Models.ItemData">
 
@@ -5971,13 +5971,13 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationFrequency">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationState">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationGracePeriod">
-            
+
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.#ctor(PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder)">
 
@@ -5998,13 +5998,13 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationFrequency">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationState">
-            
+
         </member>
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationGracePeriod">
-            
+
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.#ctor(System.String,System.String)">
 
@@ -6019,13 +6019,13 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationFrequency(System.String)">
-            
+
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationState(System.String)">
-            
+
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationGracePeriod(System.String)">
-            
+
         </member>
         <member name="T:PangeaCyber.Net.Vault.Requests.GetRequest">
 
@@ -6781,7 +6781,7 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Vault.Results.GetResult.InheritedSettings">
-            
+
         </member>
         <member name="M:PangeaCyber.Net.Vault.Results.GetResult.#ctor">
 
