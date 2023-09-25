@@ -49,14 +49,14 @@ namespace PangeaCyber.Net.Intel
         }
 
         /// <kind>method</kind>
-        /// <summary>Retrieve who is for a domain from a provider, including an optional detailed report..</summary>
+        /// <summary>Retrieve who is for a domain from a provider, including an optional detailed report.</summary>
         /// <remarks>WhoIs</remarks>
-        /// <operationid>domain_intel_post_v1_who_is</operationid>
+        /// <operationid>domain_intel_post_v1_whois</operationid>
         /// <param name="request" type="PangeaCyber.Net.Intel.DomainWhoIsRequest">DomainWhoIsRequest with a domain and provider</param>
         /// <returns>Response&lt;DomainWhoIsResult&gt;</returns>
         /// <example>
         /// <code>
-        /// var request = new DomainWhoIsResult.Builder("737updatesboeing.com").Build();
+        /// var request = new DomainWhoIsResult.Builder("google.com").Build();
         /// var response = await client.WhoIs(request);
         /// </code>
         /// </example>
