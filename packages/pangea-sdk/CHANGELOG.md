@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 # Added
 
 - FileScan Reversinglabs provider example
-- AuthN filter support
+- Domain WhoIs endpoint support
+- AuthN Filters support
 
 # Changed
 
