@@ -4092,6 +4092,19 @@
             </code>
             </example>
         </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.ReputationBulk(PangeaCyber.Net.Intel.DomainReputationBulkRequest)">
+            <kind>method</kind>
+            <summary>Retrieve reputation for a domain list from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>FIXME:</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.DomainReputationBulkRequest">DomainReputationBulkRequest with a domain list and provider</param>
+            <returns>Response&lt;DomainReputationBulkResult&gt;</returns>
+            <example>
+            <code>
+            FIXME:
+            </code>
+            </example>
+        </member>
         <member name="M:PangeaCyber.Net.Intel.DomainIntelClient.WhoIs(PangeaCyber.Net.Intel.DomainWhoIsRequest)">
             <kind>method</kind>
             <summary>Retrieve who is for a domain from a provider, including an optional detailed report.</summary>
@@ -4144,6 +4157,19 @@
                 .WithRaw(false)
                 .Build();
             var response = await client.Reputation(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileIntelClient.ReputationBulk(PangeaCyber.Net.Intel.FileHashReputationBulkRequest)">
+            <kind>method</kind>
+            <summary>Retrieve a reputation score for a file hash list from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>FIXME:</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.FileHashReputationBulkRequest">FileHashReputationBulkRequest with the hash file list to be looked up</param>
+            <returns>Response&lt;FileReputationBulkResult&gt;</returns>
+            <example>
+            <code>
+            FIXME:
             </code>
             </example>
         </member>
@@ -4266,6 +4292,22 @@
             </code>
             </example>
         </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.ReputationBulk(PangeaCyber.Net.Intel.IPReputationBulkRequest)">
+            <kind>method</kind>
+            <summary>Retrieve a reputation score for an IP addresses list from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>FIXME:</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPReputationBulkRequest">IPReputationBulkRequest with the ip list to be looked up</param>
+            <returns>Response&lt;IPReputationBulkResult&gt;</returns>
+            <example>
+            <code>
+            FIXME:
+            </code>
+            </example>
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationBulkData">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationData">
 
         </member>
@@ -4315,6 +4357,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainWhoIsData.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileReputationBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationData">
@@ -4398,6 +4443,9 @@
         <member name="P:PangeaCyber.Net.Intel.IPProxyData.IsProxy">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationBulkData">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPReputationData">
 
         </member>
@@ -4417,6 +4465,9 @@
 
         </member>
         <member name="F:PangeaCyber.Net.Intel.PasswordStatus.Inconclusive">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
@@ -4443,13 +4494,31 @@
         <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedData.BreachCount">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationBulkRequest.Domains">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationBulkRequest.#ctor(PangeaCyber.Net.Intel.DomainReputationBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationBulkRequest.Builder.Domains">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.DomainReputationBulkRequest.Builder.Build">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationRequest">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Domain">
-
-        </member>
-        <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.DomainList">
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.#ctor(PangeaCyber.Net.Intel.DomainReputationRequest.Builder)">
@@ -4461,13 +4530,7 @@
         <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Domain">
 
         </member>
-        <member name="P:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.DomainList">
-
-        </member>
         <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.#ctor(System.String)">
-
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.#ctor(System.String[])">
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainReputationRequest.Builder.Build">
@@ -4492,6 +4555,33 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.DomainWhoIsRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileHashReputationBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Hashes">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.HashType">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.#ctor(PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Builder.Hashes">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Builder.HashType">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Builder.#ctor(System.String[],System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.FileHashReputationBulkRequest.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileHashReputationRequest">
@@ -4626,6 +4716,27 @@
         <member name="M:PangeaCyber.Net.Intel.IPProxyRequest.Builder.Build">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPReputationBulkRequest.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPReputationBulkRequest.#ctor(PangeaCyber.Net.Intel.IPReputationBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPReputationBulkRequest.Builder.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPReputationBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPReputationBulkRequest.Builder.Build">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPReputationRequest">
 
         </member>
@@ -4666,6 +4777,27 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPVPNRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationBulkRequest.URLs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationBulkRequest.#ctor(PangeaCyber.Net.Intel.URLReputationBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationBulkRequest.Builder.URLs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLReputationBulkRequest.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationRequest">
@@ -4791,19 +4923,28 @@
         <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedRequest.Builder.Build">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.DomainReputationBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.DomainReputationBulkResult.Data">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationResult">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.Data">
 
         </member>
-        <member name="P:PangeaCyber.Net.Intel.DomainReputationResult.DataDetails">
-
-        </member>
         <member name="T:PangeaCyber.Net.Intel.DomainWhoIsResult">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.DomainWhoIsResult.Data">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.FileReputationBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.FileReputationBulkResult.Data">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.FileReputationResult">
@@ -4839,6 +4980,12 @@
         <member name="P:PangeaCyber.Net.Intel.IPProxyResult.Data">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPReputationBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPReputationBulkResult.Data">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPReputationResult">
 
         </member>
@@ -4851,13 +4998,16 @@
         <member name="P:PangeaCyber.Net.Intel.IPVPNResult.Data">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.URLReputationBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.URLReputationBulkResult.Data">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.URLReputationResult">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.URLReputationResult.Data">
-
-        </member>
-        <member name="P:PangeaCyber.Net.Intel.URLReputationResult.DataDetails">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserBreachedResult">
@@ -4906,6 +5056,19 @@
                 "http://113.235.101.11:54384")
                 .Build();
             var response = await client.Reputation(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.URLIntelClient.ReputationBulk(PangeaCyber.Net.Intel.URLReputationBulkRequest)">
+            <kind>method</kind>
+            <summary>Retrieve a reputation score for a URL list from a provider, including an optional detailed report.</summary>
+            <remarks>Reputation</remarks>
+            <operationid>FIXME:</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.URLReputationBulkRequest">URLReputationBulkRequest with the URL list to be looked up</param>
+            <returns>Response&lt;URLReputationBulkResult&gt;</returns>
+            <example>
+            <code>
+            FIXME:
             </code>
             </example>
         </member>

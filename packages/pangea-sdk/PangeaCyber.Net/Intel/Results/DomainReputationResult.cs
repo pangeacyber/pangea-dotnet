@@ -9,9 +9,5 @@ namespace PangeaCyber.Net.Intel
         [JsonProperty("data")]
         public DomainReputationData Data { get; private set; } = new DomainReputationData();
 
-        ///
-        [JsonProperty("data_details")]
-        public Dictionary<string, DomainReputationDataItem>? DataDetails { get; private set; } = null;
-
     }
 }

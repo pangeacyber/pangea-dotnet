@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : BaseClient<URLIntelClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
             ///
             public Builder(Config config)
@@ -49,5 +49,22 @@ namespace PangeaCyber.Net.Intel
         {
             return await this.DoPost<URLReputationResult>("/v1/reputation", request);
         }
+
+        /// <kind>method</kind>
+        /// <summary>Retrieve a reputation score for a URL list from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation</remarks>
+        /// <operationid>FIXME:</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.URLReputationBulkRequest">URLReputationBulkRequest with the URL list to be looked up</param>
+        /// <returns>Response&lt;URLReputationBulkResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// FIXME:
+        /// </code>
+        /// </example>
+        public async Task<Response<URLReputationBulkResult>> ReputationBulk(URLReputationBulkRequest request)
+        {
+            return await this.DoPost<URLReputationBulkResult>("/v2/reputation", request);
+        }
+
     }
 }

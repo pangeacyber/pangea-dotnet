@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITIPIntelTest
     {
         private IPIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITIPIntelTest()
         {
@@ -132,6 +132,23 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestIPReputationMaliciousBulk()
+        {
+            // Provider, verbose, raw
+            var ips = new string[] { "93.231.182.110", "190.28.74.251" };
+
+            var response = await client.ReputationBulk(
+                new IPReputationBulkRequest.Builder(ips).WithProvider("crowdstrike").WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
         }
 
         [Fact]

@@ -10,15 +10,10 @@ namespace PangeaCyber.Net.Intel
         public string? Domain { get; }
 
         ///
-        [JsonProperty("domain_list")]
-        public string[]? DomainList { get; }
-
-        ///
         protected DomainReputationRequest(Builder builder)
             : base(builder)
         {
             Domain = builder.Domain;
-            DomainList = builder.DomainList;
         }
 
         ///
@@ -28,19 +23,9 @@ namespace PangeaCyber.Net.Intel
             public string? Domain { get; private set; } = null;
 
             ///
-            public string[]? DomainList { get; private set; } = null;
-
-
-            ///
             public Builder(string domain)
             {
                 Domain = domain;
-            }
-
-            ///
-            public Builder(string[] domainList)
-            {
-                DomainList = domainList;
             }
 
             ///

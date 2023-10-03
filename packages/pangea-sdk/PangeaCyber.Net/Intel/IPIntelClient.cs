@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : BaseClient<IPIntelClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
             ///
             public Builder(Config config)
@@ -140,5 +140,22 @@ namespace PangeaCyber.Net.Intel
         {
             return DoPost<IPReputationResult>("/v1/reputation", request);
         }
+
+        /// <kind>method</kind>
+        /// <summary>Retrieve a reputation score for an IP addresses list from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation</remarks>
+        /// <operationid>FIXME:</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.IPReputationBulkRequest">IPReputationBulkRequest with the ip list to be looked up</param>
+        /// <returns>Response&lt;IPReputationBulkResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// FIXME:
+        /// </code>
+        /// </example>
+        public Task<Response<IPReputationBulkResult>> ReputationBulk(IPReputationBulkRequest request)
+        {
+            return DoPost<IPReputationBulkResult>("/v2/reputation", request);
+        }
+
     }
 }

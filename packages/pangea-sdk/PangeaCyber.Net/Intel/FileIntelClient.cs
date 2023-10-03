@@ -19,7 +19,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : BaseClient<FileIntelClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
             ///
             public Builder(Config config)
@@ -55,6 +55,22 @@ namespace PangeaCyber.Net.Intel
         public Task<Response<FileReputationResult>> Reputation(FileHashReputationRequest request)
         {
             return DoPost<FileReputationResult>("/v1/reputation", request);
+        }
+
+        /// <kind>method</kind>
+        /// <summary>Retrieve a reputation score for a file hash list from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation</remarks>
+        /// <operationid>FIXME:</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.FileHashReputationBulkRequest">FileHashReputationBulkRequest with the hash file list to be looked up</param>
+        /// <returns>Response&lt;FileReputationBulkResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// FIXME:
+        /// </code>
+        /// </example>
+        public Task<Response<FileReputationBulkResult>> ReputationBulk(FileHashReputationBulkRequest request)
+        {
+            return DoPost<FileReputationBulkResult>("/v2/reputation", request);
         }
 
         ///

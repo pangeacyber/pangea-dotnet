@@ -5,7 +5,7 @@ namespace PangeaCyber.Net.Intel.Tests
     public class ITDomainIntelTest
     {
         private DomainIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITDomainIntelTest()
         {
@@ -26,7 +26,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotEmpty(data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -43,7 +42,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -63,7 +61,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotEmpty(data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -83,7 +80,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotEmpty(data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -103,7 +99,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotEmpty(data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -123,7 +118,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotEmpty(data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
 
@@ -145,7 +139,6 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.Equal("malicious", data.Verdict);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
@@ -166,17 +159,16 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.Null(response.Result.DataDetails);
         }
 
         [Fact]
         public async Task TestDomainReputationBulk()
         {
-            string[] domainList = { "pemewizubidob.cafij.co.za", "redbomb.com.tr", "kmbk8.hicp.net" };
+            string[] domains = { "pemewizubidob.cafij.co.za", "redbomb.com.tr", "kmbk8.hicp.net" };
 
             // Provider, verbose, raw
-            var response = await client.Reputation(
-                new DomainReputationRequest.Builder(domainList)
+            var response = await client.ReputationBulk(
+                new DomainReputationBulkRequest.Builder(domains)
                     .WithProvider("crowdstrike")
                     .WithVerbose(true)
                     .WithRaw(true)
@@ -186,11 +178,9 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
-            Assert.NotNull(response.Result.DataDetails);
-            Assert.Equal(3, response.Result.DataDetails.Count);
+            Assert.Equal(3, data.Count);
         }
 
         [Fact]
