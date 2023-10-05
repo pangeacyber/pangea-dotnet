@@ -162,6 +162,24 @@ namespace PangeaCyber.Net.Intel.Tests
         }
 
         [Fact]
+        public async Task TestDomainWhoIs()
+        {
+            // Provider, verbose, raw
+            var response = await client.WhoIs(
+                new DomainWhoIsRequest.Builder("737updatesboeing.com")
+                    .WithProvider("whoisxml")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+            var data = response.Result.Data;
+            Assert.NotEmpty(data.DomainName);
+            Assert.NotEmpty(data.DomainAvailability);
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
         public async Task TestDomainReputationMalicious_NotFound()
         {
             // Provider, verbose, raw
@@ -180,6 +198,18 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.NotEmpty(data.Verdict);
             Assert.NotNull(data.Category);
             Assert.NotNull(response.Result.Parameters);
+        }
+
+        [Fact]
+        public async Task TestEmptyDomain()
+        {
+            await Assert.ThrowsAsync<ValidationException>(async () =>
+            {
+                var response = await client.Reputation(
+                    new DomainReputationRequest.Builder("")
+                        .Build()
+                );
+            });
         }
 
         [Fact]
