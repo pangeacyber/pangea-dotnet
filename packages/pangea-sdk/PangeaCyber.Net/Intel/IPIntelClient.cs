@@ -142,14 +142,20 @@ namespace PangeaCyber.Net.Intel
         }
 
         /// <kind>method</kind>
-        /// <summary>Retrieve a reputation score for an IP addresses list from a provider, including an optional detailed report.</summary>
-        /// <remarks>Reputation</remarks>
-        /// <operationid>FIXME:</operationid>
+        /// <summary>Retrieve reputation scores for a list of IP addresses, from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation V2</remarks>
+        /// <operationid>ip_intel_post_v2_reputation</operationid>
         /// <param name="request" type="PangeaCyber.Net.Intel.IPReputationBulkRequest">IPReputationBulkRequest with the ip list to be looked up</param>
         /// <returns>Response&lt;IPReputationBulkResult&gt;</returns>
         /// <example>
         /// <code>
-        /// FIXME:
+        /// string[] ips = new string[1] {"93.231.182.110"};
+        /// var request = new IPReputationBulkResult.Builder(ips)
+        ///     .WithProvider("crowdstrike")
+        ///     .WithVerbose(true)
+        ///     .WithRaw(true)
+        ///     .Build();
+        /// var response = await client.ReputationBulk(request);
         /// </code>
         /// </example>
         public Task<Response<IPReputationBulkResult>> ReputationBulk(IPReputationBulkRequest request)

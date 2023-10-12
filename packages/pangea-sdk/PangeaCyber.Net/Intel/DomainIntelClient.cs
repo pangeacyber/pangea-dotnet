@@ -49,14 +49,16 @@ namespace PangeaCyber.Net.Intel
         }
 
         /// <kind>method</kind>
-        /// <summary>Retrieve reputation for a domain list from a provider, including an optional detailed report.</summary>
-        /// <remarks>Reputation</remarks>
-        /// <operationid>FIXME:</operationid>
+        /// <summary>Retrieve reputations for a list of domains, from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation V2</remarks>
+        /// <operationid>domain_intel_post_v2_reputation</operationid>
         /// <param name="request" type="PangeaCyber.Net.Intel.DomainReputationBulkRequest">DomainReputationBulkRequest with a domain list and provider</param>
         /// <returns>Response&lt;DomainReputationBulkResult&gt;</returns>
         /// <example>
         /// <code>
-        /// FIXME:
+        /// string[] domains = new string[1] {"737updatesboeing.com"};
+        /// var request = new DomainReputationBulkRequest.Builder(domains).Build();
+        /// var response = await client.ReputationBulk(request);
         /// </code>
         /// </example>
         public Task<Response<DomainReputationBulkResult>> ReputationBulk(DomainReputationBulkRequest request)

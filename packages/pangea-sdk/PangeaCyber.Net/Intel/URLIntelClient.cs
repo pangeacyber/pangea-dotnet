@@ -51,14 +51,16 @@ namespace PangeaCyber.Net.Intel
         }
 
         /// <kind>method</kind>
-        /// <summary>Retrieve a reputation score for a URL list from a provider, including an optional detailed report.</summary>
-        /// <remarks>Reputation</remarks>
-        /// <operationid>FIXME:</operationid>
+        /// <summary>Retrieve reputation scores for a list of URLs, from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation V2</remarks>
+        /// <operationid>url_intel_post_v2_reputation</operationid>
         /// <param name="request" type="PangeaCyber.Net.Intel.URLReputationBulkRequest">URLReputationBulkRequest with the URL list to be looked up</param>
         /// <returns>Response&lt;URLReputationBulkResult&gt;</returns>
         /// <example>
         /// <code>
-        /// FIXME:
+        /// string[] urls = new string[1] {"http://113.235.101.11:54384"};
+        /// var request = new URLReputationBulkRequest.Builder(urls).Build();
+        /// var response = await client.ReputationBulk(request);
         /// </code>
         /// </example>
         public async Task<Response<URLReputationBulkResult>> ReputationBulk(URLReputationBulkRequest request)

@@ -58,14 +58,20 @@ namespace PangeaCyber.Net.Intel
         }
 
         /// <kind>method</kind>
-        /// <summary>Retrieve a reputation score for a file hash list from a provider, including an optional detailed report.</summary>
-        /// <remarks>Reputation</remarks>
-        /// <operationid>FIXME:</operationid>
+        /// <summary>Retrieve reputation scores for a list of file hashes, from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation V2</remarks>
+        /// <operationid>file_intel_post_v2_reputation</operationid>
         /// <param name="request" type="PangeaCyber.Net.Intel.FileHashReputationBulkRequest">FileHashReputationBulkRequest with the hash file list to be looked up</param>
         /// <returns>Response&lt;FileReputationBulkResult&gt;</returns>
         /// <example>
         /// <code>
-        /// FIXME:
+        /// string[] hashes = new string[1] {"142b638c6a60b60c7f9928da4fb85a5a8e1422a9ffdc9ee49e17e56ccca9cf6e"};
+        /// var request = new FileHashReputationBulkRequest.Builder(hashes, "sha256")
+        ///     .WithProvider("reversinglabs")
+        ///     .WithVerbose(false)
+        ///     .WithRaw(false)
+        ///     .Build();
+        /// var response = await client.ReputationBulk(request);
         /// </code>
         /// </example>
         public Task<Response<FileReputationBulkResult>> ReputationBulk(FileHashReputationBulkRequest request)
