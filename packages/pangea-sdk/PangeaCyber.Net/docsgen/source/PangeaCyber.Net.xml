@@ -1274,6 +1274,21 @@
             Default constructor for <see cref="T:PangeaCyber.Net.AuthN.Models.Authenticator"/>.
             </summary>
         </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.DomainIntelligence">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.DomainIntelligence.IsBad">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.DomainIntelligence.Reputation">
+            <summary>
+
+            </summary>
+        </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FilterAgreementList">
 
         </member>
@@ -2149,6 +2164,61 @@
         <member name="T:PangeaCyber.Net.AuthN.Models.IDProviders">
 
         </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.Intelligence">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.Intelligence.Embargo">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.Intelligence.IPIntel">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.Intelligence.DomainIntel">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.Intelligence.UserIntel">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.AuthN.Models.IPIntelligence">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.IPIntelligence.IsBad">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.IPIntelligence.IsVPN">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.IPIntelligence.IsProxy">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.IPIntelligence.Reputation">
+            <summary>
+
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.IPIntelligence.Geolocation">
+            <summary>
+
+            </summary>
+        </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.ItemOrder">
 
         </member>
@@ -2343,6 +2413,9 @@
 
         </member>
         <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AuthN.Models.SessionToken.Intelligence">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.TOTPsecret">
