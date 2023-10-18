@@ -24,10 +24,10 @@ namespace PangeaCyber.Net.AuthN.Requests
 
         private AgreementCreateRequest(Builder builder)
         {
-            this.Type = builder.Type;
-            this.Name = builder.Name;
-            this.Text = builder.Text;
-            this.Active = builder.Active;
+            Type = builder.Type;
+            Name = builder.Name;
+            Text = builder.Text;
+            Active = builder.Active;
         }
 
         ///
@@ -45,15 +45,15 @@ namespace PangeaCyber.Net.AuthN.Requests
             ///
             public Builder(AgreementType type, string name, string text)
             {
-                this.Type = type;
-                this.Name = name;
-                this.Text = text;
+                Type = type;
+                Name = name;
+                Text = text;
             }
 
             ///
             public Builder WithActive(bool? active)
             {
-                this.Active = active;
+                Active = active;
                 return this;
             }
 

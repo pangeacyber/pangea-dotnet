@@ -7,12 +7,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         public static string ServiceName { get; } = "authn";
 
         ///
-        public AuthNBaseClient(AuthNBaseClient.Builder builder) : base(builder, ServiceName)
+        public AuthNBaseClient(Builder builder) : base(builder, ServiceName)
         {
         }
 
         ///
-        public class Builder : BaseClient<AuthNBaseClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
 
             ///

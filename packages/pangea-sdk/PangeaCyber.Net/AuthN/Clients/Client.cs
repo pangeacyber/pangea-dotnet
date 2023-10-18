@@ -26,13 +26,13 @@ namespace PangeaCyber.Net.AuthN.Clients
         public async Task<Response<ClientUserinfoResult>> Userinfo(string code)
         {
             UserinfoRequest request = new UserinfoRequest(code);
-            return await DoPost<ClientUserinfoResult>("/v1/client/userinfo", request);
+            return await DoPost<ClientUserinfoResult>("/v2/client/userinfo", request);
         }
 
         ///
         public async Task<Response<ClientJWKSResult>> Jwks()
         {
-            return await DoPost<ClientJWKSResult>("/v1/client/jwks", new BaseRequest());
+            return await DoPost<ClientJWKSResult>("/v2/client/jwks", new BaseRequest());
         }
 
         internal class UserinfoRequest : BaseRequest

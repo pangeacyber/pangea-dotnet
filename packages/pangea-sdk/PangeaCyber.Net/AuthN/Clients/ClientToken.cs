@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         public async Task<Response<ClientTokenCheckResult>> Check(string token)
         {
             TokenCheckRequest request = new TokenCheckRequest(token);
-            return await DoPost<ClientTokenCheckResult>("/v1/client/token/check", request);
+            return await DoPost<ClientTokenCheckResult>("/v2/client/token/check", request);
         }
 
         internal class TokenCheckRequest : BaseRequest

@@ -14,7 +14,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         ///
         public async Task<Response<UserInviteListResult>> List(UserInviteListRequest request)
         {
-            return await DoPost<UserInviteListResult>("/v1/user/invite/list", request);
+            return await DoPost<UserInviteListResult>("/v2/user/invite/list", request);
         }
 
         // TODO: Doc
@@ -22,7 +22,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         public async Task<Response<UserInviteDeleteResult>> Delete(string id)
         {
             var request = new UserInviteDeleteRequest(id);
-            return await DoPost<UserInviteDeleteResult>("/v1/user/invite/delete", request);
+            return await DoPost<UserInviteDeleteResult>("/v2/user/invite/delete", request);
         }
 
         internal sealed class UserInviteDeleteRequest : BaseRequest

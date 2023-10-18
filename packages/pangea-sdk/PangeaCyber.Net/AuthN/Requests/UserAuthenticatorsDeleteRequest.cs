@@ -3,42 +3,47 @@ using Newtonsoft.Json;
 namespace PangeaCyber.Net.AuthN.Requests
 {
     ///
-    public class UserUpdateRequest : BaseRequest
+    public class UserAuthenticatorsDeleteRequest : BaseRequest
     {
         ///
-        [JsonProperty("email")]
-        public string? Email { get; private set; }
+        [JsonProperty("authenticator_id")]
+        public string AuthenticatorID { get; private set; }
 
         ///
         [JsonProperty("id")]
         public string? ID { get; private set; }
 
         ///
-        [JsonProperty("disabled")]
-        public bool? Disabled { get; private set; }
+        [JsonProperty("email")]
+        public string? Email { get; private set; }
 
-        private UserUpdateRequest(Builder builder)
+        private UserAuthenticatorsDeleteRequest(Builder builder)
         {
+            AuthenticatorID = builder.AuthenticatorID;
             ID = builder.ID;
             Email = builder.Email;
-            Disabled = builder.Disabled;
         }
 
         ///
         public class Builder
         {
             ///
+            public string AuthenticatorID { get; }
+
+            ///
             public string? ID { get; private set; }
+
             ///
             public string? Email { get; private set; }
-            ///
-            public bool? Disabled { get; private set; }
 
             ///
-            public Builder() { }
+            public Builder(string authenticatorID)
+            {
+                AuthenticatorID = authenticatorID;
+            }
 
             ///
-            public Builder WithId(string id)
+            public Builder WithID(string id)
             {
                 ID = id;
                 return this;
@@ -52,16 +57,9 @@ namespace PangeaCyber.Net.AuthN.Requests
             }
 
             ///
-            public Builder WithDisabled(bool? disabled)
+            public UserAuthenticatorsDeleteRequest Build()
             {
-                Disabled = disabled;
-                return this;
-            }
-
-            ///
-            public UserUpdateRequest Build()
-            {
-                return new UserUpdateRequest(this);
+                return new UserAuthenticatorsDeleteRequest(this);
             }
         }
     }

@@ -7,35 +7,35 @@ namespace PangeaCyber.Net.AuthN.Clients
     ///
     public class Flow : AuthNBaseClient
     {
-        ///
-        public FlowEnroll Enroll { get; private set; }
-        ///
-        public FlowSignup Signup { get; private set; }
-        ///
-        public FlowVerify Verify { get; private set; }
-        ///
-        public FlowReset Reset { get; private set; }
 
         ///
         public Flow(AuthNClient.Builder builder) : base(builder)
         {
-            Enroll = new FlowEnroll(builder);
-            Signup = new FlowSignup(builder);
-            Verify = new FlowVerify(builder);
-            Reset = new FlowReset(builder);
         }
 
         ///
         public async Task<Response<FlowCompleteResult>> Complete(string flowID)
         {
             FlowCompleteRequest request = new FlowCompleteRequest(flowID);
-            return await DoPost<FlowCompleteResult>("/v1/flow/complete", request);
+            return await DoPost<FlowCompleteResult>("/v2/flow/complete", request);
         }
 
         ///
         public async Task<Response<FlowStartResult>> Start(FlowStartRequest request)
         {
-            return await DoPost<FlowStartResult>("/v1/flow/start", request);
+            return await DoPost<FlowStartResult>("/v2/flow/start", request);
+        }
+
+        ///
+        public async Task<Response<FlowUpdateResult>> Update(FlowUpdateRequest request)
+        {
+            return await DoPost<FlowUpdateResult>("/v2/flow/update", request);
+        }
+
+        ///
+        public async Task<Response<FlowRestartResult>> Restart(FlowRestartRequest request)
+        {
+            return await DoPost<FlowRestartResult>("/v2/flow/restart", request);
         }
 
         internal class FlowCompleteRequest : BaseRequest

@@ -14,7 +14,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         public async Task<Response<ClientPasswordChangeResult>> Change(string token, string oldPassword, string newPassword)
         {
             var request = new ClientPasswordChangeRequest(token, oldPassword, newPassword);
-            return await DoPost<ClientPasswordChangeResult>("/v1/client/password/change", request);
+            return await DoPost<ClientPasswordChangeResult>("/v2/client/password/change", request);
         }
 
         internal class ClientPasswordChangeRequest : BaseRequest
