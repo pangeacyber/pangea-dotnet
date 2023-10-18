@@ -82,5 +82,11 @@ namespace PangeaCyber.Net.AuthN.Models
         /// </summary>
         [JsonProperty("last_login_country")]
         public string? LastLoginCountry { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [JsonProperty("authenticators")]
+        public Authenticator[]? Authenticators { get; set; }
     }
 }
