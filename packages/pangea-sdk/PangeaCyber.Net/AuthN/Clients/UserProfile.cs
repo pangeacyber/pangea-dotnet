@@ -10,24 +10,48 @@ namespace PangeaCyber.Net.AuthN.Clients
         ///
         public UserProfile(AuthNClient.Builder builder) : base(builder) { }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Get user's information by email.</summary>
+        /// <remarks>Get user - email</remarks>
+        /// <operationid>authn_post_v2_user_profile_get 1</operationid>
+        /// <param name="email" type="string"></param>
+        /// <returns>Response&lt;UserProfileGetResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<UserProfileGetResult>> GetByEmail(string email)
         {
             var request = new UserProfileGetRequest(email, null);
             return await DoPost<UserProfileGetResult>("/v2/user/profile/get", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Get user's information by id.</summary>
+        /// <remarks>Get user - id</remarks>
+        /// <operationid>authn_post_v2_user_profile_get 2</operationid>
+        /// <param name="id" type="string"></param>
+        /// <returns>Response&lt;UserProfileGetResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<UserProfileGetResult>> GetByID(string id)
         {
             var request = new UserProfileGetRequest(null, id);
             return await DoPost<UserProfileGetResult>("/v2/user/profile/get", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Update user's information by identity or email.</summary>
+        /// <remarks>Update user</remarks>
+        /// <operationid>authn_post_v2_user_profile_update</operationid>
+        /// <param name="request" type="PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest"></param>
+        /// <returns>Response&lt;UserProfileUpdateResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<UserProfileUpdateResult>> Update(UserProfileUpdateRequest request)
         {
             return await DoPost<UserProfileUpdateResult>("/v2/user/profile/update", request);

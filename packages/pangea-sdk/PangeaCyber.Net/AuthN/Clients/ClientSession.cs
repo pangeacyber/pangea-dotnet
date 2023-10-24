@@ -12,31 +12,64 @@ namespace PangeaCyber.Net.AuthN.Clients
         {
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Invalidate a session by session ID using a client token.</summary>
+        /// <remarks>Invalidate Session | Client</remarks>
+        /// <operationid>authn_post_v2_client_password_change</operationid>
+        /// <param name="token" type="string">A user token value</param>
+        /// <param name="sessionID" type="string">An ID for a token</param>
+        /// <returns>Response&lt;ClientSessionInvalidateResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<ClientSessionInvalidateResult>> Invalidate(string token, string sessionID)
         {
             var request = new ClientSessionInvalidateRequest(token, sessionID);
             return await DoPost<ClientSessionInvalidateResult>("/v2/client/session/invalidate", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>List sessions using a client token.</summary>
+        /// <remarks>List sessions (client token)</remarks>
+        /// <operationid>authn_post_v2_client_session_list</operationid>
+        /// <param name="request" type="PangeaCyber.Net.AuthN.Requests.ClientSessionListRequest">ClientSessionListRequest</param>
+        /// <returns>Response&lt;ClientSessionListResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<ClientSessionListResult>> List(ClientSessionListRequest request)
         {
             return await DoPost<ClientSessionListResult>("/v2/client/session/list", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Log out the current user's session.</summary>
+        /// <remarks>Log out (client token)</remarks>
+        /// <operationid>authn_post_v2_client_session_logout</operationid>
+        /// <param name="token" type="string">A user token value</param>
+        /// <returns>Response&lt;ClientSessionLogoutResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<ClientSessionLogoutResult>> Logout(string token)
         {
             var request = new ClientSessionLogoutRequest(token);
             return await DoPost<ClientSessionLogoutResult>("/v2/client/session/logout", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Refresh a session token.</summary>
+        /// <remarks>Refresh a Session</remarks>
+        /// <operationid>authn_post_v2_client_session_refresh</operationid>
+        /// <param name="request" type="PangeaCyber.Net.AuthN.Requests.ClientSessionRefreshRequest">ClientSessionRefreshRequest</param>
+        /// <returns>Response&lt;ClientSessionRefreshResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<ClientSessionRefreshResult>> Refresh(ClientSessionRefreshRequest request)
         {
             return await DoPost<ClientSessionRefreshResult>("/v2/client/session/refresh", request);
