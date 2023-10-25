@@ -5,7 +5,10 @@ using Newtonsoft.Json;
 namespace PangeaCyber.Net.AuthN.Clients
 {
 
-    ///
+    /// <kind>class</kind>
+    /// <summary>
+    /// AuthN Client
+    /// </summary>
     public class Session : AuthNBaseClient
     {
         ///

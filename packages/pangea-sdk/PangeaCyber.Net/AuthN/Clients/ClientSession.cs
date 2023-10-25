@@ -4,7 +4,10 @@ using PangeaCyber.Net.AuthN.Results;
 
 namespace PangeaCyber.Net.AuthN.Clients
 {
-    ///
+    /// <kind>class</kind>
+    /// <summary>
+    /// AuthN Client
+    /// </summary>
     public class ClientSession : AuthNBaseClient
     {
         ///
