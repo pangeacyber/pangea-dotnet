@@ -128,7 +128,7 @@ namespace PangeaCyber.Net
             string domain = GetTestDomain(environment);
             var cfg = new Config(token, domain)
             {
-                ConnectionTimeout = new TimeSpan(0, 0, 60),
+                ConnectionTimeout = new TimeSpan(0, 0, 120),
                 CustomUserAgent = "test"
             };
             return cfg;
