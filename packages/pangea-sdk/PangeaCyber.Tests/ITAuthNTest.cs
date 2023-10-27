@@ -18,7 +18,7 @@ public static class Extentions
 
         foreach (var item in collection)
         {
-            source.Add(item.Key, item.Value);
+            source[item.Key] = item.Value;
         }
     }
 }
@@ -28,7 +28,7 @@ public static class Extentions
     "RunTestsInOrder.XUnit")]
 public class ITAuthNTest
 {
-    AuthNClient client;
+    static AuthNClient client;
     Config cfg;
     TestEnvironment environment = TestEnvironment.LVE;
     private static Random random = new Random();
@@ -39,14 +39,11 @@ public class ITAuthNTest
     private static readonly string emailInviteKeep = $"user.email+invite_keep{randomValue}@pangea.cloud";
     private static readonly string passwordOld = "My1s+Password";
     private static readonly string passwordNew = "My1s+Password_new";
-    private static readonly Profile profileOld = new Profile
-    {
-        { "name", "User name" },
-        { "country", "Argentina" }
-    };
+    private static readonly string cbURI = "https://someurl.com/callbacklink";
+    private static readonly Profile profileOld = new Profile("Name", "User");
     private static readonly Profile profileNew = new Profile
     {
-        { "age", "18" }
+        { "first_name", "NameUpdated" }
     };
     private static string userID = ""; // Will be set once the user is created
 
@@ -123,36 +120,157 @@ public class ITAuthNTest
         Assert.Equal(count - 1, listResponseAfterDelete.Result.Count);
     }
 
+    private static async Task<FlowUpdateResult> FlowHandlePasswordPhase(string flowID, string password)
+    {
+        var response = await client.Flow
+            .Update(new FlowUpdateRequest.Builder(flowID, FlowChoice.PASSWORD,
+                new FlowUpdateDataPassword.Builder(password).Build()).Build());
+        return response.Result;
+    }
+
+    private static async Task<FlowUpdateResult> FlowHandleProfilePhase(string flowID)
+    {
+        var response = await client.Flow
+            .Update(new FlowUpdateRequest.Builder(flowID, FlowChoice.PROFILE,
+                new FlowUpdateDataProfile.Builder(profileOld).Build()).Build());
+        return response.Result;
+    }
+
+    private static async Task<FlowUpdateResult> FlowHandleAgreementsPhase(string flowID, FlowUpdateResult result)
+    {
+        // Iterate over flow_choices in response.result
+        List<string> agreed = new List<string>();
+        if (result.FlowChoices != null)
+        {
+            foreach (var flowChoiceItem in result.FlowChoices)
+            {
+                if (flowChoiceItem.Choice == FlowChoice.AGREEMENTS.ToString() && flowChoiceItem.Data != null)
+                {
+                    if (flowChoiceItem.Data.TryGetValue("agreements", out var agreementsObj) && agreementsObj is Dictionary<string, object> agreements)
+                    {
+                        // Iterate over agreements and append the "id" values to agreed list
+                        foreach (var agreementObj in agreements.Values)
+                        {
+                            if (agreementObj is Dictionary<string, object> agreement && agreement.TryGetValue("id", out var idObj) && idObj is string id)
+                            {
+                                agreed.Add(id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        var response = await client.Flow.Update(
+            new FlowUpdateRequest.Builder(flowID, FlowChoice.AGREEMENTS,
+                new FlowUpdateDataAgreements.Builder(agreed).Build())
+                .Build());
+
+        return response.Result;
+    }
+
+    private static bool ChoiceIsAvailable(FlowChoiceItem[] choices, string choice)
+    {
+        return choices.Any(flowChoiceItem => flowChoiceItem.Choice.Equals(choice, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static async Task<FlowCompleteResult> CreateAndLogin(string email, string password)
+    {
+        FlowType[] flowTypes = { FlowType.Signup, FlowType.Signin };
+        var startResponse = await client.Flow.Start(new FlowStartRequest.Builder()
+            .WithEmail(email)
+            .WithFlowType(flowTypes)
+            .WithCBUri(cbURI)
+            .Build());
+
+        string flowID = startResponse.Result.FlowID;
+        FlowUpdateResult? result = null;
+        string flowPhase = "initial";
+        var choices = startResponse.Result.FlowChoices;
+
+        while (flowPhase != null && !flowPhase.Equals("phase_completed", StringComparison.OrdinalIgnoreCase) && choices != null)
+        {
+            if (ChoiceIsAvailable(choices, FlowChoice.PASSWORD.ToString()))
+            {
+                result = await FlowHandlePasswordPhase(flowID, password);
+            }
+            else if (ChoiceIsAvailable(choices, FlowChoice.PROFILE.ToString()))
+            {
+                result = await FlowHandleProfilePhase(flowID);
+            }
+            else if (ChoiceIsAvailable(choices, FlowChoice.AGREEMENTS.ToString()) && result != null)
+            {
+                result = await FlowHandleAgreementsPhase(flowID, result);
+            }
+            else
+            {
+                if (result != null)
+                {
+                    Console.WriteLine($"Phase {result.FlowPhase} not handled");
+                    throw new PangeaException("Phase not handled", null);
+                }
+                else
+                {
+                    Console.WriteLine("Result is null");
+                    throw new PangeaException("Result is null", null);
+                }
+            }
+
+            if (result != null)
+            {
+                flowPhase = (result.FlowPhase != null) ? result.FlowPhase : "phase_completed";
+                choices = result.FlowChoices;
+            }
+            else
+            {
+                throw new PangeaException("Result is null", null);
+            }
+        }
+
+        var response = await client.Flow.Complete(flowID);
+        return response.Result;
+    }
+
+    private static async Task<FlowCompleteResult> Login(string email, string password)
+    {
+        FlowType[] flowTypes = { FlowType.Signin };
+        var startResponse = await client.Flow.Start(new FlowStartRequest.Builder()
+            .WithEmail(email)
+            .WithFlowType(flowTypes)
+            .WithCBUri(cbURI)
+            .Build());
+
+        string flowID = startResponse.Result.FlowID;
+
+        await client.Flow.Update(new FlowUpdateRequest.Builder(
+            flowID,
+            FlowChoice.PASSWORD,
+            new FlowUpdateDataPassword.Builder(password).Build())
+            .Build());
+
+        var response = await client.Flow.Complete(flowID);
+        return response.Result;
+    }
 
     private static async Task TestA_UserActions(AuthNClient client)
     {
         try
         {
             // Create User 1
-            var createResp1 = await client.User
-                .Create(new UserCreateRequest.Builder(emailTest, passwordOld, IDProvider.Password).Build());
-            Assert.True(createResp1.IsOK);
-            Assert.NotNull(createResp1.Result);
-            Assert.NotNull(createResp1.Result.ID);
-            userID = createResp1.Result.ID;
-            Assert.Equal(new Dictionary<string, string>(), createResp1.Result.Profile);
+            var createResp1 = await CreateAndLogin(emailTest, passwordOld);
 
             // Create user 2
-            var createResp2 = await client.User
-                .Create(new UserCreateRequest.Builder(emailDelete, passwordOld, IDProvider.Password)
-                    .WithProfile(profileOld)
-                    .Build());
-            Assert.True(createResp2.IsOK);
-            Assert.Equal(profileOld, createResp2.Result.Profile);
+            var createResp2 = await CreateAndLogin(emailDelete, passwordOld);
 
-            // User login (delete user)
-            var loginDelResp = await client.User.Login.Password(emailDelete, passwordOld, new Profile());
-            Assert.True(loginDelResp.IsOK);
-            Assert.NotNull(loginDelResp.Result.ActiveToken);
-            Assert.NotNull(loginDelResp.Result.RefreshToken);
+            // Get profile by email. Should be empty because it was created without profile parameter
+            var profileGetResp = await client.User.Profile.GetByEmail(emailDelete);
+            Assert.True(profileGetResp.IsOK);
+            Assert.NotNull(profileGetResp.Result);
+            Assert.Equal(emailDelete, profileGetResp.Result.Email);
+            Assert.Equal(profileOld, profileGetResp.Result.Profile);
 
             // Logout (delete user)
-            var logoutResp = await client.Session.Logout(createResp2.Result.ID);
+            var logoutResp = await client.Session.Logout(profileGetResp.Result.ID);
             Assert.True(logoutResp.IsOK);
 
             // Delete user (delete user)
@@ -160,40 +278,30 @@ public class ITAuthNTest
             Assert.True(deleteResp1.IsOK);
             Assert.Null(deleteResp1.Result);
 
-            // User login
-            var loginResp = await client.User.Login.Password(emailTest, passwordOld);
-            Assert.True(loginResp.IsOK);
-            Assert.NotNull(loginResp.Result.ActiveToken);
-            Assert.NotNull(loginResp.Result.RefreshToken);
-
             // Token check
+            string token = createResp1.ActiveToken != null ? createResp1.ActiveToken.Token : "";
             var checkResp = await client
                 .Client
                 .Token
-                .Check(loginResp.Result.ActiveToken.Token);
+                .Check(token);
             Assert.True(checkResp.IsOK);
-
-            // User verify
-            var verifyResp = await client.User.Verify(IDProvider.Password, emailTest, passwordOld);
-            Assert.True(verifyResp.IsOK);
-            Assert.Equal(verifyResp.Result.ID, userID);
 
             // Update password
             var passUpdateResp = await client
                 .Client
                 .Password
-                .Change(loginResp.Result.ActiveToken.Token, passwordOld, passwordNew);
+                .Change(token, passwordOld, passwordNew);
             Assert.True(passUpdateResp.IsOK);
             Assert.Null(passUpdateResp.Result);
 
             // Update profile
             // Get profile by email. Should be empty because it was created without profile parameter
-            var profileGetResp = await client.User.Profile.GetByEmail(emailTest);
+            profileGetResp = await client.User.Profile.GetByEmail(emailTest);
             Assert.True(profileGetResp.IsOK);
             Assert.NotNull(profileGetResp.Result);
-            Assert.Equal(userID, profileGetResp.Result.ID);
+            userID = profileGetResp.Result.ID;
             Assert.Equal(emailTest, profileGetResp.Result.Email);
-            Assert.Equal(new Profile(), profileGetResp.Result.Profile);
+            Assert.Equal(profileOld, profileGetResp.Result.Profile);
 
             // Get by ID
             profileGetResp = await client.User.Profile.GetByID(userID);
@@ -201,21 +309,10 @@ public class ITAuthNTest
             Assert.NotNull(profileGetResp.Result);
             Assert.Equal(userID, profileGetResp.Result.ID);
             Assert.Equal(emailTest, profileGetResp.Result.Email);
-            Assert.Equal(new Profile(), profileGetResp.Result.Profile);
-
-            // Update profile
-            var profileUpdateResp = await client.User.Profile.Update(
-                new UserProfileUpdateRequest.Builder(profileOld).WithEmail(emailTest).Build()
-            );
-            Assert.True(profileGetResp.IsOK);
-            Assert.NotNull(profileUpdateResp.Result);
-            Assert.Equal(userID, profileUpdateResp.Result.ID);
-            Assert.Equal(emailTest, profileUpdateResp.Result.Email);
-            Assert.Equal(profileOld, profileUpdateResp.Result.Profile);
-
+            Assert.Equal(profileOld, profileGetResp.Result.Profile);
 
             // Add one new field to profile
-            profileUpdateResp = await client.User.Profile.Update(
+            var profileUpdateResp = await client.User.Profile.Update(
                 new UserProfileUpdateRequest.Builder(profileNew).WithID(userID).Build()
             );
             Assert.True(profileUpdateResp.IsOK);
@@ -229,19 +326,18 @@ public class ITAuthNTest
 
             // User update
             var userUpdateResp = await client.User.Update(
-                new UserUpdateRequest.Builder().WithEmail(emailTest).WithDisabled(false).WithRequireMFA(false).Build()
+                new UserUpdateRequest.Builder().WithEmail(emailTest).WithDisabled(false).Build()
             );
             Assert.True(userUpdateResp.IsOK);
             Assert.Equal(userID, userUpdateResp.Result.ID);
             Assert.Equal(emailTest, userUpdateResp.Result.Email);
-            Assert.Equal(false, userUpdateResp.Result.Disabled);
-            Assert.Equal(false, userUpdateResp.Result.RequireMFA);
+            Assert.False(userUpdateResp.Result.Disabled);
 
             // Client session refresh (refresh and active token)
             var refreshResp = await client.Client.Session.Refresh(
                 new ClientSessionRefreshRequest.Builder(
-                    loginResp.Result.RefreshToken.Token
-                ).WithUserToken(loginResp.Result.ActiveToken.Token)
+                    createResp1.RefreshToken.Token
+                ).WithUserToken(token)
                 .Build()
             );
             Assert.True(refreshResp.IsOK);
@@ -258,10 +354,6 @@ public class ITAuthNTest
             Assert.True(refreshResp.IsOK);
             Assert.NotNull(refreshResp.Result.ActiveToken);
             Assert.NotNull(refreshResp.Result.RefreshToken);
-
-            // User password reset
-            var resetResp = await client.User.Password.Reset(userID, passwordNew);
-            Assert.True(resetResp.IsOK);
 
             // Client session logout
             var logoutResp2 = await client.Client.Session.Logout(
@@ -281,11 +373,10 @@ public class ITAuthNTest
         try
         {
             // User login
-            var loginResp = await client.User.Login.Password(emailTest, passwordNew);
-            Assert.True(loginResp.IsOK);
-            Assert.NotNull(loginResp.Result.ActiveToken);
-            Assert.NotNull(loginResp.Result.RefreshToken);
-            string token = loginResp.Result.ActiveToken.Token;
+            var loginResp = await Login(emailTest, passwordNew);
+            Assert.NotNull(loginResp.ActiveToken);
+            Assert.NotNull(loginResp.RefreshToken);
+            string token = loginResp.ActiveToken.Token;
 
             // List client sessions
             var filter = new FilterSessionList();
@@ -320,11 +411,10 @@ public class ITAuthNTest
         try
         {
             // User login
-            var loginResp = await client.User.Login.Password(emailTest, passwordNew);
-            Assert.True(loginResp.IsOK);
-            Assert.NotNull(loginResp.Result.ActiveToken);
-            Assert.NotNull(loginResp.Result.RefreshToken);
-            string token = loginResp.Result.ActiveToken.Token;
+            var loginResp = await Login(emailTest, passwordNew);
+            Assert.NotNull(loginResp.ActiveToken);
+            Assert.NotNull(loginResp.RefreshToken);
+            string token = loginResp.ActiveToken.Token;
 
             // Session list
             var filter = new FilterSessionList();
