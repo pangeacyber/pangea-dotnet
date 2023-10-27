@@ -28,7 +28,7 @@ public static class Extentions
     "RunTestsInOrder.XUnit")]
 public class ITAuthNTest
 {
-    static AuthNClient client;
+    static AuthNClient? client;
     Config cfg;
     TestEnvironment environment = TestEnvironment.LVE;
     private static Random random = new Random();
