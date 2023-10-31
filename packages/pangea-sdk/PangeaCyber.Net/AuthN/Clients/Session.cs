@@ -5,33 +5,60 @@ using Newtonsoft.Json;
 namespace PangeaCyber.Net.AuthN.Clients
 {
 
-    ///
+    /// <kind>class</kind>
+    /// <summary>
+    /// AuthN Client
+    /// </summary>
     public class Session : AuthNBaseClient
     {
         ///
         public Session(AuthNClient.Builder builder) : base(builder) { }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Invalidate a session by session ID.</summary>
+        /// <remarks>Invalidate Session</remarks>
+        /// <operationid>authn_post_v2_session_invalidate</operationid>
+        /// <param name="sessionID" type="string">An ID for a token</param>
+        /// <returns>Response&lt;SessionInvalidateResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<SessionInvalidateResult>> Invalidate(string sessionID)
         {
             var request = new SessionInvalidateRequest(sessionID);
-            return await DoPost<SessionInvalidateResult>("/v1/session/invalidate", request);
+            return await DoPost<SessionInvalidateResult>("/v2/session/invalidate", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>List sessions.</summary>
+        /// <remarks>List session (service token)</remarks>
+        /// <operationid>authn_post_v2_session_list</operationid>
+        /// <param name="request" type="PangeaCyber.Net.AuthN.Requests.SessionListRequest"></param>
+        /// <returns>Response&lt;SessionListResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<SessionListResult>> List(SessionListRequest request)
         {
-            return await DoPost<SessionListResult>("/v1/session/list", request);
+            return await DoPost<SessionListResult>("/v2/session/list", request);
         }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Invalidate all sessions belonging to a user.</summary>
+        /// <remarks>Log out (service token)</remarks>
+        /// <operationid>authn_post_v2_session_logout</operationid>
+        /// <param name="userID" type="string">The identity of a user or a service</param>
+        /// <returns>Response&lt;SessionLogoutResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<SessionLogoutResult>> Logout(string userID)
         {
             var request = new SessionLogoutRequest(userID);
-            return await DoPost<SessionLogoutResult>("/v1/session/logout", request);
+            return await DoPost<SessionLogoutResult>("/v2/session/logout", request);
         }
 
         internal sealed class SessionInvalidateRequest : BaseRequest

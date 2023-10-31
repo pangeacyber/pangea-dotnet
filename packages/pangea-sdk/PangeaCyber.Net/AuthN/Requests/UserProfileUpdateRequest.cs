@@ -21,9 +21,9 @@ namespace PangeaCyber.Net.AuthN.Requests
         ///
         private UserProfileUpdateRequest(Builder builder)
         {
-            this.Profile = builder.Profile;
-            this.Email = builder.Email;
-            this.ID = builder.ID;
+            Profile = builder.Profile;
+            Email = builder.Email;
+            ID = builder.ID;
         }
 
         ///
@@ -39,20 +39,20 @@ namespace PangeaCyber.Net.AuthN.Requests
             ///
             public Builder(Profile profile)
             {
-                this.Profile = profile;
+                Profile = profile;
             }
 
             ///
             public Builder WithEmail(string email)
             {
-                this.Email = email;
+                Email = email;
                 return this;
             }
 
             ///
             public Builder WithID(string id)
             {
-                this.ID = id;
+                ID = id;
                 return this;
             }
 

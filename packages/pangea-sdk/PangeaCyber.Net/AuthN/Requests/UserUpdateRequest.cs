@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using PangeaCyber.Net.AuthN.Models;
 
 namespace PangeaCyber.Net.AuthN.Requests
 {
@@ -11,93 +10,51 @@ namespace PangeaCyber.Net.AuthN.Requests
         public string? Email { get; private set; }
 
         ///
-        [JsonProperty("authenticator")]
-        public string? Authenticator { get; private set; }
-
-        ///
         [JsonProperty("id")]
-        public IDProvider? ID { get; private set; }
+        public string? ID { get; private set; }
 
         ///
         [JsonProperty("disabled")]
         public bool? Disabled { get; private set; }
 
-        ///
-        [JsonProperty("require_mfa")]
-        public bool? RequireMFA { get; private set; }
-
-        ///
-        [JsonProperty("verified")]
-        public bool? Verified { get; private set; }
-
         private UserUpdateRequest(Builder builder)
         {
-            this.ID = builder.ID;
-            this.Email = builder.Email;
-            this.Authenticator = builder.Authenticator;
-            this.Disabled = builder.Disabled;
-            this.RequireMFA = builder.RequireMFA;
-            this.Verified = builder.Verified;
+            ID = builder.ID;
+            Email = builder.Email;
+            Disabled = builder.Disabled;
         }
 
         ///
         public class Builder
         {
             ///
-            public IDProvider? ID { get; private set; }
+            public string? ID { get; private set; }
             ///
             public string? Email { get; private set; }
             ///
-            public string? Authenticator { get; private set; }
-            ///
             public bool? Disabled { get; private set; }
-            ///
-            public bool? RequireMFA { get; private set; }
-            ///
-            public bool? Verified { get; private set; }
 
             ///
             public Builder() { }
 
             ///
-            public Builder WithId(IDProvider id)
+            public Builder WithId(string id)
             {
-                this.ID = id;
+                ID = id;
                 return this;
             }
 
             ///
             public Builder WithEmail(string email)
             {
-                this.Email = email;
-                return this;
-            }
-
-            ///
-            public Builder WithAuthenticator(string authenticator)
-            {
-                this.Authenticator = authenticator;
+                Email = email;
                 return this;
             }
 
             ///
             public Builder WithDisabled(bool? disabled)
             {
-                this.Disabled = disabled;
-                return this;
-            }
-
-            ///
-            public Builder WithRequireMFA(bool? requireMFA)
-            {
-                this.RequireMFA = requireMFA;
-                return this;
-            }
-
-            ///
-            public Builder WithVerified(bool? verified)
-            {
-                this.Verified = verified;
+                Disabled = disabled;
                 return this;
             }
 
