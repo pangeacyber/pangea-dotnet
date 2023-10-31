@@ -10,6 +10,11 @@ namespace PangeaCyber.Net
         public string? ConfigID { get; set; } = null;
 
         ///
+        [JsonProperty("transfer_method")]
+        public TransferMethod? TransferMethod { get; protected set; } = null;
+
+
+        ///
         public BaseRequest()
         {
         }

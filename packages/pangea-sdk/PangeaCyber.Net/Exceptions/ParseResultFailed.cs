@@ -12,9 +12,13 @@ namespace PangeaCyber.Net.Exceptions
         public ResponseHeader Header { get; private set; }
 
         ///
+        public string Body { get; private set; }
+
+        ///
         public ParseResultFailed(string message, Exception cause, ResponseHeader header, string body) : base(message, cause)
         {
-            this.Header = header;
+            Header = header;
+            Body = body;
         }
     }
 }

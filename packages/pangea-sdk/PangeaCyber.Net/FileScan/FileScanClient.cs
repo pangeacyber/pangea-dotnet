@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using PangeaCyber.Net.FileScan.Models;
+
 namespace PangeaCyber.Net.FileScan
 {
     /// <kind>class</kind>
@@ -7,7 +10,7 @@ namespace PangeaCyber.Net.FileScan
     public class FileScanClient : BaseClient<FileScanClient.Builder>
     {
         ///
-        public static string ServiceName = "file-scan";
+        public static readonly string ServiceName = "file-scan";
 
         ///
         public FileScanClient(Builder builder) : base(builder, ServiceName)
@@ -15,7 +18,7 @@ namespace PangeaCyber.Net.FileScan
         }
 
         ///
-        public class Builder : BaseClient<FileScanClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
             ///
             public Builder(Config config) : base(config)
@@ -50,7 +53,36 @@ namespace PangeaCyber.Net.FileScan
         /// </example>
         public async Task<Response<FileScanResult>> Scan(FileScanRequest request, FileStream file)
         {
-            return await DoPost<FileScanResult>("/v1/scan", request, file);
+            var fileParams = Utils.GetFSparams(file);
+            var fullRequest = new FileScanFullRequest(request, fileParams, TransferMethod.Direct);
+            return await DoPost<FileScanResult>("/v1/scan", fullRequest, file);
         }
+
+        ///
+        private class FileScanFullRequest : FileScanRequest
+        {
+            ///
+            [JsonProperty("transfer_size")]
+            public int Size { get; private set; }
+
+            ///
+            [JsonProperty("transfer_crc32c")]
+            public string Crc32c { get; private set; }
+
+            ///
+            [JsonProperty("transfer_sha256")]
+            public string Sha256 { get; private set; }
+
+            ///
+            public FileScanFullRequest(FileScanRequest request, FileParams fileParams, TransferMethod method) : base(request)
+            {
+                Size = fileParams.Size;
+                Crc32c = fileParams.CRC32C;
+                Sha256 = fileParams.SHA256;
+                TransferMethod = method;
+            }
+        }
+
     }
+
 }
