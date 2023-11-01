@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.AuthN.Requests
 
         ///
         [JsonProperty("flow_types")]
-        public FlowType? FlowType { get; private set; }
+        public FlowType[]? FlowType { get; private set; }
 
         ///
         [JsonProperty("provider")]
@@ -24,10 +24,10 @@ namespace PangeaCyber.Net.AuthN.Requests
 
         private FlowStartRequest(Builder builder)
         {
-            this.CBUri = builder.CBUri;
-            this.Email = builder.Email;
-            this.FlowType = builder.FlowType;
-            this.Provider = builder.Provider;
+            CBUri = builder.CBUri;
+            Email = builder.Email;
+            FlowType = builder.FlowType;
+            Provider = builder.Provider;
         }
 
         ///
@@ -38,7 +38,7 @@ namespace PangeaCyber.Net.AuthN.Requests
             ///
             public string? Email { get; private set; }
             ///
-            public FlowType? FlowType { get; private set; }
+            public FlowType[]? FlowType { get; private set; }
             ///
             public IDProvider? Provider { get; private set; }
 
@@ -48,28 +48,28 @@ namespace PangeaCyber.Net.AuthN.Requests
             ///
             public Builder WithCBUri(string cbUri)
             {
-                this.CBUri = cbUri;
+                CBUri = cbUri;
                 return this;
             }
 
             ///
             public Builder WithEmail(string email)
             {
-                this.Email = email;
+                Email = email;
                 return this;
             }
 
             ///
-            public Builder WithFlowType(FlowType flowType)
+            public Builder WithFlowType(FlowType[] flowType)
             {
-                this.FlowType = flowType;
+                FlowType = flowType;
                 return this;
             }
 
             ///
             public Builder WithProvider(IDProvider provider)
             {
-                this.Provider = provider;
+                Provider = provider;
                 return this;
             }
 

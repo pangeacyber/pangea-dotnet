@@ -2,7 +2,10 @@ using PangeaCyber.Net.AuthN.Clients;
 
 namespace PangeaCyber.Net.AuthN
 {
-    ///
+    /// <kind>class</kind>
+    /// <summary>
+    /// AuthN Client
+    /// </summary>
     public class AuthNClient : AuthNBaseClient
     {
         ///

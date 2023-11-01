@@ -30,7 +30,34 @@ const parseClassName = (namespace) => {
     const parts = namespace.split(":");
     if (parts.length === 2) {
         const qualifiedName = parts[1]
-        const name = parts[1].split(".").pop();
+
+        /**
+         * We're going to do something that seems really weird here.
+         * 
+         * The problem we're trying to solve is collating heavily
+         * nested classes with one particular service.
+         * 
+         * When we have a qualifiedName such as:
+         * PangeaCyber.Net.AuthN.Clients.Agreements
+         *                  └──> we want to collate it under a class name of "AuthNClient"
+         *                       following the scheme "<service>Client"
+         * 
+         * The situation is we also have qualifiedNames such as:
+         * 1) PangeaCyber.Net.Audit.AuditClient
+         * 2) PangeaCyber.Net.Intel.DomainIntelClient
+         * where we still need to collate them under "AuditClient" and "DomainIntelClient".
+         * 
+         * As a quick and dirty way to collate all of these, we'll use this logic:
+         * 1) Split qualifiedName
+         * 2) if we have more than 4 elements, use element 2
+         * 3) else, use the last element
+         */
+        const splitParts = parts[1].split(".");
+        let name = splitParts[splitParts.length - 1];
+        if (splitParts.length > 4) {
+            name = `${splitParts[2]}Client`;
+        }
+
         return { kind: "CLASS", qualifiedName, name, docComments: [] };
     }
 };

@@ -27,6 +27,14 @@ namespace PangeaCyber.Net.FileScan
         }
 
         ///
+        protected FileScanRequest(FileScanRequest request)
+        {
+            Provider = request.Provider;
+            Verbose = request.Verbose;
+            Raw = request.Raw;
+        }
+
+        ///
         public class Builder
         {
 

@@ -167,7 +167,7 @@ namespace PangeaCyber.Tests.Intel
         public async Task TestFileReputationNotProvided()
         {
             var response = await client.Reputation(new FileHashReputationRequest.Builder(
-                "322ccbd42b7e4fd3a9d0167ca2fa9f6483d9691364c431625f1df542706",
+                "178e2b8a4162372cd9344b81793cbf74a9513a002eda3324e6331243f3137a63",
                 "sha256"
             )
                 .WithProvider("reversinglabs")
@@ -179,6 +179,7 @@ namespace PangeaCyber.Tests.Intel
 
             var data = response.Result.Data;
             Assert.Equal("", data.Verdict);
+            Assert.Equal("unknown", data.Verdict);
             Assert.Empty(data.Category);
             Assert.NotNull(response.Result.Parameters);
             Assert.Null(response.Result.RawData);

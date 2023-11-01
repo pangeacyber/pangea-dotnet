@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.FileScan.Tests
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
         private FileScanClient client;
-        private readonly TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = TestEnvironment.STG;
 
         public ITFileScanTest()
         {
@@ -60,7 +60,7 @@ namespace PangeaCyber.Net.FileScan.Tests
                 exception = e;
             }
 
-            int maxRetry = 6;
+            int maxRetry = 12;
             for (int retry = 0; retry < maxRetry; retry++)
             {
                 try
@@ -135,13 +135,13 @@ namespace PangeaCyber.Net.FileScan.Tests
                 exception = e;
             }
 
-            int maxRetry = 6;
+            int maxRetry = 24;
             for (int retry = 0; retry < maxRetry; retry++)
             {
                 try
                 {
-                    // Sleep 20 seconds until result is (should) be ready
-                    await Task.Delay(20 * 1000);
+                    // Sleep 10 seconds until result is (should) be ready
+                    await Task.Delay(10 * 1000);
 
                     // Poll result, this could raise another AcceptedRequestException if result is not ready
                     var response = await client.PollResult<FileScanResult>(exception.RequestID);
