@@ -53,6 +53,12 @@ namespace PangeaCyber.Net.Intel
             return DoPost<UserBreachedResult>("/v1/user/breached", request);
         }
 
+        /// TODO: Docs
+        public Task<Response<UserBreachedBulkResult>> BreachedBulk(UserBreachedBulkRequest request)
+        {
+            return DoPost<UserBreachedBulkResult>("/v2/user/breached", request);
+        }
+
         /// <kind>method</kind>
         /// <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
         /// <remarks>Look up breached passwords</remarks>
@@ -72,6 +78,12 @@ namespace PangeaCyber.Net.Intel
         public Task<Response<UserPasswordBreachedResult>> Breached(UserPasswordBreachedRequest request)
         {
             return DoPost<UserPasswordBreachedResult>("/v1/password/breached", request);
+        }
+
+        /// TODO: Docs
+        public Task<Response<UserPasswordBreachedBulkResult>> BreachedBulk(UserPasswordBreachedBulkRequest request)
+        {
+            return DoPost<UserPasswordBreachedBulkResult>("/v2/password/breached", request);
         }
 
         ///

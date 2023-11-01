@@ -53,6 +53,12 @@ namespace PangeaCyber.Net.Intel
             return DoPost<IPGeolocateResult>("/v1/geolocate", request);
         }
 
+        /// TODO: Docs
+        public Task<Response<IPGeolocateBulkResult>> GeolocateBulk(IPGeolocateBulkRequest request)
+        {
+            return DoPost<IPGeolocateBulkResult>("/v2/geolocate", request);
+        }
+
         /// <kind>method</kind>
         /// <summary>Retrieve the domain name associated with an IP address.</summary>
         /// <remarks>Domain</remarks>
@@ -73,6 +79,12 @@ namespace PangeaCyber.Net.Intel
         public Task<Response<IPDomainResult>> GetDomain(IPDomainRequest request)
         {
             return DoPost<IPDomainResult>("/v1/domain", request);
+        }
+
+        /// TODO: Docs
+        public Task<Response<IPDomainBulkResult>> GetDomainBulk(IPDomainBulkRequest request)
+        {
+            return DoPost<IPDomainBulkResult>("/v2/domain", request);
         }
 
         /// <kind>method</kind>
@@ -97,6 +109,12 @@ namespace PangeaCyber.Net.Intel
             return DoPost<IPVPNResult>("/v1/vpn", request);
         }
 
+        /// TODO: Docs
+        public Task<Response<IPVPNBulkResult>> IsVPNBulk(IPVPNBulkRequest request)
+        {
+            return DoPost<IPVPNBulkResult>("/v2/vpn", request);
+        }
+
         /// <kind>method</kind>
         /// <summary>Determine if an IP address originates from a proxy.</summary>
         /// <remarks>Proxy</remarks>
@@ -117,6 +135,12 @@ namespace PangeaCyber.Net.Intel
         public Task<Response<IPProxyResult>> IsProxy(IPProxyRequest request)
         {
             return DoPost<IPProxyResult>("/v1/proxy", request);
+        }
+
+        /// TODO: Docs
+        public Task<Response<IPProxyBulkResult>> IsProxyBulk(IPProxyBulkRequest request)
+        {
+            return DoPost<IPProxyBulkResult>("/v2/proxy", request);
         }
 
         /// <kind>method</kind>

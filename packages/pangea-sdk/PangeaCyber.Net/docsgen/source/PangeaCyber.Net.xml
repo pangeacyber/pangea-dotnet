@@ -4854,6 +4854,9 @@
             </code>
             </example>
         </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GeolocateBulk(PangeaCyber.Net.Intel.IPGeolocateBulkRequest)">
+            TODO: Docs
+        </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GetDomain(PangeaCyber.Net.Intel.IPDomainRequest)">
             <kind>method</kind>
             <summary>Retrieve the domain name associated with an IP address.</summary>
@@ -4872,6 +4875,9 @@
             var response = await client.GetDomain(request);
             </code>
             </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GetDomainBulk(PangeaCyber.Net.Intel.IPDomainBulkRequest)">
+            TODO: Docs
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsVPN(PangeaCyber.Net.Intel.IPVPNRequest)">
             <kind>method</kind>
@@ -4892,6 +4898,9 @@
             </code>
             </example>
         </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsVPNBulk(PangeaCyber.Net.Intel.IPVPNBulkRequest)">
+            TODO: Docs
+        </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsProxy(PangeaCyber.Net.Intel.IPProxyRequest)">
             <kind>method</kind>
             <summary>Determine if an IP address originates from a proxy.</summary>
@@ -4910,6 +4919,9 @@
             var response = await client.IsProxy(request);
             </code>
             </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsProxyBulk(PangeaCyber.Net.Intel.IPProxyBulkRequest)">
+            TODO: Docs
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Reputation(PangeaCyber.Net.Intel.IPReputationRequest)">
             <kind>method</kind>
@@ -4953,9 +4965,6 @@
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainReputationData">
-
-        </member>
-        <member name="T:PangeaCyber.Net.Intel.DomainReputationDataItem">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.DomainWhoIsData">
@@ -5042,13 +5051,7 @@
         <member name="M:PangeaCyber.Net.Intel.IntelReputationData.#ctor">
 
         </member>
-        <member name="T:PangeaCyber.Net.Intel.IntelReputationDataItem">
-
-        </member>
-        <member name="P:PangeaCyber.Net.Intel.IntelReputationDataItem.Indicator">
-
-        </member>
-        <member name="M:PangeaCyber.Net.Intel.IntelReputationDataItem.#ctor">
+        <member name="T:PangeaCyber.Net.Intel.IPDomainBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPDomainData">
@@ -5058,6 +5061,9 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.IPDomainData.Domain">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPGeolocateData">
@@ -5081,6 +5087,9 @@
         <member name="P:PangeaCyber.Net.Intel.IPGeolocateData.CountryCode">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyBulkData">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPProxyData">
 
         </member>
@@ -5091,6 +5100,9 @@
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPReputationData">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPVPNData">
@@ -5117,7 +5129,7 @@
         <member name="T:PangeaCyber.Net.Intel.URLReputationData">
 
         </member>
-        <member name="T:PangeaCyber.Net.Intel.URLReputationDataItem">
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserBreachedData">
@@ -5127,6 +5139,9 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.UserBreachedData.BreachCount">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedBulkData">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedData">
@@ -5297,6 +5312,27 @@
         <member name="M:PangeaCyber.Net.Intel.IntelCommonRequest`1.CommonBuilder.WithRaw(System.Nullable{System.Boolean})">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainBulkRequest.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPDomainBulkRequest.#ctor(PangeaCyber.Net.Intel.IPDomainBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainBulkRequest.Builder.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPDomainBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPDomainBulkRequest.Builder.Build">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPDomainRequest">
 
         </member>
@@ -5318,6 +5354,27 @@
         <member name="M:PangeaCyber.Net.Intel.IPDomainRequest.Builder.Build">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateBulkRequest.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPGeolocateBulkRequest.#ctor(PangeaCyber.Net.Intel.IPGeolocateBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateBulkRequest.Builder.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPGeolocateBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPGeolocateBulkRequest.Builder.Build">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPGeolocateRequest">
 
         </member>
@@ -5337,6 +5394,27 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPGeolocateRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyBulkRequest.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPProxyBulkRequest.#ctor(PangeaCyber.Net.Intel.IPProxyBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyBulkRequest.Builder.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPProxyBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPProxyBulkRequest.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPProxyRequest">
@@ -5400,6 +5478,27 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPReputationRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNBulkRequest.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPVPNBulkRequest.#ctor(PangeaCyber.Net.Intel.IPVPNBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNBulkRequest.Builder.IPs">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPVPNBulkRequest.Builder.#ctor(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.IPVPNBulkRequest.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPVPNRequest">
@@ -5474,6 +5573,72 @@
         <member name="M:PangeaCyber.Net.Intel.URLReputationRequest.Builder.Build">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Emails">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Usernames">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Ips">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.PhoneNumbers">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Start">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.End">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.#ctor(PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.Emails">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.Usernames">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.Ips">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.PhoneNumbers">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.Start">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.End">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.Build">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.WithEmails(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.WithUsernames(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.WithIPs(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.WithPhoneNumbers(System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.WithStart(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserBreachedBulkRequest.Builder.WithEnd(System.String)">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.UserBreachedRequest">
 
         </member>
@@ -5538,6 +5703,33 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserBreachedRequest.Builder.WithEnd(System.String)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.HashType">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.HashPrefixes">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.#ctor(PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.Builder.HashType">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.Builder.HashPrefixes">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.Builder.#ctor(PangeaCyber.Net.Intel.HashType,System.String[])">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedRequest">
@@ -5606,16 +5798,34 @@
         <member name="P:PangeaCyber.Net.Intel.IntelCommonResult.RawData">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPDomainBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPDomainBulkResult.Data">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPDomainResult">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.IPDomainResult.Data">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPGeolocateBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPGeolocateBulkResult.Data">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPGeolocateResult">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.IPGeolocateResult.Data">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.IPProxyBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPProxyBulkResult.Data">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.IPProxyResult">
@@ -5636,6 +5846,12 @@
         <member name="P:PangeaCyber.Net.Intel.IPReputationResult.Data">
 
         </member>
+        <member name="T:PangeaCyber.Net.Intel.IPVPNBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.IPVPNBulkResult.Data">
+
+        </member>
         <member name="T:PangeaCyber.Net.Intel.IPVPNResult">
 
         </member>
@@ -5654,13 +5870,22 @@
         <member name="P:PangeaCyber.Net.Intel.URLReputationResult.Data">
 
         </member>
-        <member name="M:PangeaCyber.Net.Intel.URLReputationResult.#ctor">
+        <member name="T:PangeaCyber.Net.Intel.UserBreachedBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserBreachedBulkResult.Data">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserBreachedResult">
 
         </member>
         <member name="P:PangeaCyber.Net.Intel.UserBreachedResult.Data">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedBulkResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Intel.UserPasswordBreachedBulkResult.Data">
 
         </member>
         <member name="T:PangeaCyber.Net.Intel.UserPasswordBreachedResult">
@@ -5759,6 +5984,9 @@
             </code>
             </example>
         </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.BreachedBulk(PangeaCyber.Net.Intel.UserBreachedBulkRequest)">
+            TODO: Docs
+        </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserPasswordBreachedRequest)">
             <kind>method</kind>
             <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
@@ -5776,6 +6004,9 @@
             var response = await client.Breached(request);
             </code>
             </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Intel.UserIntelClient.BreachedBulk(PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest)">
+            TODO: Docs
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
 

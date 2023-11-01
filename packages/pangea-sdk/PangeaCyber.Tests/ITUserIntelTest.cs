@@ -5,7 +5,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITUserIntelTest
     {
         private UserIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITUserIntelTest()
         {
@@ -65,6 +65,22 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestUserBreached_ByPhoneNumberBulk()
+        {
+            var response = await client.BreachedBulk(
+                new UserBreachedBulkRequest.Builder()
+                    .WithPhoneNumbers(new string[] { "8005550123", "8005550124" })
+                    .WithRaw(true)
+                    .Build());
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
+        }
+
+        [Fact]
         public async Task TestUserBreached_ByEmail()
         {
             var response = await client.Breached(new UserBreachedRequest.Builder().WithEmail("test@example.com").WithProvider("spycloud").Build());
@@ -75,6 +91,22 @@ namespace PangeaCyber.Tests.Intel
             Assert.True(data.BreachCount > 0);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestUserBreached_ByEmailBulk()
+        {
+            var response = await client.BreachedBulk(
+                new UserBreachedBulkRequest.Builder()
+                    .WithEmails(new string[] { "test@example.com", "noreply@example.com" })
+                    .WithRaw(true)
+                    .Build());
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
         }
 
         [Fact]
@@ -91,6 +123,22 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestUserBreached_ByUsernameBulk()
+        {
+            var response = await client.BreachedBulk(
+                new UserBreachedBulkRequest.Builder()
+                    .WithUsernames(new string[] { "shortpatrick", "user1" })
+                    .WithRaw(true)
+                    .Build());
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
+        }
+
+        [Fact]
         public async Task TestUserBreached_ByIP()
         {
             var response = await client.Breached(new UserBreachedRequest.Builder().WithIP("192.168.140.37").WithProvider("spycloud").Build());
@@ -101,6 +149,22 @@ namespace PangeaCyber.Tests.Intel
             Assert.True(data.BreachCount > 0);
             Assert.Null(response.Result.Parameters);
             Assert.Null(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestUserBreached_ByIPBulk()
+        {
+            var response = await client.BreachedBulk(
+                new UserBreachedBulkRequest.Builder()
+                    .WithIPs(new string[] { "192.168.140.37", "1.1.1.1" })
+                    .WithRaw(true)
+                    .Build());
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
         }
 
         [Fact]
@@ -154,5 +218,22 @@ namespace PangeaCyber.Tests.Intel
             Assert.Null(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }
+
+        [Fact]
+        public async Task TestUserPasswordBreached_Bulk()
+        {
+            var response = await client.BreachedBulk(
+                new UserPasswordBreachedBulkRequest.Builder(
+                    HashType.SHA256,
+                    new string[] { "5baa6", "5baa7" })
+                .WithRaw(true).Build());
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
+        }
+
     }
 }
