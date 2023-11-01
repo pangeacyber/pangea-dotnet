@@ -17,11 +17,16 @@ namespace PangeaCyber.Net.AuthN.Requests
         [JsonProperty("disabled")]
         public bool? Disabled { get; private set; }
 
+        ///
+        [JsonProperty("unlock")]
+        public bool? Unlock { get; private set; }
+
         private UserUpdateRequest(Builder builder)
         {
             ID = builder.ID;
             Email = builder.Email;
             Disabled = builder.Disabled;
+            Unlock = builder.Unlock;
         }
 
         ///
@@ -33,6 +38,8 @@ namespace PangeaCyber.Net.AuthN.Requests
             public string? Email { get; private set; }
             ///
             public bool? Disabled { get; private set; }
+            ///
+            public bool? Unlock { get; private set; }
 
             ///
             public Builder() { }
@@ -55,6 +62,13 @@ namespace PangeaCyber.Net.AuthN.Requests
             public Builder WithDisabled(bool? disabled)
             {
                 Disabled = disabled;
+                return this;
+            }
+
+            ///
+            public Builder WithUnlock(bool? unlock)
+            {
+                Unlock = unlock;
                 return this;
             }
 
