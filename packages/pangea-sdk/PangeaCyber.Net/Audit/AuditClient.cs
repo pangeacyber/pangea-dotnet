@@ -2,6 +2,10 @@
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Audit.Utils;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.Ocsp;
+using NLog.Fluent;
+using System.Collections;
+using System.Diagnostics.Tracing;
 
 namespace PangeaCyber.Net.Audit
 {
@@ -15,34 +19,34 @@ namespace PangeaCyber.Net.Audit
         public static string ServiceName { get; } = "audit";
 
         ///
-        private LogSigner? signer;
+        private readonly LogSigner? Signer;
 
         ///
-        private Dictionary<int, PublishedRoot> publishedRoots;
+        private readonly Dictionary<int, PublishedRoot> PublishedRoots;
 
         ///
-        private bool allowServerRoots = true;    // In case of Arweave failure, ask the server for the roots
+        private readonly bool AllowServerRoots = true;    // In case of Arweave failure, ask the server for the roots
 
         ///
-        private string prevUnpublishedRoot = default!;
+        private string PrevUnpublishedRoot = default!;
 
         ///
-        private string? tenantID;
+        private readonly string? TenantID;
 
         ///
-        private Type customSchemaClass;
+        private readonly Type CustomSchemaClass;
 
         ///
-        private Dictionary<string, string> pkInfo;
+        private readonly Dictionary<string, string> PKInfo;
 
         /// Constructor
-        protected AuditClient(AuditClient.Builder builder) : base(builder, ServiceName)
+        protected AuditClient(Builder builder) : base(builder, ServiceName)
         {
-            this.signer = !string.IsNullOrEmpty(builder.privateKeyFilename) ? new LogSigner(builder.privateKeyFilename!) : null;
-            this.publishedRoots = new Dictionary<int, PublishedRoot>();
-            this.customSchemaClass = builder.customSchemaClass;
-            this.tenantID = builder.tenantID;
-            this.pkInfo = builder.pkInfo ?? new Dictionary<string, string>();
+            Signer = !string.IsNullOrEmpty(builder.privateKeyFilename) ? new LogSigner(builder.privateKeyFilename!) : null;
+            PublishedRoots = new Dictionary<int, PublishedRoot>();
+            CustomSchemaClass = builder.customSchemaClass;
+            TenantID = builder.tenantID;
+            PKInfo = builder.pkInfo ?? new Dictionary<string, string>();
 
             if (!string.IsNullOrEmpty(builder.configID))
             {
@@ -55,24 +59,50 @@ namespace PangeaCyber.Net.Audit
 
         }
 
-        private async Task<Response<LogResult>> logPost(IEvent evt, bool? verbose, string signature, string publicKey, bool verify)
+        private LogBulkRequest GetLogBulkRequest(IEvent[] events, LogConfig config)
         {
+
+            LogEvent[] logEvents = new LogEvent[events.Length];
+            for (int i = 0; i < events.Length; i++)
+            {
+                logEvents[i] = GetLogEvent(events[i], config);
+            }
+
+            Boolean? verbose = null;
+
             string prevRoot = default!;
-            if (verify)
+            if (config.Verify)
             {
                 verbose = true;
-                prevRoot = this.prevUnpublishedRoot;
+                prevRoot = PrevUnpublishedRoot;
             }
-            LogRequest request = new LogRequest(evt, verbose ?? false, signature, publicKey, prevRoot);
-            return await DoPost<LogResult>("/v1/log", request);
+
+            return new LogBulkRequest(logEvents, verbose ?? false, prevRoot);
         }
 
-        private Task processLogResponse(LogResult result, bool verify)
+
+
+        private LogRequest GetLogRequest(IEvent evt, LogConfig config)
+        {
+            LogEvent logEvent = GetLogEvent(evt, config);
+            Boolean? verbose = null;
+
+            string prevRoot = default!;
+            if (config.Verify)
+            {
+                verbose = true;
+                prevRoot = PrevUnpublishedRoot;
+            }
+
+            return new LogRequest(logEvent.Event, verbose ?? false, logEvent.Signature, logEvent.PublicKey, prevRoot);
+        }
+
+        private Task ProcessLogResponse(LogResult result, bool verify)
         {
             string newUnpublishedRoot = result.UnpublishedRoot;
             if (result.RawEnvelope != null)
             {
-                result.EventEnvelope = EventEnvelope.FromRaw(result.RawEnvelope, this.customSchemaClass)!;
+                result.EventEnvelope = EventEnvelope.FromRaw(result.RawEnvelope, CustomSchemaClass)!;
                 if (verify)
                 {
                     result.VerifySignature();
@@ -80,17 +110,17 @@ namespace PangeaCyber.Net.Audit
                     if (newUnpublishedRoot != null)
                     {
                         result.MembershipVerification = Verification.VerifyMembershipProof(newUnpublishedRoot, result.Hash, result.MembershipProof);
-                        if (result.ConsistencyProof != null && this.prevUnpublishedRoot != null)
+                        if (result.ConsistencyProof != null && PrevUnpublishedRoot != null)
                         {
                             ConsistencyProof conProof = Verification.DecodeConsistencyProof(result.ConsistencyProof);
-                            result.ConsistencyVerification = Verification.VerifyConsistencyProof(newUnpublishedRoot, this.prevUnpublishedRoot, conProof);
+                            result.ConsistencyVerification = Verification.VerifyConsistencyProof(newUnpublishedRoot, PrevUnpublishedRoot, conProof);
                         }
                     }
                 }
 
                 if (newUnpublishedRoot != null)
                 {
-                    this.prevUnpublishedRoot = newUnpublishedRoot;
+                    PrevUnpublishedRoot = newUnpublishedRoot;
                 }
             }
 
@@ -117,19 +147,67 @@ namespace PangeaCyber.Net.Audit
         /// </example>
         public async Task<Response<LogResult>> Log(IEvent evt, LogConfig config)
         {
+            LogRequest request = GetLogRequest(evt, config);
+            Response<LogResult> response = await DoPost<LogResult>("/v1/log", request);
+            await ProcessLogResponse(response.Result, config.Verify);
+            return response;
+        }
+
+        /// TODO: Docs
+        public async Task<Response<LogResult>> LogAsync(IEvent evt, LogConfig config)
+        {
+            LogRequest request = GetLogRequest(evt, config);
+            Response<LogResult> response = await DoPost<LogResult>("/v1/log_async", request);
+            await ProcessLogResponse(response.Result, config.Verify);
+            return response;
+        }
+
+
+        /// TODO: Docs
+        public async Task<Response<LogBulkResult>> LogBulk(IEvent[] events, LogConfig config)
+        {
+            LogBulkRequest request = GetLogBulkRequest(events, config);
+            Response<LogBulkResult> response = await DoPost<LogBulkResult>("/v2/log", request);
+            if (response.Result != null)
+            {
+                foreach (LogResult result in response.Result.Results)
+                {
+                    await ProcessLogResponse(result, config.Verify);
+                }
+            }
+            return response;
+        }
+
+        /// TODO: Docs
+        public async Task<Response<LogBulkResult>> LogBulkAsync(IEvent[] events, LogConfig config)
+        {
+            LogBulkRequest request = GetLogBulkRequest(events, config);
+            Response<LogBulkResult> response = await DoPost<LogBulkResult>("/v2/log_async", request);
+            if (response.Result != null)
+            {
+                foreach (LogResult result in response.Result.Results)
+                {
+                    await ProcessLogResponse(result, config.Verify);
+                }
+            }
+            return response;
+        }
+
+        private LogEvent GetLogEvent(IEvent evt, LogConfig config)
+        {
             string signature = default!;
             string publicKey = default!;
 
-            if (string.IsNullOrEmpty(evt.GetTenantID()) && this.tenantID != default)
+            if (string.IsNullOrEmpty(evt.GetTenantID()) && TenantID != default)
             {
-                evt.SetTenantID(this.tenantID);
+                evt.SetTenantID(TenantID);
             }
 
-            if (config.SignLocal && this.signer == null)
+            if (config.SignLocal && Signer == null)
             {
                 throw new SignerException("Signer not initialized", new Exception("Signer not initialized"));
             }
-            else if (config.SignLocal && this.signer != null)
+            else if (config.SignLocal && Signer != null)
             {
                 string canEvent;
                 try
@@ -141,18 +219,15 @@ namespace PangeaCyber.Net.Audit
                     throw new SignerException("Failed to convert event to string", e);
                 }
 
-                signature = this.signer.Sign(canEvent);
-                publicKey = this.GetPublicKeyData();
+                signature = Signer.Sign(canEvent);
+                publicKey = GetPublicKeyData();
             }
-
-            Response<LogResult> response = await logPost(evt, config.Verbose, signature, publicKey, config.Verify);
-            await processLogResponse(response.Result, config.Verify);
-            return response;
+            return new LogEvent(evt, signature, publicKey);
         }
 
-        private async Task<Response<RootResult>> rootPost(int? treeSize)
+        private async Task<Response<RootResult>> RootPost(int? treeSize)
         {
-            return await this.DoPost<RootResult>("/v1/root", new RootRequest(treeSize));
+            return await DoPost<RootResult>("/v1/root", new RootRequest(treeSize));
         }
 
         /// <kind>method</kind>
@@ -168,7 +243,7 @@ namespace PangeaCyber.Net.Audit
         /// </example>
         public async Task<Response<RootResult>> GetRoot()
         {
-            return await this.rootPost(default!);
+            return await RootPost(default!);
         }
 
         /// <kind>method</kind>
@@ -186,14 +261,14 @@ namespace PangeaCyber.Net.Audit
         /// </example>
         public async Task<Response<RootResult>> GetRoot(int? treeSize)
         {
-            return await rootPost(treeSize);
+            return await RootPost(treeSize);
         }
 
-        private async Task processSearchResult(ResultsOutput result, SearchConfig config)
+        private async Task ProcessSearchResult(ResultsOutput result, SearchConfig config)
         {
             foreach (SearchEvent searchEvent in result.Events)
             {
-                searchEvent.EventEnvelope = EventEnvelope.FromRaw(searchEvent.RawEnvelope, this.customSchemaClass)!;
+                searchEvent.EventEnvelope = EventEnvelope.FromRaw(searchEvent.RawEnvelope, CustomSchemaClass)!;
             }
 
             if (config.VerifyEvents)
@@ -212,12 +287,12 @@ namespace PangeaCyber.Net.Audit
             {
                 if (root != null)
                 {
-                    await updatePublishedRoots(result);
+                    await UpdatePublishedRoots(result);
                 }
 
                 foreach (SearchEvent searchEvent in result.Events)
                 {
-                    string rootHash = "";
+                    string rootHash;
                     if (searchEvent.Published)
                     {
                         rootHash = root?.RootHash ?? "";
@@ -228,12 +303,12 @@ namespace PangeaCyber.Net.Audit
                     }
 
                     searchEvent.VerifyMembershipProof(rootHash);
-                    searchEvent.VerifyConsistency(this.publishedRoots);
+                    searchEvent.VerifyConsistency(PublishedRoots);
                 }
             }
         }
 
-        private async Task updatePublishedRoots(ResultsOutput result)
+        private async Task UpdatePublishedRoots(ResultsOutput result)
         {
             Root root = result.Root;
             if (root == null)
@@ -241,7 +316,7 @@ namespace PangeaCyber.Net.Audit
                 return;
             }
 
-            HashSet<int> treeSizes = new HashSet<int>();
+            HashSet<int> treeSizes = new();
             foreach (SearchEvent searchEvent in result.Events)
             {
                 if (searchEvent.Published)
@@ -260,7 +335,7 @@ namespace PangeaCyber.Net.Audit
             }
 
             treeSizes.Add(root.Size);
-            treeSizes.RemoveWhere(this.publishedRoots.ContainsKey);
+            treeSizes.RemoveWhere(PublishedRoots.ContainsKey);
 
             int[] sizes = new int[treeSizes.Count];
             treeSizes.CopyTo(sizes);
@@ -268,7 +343,7 @@ namespace PangeaCyber.Net.Audit
             Dictionary<int, PublishedRoot> arweaveRoots;
             if (sizes.Length > 0)
             {
-                Arweave arweave = new Arweave(root.TreeName);
+                Arweave arweave = new(root.TreeName);
                 arweaveRoots = await arweave.GetPublishedRoots(sizes);
             }
             else
@@ -281,18 +356,18 @@ namespace PangeaCyber.Net.Audit
                 if (arweaveRoots.ContainsKey(treeSize))
                 {
                     arweaveRoots[treeSize].Source = "arweave";
-                    this.publishedRoots.Add(treeSize, arweaveRoots[treeSize]);
+                    PublishedRoots.Add(treeSize, arweaveRoots[treeSize]);
                 }
-                else if (allowServerRoots)
+                else if (AllowServerRoots)
                 {
                     Response<RootResult> response;
                     try
                     {
-                        response = await this.GetRoot(treeSize);
+                        response = await GetRoot(treeSize);
 
                         Root localRoot = response.Result.Root;
-                        PublishedRoot pubRoot = new PublishedRoot(root.Size, root.RootHash, root.PublishedAt, root.ConsistencyProof, "pangea");
-                        this.publishedRoots[treeSize] = pubRoot;
+                        PublishedRoot pubRoot = new(root.Size, root.RootHash, root.PublishedAt, root.ConsistencyProof, "pangea");
+                        PublishedRoots[treeSize] = pubRoot;
                     }
                     catch (Exception)
                     {
@@ -321,7 +396,7 @@ namespace PangeaCyber.Net.Audit
         public async Task<Response<SearchOutput>> Search(SearchRequest request, SearchConfig config)
         {
             Response<SearchOutput> response = await DoPost<SearchOutput>("/v1/search", request);
-            await processSearchResult(response.Result, config);
+            await ProcessSearchResult(response.Result, config);
             return response;
         }
 
@@ -337,7 +412,7 @@ namespace PangeaCyber.Net.Audit
         public async Task<Response<ResultsOutput>> Results(ResultRequest request, SearchConfig config)
         {
             var response = await DoPost<ResultsOutput>("/v1/results", request);
-            await processSearchResult(response.Result, config);
+            await ProcessSearchResult(response.Result, config);
             return response;
         }
 
@@ -345,12 +420,12 @@ namespace PangeaCyber.Net.Audit
         {
             try
             {
-                if (this.signer != null)
+                if (Signer != null)
                 {
-                    this.pkInfo.Add("key", this.signer.GetPublicKey());
-                    this.pkInfo.Add("algorithm", this.signer.GetAlgorithm());
+                    PKInfo.Add("key", Signer.GetPublicKey());
+                    PKInfo.Add("algorithm", Signer.GetAlgorithm());
                 }
-                return JsonConvert.SerializeObject(this.pkInfo);
+                return JsonConvert.SerializeObject(PKInfo);
             }
             catch (Exception e)
             {

@@ -115,25 +115,25 @@
         <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Signer">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.publishedRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PublishedRoots">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.allowServerRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.AllowServerRoots">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.prevUnpublishedRoot">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PrevUnpublishedRoot">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.tenantID">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.TenantID">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.CustomSchemaClass">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.pkInfo">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PKInfo">
 
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
@@ -158,6 +158,15 @@
             var response = await client.log(event, new LogConfig.Builder().Build());
             </code>
             </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogAsync(PangeaCyber.Net.Audit.IEvent,PangeaCyber.Net.Audit.LogConfig)">
+            TODO: Docs
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulk(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
+            TODO: Docs
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulkAsync(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
+            TODO: Docs
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.GetRoot">
             <kind>method</kind>
@@ -615,6 +624,42 @@
         <member name="M:PangeaCyber.Net.Audit.Verifier.Verify(System.String,System.String,System.String)">
 
         </member>
+        <member name="T:PangeaCyber.Net.Audit.LogBulkRequest">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Events">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Verbose">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.PrevRoot">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogBulkRequest.#ctor(PangeaCyber.Net.Audit.LogEvent[],System.Boolean,System.String)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogEvent">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.Event">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.Signature">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.PublicKey">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogEvent.#ctor(PangeaCyber.Net.Audit.IEvent,System.String,System.String)">
+
+        </member>
         <member name="T:PangeaCyber.Net.Audit.LogRequest">
             <kind>class</kind>
             <summary>
@@ -778,6 +823,15 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogBulkResult">
+            <kind>class</kind>
+            <summary>
+            LogResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkResult.Results">
 
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogResult">

@@ -7,11 +7,11 @@ namespace PangeaCyber.Tests;
 ///
 public class ITAuditTest
 {
-    private AuditClient generalClient, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
+    private AuditClient generalClient, generalClientNoQueue, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
 
     CustomEvent customEvent;
 
-    private const TestEnvironment environment = TestEnvironment.LVE;
+    private const TestEnvironment environment = TestEnvironment.DEV;
 
     private const string ACTOR = "csharp-sdk";
     private const string MSG_NO_SIGNED = "test-message";
@@ -29,8 +29,13 @@ public class ITAuditTest
     {
         // Standard schema clients
         var generalCfg = Config.FromIntegrationEnvironment(environment);
+        var generalCfgNoQueue = Config.FromIntegrationEnvironment(environment);
+        generalCfgNoQueue.QueuedRetryEnabled = false;
         var builder = new AuditClient.Builder(generalCfg);
+
         this.generalClient = builder.Build();
+        generalClientNoQueue = new AuditClient.Builder(generalCfgNoQueue).Build();
+
         this.signClient = builder.WithPrivateKey(PRIVATE_KEY_FILE).Build();
         this.tenantIDClient = builder.WithTenantID(TENANT_ID).Build();
         this.signNtenantIDClient = builder.WithTenantID(TENANT_ID).WithPrivateKey(PRIVATE_KEY_FILE).Build();
@@ -775,6 +780,95 @@ public class ITAuditTest
         var client = new AuditClient.Builder(cfg).Build();
 
         await Assert.ThrowsAsync<PangeaAPIException>(async () => await client.Log(evt, new LogConfig.Builder().Build()));
+    }
+
+    [Fact]
+    public async Task TestLogBulk()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await generalClient.LogBulk(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
+
+        Assert.True(response.IsOK);
+        foreach (LogResult result in response.Result.Results)
+        {
+            Assert.Null(result.EventEnvelope);
+            Assert.NotNull(result.Hash);
+            Assert.Null(result.ConsistencyProof);
+            Assert.Null(result.MembershipProof);
+            Assert.Equal(EventVerification.NotVerified, result.ConsistencyVerification);
+            Assert.Equal(EventVerification.NotVerified, result.MembershipVerification);
+            Assert.Equal(EventVerification.NotVerified, result.SignatureVerification);
+        }
+    }
+
+    [Fact]
+    public async Task TestLogAsync()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await generalClient.LogAsync(evt, new LogConfig.Builder().WithVerify(false).Build());
+
+        Assert.True(response.IsOK);
+        Assert.Null(response.Result.EventEnvelope);
+        Assert.NotNull(response.Result.Hash);
+        Assert.Null(response.Result.ConsistencyProof);
+        Assert.Null(response.Result.MembershipProof);
+        Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
+        Assert.Equal(EventVerification.NotVerified, response.Result.MembershipVerification);
+        Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
+    }
+
+    [Fact]
+    public async Task TestLogBulkAsync()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await generalClient.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
+
+        Assert.True(response.IsOK);
+        foreach (LogResult result in response.Result.Results)
+        {
+            Assert.Null(result.EventEnvelope);
+            Assert.NotNull(result.Hash);
+            Assert.Null(result.ConsistencyProof);
+            Assert.Null(result.MembershipProof);
+            Assert.Equal(EventVerification.NotVerified, result.ConsistencyVerification);
+            Assert.Equal(EventVerification.NotVerified, result.MembershipVerification);
+            Assert.Equal(EventVerification.NotVerified, result.SignatureVerification);
+        }
+    }
+
+    [Fact]
+    public async Task TestLogAsyncNoQueue()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        await Assert.ThrowsAsync<AcceptedRequestException>(async () => await generalClientNoQueue.LogAsync(evt, new LogConfig.Builder().WithVerify(false).Build()));
+    }
+
+    [Fact]
+    public async Task TestLogBulkAsyncNoQueue()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        await Assert.ThrowsAsync<AcceptedRequestException>(async () => await generalClientNoQueue.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build()));
+
     }
 
 }
