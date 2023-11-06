@@ -38,7 +38,6 @@ namespace PangeaCyber.Net.FileScan
         /// <operationid>file_scan_post_v1_scan</operationid>
         /// <param name="request" type="PangeaCyber.Net.FileScan.FileScanRequest">FileScanRequest</param>
         /// <param name="file" type="System.IO.FileStream">FileStream file</param>
-        /// <param name="transferMethod" type="TransferMethod">Used to choice between multipart post or presigned URL</param>
         /// <returns>Response&lt;FileScanResult&gt;</returns>
         /// <example>
         /// <code>
