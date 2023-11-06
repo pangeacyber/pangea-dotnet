@@ -8,11 +8,11 @@ namespace PangeaCyber.Net.AuthN.Results
     {
         ///
         [JsonProperty("active_token")]
-        public LoginToken? LoginToken { get; private set; }
+        public LoginToken? ActiveToken { get; private set; }
 
         ///
         [JsonProperty("refresh_token")]
-        public LoginToken? RefreshToken { get; private set; }
+        public LoginToken RefreshToken { get; private set; } = default!;
 
         ///
         public FlowCompleteResult() { }

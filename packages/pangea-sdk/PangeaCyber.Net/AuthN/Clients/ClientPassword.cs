@@ -3,18 +3,31 @@ using PangeaCyber.Net.AuthN.Results;
 
 namespace PangeaCyber.Net.AuthN.Clients
 {
-    ///
+    /// <kind>class</kind>
+    /// <summary>
+    /// AuthN Client
+    /// </summary>
     public class ClientPassword : AuthNBaseClient
     {
         ///
         public ClientPassword(AuthNClient.Builder builder) : base(builder) { }
 
-        // TODO: Doc
-        ///
+        /// <kind>method</kind>
+        /// <summary>Change a user's password given the current password.</summary>
+        /// <remarks>Change a user's password</remarks>
+        /// <operationid>authn_post_v2_client_password_change</operationid>
+        /// <param name="token" type="string">A user token value</param>
+        /// <param name="oldPassword" type="string"></param>
+        /// <param name="newPassword" type="string"></param>
+        /// <returns>Response&lt;ClientPasswordChangeResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// </code>
+        /// </example>
         public async Task<Response<ClientPasswordChangeResult>> Change(string token, string oldPassword, string newPassword)
         {
             var request = new ClientPasswordChangeRequest(token, oldPassword, newPassword);
-            return await DoPost<ClientPasswordChangeResult>("/v1/client/password/change", request);
+            return await DoPost<ClientPasswordChangeResult>("/v2/client/password/change", request);
         }
 
         internal class ClientPasswordChangeRequest : BaseRequest
