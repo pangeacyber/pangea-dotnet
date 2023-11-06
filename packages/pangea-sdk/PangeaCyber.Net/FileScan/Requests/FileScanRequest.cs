@@ -24,6 +24,7 @@ namespace PangeaCyber.Net.FileScan
             Provider = builder.Provider;
             Verbose = builder.Verbose;
             Raw = builder.Raw;
+            TransferMethod = builder.TransferMethod;
         }
 
         ///
@@ -32,6 +33,7 @@ namespace PangeaCyber.Net.FileScan
             Provider = request.Provider;
             Verbose = request.Verbose;
             Raw = request.Raw;
+            TransferMethod = request.TransferMethod;
         }
 
         ///
@@ -46,6 +48,9 @@ namespace PangeaCyber.Net.FileScan
 
             ///
             public bool? Raw { get; private set; }
+
+            ///
+            public TransferMethod TransferMethod { get; private set; } = TransferMethod.Direct;
 
             ///
             public Builder() { }
@@ -76,6 +81,14 @@ namespace PangeaCyber.Net.FileScan
                 Raw = raw;
                 return this;
             }
+
+            ///
+            public Builder WithTransferMethod(TransferMethod transferMethod)
+            {
+                TransferMethod = transferMethod;
+                return this;
+            }
+
         }
     }
 }

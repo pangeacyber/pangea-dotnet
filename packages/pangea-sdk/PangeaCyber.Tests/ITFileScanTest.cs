@@ -28,6 +28,19 @@ namespace PangeaCyber.Net.FileScan.Tests
         }
 
         [Fact]
+        public async Task TestFileScan_Scan_multipart()
+        {
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
+            var response = await client.Scan(new FileScanRequest.Builder().WithTransferMethod(TransferMethod.Multipart).WithRaw(true).WithVerbose(true).Build(), file);
+            Assert.True(response.IsOK);
+
+            FileScanData data = response.Result.Data;
+            Assert.Equal("benign", data.Verdict);
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
         public async Task TestFileScan_ScanAsync_crowdstrike()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
