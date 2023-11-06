@@ -68,7 +68,7 @@ namespace PangeaCyber.Net.Audit
                 logEvents[i] = GetLogEvent(events[i], config);
             }
 
-            Boolean? verbose = null;
+            bool? verbose = config.Verbose;
 
             string prevRoot = default!;
             if (config.Verify)
@@ -85,7 +85,7 @@ namespace PangeaCyber.Net.Audit
         private LogRequest GetLogRequest(IEvent evt, LogConfig config)
         {
             LogEvent logEvent = GetLogEvent(evt, config);
-            Boolean? verbose = null;
+            bool? verbose = config.Verbose;
 
             string prevRoot = default!;
             if (config.Verify)
