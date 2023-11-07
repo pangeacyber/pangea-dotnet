@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.FileScan.Tests
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
         private FileScanClient client;
-        private readonly TestEnvironment environment = TestEnvironment.STG;
+        private readonly TestEnvironment environment = TestEnvironment.LVE;
 
         public ITFileScanTest()
         {
@@ -19,6 +19,19 @@ namespace PangeaCyber.Net.FileScan.Tests
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
             var response = await client.Scan(new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build(), file);
+            Assert.True(response.IsOK);
+
+            FileScanData data = response.Result.Data;
+            Assert.Equal("benign", data.Verdict);
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestFileScan_Scan_multipart()
+        {
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
+            var response = await client.Scan(new FileScanRequest.Builder().WithTransferMethod(TransferMethod.Multipart).WithRaw(true).WithVerbose(true).Build(), file);
             Assert.True(response.IsOK);
 
             FileScanData data = response.Result.Data;

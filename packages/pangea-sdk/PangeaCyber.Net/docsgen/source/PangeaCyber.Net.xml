@@ -4496,6 +4496,7 @@
              <operationid>file_scan_post_v1_scan</operationid>
              <param name="request" type="PangeaCyber.Net.FileScan.FileScanRequest">FileScanRequest</param>
              <param name="file" type="System.IO.FileStream">FileStream file</param>
+             <param name="transferMethod" type="TransferMethod">Used to choice between multipart post or presigned URL</param>
              <returns>Response&lt;FileScanResult&gt;</returns>
              <example>
              <code>
@@ -4504,7 +4505,7 @@
              var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
              var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-             var response = await client.Scan(request, file);
+             var response = await client.Scan(request, file, TransferMethod.Direct);
 
              FileScanData data = response.Result.Data;
              </code>
@@ -4522,7 +4523,10 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.Sha256">
 
         </member>
-        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams,PangeaCyber.Net.TransferMethod)">
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
 
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
@@ -4585,6 +4589,9 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
 
         </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.TransferMethod">
+
+        </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.#ctor">
 
         </member>
@@ -4598,6 +4605,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
 
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanResult">
@@ -6502,6 +6512,18 @@
         <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.RSA4096_PSS_SHA512">
 
         </member>
+        <member name="T:PangeaCyber.Net.Vault.Models.InheritedSettings">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationFrequency">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationState">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationGracePeriod">
+
+        </member>
         <member name="T:PangeaCyber.Net.Vault.Models.ItemData">
 
         </member>
@@ -7138,6 +7160,15 @@
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Tags">
 
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationFrequency">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationState">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationGracePeriod">
+
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.#ctor(PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder)">
 
         </member>
@@ -7156,6 +7187,15 @@
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.Tags">
 
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationFrequency">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationState">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationGracePeriod">
+
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.#ctor(System.String,System.String)">
 
         </member>
@@ -7166,6 +7206,15 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithTags(PangeaCyber.Net.Vault.Models.Tags)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationFrequency(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationState(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationGracePeriod(System.String)">
 
         </member>
         <member name="T:PangeaCyber.Net.Vault.Requests.GetRequest">
@@ -7919,6 +7968,9 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Vault.Results.GetResult.RotationGracePeriod">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.GetResult.InheritedSettings">
 
         </member>
         <member name="M:PangeaCyber.Net.Vault.Results.GetResult.#ctor">

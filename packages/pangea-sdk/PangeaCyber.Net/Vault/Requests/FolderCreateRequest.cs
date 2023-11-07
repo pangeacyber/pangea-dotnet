@@ -23,12 +23,27 @@ namespace PangeaCyber.Net.Vault.Requests
         public Tags? Tags { get; private set; }
 
         ///
+        [JsonProperty("rotation_frequency")]
+        public string? RotationFrequency { get; private set; }
+
+        ///
+        [JsonProperty("rotation_state")]
+        public string? RotationState { get; private set; }
+
+        ///
+        [JsonProperty("rotation_grace_period")]
+        public string? RotationGracePeriod { get; private set; }
+
+        ///
         protected FolderCreateRequest(Builder builder)
         {
             Name = builder.Name;
             Folder = builder.Folder;
             Metadata = builder.Metadata;
             Tags = builder.Tags;
+            RotationFrequency = builder.RotationFrequency;
+            RotationState = builder.RotationState;
+            RotationGracePeriod = builder.RotationGracePeriod;
         }
 
         ///
@@ -42,6 +57,13 @@ namespace PangeaCyber.Net.Vault.Requests
             public Metadata? Metadata { get; private set; }
             ///
             public Tags? Tags { get; private set; }
+
+            ///
+            public string? RotationFrequency { get; private set; }
+            ///
+            public string? RotationState { get; private set; }
+            ///
+            public string? RotationGracePeriod { get; private set; }
 
             ///
             public Builder(string name, string folder)
@@ -67,6 +89,27 @@ namespace PangeaCyber.Net.Vault.Requests
             public Builder WithTags(Tags tags)
             {
                 Tags = tags;
+                return this;
+            }
+
+            ///
+            public Builder WithRotationFrequency(string rotationFrequency)
+            {
+                RotationFrequency = rotationFrequency;
+                return this;
+            }
+
+            ///
+            public Builder WithRotationState(string rotationState)
+            {
+                RotationState = rotationState;
+                return this;
+            }
+
+            ///
+            public Builder WithRotationGracePeriod(string rotationGracePeriod)
+            {
+                RotationGracePeriod = rotationGracePeriod;
                 return this;
             }
         }
