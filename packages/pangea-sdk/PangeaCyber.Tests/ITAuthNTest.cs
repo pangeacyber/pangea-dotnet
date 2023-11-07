@@ -64,6 +64,13 @@ public class ITAuthNTest
     }
 
     [Fact]
+    public void BuildFlowRestartData()
+    {
+        var data = new FlowRestartData.Builder().Build();
+    }
+
+
+    [Fact]
     public async Task TestAgreementsCycleEULA()
     {
         await AgreementsCycle(AgreementType.EULA);
