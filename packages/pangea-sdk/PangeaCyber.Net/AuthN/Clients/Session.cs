@@ -22,6 +22,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;SessionInvalidateResult&gt;</returns>
         /// <example>
         /// <code>
+        /// await client.Session.Invalidate("pmt_zppkzrjguxyblaia6itbiesejn7jejnr");
         /// </code>
         /// </example>
         public async Task<Response<SessionInvalidateResult>> Invalidate(string sessionID)
@@ -38,6 +39,9 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;SessionListResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new SessionListRequest.Builder().Build();
+        /// 
+        /// var response = await client.Session.List(request);
         /// </code>
         /// </example>
         public async Task<Response<SessionListResult>> List(SessionListRequest request)
@@ -53,6 +57,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;SessionLogoutResult&gt;</returns>
         /// <example>
         /// <code>
+        /// await client.Session.Logout("pui_xpkhwpnz2cmegsws737xbsqnmnuwtvm5");
         /// </code>
         /// </example>
         public async Task<Response<SessionLogoutResult>> Logout(string userID)

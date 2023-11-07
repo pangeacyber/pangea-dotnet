@@ -21,6 +21,11 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserInviteListResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new UserInviteListRequest
+        ///     .Builder()
+        ///     .Build();
+        /// 
+        /// var response = await client.User.Invites.List(request);
         /// </code>
         /// </example>
         public async Task<Response<UserInviteListResult>> List(UserInviteListRequest request)
@@ -36,6 +41,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserInviteDeleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// await client.User.Invites.Delete("pmc_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
         /// </code>
         /// </example>
         public async Task<Response<UserInviteDeleteResult>> Delete(string id)

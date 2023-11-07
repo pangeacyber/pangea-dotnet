@@ -22,7 +22,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientTokenCheckResult&gt;</returns>
         /// <example>
         /// <code>
-        /// var response = await client.ClientToken.Check("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
+        /// var response = await client.Client.Token.Check("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
         /// </code>
         /// </example>
         public async Task<Response<ClientTokenCheckResult>> Check(string token)

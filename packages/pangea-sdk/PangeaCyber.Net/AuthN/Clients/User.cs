@@ -33,6 +33,15 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserCreateResult&gt;</returns>
         /// <example>
         /// <code>
+        /// Profile profile = new Profile();
+        /// profile.FirstName = "Joe";
+        /// profile.LastName = "User";
+        /// 
+        /// var request = new UserCreateRequest
+        ///     .Builder("joe.user@pangea.cloud", profile)
+        ///     .Build();
+        /// 
+        /// var response = await client.User.Create(request);
         /// </code>
         /// </example>
         public async Task<Response<UserCreateResult>> Create(UserCreateRequest request)
@@ -42,12 +51,13 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         /// <kind>method</kind>
         /// <summary>Delete a user by email address.</summary>
-        /// <remarks>Delete User</remarks>
+        /// <remarks>Delete User - Email</remarks>
         /// <operationid>authn_post_v2_user_delete 1</operationid>
         /// <param name="email" type="string">An email address</param>
         /// <returns>Response&lt;UserDeleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// await client.User.DeleteByEmail("joe.user@pangea.cloud");
         /// </code>
         /// </example>
         public async Task<Response<UserDeleteResult>> DeleteByEmail(string email)
@@ -58,12 +68,13 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         /// <kind>method</kind>
         /// <summary>Delete a user by ID.</summary>
-        /// <remarks>Delete User</remarks>
+        /// <remarks>Delete User - ID</remarks>
         /// <operationid>authn_post_v2_user_delete 2</operationid>
         /// <param name="id" type="string">The identity of a user or a service</param>
         /// <returns>Response&lt;UserDeleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// await client.User.DeleteByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
         /// </code>
         /// </example>
         public async Task<Response<UserDeleteResult>> DeleteByID(string id)
@@ -80,6 +91,13 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserDeleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new UserUpdateRequest
+        ///     .Builder()
+        ///     .WithEmail("joe.user@pangea.cloud")
+        ///     .WithDisabled(true)
+        ///     .Build();
+        /// 
+        /// var response = await client.User.Update(request);
         /// </code>
         /// </example>
         public async Task<Response<UserUpdateResult>> Update(UserUpdateRequest request)
@@ -95,6 +113,15 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserInviteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new UserInviteRequest
+        ///     .Builder(
+        ///         "admin@pangea.cloud", 
+        ///         "joe.user@pangea.cloud", 
+        ///         "https://www.myserver.com/callback", 
+        ///         "pcb_zurr3lkcwdp5keq73htsfpcii5k4zgm7")
+        ///     .Build();
+        /// 
+        /// var response = await client.User.Invite(request);
         /// </code>
         /// </example>
         public async Task<Response<UserInviteResult>> Invite(UserInviteRequest request)
@@ -110,6 +137,9 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserListResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new UserListRequest.Builder().Build();
+        /// 
+        /// var response = await client.User.List(request);
         /// </code>
         /// </example>
         public async Task<Response<UserListResult>> List(UserListRequest request)

@@ -20,6 +20,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserAuthenticatorsDeleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new UserAuthenticatorsDeleteRequest
+        ///     .Builder("pau_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+        ///     .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+        ///     .Build();
+        ///     
+        /// await client.User.Authenticators.Delete(request);
         /// </code>
         /// </example>
         public async Task<Response<UserAuthenticatorsDeleteResult>> Delete(UserAuthenticatorsDeleteRequest request)
@@ -35,6 +41,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserAuthenticatorsListResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new UserAuthenticatorsListRequest
+        ///     .Builder()
+        ///     .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+        ///     .Build();
+        /// 
+        /// var response = await client.User.Authenticators.List(request);
         /// </code>
         /// </example>
         public async Task<Response<UserAuthenticatorsListResult>> List(UserAuthenticatorsListRequest request)

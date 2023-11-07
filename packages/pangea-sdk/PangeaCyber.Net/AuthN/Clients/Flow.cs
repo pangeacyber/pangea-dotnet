@@ -66,6 +66,18 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;FlowUpdateResult&gt;</returns>
         /// <example>
         /// <code>
+        /// FlowUpdateDataPassword flowUpdateData = new FlowUpdateDataPassword
+        ///     .Builder("hunter2")
+        ///     .Build();
+        ///     
+        /// var request = new FlowUpdateRequest
+        ///     .Builder(
+        ///         "pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh", 
+        ///         FlowChoice.PASSWORD, 
+        ///         flowUpdateData)
+        ///     .Build();
+        /// 
+        /// var response = await client.Flow.Update(request);
         /// </code>
         /// </example>
         public async Task<Response<FlowUpdateResult>> Update(FlowUpdateRequest request)
@@ -81,6 +93,16 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;FlowRestartResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var data = new FlowRestartData.Builder().Build();
+        /// 
+        /// var request = new FlowRestartRequest
+        ///     .Builder(
+        ///         "pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh", 
+        ///         FlowChoice.PASSWORD, 
+        ///         data)
+        ///     .Build();
+        /// 
+        /// var response = await client.Flow.Restart(request);
         /// </code>
         /// </example>
         public async Task<Response<FlowRestartResult>> Restart(FlowRestartRequest request)

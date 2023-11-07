@@ -22,11 +22,10 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientPasswordChangeResult&gt;</returns>
         /// <example>
         /// <code>
-        /// var response = await client.ClientPassword.Change(
+        /// var response = await client.Client.Password.Change(
         ///     "ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a",
         ///     "hunter2",
-        ///     "My2n+Password"
-        /// );
+        ///     "My2n+Password");
         /// </code>
         /// </example>
         public async Task<Response<ClientPasswordChangeResult>> Change(string token, string oldPassword, string newPassword)
