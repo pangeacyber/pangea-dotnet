@@ -32,6 +32,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientUserinfoResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var response = await client.Client.Userinfo("pmc_d6chl6qulpn3it34oerwm3cqwsjd6dxw");
         /// </code>
         /// </example>
         public async Task<Response<ClientUserinfoResult>> Userinfo(string code)
@@ -47,6 +48,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientJWKSResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var response = await client.Client.Jwks();
         /// </code>
         /// </example>
         public async Task<Response<ClientJWKSResult>> Jwks()

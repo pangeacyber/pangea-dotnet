@@ -24,6 +24,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;FlowCompleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var response = await client.Flow.Complete("pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh");
         /// </code>
         /// </example>
         public async Task<Response<FlowCompleteResult>> Complete(string flowID)
@@ -40,6 +41,16 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;FlowStartResult&gt;</returns>
         /// <example>
         /// <code>
+        /// FlowType[] flowType = { FlowType.Signin, FlowType.Signup };
+        /// var request = new FlowStartRequest
+        ///     .Builder()
+        ///     .WithEmail("joe.user@email.com")
+        ///     .WithCBUri("https://www.myserver.com/callback")
+        ///     .WithFlowType(flowType)
+        ///     .WithInvitation("pmc_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+        ///     .Build();
+        /// 
+        /// var response = await client.Flow.Start(request);
         /// </code>
         /// </example>
         public async Task<Response<FlowStartResult>> Start(FlowStartRequest request)
