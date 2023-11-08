@@ -1969,6 +1969,9 @@
             
              </summary>
         </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FlowRestartData.Builder.Build">
+            
+        </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FlowRestartDataSMSOTP">
              <summary>
             
@@ -3396,7 +3399,7 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.FlowType">
             
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Provider">
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Invitation">
             
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder">
@@ -3411,7 +3414,7 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.FlowType">
             
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Provider">
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Invitation">
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.#ctor">
@@ -3426,7 +3429,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithFlowType(PangeaCyber.Net.AuthN.Models.FlowType[])">
             
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithProvider(PangeaCyber.Net.AuthN.Models.IDProvider)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithInvitation(System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Build">
@@ -4642,7 +4645,7 @@
              var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
             
              var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-             var response = await client.Scan(request, file);
+             var response = await client.Scan(request, file, TransferMethod.Direct);
             
              FileScanData data = response.Result.Data;
              </code>
@@ -4660,7 +4663,10 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.Sha256">
             
         </member>
-        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams,PangeaCyber.Net.TransferMethod)">
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
             
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
@@ -4723,6 +4729,9 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
             
         </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.TransferMethod">
+            
+        </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.#ctor">
             
         </member>
@@ -4736,6 +4745,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
             
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanResult">

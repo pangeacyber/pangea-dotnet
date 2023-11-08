@@ -45,7 +45,7 @@ namespace PangeaCyber.Net.AuthN.Models
             ///
             /// </summary>
             /// <returns></returns>
-            public FlowRestartDataSMSOTP Build()
+            public new FlowRestartDataSMSOTP Build()
             {
                 return new FlowRestartDataSMSOTP(this);
             }
