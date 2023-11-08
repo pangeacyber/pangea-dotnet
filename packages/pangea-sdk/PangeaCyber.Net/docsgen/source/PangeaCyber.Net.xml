@@ -135,6 +135,26 @@
         </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.PKInfo">
 
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.publishedRoots">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.allowServerRoots">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.prevUnpublishedRoot">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.tenantID">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.pkInfo">
+
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
             Constructor
@@ -1054,10 +1074,11 @@
             <example>
             <code>
             var request = new AgreementCreateRequest.Builder(
-                AgreementType.eula,
+                AgreementType.EULA,
                 "EULA_V1",
                 "You agree to behave yourself while logged in.")
-                .Build();
+            .Build();
+
             var response = await client.Agreements.Create(request);
             </code>
             </example>
@@ -1071,6 +1092,12 @@
             <returns>Response&lt;AgreementDeleteResult&gt;</returns>
             <example>
             <code>
+            var request = new AgreementDeleteRequest.Builder(
+                AgreementType.EULA,
+                "peu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+            .Build();
+
+            var response = await client.Agreements.Delete(request);
             </code>
             </example>
         </member>
@@ -1083,6 +1110,13 @@
             <returns>Response&lt;AgreementUpdateResult&gt;</returns>
             <example>
             <code>
+            var request = new AgreementUpdateRequest.Builder(
+                AgreementType.EULA,
+                "peu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+            .WithText("You agree to behave yourself while logged in. Don't be evil.")
+            .Build();
+
+            var response = await client.Agreements.Update(request);
             </code>
             </example>
         </member>
@@ -1095,6 +1129,9 @@
             <returns>Response&lt;AgreementListResult&gt;</returns>
             <example>
             <code>
+            var request = new AgreementListRequest.Builder().Build();
+
+            var response = await client.Agreements.List(request);
             </code>
             </example>
         </member>
@@ -1143,6 +1180,7 @@
             <returns>Response&lt;ClientUserinfoResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Userinfo("pmc_d6chl6qulpn3it34oerwm3cqwsjd6dxw");
             </code>
             </example>
         </member>
@@ -1154,6 +1192,7 @@
             <returns>Response&lt;ClientJWKSResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Jwks();
             </code>
             </example>
         </member>
@@ -1177,6 +1216,10 @@
             <returns>Response&lt;ClientPasswordChangeResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Password.Change(
+                "ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a",
+                "hunter2",
+                "My2n+Password");
             </code>
             </example>
         </member>
@@ -1199,6 +1242,9 @@
             <returns>Response&lt;ClientSessionInvalidateResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Session.Invalidate(
+                "ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a",
+                "pmt_zppkzrjguxyblaia6itbiesejn7jejnr");
             </code>
             </example>
         </member>
@@ -1211,6 +1257,11 @@
             <returns>Response&lt;ClientSessionListResult&gt;</returns>
             <example>
             <code>
+            var request = new ClientSessionListRequest
+                .Builder("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+                .Build();
+
+            var response = await client.Client.Session.List(request);
             </code>
             </example>
         </member>
@@ -1223,6 +1274,7 @@
             <returns>Response&lt;ClientSessionLogoutResult&gt;</returns>
             <example>
             <code>
+            await client.Client.Session.Logout("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
             </code>
             </example>
         </member>
@@ -1235,6 +1287,12 @@
             <returns>Response&lt;ClientSessionRefreshResult&gt;</returns>
             <example>
             <code>
+            var request = new ClientSessionRefreshRequest.Builder(
+                "ptr_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+            .WithUserToken("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+            .Build();
+
+            var response = await client.Client.Session.Refresh(request);
             </code>
             </example>
         </member>
@@ -1256,6 +1314,7 @@
             <returns>Response&lt;ClientTokenCheckResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Token.Check("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
             </code>
             </example>
         </member>
@@ -1277,6 +1336,7 @@
             <returns>Response&lt;FlowCompleteResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Flow.Complete("pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh");
             </code>
             </example>
         </member>
@@ -1289,6 +1349,16 @@
             <returns>Response&lt;FlowStartResult&gt;</returns>
             <example>
             <code>
+            FlowType[] flowType = { FlowType.Signin, FlowType.Signup };
+            var request = new FlowStartRequest
+                .Builder()
+                .WithEmail("joe.user@email.com")
+                .WithCBUri("https://www.myserver.com/callback")
+                .WithFlowType(flowType)
+                .WithInvitation("pmc_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+                .Build();
+
+            var response = await client.Flow.Start(request);
             </code>
             </example>
         </member>
@@ -1301,6 +1371,18 @@
             <returns>Response&lt;FlowUpdateResult&gt;</returns>
             <example>
             <code>
+            FlowUpdateDataPassword flowUpdateData = new FlowUpdateDataPassword
+                .Builder("hunter2")
+                .Build();
+
+            var request = new FlowUpdateRequest
+                .Builder(
+                    "pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh",
+                    FlowChoice.PASSWORD,
+                    flowUpdateData)
+                .Build();
+
+            var response = await client.Flow.Update(request);
             </code>
             </example>
         </member>
@@ -1313,6 +1395,16 @@
             <returns>Response&lt;FlowRestartResult&gt;</returns>
             <example>
             <code>
+            var data = new FlowRestartData.Builder().Build();
+
+            var request = new FlowRestartRequest
+                .Builder(
+                    "pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh",
+                    FlowChoice.PASSWORD,
+                    data)
+                .Build();
+
+            var response = await client.Flow.Restart(request);
             </code>
             </example>
         </member>
@@ -1340,6 +1432,7 @@
             <returns>Response&lt;SessionInvalidateResult&gt;</returns>
             <example>
             <code>
+            await client.Session.Invalidate("pmt_zppkzrjguxyblaia6itbiesejn7jejnr");
             </code>
             </example>
         </member>
@@ -1352,6 +1445,9 @@
             <returns>Response&lt;SessionListResult&gt;</returns>
             <example>
             <code>
+            var request = new SessionListRequest.Builder().Build();
+
+            var response = await client.Session.List(request);
             </code>
             </example>
         </member>
@@ -1364,6 +1460,7 @@
             <returns>Response&lt;SessionLogoutResult&gt;</returns>
             <example>
             <code>
+            await client.Session.Logout("pui_xpkhwpnz2cmegsws737xbsqnmnuwtvm5");
             </code>
             </example>
         </member>
@@ -1394,30 +1491,41 @@
             <returns>Response&lt;UserCreateResult&gt;</returns>
             <example>
             <code>
+            Profile profile = new Profile();
+            profile.FirstName = "Joe";
+            profile.LastName = "User";
+
+            var request = new UserCreateRequest
+                .Builder("joe.user@pangea.cloud", profile)
+                .Build();
+
+            var response = await client.User.Create(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.User.DeleteByEmail(System.String)">
             <kind>method</kind>
             <summary>Delete a user by email address.</summary>
-            <remarks>Delete User</remarks>
+            <remarks>Delete User - Email</remarks>
             <operationid>authn_post_v2_user_delete 1</operationid>
             <param name="email" type="string">An email address</param>
             <returns>Response&lt;UserDeleteResult&gt;</returns>
             <example>
             <code>
+            await client.User.DeleteByEmail("joe.user@pangea.cloud");
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.User.DeleteByID(System.String)">
             <kind>method</kind>
             <summary>Delete a user by ID.</summary>
-            <remarks>Delete User</remarks>
+            <remarks>Delete User - ID</remarks>
             <operationid>authn_post_v2_user_delete 2</operationid>
             <param name="id" type="string">The identity of a user or a service</param>
             <returns>Response&lt;UserDeleteResult&gt;</returns>
             <example>
             <code>
+            await client.User.DeleteByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
             </code>
             </example>
         </member>
@@ -1430,6 +1538,13 @@
             <returns>Response&lt;UserDeleteResult&gt;</returns>
             <example>
             <code>
+            var request = new UserUpdateRequest
+                .Builder()
+                .WithEmail("joe.user@pangea.cloud")
+                .WithDisabled(true)
+                .Build();
+
+            var response = await client.User.Update(request);
             </code>
             </example>
         </member>
@@ -1442,6 +1557,15 @@
             <returns>Response&lt;UserInviteResult&gt;</returns>
             <example>
             <code>
+            var request = new UserInviteRequest
+                .Builder(
+                    "admin@pangea.cloud",
+                    "joe.user@pangea.cloud",
+                    "https://www.myserver.com/callback",
+                    "pcb_zurr3lkcwdp5keq73htsfpcii5k4zgm7")
+                .Build();
+
+            var response = await client.User.Invite(request);
             </code>
             </example>
         </member>
@@ -1454,6 +1578,9 @@
             <returns>Response&lt;UserListResult&gt;</returns>
             <example>
             <code>
+            var request = new UserListRequest.Builder().Build();
+
+            var response = await client.User.List(request);
             </code>
             </example>
         </member>
@@ -1475,6 +1602,12 @@
             <returns>Response&lt;UserAuthenticatorsDeleteResult&gt;</returns>
             <example>
             <code>
+            var request = new UserAuthenticatorsDeleteRequest
+                .Builder("pau_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+                .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+                .Build();
+
+            await client.User.Authenticators.Delete(request);
             </code>
             </example>
         </member>
@@ -1487,6 +1620,12 @@
             <returns>Response&lt;UserAuthenticatorsListResult&gt;</returns>
             <example>
             <code>
+            var request = new UserAuthenticatorsListRequest
+                .Builder()
+                .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+                .Build();
+
+            var response = await client.User.Authenticators.List(request);
             </code>
             </example>
         </member>
@@ -1508,6 +1647,11 @@
             <returns>Response&lt;UserInviteListResult&gt;</returns>
             <example>
             <code>
+            var request = new UserInviteListRequest
+                .Builder()
+                .Build();
+
+            var response = await client.User.Invites.List(request);
             </code>
             </example>
         </member>
@@ -1520,6 +1664,7 @@
             <returns>Response&lt;UserInviteDeleteResult&gt;</returns>
             <example>
             <code>
+            await client.User.Invites.Delete("pmc_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
             </code>
             </example>
         </member>
@@ -1541,6 +1686,7 @@
             <returns>Response&lt;UserProfileGetResult&gt;</returns>
             <example>
             <code>
+            var response = await client.User.Profile.GetByEmail("joe.user@pangea.cloud");
             </code>
             </example>
         </member>
@@ -1553,6 +1699,7 @@
             <returns>Response&lt;UserProfileGetResult&gt;</returns>
             <example>
             <code>
+            var response = await client.User.Profile.GetByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
             </code>
             </example>
         </member>
@@ -1565,6 +1712,17 @@
             <returns>Response&lt;UserProfileUpdateResult&gt;</returns>
             <example>
             <code>
+            Profile updatedProfile = new Profile()
+            {
+                { "country", "Argentina" }
+            };
+
+            var request = new UserProfileUpdateRequest
+                .Builder(updatedProfile)
+                .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+                .Build();
+
+            var response = await client.User.Profile.Update(request);
             </code>
             </example>
         </member>
@@ -1884,6 +2042,9 @@
              <summary>
 
              </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FlowRestartData.Builder.Build">
+
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FlowRestartDataSMSOTP">
              <summary>
@@ -3312,7 +3473,7 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.FlowType">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Provider">
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Invitation">
 
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder">
@@ -3327,7 +3488,7 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.FlowType">
 
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Provider">
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Invitation">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.#ctor">
@@ -3342,7 +3503,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithFlowType(PangeaCyber.Net.AuthN.Models.FlowType[])">
 
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithProvider(PangeaCyber.Net.AuthN.Models.IDProvider)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithInvitation(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Build">
@@ -4558,7 +4719,7 @@
              var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
              var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-             var response = await client.Scan(request, file);
+             var response = await client.Scan(request, file, TransferMethod.Direct);
 
              FileScanData data = response.Result.Data;
              </code>
@@ -4576,7 +4737,10 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.Sha256">
 
         </member>
-        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams,PangeaCyber.Net.TransferMethod)">
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
 
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
@@ -4639,6 +4803,9 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
 
         </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.TransferMethod">
+
+        </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.#ctor">
 
         </member>
@@ -4652,6 +4819,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
 
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanResult">
@@ -6107,6 +6277,18 @@
         <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.RSA4096_PSS_SHA512">
 
         </member>
+        <member name="T:PangeaCyber.Net.Vault.Models.InheritedSettings">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationFrequency">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationState">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationGracePeriod">
+
+        </member>
         <member name="T:PangeaCyber.Net.Vault.Models.ItemData">
 
         </member>
@@ -6743,6 +6925,15 @@
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Tags">
 
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationFrequency">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationState">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationGracePeriod">
+
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.#ctor(PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder)">
 
         </member>
@@ -6761,6 +6952,15 @@
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.Tags">
 
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationFrequency">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationState">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationGracePeriod">
+
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.#ctor(System.String,System.String)">
 
         </member>
@@ -6771,6 +6971,15 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithTags(PangeaCyber.Net.Vault.Models.Tags)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationFrequency(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationState(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationGracePeriod(System.String)">
 
         </member>
         <member name="T:PangeaCyber.Net.Vault.Requests.GetRequest">
@@ -7524,6 +7733,9 @@
 
         </member>
         <member name="P:PangeaCyber.Net.Vault.Results.GetResult.RotationGracePeriod">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.GetResult.InheritedSettings">
 
         </member>
         <member name="M:PangeaCyber.Net.Vault.Results.GetResult.#ctor">

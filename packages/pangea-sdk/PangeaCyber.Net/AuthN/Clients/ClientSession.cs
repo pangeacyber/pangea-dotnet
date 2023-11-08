@@ -24,6 +24,9 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientSessionInvalidateResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var response = await client.Client.Session.Invalidate(
+        ///     "ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a", 
+        ///     "pmt_zppkzrjguxyblaia6itbiesejn7jejnr");
         /// </code>
         /// </example>
         public async Task<Response<ClientSessionInvalidateResult>> Invalidate(string token, string sessionID)
@@ -40,6 +43,11 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientSessionListResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new ClientSessionListRequest
+        ///     .Builder("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+        ///     .Build();
+        /// 
+        /// var response = await client.Client.Session.List(request);
         /// </code>
         /// </example>
         public async Task<Response<ClientSessionListResult>> List(ClientSessionListRequest request)
@@ -55,6 +63,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientSessionLogoutResult&gt;</returns>
         /// <example>
         /// <code>
+        /// await client.Client.Session.Logout("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
         /// </code>
         /// </example>
         public async Task<Response<ClientSessionLogoutResult>> Logout(string token)
@@ -71,6 +80,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;ClientSessionRefreshResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new ClientSessionRefreshRequest.Builder(
+        ///     "ptr_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+        /// .WithUserToken("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+        /// .Build();
+        /// 
+        /// var response = await client.Client.Session.Refresh(request);
         /// </code>
         /// </example>
         public async Task<Response<ClientSessionRefreshResult>> Refresh(ClientSessionRefreshRequest request)

@@ -46,15 +46,24 @@ namespace PangeaCyber.Net.FileScan
         /// var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
         ///
         /// var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-        /// var response = await client.Scan(request, file);
+        /// var response = await client.Scan(request, file, TransferMethod.Direct);
         ///
         /// FileScanData data = response.Result.Data;
         /// </code>
         /// </example>
         public async Task<Response<FileScanResult>> Scan(FileScanRequest request, FileStream file)
         {
-            var fileParams = Utils.GetFSparams(file);
-            var fullRequest = new FileScanFullRequest(request, fileParams, TransferMethod.Direct);
+            FileScanFullRequest fullRequest;
+            if (request.TransferMethod == TransferMethod.Direct)
+            {
+                var fileParams = Utils.GetFSparams(file);
+                fullRequest = new FileScanFullRequest(request, fileParams);
+            }
+            else
+            {
+                fullRequest = new FileScanFullRequest(request);
+            }
+
             return await DoPost<FileScanResult>("/v1/scan", fullRequest, file);
         }
 
@@ -63,24 +72,32 @@ namespace PangeaCyber.Net.FileScan
         {
             ///
             [JsonProperty("transfer_size")]
-            public int Size { get; private set; }
+            public int? Size { get; private set; }
 
             ///
             [JsonProperty("transfer_crc32c")]
-            public string Crc32c { get; private set; }
+            public string? Crc32c { get; private set; }
 
             ///
             [JsonProperty("transfer_sha256")]
-            public string Sha256 { get; private set; }
+            public string? Sha256 { get; private set; }
 
             ///
-            public FileScanFullRequest(FileScanRequest request, FileParams fileParams, TransferMethod method) : base(request)
+            public FileScanFullRequest(FileScanRequest request, FileParams fileParams) : base(request)
             {
                 Size = fileParams.Size;
                 Crc32c = fileParams.CRC32C;
                 Sha256 = fileParams.SHA256;
-                TransferMethod = method;
             }
+
+            ///
+            public FileScanFullRequest(FileScanRequest request) : base(request)
+            {
+                Size = null;
+                Crc32c = null;
+                Sha256 = null;
+            }
+
         }
 
     }

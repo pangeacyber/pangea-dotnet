@@ -19,15 +19,15 @@ namespace PangeaCyber.Net.AuthN.Requests
         public FlowType[]? FlowType { get; private set; }
 
         ///
-        [JsonProperty("provider")]
-        public IDProvider? Provider { get; private set; }
+        [JsonProperty("invitation")]
+        public string? Invitation { get; private set; }
 
         private FlowStartRequest(Builder builder)
         {
             CBUri = builder.CBUri;
             Email = builder.Email;
             FlowType = builder.FlowType;
-            Provider = builder.Provider;
+            Invitation = builder.Invitation;
         }
 
         ///
@@ -40,7 +40,7 @@ namespace PangeaCyber.Net.AuthN.Requests
             ///
             public FlowType[]? FlowType { get; private set; }
             ///
-            public IDProvider? Provider { get; private set; }
+            public string? Invitation { get; private set; }
 
             ///
             public Builder() { }
@@ -67,9 +67,9 @@ namespace PangeaCyber.Net.AuthN.Requests
             }
 
             ///
-            public Builder WithProvider(IDProvider provider)
+            public Builder WithInvitation(string invitation)
             {
-                Provider = provider;
+                Invitation = invitation;
                 return this;
             }
 

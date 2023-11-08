@@ -18,7 +18,11 @@ namespace PangeaCyber.Net.AuthN.Models
         /// </summary>
         public class Builder
         {
-
+            ///
+            public FlowRestartData Build()
+            {
+                return new FlowRestartData(this);
+            }
         }
 
     }
