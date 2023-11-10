@@ -135,26 +135,6 @@
         </member>
         <member name="F:PangeaCyber.Net.Audit.AuditClient.PKInfo">
 
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.publishedRoots">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.allowServerRoots">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.prevUnpublishedRoot">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.tenantID">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
-
-        </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.pkInfo">
-
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
             Constructor
@@ -4202,6 +4182,9 @@
         <member name="P:PangeaCyber.Net.BaseClient`1.logger">
 
         </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.DefaultPostConfig">
+
+        </member>
         <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
 
         </member>
@@ -4223,7 +4206,7 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.PostConfig)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.PollResult``1(System.String)">
@@ -5793,6 +5776,41 @@
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
+
+        </member>
+        <member name="T:PangeaCyber.Net.PostConfig">
+            <kind>class</kind>
+            <summary>
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.PollResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.FileStream">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.#ctor(PangeaCyber.Net.PostConfig.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.PostConfig.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.PollResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.FileStream">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithPollResult(System.Boolean)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithFileStream(System.IO.FileStream)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.Build">
 
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">

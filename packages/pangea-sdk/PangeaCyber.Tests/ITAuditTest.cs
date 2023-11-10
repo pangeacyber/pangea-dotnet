@@ -813,54 +813,11 @@ public class ITAuditTest
                             .WithStatus(STATUS_NO_SIGNED)
                             .Build();
 
-        var response = await generalClient.LogAsync(evt, new LogConfig.Builder().WithVerify(false).Build());
-
-        Assert.True(response.IsOK);
-        Assert.Null(response.Result.EventEnvelope);
-        Assert.NotNull(response.Result.Hash);
-        Assert.Null(response.Result.ConsistencyProof);
-        Assert.Null(response.Result.MembershipProof);
-        Assert.Equal(EventVerification.NotVerified, response.Result.ConsistencyVerification);
-        Assert.Equal(EventVerification.NotVerified, response.Result.MembershipVerification);
-        Assert.Equal(EventVerification.NotVerified, response.Result.SignatureVerification);
-    }
-
-    [Fact]
-    public async Task TestLogBulkAsync()
-    {
-        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
-                            .WithActor(ACTOR)
-                            .WithStatus(STATUS_NO_SIGNED)
-                            .Build();
-
-        var response = await generalClient.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
-
-        Assert.True(response.IsOK);
-        foreach (LogResult result in response.Result.Results)
-        {
-            Assert.Null(result.EventEnvelope);
-            Assert.NotNull(result.Hash);
-            Assert.Null(result.ConsistencyProof);
-            Assert.Null(result.MembershipProof);
-            Assert.Equal(EventVerification.NotVerified, result.ConsistencyVerification);
-            Assert.Equal(EventVerification.NotVerified, result.MembershipVerification);
-            Assert.Equal(EventVerification.NotVerified, result.SignatureVerification);
-        }
-    }
-
-    [Fact]
-    public async Task TestLogAsyncNoQueue()
-    {
-        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
-                            .WithActor(ACTOR)
-                            .WithStatus(STATUS_NO_SIGNED)
-                            .Build();
-
         await Assert.ThrowsAsync<AcceptedRequestException>(async () => await generalClientNoQueue.LogAsync(evt, new LogConfig.Builder().WithVerify(false).Build()));
     }
 
     [Fact]
-    public async Task TestLogBulkAsyncNoQueue()
+    public async Task TestLogBulkAsync()
     {
         StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
                             .WithActor(ACTOR)
