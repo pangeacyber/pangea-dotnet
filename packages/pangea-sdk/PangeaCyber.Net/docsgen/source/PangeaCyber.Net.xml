@@ -159,9 +159,6 @@
             </code>
             </example>
         </member>
-        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogAsync(PangeaCyber.Net.Audit.IEvent,PangeaCyber.Net.Audit.LogConfig)">
-            TODO: Docs
-        </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulk(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
             TODO: Docs
         </member>

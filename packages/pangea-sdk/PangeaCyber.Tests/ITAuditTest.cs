@@ -806,17 +806,6 @@ public class ITAuditTest
     }
 
     [Fact]
-    public async Task TestLogAsync()
-    {
-        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
-                            .WithActor(ACTOR)
-                            .WithStatus(STATUS_NO_SIGNED)
-                            .Build();
-
-        await Assert.ThrowsAsync<AcceptedRequestException>(async () => await generalClientNoQueue.LogAsync(evt, new LogConfig.Builder().WithVerify(false).Build()));
-    }
-
-    [Fact]
     public async Task TestLogBulkAsync()
     {
         StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)

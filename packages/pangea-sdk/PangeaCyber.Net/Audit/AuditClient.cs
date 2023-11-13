@@ -154,16 +154,6 @@ namespace PangeaCyber.Net.Audit
         }
 
         /// TODO: Docs
-        public async Task<Response<LogResult>> LogAsync(IEvent evt, LogConfig config)
-        {
-            LogRequest request = GetLogRequest(evt, config);
-            Response<LogResult> response = await DoPost<LogResult>("/v1/log_async", request);
-            await ProcessLogResponse(response.Result, config.Verify);
-            return response;
-        }
-
-
-        /// TODO: Docs
         public async Task<Response<LogBulkResult>> LogBulk(IEvent[] events, LogConfig config)
         {
             LogBulkRequest request = GetLogBulkRequest(events, config);
