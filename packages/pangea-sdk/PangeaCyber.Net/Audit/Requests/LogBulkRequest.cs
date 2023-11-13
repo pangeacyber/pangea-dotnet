@@ -14,18 +14,13 @@ namespace PangeaCyber.Net.Audit
 
         ///
         [JsonProperty("verbose")]
-        public bool Verbose { get; set; } = default!;
+        public bool? Verbose { get; set; } = null;
 
         ///
-        [JsonProperty("prev_root")]
-        public string PrevRoot { get; set; } = default!;
-
-        ///
-        public LogBulkRequest(LogEvent[] events, bool verbose, string prevRoot)
+        public LogBulkRequest(LogEvent[] events, bool? verbose)
         {
             Events = events;
             Verbose = verbose;
-            PrevRoot = prevRoot;
         }
     }
 }

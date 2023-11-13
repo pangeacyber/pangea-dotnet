@@ -61,23 +61,12 @@ namespace PangeaCyber.Net.Audit
 
         private LogBulkRequest GetLogBulkRequest(IEvent[] events, LogConfig config)
         {
-
             LogEvent[] logEvents = new LogEvent[events.Length];
             for (int i = 0; i < events.Length; i++)
             {
                 logEvents[i] = GetLogEvent(events[i], config);
             }
-
-            bool? verbose = config.Verbose;
-
-            string prevRoot = default!;
-            if (config.Verify)
-            {
-                verbose = true;
-                prevRoot = PrevUnpublishedRoot;
-            }
-
-            return new LogBulkRequest(logEvents, verbose ?? false, prevRoot);
+            return new LogBulkRequest(logEvents, config.Verbose);
         }
 
 
@@ -162,7 +151,7 @@ namespace PangeaCyber.Net.Audit
             {
                 foreach (LogResult result in response.Result.Results)
                 {
-                    await ProcessLogResponse(result, config.Verify);
+                    await ProcessLogResponse(result, false);
                 }
             }
             return response;
@@ -177,7 +166,7 @@ namespace PangeaCyber.Net.Audit
             {
                 foreach (LogResult result in response.Result.Results)
                 {
-                    await ProcessLogResponse(result, config.Verify);
+                    await ProcessLogResponse(result, false);
                 }
             }
             return response;
