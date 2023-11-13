@@ -633,10 +633,7 @@
         <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Verbose">
 
         </member>
-        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.PrevRoot">
-
-        </member>
-        <member name="M:PangeaCyber.Net.Audit.LogBulkRequest.#ctor(PangeaCyber.Net.Audit.LogEvent[],System.Boolean,System.String)">
+        <member name="M:PangeaCyber.Net.Audit.LogBulkRequest.#ctor(PangeaCyber.Net.Audit.LogEvent[],System.Nullable{System.Boolean})">
 
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogEvent">
