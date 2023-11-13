@@ -8,7 +8,7 @@ namespace PangeaCyber.Tests;
 public class ITRedactTest
 {
     private RedactClient client;
-    TestEnvironment environment = TestEnvironment.DEV;
+    TestEnvironment environment = TestEnvironment.LVE;
 
     ///
     public ITRedactTest()
