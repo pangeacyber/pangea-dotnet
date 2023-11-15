@@ -15,9 +15,9 @@ namespace PangeaCyber.Net.Audit
         ///
         private LogConfig(Builder builder)
         {
-            this.SignLocal = builder.SignLocal ?? false;
-            this.Verify = builder.Verify ?? false;
-            this.Verbose = builder.Verbose ?? null;
+            SignLocal = builder.SignLocal ?? false;
+            Verify = builder.Verify ?? false;
+            Verbose = builder.Verbose ?? null;
         }
 
         ///
@@ -40,21 +40,21 @@ namespace PangeaCyber.Net.Audit
             ///
             public Builder WithSignLocal(bool signLocal)
             {
-                this.SignLocal = signLocal;
+                SignLocal = signLocal;
                 return this;
             }
 
             ///
             public Builder WithVerify(bool verify)
             {
-                this.Verify = verify;
+                Verify = verify;
                 return this;
             }
 
             ///
             public Builder WithVerbose(bool verbose)
             {
-                this.Verbose = verbose;
+                Verbose = verbose;
                 return this;
             }
 

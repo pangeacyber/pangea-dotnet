@@ -806,6 +806,29 @@ public class ITAuditTest
     }
 
     [Fact]
+    public async Task TestLogBulkAndSign()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_SIGNED_LOCAL)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_SIGNED)
+                            .Build();
+
+        var response = await signClient.LogBulk(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(true).WithVerbose(true).WithSignLocal(true).Build());
+
+        Assert.True(response.IsOK);
+        foreach (LogResult result in response.Result.Results)
+        {
+            Assert.NotNull(result.EventEnvelope);
+            Assert.NotNull(result.Hash);
+            Assert.Null(result.ConsistencyProof);
+            Assert.Null(result.MembershipProof);
+            Assert.Equal(EventVerification.NotVerified, result.ConsistencyVerification);
+            Assert.Equal(EventVerification.NotVerified, result.MembershipVerification);
+            Assert.Equal(EventVerification.Success, result.SignatureVerification);
+        }
+    }
+
+    [Fact]
     public async Task TestLogBulkAsync()
     {
         StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
@@ -813,8 +836,13 @@ public class ITAuditTest
                             .WithStatus(STATUS_NO_SIGNED)
                             .Build();
 
-        await Assert.ThrowsAsync<AcceptedRequestException>(async () => await generalClientNoQueue.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build()));
+        var response = await generalClientNoQueue.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
+        Assert.NotNull(response.AcceptedResult);
+        Assert.NotEmpty(response.RequestId);
+        Assert.NotEmpty(response.RequestTime);
+        Assert.NotEmpty(response.ResponseTime);
+        Assert.NotEmpty(response.Status);
+        Assert.NotEmpty(response.Summary);
 
     }
-
 }

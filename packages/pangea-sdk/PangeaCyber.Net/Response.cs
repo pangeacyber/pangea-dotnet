@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Security.AccessControl;
+using Newtonsoft.Json;
+using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
 {
@@ -10,7 +12,10 @@ namespace PangeaCyber.Net
     {
         ///
         [JsonProperty("result")]
-        public ResultType Result { get; set; } = default!;
+        public ResultType Result { get; private set; } = default!;
+
+        ///
+        public AcceptedResult? AcceptedResult { get; private set; } = null;
 
         ///
         public HttpResponseMessage HttpResponse { get; set; } = default!;
@@ -19,5 +24,13 @@ namespace PangeaCyber.Net
         public Response()
         {
         }
+
+        ///
+        public Response(Response<PangeaErrors> response, AcceptedResult acceptedResult) : base(response)
+        {
+            AcceptedResult = acceptedResult;
+            HttpResponse = response.HttpResponse;
+        }
+
     }
 }

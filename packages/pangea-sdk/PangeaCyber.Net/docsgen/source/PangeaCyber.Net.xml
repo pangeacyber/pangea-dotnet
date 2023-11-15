@@ -6082,10 +6082,16 @@
         <member name="P:PangeaCyber.Net.Response`1.Result">
 
         </member>
+        <member name="P:PangeaCyber.Net.Response`1.AcceptedResult">
+
+        </member>
         <member name="P:PangeaCyber.Net.Response`1.HttpResponse">
 
         </member>
         <member name="M:PangeaCyber.Net.Response`1.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Response`1.#ctor(PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors},PangeaCyber.Net.Exceptions.AcceptedResult)">
 
         </member>
         <member name="T:PangeaCyber.Net.ResponseHeader">
@@ -6113,6 +6119,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.ResponseHeader.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.ResponseHeader.#ctor(PangeaCyber.Net.ResponseHeader)">
 
         </member>
         <member name="T:PangeaCyber.Net.ResponseStatus">

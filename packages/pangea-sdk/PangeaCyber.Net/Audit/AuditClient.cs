@@ -2,10 +2,6 @@
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Audit.Utils;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Ocsp;
-using NLog.Fluent;
-using System.Collections;
-using System.Diagnostics.Tracing;
 
 namespace PangeaCyber.Net.Audit
 {
@@ -151,7 +147,7 @@ namespace PangeaCyber.Net.Audit
             {
                 foreach (LogResult result in response.Result.Results)
                 {
-                    await ProcessLogResponse(result, false);
+                    await ProcessLogResponse(result, config.Verify);
                 }
             }
             return response;
@@ -161,12 +157,21 @@ namespace PangeaCyber.Net.Audit
         public async Task<Response<LogBulkResult>> LogBulkAsync(IEvent[] events, LogConfig config)
         {
             LogBulkRequest request = GetLogBulkRequest(events, config);
-            Response<LogBulkResult> response = await DoPost<LogBulkResult>("/v2/log_async", request);
+            Response<LogBulkResult> response;
+            try
+            {
+                response = await DoPost<LogBulkResult>("/v2/log_async", request);
+            }
+            catch (AcceptedRequestException e)
+            {
+                return new Response<LogBulkResult>(e.Response, e.AcceptedResult);
+            }
+
             if (response.Result != null)
             {
                 foreach (LogResult result in response.Result.Results)
                 {
-                    await ProcessLogResponse(result, false);
+                    await ProcessLogResponse(result, config.Verify);
                 }
             }
             return response;
@@ -401,13 +406,14 @@ namespace PangeaCyber.Net.Audit
             {
                 if (Signer != null)
                 {
-                    PKInfo.Add("key", Signer.GetPublicKey());
-                    PKInfo.Add("algorithm", Signer.GetAlgorithm());
+                    PKInfo["key"] = Signer.GetPublicKey();
+                    PKInfo["algorithm"] = Signer.GetAlgorithm();
                 }
                 return JsonConvert.SerializeObject(PKInfo);
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 throw new PangeaException("Failed to stringify public key info", e);
             }
         }
@@ -416,7 +422,7 @@ namespace PangeaCyber.Net.Audit
         /// <summary>
         /// AuditClient Builder
         /// </summary>
-        public class Builder : BaseClient<AuditClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
 
             ///
