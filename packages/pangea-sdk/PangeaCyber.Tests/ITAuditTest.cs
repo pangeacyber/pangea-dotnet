@@ -11,7 +11,7 @@ public class ITAuditTest
 
     CustomEvent customEvent;
 
-    private const TestEnvironment environment = TestEnvironment.DEV;
+    private const TestEnvironment environment = TestEnvironment.LVE;
 
     private const string ACTOR = "csharp-sdk";
     private const string MSG_NO_SIGNED = "test-message";
