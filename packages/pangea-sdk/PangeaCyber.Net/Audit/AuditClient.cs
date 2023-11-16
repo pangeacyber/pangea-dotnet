@@ -119,15 +119,21 @@ namespace PangeaCyber.Net.Audit
         /// <remarks>Log an entry</remarks>
         /// <operationid>audit_post_v1_log</operationid>
         /// <param name="evt" type="PangeaCyber.Net.Audit.IEvent">Event to log</param>
-        /// <param name="config">Include verbosity, local signature and verify events setup</param>
+        /// <param name="config" type="PangeaCyber.Net.Audit.LogConfig">Include verbosity, local signature and verify events setup</param>
         /// <returns>Response&lt;LogResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        /// string msg = "Event's message";
-        /// Event event = new Event.Builder(msg).Build();
-        /// var response = await client.log(event, new LogConfig.Builder().Build());
+        /// string msg = "hello world";
+        /// var event = new StandardEvent.Builder(msg)
+        ///     .Build();
+        /// 
+        /// var config = new LogConfig.Builder()
+        ///     .WithVerbose(true)
+        ///     .Build();
+        /// 
+        /// var response = await client.Log(event, config);
         /// </code>
         /// </example>
         public async Task<Response<LogResult>> Log(IEvent evt, LogConfig config)
@@ -138,7 +144,25 @@ namespace PangeaCyber.Net.Audit
             return response;
         }
 
-        /// TODO: Docs
+        /// <kind>method</kind>
+        /// <summary>
+        /// Create multiple log entries in the Secure Audit Log.
+        /// </summary>
+        /// <remarks>Log multiple entries</remarks>
+        /// <operationid>audit_post_v2_log</operationid>
+        /// <param name="events" type="PangeaCyber.Net.Audit.IEvent[]">Events to log</param>
+        /// <param name="config" type="PangeaCyber.Net.Audit.LogConfig">Include verbosity, local signature and verify events setup</param>
+        /// <returns>Response&lt;LogBulkResult&gt;</returns>
+        /// <exception cref="PangeaException"></exception>
+        /// <exception cref="PangeaAPIException"></exception>
+        /// <example>
+        /// <code>
+        /// var event = new StandardEvent.Builder("hello world").Build();
+        /// StandardEvent[] events = {event};
+        /// 
+        /// var response = await client.LogBulk(events, new LogConfig.Builder().Build());
+        /// </code>
+        /// </example>
         public async Task<Response<LogBulkResult>> LogBulk(IEvent[] events, LogConfig config)
         {
             LogBulkRequest request = GetLogBulkRequest(events, config);
@@ -153,7 +177,25 @@ namespace PangeaCyber.Net.Audit
             return response;
         }
 
-        /// TODO: Docs
+        /// <kind>method</kind>
+        /// <summary>
+        /// Asynchronously create multiple log entries in the Secure Audit Log.
+        /// </summary>
+        /// <remarks>Log multiple entries asynchronously</remarks>
+        /// <operationid>audit_post_v2_log_async</operationid>
+        /// <param name="events" type="PangeaCyber.Net.Audit.IEvent[]"></param>
+        /// <param name="config" type="PangeaCyber.Net.Audit.LogConfig"></param>
+        /// <returns>Response&lt;LogBulkResult&gt;</returns>
+        /// <exception cref="PangeaException"></exception>
+        /// <exception cref="PangeaAPIException"></exception>
+        /// <example>
+        /// <code>
+        /// var event = new StandardEvent.Builder("hello world").Build();
+        /// StandardEvent[] events = {event};
+        /// 
+        /// var response = await client.LogBulkAsync(events, new LogConfig.Builder().Build());
+        /// </code>
+        /// </example>
         public async Task<Response<LogBulkResult>> LogBulkAsync(IEvent[] events, LogConfig config)
         {
             LogBulkRequest request = GetLogBulkRequest(events, config);
@@ -240,7 +282,7 @@ namespace PangeaCyber.Net.Audit
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        /// var response = await client.GetRoot(treeSize);
+        /// var response = await client.GetRoot(1);
         /// </code>
         /// </example>
         public async Task<Response<RootResult>> GetRoot(int? treeSize)
@@ -365,16 +407,21 @@ namespace PangeaCyber.Net.Audit
         /// <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
         /// <remarks>Search</remarks>
         /// <operationid>audit_post_v1_search</operationid>
-        /// <param name="request">Request to be sent to /search endpoint</param>
-        /// <param name="config">Config include event and consistency verification setup</param>
+        /// <param name="request" type="PangeaCyber.Net.Audit.SearchRequest">Request to be sent to /search endpoint</param>
+        /// <param name="config" type="PangeaCyber.Net.Audit.SearchConfig">Config include event and consistency verification setup</param>
         /// <returns>Response&lt;SearchOutput&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
         /// <example>
         /// <code>
-        /// var input = new SearchInput("message:Integration test msg");
-        /// input.setMaxResults(10);
-        /// var response = Client.Search(input);
+        /// var request = new SearchRequest
+        ///     .Builder("message:hello world")
+        ///     .Build();
+        /// var config = new SearchConfig
+        ///     .Builder()
+        ///     .Build();
+        /// 
+        /// var response = await client.Search(request, config);
         /// </code>
         /// </example>
         public async Task<Response<SearchOutput>> Search(SearchRequest request, SearchConfig config)
@@ -388,11 +435,23 @@ namespace PangeaCyber.Net.Audit
         /// <summary>Return result's page from search id.</summary>
         /// <remarks>Results</remarks>
         /// <operationid>audit_post_v1_results</operationid>
-        /// <param name="request">Request to be sent to /results endpoint</param>
-        /// <param name="config">Config include event and consistency verification setup</param>
+        /// <param name="request" type="PangeaCyber.Net.Audit.ResultRequest">Request to be sent to /results endpoint</param>
+        /// <param name="config" type="PangeaCyber.Net.Audit.SearchConfig">Config include event and consistency verification setup</param>
         /// <returns>Response&lt;ResultsOutput&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
+        /// <example>
+        /// <code>
+        /// var request = new ResultRequest
+        ///     .Builder("pas_sqilrhruwu54uggihqj3aie24wrctakr")
+        ///     .Build();
+        /// var config = new SearchConfig
+        ///     .Builder()
+        ///     .Build();
+        /// 
+        /// var response = await client.Results(request, config);
+        /// </code>
+        /// </example>
         public async Task<Response<ResultsOutput>> Results(ResultRequest request, SearchConfig config)
         {
             var response = await DoPost<ResultsOutput>("/v1/results", request);
