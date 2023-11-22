@@ -1,3 +1,4 @@
+using Cloud.PangeaCyber.Pangea.FileScan.Requests;
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.FileScan.Tests
@@ -168,6 +169,7 @@ namespace PangeaCyber.Net.FileScan.Tests
                     // Poll result in raw format
                     var responseDictionary = await client.PollResult(exception.RequestID);
                     Assert.True(responseDictionary.IsOK);
+                    break;
                 }
                 catch (PangeaAPIException)
                 {
@@ -176,5 +178,88 @@ namespace PangeaCyber.Net.FileScan.Tests
             }
         }
 
+        [Fact]
+        public async Task TestFileScan_SplitUpload_Post()
+        {
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
+            var fileParams = Utils.GetUploadFileParams(file);
+
+            var urlResponse = await client.RequestUploadURL(new FileScanUploadURLRequest.Builder().WithProvider("reversinglabs").WithVerbose(true).WithRaw(true).WithTransferMethod(TransferMethod.PostURL).WithFileParams(fileParams).Build());
+
+            var fileData = new FileData(file, "file", urlResponse.Result.AcceptedStatus.UploadDetails);
+            string url = urlResponse.Result.AcceptedStatus.UploadURL ?? "undefined url";    // This case should never happen
+
+            var uploader = new FileUploader.Builder().Build();
+            await uploader.UploadFile(url, TransferMethod.PostURL, fileData);
+
+            int maxRetry = 24;
+            for (int retry = 0; retry < maxRetry; retry++)
+            {
+                try
+                {
+                    // Sleep 10 seconds until result is (should) be ready
+                    await Task.Delay(10 * 1000);
+
+                    // Poll result, this could raise another AcceptedRequestException if result is not ready
+                    var response = await client.PollResult<FileScanResult>(urlResponse.RequestId);
+                    Assert.True(response.IsOK);
+
+                    FileScanData data = response.Result.Data;
+                    Assert.Equal("benign", data.Verdict);
+                    Assert.NotNull(response.Result.Parameters);
+                    Assert.NotNull(response.Result.RawData);
+
+                    // Poll result in raw format
+                    var responseDictionary = await client.PollResult(urlResponse.RequestId);
+                    Assert.True(responseDictionary.IsOK);
+                    break;
+                }
+                catch (PangeaAPIException)
+                {
+                    Assert.True(retry < maxRetry - 1);
+                }
+            }
+        }
+
+        [Fact]
+        public async Task TestFileScan_SplitUpload_Put()
+        {
+            var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
+            var urlResponse = await client.RequestUploadURL(new FileScanUploadURLRequest.Builder().WithProvider("reversinglabs").WithVerbose(true).WithRaw(true).WithTransferMethod(TransferMethod.PutURL).Build());
+
+            var fileData = new FileData(file, "file");
+            string url = urlResponse.Result.AcceptedStatus.UploadURL ?? "undefined url";    // This case should never happen
+
+            var uploader = new FileUploader.Builder().Build();
+            await uploader.UploadFile(url, TransferMethod.PutURL, fileData);
+
+            int maxRetry = 24;
+            for (int retry = 0; retry < maxRetry; retry++)
+            {
+                try
+                {
+                    // Sleep 10 seconds until result is (should) be ready
+                    await Task.Delay(10 * 1000);
+
+                    // Poll result, this could raise another AcceptedRequestException if result is not ready
+                    var response = await client.PollResult<FileScanResult>(urlResponse.RequestId);
+                    Assert.True(response.IsOK);
+
+                    FileScanData data = response.Result.Data;
+                    Assert.Equal("benign", data.Verdict);
+                    Assert.NotNull(response.Result.Parameters);
+                    Assert.NotNull(response.Result.RawData);
+
+                    // Poll result in raw format
+                    var responseDictionary = await client.PollResult(urlResponse.RequestId);
+                    Assert.True(responseDictionary.IsOK);
+                    break;
+                }
+                catch (PangeaAPIException)
+                {
+                    Assert.True(retry < maxRetry - 1);
+                }
+            }
+        }
     }
 }

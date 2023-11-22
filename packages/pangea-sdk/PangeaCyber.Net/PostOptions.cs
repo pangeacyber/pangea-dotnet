@@ -9,13 +9,13 @@ namespace PangeaCyber.Net
         public bool PollResult { get; private set; }
 
         ///
-        public FileStream? FileStream { get; private set; }
+        public FileData? FileData { get; private set; }
 
         ///
         public PostConfig(Builder builder)
         {
             PollResult = builder.PollResult;
-            FileStream = builder.FileStream;
+            FileData = builder.FileData;
         }
 
         ///
@@ -26,7 +26,7 @@ namespace PangeaCyber.Net
             public bool PollResult { get; set; } = true; // By default try to poll result
 
             ///
-            public FileStream? FileStream { get; set; } = null;
+            public FileData? FileData { get; set; } = null;
 
             ///
             public Builder()
@@ -41,9 +41,9 @@ namespace PangeaCyber.Net
             }
 
             ///
-            public Builder WithFileStream(FileStream fileStream)
+            public Builder WithFileData(FileData fileData)
             {
-                FileStream = fileStream;
+                FileData = fileData;
                 return this;
             }
 
