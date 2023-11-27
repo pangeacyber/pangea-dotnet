@@ -111,7 +111,7 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public static FileParams GetFSparams(FileStream file)
+        public static FileParams GetUploadFileParams(FileStream file)
         {
             String crcHash, sha256hash;
             int size = 0;
