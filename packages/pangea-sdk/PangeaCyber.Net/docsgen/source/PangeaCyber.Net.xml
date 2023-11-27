@@ -6021,11 +6021,17 @@
         <member name="T:PangeaCyber.Net.Redact.RedactClient.Builder">
 
         </member>
+        <member name="F:PangeaCyber.Net.Redact.RedactClient.Builder.ConfigID">
+
+        </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.#ctor(PangeaCyber.Net.Config)">
 
         </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.Build">
 
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.WithConfigID(System.String)">
+            Add extra public key information
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactStructuredRequest">
             <kind>class</kind>

@@ -14,6 +14,7 @@ namespace PangeaCyber.Net.Redact
         /// Constructor
         public RedactClient(Builder builder) : base(builder, ServiceName)
         {
+            ConfigID = builder.ConfigID ?? ConfigID;
         }
 
         private async Task<Response<RedactTextResult>> redactPost(RedactTextRequest request)
@@ -66,8 +67,11 @@ namespace PangeaCyber.Net.Redact
 
 
         ///
-        public class Builder : BaseClient<RedactClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
+            ///
+            public string? ConfigID = null;
+
             ///
             public Builder(Config config) : base(config)
             {
@@ -77,6 +81,13 @@ namespace PangeaCyber.Net.Redact
             public RedactClient Build()
             {
                 return new RedactClient(this);
+            }
+
+            /// Add extra public key information
+            public Builder WithConfigID(string configID)
+            {
+                ConfigID = configID;
+                return this;
             }
 
         }
