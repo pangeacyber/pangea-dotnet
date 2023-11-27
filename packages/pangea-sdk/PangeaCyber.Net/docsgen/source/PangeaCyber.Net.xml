@@ -3930,6 +3930,9 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Disabled">
 
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Unlock">
+
+        </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder">
 
         </member>
@@ -3942,6 +3945,9 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Disabled">
 
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Unlock">
+
+        </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.#ctor">
 
         </member>
@@ -3952,6 +3958,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithDisabled(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithUnlock(System.Nullable{System.Boolean})">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Build">
