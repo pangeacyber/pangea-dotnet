@@ -6,36 +6,36 @@ namespace PangeaCyber.Net.Audit
     /// <summary>
     /// LogRequest
     /// </summary>
-    public sealed class LogRequest : BaseRequest
+    public class LogRequest : BaseRequest
     {
         ///
         [JsonProperty("event", Required = Required.Always)]
-        public IEvent @event { get; set; } = default!;
+        public IEvent @event { get; private set; } = default!;
 
         ///
         [JsonProperty("verbose")]
-        public bool Verbose { get; set; } = default!;
+        public bool Verbose { get; private set; } = default!;
 
         ///
         [JsonProperty("signature")]
-        public string Signature { get; set; } = default!;
+        public string Signature { get; private set; } = default!;
 
         ///
         [JsonProperty("public_key")]
-        public string PublicKey { get; set; } = default!;
+        public string PublicKey { get; private set; } = default!;
 
         ///
         [JsonProperty("prev_root")]
-        public string PrevRoot { get; set; } = default!;
+        public string PrevRoot { get; private set; } = default!;
 
         ///
         public LogRequest(IEvent evt, bool verbose, string signature, string publicKey, string prevRoot)
         {
-            this.@event = evt;
-            this.Verbose = verbose;
-            this.Signature = signature;
-            this.PublicKey = publicKey;
-            this.PrevRoot = prevRoot;
+            @event = evt;
+            Verbose = verbose;
+            Signature = signature;
+            PublicKey = publicKey;
+            PrevRoot = prevRoot;
         }
     }
 }

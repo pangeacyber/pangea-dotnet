@@ -115,25 +115,25 @@
         <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Signer">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.publishedRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PublishedRoots">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.allowServerRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.AllowServerRoots">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.prevUnpublishedRoot">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PrevUnpublishedRoot">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.tenantID">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.TenantID">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.CustomSchemaClass">
 
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.pkInfo">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PKInfo">
 
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
@@ -147,15 +147,63 @@
             <remarks>Log an entry</remarks>
             <operationid>audit_post_v1_log</operationid>
             <param name="evt" type="PangeaCyber.Net.Audit.IEvent">Event to log</param>
-            <param name="config">Include verbosity, local signature and verify events setup</param>
+            <param name="config" type="PangeaCyber.Net.Audit.LogConfig">Include verbosity, local signature and verify events setup</param>
             <returns>Response&lt;LogResult&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-            string msg = "Event's message";
-            Event event = new Event.Builder(msg).Build();
-            var response = await client.log(event, new LogConfig.Builder().Build());
+            string msg = "hello world";
+            var event = new StandardEvent.Builder(msg)
+                .Build();
+
+            var config = new LogConfig.Builder()
+                .WithVerbose(true)
+                .Build();
+
+            var response = await client.Log(event, config);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulk(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
+            <kind>method</kind>
+            <summary>
+            Create multiple log entries in the Secure Audit Log.
+            </summary>
+            <remarks>Log multiple entries</remarks>
+            <operationid>audit_post_v2_log</operationid>
+            <param name="events" type="PangeaCyber.Net.Audit.IEvent[]">Events to log</param>
+            <param name="config" type="PangeaCyber.Net.Audit.LogConfig">Include verbosity, local signature and verify events setup</param>
+            <returns>Response&lt;LogBulkResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+            var event = new StandardEvent.Builder("hello world").Build();
+            StandardEvent[] events = {event};
+
+            var response = await client.LogBulk(events, new LogConfig.Builder().Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulkAsync(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
+            <kind>method</kind>
+            <summary>
+            Asynchronously create multiple log entries in the Secure Audit Log.
+            </summary>
+            <remarks>Log multiple entries asynchronously</remarks>
+            <operationid>audit_post_v2_log_async</operationid>
+            <param name="events" type="PangeaCyber.Net.Audit.IEvent[]"></param>
+            <param name="config" type="PangeaCyber.Net.Audit.LogConfig"></param>
+            <returns>Response&lt;LogBulkResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+            var event = new StandardEvent.Builder("hello world").Build();
+            StandardEvent[] events = {event};
+
+            var response = await client.LogBulkAsync(events, new LogConfig.Builder().Build());
             </code>
             </example>
         </member>
@@ -183,7 +231,7 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-            var response = await client.GetRoot(treeSize);
+            var response = await client.GetRoot(1);
             </code>
             </example>
         </member>
@@ -192,16 +240,21 @@
             <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
             <remarks>Search</remarks>
             <operationid>audit_post_v1_search</operationid>
-            <param name="request">Request to be sent to /search endpoint</param>
-            <param name="config">Config include event and consistency verification setup</param>
+            <param name="request" type="PangeaCyber.Net.Audit.SearchRequest">Request to be sent to /search endpoint</param>
+            <param name="config" type="PangeaCyber.Net.Audit.SearchConfig">Config include event and consistency verification setup</param>
             <returns>Response&lt;SearchOutput&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-            var input = new SearchInput("message:Integration test msg");
-            input.setMaxResults(10);
-            var response = Client.Search(input);
+            var request = new SearchRequest
+                .Builder("message:hello world")
+                .Build();
+            var config = new SearchConfig
+                .Builder()
+                .Build();
+
+            var response = await client.Search(request, config);
             </code>
             </example>
         </member>
@@ -210,11 +263,23 @@
             <summary>Return result's page from search id.</summary>
             <remarks>Results</remarks>
             <operationid>audit_post_v1_results</operationid>
-            <param name="request">Request to be sent to /results endpoint</param>
-            <param name="config">Config include event and consistency verification setup</param>
+            <param name="request" type="PangeaCyber.Net.Audit.ResultRequest">Request to be sent to /results endpoint</param>
+            <param name="config" type="PangeaCyber.Net.Audit.SearchConfig">Config include event and consistency verification setup</param>
             <returns>Response&lt;ResultsOutput&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+            var request = new ResultRequest
+                .Builder("pas_sqilrhruwu54uggihqj3aie24wrctakr")
+                .Build();
+            var config = new SearchConfig
+                .Builder()
+                .Build();
+
+            var response = await client.Results(request, config);
+            </code>
+            </example>
         </member>
         <member name="T:PangeaCyber.Net.Audit.AuditClient.Builder">
             <kind>class</kind>
@@ -615,6 +680,39 @@
         <member name="M:PangeaCyber.Net.Audit.Verifier.Verify(System.String,System.String,System.String)">
 
         </member>
+        <member name="T:PangeaCyber.Net.Audit.LogBulkRequest">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Events">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Verbose">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogBulkRequest.#ctor(PangeaCyber.Net.Audit.LogEvent[],System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogEvent">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.Event">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.Signature">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.PublicKey">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogEvent.#ctor(PangeaCyber.Net.Audit.IEvent,System.String,System.String)">
+
+        </member>
         <member name="T:PangeaCyber.Net.Audit.LogRequest">
             <kind>class</kind>
             <summary>
@@ -778,6 +876,15 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.Build">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogBulkResult">
+            <kind>class</kind>
+            <summary>
+            LogResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkResult.Results">
 
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogResult">
@@ -3823,6 +3930,9 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Disabled">
 
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Unlock">
+
+        </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder">
 
         </member>
@@ -3835,6 +3945,9 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Disabled">
 
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Unlock">
+
+        </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.#ctor">
 
         </member>
@@ -3845,6 +3958,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithDisabled(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithUnlock(System.Nullable{System.Boolean})">
 
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Build">
@@ -4128,6 +4244,9 @@
         <member name="P:PangeaCyber.Net.BaseClient`1.logger">
 
         </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.DefaultPostConfig">
+
+        </member>
         <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
 
         </member>
@@ -4149,7 +4268,7 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.PostConfig)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.PollResult``1(System.String)">
@@ -5721,6 +5840,41 @@
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
 
         </member>
+        <member name="T:PangeaCyber.Net.PostConfig">
+            <kind>class</kind>
+            <summary>
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.PollResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.FileStream">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.#ctor(PangeaCyber.Net.PostConfig.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.PostConfig.Builder">
+
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.PollResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.FileStream">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithPollResult(System.Boolean)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithFileStream(System.IO.FileStream)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.Build">
+
+        </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
             <kind>class</kind>
             <summary>
@@ -6002,10 +6156,16 @@
         <member name="P:PangeaCyber.Net.Response`1.Result">
 
         </member>
+        <member name="P:PangeaCyber.Net.Response`1.AcceptedResult">
+
+        </member>
         <member name="P:PangeaCyber.Net.Response`1.HttpResponse">
 
         </member>
         <member name="M:PangeaCyber.Net.Response`1.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Response`1.#ctor(PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors},PangeaCyber.Net.Exceptions.AcceptedResult)">
 
         </member>
         <member name="T:PangeaCyber.Net.ResponseHeader">
@@ -6033,6 +6193,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.ResponseHeader.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.ResponseHeader.#ctor(PangeaCyber.Net.ResponseHeader)">
 
         </member>
         <member name="T:PangeaCyber.Net.ResponseStatus">

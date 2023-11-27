@@ -64,7 +64,7 @@ namespace PangeaCyber.Net.FileScan
                 fullRequest = new FileScanFullRequest(request);
             }
 
-            return await DoPost<FileScanResult>("/v1/scan", fullRequest, file);
+            return await DoPost<FileScanResult>("/v1/scan", fullRequest, new PostConfig.Builder().WithFileStream(file).Build());
         }
 
         ///

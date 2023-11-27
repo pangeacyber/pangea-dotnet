@@ -11,23 +11,23 @@ namespace PangeaCyber.Net
     {
         ///
         [JsonProperty("request_id")]
-        public string RequestId { get; set; } = default!;
+        public string RequestId { get; private set; } = default!;
 
         ///
         [JsonProperty("request_time")]
-        public string RequestTime { get; set; } = default!;
+        public string RequestTime { get; private set; } = default!;
 
         ///
         [JsonProperty("response_time")]
-        public string ResponseTime { get; set; } = default!;
+        public string ResponseTime { get; private set; } = default!;
 
         ///
         [JsonProperty("status")]
-        public string Status { get; set; } = default!;
+        public string Status { get; private set; } = default!;
 
         ///
         [JsonProperty("summary")]
-        public string Summary { get; set; } = default!;
+        public string Summary { get; private set; } = default!;
 
         ///
         public Boolean IsOK
@@ -41,6 +41,16 @@ namespace PangeaCyber.Net
         ///
         public ResponseHeader()
         {
+        }
+
+        ///
+        protected ResponseHeader(ResponseHeader header)
+        {
+            Summary = header.Summary;
+            Status = header.Status;
+            RequestId = header.RequestId;
+            RequestTime = header.RequestTime;
+            ResponseTime = header.ResponseTime;
         }
     }
 }

@@ -5,6 +5,7 @@ using PangeaCyber.Net.Exceptions;
 using Newtonsoft.Json;
 using System.Security.Authentication;
 using System.Security.AccessControl;
+using System.Runtime.CompilerServices;
 
 namespace PangeaCyber.Net
 {
@@ -35,6 +36,10 @@ namespace PangeaCyber.Net
 
         ///
         private NLog.Logger logger { get; }
+
+        ///
+        private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
+
 
         ///
         public class ClientBuilder
@@ -158,10 +163,11 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, FileStream? fileStream = null)
+        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, PostConfig? postConfig = null)
         {
-            var res = await SimplePost(path, request, fileStream);
-            res = await HandleQueued(res);
+            postConfig ??= DefaultPostConfig;
+            var res = await SimplePost(path, request, postConfig.FileStream);
+            res = postConfig.PollResult ? await HandleQueued(res) : res;
             return await CheckResponse<TResult>(res);
         }
 

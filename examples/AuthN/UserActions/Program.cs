@@ -3,6 +3,11 @@ using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.AuthN;
 using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
+using PangeaCyber.Net.AuthN.Results;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -15,7 +20,117 @@ class Program
     private static Profile profileInitial = new Profile();
     private static Profile profileUpdate = new Profile();
     private static string userID = ""; // Will be set once the user is created
+    private static string cbURI = "https://someurl.com/callbacklink";
+    private static AuthNClient client;
 
+
+    private static async Task<FlowUpdateResult> FlowHandlePasswordPhase(string flowID, string password) {
+        var response = await client.Flow.Update(
+            new FlowUpdateRequest.Builder(
+                flowID,
+                FlowChoice.PASSWORD,
+                new FlowUpdateDataPassword.Builder(password).Build()
+            ).Build()
+        );
+        return response.Result;
+    }
+    private static async Task<FlowUpdateResult> FlowHandleProfilePhase(string flowID) {
+        var response = await client.Flow.Update(
+            new FlowUpdateRequest.Builder(
+                flowID,
+                FlowChoice.PROFILE,
+                new FlowUpdateDataProfile.Builder(profileInitial).Build()
+            ).Build()
+        );
+        return response.Result;
+    }
+
+    private static async Task<FlowUpdateResult> FlowHandleAgreementsPhase(string flowID, FlowUpdateResult result){
+        List<string> agreed = new List<string>();
+        foreach (FlowChoiceItem flowChoiceItem in result.FlowChoices)
+        {
+            if (String.Equals(flowChoiceItem.Choice, FlowChoice.AGREEMENTS.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
+                Dictionary<string, object> agreements = JsonConvert.DeserializeObject<Dictionary<string, object>>(flowChoiceItem.Data["agreements"].ToString());
+                if (agreements != null)
+                {
+                    // Iterate over agreements and append the "id" values to agreed list
+                    foreach (object agreementObj in agreements.Values)
+                    {
+                        Dictionary<string, object> agreementItem = JsonConvert.DeserializeObject<Dictionary<string, object>>(agreementObj.ToString());
+                        object idObj = agreementItem["id"];
+                        if (idObj is string)
+                        {
+                            agreed.Add((string)idObj);
+                        }
+                    }
+                }
+            }
+        }
+
+        Console.WriteLine("Agreed: ");
+        Console.WriteLine(string.Join(", ", agreed));
+
+        var response = await client.Flow.Update(
+            new FlowUpdateRequest.Builder(
+                flowID,
+                FlowChoice.AGREEMENTS,
+                new FlowUpdateDataAgreements.Builder(agreed).Build()
+            ).Build()
+        );
+        return response.Result;
+    }
+
+    private static bool ChoiceIsAvailable(FlowChoiceItem[] choices, string choice)
+    {
+        foreach (FlowChoiceItem flowChoiceItem in choices)
+        {
+            if (String.Equals(flowChoiceItem.Choice, choice, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static async Task<FlowCompleteResult> UserCreateAndLogin(string email, string password)
+    {
+        FlowType[] flowTypes = { FlowType.Signup, FlowType.Signin };
+        var startResponse = await client.Flow
+            .Start(new FlowStartRequest.Builder().WithEmail(email).WithFlowType(flowTypes).WithCBUri(cbURI).Build());
+
+        string flowID = startResponse.Result.FlowID;
+        FlowUpdateResult? result = null;
+        string flowPhase = "initial";
+        FlowChoiceItem[] choices = startResponse.Result.FlowChoices;
+
+        while (!flowPhase.Equals("phase_completed"))
+        {
+            if (ChoiceIsAvailable(choices, FlowChoice.PASSWORD.ToString()))
+            {
+                result = await FlowHandlePasswordPhase(flowID, password);
+            }
+            else if (ChoiceIsAvailable(choices, FlowChoice.PROFILE.ToString()))
+            {
+                result = await FlowHandleProfilePhase(flowID);
+            }
+            else if (ChoiceIsAvailable(choices, FlowChoice.AGREEMENTS.ToString()) && result != null)
+            {
+                result = await FlowHandleAgreementsPhase(flowID, result);
+            }
+            else
+            {
+                Console.WriteLine($"Phase {result.FlowPhase} not handled");
+                throw new PangeaException("Phase not handled", null);
+            }
+
+            flowPhase = result.FlowPhase;
+            choices = result.FlowChoices;
+        }
+
+        var response = await client.Flow.Complete(flowID);
+        return response.Result;
+    }
 
     static async Task Main(string[] args)
     {
@@ -25,31 +140,21 @@ class Program
             var cfg = Config.FromEnvironment("authn");
 
             // Create client with builder
-            AuthNClient client = new AuthNClient.Builder(cfg).Build();
+            client = new AuthNClient.Builder(cfg).Build();
 
-            profileInitial["name"] = "User name";
-            profileInitial["country"] = "Argentina";
-            profileUpdate["age"] = "18";
+            profileInitial["first_name"] = "Name";
+            profileInitial["last_name"] = "User";
+            profileUpdate["first_name"] = "NameUpdated";
 
            // Create User 1
             Console.WriteLine("Creating user...");
-            var createResp1 = await client.User.Create(
-                new UserCreateRequest.Builder(userEmail, passwordInitial, IDProvider.Password)
-                .WithProfile(profileInitial)
-                .Build()
-            );
-            userID = createResp1.Result.ID ?? default!;
-            Console.WriteLine("User create success. ID: " + userID);
-
-            // User login
-            Console.WriteLine("Login user...");
-            var loginResp = await client.User.Login.Password(userEmail, passwordInitial);
-            Console.WriteLine("Login user success. Token: " + loginResp.Result.ActiveToken?.Token);
+            var createResp1 = await UserCreateAndLogin(userEmail, passwordInitial);
+            Console.WriteLine("User create success.");
 
             // Update password
             Console.WriteLine("Update user password...");
             var passUpdateResp = await client.Client.Password.Change(
-                loginResp.Result.ActiveToken?.Token, passwordInitial, passwordNew
+                createResp1.ActiveToken?.Token, passwordInitial, passwordNew
             );
             Console.WriteLine("Update password success.");
 
@@ -57,6 +162,7 @@ class Program
             Console.WriteLine("Get profile by email...");
             // Get profile by email. Should be empty because it was created without profile parameter
             var profileGetResp = await client.User.Profile.GetByEmail(userEmail);
+            userID = profileGetResp.Result.ID ?? default!;
             Console.WriteLine("Get profile success.");
 
             Console.WriteLine("Get profile by ID...");
@@ -74,7 +180,7 @@ class Program
             // User update
             Console.WriteLine("User update...");
             var userUpdateResp = await client.User.Update(
-                new UserUpdateRequest.Builder().WithEmail(userEmail).WithDisabled(false).WithRequireMFA(false).Build()
+                new UserUpdateRequest.Builder().WithEmail(userEmail).WithDisabled(false).Build()
             );
             Console.WriteLine("Update user success.");
 
