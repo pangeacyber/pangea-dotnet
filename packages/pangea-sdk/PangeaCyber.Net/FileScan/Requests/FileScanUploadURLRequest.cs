@@ -1,67 +1,50 @@
-using Newtonsoft.Json;
+using PangeaCyber.Net;
+using PangeaCyber.Net.FileScan.Models;
 
-namespace PangeaCyber.Net.FileScan
+namespace Cloud.PangeaCyber.Pangea.FileScan.Requests
 {
     ///
-    public class FileScanRequest : BaseRequest
+    public class FileScanUploadURLRequest
     {
+        ///
+        public string? Provider { get; private set; }
+        ///
+        public bool? Verbose { get; private set; }
+        ///
+        public bool? Raw { get; private set; }
+        ///
+        public TransferMethod TransferMethod { get; private set; }
+        ///
+        public FileParams? FileParams { get; private set; }
 
         ///
-        [JsonProperty("provider")]
-        public string? Provider { get; set; }
-
-        ///
-        [JsonProperty("verbose")]
-        public bool? Verbose { get; set; }
-
-        ///
-        [JsonProperty("raw")]
-        public bool? Raw { get; set; }
-
-        ///
-        protected FileScanRequest(Builder builder)
+        protected FileScanUploadURLRequest(Builder builder)
         {
             Provider = builder.Provider;
             Verbose = builder.Verbose;
             Raw = builder.Raw;
             TransferMethod = builder.TransferMethod;
-        }
-
-        ///
-        protected FileScanRequest() { }
-
-        ///
-        protected FileScanRequest(FileScanRequest request)
-        {
-            Provider = request.Provider;
-            Verbose = request.Verbose;
-            Raw = request.Raw;
-            TransferMethod = request.TransferMethod;
+            FileParams = builder.FileParams;
         }
 
         ///
         public class Builder
         {
-
             ///
             public string? Provider { get; private set; }
-
             ///
             public bool? Verbose { get; private set; }
-
             ///
             public bool? Raw { get; private set; }
+            ///
+            public TransferMethod TransferMethod { get; private set; } = TransferMethod.PostURL;
+            ///
+            public FileParams? FileParams { get; private set; }
 
             ///
-            public TransferMethod TransferMethod { get; private set; } = TransferMethod.Direct;
-
-            ///
-            public Builder() { }
-
-            ///
-            public FileScanRequest Build()
+            public FileScanUploadURLRequest Build()
             {
-                return new FileScanRequest(this);
+                return new FileScanUploadURLRequest(this);
             }
 
             ///
@@ -92,6 +75,13 @@ namespace PangeaCyber.Net.FileScan
                 return this;
             }
 
+            ///
+            public Builder WithFileParams(FileParams fileParams)
+            {
+                FileParams = fileParams;
+                return this;
+            }
         }
     }
+
 }

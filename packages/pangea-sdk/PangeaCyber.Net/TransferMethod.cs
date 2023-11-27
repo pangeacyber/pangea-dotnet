@@ -15,5 +15,13 @@ namespace PangeaCyber.Net
         [EnumMember(Value = "multipart")]
         Multipart,
 
+        ///
+        [EnumMember(Value = "post-url")]
+        PostURL,
+
+        ///
+        [EnumMember(Value = "put-url")]
+        PutURL,
+
     }
 }

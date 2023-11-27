@@ -4265,10 +4265,16 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.FileData)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.PostConfig)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.RequestPresignedURL(System.String,PangeaCyber.Net.BaseRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.UploadPresignedURL(System.String,PangeaCyber.Net.TransferMethod,PangeaCyber.Net.FileData)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.PollResult``1(System.String)">
@@ -4281,6 +4287,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.ParseResponse``1(System.String,System.Net.Http.HttpResponseMessage,PangeaCyber.Net.ResponseHeader)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
@@ -4728,6 +4737,24 @@
         <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
 
         </member>
+        <member name="T:PangeaCyber.Net.FileData">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileData.File">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileData.Name">
+
+        </member>
+        <member name="P:PangeaCyber.Net.FileData.Details">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileData.#ctor(System.IO.FileStream,System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileData.#ctor(System.IO.FileStream,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+
+        </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanClient">
             <kind>class</kind>
             <summary>
@@ -4770,6 +4797,9 @@
              </code>
              </example>
         </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.RequestUploadURL(Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest)">
+
+        </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest">
 
         </member>
@@ -4786,6 +4816,33 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileUploader">
+            <kind>class</kind>
+            <summary>
+            FileScan Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.FileScan.FileUploader.ServiceName">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.#ctor(PangeaCyber.Net.FileScan.FileUploader.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileUploader.Builder">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.Builder.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.Builder.Build">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.UploadFile(System.String,PangeaCyber.Net.TransferMethod,PangeaCyber.Net.FileData)">
 
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
@@ -4831,6 +4888,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest.Builder)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor">
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
@@ -5848,7 +5908,7 @@
         <member name="P:PangeaCyber.Net.PostConfig.PollResult">
 
         </member>
-        <member name="P:PangeaCyber.Net.PostConfig.FileStream">
+        <member name="P:PangeaCyber.Net.PostConfig.FileData">
 
         </member>
         <member name="M:PangeaCyber.Net.PostConfig.#ctor(PangeaCyber.Net.PostConfig.Builder)">
@@ -5860,7 +5920,7 @@
         <member name="P:PangeaCyber.Net.PostConfig.Builder.PollResult">
 
         </member>
-        <member name="P:PangeaCyber.Net.PostConfig.Builder.FileStream">
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.FileData">
 
         </member>
         <member name="M:PangeaCyber.Net.PostConfig.Builder.#ctor">
@@ -5869,7 +5929,7 @@
         <member name="M:PangeaCyber.Net.PostConfig.Builder.WithPollResult(System.Boolean)">
 
         </member>
-        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithFileStream(System.IO.FileStream)">
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithFileData(PangeaCyber.Net.FileData)">
 
         </member>
         <member name="M:PangeaCyber.Net.PostConfig.Builder.Build">
@@ -6270,6 +6330,12 @@
         <member name="F:PangeaCyber.Net.TransferMethod.Multipart">
 
         </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.PostURL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.PutURL">
+
+        </member>
         <member name="T:PangeaCyber.Net.OrderedContractResolver">
 
         </member>
@@ -6309,7 +6375,7 @@
         <member name="M:PangeaCyber.Net.Utils.GetBytes(System.UInt32)">
 
         </member>
-        <member name="M:PangeaCyber.Net.Utils.GetFSparams(System.IO.FileStream)">
+        <member name="M:PangeaCyber.Net.Utils.GetUploadFileParams(System.IO.FileStream)">
 
         </member>
         <member name="T:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm">
@@ -8351,6 +8417,63 @@
             var createResponse = await client.FolderCreate(request);
             </code>
             </example>
+        </member>
+        <member name="T:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Provider">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Verbose">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Raw">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.TransferMethod">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.FileParams">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.#ctor(Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder)">
+
+        </member>
+        <member name="T:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Provider">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Verbose">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Raw">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.TransferMethod">
+
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.FileParams">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Build">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithProvider(System.String)">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithVerbose(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
+
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithFileParams(PangeaCyber.Net.FileScan.Models.FileParams)">
+
         </member>
     </members>
 </doc>
