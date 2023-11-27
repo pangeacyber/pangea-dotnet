@@ -836,7 +836,7 @@ public class ITAuditTest
                             .WithStatus(STATUS_NO_SIGNED)
                             .Build();
 
-        var response = await generalClientNoQueue.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
+        var response = await generalClient.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
         Assert.NotNull(response.AcceptedResult);
         Assert.NotEmpty(response.RequestId);
         Assert.NotEmpty(response.RequestTime);

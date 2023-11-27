@@ -128,11 +128,11 @@ namespace PangeaCyber.Net.Audit
         /// string msg = "hello world";
         /// var event = new StandardEvent.Builder(msg)
         ///     .Build();
-        /// 
+        ///
         /// var config = new LogConfig.Builder()
         ///     .WithVerbose(true)
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.Log(event, config);
         /// </code>
         /// </example>
@@ -159,7 +159,7 @@ namespace PangeaCyber.Net.Audit
         /// <code>
         /// var event = new StandardEvent.Builder("hello world").Build();
         /// StandardEvent[] events = {event};
-        /// 
+        ///
         /// var response = await client.LogBulk(events, new LogConfig.Builder().Build());
         /// </code>
         /// </example>
@@ -192,7 +192,7 @@ namespace PangeaCyber.Net.Audit
         /// <code>
         /// var event = new StandardEvent.Builder("hello world").Build();
         /// StandardEvent[] events = {event};
-        /// 
+        ///
         /// var response = await client.LogBulkAsync(events, new LogConfig.Builder().Build());
         /// </code>
         /// </example>
@@ -202,7 +202,7 @@ namespace PangeaCyber.Net.Audit
             Response<LogBulkResult> response;
             try
             {
-                response = await DoPost<LogBulkResult>("/v2/log_async", request);
+                response = await DoPost<LogBulkResult>("/v2/log_async", request, new PostConfig.Builder().WithPollResult(false).Build());
             }
             catch (AcceptedRequestException e)
             {
@@ -420,7 +420,7 @@ namespace PangeaCyber.Net.Audit
         /// var config = new SearchConfig
         ///     .Builder()
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.Search(request, config);
         /// </code>
         /// </example>
@@ -448,7 +448,7 @@ namespace PangeaCyber.Net.Audit
         /// var config = new SearchConfig
         ///     .Builder()
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.Results(request, config);
         /// </code>
         /// </example>
