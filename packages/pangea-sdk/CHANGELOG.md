@@ -5,11 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.2.1] - 2023-11-27
+## [3.3.0] - 2023-11-28
 
 # Added
 
 - Audit bulk examples
+- Authn unlock user support
+- Redact multiconfig support
+- Filescan post-url and put-url support
 
 # Fixed
 
@@ -103,8 +106,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Redact requests builder rename to be called just "Builder" 
 
 
-[unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.2.1...main
-[3.2.1]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.2.1...v3.2.1
+[unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.3.0...main
+[3.3.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v2.4.0...v3.0.0
