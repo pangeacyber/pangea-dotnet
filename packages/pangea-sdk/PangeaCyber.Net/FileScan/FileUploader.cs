@@ -39,7 +39,7 @@ namespace PangeaCyber.Net.FileScan
                 throw new PangeaException($"{transferMethod} not supported. Use Scan() instead", null);
             }
 
-            if ((transferMethod == TransferMethod.Direct || transferMethod == TransferMethod.PostURL) && fileData.Details == null)
+            if (transferMethod == TransferMethod.PostURL && fileData.Details == null)
             {
                 throw new PangeaException($"Should set FileParams in order to use {transferMethod} transfer method", null);
             }

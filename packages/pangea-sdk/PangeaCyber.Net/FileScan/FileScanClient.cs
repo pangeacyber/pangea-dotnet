@@ -57,7 +57,7 @@ namespace PangeaCyber.Net.FileScan
         {
             FileScanFullRequest fullRequest;
             string name;
-            if (request.TransferMethod == TransferMethod.Direct || request.TransferMethod == TransferMethod.PostURL)
+            if (request.TransferMethod == TransferMethod.PostURL)
             {
                 var fileParams = Utils.GetUploadFileParams(file);
                 fullRequest = new FileScanFullRequest(request, fileParams);
@@ -83,7 +83,7 @@ namespace PangeaCyber.Net.FileScan
                 throw new PangeaException($"{tm} not supported. Use Scan() instead", null);
             }
 
-            if ((tm == TransferMethod.Direct || tm == TransferMethod.PostURL) && request.FileParams == null)
+            if (tm == TransferMethod.PostURL && request.FileParams == null)
             {
                 throw new PangeaException($"Should set FileParams in order to use {tm} transfer method", null);
             }
@@ -96,15 +96,15 @@ namespace PangeaCyber.Net.FileScan
         private class FileScanFullRequest : FileScanRequest
         {
             ///
-            [JsonProperty("transfer_size")]
+            [JsonProperty("size")]
             public int? Size { get; private set; }
 
             ///
-            [JsonProperty("transfer_crc32c")]
+            [JsonProperty("crc32c")]
             public string? Crc32c { get; private set; }
 
             ///
-            [JsonProperty("transfer_sha256")]
+            [JsonProperty("sha256")]
             public string? Sha256 { get; private set; }
 
             ///

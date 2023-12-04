@@ -186,8 +186,8 @@ namespace PangeaCyber.Net.FileScan.Tests
 
             var urlResponse = await client.RequestUploadURL(new FileScanUploadURLRequest.Builder().WithProvider("reversinglabs").WithVerbose(true).WithRaw(true).WithTransferMethod(TransferMethod.PostURL).WithFileParams(fileParams).Build());
 
-            var fileData = new FileData(file, "file", urlResponse.Result.AcceptedStatus.UploadDetails);
-            string url = urlResponse.Result.AcceptedStatus.UploadURL ?? "undefined url";    // This case should never happen
+            var fileData = new FileData(file, "file", urlResponse.Result.PostFormData);
+            string url = urlResponse.Result.PostURL ?? "undefined url";    // This case should never happen
 
             var uploader = new FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PostURL, fileData);
@@ -228,7 +228,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             var urlResponse = await client.RequestUploadURL(new FileScanUploadURLRequest.Builder().WithProvider("reversinglabs").WithVerbose(true).WithRaw(true).WithTransferMethod(TransferMethod.PutURL).Build());
 
             var fileData = new FileData(file, "file");
-            string url = urlResponse.Result.AcceptedStatus.UploadURL ?? "undefined url";    // This case should never happen
+            string url = urlResponse.Result.PutURL ?? "undefined url";    // This case should never happen
 
             var uploader = new FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PutURL, fileData);
