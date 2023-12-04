@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.FileScan.Tests
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
         private FileScanClient client;
-        private readonly TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = TestEnvironment.STG;
 
         public ITFileScanTest()
         {
