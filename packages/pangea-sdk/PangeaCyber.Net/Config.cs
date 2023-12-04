@@ -15,7 +15,7 @@ namespace PangeaCyber.Net
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "3.0.0";
+        public const string Version = "3.3.0";
 
         #endregion Constants
 
@@ -27,12 +27,12 @@ namespace PangeaCyber.Net
         /// </summary>
         public Config(string token, string domain)
         {
-            this.Token = token;
-            this.Domain = domain;
-            this.Insecure = false;
-            this.Environment = "production";
+            Token = token;
+            Domain = domain;
+            Insecure = false;
+            Environment = "production";
             // 20 seconds initial connection timeout
-            this.ConnectionTimeout = new TimeSpan(0, 0, 20);
+            ConnectionTimeout = new TimeSpan(0, 0, 20);
         }
 
         #endregion Constructors
@@ -82,7 +82,7 @@ namespace PangeaCyber.Net
                 b.Append('.');
             }
 
-            b.Append(this.Domain);
+            b.Append(Domain);
             b.Append(path);
             return new Uri(b.ToString());
         }

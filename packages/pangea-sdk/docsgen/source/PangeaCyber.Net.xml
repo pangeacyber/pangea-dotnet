@@ -115,25 +115,25 @@
         <member name="P:PangeaCyber.Net.Audit.AuditClient.ServiceName">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.signer">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.Signer">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.publishedRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PublishedRoots">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.allowServerRoots">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.AllowServerRoots">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.prevUnpublishedRoot">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PrevUnpublishedRoot">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.tenantID">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.TenantID">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.customSchemaClass">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.CustomSchemaClass">
             
         </member>
-        <member name="F:PangeaCyber.Net.Audit.AuditClient.pkInfo">
+        <member name="F:PangeaCyber.Net.Audit.AuditClient.PKInfo">
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.AuditClient.#ctor(PangeaCyber.Net.Audit.AuditClient.Builder)">
@@ -147,15 +147,63 @@
             <remarks>Log an entry</remarks>
             <operationid>audit_post_v1_log</operationid>
             <param name="evt" type="PangeaCyber.Net.Audit.IEvent">Event to log</param>
-            <param name="config">Include verbosity, local signature and verify events setup</param>
+            <param name="config" type="PangeaCyber.Net.Audit.LogConfig">Include verbosity, local signature and verify events setup</param>
             <returns>Response&lt;LogResult&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-            string msg = "Event's message";
-            Event event = new Event.Builder(msg).Build();
-            var response = await client.log(event, new LogConfig.Builder().Build());
+            string msg = "hello world";
+            var event = new StandardEvent.Builder(msg)
+                .Build();
+            
+            var config = new LogConfig.Builder()
+                .WithVerbose(true)
+                .Build();
+            
+            var response = await client.Log(event, config);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulk(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
+            <kind>method</kind>
+            <summary>
+            Create multiple log entries in the Secure Audit Log.
+            </summary>
+            <remarks>Log multiple entries</remarks>
+            <operationid>audit_post_v2_log</operationid>
+            <param name="events" type="PangeaCyber.Net.Audit.IEvent[]">Events to log</param>
+            <param name="config" type="PangeaCyber.Net.Audit.LogConfig">Include verbosity, local signature and verify events setup</param>
+            <returns>Response&lt;LogBulkResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+            var event = new StandardEvent.Builder("hello world").Build();
+            StandardEvent[] events = {event};
+            
+            var response = await client.LogBulk(events, new LogConfig.Builder().Build());
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.AuditClient.LogBulkAsync(PangeaCyber.Net.Audit.IEvent[],PangeaCyber.Net.Audit.LogConfig)">
+            <kind>method</kind>
+            <summary>
+            Asynchronously create multiple log entries in the Secure Audit Log.
+            </summary>
+            <remarks>Log multiple entries asynchronously</remarks>
+            <operationid>audit_post_v2_log_async</operationid>
+            <param name="events" type="PangeaCyber.Net.Audit.IEvent[]"></param>
+            <param name="config" type="PangeaCyber.Net.Audit.LogConfig"></param>
+            <returns>Response&lt;LogBulkResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+            var event = new StandardEvent.Builder("hello world").Build();
+            StandardEvent[] events = {event};
+            
+            var response = await client.LogBulkAsync(events, new LogConfig.Builder().Build());
             </code>
             </example>
         </member>
@@ -183,7 +231,7 @@
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-            var response = await client.GetRoot(treeSize);
+            var response = await client.GetRoot(1);
             </code>
             </example>
         </member>
@@ -192,16 +240,21 @@
             <summary>Perform a search of logs according to input param. By default verify logs consistency and events hash and signature.</summary>
             <remarks>Search</remarks>
             <operationid>audit_post_v1_search</operationid>
-            <param name="request">Request to be sent to /search endpoint</param>
-            <param name="config">Config include event and consistency verification setup</param>
+            <param name="request" type="PangeaCyber.Net.Audit.SearchRequest">Request to be sent to /search endpoint</param>
+            <param name="config" type="PangeaCyber.Net.Audit.SearchConfig">Config include event and consistency verification setup</param>
             <returns>Response&lt;SearchOutput&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
             <example>
             <code>
-            var input = new SearchInput("message:Integration test msg");
-            input.setMaxResults(10);
-            var response = Client.Search(input);
+            var request = new SearchRequest
+                .Builder("message:hello world")
+                .Build();
+            var config = new SearchConfig
+                .Builder()
+                .Build();
+            
+            var response = await client.Search(request, config);
             </code>
             </example>
         </member>
@@ -210,11 +263,23 @@
             <summary>Return result's page from search id.</summary>
             <remarks>Results</remarks>
             <operationid>audit_post_v1_results</operationid>
-            <param name="request">Request to be sent to /results endpoint</param>
-            <param name="config">Config include event and consistency verification setup</param>
+            <param name="request" type="PangeaCyber.Net.Audit.ResultRequest">Request to be sent to /results endpoint</param>
+            <param name="config" type="PangeaCyber.Net.Audit.SearchConfig">Config include event and consistency verification setup</param>
             <returns>Response&lt;ResultsOutput&gt;</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <example>
+            <code>
+            var request = new ResultRequest
+                .Builder("pas_sqilrhruwu54uggihqj3aie24wrctakr")
+                .Build();
+            var config = new SearchConfig
+                .Builder()
+                .Build();
+            
+            var response = await client.Results(request, config);
+            </code>
+            </example>
         </member>
         <member name="T:PangeaCyber.Net.Audit.AuditClient.Builder">
             <kind>class</kind>
@@ -615,6 +680,39 @@
         <member name="M:PangeaCyber.Net.Audit.Verifier.Verify(System.String,System.String,System.String)">
             
         </member>
+        <member name="T:PangeaCyber.Net.Audit.LogBulkRequest">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Events">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkRequest.Verbose">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogBulkRequest.#ctor(PangeaCyber.Net.Audit.LogEvent[],System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogEvent">
+            <kind>class</kind>
+            <summary>
+            LogRequest
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.Event">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.Signature">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogEvent.PublicKey">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Audit.LogEvent.#ctor(PangeaCyber.Net.Audit.IEvent,System.String,System.String)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Audit.LogRequest">
             <kind>class</kind>
             <summary>
@@ -778,6 +876,15 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Audit.SearchRequest.Builder.Build">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Audit.LogBulkResult">
+            <kind>class</kind>
+            <summary>
+            LogResult
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Audit.LogBulkResult.Results">
             
         </member>
         <member name="T:PangeaCyber.Net.Audit.LogResult">
@@ -1000,10 +1107,11 @@
             <example>
             <code>
             var request = new AgreementCreateRequest.Builder(
-                AgreementType.eula,
+                AgreementType.EULA,
                 "EULA_V1",
                 "You agree to behave yourself while logged in.")
-                .Build();
+            .Build();
+            
             var response = await client.Agreements.Create(request);
             </code>
             </example>
@@ -1017,6 +1125,12 @@
             <returns>Response&lt;AgreementDeleteResult&gt;</returns>
             <example>
             <code>
+            var request = new AgreementDeleteRequest.Builder(
+                AgreementType.EULA, 
+                "peu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+            .Build();
+            
+            var response = await client.Agreements.Delete(request);
             </code>
             </example>
         </member>
@@ -1029,6 +1143,13 @@
             <returns>Response&lt;AgreementUpdateResult&gt;</returns>
             <example>
             <code>
+            var request = new AgreementUpdateRequest.Builder(
+                AgreementType.EULA,
+                "peu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+            .WithText("You agree to behave yourself while logged in. Don't be evil.")
+            .Build();
+            
+            var response = await client.Agreements.Update(request);
             </code>
             </example>
         </member>
@@ -1041,6 +1162,9 @@
             <returns>Response&lt;AgreementListResult&gt;</returns>
             <example>
             <code>
+            var request = new AgreementListRequest.Builder().Build();
+            
+            var response = await client.Agreements.List(request);
             </code>
             </example>
         </member>
@@ -1089,6 +1213,7 @@
             <returns>Response&lt;ClientUserinfoResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Userinfo("pmc_d6chl6qulpn3it34oerwm3cqwsjd6dxw");
             </code>
             </example>
         </member>
@@ -1100,6 +1225,7 @@
             <returns>Response&lt;ClientJWKSResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Jwks();
             </code>
             </example>
         </member>
@@ -1123,6 +1249,10 @@
             <returns>Response&lt;ClientPasswordChangeResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Password.Change(
+                "ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a",
+                "hunter2",
+                "My2n+Password");
             </code>
             </example>
         </member>
@@ -1145,6 +1275,9 @@
             <returns>Response&lt;ClientSessionInvalidateResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Session.Invalidate(
+                "ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a", 
+                "pmt_zppkzrjguxyblaia6itbiesejn7jejnr");
             </code>
             </example>
         </member>
@@ -1157,6 +1290,11 @@
             <returns>Response&lt;ClientSessionListResult&gt;</returns>
             <example>
             <code>
+            var request = new ClientSessionListRequest
+                .Builder("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+                .Build();
+            
+            var response = await client.Client.Session.List(request);
             </code>
             </example>
         </member>
@@ -1169,6 +1307,7 @@
             <returns>Response&lt;ClientSessionLogoutResult&gt;</returns>
             <example>
             <code>
+            await client.Client.Session.Logout("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
             </code>
             </example>
         </member>
@@ -1181,6 +1320,12 @@
             <returns>Response&lt;ClientSessionRefreshResult&gt;</returns>
             <example>
             <code>
+            var request = new ClientSessionRefreshRequest.Builder(
+                "ptr_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+            .WithUserToken("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+            .Build();
+            
+            var response = await client.Client.Session.Refresh(request);
             </code>
             </example>
         </member>
@@ -1202,6 +1347,7 @@
             <returns>Response&lt;ClientTokenCheckResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Client.Token.Check("ptu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
             </code>
             </example>
         </member>
@@ -1223,6 +1369,7 @@
             <returns>Response&lt;FlowCompleteResult&gt;</returns>
             <example>
             <code>
+            var response = await client.Flow.Complete("pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh");
             </code>
             </example>
         </member>
@@ -1235,6 +1382,16 @@
             <returns>Response&lt;FlowStartResult&gt;</returns>
             <example>
             <code>
+            FlowType[] flowType = { FlowType.Signin, FlowType.Signup };
+            var request = new FlowStartRequest
+                .Builder()
+                .WithEmail("joe.user@email.com")
+                .WithCBUri("https://www.myserver.com/callback")
+                .WithFlowType(flowType)
+                .WithInvitation("pmc_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+                .Build();
+            
+            var response = await client.Flow.Start(request);
             </code>
             </example>
         </member>
@@ -1247,6 +1404,18 @@
             <returns>Response&lt;FlowUpdateResult&gt;</returns>
             <example>
             <code>
+            FlowUpdateDataPassword flowUpdateData = new FlowUpdateDataPassword
+                .Builder("hunter2")
+                .Build();
+                
+            var request = new FlowUpdateRequest
+                .Builder(
+                    "pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh", 
+                    FlowChoice.PASSWORD, 
+                    flowUpdateData)
+                .Build();
+            
+            var response = await client.Flow.Update(request);
             </code>
             </example>
         </member>
@@ -1259,6 +1428,16 @@
             <returns>Response&lt;FlowRestartResult&gt;</returns>
             <example>
             <code>
+            var data = new FlowRestartData.Builder().Build();
+            
+            var request = new FlowRestartRequest
+                .Builder(
+                    "pfl_dxiqyuq7ndc5ycjwdgmguwuodizcaqhh", 
+                    FlowChoice.PASSWORD, 
+                    data)
+                .Build();
+            
+            var response = await client.Flow.Restart(request);
             </code>
             </example>
         </member>
@@ -1286,6 +1465,7 @@
             <returns>Response&lt;SessionInvalidateResult&gt;</returns>
             <example>
             <code>
+            await client.Session.Invalidate("pmt_zppkzrjguxyblaia6itbiesejn7jejnr");
             </code>
             </example>
         </member>
@@ -1298,6 +1478,9 @@
             <returns>Response&lt;SessionListResult&gt;</returns>
             <example>
             <code>
+            var request = new SessionListRequest.Builder().Build();
+            
+            var response = await client.Session.List(request);
             </code>
             </example>
         </member>
@@ -1310,6 +1493,7 @@
             <returns>Response&lt;SessionLogoutResult&gt;</returns>
             <example>
             <code>
+            await client.Session.Logout("pui_xpkhwpnz2cmegsws737xbsqnmnuwtvm5");
             </code>
             </example>
         </member>
@@ -1340,30 +1524,41 @@
             <returns>Response&lt;UserCreateResult&gt;</returns>
             <example>
             <code>
+            Profile profile = new Profile();
+            profile.FirstName = "Joe";
+            profile.LastName = "User";
+            
+            var request = new UserCreateRequest
+                .Builder("joe.user@pangea.cloud", profile)
+                .Build();
+            
+            var response = await client.User.Create(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.User.DeleteByEmail(System.String)">
             <kind>method</kind>
             <summary>Delete a user by email address.</summary>
-            <remarks>Delete User</remarks>
+            <remarks>Delete User - Email</remarks>
             <operationid>authn_post_v2_user_delete 1</operationid>
             <param name="email" type="string">An email address</param>
             <returns>Response&lt;UserDeleteResult&gt;</returns>
             <example>
             <code>
+            await client.User.DeleteByEmail("joe.user@pangea.cloud");
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Clients.User.DeleteByID(System.String)">
             <kind>method</kind>
             <summary>Delete a user by ID.</summary>
-            <remarks>Delete User</remarks>
+            <remarks>Delete User - ID</remarks>
             <operationid>authn_post_v2_user_delete 2</operationid>
             <param name="id" type="string">The identity of a user or a service</param>
             <returns>Response&lt;UserDeleteResult&gt;</returns>
             <example>
             <code>
+            await client.User.DeleteByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
             </code>
             </example>
         </member>
@@ -1376,6 +1571,13 @@
             <returns>Response&lt;UserDeleteResult&gt;</returns>
             <example>
             <code>
+            var request = new UserUpdateRequest
+                .Builder()
+                .WithEmail("joe.user@pangea.cloud")
+                .WithDisabled(true)
+                .Build();
+            
+            var response = await client.User.Update(request);
             </code>
             </example>
         </member>
@@ -1388,6 +1590,15 @@
             <returns>Response&lt;UserInviteResult&gt;</returns>
             <example>
             <code>
+            var request = new UserInviteRequest
+                .Builder(
+                    "admin@pangea.cloud", 
+                    "joe.user@pangea.cloud", 
+                    "https://www.myserver.com/callback", 
+                    "pcb_zurr3lkcwdp5keq73htsfpcii5k4zgm7")
+                .Build();
+            
+            var response = await client.User.Invite(request);
             </code>
             </example>
         </member>
@@ -1400,6 +1611,9 @@
             <returns>Response&lt;UserListResult&gt;</returns>
             <example>
             <code>
+            var request = new UserListRequest.Builder().Build();
+            
+            var response = await client.User.List(request);
             </code>
             </example>
         </member>
@@ -1421,6 +1635,12 @@
             <returns>Response&lt;UserAuthenticatorsDeleteResult&gt;</returns>
             <example>
             <code>
+            var request = new UserAuthenticatorsDeleteRequest
+                .Builder("pau_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+                .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+                .Build();
+                
+            await client.User.Authenticators.Delete(request);
             </code>
             </example>
         </member>
@@ -1433,6 +1653,12 @@
             <returns>Response&lt;UserAuthenticatorsListResult&gt;</returns>
             <example>
             <code>
+            var request = new UserAuthenticatorsListRequest
+                .Builder()
+                .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+                .Build();
+            
+            var response = await client.User.Authenticators.List(request);
             </code>
             </example>
         </member>
@@ -1454,6 +1680,11 @@
             <returns>Response&lt;UserInviteListResult&gt;</returns>
             <example>
             <code>
+            var request = new UserInviteListRequest
+                .Builder()
+                .Build();
+            
+            var response = await client.User.Invites.List(request);
             </code>
             </example>
         </member>
@@ -1466,6 +1697,7 @@
             <returns>Response&lt;UserInviteDeleteResult&gt;</returns>
             <example>
             <code>
+            await client.User.Invites.Delete("pmc_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a");
             </code>
             </example>
         </member>
@@ -1487,6 +1719,7 @@
             <returns>Response&lt;UserProfileGetResult&gt;</returns>
             <example>
             <code>
+            var response = await client.User.Profile.GetByEmail("joe.user@pangea.cloud");
             </code>
             </example>
         </member>
@@ -1499,6 +1732,7 @@
             <returns>Response&lt;UserProfileGetResult&gt;</returns>
             <example>
             <code>
+            var response = await client.User.Profile.GetByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
             </code>
             </example>
         </member>
@@ -1511,6 +1745,17 @@
             <returns>Response&lt;UserProfileUpdateResult&gt;</returns>
             <example>
             <code>
+            Profile updatedProfile = new Profile()
+            {
+                { "country", "Argentina" }
+            };
+            
+            var request = new UserProfileUpdateRequest
+                .Builder(updatedProfile)
+                .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+                .Build();
+            
+            var response = await client.User.Profile.Update(request);
             </code>
             </example>
         </member>
@@ -1830,6 +2075,9 @@
              <summary>
             
              </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Models.FlowRestartData.Builder.Build">
+            
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Models.FlowRestartDataSMSOTP">
              <summary>
@@ -3258,7 +3506,7 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.FlowType">
             
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Provider">
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Invitation">
             
         </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder">
@@ -3273,7 +3521,7 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.FlowType">
             
         </member>
-        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Provider">
+        <member name="P:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Invitation">
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.#ctor">
@@ -3288,7 +3536,7 @@
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithFlowType(PangeaCyber.Net.AuthN.Models.FlowType[])">
             
         </member>
-        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithProvider(PangeaCyber.Net.AuthN.Models.IDProvider)">
+        <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.WithInvitation(System.String)">
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.FlowStartRequest.Builder.Build">
@@ -3682,6 +3930,9 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Disabled">
             
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Unlock">
+            
+        </member>
         <member name="T:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder">
             
         </member>
@@ -3694,6 +3945,9 @@
         <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Disabled">
             
         </member>
+        <member name="P:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Unlock">
+            
+        </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.#ctor">
             
         </member>
@@ -3704,6 +3958,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithDisabled(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.WithUnlock(System.Nullable{System.Boolean})">
             
         </member>
         <member name="M:PangeaCyber.Net.AuthN.Requests.UserUpdateRequest.Builder.Build">
@@ -3975,13 +4232,19 @@
         <member name="P:PangeaCyber.Net.BaseClient`1.ConfigID">
             
         </member>
-        <member name="F:PangeaCyber.Net.BaseClient`1.HttpClient">
+        <member name="F:PangeaCyber.Net.BaseClient`1.PangeaHttpClient">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.GeneralHttpClient">
             
         </member>
         <member name="F:PangeaCyber.Net.BaseClient`1.userAgent">
             
         </member>
         <member name="P:PangeaCyber.Net.BaseClient`1.logger">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.BaseClient`1.DefaultPostConfig">
             
         </member>
         <member name="T:PangeaCyber.Net.BaseClient`1.ClientBuilder">
@@ -4002,7 +4265,16 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String)">
             
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,System.IO.FileStream)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.FileData)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.PostConfig)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.RequestPresignedURL(System.String,PangeaCyber.Net.BaseRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.UploadPresignedURL(System.String,PangeaCyber.Net.TransferMethod,PangeaCyber.Net.FileData)">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.PollResult``1(System.String)">
@@ -4017,6 +4289,9 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String)">
             
         </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.ParseResponse``1(System.String,System.Net.Http.HttpResponseMessage,PangeaCyber.Net.ResponseHeader)">
+            
+        </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
             
         </member>
@@ -4024,6 +4299,9 @@
             
         </member>
         <member name="P:PangeaCyber.Net.BaseRequest.ConfigID">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.BaseRequest.TransferMethod">
             
         </member>
         <member name="M:PangeaCyber.Net.BaseRequest.#ctor">
@@ -4246,7 +4524,34 @@
         <member name="P:PangeaCyber.Net.Exceptions.AcceptedRequestException.RequestID">
             
         </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedRequestException.AcceptedResult">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Exceptions.AcceptedRequestException.#ctor(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AcceptedRequestException.Create(System.String,PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors})">
+            This Factory method is needed due to async read of the body
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.AcceptedResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.AcceptedStatus">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AcceptedResult.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.AcceptedStatus">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedStatus.UploadURL">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedStatus.UploadDetails">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AcceptedStatus.#ctor">
             
         </member>
         <member name="T:PangeaCyber.Net.Exceptions.AuditException">
@@ -4339,7 +4644,22 @@
         <member name="P:PangeaCyber.Net.Exceptions.ParseResultFailed.Header">
             
         </member>
+        <member name="P:PangeaCyber.Net.Exceptions.ParseResultFailed.Body">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Exceptions.ParseResultFailed.#ctor(System.String,System.Exception,PangeaCyber.Net.ResponseHeader,System.String)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Exceptions.PresignedURLException">
+            <kind>class</kind>
+            <summary>
+            ParseResultFailed
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.PresignedURLException.Body">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.PresignedURLException.#ctor(System.String,System.Exception,System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Exceptions.ProviderErrorException">
@@ -4417,6 +4737,24 @@
         <member name="M:PangeaCyber.Net.Exceptions.VerificationFailed.#ctor(System.String,System.Exception,System.String)">
             
         </member>
+        <member name="T:PangeaCyber.Net.FileData">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileData.File">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileData.Name">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileData.Details">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileData.#ctor(System.IO.FileStream,System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileData.#ctor(System.IO.FileStream,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            
+        </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanClient">
             <kind>class</kind>
             <summary>
@@ -4453,11 +4791,59 @@
              var file = new FileStream(filepath, FileMode.Open, FileAccess.Read);
             
              var request = new FileScanRequest.Builder().WithProvider("crowdstrike").WithRaw(true).WithVerbose(true).Build();
-             var response = await client.Scan(request, file);
+             var response = await client.Scan(request, file, TransferMethod.Direct);
             
              FileScanData data = response.Result.Data;
              </code>
              </example>
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.RequestUploadURL(Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.Size">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.Crc32c">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.Sha256">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest,PangeaCyber.Net.FileScan.Models.FileParams)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanClient.FileScanFullRequest.#ctor(Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileUploader">
+            <kind>class</kind>
+            <summary>
+            FileScan Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.FileScan.FileUploader.ServiceName">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.#ctor(PangeaCyber.Net.FileScan.FileUploader.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.FileUploader.Builder">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.Builder.Build">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileUploader.UploadFile(System.String,PangeaCyber.Net.TransferMethod,PangeaCyber.Net.FileData)">
+            
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanData">
             
@@ -4472,6 +4858,21 @@
             
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanData.#ctor">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.FileScan.Models.FileParams">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.Models.FileParams.Size">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.Models.FileParams.SHA256">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.Models.FileParams.CRC32C">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.Models.FileParams.#ctor(System.Int32,System.String,System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanRequest">
@@ -4489,6 +4890,12 @@
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest.Builder)">
             
         </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanRequest.Builder">
             
         </member>
@@ -4499,6 +4906,9 @@
             
         </member>
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.TransferMethod">
             
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.#ctor">
@@ -4514,6 +4924,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
             
         </member>
         <member name="T:PangeaCyber.Net.FileScan.FileScanResult">
@@ -5487,6 +5900,41 @@
         <member name="P:PangeaCyber.Net.PangeaErrors.Errors">
             
         </member>
+        <member name="T:PangeaCyber.Net.PostConfig">
+            <kind>class</kind>
+            <summary>
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.PollResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.FileData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.#ctor(PangeaCyber.Net.PostConfig.Builder)">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.PostConfig.Builder">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.PollResult">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.PostConfig.Builder.FileData">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithPollResult(System.Boolean)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.WithFileData(PangeaCyber.Net.FileData)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.PostConfig.Builder.Build">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Redact.RedactDebugReport">
             <kind>class</kind>
             <summary>
@@ -5573,11 +6021,17 @@
         <member name="T:PangeaCyber.Net.Redact.RedactClient.Builder">
             
         </member>
+        <member name="F:PangeaCyber.Net.Redact.RedactClient.Builder.ConfigID">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.#ctor(PangeaCyber.Net.Config)">
             
         </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.Build">
             
+        </member>
+        <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.WithConfigID(System.String)">
+            Add extra public key information
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactStructuredRequest">
             <kind>class</kind>
@@ -5762,10 +6216,16 @@
         <member name="P:PangeaCyber.Net.Response`1.Result">
             
         </member>
+        <member name="P:PangeaCyber.Net.Response`1.AcceptedResult">
+            
+        </member>
         <member name="P:PangeaCyber.Net.Response`1.HttpResponse">
             
         </member>
         <member name="M:PangeaCyber.Net.Response`1.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Response`1.#ctor(PangeaCyber.Net.Response{PangeaCyber.Net.PangeaErrors},PangeaCyber.Net.Exceptions.AcceptedResult)">
             
         </member>
         <member name="T:PangeaCyber.Net.ResponseHeader">
@@ -5793,6 +6253,9 @@
             
         </member>
         <member name="M:PangeaCyber.Net.ResponseHeader.#ctor">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.ResponseHeader.#ctor(PangeaCyber.Net.ResponseHeader)">
             
         </member>
         <member name="T:PangeaCyber.Net.ResponseStatus">
@@ -5858,6 +6321,27 @@
         <member name="F:PangeaCyber.Net.TestEnvironment.STG">
             
         </member>
+        <member name="T:PangeaCyber.Net.TransferMethod">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.Direct">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.Multipart">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.PostURL">
+            
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.PutURL">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.OrderedContractResolver">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.OrderedContractResolver.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+            
+        </member>
         <member name="T:PangeaCyber.Net.Utils">
             
         </member>
@@ -5888,10 +6372,10 @@
         <member name="M:PangeaCyber.Net.Utils.GetHashPrefix(System.String,System.Int32)">
             
         </member>
-        <member name="T:PangeaCyber.Net.OrderedContractResolver">
+        <member name="M:PangeaCyber.Net.Utils.GetBytes(System.UInt32)">
             
         </member>
-        <member name="M:PangeaCyber.Net.OrderedContractResolver.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+        <member name="M:PangeaCyber.Net.Utils.GetUploadFileParams(System.IO.FileStream)">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm">
@@ -5952,6 +6436,18 @@
             
         </member>
         <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.RSA4096_PSS_SHA512">
+            
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.Models.InheritedSettings">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Models.InheritedSettings.RotationGracePeriod">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.Models.ItemData">
@@ -6590,6 +7086,15 @@
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Tags">
             
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.RotationGracePeriod">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.#ctor(PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder)">
             
         </member>
@@ -6608,6 +7113,15 @@
         <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.Tags">
             
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationFrequency">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationState">
+            
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.RotationGracePeriod">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.#ctor(System.String,System.String)">
             
         </member>
@@ -6618,6 +7132,15 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithTags(PangeaCyber.Net.Vault.Models.Tags)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationFrequency(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationState(System.String)">
+            
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.FolderCreateRequest.Builder.WithRotationGracePeriod(System.String)">
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.Requests.GetRequest">
@@ -7373,6 +7896,9 @@
         <member name="P:PangeaCyber.Net.Vault.Results.GetResult.RotationGracePeriod">
             
         </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.GetResult.InheritedSettings">
+            
+        </member>
         <member name="M:PangeaCyber.Net.Vault.Results.GetResult.#ctor">
             
         </member>
@@ -7545,13 +8071,14 @@
             
         </member>
         <member name="T:PangeaCyber.Net.Vault.VaultClient">
-            
+            <kind>class</kind>
+            <summary>Vault Client</summary>
         </member>
         <member name="P:PangeaCyber.Net.Vault.VaultClient.ServiceName">
             
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.#ctor(PangeaCyber.Net.Vault.VaultClient.Builder)">
-            
+            Constructor
         </member>
         <member name="T:PangeaCyber.Net.Vault.VaultClient.Builder">
             
@@ -7563,334 +8090,530 @@
             
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.StateChange(System.String,System.Int32,PangeaCyber.Net.Vault.Models.ItemVersionState)">
-            <summary>
-            State change
-            </summary>
-            <param name="id">Item id to change</param>
-            <param name="version">Item version to change</param>
-            <param name="state">State to set to item version</param>
-            <returns>StateChangeResponse</returns>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <kind>method</kind>
+            <summary>Change the state of a specific version of a secret or key.</summary>
+            <remarks>Change state</remarks>
+            <operationid>vault_post_v1_state_change</operationid>
+            <param name="id" type="string">The item ID</param>
+            <param name="version" type="int">The item version</param>
+            <param name="state" type="Pangea.Net.Vault.Models.ItemVersionState">The new state of the item version</param>
+            <returns>Response&lt;StateChangeResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var response = await client.StateChange(
+                "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
+                1,
+                ItemVersionState.Deactivated
+            );
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Delete(System.String)">
-            <summary>
-            Delete
-            </summary>
-            <param name="id">Item id to delete</param>
-            <returns>DeleteResponse</returns>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException"></exception>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException"></exception>
+            <kind>method</kind>
+            <summary>Delete a secret, key or folder.</summary>
+            <remarks>Delete</remarks>
+            <operationid>vault_post_v1_delete</operationid>
+            <param name="id" type="string">The item ID</param>
+            <returns>Response&lt;DeleteResult&gt;</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            await client.Delete("pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5");
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Get(PangeaCyber.Net.Vault.Requests.GetRequest)">
+            <kind>method</kind>
             <summary>
-            Retrieve a secret or key, and any associated information.
+            Retrieve a secret, key or folder, and any associated information.
             </summary>
-            <param name="request">The request to the '/get' endpoint.</param>
+            <remarks>Retrieve</remarks>
+            <operationid>vault_post_v1_get</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.GetRequest">The request to the '/get' endpoint.</param>
             <returns>The response containing the retrieved information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var getResponse = await client.Get(new GetRequest.Builder("id").Build());
+            var request = new GetRequest
+                .Builder("pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5")
+                .Build();
+            var response = await client.Get(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.List(PangeaCyber.Net.Vault.Requests.ListRequest)">
+            <kind>method</kind>
             <summary>
-            Retrieve a list of secrets, keys, and folders, and their associated information.
+            Retrieve a list of secrets, keys and folders, and their associated information.
             </summary>
-            <param name="request">The request parameters to send to the 'list' endpoint.</param>
+            <remarks>List</remarks>
+            <operationid>vault_post_v1_list</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.ListRequest">The request parameters to send to the '/list' endpoint.</param>
             <returns>The response containing the list of items and their information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var listResponse = await client.List(new ListRequest.Builder().Build());
+            var request = new ListRequest.Builder().Build();
+            var response = await client.List(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Update(PangeaCyber.Net.Vault.Requests.UpdateRequest)">
+            <kind>method</kind>
             <summary>
-            Update information associated with a secret or key.
+            Update information associated with a secret, key or folder.
             </summary>
-            <param name="request">The request parameters to send to the update endpoint.</param>
+            <remarks>Update</remarks>
+            <operationid>vault_post_v1_update</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.UpdateRequest">The request parameters to send to the update endpoint.</param>
             <returns>The response containing the updated information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            UpdateResponse updateResponse = await client.Update(new UpdateRequest.Builder("id")
-                .WithFolder("updated")
-                .Build());
+            var request = new UpdateRequest
+                .Builder("pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5")
+                .WithFolder("/personal")
+                .Build();
+            var response = await client.Update(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.SecretStore(PangeaCyber.Net.Vault.Requests.SecretStoreRequest)">
+            <kind>method</kind>
             <summary>
             Store a secret in the vault service.
             </summary>
-            <param name="request">The request parameters to send to the '/secret/store' endpoint.</param>
+            <remarks>Secret store</remarks>
+            <operationid>vault_post_v1_secret_store 1</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.SecretStoreRequest">The request parameters to send to the '/secret/store' endpoint.</param>
             <returns>The response containing the stored secret information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var storeResponse = await client.SecretStore(new SecretStoreRequest.Builder("mysecret", "mysecretname")
-                .Build());
+            var request = new SecretStoreRequest
+                .Builder("12sdfgs4543qv@#%$casd", "my-very-secret-secret")
+                .Build();
+            var response = await client.SecretStore(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.PangeaTokenStore(PangeaCyber.Net.Vault.Requests.PangeaTokenStoreRequest)">
+            <kind>method</kind>
             <summary>
             Store a Pangea Token in the vault service.
             </summary>
-            <param name="request">The request parameters to send to the '/secret/store' endpoint.</param>
+            <remarks>Pangea token store</remarks>
+            <operationid>vault_post_v1_secret_store 2</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.PangeaTokenStoreRequest">The request parameters to send to the '/secret/store' endpoint.</param>
             <returns>The response containing the stored token information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var storeResponse = await client.PangeaTokenStore(new PangeaTokenStoreRequest.Builder("mytoken", "mytokenname")
-                .Build());
+            var request = new PangeaTokenStoreRequest
+                .Builder("ptv_x6fdiizbon6j3bsdvnpmwxsz2aan7fqd", "my-very-secret-secret")
+                .Build();
+            var response = await client.PangeaTokenStore(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.SecretRotate(PangeaCyber.Net.Vault.Requests.SecretRotateRequest)">
+            <kind>method</kind>
             <summary>
             Rotate a secret in the vault service.
             </summary>
-            <param name="request">The secret rotate request.</param>
+            <remarks>Secret rotate</remarks>
+            <operationid>vault_post_v1_secret_rotate 1</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.SecretRotateRequest">The secret rotate request.</param>
             <returns>The response containing the rotated secret information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var rotateResponse = await client.SecretRotate(new SecretRotateRequest.Builder("secretid", "mynewsecret")
-                .WithRotationState(ItemVersionState.Suspended)
-                .Build());
+            var request = new SecretRotateRequest.Builder(
+                    "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+                    "12sdfgs4543qv@#%$casd")
+                .WithRotationState(ItemVersionState.Deactivated)
+                .Build();
+            var response = await client.SecretRotate(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.PangeaTokenRotate(PangeaCyber.Net.Vault.Requests.PangeaTokenRotateRequest)">
+            <kind>method</kind>
             <summary>
             Rotate a Pangea Token in the vault service.
             </summary>
-            <param name="request">The Pangea token rotate request.</param>
+            <remarks>Token rotate</remarks>
+            <operationid>vault_post_v1_secret_rotate 2</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.PangeaTokenRotateRequest">The Pangea token rotate request.</param>
             <returns>The response containing the rotated token information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var rotateResponse = await client.PangeaTokenRotate(new PangeaTokenRotateRequest.Builder("tokenid", "3m")
-                .Build());
+            var request = new PangeaTokenRotateRequest
+                .Builder("pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", "3m")
+                .Build();
+            var response = await client.PangeaTokenRotate(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.SymmetricGenerate(PangeaCyber.Net.Vault.Requests.SymmetricGenerateRequest)">
+            <kind>method</kind>
             <summary>
             Generate a symmetric key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/generate' endpoint.</param>
+            <remarks>Symmetric generate</remarks>
+            <operationid>vault_post_v1_key_generate 2</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.SymmetricGenerateRequest">The request parameters to send to the '/key/generate' endpoint.</param>
             <returns>The response containing the generated symmetric key information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            SymmetricGenerateRequest generateRequest = new SymmetricGenerateRequest.Builder(SymmetricAlgorithm.AES, KeyPurpose.Encryption, "keyname")
+            SymmetricGenerateRequest request = new SymmetricGenerateRequest
+                .Builder(
+                    SymmetricAlgorithm.AES128_CFB, 
+                    KeyPurpose.Encryption, 
+                    "my-very-secret-secret")
                 .Build();
-            var generateResponse = await client.SymmetricGenerate(generateRequest);
+            var response = await client.SymmetricGenerate(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.AsymmetricGenerate(PangeaCyber.Net.Vault.Requests.AsymmetricGenerateRequest)">
+            <kind>method</kind>
             <summary>
             Generate an asymmetric key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/generate' endpoint.</param>
+            <remarks>Asymmetric generate</remarks>
+            <operationid>vault_post_v1_key_generate 1</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.AsymmetricGenerateRequest">The request parameters to send to the '/key/generate' endpoint.</param>
             <returns>The response containing the generated asymmetric key information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            AsymmetricGenerateRequest generateRequest = new AsymmetricGenerateRequest.Builder(AsymmetricAlgorithm.ED25519, KeyPurpose.Signing, "keyname")
+            AsymmetricGenerateRequest request = new AsymmetricGenerateRequest
+                .Builder(
+                    AsymmetricAlgorithm.ED25519, 
+                    KeyPurpose.Signing, 
+                    "my-very-secret-secret")
                 .Build();
-            var generateResponse = await client.AsymmetricGenerate(generateRequest);
+            var response = await client.AsymmetricGenerate(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.AsymmetricStore(PangeaCyber.Net.Vault.Requests.AsymmetricStoreRequest)">
+            <kind>method</kind>
             <summary>
             Import an asymmetric key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/store' endpoint.</param>
+            <remarks>Asymmetric store</remarks>
+            <operationid>vault_post_v1_key_store 1</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.AsymmetricStoreRequest">The request parameters to send to the '/key/store' endpoint.</param>
             <returns>The response containing the stored asymmetric key information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            AsymmetricStoreRequest storeRequest = new AsymmetricStoreRequest.Builder("encodedprivatekey", "encodedpublickey", AsymmetricAlgorithm.ED25519, KeyPurpose.Signing, "keyname")
+            AsymmetricStoreRequest request = new AsymmetricStoreRequest
+                .Builder(
+                    "encoded private key", 
+                    "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA8s5JopbEPGBylPBcMK+L5PqHMqPJW/5KYPgBHzZGncc=\n-----END PUBLIC KEY-----", 
+                    AsymmetricAlgorithm.RSA4096_OAEP_SHA256, 
+                    KeyPurpose.Signing, 
+                    "my-very-secret-secret")
                 .Build();
-            var storeResponse = await client.AsymmetricStore(storeRequest);
+            var response = await client.AsymmetricStore(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.SymmetricStore(PangeaCyber.Net.Vault.Requests.SymmetricStoreRequest)">
+            <kind>method</kind>
             <summary>
             Import a symmetric key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/store' endpoint.</param>
+            <remarks>Symmetric store</remarks>
+            <operationid>vault_post_v1_key_store 2</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.SymmetricStoreRequest">The request parameters to send to the '/key/store' endpoint.</param>
             <returns>The response containing the stored symmetric key information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            SymmetricStoreRequest storeRequest = new SymmetricStoreRequest.Builder("encodedkey", SymmetricAlgorithm.AES, KeyPurpose.Encryption, "keyname")
+            SymmetricStoreRequest request = new SymmetricStoreRequest
+                .Builder(
+                    "lJkk0gCLux+Q+rPNqLPEYw==", 
+                    SymmetricAlgorithm.AES128_CFB, 
+                    KeyPurpose.Encryption, 
+                    "my-very-secret-secret")
                 .Build();
-            var storeResponse = await client.SymmetricStore(storeRequest);
+            var response = await client.SymmetricStore(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.KeyRotate(PangeaCyber.Net.Vault.Requests.KeyRotateRequest)">
+            <kind>method</kind>
             <summary>
             Manually rotate a symmetric or asymmetric key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/rotate' endpoint.</param>
+            <remarks>Rotate</remarks>
+            <operationid>vault_post_v1_key_rotate</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.KeyRotateRequest">The request parameters to send to the '/key/rotate' endpoint.</param>
             <returns>The response containing the rotated key information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            KeyRotateRequest rotateRequest = new KeyRotateRequest.Builder("keyid", ItemVersionState.Suspended)
+            KeyRotateRequest request = new KeyRotateRequest
+                .Builder(
+                    "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+                    ItemVersionState.Deactivated)
+                .WithEncodedSymmetricKey("lJkk0gCLux+Q+rPNqLPEYw==")
                 .Build();
-            var rotateResponse = await client.KeyRotate(rotateRequest);
+            var response = await client.KeyRotate(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Encrypt(PangeaCyber.Net.Vault.Requests.EncryptRequest)">
+            <kind>method</kind>
             <summary>
             Encrypt a message using a key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/encrypt' endpoint.</param>
+            <remarks>Encrypt</remarks>
+            <operationid>vault_post_v1_key_encrypt</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.EncryptRequest">The request parameters to send to the '/key/encrypt' endpoint.</param>
             <returns>The response containing the encrypted message.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            EncryptRequest encryptRequest = new EncryptRequest.Builder("keyid", "base64message")
+            EncryptRequest request = new EncryptRequest
+                .Builder(
+                    "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+                    "lJkk0gCLux+Q+rPNqLPEYw==")
                 .WithVersion(2)
                 .Build();
-            var encryptResponse = await client.Encrypt(encryptRequest);
+            var response = await client.Encrypt(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Decrypt(PangeaCyber.Net.Vault.Requests.DecryptRequest)">
+            <kind>method</kind>
             <summary>
             Decrypt a message using a key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/decrypt' endpoint.</param>
+            <remarks>Decrypt</remarks>
+            <operationid>vault_post_v1_key_decrypt</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.DecryptRequest">The request parameters to send to the '/key/decrypt' endpoint.</param>
             <returns>The response containing the decrypted message.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            DecryptRequest decryptRequest = new DecryptRequest.Builder("keyid", "validciphertext")
+            DecryptRequest request = new DecryptRequest
+                .Builder(
+                    "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+                    "lJkk0gCLux+Q+rPNqLPEYw==")
                 .WithVersion(2)
                 .Build();
-            var decryptResponse = await client.Decrypt(decryptRequest);
+            var response = await client.Decrypt(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Sign(PangeaCyber.Net.Vault.Requests.SignRequest)">
+            <kind>method</kind>
             <summary>
             Sign a message using a key.
             </summary>
-            <param name="request">The request parameters to send to the '/key/sign' endpoint.</param>
+            <remarks>Sign</remarks>
+            <operationid>vault_post_v1_key_sign</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.SignRequest">The request parameters to send to the '/key/sign' endpoint.</param>
             <returns>The response containing the signed message.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            SignRequest signRequest = new SignRequest.Builder("keyid", "base64data2sign").Build();
-            var signResponse = await client.Sign(signRequest);
+            SignRequest request = new SignRequest
+                .Builder(
+                    "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+                    "lJkk0gCLux+Q+rPNqLPEYw==")
+                .Build();
+            var response = await client.Sign(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.JWTSign(System.String,System.String)">
+            <kind>method</kind>
             <summary>
             Sign a JSON Web Token (JWT) using a key.
             </summary>
-            <param name="id">The key ID to sign the payload.</param>
-            <param name="payload">The payload to sign.</param>
+            <remarks>JWT Sign</remarks>
+            <operationid>vault_post_v1_key_sign_jwt</operationid>
+            <param name="id" type="string">The key ID to sign the payload.</param>
+            <param name="payload" type="string">The JWT payload (in JSON).</param>
             <returns>The response containing the signed JWT.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            string payload = "{\"message\": \"message to sign\", \"data\": \"Some extra data\"}";
-            var jwtSignResponse = await client.JwtSign("keyid", payload);
+            string payload = "{\"sub\": \"1234567890\",\"name\": \"John Doe\",\"admin\": true}";
+            var response = await client
+                .JWTSign("pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", payload);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Verify(PangeaCyber.Net.Vault.Requests.VerifyRequest)">
+            <kind>method</kind>
             <summary>
             Verify a signature using a key.
             </summary>
-            <param name="request">The request containing the key ID, message, and signature to verify.</param>
+            <remarks>Verify</remarks>
+            <operationid>vault_post_v1_key_verify</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.VerifyRequest">The request containing the key ID, message, and signature to verify.</param>
             <returns>The response indicating whether the signature is valid or not.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var request = new VerifyRequest.Builder("keyid", "data2verify", "signature").Build();
-            var verifyResponse = await client.Verify(request);
+            var request = new VerifyRequest
+                .Builder(
+                    "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+                    "data2verify", 
+                    "signature")
+                .Build();
+            var response = await client.Verify(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.JWTVerify(PangeaCyber.Net.Vault.Requests.JWTVerifyRequest)">
+            <kind>method</kind>
             <summary>
             Verify the signature of a JSON Web Token (JWT).
             </summary>
-            <param name="request">The request containing the JWT signature to verify.</param>
+            <remarks>JWT Verify</remarks>
+            <operationid>vault_post_v1_key_verify_jwt</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.JWTVerifyRequest">The request containing the JWT signature to verify.</param>
             <returns>The response containing the verification result.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var request = new JWTVerifyRequest.Builder(jws).Build();
+            var request = new JWTVerifyRequest
+                .Builder("ewogICJhbGciO...")
+                .Build();
             var verifyResponse = await client.JWTVerify(request);
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.JWKGet(PangeaCyber.Net.Vault.Requests.JWKGetRequest)">
+            <kind>method</kind>
             <summary>
             Retrieve a key in JWK format.
             </summary>
-            <param name="request">The request containing the item ID and version to retrieve.</param>
+            <remarks>JWT Retrieve</remarks>
+            <operationid>vault_post_v1_get_jwt</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.JWKGetRequest">The request containing the item ID and version to retrieve.</param>
             <returns>The response containing the JWK key.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var request = new JWKGetRequest.Builder("jwkid").WithVersion(2).Builder();
-            var getResponse = await client.JWKGet(request);
+            var request = new JWKGetRequest
+                .Builder("jwkid")
+                .WithVersion("2")
+                .Build();
+            var response = await client.JWKGet(request)
             </code>
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.FolderCreate(PangeaCyber.Net.Vault.Requests.FolderCreateRequest)">
+            <kind>method</kind>
             <summary>
             Creates a folder.
             </summary>
-            <param name="request">The request parameters to send to the '/folder/create' endpoint.</param>
+            <remarks>Create</remarks>
+            <operationid>vault_post_v1_folder_create</operationid>
+            <param name="request" type="PangeaCyber.Net.Vault.Requests.FolderCreateRequest">The request parameters to send to the '/folder/create' endpoint.</param>
             <returns>The response containing the created folder information.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
             <example>
             <code>
-            var request = new FolderCreateRequest.Builder("folder_name", "parent/folder/name").Build();
-            var createResponse = await client.FolderCreate(request);
+            var request = new FolderCreateRequest
+                .Builder(
+                    "folder_name", 
+                    "parent/folder/name")
+                .Build();
+            var response = await client.FolderCreate(request);
             </code>
             </example>
+        </member>
+        <member name="T:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Provider">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Verbose">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Raw">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.TransferMethod">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.FileParams">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.#ctor(Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder)">
+            
+        </member>
+        <member name="T:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Provider">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Verbose">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Raw">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.TransferMethod">
+            
+        </member>
+        <member name="P:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.FileParams">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.Build">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithProvider(System.String)">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithVerbose(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
+            
+        </member>
+        <member name="M:Cloud.PangeaCyber.Pangea.FileScan.Requests.FileScanUploadURLRequest.Builder.WithFileParams(PangeaCyber.Net.FileScan.Models.FileParams)">
+            
         </member>
     </members>
 </doc>

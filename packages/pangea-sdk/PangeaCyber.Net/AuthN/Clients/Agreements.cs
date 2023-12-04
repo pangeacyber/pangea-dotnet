@@ -21,10 +21,11 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <example>
         /// <code>
         /// var request = new AgreementCreateRequest.Builder(
-        ///     AgreementType.eula,
+        ///     AgreementType.EULA,
         ///     "EULA_V1",
         ///     "You agree to behave yourself while logged in.")
-        ///     .Build();
+        /// .Build();
+        /// 
         /// var response = await client.Agreements.Create(request);
         /// </code>
         /// </example>
@@ -41,6 +42,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;AgreementDeleteResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new AgreementDeleteRequest.Builder(
+        ///     AgreementType.EULA, 
+        ///     "peu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+        /// .Build();
+        /// 
+        /// var response = await client.Agreements.Delete(request);
         /// </code>
         /// </example>
         public async Task<Response<AgreementDeleteResult>> Delete(AgreementDeleteRequest request)
@@ -56,6 +63,13 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;AgreementUpdateResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new AgreementUpdateRequest.Builder(
+        ///     AgreementType.EULA,
+        ///     "peu_wuk7tvtpswyjtlsx52b7yyi2l7zotv4a")
+        /// .WithText("You agree to behave yourself while logged in. Don't be evil.")
+        /// .Build();
+        /// 
+        /// var response = await client.Agreements.Update(request);
         /// </code>
         /// </example>
         public async Task<Response<AgreementUpdateResult>> Update(AgreementUpdateRequest request)
@@ -71,6 +85,9 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;AgreementListResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var request = new AgreementListRequest.Builder().Build();
+        /// 
+        /// var response = await client.Agreements.List(request);
         /// </code>
         /// </example>
         public async Task<Response<AgreementListResult>> List(AgreementListRequest request)

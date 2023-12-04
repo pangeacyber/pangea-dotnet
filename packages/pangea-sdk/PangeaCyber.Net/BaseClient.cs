@@ -1,10 +1,7 @@
 ﻿using System.Text;
-
-
 using PangeaCyber.Net.Exceptions;
 using Newtonsoft.Json;
-using System.Security.Authentication;
-using System.Security.AccessControl;
+
 
 namespace PangeaCyber.Net
 {
@@ -35,6 +32,10 @@ namespace PangeaCyber.Net
 
         ///
         private NLog.Logger logger { get; }
+
+        ///
+        private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
+
 
         ///
         public class ClientBuilder
@@ -118,7 +119,7 @@ namespace PangeaCyber.Net
         }
 
         ///
-        private async Task<HttpResponseMessage> SimplePost(string path, BaseRequest request, FileStream? fileStream = null)
+        private async Task<HttpResponseMessage> SimplePost(string path, BaseRequest request, FileData? fileData = null)
         {
             if (!string.IsNullOrEmpty(ConfigID) && string.IsNullOrEmpty(request.ConfigID))
             {
@@ -132,7 +133,7 @@ namespace PangeaCyber.Net
 
             HttpResponseMessage res;
 
-            if (fileStream == null)
+            if (fileData == null)
             {
                 res = await DoPost(path, new StringContent(requestStr, Encoding.UTF8, "application/json"));
             }
@@ -140,7 +141,7 @@ namespace PangeaCyber.Net
             {
                 if (request.TransferMethod == TransferMethod.Direct)
                 {
-                    res = await DoPostPresignedURL(path, request, fileStream);
+                    res = await FullUploadPresignedURL(path, request, fileData);
                 }
                 else
                 {
@@ -148,8 +149,8 @@ namespace PangeaCyber.Net
                     {
                         { new StringContent(requestStr, null, "application/json"), "request" }
                     };
-                    var fileContent = new StreamContent(fileStream);
-                    formData.Add(fileContent, "upload", "file.exe");
+                    var fileContent = new StreamContent(fileData.File);
+                    formData.Add(fileContent, fileData.Name, "file.exe");
                     res = await DoPost(path, formData);
                 }
             }
@@ -158,70 +159,94 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, FileStream? fileStream = null)
+        protected async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, PostConfig? postConfig = null)
         {
-            var res = await SimplePost(path, request, fileStream);
-            res = await HandleQueued(res);
+            postConfig ??= DefaultPostConfig;
+            var res = await SimplePost(path, request, postConfig.FileData);
+            res = postConfig.PollResult ? await HandleQueued(res) : res;
             return await CheckResponse<TResult>(res);
         }
 
         private async Task<Response<TResult>> DoPollResult<TResult>(string requestID)
         {
             string path = PollResultPath(requestID);
+            logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"DoPollResult\", \"path\": \"{path}\", \"Result type\": {typeof(TResult)}}}"
+            );
             HttpResponseMessage res = await DoGet(path);
             return await CheckResponse<TResult>(res);
         }
 
-        private async Task<HttpResponseMessage> DoPostPresignedURL(string path, BaseRequest request, FileStream fileStream)
+        ///
+        protected async Task<Response<AcceptedResult>> RequestPresignedURL(string path, BaseRequest request)
         {
-            AcceptedRequestException acceptedRequestException;
             var resPangea = await SimplePost(path, request);
-            try
-            {
-                await CheckResponse<Dictionary<string, object>>(resPangea);
-                throw new PresignedURLException("This should return 202", null, await resPangea.Content.ReadAsStringAsync());
-            }
-            catch (AcceptedRequestException e)
-            {
-                acceptedRequestException = e;
-            }
+            var response = await CheckResponse<AcceptedResult>(resPangea);
+            return await PollPresignedURL(response);
+        }
 
-            var acceptedResult = await PollPresignedURL(acceptedRequestException);
-
-            logger.Debug(
-                $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"url\": \"{acceptedResult.AcceptedStatus.UploadURL}\"}}"
-            );
-
+        ///
+        protected async Task UploadPresignedURL(string url, TransferMethod transferMethod, FileData fileData)
+        {
             // Create PresignedURL post
             using var formData = new MultipartFormDataContent();
-            foreach (var pair in acceptedResult.AcceptedStatus.UploadDetails)
+
+            if (fileData.Details != null && (transferMethod == TransferMethod.Direct || transferMethod == TransferMethod.PostURL))
             {
-                formData.Add(new StringContent(pair.Value, null, "application/json"), pair.Key);
+                foreach (var pair in fileData.Details)
+                {
+                    formData.Add(new StringContent(pair.Value, null, "application/json"), pair.Key);
+                }
             }
-            var fileContent = new StreamContent(fileStream);
-            formData.Add(fileContent, "file", "file.exe");
+
+            var fileContent = new StreamContent(fileData.File);
+            formData.Add(fileContent, fileData.Name, "file.exe");
 
             try
             {
-                var resPSurl = await GeneralHttpClient.PostAsync(acceptedResult.AcceptedStatus.UploadURL, formData);
+                HttpResponseMessage resPSurl;
+                if (transferMethod == TransferMethod.PutURL)
+                {
+                    resPSurl = await GeneralHttpClient.PutAsync(url, formData);
+                }
+                else
+                {
+                    resPSurl = await GeneralHttpClient.PostAsync(url, formData);
+                }
+
                 if (resPSurl.StatusCode < System.Net.HttpStatusCode.OK || resPSurl.StatusCode >= System.Net.HttpStatusCode.Ambiguous)
                 {
-                    throw new PresignedURLException("Failed post to presigned URL", null, await resPSurl.Content.ReadAsStringAsync());
+                    throw new PresignedURLException("Failed upload to presigned URL", null, await resPSurl.Content.ReadAsStringAsync());
                 }
             }
             catch (Exception e)
             {
-                throw new PresignedURLException("Failed post to presigned URL", e, null);
+                throw new PresignedURLException("Failed upload to presigned URL", e, null);
             }
-
-            return resPangea;
         }
 
-        private async Task<AcceptedResult> PollPresignedURL(AcceptedRequestException ae)
+        private async Task<HttpResponseMessage> FullUploadPresignedURL(string path, BaseRequest request, FileData fileData)
         {
-            if (ae.AcceptedResult.AcceptedStatus.UploadURL != null)
+            var acceptedResponse = await RequestPresignedURL(path, request);
+
+            // UploadURL shouldn't be null here
+            string url = acceptedResponse.Result.AcceptedStatus.UploadURL ?? "null upload url";
+
+            logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"url\": \"{url}\"}}"
+            );
+
+            fileData.Details = acceptedResponse.Result.AcceptedStatus.UploadDetails;
+            await UploadPresignedURL(url, request.TransferMethod ?? TransferMethod.PostURL, fileData);
+
+            return acceptedResponse.HttpResponse;
+        }
+
+        private async Task<Response<AcceptedResult>> PollPresignedURL(Response<AcceptedResult> response)
+        {
+            if (response.Result.AcceptedStatus.UploadURL != null)
             {
-                return ae.AcceptedResult;
+                return response;
             }
 
             logger.Info(
@@ -230,11 +255,12 @@ namespace PangeaCyber.Net
 
             int retryCounter = 1;
             long start = DateTimeOffset.Now.ToUnixTimeSeconds(), delay;
-            string requestId = ae.RequestID;
+            string requestId = response.RequestId;
             string path = PollResultPath(requestId);
-            AcceptedRequestException aeLoop = ae;
+            AcceptedRequestException? loopException = null;
+            var loopResponse = response;
 
-            while (aeLoop.AcceptedResult.AcceptedStatus.UploadURL == null && !ReachedTimeout(start))
+            while (loopResponse.Result.AcceptedStatus.UploadURL == null && !ReachedTimeout(start))
             {
                 logger.Debug(
                     $"{{\"service\": \"{serviceName}\", \"action\": \"PollPresignedURL\", \"step\": \"{retryCounter}\"}}"
@@ -242,15 +268,15 @@ namespace PangeaCyber.Net
 
                 delay = GetDelay(retryCounter, start);
                 await Task.Delay(TimeSpan.FromSeconds(delay));
-                var response = await DoGet(path);
+                var httpResponse = await DoGet(path);
                 try
                 {
-                    await CheckResponse<Dictionary<string, object>>(response);
-                    throw new PresignedURLException("This should return 202", null, await response.Content.ReadAsStringAsync());
+                    await CheckResponse<Dictionary<string, object>>(httpResponse);
+                    throw new PresignedURLException("This should return 202", null, await httpResponse.Content.ReadAsStringAsync());
                 }
                 catch (AcceptedRequestException e)
                 {
-                    aeLoop = e;
+                    loopException = e;
                 }
                 retryCounter++;
             }
@@ -259,12 +285,12 @@ namespace PangeaCyber.Net
                 $"{{\"service\": \"{serviceName}\", \"action\": \"PollPresignedURL\", \"step\": \"exit\"}}"
             );
 
-            if (ReachedTimeout(start))
+            if (ReachedTimeout(start) && loopException != null)
             {
-                throw aeLoop;
+                throw loopException;
             }
 
-            return aeLoop.AcceptedResult;
+            return loopResponse;
         }
 
         ///
@@ -280,7 +306,7 @@ namespace PangeaCyber.Net
         }
 
         ///
-        public async Task<Response<TResult>> Get<TResult>(string path)
+        protected async Task<Response<TResult>> Get<TResult>(string path)
         {
             HttpResponseMessage res = await DoGet(path);
             return await CheckResponse<TResult>(res);
@@ -388,19 +414,11 @@ namespace PangeaCyber.Net
             return new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
         }
 
-        ///
-        public async Task<Response<TResult>> CheckResponse<TResult>(HttpResponseMessage res)
+        private ResponseHeader ParseHeader(string body)
         {
-            string body = await res.Content.ReadAsStringAsync();
-            ResponseHeader header;
-
-            logger.Debug(
-                $"{{\"service\": \"{serviceName}\", \"action\": \"checkResponse\", \"response\": {body} }}"
-            );
-
             try
             {
-                header = JsonConvert.DeserializeObject<ResponseHeader>(body, GetJsonSerializerSettings()) ?? default!;
+                return JsonConvert.DeserializeObject<ResponseHeader>(body, GetJsonSerializerSettings()) ?? default!;
             }
             catch (Exception e)
             {
@@ -409,89 +427,109 @@ namespace PangeaCyber.Net
                 );
                 throw new PangeaException("Failed to parse response header", e);
             }
+        }
 
-            if (header != null && header.IsOK)
-            {
-                Response<TResult> resultResponse;
-
-                try
-                {
-                    resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(body, GetJsonSerializerSettings()) ?? default!;
-                }
-                catch (Exception e)
-                {
-                    logger.Error(
-                        $"{{\"service\": \"{serviceName}\", \"action\": \"CheckResponse\", \"message\": \"failed to parse response result\", \"exception\": \"{e}\"}}"
-                    );
-                    throw new ParseResultFailed("Failed to parse response result", e, header, body);
-                }
-
-                resultResponse.HttpResponse = res;
-                return resultResponse;
-            }
-
-            // Process Errors
-            string summary = header?.Summary ?? default!;
-            string status = header?.Status ?? default!;
-            Response<PangeaErrors> response;
-
+        ///
+        private Response<TResult> ParseResponse<TResult>(string body, HttpResponseMessage res, ResponseHeader header)
+        {
+            Response<TResult> resultResponse;
             try
             {
-                response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(body, GetJsonSerializerSettings()) ?? default!;
+                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(body, GetJsonSerializerSettings()) ?? default!;
             }
             catch (Exception e)
             {
                 logger.Error(
-                    $"{{\"service\": \"{serviceName}\", \"action\": \"CheckResponse\", \"message\": \"failed to parse response errors\", \"exception\": \"{e}\"}}"
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"ParseResponse\", \"message\": \"failed to parse response result\", \"exception\": \"{e}\"}}"
                 );
-                throw new ParseResultFailed("Failed to parse response errors", e, header ?? default!, body);
+                throw new ParseResultFailed("Failed to parse response result", e, header, body);
             }
-            response.HttpResponse = res;
 
-            if (header != null)
+            resultResponse.HttpResponse = res;
+            return resultResponse;
+        }
+
+        private Response<PangeaErrors> ParseErrors(string body, HttpResponseMessage res, ResponseHeader header)
+        {
+            try
             {
-                if (header.Status.Equals(ResponseStatus.ValidationError.ToString()))
-                {
-                    throw new ValidationException(summary, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.TooManyRequests.ToString()))
-                {
-                    throw new RateLimitException(summary, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.NoCredit.ToString()))
-                {
-                    throw new NoCreditException(summary, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.Unauthorized.ToString()))
-                {
-                    throw new UnauthorizedException(serviceName, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.ServiceNotEnabled.ToString()))
-                {
-                    throw new ServiceNotEnabledException(serviceName, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.ProviderError.ToString()))
-                {
-                    throw new ProviderErrorException(summary, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.MissingConfigIDScope.ToString()) || header.Status.Equals(ResponseStatus.MissingConfigID.ToString()))
-                {
-                    throw new MissingConfigID(serviceName, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.ServiceNotAvailable.ToString()))
-                {
-                    throw new ServiceNotAvailableException(summary, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.IPNotFound.ToString()))
-                {
-                    throw new EmbargoIPNotFoundException(summary, response);
-                }
-                else if (header.Status.Equals(ResponseStatus.Accepted.ToString()))
-                {
-                    throw await AcceptedRequestException.Create($"Summary: \"{summary}\". request_id: \"{response.RequestId}\".", response);
-                }
+                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(body, GetJsonSerializerSettings()) ?? default!;
+                response.HttpResponse = res;
+                return response;
             }
-            throw new PangeaAPIException(String.Format("{0}: {1}", status, summary), response);
+            catch (Exception e)
+            {
+                logger.Error(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"ParseErrors\", \"message\": \"failed to parse response errors\", \"exception\": \"{e}\"}}"
+                );
+                throw new ParseResultFailed("Failed to parse response errors", e, header, body);
+            }
+        }
+
+        ///
+        private async Task<Response<TResult>> CheckResponse<TResult>(HttpResponseMessage res)
+        {
+            string body = await res.Content.ReadAsStringAsync();
+            logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"checkResponse\", \"response\": {body} }}"
+            );
+
+            ResponseHeader header = ParseHeader(body);
+
+            // If AcceptedResult is a expected result, return it
+            if (header.IsOK || new Response<TResult>() is Response<AcceptedResult>)
+            {
+                var resultResponse = ParseResponse<TResult>(body, res, header);
+                return resultResponse;
+            }
+
+            // Process Errors
+            string summary = header.Summary;
+            string status = header.Status;
+            Response<PangeaErrors> response = ParseErrors(body, res, header);
+
+            if (header.Status.Equals(ResponseStatus.ValidationError.ToString()))
+            {
+                throw new ValidationException(summary, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.TooManyRequests.ToString()))
+            {
+                throw new RateLimitException(summary, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.NoCredit.ToString()))
+            {
+                throw new NoCreditException(summary, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.Unauthorized.ToString()))
+            {
+                throw new UnauthorizedException(serviceName, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.ServiceNotEnabled.ToString()))
+            {
+                throw new ServiceNotEnabledException(serviceName, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.ProviderError.ToString()))
+            {
+                throw new ProviderErrorException(summary, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.MissingConfigIDScope.ToString()) || header.Status.Equals(ResponseStatus.MissingConfigID.ToString()))
+            {
+                throw new MissingConfigID(serviceName, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.ServiceNotAvailable.ToString()))
+            {
+                throw new ServiceNotAvailableException(summary, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.IPNotFound.ToString()))
+            {
+                throw new EmbargoIPNotFoundException(summary, response);
+            }
+            else if (header.Status.Equals(ResponseStatus.Accepted.ToString()))
+            {
+                throw await AcceptedRequestException.Create($"Summary: \"{summary}\". request_id: \"{response.RequestId}\".", response);
+            }
+
+            throw new PangeaAPIException(string.Format("{0}: {1}", status, summary), response);
         }
 
     }

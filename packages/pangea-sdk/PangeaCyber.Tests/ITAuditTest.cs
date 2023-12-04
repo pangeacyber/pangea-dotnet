@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests;
 ///
 public class ITAuditTest
 {
-    private AuditClient generalClient, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
+    private AuditClient generalClient, generalClientNoQueue, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
 
     CustomEvent customEvent;
 
@@ -29,8 +29,13 @@ public class ITAuditTest
     {
         // Standard schema clients
         var generalCfg = Config.FromIntegrationEnvironment(environment);
+        var generalCfgNoQueue = Config.FromIntegrationEnvironment(environment);
+        generalCfgNoQueue.QueuedRetryEnabled = false;
         var builder = new AuditClient.Builder(generalCfg);
+
         this.generalClient = builder.Build();
+        generalClientNoQueue = new AuditClient.Builder(generalCfgNoQueue).Build();
+
         this.signClient = builder.WithPrivateKey(PRIVATE_KEY_FILE).Build();
         this.tenantIDClient = builder.WithTenantID(TENANT_ID).Build();
         this.signNtenantIDClient = builder.WithTenantID(TENANT_ID).WithPrivateKey(PRIVATE_KEY_FILE).Build();
@@ -777,4 +782,67 @@ public class ITAuditTest
         await Assert.ThrowsAsync<PangeaAPIException>(async () => await client.Log(evt, new LogConfig.Builder().Build()));
     }
 
+    [Fact]
+    public async Task TestLogBulk()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await generalClient.LogBulk(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
+
+        Assert.True(response.IsOK);
+        foreach (LogResult result in response.Result.Results)
+        {
+            Assert.Null(result.EventEnvelope);
+            Assert.NotNull(result.Hash);
+            Assert.Null(result.ConsistencyProof);
+            Assert.Null(result.MembershipProof);
+            Assert.Equal(EventVerification.NotVerified, result.ConsistencyVerification);
+            Assert.Equal(EventVerification.NotVerified, result.MembershipVerification);
+            Assert.Equal(EventVerification.NotVerified, result.SignatureVerification);
+        }
+    }
+
+    [Fact]
+    public async Task TestLogBulkAndSign()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_SIGNED_LOCAL)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_SIGNED)
+                            .Build();
+
+        var response = await signClient.LogBulk(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(true).WithVerbose(true).WithSignLocal(true).Build());
+
+        Assert.True(response.IsOK);
+        foreach (LogResult result in response.Result.Results)
+        {
+            Assert.NotNull(result.EventEnvelope);
+            Assert.NotNull(result.Hash);
+            Assert.Null(result.ConsistencyProof);
+            Assert.Null(result.MembershipProof);
+            Assert.Equal(EventVerification.NotVerified, result.ConsistencyVerification);
+            Assert.Equal(EventVerification.NotVerified, result.MembershipVerification);
+            Assert.Equal(EventVerification.Success, result.SignatureVerification);
+        }
+    }
+
+    [Fact]
+    public async Task TestLogBulkAsync()
+    {
+        StandardEvent evt = new StandardEvent.Builder(MSG_NO_SIGNED)
+                            .WithActor(ACTOR)
+                            .WithStatus(STATUS_NO_SIGNED)
+                            .Build();
+
+        var response = await generalClient.LogBulkAsync(new IEvent[] { evt, evt }, new LogConfig.Builder().WithVerify(false).Build());
+        Assert.NotNull(response.AcceptedResult);
+        Assert.NotEmpty(response.RequestId);
+        Assert.NotEmpty(response.RequestTime);
+        Assert.NotEmpty(response.ResponseTime);
+        Assert.NotEmpty(response.Status);
+        Assert.NotEmpty(response.Summary);
+
+    }
 }

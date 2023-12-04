@@ -203,4 +203,43 @@ public class ITRedactTest
         var fakeClient = new RedactClient.Builder(cfg).Build();
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactStructured(new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build()));
     }
+
+    [Fact]
+    public async Task TestRedactMultiConfig_1()
+    {
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        String ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 1);
+        var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
+
+        var response = await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());
+
+        Assert.True(response.IsOK);
+        Assert.Equal("<PERSON>... <PHONE_NUMBER>", response.Result.RedactedText);
+        Assert.Equal(2, response.Result.Count);
+        Assert.Null(response.Result.Report);
+    }
+
+    [Fact]
+    public async Task TestLogMultiConfig_2()
+    {
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        String ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 2);
+        var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
+
+        var response = await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());
+
+        Assert.True(response.IsOK);
+        Assert.Equal("<PERSON>... <PHONE_NUMBER>", response.Result.RedactedText);
+        Assert.Equal(2, response.Result.Count);
+        Assert.Null(response.Result.Report);
+    }
+
+    [Fact]
+    public async Task TestMultiConfigWithoutConfigID()
+    {
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var clientMultiConfig = new RedactClient.Builder(cfg).Build();
+
+        await Assert.ThrowsAsync<PangeaAPIException>(async () => await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build()));
+    }
 }

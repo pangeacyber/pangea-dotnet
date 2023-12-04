@@ -21,6 +21,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserProfileGetResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var response = await client.User.Profile.GetByEmail("joe.user@pangea.cloud");
         /// </code>
         /// </example>
         public async Task<Response<UserProfileGetResult>> GetByEmail(string email)
@@ -37,6 +38,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserProfileGetResult&gt;</returns>
         /// <example>
         /// <code>
+        /// var response = await client.User.Profile.GetByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
         /// </code>
         /// </example>
         public async Task<Response<UserProfileGetResult>> GetByID(string id)
@@ -53,6 +55,17 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <returns>Response&lt;UserProfileUpdateResult&gt;</returns>
         /// <example>
         /// <code>
+        /// Profile updatedProfile = new Profile()
+        /// {
+        ///     { "country", "Argentina" }
+        /// };
+        /// 
+        /// var request = new UserProfileUpdateRequest
+        ///     .Builder(updatedProfile)
+        ///     .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
+        ///     .Build();
+        /// 
+        /// var response = await client.User.Profile.Update(request);
         /// </code>
         /// </example>
         public async Task<Response<UserProfileUpdateResult>> Update(UserProfileUpdateRequest request)

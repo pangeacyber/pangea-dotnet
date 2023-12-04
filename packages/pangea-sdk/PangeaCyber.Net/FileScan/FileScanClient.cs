@@ -1,4 +1,6 @@
+using Cloud.PangeaCyber.Pangea.FileScan.Requests;
 using Newtonsoft.Json;
+using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.FileScan.Models;
 
 namespace PangeaCyber.Net.FileScan
@@ -54,17 +56,40 @@ namespace PangeaCyber.Net.FileScan
         public async Task<Response<FileScanResult>> Scan(FileScanRequest request, FileStream file)
         {
             FileScanFullRequest fullRequest;
-            if (request.TransferMethod == TransferMethod.Direct)
+            string name;
+            if (request.TransferMethod == TransferMethod.Direct || request.TransferMethod == TransferMethod.PostURL)
             {
-                var fileParams = Utils.GetFSparams(file);
+                var fileParams = Utils.GetUploadFileParams(file);
                 fullRequest = new FileScanFullRequest(request, fileParams);
+                name = "file";
             }
             else
             {
                 fullRequest = new FileScanFullRequest(request);
+                name = "upload";
             }
 
-            return await DoPost<FileScanResult>("/v1/scan", fullRequest, file);
+            var fileData = new FileData(file, name);
+            return await DoPost<FileScanResult>("/v1/scan", fullRequest, new PostConfig.Builder().WithFileData(fileData).Build());
+        }
+
+        ///
+        public async Task<Response<AcceptedResult>> RequestUploadURL(FileScanUploadURLRequest request)
+        {
+            TransferMethod tm = request.TransferMethod;
+
+            if (tm == TransferMethod.Multipart)
+            {
+                throw new PangeaException($"{tm} not supported. Use Scan() instead", null);
+            }
+
+            if ((tm == TransferMethod.Direct || tm == TransferMethod.PostURL) && request.FileParams == null)
+            {
+                throw new PangeaException($"Should set FileParams in order to use {tm} transfer method", null);
+            }
+
+            var fullRequest = new FileScanFullRequest(request);
+            return await RequestPresignedURL("/v1/scan", fullRequest);
         }
 
         ///
@@ -96,6 +121,23 @@ namespace PangeaCyber.Net.FileScan
                 Size = null;
                 Crc32c = null;
                 Sha256 = null;
+            }
+
+            ///
+            public FileScanFullRequest(FileScanUploadURLRequest request)
+            {
+                Raw = request.Raw;
+                Verbose = request.Verbose;
+                Provider = request.Provider;
+                TransferMethod = request.TransferMethod;
+
+                FileParams? fileParams = request.FileParams;
+                if (fileParams != null)
+                {
+                    Size = fileParams.Size;
+                    Crc32c = fileParams.CRC32C;
+                    Sha256 = fileParams.SHA256;
+                }
             }
 
         }
