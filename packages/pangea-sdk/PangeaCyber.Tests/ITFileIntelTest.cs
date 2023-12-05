@@ -178,7 +178,6 @@ namespace PangeaCyber.Tests.Intel
             Assert.True(response.IsOK);
 
             var data = response.Result.Data;
-            Assert.Equal("", data.Verdict);
             Assert.Equal("unknown", data.Verdict);
             Assert.Empty(data.Category);
             Assert.NotNull(response.Result.Parameters);
