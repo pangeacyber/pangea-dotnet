@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITFileIntelTest
     {
         private FileIntelClient client;
-        private TestEnvironment environment = TestEnvironment.DEV;
+        private TestEnvironment environment = TestEnvironment.STG;
 
         public ITFileIntelTest()
         {
@@ -179,9 +179,9 @@ namespace PangeaCyber.Tests.Intel
 
             var data = response.Result.Data;
             Assert.Equal("unknown", data.Verdict);
-            Assert.Empty(data.Category);
+            Assert.NotEmpty(data.Category);
             Assert.NotNull(response.Result.Parameters);
-            Assert.Null(response.Result.RawData);
+            Assert.NotNull(response.Result.RawData);
         }
 
         [Fact]
