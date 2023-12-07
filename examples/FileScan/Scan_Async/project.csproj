@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pangea.SDK" Version="2.3.0" />
+    <PackageReference Include="Pangea.SDK" Version="3.4.0" />
   </ItemGroup>
 
 </Project>

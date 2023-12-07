@@ -19,11 +19,17 @@ namespace PangeaCyber.Net.FileScan
         public bool? Raw { get; set; }
 
         ///
+        [JsonProperty("source_url")]
+        public string? SourceURL { get; set; }
+
+
+        ///
         protected FileScanRequest(Builder builder)
         {
             Provider = builder.Provider;
             Verbose = builder.Verbose;
             Raw = builder.Raw;
+            SourceURL = builder.SourceURL;
             TransferMethod = builder.TransferMethod;
         }
 
@@ -36,6 +42,7 @@ namespace PangeaCyber.Net.FileScan
             Provider = request.Provider;
             Verbose = request.Verbose;
             Raw = request.Raw;
+            SourceURL = request.SourceURL;
             TransferMethod = request.TransferMethod;
         }
 
@@ -53,7 +60,10 @@ namespace PangeaCyber.Net.FileScan
             public bool? Raw { get; private set; }
 
             ///
-            public TransferMethod TransferMethod { get; private set; } = TransferMethod.Direct;
+            public string? SourceURL { get; private set; }
+
+            ///
+            public TransferMethod TransferMethod { get; private set; } = TransferMethod.PostURL;
 
             ///
             public Builder() { }
@@ -82,6 +92,13 @@ namespace PangeaCyber.Net.FileScan
             public Builder WithRaw(bool? raw)
             {
                 Raw = raw;
+                return this;
+            }
+
+            ///
+            public Builder WithSourceURL(string url)
+            {
+                SourceURL = url;
                 return this;
             }
 
