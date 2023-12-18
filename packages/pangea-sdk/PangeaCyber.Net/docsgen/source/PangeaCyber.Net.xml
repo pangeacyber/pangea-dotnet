@@ -4536,10 +4536,28 @@
         <member name="T:PangeaCyber.Net.Exceptions.AcceptedResult">
 
         </member>
-        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.AcceptedStatus">
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.TTLMins">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.RetryCounter">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.Location">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.PostURL">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.PutURL">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Exceptions.AcceptedResult.PostFormData">
 
         </member>
         <member name="M:PangeaCyber.Net.Exceptions.AcceptedResult.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Exceptions.AcceptedResult.HasUploadURL">
 
         </member>
         <member name="T:PangeaCyber.Net.Exceptions.AcceptedStatus">
@@ -4887,6 +4905,9 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Raw">
 
         </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.SourceURL">
+
+        </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.#ctor(PangeaCyber.Net.FileScan.FileScanRequest.Builder)">
 
         </member>
@@ -4908,6 +4929,9 @@
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.Raw">
 
         </member>
+        <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.SourceURL">
+
+        </member>
         <member name="P:PangeaCyber.Net.FileScan.FileScanRequest.Builder.TransferMethod">
 
         </member>
@@ -4924,6 +4948,9 @@
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithRaw(System.Nullable{System.Boolean})">
+
+        </member>
+        <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithSourceURL(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.FileScan.FileScanRequest.Builder.WithTransferMethod(PangeaCyber.Net.TransferMethod)">
@@ -5184,7 +5211,23 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GeolocateBulk(PangeaCyber.Net.Intel.IPGeolocateBulkRequest)">
-            TODO: Docs
+            <kind>method</kind>
+            <summary>Retrieve location information associated with a list of IP addresses.</summary>
+            <remarks>Geolocate V2</remarks>
+            <operationid>ip_intel_post_v2_geolocate</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPGeolocateBulkRequest">IPGeolocateBulkRequest with the ips to be looked up</param>
+            <returns>Response&lt;IPGeolocateBulkResult&gt;</returns>
+            <example>
+            <code>
+            string[] ips = new string[1] {"93.231.182.110"};
+            var request = new IPGeolocateBulkRequest.Builder(ips)
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.GeolocateBulk(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GetDomain(PangeaCyber.Net.Intel.IPDomainRequest)">
             <kind>method</kind>
@@ -5206,7 +5249,23 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.GetDomainBulk(PangeaCyber.Net.Intel.IPDomainBulkRequest)">
-            TODO: Docs
+            <kind>method</kind>
+            <summary>Retrieve the domain names associated with a list of IP addresses.</summary>
+            <remarks>Domain V2</remarks>
+            <operationid>ip_intel_post_v2_domain</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPDomainBulkRequest">IPDomainBulkRequest with the ips to be looked up</param>
+            <returns>Response&lt;IPDomainBulkResult&gt;</returns>
+            <example>
+            <code>
+            string[] ips = new string[1] {"24.235.114.61"};
+            var request = new IPDomainBulkRequest.Builder(ips)
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.GetDomainBulk(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsVPN(PangeaCyber.Net.Intel.IPVPNRequest)">
             <kind>method</kind>
@@ -5228,7 +5287,23 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsVPNBulk(PangeaCyber.Net.Intel.IPVPNBulkRequest)">
-            TODO: Docs
+            <kind>method</kind>
+            <summary>Determine which IP addresses originate from a VPN.</summary>
+            <remarks>VPN V2</remarks>
+            <operationid>ip_intel_post_v2_vpn</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPVPNBulkRequest">IPVPNBulkRequest with the ips to be looked up</param>
+            <returns>Response&lt;IPVPNBulkResult&gt;</returns>
+            <example>
+            <code>
+            string[] ips = new string[1] {"2.56.189.74"};
+            var request = new IPVPNBulkRequest.Builder(ips)
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.IsVPNBulk(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsProxy(PangeaCyber.Net.Intel.IPProxyRequest)">
             <kind>method</kind>
@@ -5250,7 +5325,23 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.IsProxyBulk(PangeaCyber.Net.Intel.IPProxyBulkRequest)">
-            TODO: Docs
+            <kind>method</kind>
+            <summary>Determine which IP addresses originate from a proxy.</summary>
+            <remarks>Proxy V2</remarks>
+            <operationid>ip_intel_post_v2_proxy</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.IPProxyBulkRequest">IPProxyBulkRequest with the ip to be looked up</param>
+            <returns>Response&lt;IPProxyBulkResult&gt;</returns>
+            <example>
+            <code>
+            string[] ips = new string[1] {"34.201.32.172"};
+            var request = new IPProxyBulkRequest.Builder(ips)
+                .WithProvider("digitalelement")
+                .WithVerbose(false)
+                .WithRaw(false)
+                .Build();
+            var response = await client.IsProxyBulk(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.IPIntelClient.Reputation(PangeaCyber.Net.Intel.IPReputationRequest)">
             <kind>method</kind>
@@ -6314,7 +6405,22 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.BreachedBulk(PangeaCyber.Net.Intel.UserBreachedBulkRequest)">
-            TODO: Docs
+            <kind>method</kind>
+            <summary>Determine if an email address, username, phone number, or IP address was exposed in a security breach.</summary>
+            <remarks>Look up breached users V2</remarks>
+            <operationid>user_intel_post_v2_user_breached</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.UserBreachedBulkRequest">UserBreachedBulkRequest with the user data to be looked up</param>
+            <returns>Response&lt;UserBreachedBulkResult&gt;</returns>
+            <example>
+            <code>
+            string[] phoneNumbers = new string[1] {"8005550123"};
+            var request = new UserBreachedBulkRequest.Builder()
+                .WithPhoneNumbers(phoneNumbers)
+                .WithProvider("spycloud")
+                .Build();
+            var response = await client.BreachedBulk(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.Breached(PangeaCyber.Net.Intel.UserPasswordBreachedRequest)">
             <kind>method</kind>
@@ -6335,7 +6441,23 @@
             </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.BreachedBulk(PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest)">
-            TODO: Docs
+            <kind>method</kind>
+            <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
+            <remarks>Look up breached passwords V2</remarks>
+            <operationid>user_intel_post_v2_password_breached</operationid>
+            <param name="request" type="PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest">UserPasswordBreachedBulkRequest with the password hash to be looked up</param>
+            <returns>Response&lt;UserPasswordBreachedBulkResult&gt;</returns>
+            <example>
+            <code>
+            string[] hashPrefixes = new string[1] {"5baa6"};
+            var request = new UserPasswordBreachedBulkRequest.Builder(
+                HashType.SHA256,
+                hashPrefixes)
+                .WithProvider("spycloud")
+                .Build();
+            var response = await client.BreachedBulk(request);
+            </code>
+            </example>
         </member>
         <member name="M:PangeaCyber.Net.Intel.UserIntelClient.IsPasswordBreached(PangeaCyber.Net.Intel.UserPasswordBreachedResult,System.String)">
 
@@ -6773,9 +6895,6 @@
         <member name="T:PangeaCyber.Net.TransferMethod">
 
         </member>
-        <member name="F:PangeaCyber.Net.TransferMethod.Direct">
-
-        </member>
         <member name="F:PangeaCyber.Net.TransferMethod.Multipart">
 
         </member>
@@ -6783,6 +6902,9 @@
 
         </member>
         <member name="F:PangeaCyber.Net.TransferMethod.PutURL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.SourceURL">
 
         </member>
         <member name="T:PangeaCyber.Net.OrderedContractResolver">

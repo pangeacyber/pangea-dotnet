@@ -8,10 +8,6 @@ namespace PangeaCyber.Net
     public enum TransferMethod
     {
         ///
-        [EnumMember(Value = "direct")]
-        Direct,
-
-        ///
         [EnumMember(Value = "multipart")]
         Multipart,
 
@@ -22,6 +18,10 @@ namespace PangeaCyber.Net
         ///
         [EnumMember(Value = "put-url")]
         PutURL,
+
+        ///
+        [EnumMember(Value = "source_url")]
+        SourceURL,
 
     }
 }

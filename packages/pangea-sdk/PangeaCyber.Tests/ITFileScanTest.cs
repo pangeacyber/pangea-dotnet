@@ -15,7 +15,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             client = new FileScanClient.Builder(config).Build();
         }
 
-        [Fact]
+        [Fact(Timeout = 60 * 1000)]
         public async Task TestFileScan_Scan_crowdstrike()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -28,7 +28,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             Assert.NotNull(response.Result.RawData);
         }
 
-        [Fact]
+        [Fact(Timeout = 60 * 1000)]
         public async Task TestFileScan_Scan_multipart()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -41,7 +41,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             Assert.NotNull(response.Result.RawData);
         }
 
-        [Fact]
+        [Fact(Timeout = 60 * 1000)]
         public async Task TestFileScan_ScanAsync_crowdstrike()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -55,7 +55,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             });
         }
 
-        [Fact]
+        [Fact(Timeout = 60 * 1000)]
         public async Task TestFileScan_ScanAsyncPollResult_crowdstrike()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -103,7 +103,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             }
         }
 
-        [Fact]
+        [Fact(Timeout = 2 * 60 * 1000)]
         public async Task TestFileScan_Scan_reversinglabs()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -116,7 +116,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             Assert.NotNull(response.Result.RawData);
         }
 
-        [Fact]
+        [Fact(Timeout = 2 * 60 * 1000)]
         public async Task TestFileScan_ScanAsync_reversinglabs()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -130,7 +130,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             });
         }
 
-        [Fact]
+        [Fact(Timeout = 2 * 60 * 1000)]
         public async Task TestFileScan_ScanAsyncPollResult_reversinglabs()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -178,7 +178,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             }
         }
 
-        [Fact]
+        [Fact(Timeout = 2 * 60 * 1000)]
         public async Task TestFileScan_SplitUpload_Post()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -186,8 +186,8 @@ namespace PangeaCyber.Net.FileScan.Tests
 
             var urlResponse = await client.RequestUploadURL(new FileScanUploadURLRequest.Builder().WithProvider("reversinglabs").WithVerbose(true).WithRaw(true).WithTransferMethod(TransferMethod.PostURL).WithFileParams(fileParams).Build());
 
-            var fileData = new FileData(file, "file", urlResponse.Result.AcceptedStatus.UploadDetails);
-            string url = urlResponse.Result.AcceptedStatus.UploadURL ?? "undefined url";    // This case should never happen
+            var fileData = new FileData(file, "file", urlResponse.Result.PostFormData);
+            string url = urlResponse.Result.PostURL ?? "undefined url";    // This case should never happen
 
             var uploader = new FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PostURL, fileData);
@@ -221,14 +221,14 @@ namespace PangeaCyber.Net.FileScan.Tests
             }
         }
 
-        [Fact]
+        [Fact(Timeout = 2 * 60 * 1000)]
         public async Task TestFileScan_SplitUpload_Put()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
             var urlResponse = await client.RequestUploadURL(new FileScanUploadURLRequest.Builder().WithProvider("reversinglabs").WithVerbose(true).WithRaw(true).WithTransferMethod(TransferMethod.PutURL).Build());
 
             var fileData = new FileData(file, "file");
-            string url = urlResponse.Result.AcceptedStatus.UploadURL ?? "undefined url";    // This case should never happen
+            string url = urlResponse.Result.PutURL ?? "undefined url";    // This case should never happen
 
             var uploader = new FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PutURL, fileData);

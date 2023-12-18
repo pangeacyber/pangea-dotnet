@@ -139,7 +139,7 @@ namespace PangeaCyber.Net
             }
             else
             {
-                if (request.TransferMethod == TransferMethod.Direct)
+                if (request.TransferMethod == TransferMethod.PostURL)
                 {
                     res = await FullUploadPresignedURL(path, request, fileData);
                 }
@@ -191,7 +191,7 @@ namespace PangeaCyber.Net
             // Create PresignedURL post
             using var formData = new MultipartFormDataContent();
 
-            if (fileData.Details != null && (transferMethod == TransferMethod.Direct || transferMethod == TransferMethod.PostURL))
+            if (fileData.Details != null && transferMethod == TransferMethod.PostURL)
             {
                 foreach (var pair in fileData.Details)
                 {
@@ -230,13 +230,13 @@ namespace PangeaCyber.Net
             var acceptedResponse = await RequestPresignedURL(path, request);
 
             // UploadURL shouldn't be null here
-            string url = acceptedResponse.Result.AcceptedStatus.UploadURL ?? "null upload url";
+            string url = acceptedResponse.Result.PostURL ?? "null upload url";
 
             logger.Debug(
                 $"{{\"service\": \"{serviceName}\", \"action\": \"post\", \"url\": \"{url}\"}}"
             );
 
-            fileData.Details = acceptedResponse.Result.AcceptedStatus.UploadDetails;
+            fileData.Details = acceptedResponse.Result.PostFormData;
             await UploadPresignedURL(url, request.TransferMethod ?? TransferMethod.PostURL, fileData);
 
             return acceptedResponse.HttpResponse;
@@ -244,7 +244,7 @@ namespace PangeaCyber.Net
 
         private async Task<Response<AcceptedResult>> PollPresignedURL(Response<AcceptedResult> response)
         {
-            if (response.Result.AcceptedStatus.UploadURL != null)
+            if (response.Result.HasUploadURL())
             {
                 return response;
             }
@@ -260,7 +260,7 @@ namespace PangeaCyber.Net
             AcceptedRequestException? loopException = null;
             var loopResponse = response;
 
-            while (loopResponse.Result.AcceptedStatus.UploadURL == null && !ReachedTimeout(start))
+            while (!loopResponse.Result.HasUploadURL() && !ReachedTimeout(start))
             {
                 logger.Debug(
                     $"{{\"service\": \"{serviceName}\", \"action\": \"PollPresignedURL\", \"step\": \"{retryCounter}\"}}"
