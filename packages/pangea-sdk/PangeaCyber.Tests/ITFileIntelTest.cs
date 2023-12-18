@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITFileIntelTest
     {
         private FileIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.STG;
 
         public ITFileIntelTest()
         {
@@ -138,6 +138,32 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestFileReputationMaliciousBulk()
+        {
+
+            var hashes = new string[]{ "142b638c6a60b60c7f9928da4fb85a5a8e1422a9ffdc9ee49e17e56ccca9cf6e",
+                            "179e2b8a4162372cd9344b81793cbf74a9513a002eda3324e6331243f3137a63",
+                    };
+
+            // Provider, no verbose, raw data
+            var response = await client.ReputationBulk(new FileHashReputationBulkRequest.Builder(
+                hashes,
+                "sha256"
+            )
+                .WithProvider("reversinglabs")
+                .WithVerbose(false)
+                .WithRaw(true)
+                .Build());
+
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Equal(2, data.Count);
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
         public async Task TestFileReputationNotProvided()
         {
             var response = await client.Reputation(new FileHashReputationRequest.Builder(
@@ -153,6 +179,7 @@ namespace PangeaCyber.Tests.Intel
 
             var data = response.Result.Data;
             Assert.Equal("unknown", data.Verdict);
+            Assert.NotEmpty(data.Category);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
         }

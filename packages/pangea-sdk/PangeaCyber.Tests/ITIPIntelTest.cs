@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITIPIntelTest
     {
         private IPIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITIPIntelTest()
         {
@@ -132,6 +132,23 @@ namespace PangeaCyber.Tests.Intel
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestIPReputationMaliciousBulk()
+        {
+            // Provider, verbose, raw
+            var ips = new string[] { "93.231.182.110", "190.28.74.251" };
+
+            var response = await client.ReputationBulk(
+                new IPReputationBulkRequest.Builder(ips).WithProvider("crowdstrike").WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
         }
 
         [Fact]
@@ -285,6 +302,23 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestIPGeolocateMaliciousBulk()
+        {
+            // Provider, verbose, raw
+            var ips = new string[] { "93.231.182.110", "190.28.74.251" };
+
+            var response = await client.GeolocateBulk(
+                new IPGeolocateBulkRequest.Builder(ips).WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
+        }
+
+        [Fact]
         public async Task TestIPDomain_1()
         {
             // Default provider, not verbose by default, not raw by default;
@@ -410,6 +444,22 @@ namespace PangeaCyber.Tests.Intel
             Assert.NotNull(response.Result.RawData);
         }
 
+        [Fact]
+        public async Task TestIPDomainMaliciousBulk()
+        {
+            // Provider, verbose, raw
+            var ips = new string[] { "93.231.182.110", "190.28.74.251" };
+
+            var response = await client.GetDomainBulk(
+                new IPDomainBulkRequest.Builder(ips).WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
+        }
 
         [Fact]
         public async Task TestIPDomain_NotFound()
@@ -549,6 +599,23 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestIPVPNMaliciousBulk()
+        {
+            // Provider, verbose, raw
+            var ips = new string[] { "93.231.182.110", "190.28.74.251" };
+
+            var response = await client.IsVPNBulk(
+                new IPVPNBulkRequest.Builder(ips).WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
+        }
+
+        [Fact]
         public async Task TestIPVPN_NotFound()
         {
             // Provider, verbose, raw
@@ -685,6 +752,23 @@ namespace PangeaCyber.Tests.Intel
             Assert.True(data.IsProxy);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestIPProxyMaliciousBulk()
+        {
+            // Provider, verbose, raw
+            var ips = new string[] { "93.231.182.110", "190.28.74.251" };
+
+            var response = await client.IsProxyBulk(
+                new IPProxyBulkRequest.Builder(ips).WithVerbose(true).WithRaw(true).Build()
+            );
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(2, data.Count);
         }
 
         [Fact]

@@ -16,7 +16,7 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : BaseClient<DomainIntelClient.Builder>.ClientBuilder
+        public class Builder : ClientBuilder
         {
             ///
             public Builder(Config config)
@@ -46,6 +46,24 @@ namespace PangeaCyber.Net.Intel
         public Task<Response<DomainReputationResult>> Reputation(DomainReputationRequest request)
         {
             return DoPost<DomainReputationResult>("/v1/reputation", request);
+        }
+
+        /// <kind>method</kind>
+        /// <summary>Retrieve reputations for a list of domains, from a provider, including an optional detailed report.</summary>
+        /// <remarks>Reputation V2</remarks>
+        /// <operationid>domain_intel_post_v2_reputation</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.DomainReputationBulkRequest">DomainReputationBulkRequest with a domain list and provider</param>
+        /// <returns>Response&lt;DomainReputationBulkResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// string[] domains = new string[1] {"737updatesboeing.com"};
+        /// var request = new DomainReputationBulkRequest.Builder(domains).Build();
+        /// var response = await client.ReputationBulk(request);
+        /// </code>
+        /// </example>
+        public Task<Response<DomainReputationBulkResult>> ReputationBulk(DomainReputationBulkRequest request)
+        {
+            return DoPost<DomainReputationBulkResult>("/v2/reputation", request);
         }
 
         /// <kind>method</kind>

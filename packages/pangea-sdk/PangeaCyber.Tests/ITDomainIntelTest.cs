@@ -5,7 +5,7 @@ namespace PangeaCyber.Net.Intel.Tests
     public class ITDomainIntelTest
     {
         private DomainIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITDomainIntelTest()
         {
@@ -159,6 +159,28 @@ namespace PangeaCyber.Net.Intel.Tests
             Assert.Equal("malicious", data.Verdict);
             Assert.NotNull(response.Result.Parameters);
             Assert.NotNull(response.Result.RawData);
+        }
+
+        [Fact]
+        public async Task TestDomainReputationBulk()
+        {
+            string[] domains = { "pemewizubidob.cafij.co.za", "redbomb.com.tr", "kmbk8.hicp.net" };
+
+            // Provider, verbose, raw
+            var response = await client.ReputationBulk(
+                new DomainReputationBulkRequest.Builder(domains)
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(3, data.Count);
         }
 
         [Fact]

@@ -54,6 +54,27 @@ namespace PangeaCyber.Net.Intel
         }
 
         /// <kind>method</kind>
+        /// <summary>Determine if an email address, username, phone number, or IP address was exposed in a security breach.</summary>
+        /// <remarks>Look up breached users V2</remarks>
+        /// <operationid>user_intel_post_v2_user_breached</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.UserBreachedBulkRequest">UserBreachedBulkRequest with the user data to be looked up</param>
+        /// <returns>Response&lt;UserBreachedBulkResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// string[] phoneNumbers = new string[1] {"8005550123"};
+        /// var request = new UserBreachedBulkRequest.Builder()
+        ///     .WithPhoneNumbers(phoneNumbers)
+        ///     .WithProvider("spycloud")
+        ///     .Build();
+        /// var response = await client.BreachedBulk(request);
+        /// </code>
+        /// </example>
+        public Task<Response<UserBreachedBulkResult>> BreachedBulk(UserBreachedBulkRequest request)
+        {
+            return DoPost<UserBreachedBulkResult>("/v2/user/breached", request);
+        }
+
+        /// <kind>method</kind>
         /// <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
         /// <remarks>Look up breached passwords</remarks>
         /// <operationid>user_intel_post_v1_password_breached</operationid>
@@ -72,6 +93,28 @@ namespace PangeaCyber.Net.Intel
         public Task<Response<UserPasswordBreachedResult>> Breached(UserPasswordBreachedRequest request)
         {
             return DoPost<UserPasswordBreachedResult>("/v1/password/breached", request);
+        }
+
+        /// <kind>method</kind>
+        /// <summary>Determine if a password has been exposed in a security breach using a 5 character prefix of the password hash.</summary>
+        /// <remarks>Look up breached passwords V2</remarks>
+        /// <operationid>user_intel_post_v2_password_breached</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.UserPasswordBreachedBulkRequest">UserPasswordBreachedBulkRequest with the password hash to be looked up</param>
+        /// <returns>Response&lt;UserPasswordBreachedBulkResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// string[] hashPrefixes = new string[1] {"5baa6"};
+        /// var request = new UserPasswordBreachedBulkRequest.Builder(
+        ///     HashType.SHA256,
+        ///     hashPrefixes)
+        ///     .WithProvider("spycloud")
+        ///     .Build();
+        /// var response = await client.BreachedBulk(request);
+        /// </code>
+        /// </example>
+        public Task<Response<UserPasswordBreachedBulkResult>> BreachedBulk(UserPasswordBreachedBulkRequest request)
+        {
+            return DoPost<UserPasswordBreachedBulkResult>("/v2/password/breached", request);
         }
 
         ///

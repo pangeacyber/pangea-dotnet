@@ -7,11 +7,11 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         [JsonProperty("parameters")]
-        public Dictionary<string, object>? Parameters { get; set; }
+        public Dictionary<string, object>? Parameters { get; private set; }
 
         ///
         [JsonProperty("raw_data")]
-        public Dictionary<string, object>? RawData { get; set; }
+        public Dictionary<string, object>? RawData { get; private set; }
 
     }
 }

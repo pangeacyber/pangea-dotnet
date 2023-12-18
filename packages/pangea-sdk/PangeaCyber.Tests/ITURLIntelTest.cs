@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITURLIntelTest
     {
         private URLIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private TestEnvironment environment = TestEnvironment.DEV;
 
         public ITURLIntelTest()
         {
@@ -154,6 +154,28 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestUrlReputationMaliciousBulk()
+        {
+            string[] urls = {"http://113.235.101.11:54384",
+                "http://45.14.49.109:54819",
+                "https://chcial.ru/uplcv?utm_term%3Dcost%2Bto%2Brezone%2Bland"};
+            var response = await client.ReputationBulk(
+                new URLReputationBulkRequest.Builder(urls)
+                    .WithProvider("crowdstrike")
+                    .WithVerbose(true)
+                    .WithRaw(true)
+                    .Build()
+            );
+
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.NotNull(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Equal(3, data.Count);
+        }
+
+        [Fact]
         public async Task TestUrlReputationMalicious_NotFound()
         {
             var response = await client.Reputation(
@@ -172,6 +194,7 @@ namespace PangeaCyber.Tests.Intel
             Assert.NotNull(data.Category);
             Assert.NotNull(response.Result.Parameters);
         }
+
 
         [Fact]
         public async Task TestEmptyURL()

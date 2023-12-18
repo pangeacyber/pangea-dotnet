@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Intel
     {
         ///
         [JsonProperty("domain")]
-        public string Domain { get; }
+        public string? Domain { get; }
 
         ///
         protected DomainReputationRequest(Builder builder)
@@ -17,10 +17,10 @@ namespace PangeaCyber.Net.Intel
         }
 
         ///
-        public class Builder : IntelCommonRequest<DomainReputationRequest.Builder>.CommonBuilder
+        public class Builder : CommonBuilder
         {
             ///
-            public string Domain { get; set; }
+            public string? Domain { get; private set; } = null;
 
             ///
             public Builder(string domain)
