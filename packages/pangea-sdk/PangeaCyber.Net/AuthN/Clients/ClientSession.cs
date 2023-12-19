@@ -18,7 +18,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <kind>method</kind>
         /// <summary>Invalidate a session by session ID using a client token.</summary>
         /// <remarks>Invalidate Session | Client</remarks>
-        /// <operationid>authn_post_v2_client_password_change</operationid>
+        /// <operationid>authn_post_v2_client_session_invalidate</operationid>
         /// <param name="token" type="string">A user token value</param>
         /// <param name="sessionID" type="string">An ID for a token</param>
         /// <returns>Response&lt;ClientSessionInvalidateResult&gt;</returns>
