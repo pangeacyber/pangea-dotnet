@@ -1,4 +1,3 @@
-using Cloud.PangeaCyber.Pangea.FileScan.Requests;
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.FileScan.Tests
