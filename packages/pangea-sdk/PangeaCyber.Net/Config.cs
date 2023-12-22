@@ -15,7 +15,7 @@ namespace PangeaCyber.Net
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "3.5.0";
+        public const string Version = "3.5.1";
 
         #endregion Constants
 
@@ -65,7 +65,7 @@ namespace PangeaCyber.Net
         public bool QueuedRetryEnabled { get; set; } = true;
 
         /// Timeout used to poll results after 202 (in secs)
-        public long PollResultTimeoutSecs = 30;
+        public long PollResultTimeoutSecs = 120;
 
         #endregion Public Properties
 
