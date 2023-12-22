@@ -65,7 +65,7 @@ namespace PangeaCyber.Net
         public bool QueuedRetryEnabled { get; set; } = true;
 
         /// Timeout used to poll results after 202 (in secs)
-        public long PollResultTimeoutSecs = 30;
+        public long PollResultTimeoutSecs = 120;
 
         #endregion Public Properties
 
