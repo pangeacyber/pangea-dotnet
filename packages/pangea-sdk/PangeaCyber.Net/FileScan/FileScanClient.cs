@@ -1,4 +1,3 @@
-using Cloud.PangeaCyber.Pangea.FileScan.Requests;
 using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.FileScan.Models;

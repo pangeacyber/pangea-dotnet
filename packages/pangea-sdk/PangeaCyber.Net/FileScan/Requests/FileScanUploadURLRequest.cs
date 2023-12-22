@@ -1,7 +1,6 @@
-using PangeaCyber.Net;
 using PangeaCyber.Net.FileScan.Models;
 
-namespace Cloud.PangeaCyber.Pangea.FileScan.Requests
+namespace PangeaCyber.Net.FileScan
 {
     ///
     public class FileScanUploadURLRequest
