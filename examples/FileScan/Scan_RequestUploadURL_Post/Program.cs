@@ -58,7 +58,8 @@ class Program
                     // Poll result, this could raise another AcceptedRequestException if result is not ready
                     var response = await client.PollResult<FileScanResult>(urlResponse.RequestId);
                     Console.WriteLine($"Success on PollResult. Verdict: {response.Result.Data.Verdict}");
-                    if( response.Result.RawData != null ) {
+                    if (response.Result.RawData != null)
+                    {
                         Console.WriteLine("Raw provider data:");
                         foreach (KeyValuePair<string, object> kvp in response.Result.RawData)
                         {
