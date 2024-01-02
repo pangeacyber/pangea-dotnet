@@ -1,7 +1,7 @@
-﻿using System.Text;
-using PangeaCyber.Net.Exceptions;
+using System.Net.Http;
+using System.Text;
 using Newtonsoft.Json;
-
+using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
 {
@@ -26,7 +26,6 @@ namespace PangeaCyber.Net
         ///
         private readonly HttpClient GeneralHttpClient;
 
-
         ///
         private readonly string userAgent;
 
@@ -35,7 +34,6 @@ namespace PangeaCyber.Net
 
         ///
         private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
-
 
         ///
         public class ClientBuilder
@@ -90,11 +88,11 @@ namespace PangeaCyber.Net
             return logger;
         }
 
-        private async Task<HttpResponseMessage> DoPost(string path, HttpContent content)
+        private async Task<HttpResponseMessage> DoPost(string path, HttpContent content, CancellationToken cancellationToken = default)
         {
             try
             {
-                return await PangeaHttpClient.PostAsync(path, content);
+                return await PangeaHttpClient.PostAsync(path, content, cancellationToken);
             }
             catch (Exception e)
             {
@@ -119,7 +117,12 @@ namespace PangeaCyber.Net
         }
 
         ///
-        private async Task<HttpResponseMessage> SimplePost(string path, BaseRequest request, FileData? fileData = null)
+        private async Task<HttpResponseMessage> SimplePost(
+            string path,
+            BaseRequest request,
+            FileData? fileData = null,
+            CancellationToken cancellationToken = default
+        )
         {
             if (!string.IsNullOrEmpty(ConfigID) && string.IsNullOrEmpty(request.ConfigID))
             {
@@ -135,7 +138,7 @@ namespace PangeaCyber.Net
 
             if (fileData == null)
             {
-                res = await DoPost(path, new StringContent(requestStr, Encoding.UTF8, "application/json"));
+                res = await DoPost(path, new StringContent(requestStr, Encoding.UTF8, "application/json"), cancellationToken);
             }
             else
             {
@@ -159,11 +162,16 @@ namespace PangeaCyber.Net
         }
 
         ///
-        protected async Task<Response<TResult>> DoPost<TResult>(string path, BaseRequest request, PostConfig? postConfig = null)
+        protected async Task<Response<TResult>> DoPost<TResult>(
+            string path,
+            BaseRequest request,
+            PostConfig? postConfig = null,
+            CancellationToken cancellationToken = default
+        )
         {
             postConfig ??= DefaultPostConfig;
-            var res = await SimplePost(path, request, postConfig.FileData);
-            res = postConfig.PollResult ? await HandleQueued(res) : res;
+            var res = await SimplePost(path, request, postConfig.FileData, cancellationToken);
+            res = postConfig.PollResult ? await HandleQueued(res, cancellationToken) : res;
             return await CheckResponse<TResult>(res);
         }
 
@@ -313,7 +321,7 @@ namespace PangeaCyber.Net
         }
 
         ///
-        protected async Task<HttpResponseMessage> DoGet(string path)
+        protected async Task<HttpResponseMessage> DoGet(string path, CancellationToken cancellationToken = default)
         {
             logger.Debug(
                 $"{{\"service\": \"{serviceName}\", \"action\": \"get\", \"path\": \"{path}\"}}"
@@ -322,7 +330,7 @@ namespace PangeaCyber.Net
             HttpResponseMessage res;
             try
             {
-                res = await PangeaHttpClient.GetAsync(path);
+                res = await PangeaHttpClient.GetAsync(path, cancellationToken);
             }
             catch (Exception e)
             {
@@ -357,7 +365,10 @@ namespace PangeaCyber.Net
             return $"/request/{requestId}";
         }
 
-        private async Task<HttpResponseMessage> HandleQueued(HttpResponseMessage response)
+        private async Task<HttpResponseMessage> HandleQueued(
+            HttpResponseMessage response,
+            CancellationToken cancellationToken = default
+        )
         {
             if (response.StatusCode != System.Net.HttpStatusCode.Accepted ||
                 !config.QueuedRetryEnabled ||
@@ -397,8 +408,8 @@ namespace PangeaCyber.Net
                 );
 
                 delay = GetDelay(retryCounter, start);
-                await Task.Delay(TimeSpan.FromSeconds(delay));
-                response = await DoGet(path);
+                await Task.Delay(TimeSpan.FromSeconds(delay), cancellationToken);
+                response = await DoGet(path, cancellationToken);
                 retryCounter++;
             }
 
@@ -479,8 +490,7 @@ namespace PangeaCyber.Net
             // If AcceptedResult is a expected result, return it
             if (header.IsOK || new Response<TResult>() is Response<AcceptedResult>)
             {
-                var resultResponse = ParseResponse<TResult>(body, res, header);
-                return resultResponse;
+                return ParseResponse<TResult>(body, res, header);
             }
 
             // Process Errors

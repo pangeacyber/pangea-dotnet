@@ -25,6 +25,5 @@ namespace PangeaCyber.Net.Vault.Results
         public StateChangeResult()
         {
         }
-
     }
 }

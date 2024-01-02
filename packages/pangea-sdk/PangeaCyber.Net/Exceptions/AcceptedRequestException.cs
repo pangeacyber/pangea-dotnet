@@ -22,12 +22,10 @@ namespace PangeaCyber.Net.Exceptions
         public static async Task<AcceptedRequestException> Create(string message, Response<PangeaErrors> response)
         {
             var resultResponse = JsonConvert.DeserializeObject<Response<AcceptedResult>>(await response.HttpResponse.Content.ReadAsStringAsync()) ?? default!;
-            var ae = new AcceptedRequestException(message, response)
+            return new AcceptedRequestException(message, response)
             {
                 AcceptedResult = resultResponse.Result
             };
-            return ae;
         }
-
     }
 }
