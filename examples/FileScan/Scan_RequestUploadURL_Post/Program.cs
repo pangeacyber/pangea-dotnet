@@ -15,7 +15,7 @@ class Program
             // Load client config. Can create it manually with Config constructor and setters
             var clientCfg = Config.FromEnvironment("file-scan");
 
-            // To work in async it's need to set up queuedRetryEnabled to false
+            // To work in async it's necessary to set `QueuedRetryEnabled` to false.
             // When we call .scan() it will throw an AcceptedRequestException immediately if
 
             // server return a 202 response
