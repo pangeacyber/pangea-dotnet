@@ -76,7 +76,8 @@ class Program
         }
         catch (PangeaAPIException e)
         {
-            Console.WriteLine("Failed with exception: " + e.ToString());
+            Console.WriteLine("Failed with exception: " + e);
+
         }
 
 
