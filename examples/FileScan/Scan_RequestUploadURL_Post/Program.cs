@@ -16,7 +16,8 @@ class Program
             var clientCfg = Config.FromEnvironment("file-scan");
 
             // To work in async it's need to set up queuedRetryEnabled to false
-            // When we call .scan() it will return an AcceptedRequestException inmediatly if
+            // When we call .scan() it will throw an AcceptedRequestException immediately if
+
             // server return a 202 response
             clientCfg.QueuedRetryEnabled = false;
 
