@@ -21,8 +21,10 @@ class Program
 
             // If success, print sanctions
             Console.WriteLine($"Success. ISO code has {res.Result.Count} sanction/s.");
-            if(res.Result.Sanctions != null){
-                foreach(var sanc in res.Result.Sanctions){
+            if (res.Result.Sanctions != null)
+            {
+                foreach (var sanc in res.Result.Sanctions)
+                {
                     Console.WriteLine($"Sanction: {sanc.IssuingCountry} embargoed {sanc.EmbargoedCountryName} ({sanc.EmbargoedCountryISOCode}) ");
                 }
             }

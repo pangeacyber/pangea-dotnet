@@ -17,7 +17,6 @@ class Program
 
             // To work in async it's necessary to set `QueuedRetryEnabled` to false.
             // When we call .scan() it will throw an AcceptedRequestException immediately if
-
             // server returns a 202 response.
             clientCfg.QueuedRetryEnabled = false;
 

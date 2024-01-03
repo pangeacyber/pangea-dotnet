@@ -24,7 +24,8 @@ class Program
     private static AuthNClient client;
 
 
-    private static async Task<FlowUpdateResult> FlowHandlePasswordPhase(string flowID, string password) {
+    private static async Task<FlowUpdateResult> FlowHandlePasswordPhase(string flowID, string password)
+    {
         var response = await client.Flow.Update(
             new FlowUpdateRequest.Builder(
                 flowID,
@@ -34,7 +35,8 @@ class Program
         );
         return response.Result;
     }
-    private static async Task<FlowUpdateResult> FlowHandleProfilePhase(string flowID) {
+    private static async Task<FlowUpdateResult> FlowHandleProfilePhase(string flowID)
+    {
         var response = await client.Flow.Update(
             new FlowUpdateRequest.Builder(
                 flowID,
@@ -45,7 +47,8 @@ class Program
         return response.Result;
     }
 
-    private static async Task<FlowUpdateResult> FlowHandleAgreementsPhase(string flowID, FlowUpdateResult result){
+    private static async Task<FlowUpdateResult> FlowHandleAgreementsPhase(string flowID, FlowUpdateResult result)
+    {
         List<string> agreed = new List<string>();
         foreach (FlowChoiceItem flowChoiceItem in result.FlowChoices)
         {
@@ -146,7 +149,7 @@ class Program
             profileInitial["last_name"] = "User";
             profileUpdate["first_name"] = "NameUpdated";
 
-           // Create User 1
+            // Create User 1
             Console.WriteLine("Creating user...");
             var createResp1 = await UserCreateAndLogin(userEmail, passwordInitial);
             Console.WriteLine("User create success.");

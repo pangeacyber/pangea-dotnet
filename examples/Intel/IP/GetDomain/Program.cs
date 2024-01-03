@@ -27,16 +27,20 @@ class Program
             var res = await client.GetDomain(req);
 
             // If success, print result
-            if(res.Result.Data.DomainFound){
+            if (res.Result.Data.DomainFound)
+            {
                 Console.WriteLine($"Domain found: {res.Result.Data.Domain}");
-                if( res.Result.RawData != null ) {
+                if (res.Result.RawData != null)
+                {
                     Console.WriteLine("Raw provider data:");
                     foreach (KeyValuePair<string, object> kvp in res.Result.RawData)
                     {
                         Console.WriteLine("\"{0}\": {1}", kvp.Key, kvp.Value);
                     }
                 }
-            } else {
+            }
+            else
+            {
                 Console.WriteLine("Domain was not found");
             }
         }

@@ -27,16 +27,20 @@ class Program
             var res = await client.IsVPN(req);
 
             // If success, print result
-            if(res.Result.Data.IsVPN){
+            if (res.Result.Data.IsVPN)
+            {
                 Console.WriteLine("IP is VPN");
-                if( res.Result.RawData != null ) {
+                if (res.Result.RawData != null)
+                {
                     Console.WriteLine("Raw provider data:");
                     foreach (KeyValuePair<string, object> kvp in res.Result.RawData)
                     {
                         Console.WriteLine("\"{0}\": {1}", kvp.Key, kvp.Value);
                     }
                 }
-            } else {
+            }
+            else
+            {
                 Console.WriteLine("IP is not a VPN");
             }
         }

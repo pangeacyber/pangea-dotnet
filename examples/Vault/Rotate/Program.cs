@@ -29,8 +29,8 @@ class Program
             var storeResponse = await client.SecretStore(storeRequest);
 
             Console.WriteLine("Store result ID: " + storeResponse.Result.ID);
-            Console.WriteLine("Store version: " + storeResponse.Result.Version );
-            
+            Console.WriteLine("Store version: " + storeResponse.Result.Version);
+
             Console.WriteLine("Rotate...");
             var rotateRequest = new SecretRotateRequest.Builder(storeResponse.Result.ID, secretV2)
                 .WithRotationState(ItemVersionState.Suspended)
@@ -42,7 +42,7 @@ class Program
             var getRequest = new GetRequest.Builder(storeResponse.Result.ID).Build();
             var getResponse = await client.Get(getRequest);
 
-            Console.WriteLine("Get version: " + getResponse.Result.CurrentVersion?.Version );
+            Console.WriteLine("Get version: " + getResponse.Result.CurrentVersion?.Version);
             Console.WriteLine("Success!");
         }
         catch (PangeaAPIException e)

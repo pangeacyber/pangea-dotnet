@@ -12,13 +12,12 @@ class Program
     {
         try
         {
-            // Load client config. Can create it manually with Config constructor and setters
+            // Load client config. Can create it manually with Config constructor and setters.
             var clientCfg = Config.FromEnvironment("file-scan");
 
-            // To work in async it's need to set up queuedRetryEnabled to false
-            // When we call .scan() it will return an AcceptedRequestException immediately if
-
-            // server return a 202 response
+            // To work in async it's necessary to set `QueuedRetryEnabled` to false.
+            // When we call .scan() it will throw an AcceptedRequestException immediately if
+            // server returns a 202 response.
             clientCfg.QueuedRetryEnabled = false;
 
             // Create FileScanClient with builder
@@ -57,7 +56,8 @@ class Program
                     // Poll result, this could raise another AcceptedRequestException if result is not ready
                     var response = await client.PollResult<FileScanResult>(urlResponse.RequestId);
                     Console.WriteLine($"Success on PollResult. Verdict: {response.Result.Data.Verdict}");
-                    if( response.Result.RawData != null ) {
+                    if (response.Result.RawData != null)
+                    {
                         Console.WriteLine("Raw provider data:");
                         foreach (KeyValuePair<string, object> kvp in response.Result.RawData)
                         {
@@ -74,9 +74,8 @@ class Program
         }
         catch (PangeaAPIException e)
         {
-            Console.WriteLine("Failed with exception: " + e.ToString());
+            Console.WriteLine("Failed with exception: " + e);
         }
-
 
     }
 }

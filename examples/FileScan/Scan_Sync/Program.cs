@@ -41,7 +41,8 @@ class Program
 
             // If success, print result
             Console.WriteLine($"Success. Verdict: {data.Verdict}");
-            if( response.Result.RawData != null ) {
+            if (response.Result.RawData != null)
+            {
                 Console.WriteLine("Raw provider data:");
                 foreach (KeyValuePair<string, object> kvp in response.Result.RawData)
                 {
