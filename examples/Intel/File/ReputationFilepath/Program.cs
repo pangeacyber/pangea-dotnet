@@ -7,16 +7,18 @@ using System.Security.Cryptography;
 
 class Program
 {
-    public static string Bytes2Hex(byte[] bytes) {
-            StringBuilder builder = new StringBuilder();
-            foreach (byte b in bytes)
-            {
-                builder.Append(b.ToString("x2")); // Convert each byte to its hexadecimal representation
-            }
-            return builder.ToString();
+    public static string Bytes2Hex(byte[] bytes)
+    {
+        StringBuilder builder = new StringBuilder();
+        foreach (byte b in bytes)
+        {
+            builder.Append(b.ToString("x2")); // Convert each byte to its hexadecimal representation
+        }
+        return builder.ToString();
     }
 
-    public static string GetSHA256HashFromFilepath(string filepath) {
+    public static string GetSHA256HashFromFilepath(string filepath)
+    {
         using (FileStream stream = File.OpenRead(filepath))
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -52,7 +54,8 @@ class Program
 
             // If success, print result
             Console.WriteLine($"Success. Verdict: {res.Result.Data.Verdict}");
-            if( res.Result.RawData != null ) {
+            if (res.Result.RawData != null)
+            {
                 Console.WriteLine("Raw provider data:");
                 foreach (KeyValuePair<string, object> kvp in res.Result.RawData)
                 {

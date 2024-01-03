@@ -39,7 +39,8 @@ class Program
             var response = await client.LogBulk(new IEvent[] { evt1, evt2 }, new LogConfig.Builder().WithVerify(false).Build());
 
             // Check the hash result
-            foreach(var result in response.Result.Results){
+            foreach (var result in response.Result.Results)
+            {
                 Console.WriteLine("Hash: " + result.Hash);
             }
         }

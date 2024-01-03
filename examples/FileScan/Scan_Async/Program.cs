@@ -34,7 +34,8 @@ class Program
 
             string requestID = "";
 
-            try {
+            try
+            {
                 // Send request
                 Console.WriteLine("FileScan request...");
                 var response = await client.Scan(request, file);
@@ -42,7 +43,8 @@ class Program
 
                 // If success, print result
                 Console.WriteLine($"Success on first request. Verdict: {data.Verdict}");
-                if( response.Result.RawData != null ) {
+                if (response.Result.RawData != null)
+                {
                     Console.WriteLine("Raw provider data:");
                     foreach (KeyValuePair<string, object> kvp in response.Result.RawData)
                     {
@@ -50,7 +52,9 @@ class Program
                     }
                 }
                 return;
-            } catch (AcceptedRequestException e){
+            }
+            catch (AcceptedRequestException e)
+            {
                 Console.WriteLine("AcceptedRequestException received (as expected)");
                 requestID = e.RequestID;
             }
@@ -66,7 +70,8 @@ class Program
             // If success, print result
             FileScanData dataPoll = responsePoll.Result.Data;
             Console.WriteLine($"Success on PollResult. Verdict: {dataPoll.Verdict}");
-            if( responsePoll.Result.RawData != null ) {
+            if (responsePoll.Result.RawData != null)
+            {
                 Console.WriteLine("Raw provider data:");
                 foreach (KeyValuePair<string, object> kvp in responsePoll.Result.RawData)
                 {
