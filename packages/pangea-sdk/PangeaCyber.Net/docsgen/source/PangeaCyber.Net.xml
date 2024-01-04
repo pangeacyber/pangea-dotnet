@@ -4,6 +4,27 @@
         <name>PangeaCyber.Net</name>
     </assembly>
     <members>
+        <member name="T:PangeaCyber.Net.AttachedFile">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AttachedFile.#ctor(System.String,System.String,System.Byte[])">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AttachedFile.Filename">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AttachedFile.ContentType">
+
+        </member>
+        <member name="P:PangeaCyber.Net.AttachedFile.FileContent">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AttachedFile.Save(System.String,System.String)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.AttachedFile.Save(System.String)">
+
+        </member>
         <member name="T:PangeaCyber.Net.Audit.arweave.ArweaveRequest">
             <kind>class</kind>
             <summary>
@@ -4283,16 +4304,22 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.PollResult(System.String)">
 
         </member>
+        <member name="M:PangeaCyber.Net.BaseClient`1.DownloadFile(System.String)">
+
+        </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.Get``1(System.String)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.ParseResponse``1(System.String,System.Net.Http.HttpResponseMessage,PangeaCyber.Net.ResponseHeader)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.ParseResponse``1(PangeaCyber.Net.InternalHttpResponse,PangeaCyber.Net.ResponseHeader)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.CheckResponse``1(System.Net.Http.HttpResponseMessage)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.InternalHttpResponse.From(System.Net.Http.HttpResponseMessage)">
 
         </member>
         <member name="T:PangeaCyber.Net.BaseRequest">
@@ -6659,7 +6686,7 @@
 
         </member>
         <member name="M:PangeaCyber.Net.Redact.RedactClient.Builder.WithConfigID(System.String)">
-            Add extra public key information
+            Set ConfigID
         </member>
         <member name="T:PangeaCyber.Net.Redact.RedactStructuredRequest">
             <kind>class</kind>
@@ -6850,6 +6877,9 @@
         <member name="P:PangeaCyber.Net.Response`1.HttpResponse">
 
         </member>
+        <member name="F:PangeaCyber.Net.Response`1.AttachedFiles">
+
+        </member>
         <member name="M:PangeaCyber.Net.Response`1.#ctor">
 
         </member>
@@ -6934,6 +6964,1273 @@
         <member name="F:PangeaCyber.Net.ResponseStatus.Accepted">
 
         </member>
+        <member name="T:PangeaCyber.Net.Store.StoreFileUploader">
+            <kind>class</kind>
+            <summary>
+            FileScan Client
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.StoreFileUploader.ServiceName">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreFileUploader.#ctor(PangeaCyber.Net.Store.StoreFileUploader.Builder)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.StoreFileUploader.Builder">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreFileUploader.Builder.#ctor">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreFileUploader.Builder.Build">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreFileUploader.UploadFile(System.String,PangeaCyber.Net.TransferMethod,PangeaCyber.Net.FileData)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ArchiveFormat">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ArchiveFormat.Tar">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ArchiveFormat.Zip">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.Authenticator">
+            <summary>
+            Represents an authenticator.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.Authenticator.AuthType">
+            <summary>
+            Gets or sets the authenticator type.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.Authenticator.AuthContext">
+            <summary>
+            Gets or sets the authenticator context.
+            </summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Store.Models.Authenticator.#ctor(PangeaCyber.Net.Store.Models.AuthenticatorType,System.String)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.AuthenticatorType">
+            <summary>
+            Represents the types of authenticators.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.AuthenticatorType.EmailOtp">
+            <summary>
+            Email One-Time Password authenticator type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.AuthenticatorType.Password">
+            <summary>
+            Password authenticator type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.AuthenticatorType.SmsOtp">
+            <summary>
+            SMS One-Time Password authenticator type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.AuthenticatorType.Social">
+            <summary>
+            Social authenticator type.
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.FileFormat">
+            <summary>
+            Represents the file format.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.F3G2">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.F3GP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.F3MF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.F7Z">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.A">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AAC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ACCDB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AIFF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AMF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AMR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.APE">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ASF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ATOM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AU">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AVI">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.AVIF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.BIN">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.BMP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.BPG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.BZ2">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.CAB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.CLASS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.CPIO">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.CRX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.CSV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DAE">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DBF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DCM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DEB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DJVU">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DLL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DOC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DOCX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.DWG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.EOT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.EPUB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.EXE">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.FDF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.FITS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.FLAC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.FLV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GBR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GEOJSON">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GIF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GLB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GML">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GPX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.GZ">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.HAR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.HDR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.HEIC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.HEIF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.HTML">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ICNS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ICO">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ICS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ISO">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JAR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JP2">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JPF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JPG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JPM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JSON">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JXL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.JXR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.KML">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.LIT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.LNK">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.LUA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.LZ">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.M3U">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.M4A">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MACHO">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MDB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MIDI">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MKV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MOBI">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MOV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MP3">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MP4">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MPC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MPEG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MQV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MRC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MSG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.MSI">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.NDJSON">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.NES">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ODC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ODF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ODG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ODP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ODS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ODT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OGA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OGV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OTF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OTG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OTP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OTS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OTT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.OWL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.P7S">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PAT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PDF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PHP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PNG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PPT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PPTX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PSD">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PUB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.PY">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.QCP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.RAR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.RMVB">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.RPM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.RSS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.RTF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SHP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SHX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SO">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SQLITE">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SRT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SVG">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SWF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.SXC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TAR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TCL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TCX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TIFF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TORRENT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TSV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TTC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TTF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.TXT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.VCF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.VOC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.VTT">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WARC">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WASM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WAV">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WEBM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WEBP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WOFF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.WOFF2">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.X3D">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XAR">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XCF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XFDF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XLF">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XLS">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XLSX">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XML">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XPM">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.XZ">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ZIP">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.FileFormat.ZST">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.FilterList">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterList.Folder">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.Models.FilterList.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.FilterShareLinkList">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.StoragePoolID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.Target">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.LinkType">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.Link">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.CreatedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.ExpireAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.LastAccessedAt">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.AccessCount">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FilterShareLinkList.MaxAccessCount">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.Models.FilterShareLinkList.#ctor">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ItemData">
+            <summary>
+            Represents item data.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.ID">
+            <summary>
+            Gets or sets the item ID.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.Type">
+            <summary>
+            Gets or sets the item type.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.Name">
+            <summary>
+            Gets or sets the item name.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.CreatedAt">
+            <summary>
+            Gets or sets the creation timestamp.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.UpdatedAt">
+            <summary>
+            Gets or sets the last update timestamp.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.Size">
+            <summary>
+            Gets or sets the item size (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.BillableSize">
+            <summary>
+            Gets or sets the billable size (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.Location">
+            <summary>
+            Gets or sets the item location (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.Tags">
+            <summary>
+            Gets or sets the item tags (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.Metadata">
+            <summary>
+            Gets or sets the item metadata (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.MD5">
+            <summary>
+            Gets or sets the MD5 hash (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.SHA256">
+            <summary>
+            Gets or sets the SHA256 hash (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.SHA512">
+            <summary>
+            Gets or sets the SHA512 hash (optional).
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ItemData.ParentID">
+            <summary>
+            Gets or sets the parent ID (optional).
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ItemOrder">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrder.Asc">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrder.Desc">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ItemOrderBy">
+            <summary>
+            Represents the order by options for items.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrderBy.Id">
+            <summary>
+            Order by item ID.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrderBy.CreatedAt">
+            <summary>
+            Order by item creation timestamp.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrderBy.Name">
+            <summary>
+            Order by item name.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrderBy.ParentId">
+            <summary>
+            Order by parent item ID.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrderBy.Type">
+            <summary>
+            Order by item type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ItemOrderBy.UpdatedAt">
+            <summary>
+            Order by item last update timestamp.
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.LinkType">
+            <summary>
+            Represents the types of links.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.LinkType.Upload">
+            <summary>
+            Upload link type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.LinkType.Download">
+            <summary>
+            Download link type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.LinkType.All">
+            <summary>
+            All link type.
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.Metadata">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ShareLinkCreateItem">
+            <summary>
+            Represents an item for creating a share link.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkCreateItem.Targets">
+            <summary>
+            Gets or sets the list of targets.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkCreateItem.LinkType">
+            <summary>
+            Gets or sets the link type.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkCreateItem.ExpiresAt">
+            <summary>
+            Gets or sets the expiration date of the link.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkCreateItem.MaxAccessCount">
+            <summary>
+            Gets or sets the maximum access count.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkCreateItem.Authenticators">
+            <summary>
+            Gets or sets the list of authenticators.
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ShareLinkItem">
+            <summary>
+            Represents a share link item.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.ID">
+            <summary>
+            Gets or sets the ID of the share link.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.StoragePoolID">
+            <summary>
+            Gets or sets the ID of the storage pool.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.Targets">
+            <summary>
+            Gets or sets the list of targets.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.LinkType">
+            <summary>
+            Gets or sets the link type.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.AccessCount">
+            <summary>
+            Gets or sets the access count.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.MaxAccessCount">
+            <summary>
+            Gets or sets the maximum access count.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.CreatedAt">
+            <summary>
+            Gets or sets the creation date of the share link.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.ExpiresAt">
+            <summary>
+            Gets or sets the expiration date of the share link.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.LastAccessedAt">
+            <summary>
+            Gets or sets the last accessed date of the share link.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.Authenticators">
+            <summary>
+            Gets or sets the list of authenticators.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.ShareLinkItem.Link">
+            <summary>
+            Gets or sets the share link.
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.ShareLinkOrderBy">
+            <summary>
+            Represents the order by options for share links.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.Id">
+            <summary>
+            Order by share link ID.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.StoragePoolId">
+            <summary>
+            Order by storage pool ID.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.Target">
+            <summary>
+            Order by share link target.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.LinkType">
+            <summary>
+            Order by share link type.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.AccessCount">
+            <summary>
+            Order by access count.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.MaxAccessCount">
+            <summary>
+            Order by maximum access count.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.CreatedAt">
+            <summary>
+            Order by share link creation timestamp.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.ExpiresAt">
+            <summary>
+            Order by share link expiration timestamp.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.LastAccessedAt">
+            <summary>
+            Order by last accessed timestamp.
+            </summary>
+        </member>
+        <member name="F:PangeaCyber.Net.Store.Models.ShareLinkOrderBy.Link">
+            <summary>
+            Order by share link URL.
+            </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.Tags">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Models.FolderCreateRequest">
+            <summary>
+            Represents a folder creation request.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FolderCreateRequest.Name">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FolderCreateRequest.Metadata">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FolderCreateRequest.ParentId">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FolderCreateRequest.Path">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Models.FolderCreateRequest.Tags">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.DeleteRequest">
+            <summary>
+            Represents a delete request.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.DeleteRequest.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.DeleteRequest.Force">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.DeleteRequest.Path">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.GetArchiveRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.GetArchiveRequest.IDs">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.GetArchiveRequest.Format">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.GetArchiveRequest.RequestTransferMethod">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.GetRequest">
+            <summary>
+            Represents a get request.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.GetRequest.Id">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.GetRequest.Path">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.GetRequest.RequestTransferMethod">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.ListRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ListRequest.Filter">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ListRequest.Last">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ListRequest.Order">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ListRequest.OrderBy">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ListRequest.Size">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.PutRequest">
+            <summary>
+            Represents a put request.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.Name">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.Format">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.Metadata">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.MimeType">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.ParentId">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.Path">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.CRC32c">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.MD5">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.SHA1">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.SHA256">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.SHA512">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.Size">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.Tags">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.PutRequest.RequestTransferMethod">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.ShareLinkCreateRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkCreateRequest.Links">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.ShareLinkDeleteRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkDeleteRequest.IDs">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.ShareLinkGetRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkGetRequest.ID">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.ShareLinkListRequest">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkListRequest.Filter">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkListRequest.Last">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkListRequest.Order">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkListRequest.OrderBy">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.ShareLinkListRequest.Size">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Requests.UpdateRequest">
+            <summary>
+            Represents an update request.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.ID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.Path">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.AddMetadata">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.RemoveMetadata">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.Metadata">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.AddTags">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.RemoveTags">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.Tags">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.ParentID">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Requests.UpdateRequest.UpdatedAt">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.DeleteResult">
+            <summary>
+            Represents the result of a delete operation.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.DeleteResult.Count">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.FolderCreateResult">
+            <summary>
+            Represents the result of a folder creation operation.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.FolderCreateResult.Object">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.GetArchiveResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.GetArchiveResult.DestUrl">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.GetArchiveResult.Count">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.GetResult">
+            <summary>
+            Represents the result of a get operation.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.GetResult.Object">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.GetResult.DestUrl">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.ListResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ListResult.Count">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ListResult.Last">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ListResult.Objects">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.PutResult">
+            <summary>
+            Represents the result of a put operation.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.PutResult.Object">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.ShareLinkCreateResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ShareLinkCreateResult.ShareLinkObjects">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.ShareLinkDeleteResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ShareLinkDeleteResult.ShareLinkObjects">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.ShareLinkGetResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ShareLinkGetResult.ShareLinkObject">
+             <summary>
+
+             </summary>
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.ShareLinkListResult">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ShareLinkListResult.Count">
+
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.ShareLinkListResult.ShareLinkObjects">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.Results.UpdateResult">
+            <summary>
+            Represents the result of an update operation.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.Results.UpdateResult.Object">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.StoreClient">
+            <kind>class</kind>
+            <summary>
+            Store Client
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Store.StoreClient.ServiceName">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.#ctor(PangeaCyber.Net.Store.StoreClient.Builder)">
+            Constructor
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.Delete(PangeaCyber.Net.Store.Requests.DeleteRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.FolderCreate(PangeaCyber.Net.Store.Models.FolderCreateRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.Get(PangeaCyber.Net.Store.Requests.GetRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.GetArchive(PangeaCyber.Net.Store.Requests.GetArchiveRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.Update(PangeaCyber.Net.Store.Requests.UpdateRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.List(PangeaCyber.Net.Store.Requests.ListRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.Put(PangeaCyber.Net.Store.Requests.PutRequest,System.IO.FileStream)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.RequestUploadURL(PangeaCyber.Net.Store.Requests.PutRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.ShareLinkCreate(PangeaCyber.Net.Store.Requests.ShareLinkCreateRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.ShareLinkGet(PangeaCyber.Net.Store.Requests.ShareLinkGetRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.ShareLinkList(PangeaCyber.Net.Store.Requests.ShareLinkListRequest)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.ShareLinkDelete(PangeaCyber.Net.Store.Requests.ShareLinkDeleteRequest)">
+
+        </member>
+        <member name="T:PangeaCyber.Net.Store.StoreClient.Builder">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Store.StoreClient.Builder.ConfigID">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.Builder.#ctor(PangeaCyber.Net.Config)">
+
+        </member>
+        <member name="M:PangeaCyber.Net.Store.StoreClient.Builder.Build">
+
+        </member>
         <member name="T:PangeaCyber.Net.TestEnvironment">
             <kind>enum</kind>
             <summary>
@@ -6962,6 +8259,9 @@
 
         </member>
         <member name="F:PangeaCyber.Net.TransferMethod.SourceURL">
+
+        </member>
+        <member name="F:PangeaCyber.Net.TransferMethod.DestURL">
 
         </member>
         <member name="T:PangeaCyber.Net.OrderedContractResolver">

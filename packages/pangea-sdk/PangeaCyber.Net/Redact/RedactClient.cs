@@ -83,7 +83,7 @@ namespace PangeaCyber.Net.Redact
                 return new RedactClient(this);
             }
 
-            /// Add extra public key information
+            /// Set ConfigID
             public Builder WithConfigID(string configID)
             {
                 ConfigID = configID;

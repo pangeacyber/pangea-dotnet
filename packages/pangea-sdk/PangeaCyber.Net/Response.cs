@@ -1,5 +1,4 @@
-﻿using System.Security.AccessControl;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
@@ -19,6 +18,9 @@ namespace PangeaCyber.Net
 
         ///
         public HttpResponseMessage HttpResponse { get; set; } = default!;
+
+        ///
+        public List<AttachedFile> AttachedFiles = new();
 
         ///
         public Response()

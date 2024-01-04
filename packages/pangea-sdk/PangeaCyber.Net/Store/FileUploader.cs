@@ -1,18 +1,18 @@
 using PangeaCyber.Net.Exceptions;
 
-namespace PangeaCyber.Net.FileScan
+namespace PangeaCyber.Net.Store
 {
     /// <kind>class</kind>
     /// <summary>
     /// FileScan Client
     /// </summary>
-    public class FileUploader : BaseClient<FileUploader.Builder>
+    public class StoreFileUploader : BaseClient<StoreFileUploader.Builder>
     {
         ///
-        public static readonly string ServiceName = "FileScanFileUploader";
+        public static readonly string ServiceName = "StoreFileUploader";
 
         ///
-        public FileUploader(Builder builder) : base(builder, ServiceName)
+        public StoreFileUploader(Builder builder) : base(builder, ServiceName)
         {
         }
 
@@ -25,9 +25,9 @@ namespace PangeaCyber.Net.FileScan
             }
 
             ///
-            public FileUploader Build()
+            public StoreFileUploader Build()
             {
-                return new FileUploader(this);
+                return new StoreFileUploader(this);
             }
         }
 
@@ -36,7 +36,7 @@ namespace PangeaCyber.Net.FileScan
         {
             if (transferMethod == TransferMethod.Multipart)
             {
-                throw new PangeaException($"{transferMethod} not supported. Use Scan() instead", null);
+                throw new PangeaException($"{transferMethod} not supported. Use Put() instead", null);
             }
 
             if (transferMethod == TransferMethod.PostURL && fileData.Details == null)
