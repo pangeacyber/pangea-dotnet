@@ -8,13 +8,6 @@
 This package helps .NET developers to use Pangea's security services in their applications. In order to use the services, developers need to [register](https://login.aws.us.pangea.cloud/signup) for a Pangea account and obtain an API token.
 
 
-## Supported Services
-
-- Redact
-- Secure Audit Log
-- Vault
-
-
 ## Links
 
 - [Pangea Registration](https://login.aws.us.pangea.cloud/signup)
