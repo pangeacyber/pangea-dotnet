@@ -1,16 +1,17 @@
+using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
-using PangeaCyber.Net.Vault.Requests;
 using PangeaCyber.Net.Vault.Models;
+using PangeaCyber.Net.Vault.Requests;
 
 namespace PangeaCyber.Net.Vault.Tests
 {
     public class ITVaultTest
     {
-        VaultClient client;
-        TestEnvironment environment = TestEnvironment.LVE;
-        string time;
-        Random random;
-        const string actor = "CsharpSDKTest";
+        private readonly VaultClient client;
+        private readonly TestEnvironment environment = TestEnvironment.LVE;
+        private readonly string time;
+        private readonly Random random;
+        private const string actor = "CsharpSDKTest";
 
         public ITVaultTest()
         {
@@ -222,7 +223,7 @@ namespace PangeaCyber.Net.Vault.Tests
             catch (PangeaAPIException e)
             {
                 Console.WriteLine(e.ToString());
-                Assert.True(false);
+                Assert.Fail();
             }
         }
 
@@ -248,7 +249,7 @@ namespace PangeaCyber.Net.Vault.Tests
             catch (PangeaAPIException e)
             {
                 Console.WriteLine(e.ToString());
-                Assert.True(false);
+                Assert.Fail();
             }
         }
 
@@ -273,7 +274,7 @@ namespace PangeaCyber.Net.Vault.Tests
             catch (PangeaAPIException e)
             {
                 Console.WriteLine(e.ToString());
-                Assert.True(false);
+                Assert.Fail();
             }
         }
 
@@ -297,7 +298,7 @@ namespace PangeaCyber.Net.Vault.Tests
             catch (PangeaAPIException e)
             {
                 Console.WriteLine(e.ToString());
-                Assert.True(false);
+                Assert.Fail();
             }
         }
 
@@ -335,15 +336,14 @@ namespace PangeaCyber.Net.Vault.Tests
                 Assert.Equal(storeResponse.Result.ID, stateChangeResponse.Result.ID);
                 Assert.Equal("deactivated", stateChangeResponse.Result.State);
 
-                var getReponse2 = await client.Get(new GetRequest.Builder(storeResponse.Result.ID).Build());
-                Assert.NotNull(getReponse2.Result.CurrentVersion?.Secret);
+                var getResponse2 = await client.Get(new GetRequest.Builder(storeResponse.Result.ID).Build());
+                Assert.NotNull(getResponse2.Result.CurrentVersion?.Secret);
             }
             catch (PangeaAPIException e)
             {
                 Console.WriteLine(e.ToString());
-                Assert.True(false);
+                Assert.Fail();
             }
-
         }
 
         [Fact]
@@ -397,9 +397,42 @@ namespace PangeaCyber.Net.Vault.Tests
             catch (PangeaAPIException e)
             {
                 Console.WriteLine(e.ToString());
-                Assert.True(false);
+                Assert.Fail();
             }
         }
 
+        [Fact]
+        public async Task TestEncryptStructured()
+        {
+            // Test data.
+            const string payload = /*lang=json*/ @"
+                { field1: [1, 2, ""true"", ""false""], field2: ""data2"" }
+            ";
+            var data = JsonConvert.DeserializeObject(payload);
+            Assert.NotNull(data);
+
+            // Generate an encryption key.
+            var generateRequest = new SymmetricGenerateRequest.Builder(
+                SymmetricAlgorithm.AES256_CFB,
+                KeyPurpose.Encryption,
+                GetName()
+            ).Build();
+            var generateResp = await client.SymmetricGenerate(generateRequest);
+            Assert.NotNull(generateResp);
+            var key = generateResp.Result.ID;
+            var request = new EncryptStructuredRequest<object>(key, data, "$.field1[2:4]");
+
+            // Encrypt.
+            var encrypted = await client.EncryptStructured(request);
+            Assert.NotNull(encrypted);
+            Assert.Equal(key, encrypted.Result.ID);
+
+            // Decrypt what we encrypted.
+            request.StructuredData = encrypted.Result.StructuredData;
+            var decrypted = await client.DecryptStructured(request);
+            Assert.NotNull(decrypted);
+            Assert.Equal(key, decrypted.Result.ID);
+            Assert.NotNull(decrypted.Result.StructuredData);
+        }
     }
 }

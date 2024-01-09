@@ -20,8 +20,7 @@
 
   <!-- Build XML documentation for all combinations of target framework x configuration -->
   <PropertyGroup>
-    <DocumentationFile>.\docsgen\source\$(AssemblyName).xml
-    </DocumentationFile>
+    <DocumentationFile>.\docsgen\source\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
@@ -34,27 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="AuditLog\" />
-    <None Remove="Newtonsoft.Json" />
-    <None Remove="Exceptions\" />
-    <None Remove="Utils\" />
-    <None Remove="AuditLog\Models\" />
-    <None Include="..\README.md" Pack="true" PackagePath="" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="AuditLog\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Utils\" />
-    <Folder Include="AuditLog\Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.2.1" />
     <PackageReference Include="Crc32.NET" Version="1.2.0" />
     <PackageReference Include="HttpMultipartParser" Version="5.1.0" />
     <PackageReference Include="MimeKit" Version="4.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>

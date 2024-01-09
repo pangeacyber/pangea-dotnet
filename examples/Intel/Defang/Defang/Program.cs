@@ -19,7 +19,7 @@ class Program
             // Create DomainIntelClient with builder
             DomainIntelClient domainClient = new DomainIntelClient.Builder(clientCfg).Build();
 
-            // Set url to analyze 
+            // Set url to analyze
             string url = "http://113.235.101.11:54384";
 
             // Create request
@@ -32,9 +32,12 @@ class Program
             // Send request
             var urlRes = await urlClient.Reputation(urlReq);
 
-            if(urlRes.Result.Data.Verdict.Equals("malicious")) {
+            if (urlRes.Result.Data.Verdict.Equals("malicious"))
+            {
                 Console.WriteLine($"Defanged URL: {DefangURL(url)}");
-            } else {
+            }
+            else
+            {
                 string domain = GetDomain(url);
 
                 // Create request
@@ -47,9 +50,12 @@ class Program
                 // Send request
                 var domainRes = await domainClient.Reputation(domainReq);
 
-                if(domainRes.Result.Data.Verdict.Equals("malicious")) {
+                if (domainRes.Result.Data.Verdict.Equals("malicious"))
+                {
                     Console.WriteLine($"Defanged URL: {DefangURL(url)}");
-                } else {
+                }
+                else
+                {
                     Console.WriteLine($"URL {url} seems to be safe");
                 }
             }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
@@ -33,6 +33,5 @@ namespace PangeaCyber.Net
             AcceptedResult = acceptedResult;
             HttpResponse = response.HttpResponse;
         }
-
     }
 }

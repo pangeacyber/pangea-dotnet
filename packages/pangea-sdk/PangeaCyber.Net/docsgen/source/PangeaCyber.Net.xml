@@ -4286,10 +4286,10 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.#ctor(PangeaCyber.Net.BaseClient{`0}.ClientBuilder,System.String)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.FileData)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.SimplePost(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.FileData,System.Threading.CancellationToken)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.PostConfig)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoPost``1(System.String,PangeaCyber.Net.BaseRequest,PangeaCyber.Net.PostConfig,System.Threading.CancellationToken)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.RequestPresignedURL(System.String,PangeaCyber.Net.BaseRequest)">
@@ -4310,7 +4310,7 @@
         <member name="M:PangeaCyber.Net.BaseClient`1.Get``1(System.String)">
 
         </member>
-        <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String)">
+        <member name="M:PangeaCyber.Net.BaseClient`1.DoGet(System.String,System.Threading.CancellationToken)">
 
         </member>
         <member name="M:PangeaCyber.Net.BaseClient`1.ParseResponse``1(PangeaCyber.Net.InternalHttpResponse,PangeaCyber.Net.ResponseHeader)">
@@ -4656,7 +4656,7 @@
         <member name="T:PangeaCyber.Net.Exceptions.PangeaAPIException">
             <kind>class</kind>
             <summary>
-            NoCreditException
+            Pangea API exception.
             </summary>
         </member>
         <member name="P:PangeaCyber.Net.Exceptions.PangeaAPIException.Response">
@@ -8996,6 +8996,62 @@
         <member name="M:PangeaCyber.Net.Vault.Requests.EncryptRequest.Builder.WithAdditionalData(System.String)">
 
         </member>
+        <member name="T:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1">
+            <summary>
+            Parameters for an encrypt/decrypt structured request.
+            </summary>
+            <typeparam name="T">Structured data type.</typeparam>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.ID">
+            <summary>
+            The ID of the key to use. It must be an item of type `symmetric_key` or `asymmetric_key` and purpose
+            `encryption`.
+            </summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.StructuredData">
+            <summary>Structured data for applying bulk operations.</summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.Filter">
+            <summary>A filter expression. It must point to string elements of the `structured_data` field.</summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.Version">
+            <summary>The item version. Defaults to the current version.</summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.AdditionalData">
+            <summary>User provided authentication data.</summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.#ctor(System.String,`0,System.String)">
+            <summary>Constructor.</summary>
+            <param name="id">
+            The ID of the key to use. It must be an item of type `symmetric_key` or `asymmetric_key` and purpose
+            `encryption`.
+            </param>
+            <param name="structuredData">Structured data for applying bulk operations.</param>
+            <param name="filter">
+            A filter expression. It must point to string elements of the `structured_data` field.
+            </param>
+        </member>
+        <member name="T:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.Builder">
+            <summary>Builder for <see cref="T:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1" />.</summary>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.Builder.#ctor(System.String,`0,System.String)">
+            <summary>Constructor.</summary>
+            <param name="id">
+            The ID of the key to use. It must be an item of type `symmetric_key` or `asymmetric_key` and purpose
+            `encryption`.
+            </param>
+            <param name="structuredData">Structured data for applying bulk operations.</param>
+            <param name="filter">
+            A filter expression. It must point to string elements of the `structured_data` field.
+            </param>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.Builder.WithVersion(System.Int32)">
+            <summary>Add item version.</summary>
+            <param name="version">Item version.</param>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1.Builder.Build">
+            <summary>Returns the finished <see cref="T:PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest`1" />.</summary>
+        </member>
         <member name="T:PangeaCyber.Net.Vault.Requests.FolderCreateRequest">
 
         </member>
@@ -9803,6 +9859,24 @@
         <member name="M:PangeaCyber.Net.Vault.Results.EncryptResult.#ctor">
 
         </member>
+        <member name="T:PangeaCyber.Net.Vault.Results.EncryptStructuredResult`1">
+            <summary>
+            Result of an encrypt/decrypt structured request.
+            </summary>
+            <typeparam name="T">Structured data type.</typeparam>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.EncryptStructuredResult`1.ID">
+            <summary>The ID of the item.</summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.EncryptStructuredResult`1.Version">
+            <summary>The item version.</summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.EncryptStructuredResult`1.Algorithm">
+            <summary>The algorithm of the key.</summary>
+        </member>
+        <member name="P:PangeaCyber.Net.Vault.Results.EncryptStructuredResult`1.StructuredData">
+            <summary>Structured data with filtered fields encrypted.</summary>
+        </member>
         <member name="T:PangeaCyber.Net.Vault.Results.FolderCreateResult">
 
         </member>
@@ -10000,19 +10074,21 @@
             <summary>Vault Client</summary>
         </member>
         <member name="P:PangeaCyber.Net.Vault.VaultClient.ServiceName">
-
+            <summary>Service name.</summary>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.#ctor(PangeaCyber.Net.Vault.VaultClient.Builder)">
-            Constructor
+            <summary>Constructor</summary>
+            <param name="builder">Vault client builder.</param>
         </member>
         <member name="T:PangeaCyber.Net.Vault.VaultClient.Builder">
-
+            <summary>Vault client builder.</summary>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Builder.#ctor(PangeaCyber.Net.Config)">
-
+            <summary>Constructor</summary>
+            <param name="config">Configuration.</param>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.Builder.Build">
-
+            <summary>Build a new Vault client.</summary>
         </member>
         <member name="M:PangeaCyber.Net.Vault.VaultClient.StateChange(System.String,System.Int32,PangeaCyber.Net.Vault.Models.ItemVersionState)">
             <kind>method</kind>
@@ -10480,6 +10556,44 @@
                     "parent/folder/name")
                 .Build();
             var response = await client.FolderCreate(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.EncryptStructured``1(PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest{``0},System.Threading.CancellationToken)">
+            <kind>method</kind>
+            <summary>Encrypt parts of a JSON object.</summary>
+            <remarks>Encrypt structured</remarks>
+            <operationid>vault_post_v1_key_encrypt_structured</operationid>
+            <typeparam name="T">Structured data type.</typeparam>
+            <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
+            <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
+            <returns type="">Encrypted result.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var data = new SomeModel { Name = "...", Occupation = "..." };
+            var request = new EncryptStructuredRequest&lt;SomeModel&gt;(encryptionKeyId, data, "$.name");
+            var response = await client.EncryptStructured(request);
+            </code>
+            </example>
+        </member>
+        <member name="M:PangeaCyber.Net.Vault.VaultClient.DecryptStructured``1(PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest{``0},System.Threading.CancellationToken)">
+            <kind>method</kind>
+            <summary>Decrypt parts of a JSON object.</summary>
+            <remarks>Decrypt structured</remarks>
+            <operationid>vault_post_v1_key_decrypt_structured</operationid>
+            <typeparam name="T">Structured data type.</typeparam>
+            <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
+            <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
+            <returns type="">Decrypted result.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
+            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
+            <example>
+            <code>
+            var data = new SomeModel { Name = "...", Occupation = "..." };
+            var request = new EncryptStructuredRequest&lt;SomeModel&gt;(encryptionKeyId, data, "$.name");
+            var response = await client.DecryptStructured(request);
             </code>
             </example>
         </member>

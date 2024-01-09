@@ -28,7 +28,8 @@ class Program
 
             // If success, print result
             Console.WriteLine($"Success. Country: {res.Result.Data.Country}");
-            if( res.Result.RawData != null ) {
+            if (res.Result.RawData != null)
+            {
                 Console.WriteLine("Raw provider data:");
                 foreach (KeyValuePair<string, object> kvp in res.Result.RawData)
                 {
