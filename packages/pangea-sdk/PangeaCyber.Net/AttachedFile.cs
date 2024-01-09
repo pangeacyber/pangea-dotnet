@@ -55,7 +55,6 @@ namespace PangeaCyber.Net
             }
             catch (IOException e)
             {
-                Console.WriteLine(e.ToString());
                 throw new PangeaException("Failed to write file", e);
             }
         }

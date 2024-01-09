@@ -6965,10 +6965,7 @@
 
         </member>
         <member name="T:PangeaCyber.Net.Store.StoreFileUploader">
-            <kind>class</kind>
-            <summary>
-            FileScan Client
-            </summary>
+
         </member>
         <member name="F:PangeaCyber.Net.Store.StoreFileUploader.ServiceName">
 

@@ -32,12 +32,6 @@ namespace PangeaCyber.Net.Store
             return await DoPost<FolderCreateResult>("/v1beta/folder/create", request);
         }
 
-        // ///
-        // public async Task<Response<Result>> (Request request)
-        // {
-        //     return await DoPost<Result>("/v1beta/", request);
-        // }
-
         ///
         public async Task<Response<GetResult>> Get(GetRequest request)
         {

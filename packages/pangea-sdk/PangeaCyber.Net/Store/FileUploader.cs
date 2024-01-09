@@ -2,10 +2,7 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.Store
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// FileScan Client
-    /// </summary>
+    ///
     public class StoreFileUploader : BaseClient<StoreFileUploader.Builder>
     {
         ///
