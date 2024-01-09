@@ -1,4 +1,4 @@
-﻿using System.Security.AccessControl;
+﻿using System.Net.Http;
 using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 
@@ -31,6 +31,5 @@ namespace PangeaCyber.Net
             AcceptedResult = acceptedResult;
             HttpResponse = response.HttpResponse;
         }
-
     }
 }

@@ -2,12 +2,12 @@
 {
     /// <kind>class</kind>
     /// <summary>
-    /// NoCreditException
+    /// Pangea API exception.
     /// </summary>
     public class PangeaAPIException : Exception
     {
         ///
-        public Response<PangeaErrors> Response { get; private set; }
+        public Response<PangeaErrors> Response { get; }
 
         ///
         public PangeaAPIException(string message, Response<PangeaErrors> response) : base(message)
@@ -30,7 +30,7 @@
                 ret += "Errors: \n";
                 foreach (ErrorField errorField in Response.Result.Errors)
                 {
-                    ret += "\t" + errorField.ToString() + "\n";
+                    ret += "\t" + errorField + "\n";
                 }
             }
 

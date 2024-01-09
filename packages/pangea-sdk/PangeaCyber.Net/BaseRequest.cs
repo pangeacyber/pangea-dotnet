@@ -13,11 +13,9 @@ namespace PangeaCyber.Net
         [JsonProperty("transfer_method")]
         public TransferMethod? TransferMethod { get; protected set; } = null;
 
-
         ///
         public BaseRequest()
         {
         }
-
     }
 }

@@ -1,6 +1,4 @@
-using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
-using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Tests;
 
@@ -22,5 +20,4 @@ public class ITSignerTests
         string pubKey = signer.GetPublicKey();
         Assert.Equal("-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAlvOyDMpK2DQ16NI8G41yINl01wMHzINBahtDPoh4+mE=\n-----END PUBLIC KEY-----\n", pubKey);
     }
-
 }

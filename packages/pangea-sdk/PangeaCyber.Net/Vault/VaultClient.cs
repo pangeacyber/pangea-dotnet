@@ -9,23 +9,25 @@ namespace PangeaCyber.Net.Vault
     /// <summary>Vault Client</summary>
     public class VaultClient : BaseClient<VaultClient.Builder>
     {
-        ///
+        /// <summary>Service name.</summary>
         public static string ServiceName { get; } = "vault";
 
-        /// Constructor
+        /// <summary>Constructor</summary>
+        /// <param name="builder">Vault client builder.</param>
         public VaultClient(Builder builder) : base(builder, ServiceName)
         {
         }
 
-        ///
-        public class Builder : BaseClient<VaultClient.Builder>.ClientBuilder
+        /// <summary>Vault client builder.</summary>
+        public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Constructor</summary>
+            /// <param name="config">Configuration.</param>
             public Builder(Config config) : base(config)
             {
             }
 
-            ///
+            /// <summary>Build a new Vault client.</summary>
             public VaultClient Build()
             {
                 return new VaultClient(this);
@@ -201,7 +203,7 @@ namespace PangeaCyber.Net.Vault
         /// <example>
         /// <code>
         /// var request = new SecretRotateRequest.Builder(
-        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
         ///         "12sdfgs4543qv@#%$casd")
         ///     .WithRotationState(ItemVersionState.Deactivated)
         ///     .Build();
@@ -250,8 +252,8 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// SymmetricGenerateRequest request = new SymmetricGenerateRequest
         ///     .Builder(
-        ///         SymmetricAlgorithm.AES128_CFB, 
-        ///         KeyPurpose.Encryption, 
+        ///         SymmetricAlgorithm.AES128_CFB,
+        ///         KeyPurpose.Encryption,
         ///         "my-very-secret-secret")
         ///     .Build();
         /// var response = await client.SymmetricGenerate(request);
@@ -276,8 +278,8 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// AsymmetricGenerateRequest request = new AsymmetricGenerateRequest
         ///     .Builder(
-        ///         AsymmetricAlgorithm.ED25519, 
-        ///         KeyPurpose.Signing, 
+        ///         AsymmetricAlgorithm.ED25519,
+        ///         KeyPurpose.Signing,
         ///         "my-very-secret-secret")
         ///     .Build();
         /// var response = await client.AsymmetricGenerate(request);
@@ -302,10 +304,10 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// AsymmetricStoreRequest request = new AsymmetricStoreRequest
         ///     .Builder(
-        ///         "encoded private key", 
-        ///         "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA8s5JopbEPGBylPBcMK+L5PqHMqPJW/5KYPgBHzZGncc=\n-----END PUBLIC KEY-----", 
-        ///         AsymmetricAlgorithm.RSA4096_OAEP_SHA256, 
-        ///         KeyPurpose.Signing, 
+        ///         "encoded private key",
+        ///         "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA8s5JopbEPGBylPBcMK+L5PqHMqPJW/5KYPgBHzZGncc=\n-----END PUBLIC KEY-----",
+        ///         AsymmetricAlgorithm.RSA4096_OAEP_SHA256,
+        ///         KeyPurpose.Signing,
         ///         "my-very-secret-secret")
         ///     .Build();
         /// var response = await client.AsymmetricStore(request);
@@ -330,9 +332,9 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// SymmetricStoreRequest request = new SymmetricStoreRequest
         ///     .Builder(
-        ///         "lJkk0gCLux+Q+rPNqLPEYw==", 
-        ///         SymmetricAlgorithm.AES128_CFB, 
-        ///         KeyPurpose.Encryption, 
+        ///         "lJkk0gCLux+Q+rPNqLPEYw==",
+        ///         SymmetricAlgorithm.AES128_CFB,
+        ///         KeyPurpose.Encryption,
         ///         "my-very-secret-secret")
         ///     .Build();
         /// var response = await client.SymmetricStore(request);
@@ -357,7 +359,7 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// KeyRotateRequest request = new KeyRotateRequest
         ///     .Builder(
-        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
         ///         ItemVersionState.Deactivated)
         ///     .WithEncodedSymmetricKey("lJkk0gCLux+Q+rPNqLPEYw==")
         ///     .Build();
@@ -383,7 +385,7 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// EncryptRequest request = new EncryptRequest
         ///     .Builder(
-        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
         ///         "lJkk0gCLux+Q+rPNqLPEYw==")
         ///     .WithVersion(2)
         ///     .Build();
@@ -409,7 +411,7 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// DecryptRequest request = new DecryptRequest
         ///     .Builder(
-        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
         ///         "lJkk0gCLux+Q+rPNqLPEYw==")
         ///     .WithVersion(2)
         ///     .Build();
@@ -435,7 +437,7 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// SignRequest request = new SignRequest
         ///     .Builder(
-        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
+        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
         ///         "lJkk0gCLux+Q+rPNqLPEYw==")
         ///     .Build();
         /// var response = await client.Sign(request);
@@ -483,8 +485,8 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// var request = new VerifyRequest
         ///     .Builder(
-        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5", 
-        ///         "data2verify", 
+        ///         "pvi_p6g5i3gtbvqvc3u6zugab6qs6r63tqf5",
+        ///         "data2verify",
         ///         "signature")
         ///     .Build();
         /// var response = await client.Verify(request);
@@ -517,7 +519,6 @@ namespace PangeaCyber.Net.Vault
         {
             return await DoPost<JWTVerifyResult>("/v1/key/verify/jwt", request);
         }
-
 
         /// <kind>method</kind>
         /// <summary>
@@ -557,7 +558,7 @@ namespace PangeaCyber.Net.Vault
         /// <code>
         /// var request = new FolderCreateRequest
         ///     .Builder(
-        ///         "folder_name", 
+        ///         "folder_name",
         ///         "parent/folder/name")
         ///     .Build();
         /// var response = await client.FolderCreate(request);
@@ -568,5 +569,62 @@ namespace PangeaCyber.Net.Vault
             return await DoPost<FolderCreateResult>("/v1/folder/create", request);
         }
 
+        /// <kind>method</kind>
+        /// <summary>Encrypt parts of a JSON object.</summary>
+        /// <remarks>Encrypt structured</remarks>
+        /// <operationid>vault_post_v1_key_encrypt_structured</operationid>
+        /// <typeparam name="T">Structured data type.</typeparam>
+        /// <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
+        /// <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
+        /// <returns type="">Encrypted result.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var data = new SomeModel { Name = "...", Occupation = "..." };
+        /// var request = new EncryptStructuredRequest&lt;SomeModel&gt;(encryptionKeyId, data, "$.name");
+        /// var response = await client.EncryptStructured(request);
+        /// </code>
+        /// </example>
+        public async Task<Response<EncryptStructuredResult<T>>> EncryptStructured<T>(
+            EncryptStructuredRequest<T> request,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<EncryptStructuredResult<T>>(
+                "/v1/key/encrypt/structured",
+                request,
+                cancellationToken: cancellationToken
+            );
+        }
+
+        /// <kind>method</kind>
+        /// <summary>Decrypt parts of a JSON object.</summary>
+        /// <remarks>Decrypt structured</remarks>
+        /// <operationid>vault_post_v1_key_decrypt_structured</operationid>
+        /// <typeparam name="T">Structured data type.</typeparam>
+        /// <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
+        /// <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
+        /// <returns type="">Decrypted result.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var data = new SomeModel { Name = "...", Occupation = "..." };
+        /// var request = new EncryptStructuredRequest&lt;SomeModel&gt;(encryptionKeyId, data, "$.name");
+        /// var response = await client.DecryptStructured(request);
+        /// </code>
+        /// </example>
+        public async Task<Response<EncryptStructuredResult<T>>> DecryptStructured<T>(
+            EncryptStructuredRequest<T> request,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<EncryptStructuredResult<T>>(
+                "/v1/key/decrypt/structured",
+                request,
+                cancellationToken: cancellationToken
+            );
+        }
     }
 }

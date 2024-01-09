@@ -1,5 +1,6 @@
-using PangeaCyber.Net.Intel;
 using PangeaCyber.Net;
+using PangeaCyber.Net.Intel;
+
 namespace PangeaCyber.Tests.Intel
 {
     public class ITUserIntelTest
@@ -234,6 +235,5 @@ namespace PangeaCyber.Tests.Intel
             Assert.NotNull(response.Result.RawData);
             Assert.Equal(2, data.Count);
         }
-
     }
 }

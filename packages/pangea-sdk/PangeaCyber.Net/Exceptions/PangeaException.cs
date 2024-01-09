@@ -7,7 +7,7 @@
     public class PangeaException : Exception
     {
         ///
-        public Exception? Cause { get; private set; }
+        public Exception? Cause { get; }
 
         ///
         public PangeaException(string message, Exception? cause) : base(message)
