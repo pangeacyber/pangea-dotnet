@@ -59,7 +59,7 @@ class Program
         }
         catch (PangeaException e)
         {
-            Console.WriteLine("Failed with exception: " + e.Cause.ToString());
+            Console.WriteLine("Failed with exception: " + e.Cause);
         }
     }
 }
