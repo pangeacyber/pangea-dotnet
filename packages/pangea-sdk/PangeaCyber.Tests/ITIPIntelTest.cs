@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITIPIntelTest
     {
         private IPIntelClient client;
-        private TestEnvironment environment = TestEnvironment.DEV;
+        private TestEnvironment environment = TestEnvironment.LVE;
 
         public ITIPIntelTest()
         {
