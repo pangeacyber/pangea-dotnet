@@ -2,19 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [3.6.0] - 2024-01-11
+
+### Added
+
+- Structured encrypt support.
 
 ## [3.5.1] - 2023-12-22
 
-# Changed 
+### Changed
 
 - Update `FileScanUploadURLRequest` namespace to `PangeaCyber.Net.FileScan`
 
 
 ## [3.5.0] - 2023-12-18
 
-# Added
+### Added
 
 - File Intel /v2/reputation support
 - IP Intel /v2/reputation, /v2/domain, /v2/proxy, v2/vpn and /v2/geolocate support
@@ -25,98 +33,98 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.0] - 2023-12-07
 
-# Changed 
+### Changed
 
 - 202 result format
 
-# Removed
+### Removed
 
 - accepted_status in 202 result
 
-# Added 
+### Added
 
 - put_url, post_url, post_form_data fields in 202 result
 
 
 ## [3.3.0] - 2023-11-28
 
-# Added
+### Added
 
 - Audit bulk examples
 - Authn unlock user support
 - Redact multiconfig support
 - Filescan post-url and put-url support
 
-# Fixed
+### Fixed
 
 - Audit bulk async does not poll result by default
 
 
 ## [3.2.0] - 2023-11-15
 
-# Added
+### Added
 
 - Support for audit /v2/log and /v2/log_async endpoints
 
 
 ## [3.1.0] - 2023-11-09
 
-# Added
+### Added
 
 - Presigned URL upload support on FileScan service
 - Folder settings support in Vault service
 
 ## [3.0.0] - 2023-10-23
 
-# Added 
+### Added
 
-- AuthN v2 support 
+- AuthN v2 support
 
-# Removed
+### Removed
 
 - AuthN v1 support
 
 
 ## [2.4.0] - 2023-09-26
 
-# Added
+### Added
 
 - FileScan Reversinglabs provider example
 - Domain WhoIs endpoint support
 - AuthN Filters support
 
-# Changed
+### Changed
 
 - Deprecated config_id in PangeaConfig. Now is set in service initialization.
 
 
 ## [2.3.0] - 2023-09-05
 
-# Added
+### Added
 
-- Redact rulesets field support 
+- Redact rulesets field support
 - FileScan service support
 
 
-## [2.2.0] - 2023-07-28 
+## [2.2.0] - 2023-07-28
 
-# Added
+### Added
 
 - AuthN, Embargo, Intel and Vault service examples
 - Base64ToString, GetSHA256Hash and GetHashPrefix in Utils
 
-# Changed
+### Changed
 
 - Make ServiceName public in AuthN, Embargo, Intel and Vault services
 
-# Fixed
+### Fixed
 
 - Audit public key format export in log signer
 
 
-## [2.1.0] - 2023-07-26 
+## [2.1.0] - 2023-07-26
 
-# Added 
+### Added
 
 - Embargo service support
 - Intel services (IP, Domain, File, URL) support
@@ -128,18 +136,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2023-07-14
 
-# Added
+### Added
 
-- Audit custom schema support 
-- Multiconfig support 
+- Audit custom schema support
+- Multiconfig support
 - Custom user agent support
 
-# Changed
+### Changed
 
-- Redact requests builder rename to be called just "Builder" 
+- Redact requests builder rename to be called just "Builder"
 
 
-[unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.5.1...main
+[unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.6.0...main
+[3.6.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.3.0...v3.4.0
