@@ -206,24 +206,32 @@ namespace PangeaCyber.Net.Vault.Tests
         [Fact]
         public async Task TestAESEncryptingLifeCycle()
         {
-            string name = GetName();
-            try
-            {
-                var generateRequest = new SymmetricGenerateRequest.Builder(
-                    SymmetricAlgorithm.AES128_CFB,
-                    KeyPurpose.Encryption,
-                    name
-                ).Build();
 
-                var generateResp = await client.SymmetricGenerate(generateRequest);
-                Assert.NotNull(generateResp.Result.ID);
-                Assert.Equal(1, generateResp.Result.Version);
-                await EncryptingCycle(generateResp.Result.ID);
-            }
-            catch (PangeaAPIException e)
+            SymmetricAlgorithm[] algorithms = { SymmetricAlgorithm.AES128_CFB, SymmetricAlgorithm.AES256_CFB, SymmetricAlgorithm.AES128_CBC, SymmetricAlgorithm.AES256_CBC, SymmetricAlgorithm.AES256_GCM };
+
+            foreach (SymmetricAlgorithm algorithm in algorithms)
             {
-                Console.WriteLine(e.ToString());
-                Assert.Fail();
+                Console.WriteLine(string.Format("\nRunning TestAESEncryptingLifeCycle with {0}", algorithm));
+                string name = GetName();
+                try
+                {
+                    var generateRequest = new SymmetricGenerateRequest.Builder(
+                        algorithm,
+                        KeyPurpose.Encryption,
+                        name
+                    ).Build();
+
+                    var generateResp = await client.SymmetricGenerate(generateRequest);
+                    Assert.NotNull(generateResp.Result.ID);
+                    Assert.Equal(1, generateResp.Result.Version);
+                    await EncryptingCycle(generateResp.Result.ID);
+                    Console.WriteLine(string.Format("Finished TestAESEncryptingLifeCycle with {0}", algorithm));
+                }
+                catch (PangeaAPIException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    Assert.Fail();
+                }
             }
         }
 
@@ -254,51 +262,64 @@ namespace PangeaCyber.Net.Vault.Tests
         }
 
         [Fact]
-        public async Task TestJWTAsymES256SigningLifeCycle()
+        public async Task TestJWTAsymESSigningLifeCycle()
         {
             KeyPurpose purpose = KeyPurpose.JWT;
-            AsymmetricAlgorithm algorithm = AsymmetricAlgorithm.ES256;
-            string name = GetName();
-            try
-            {
-                var generateRequest = new AsymmetricGenerateRequest.Builder(algorithm, purpose, name)
-                    .Build();
+            AsymmetricAlgorithm[] algorithms = { AsymmetricAlgorithm.ES256, AsymmetricAlgorithm.ES384, AsymmetricAlgorithm.ES512 };
 
-                // Generate
-                var generateResp = await client.AsymmetricGenerate(generateRequest);
-                Assert.NotNull(generateResp.Result.EncodedPublicKey);
-                Assert.NotNull(generateResp.Result.ID);
-                Assert.Equal(1, generateResp.Result.Version);
-                await JwtAsymSigningCycle(generateResp.Result.ID);
-            }
-            catch (PangeaAPIException e)
+            foreach (AsymmetricAlgorithm algorithm in algorithms)
             {
-                Console.WriteLine(e.ToString());
-                Assert.Fail();
+                Console.WriteLine(string.Format("\nRunning TestJWTAsymESSigningLifeCycle with {0}", algorithm));
+                string name = GetName();
+                try
+                {
+                    var generateRequest = new AsymmetricGenerateRequest.Builder(algorithm, purpose, name)
+                        .Build();
+
+                    // Generate
+                    var generateResp = await client.AsymmetricGenerate(generateRequest);
+                    Assert.NotNull(generateResp.Result.EncodedPublicKey);
+                    Assert.NotNull(generateResp.Result.ID);
+                    Assert.Equal(1, generateResp.Result.Version);
+                    await JwtAsymSigningCycle(generateResp.Result.ID);
+                    Console.WriteLine(string.Format("Finished TestJWTAsymESSigningLifeCycle with {0}", algorithm));
+                }
+                catch (PangeaAPIException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    Assert.Fail();
+                }
             }
         }
 
         [Fact]
-        public async Task TestJWTSymHS256SigningLifeCycle()
+        public async Task TestJWTSymHSSigningLifeCycle()
         {
             KeyPurpose purpose = KeyPurpose.JWT;
-            SymmetricAlgorithm algorithm = SymmetricAlgorithm.HS256;
-            string name = GetName();
-            try
-            {
-                var generateRequest = new SymmetricGenerateRequest.Builder(algorithm, purpose, name)
-                    .Build();
+            SymmetricAlgorithm[] algorithms = { SymmetricAlgorithm.HS256, SymmetricAlgorithm.HS384, SymmetricAlgorithm.HS512 };
 
-                // Generate
-                var generateResp = await client.SymmetricGenerate(generateRequest);
-                Assert.NotNull(generateResp.Result.ID);
-                Assert.Equal(1, generateResp.Result.Version);
-                await JwtSymSigningCycle(generateResp.Result.ID);
-            }
-            catch (PangeaAPIException e)
+            foreach (SymmetricAlgorithm algorithm in algorithms)
             {
-                Console.WriteLine(e.ToString());
-                Assert.Fail();
+                Console.WriteLine(string.Format("\nRunning TestJWTAsymHSSigningLifeCycle with {0}", algorithm));
+
+                string name = GetName();
+                try
+                {
+                    var generateRequest = new SymmetricGenerateRequest.Builder(algorithm, purpose, name)
+                        .Build();
+
+                    // Generate
+                    var generateResp = await client.SymmetricGenerate(generateRequest);
+                    Assert.NotNull(generateResp.Result.ID);
+                    Assert.Equal(1, generateResp.Result.Version);
+                    await JwtSymSigningCycle(generateResp.Result.ID);
+                    Console.WriteLine(string.Format("Finished TestJWTAsymHSSigningLifeCycle with {0}", algorithm));
+                }
+                catch (PangeaAPIException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    Assert.Fail();
+                }
             }
         }
 
