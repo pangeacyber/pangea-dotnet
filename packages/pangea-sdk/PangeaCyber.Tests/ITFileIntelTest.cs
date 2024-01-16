@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITFileIntelTest
     {
         private FileIntelClient client;
-        private TestEnvironment environment = TestEnvironment.STG;
+        private TestEnvironment environment = TestEnvironment.LVE;
 
         public ITFileIntelTest()
         {
