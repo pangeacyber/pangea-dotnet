@@ -23,9 +23,9 @@ namespace PangeaCyber.Net.Store.Models
         Download,
 
         /// <summary>
-        /// All link type.
+        /// Editor link type.
         /// </summary>
-        [EnumMember(Value = "all")]
-        All
+        [EnumMember(Value = "editor")]
+        Editor
     }
 }

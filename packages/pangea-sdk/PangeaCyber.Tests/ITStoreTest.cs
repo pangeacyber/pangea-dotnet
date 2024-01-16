@@ -346,7 +346,7 @@ namespace PangeaCyber.Net.Store.Tests
             {
                 new ShareLinkCreateItem {
                     Targets = new List<string> { folderID },
-                    LinkType = LinkType.All,
+                    LinkType = LinkType.Editor,
                     MaxAccessCount = 3,
                     Authenticators = authenticators,
                 }
