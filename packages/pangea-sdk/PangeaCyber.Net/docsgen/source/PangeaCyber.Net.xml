@@ -7701,9 +7701,9 @@
             Download link type.
             </summary>
         </member>
-        <member name="F:PangeaCyber.Net.Store.Models.LinkType.All">
+        <member name="F:PangeaCyber.Net.Store.Models.LinkType.Editor">
             <summary>
-            All link type.
+            Editor link type.
             </summary>
         </member>
         <member name="T:PangeaCyber.Net.Store.Models.Metadata">
