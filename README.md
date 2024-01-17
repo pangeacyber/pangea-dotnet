@@ -16,21 +16,21 @@
 </p>
 
 
-# Pangea CSharp Mono Repo
-This is the Pangea repository for all things C#
+# Pangea .NET Monorepo
 
+This is the Pangea repository for all things .NET.
 
-## Pangea CSharp Tools
+## Pangea .NET Tools
 
 This is a list of tools or useful stuff that you will found out in this repository and their links
 
-- Pangea C# SDK [Click here](/packages/pangea-sdk)  
+- Pangea C# SDK [Click here](/packages/pangea-sdk)
 
 
 ## Repository structure
 
-|- **README.md**: This readme file [Click here](/README.md)  
-|- **packages**: Here you will found out all C# packages (1 available now) [Click here](/packages)  
-|----- **pangea-sdk**: Pangea C# SDK folder. [Click here](/packages/pangea-sdk)  
-|--------- **README.md**: Pangea C# SDK install and usage instructions [Click here](/packages/pangea-sdk/README.md)  
-|--------- **CHANGELOG.md**: SDK version changes tracking [Click here](/packages/pangea-sdk/CHANGELOG.md)  
+|- **README.md**: This readme file [Click here](/README.md)
+|- **packages**: Here you will found out all C# packages (1 available now) [Click here](/packages)
+|----- **pangea-sdk**: Pangea C# SDK folder. [Click here](/packages/pangea-sdk)
+|--------- **README.md**: Pangea C# SDK install and usage instructions [Click here](/packages/pangea-sdk/README.md)
+|--------- **CHANGELOG.md**: SDK version changes tracking [Click here](/packages/pangea-sdk/CHANGELOG.md)
