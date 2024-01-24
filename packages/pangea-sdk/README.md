@@ -1,30 +1,70 @@
+<a href="https://pangea.cloud?utm_source=github&utm_medium=dotnet-sdk" target="_blank" rel="noopener noreferrer">
+  <img src="https://pangea-marketing.s3.us-west-2.amazonaws.com/pangea-color.svg" alt="Pangea Logo" height="40" />
+</a>
 
-[![documentation](https://img.shields.io/badge/documentation-pangea-blue?style=for-the-badge&labelColor=551B76)](https://pangea.cloud/docs/sdk/csharp/)
-[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)](https://pangea.cloud/join-slack/)
+<br />
 
+[![documentation](https://img.shields.io/badge/documentation-pangea-blue?style=for-the-badge&labelColor=551B76)][Documentation]
+[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)][Slack]
 
 # Pangea .NET SDK
 
-This package helps .NET developers to use Pangea's security services in their applications. In order to use the services, developers need to [register](https://login.aws.us.pangea.cloud/signup) for a Pangea account and obtain an API token.
+A .NET SDK for integrating with Pangea services.
 
+## Installation
 
-## Links
+Via .NET CLI:
 
-- [Pangea Registration](https://login.aws.us.pangea.cloud/signup)
-- [Pangea .NET SDK Repository](https://github.com/pangeacyber/pangea-dotnet)
-- [Documentation](https://pangea.cloud/docs/sdk/csharp/)
-
-
-## Build
-
-In order to build SDK run:
-
-```
-dotnet build
+```bash
+$ dotnet add package Pangea.SDK
 ```
 
+Via PackageReference:
 
-## SDK Logger setup
+```xml
+<PackageReference Include="Pangea.SDK" Version="*" />
+```
 
-For logging purpose this SDK use NLog package. In order to setup it copy [NLog.config](./NLog.config) file from this directory to your root app directory
-In order to get more information about this configuration file, please visit https://github.com/NLog/NLog/wiki/Configuration-file
+## Usage
+
+- [Documentation][]
+- [Examples][]
+
+General usage would be to create a token for a service through the
+[Pangea Console][] and then construct an API client for that respective service.
+The below example shows how this can be done for [Secure Audit Log][] to log a
+simple event:
+
+```csharp
+using PangeaCyber.Net;
+using PangeaCyber.Net.Audit;
+
+// Load client configuration from environment variables `PANGEA_AUDIT_TOKEN` and
+// `PANGEA_DOMAIN`.
+var config = Config.FromEnvironment(AuditClient.ServiceName);
+
+// Create a Secure Audit Log client.
+var client = new AuditClient.Builder(config).Build();
+
+// Create a basic event.
+var event = new StandardEvent.Builder("Hello World!")
+    .WithAction("Login")
+    .WithActor("Terminal")
+    .Build();
+
+// Optional configuration.
+var logConfig = new LogConfig.Builder()
+    .WithVerbose(true)
+    .Build();
+
+// Log the event.
+var response = await client.Log(event, logConfig);
+```
+
+
+
+   [Documentation]: https://pangea.cloud/docs/sdk/csharp/
+   [Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
+   [Pangea Console]: https://console.pangea.cloud/
+   [Slack]: https://pangea.cloud/join-slack/
+   [Secure Audit Log]: https://pangea.cloud/docs/audit
