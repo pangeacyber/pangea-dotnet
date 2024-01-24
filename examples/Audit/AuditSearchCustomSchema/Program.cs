@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Examples;
@@ -45,7 +45,7 @@ class Program
             Console.WriteLine($"Success. Found {res.Result.Count} events");
             foreach (var evt in res.Result.Events)
             {
-                var logEvt = ((CustomEvent?)evt.EventEnvelope.Event);
+                var logEvt = (CustomEvent?)evt.EventEnvelope.Event;
                 Console.WriteLine($"Event message: {logEvt?.Message} \t long field: {logEvt?.FieldStrLong} \t short field: {logEvt?.FieldStrShort}");
             }
 

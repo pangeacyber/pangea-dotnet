@@ -1,17 +1,13 @@
-﻿using PangeaCyber.Net;
-using PangeaCyber.Net.Exceptions;
+using Newtonsoft.Json;
+using PangeaCyber.Net;
 using PangeaCyber.Net.AuthN;
 using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
 using PangeaCyber.Net.AuthN.Results;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using PangeaCyber.Net.Exceptions;
 
-class Program
+static class Program
 {
-
     private static Random random = new Random();
     private static string randomValue = random.Next(10000000).ToString();
     private static string userEmail = $"user.email+test{randomValue}@pangea.cloud";
@@ -21,8 +17,7 @@ class Program
     private static Profile profileUpdate = new Profile();
     private static string userID = ""; // Will be set once the user is created
     private static string cbURI = "https://someurl.com/callbacklink";
-    private static AuthNClient client;
-
+    private static AuthNClient client = null!;
 
     private static async Task<FlowUpdateResult> FlowHandlePasswordPhase(string flowID, string password)
     {
@@ -50,18 +45,22 @@ class Program
     private static async Task<FlowUpdateResult> FlowHandleAgreementsPhase(string flowID, FlowUpdateResult result)
     {
         List<string> agreed = new List<string>();
-        foreach (FlowChoiceItem flowChoiceItem in result.FlowChoices)
+        foreach (FlowChoiceItem flowChoiceItem in result.FlowChoices!)
         {
-            if (String.Equals(flowChoiceItem.Choice, FlowChoice.AGREEMENTS.ToString(), StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(flowChoiceItem.Choice, nameof(FlowChoice.AGREEMENTS), StringComparison.OrdinalIgnoreCase))
             {
-                Dictionary<string, object> agreements = JsonConvert.DeserializeObject<Dictionary<string, object>>(flowChoiceItem.Data["agreements"].ToString());
+                var agreements = JsonConvert.DeserializeObject<Dictionary<string, object>>(
+                    flowChoiceItem.Data!["agreements"].ToString()!
+                );
                 if (agreements != null)
                 {
                     // Iterate over agreements and append the "id" values to agreed list
                     foreach (object agreementObj in agreements.Values)
                     {
-                        Dictionary<string, object> agreementItem = JsonConvert.DeserializeObject<Dictionary<string, object>>(agreementObj.ToString());
-                        object idObj = agreementItem["id"];
+                        var agreementItem = JsonConvert.DeserializeObject<Dictionary<string, object>>(
+                            agreementObj.ToString()!
+                        );
+                        var idObj = agreementItem!["id"];
                         if (idObj is string)
                         {
                             agreed.Add((string)idObj);
@@ -88,7 +87,7 @@ class Program
     {
         foreach (FlowChoiceItem flowChoiceItem in choices)
         {
-            if (String.Equals(flowChoiceItem.Choice, choice, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(flowChoiceItem.Choice, choice, StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -105,9 +104,9 @@ class Program
         string flowID = startResponse.Result.FlowID;
         FlowUpdateResult? result = null;
         string flowPhase = "initial";
-        FlowChoiceItem[] choices = startResponse.Result.FlowChoices;
+        var choices = startResponse.Result.FlowChoices ?? Array.Empty<FlowChoiceItem>();
 
-        while (!flowPhase.Equals("phase_completed"))
+        while (flowPhase != "phase_completed")
         {
             if (ChoiceIsAvailable(choices, FlowChoice.PASSWORD.ToString()))
             {
@@ -123,12 +122,12 @@ class Program
             }
             else
             {
-                Console.WriteLine($"Phase {result.FlowPhase} not handled");
+                Console.WriteLine($"Phase {result!.FlowPhase} not handled");
                 throw new PangeaException("Phase not handled", null);
             }
 
-            flowPhase = result.FlowPhase;
-            choices = result.FlowChoices;
+            flowPhase = result.FlowPhase!;
+            choices = result.FlowChoices ?? Array.Empty<FlowChoiceItem>();
         }
 
         var response = await client.Flow.Complete(flowID);
@@ -157,7 +156,7 @@ class Program
             // Update password
             Console.WriteLine("Update user password...");
             var passUpdateResp = await client.Client.Password.Change(
-                createResp1.ActiveToken?.Token, passwordInitial, passwordNew
+                createResp1.ActiveToken?.Token!, passwordInitial, passwordNew
             );
             Console.WriteLine("Update password success.");
 
@@ -206,7 +205,7 @@ class Program
         }
         catch (PangeaAPIException e)
         {
-            Console.WriteLine("Failed with exception: " + e.ToString());
+            Console.WriteLine("Failed with exception: " + e);
         }
     }
 }

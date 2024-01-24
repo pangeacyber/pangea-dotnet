@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Intel;
 using PangeaCyber.Net.Exceptions;
 
@@ -33,7 +33,7 @@ class Program
             URLIntelClient client = new URLIntelClient.Builder(clientCfg).Build();
 
             // Create request
-            var req = new URLReputationBulkRequest.Builder(new string[] {"http://113.235.101.11:54384"})
+            var req = new URLReputationBulkRequest.Builder(new string[] { "http://113.235.101.11:54384" })
                 .WithProvider("crowdstrike")
                 .WithVerbose(true)
                 .WithRaw(true)

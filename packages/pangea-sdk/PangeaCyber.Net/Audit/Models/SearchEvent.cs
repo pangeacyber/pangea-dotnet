@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using PangeaCyber.Net.Audit.arweave;
 using PangeaCyber.Net.Audit.Utils;
 
