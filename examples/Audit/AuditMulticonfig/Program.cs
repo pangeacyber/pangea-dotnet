@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using System.Security.Principal;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;

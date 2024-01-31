@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+
 namespace PangeaCyber.Net.Exceptions
 {
     /// <kind>class</kind>

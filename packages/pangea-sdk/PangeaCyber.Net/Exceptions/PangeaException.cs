@@ -1,4 +1,4 @@
-﻿namespace PangeaCyber.Net.Exceptions
+namespace PangeaCyber.Net.Exceptions
 {
     /// <kind>class</kind>
     /// <summary>

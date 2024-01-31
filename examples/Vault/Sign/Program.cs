@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Exceptions;

@@ -1,10 +1,9 @@
-﻿using PangeaCyber.Net;
-using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Net;
 using PangeaCyber.Net.AuthN;
-using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
+using PangeaCyber.Net.Exceptions;
 
-class Program
+static class Program
 {
 
     private static Random random = new Random();
@@ -29,7 +28,7 @@ class Program
                 new UserInviteRequest.Builder(
                     userEmail,
                     emailInviteKeep,
-                    "https://www.usgs.gov/faqs/what-was-pangea",
+                    "https://someurl.com/callbacklink",
                     "somestate")
                 .Build()
             );
@@ -41,7 +40,7 @@ class Program
                 new UserInviteRequest.Builder(
                     userEmail,
                     emailInviteDelete,
-                    "https://www.usgs.gov/faqs/what-was-pangea",
+                    "https://someurl.com/callbacklink",
                     "somestate")
                 .Build()
             );
@@ -70,7 +69,8 @@ class Program
         }
         catch (PangeaAPIException e)
         {
-            Console.WriteLine("Failed with exception: " + e.ToString());
+            Console.WriteLine("Failed with exception: " + e);
+            throw;
         }
     }
 }

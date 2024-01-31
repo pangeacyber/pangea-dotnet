@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+  merge_group:
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    outputs:
+      examples-matrix: ${{ steps.examples-matrix.outputs.examples-matrix }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Calculate `examples-matrix` output
+        id: examples-matrix
+        working-directory: ./examples
+        env:
+          JQ_FILTER: >-
+            "examples-matrix=" + (split("\n") | map(select(length > 0)) | tostring)
+        run: find . -type f -name '*.csproj' -printf '%h\n' | cut -c 3- | sort -u | jq -cRrs '${{ env.JQ_FILTER }}' >> "$GITHUB_OUTPUT"
+
+  prefetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8
+
+  examples:
+    needs: [setup, prefetch]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example: ${{ fromJSON(needs.setup.outputs.examples-matrix) }}
+        dotnet-version: [6, 7, 8]
+    defaults:
+      run:
+        working-directory: ./examples/${{ matrix.example }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Build
+        run: dotnet build
+
+      - name: Lint
+        if: matrix.dotnet-version == 8
+        run: dotnet format --verify-no-changes

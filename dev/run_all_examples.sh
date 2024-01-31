@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script should be run from examples root directory in order to run all examples in that folder and its subfolders
 

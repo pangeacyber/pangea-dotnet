@@ -54,3 +54,7 @@ stages:
   - lint
   - test
   - publish
+  - examples
+
+include:
+  - /examples/.examples-ci.yml

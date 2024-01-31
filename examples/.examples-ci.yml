@@ -1,0 +1,77 @@
+examples:
+  stage: examples
+  needs: []
+  parallel:
+    matrix:
+      - DOTNET_VERSION: ['6.0']
+        EXAMPLE:
+          - Audit/AuditLog
+          - Audit/AuditLogBulk
+          - Audit/AuditLogBulkAsync
+          - Audit/AuditLogCustomSchema
+          - Audit/AuditLogNsign
+          - Audit/AuditMulticonfig
+          - Audit/AuditRoot
+          - Audit/AuditSearch
+          - Audit/AuditSearchCustomSchema
+          - AuthN/InviteActions
+          - AuthN/UserActions
+          - Embargo/IPCheck
+          - Embargo/ISOCheck
+          - FileScan/Scan_Async
+          - FileScan/Scan_RequestUploadURL_Post
+          - FileScan/Scan_RequestUploadURL_Put
+          - FileScan/Scan_Sync
+          - Intel/Defang/Defang
+          - Intel/Domain/Reputation
+          - Intel/Domain/ReputationBulk
+          - Intel/File/Reputation
+          - Intel/File/ReputationBulk
+          - Intel/File/ReputationFilepath
+          - Intel/IP/Geolocate
+          - Intel/IP/GeolocateBulk
+          - Intel/IP/GetDomain
+          - Intel/IP/GetDomainBulk
+          - Intel/IP/IsProxy
+          - Intel/IP/IsProxyBulk
+          - Intel/IP/IsVPN
+          - Intel/IP/IsVPNBulk
+          - Intel/IP/Reputation
+          - Intel/IP/ReputationBulk
+          - Intel/URL/Reputation
+          - Intel/URL/ReputationBulk
+          - Intel/User/PasswordBreached
+          - Intel/User/UserBreachedByEmail
+          - Intel/User/UserBreachedByIP
+          - Intel/User/UserBreachedByPhone
+          - Intel/User/UserBreachedByUsername
+          - Redact/RedactMulticonfig
+          - Redact/Structured
+          - Redact/Text
+          - Vault/Encrypt
+          - Vault/EncryptStructured
+          - Vault/Rotate
+          - Vault/Sign
+  image: mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}
+  before_script:
+    - export PANGEA_AUDIT_CONFIG_ID="${PANGEA_AUDIT_CONFIG_ID_1_LVE}"
+    - export PANGEA_AUDIT_CUSTOM_SCHEMA_TOKEN="${PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_LVE}"
+    - export PANGEA_AUDIT_MULTICONFIG_TOKEN="${PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_LVE}"
+    - export PANGEA_AUDIT_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_AUTHN_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_DOMAIN_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_DOMAIN="${PANGEA_INTEGRATION_DOMAIN_LVE}"
+    - export PANGEA_EMBARGO_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_FILE_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_FILE_SCAN_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_IP_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_REDACT_CONFIG_ID="${PANGEA_REDACT_CONFIG_ID_1_LVE}"
+    - export PANGEA_REDACT_MULTICONFIG_TOKEN="${PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_LVE}"
+    - export PANGEA_REDACT_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_URL_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_USER_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+    - export PANGEA_VAULT_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE}"
+  script:
+    - cd examples/${EXAMPLE}
+    - dotnet run
