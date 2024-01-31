@@ -27,6 +27,24 @@ env:
   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    outputs:
+      examples-matrix: ${{ steps.examples-matrix.outputs.examples-matrix }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Calculate `examples-matrix` output
+        id: examples-matrix
+        working-directory: ./examples
+        env:
+          JQ_FILTER: >-
+            "examples-matrix=" + (split("\n") | map(select(length > 0)) | tostring)
+        run: find . -type f -name '*.csproj' -printf '%h\n' | cut -c 3- | sort -u | jq -cRrs '${{ env.JQ_FILTER }}' >> "$GITHUB_OUTPUT"
+
   prefetch:
     runs-on: ubuntu-latest
     steps:
@@ -43,54 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        example:
-          - Audit/AuditLog
-          - Audit/AuditLogBulk
-          - Audit/AuditLogBulkAsync
-          - Audit/AuditLogCustomSchema
-          - Audit/AuditLogNsign
-          - Audit/AuditMulticonfig
-          - Audit/AuditRoot
-          - Audit/AuditSearch
-          - Audit/AuditSearchCustomSchema
-          - AuthN/InviteActions
-          - AuthN/UserActions
-          - Embargo/IPCheck
-          - Embargo/ISOCheck
-          - FileScan/Scan_Async
-          - FileScan/Scan_RequestUploadURL_Post
-          - FileScan/Scan_RequestUploadURL_Put
-          - FileScan/Scan_Sync
-          - Intel/Defang/Defang
-          - Intel/Domain/Reputation
-          - Intel/Domain/ReputationBulk
-          - Intel/File/Reputation
-          - Intel/File/ReputationBulk
-          - Intel/File/ReputationFilepath
-          - Intel/IP/Geolocate
-          - Intel/IP/GeolocateBulk
-          - Intel/IP/GetDomain
-          - Intel/IP/GetDomainBulk
-          - Intel/IP/IsProxy
-          - Intel/IP/IsProxyBulk
-          - Intel/IP/IsVPN
-          - Intel/IP/IsVPNBulk
-          - Intel/IP/Reputation
-          - Intel/IP/ReputationBulk
-          - Intel/URL/Reputation
-          - Intel/URL/ReputationBulk
-          - Intel/User/PasswordBreached
-          - Intel/User/UserBreachedByEmail
-          - Intel/User/UserBreachedByIP
-          - Intel/User/UserBreachedByPhone
-          - Intel/User/UserBreachedByUsername
-          - Redact/RedactMulticonfig
-          - Redact/Structured
-          - Redact/Text
-          - Vault/Encrypt
-          - Vault/EncryptStructured
-          - Vault/Rotate
-          - Vault/Sign
+        example: ${{ fromJSON(needs.setup.outputs.examples-matrix) }}
         dotnet-version: [6, 7, 8]
     defaults:
       run:
