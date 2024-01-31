@@ -57,7 +57,7 @@ jobs:
           dotnet-version: 8
 
   examples:
-    needs: [prefetch]
+    needs: [setup, prefetch]
     runs-on: ubuntu-latest
     strategy:
       matrix:
