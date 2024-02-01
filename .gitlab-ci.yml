@@ -1,10 +1,9 @@
 default:
+  image:
+    name: mcr.microsoft.com/dotnet/sdk:6.0
+    entrypoint: [""]
   tags:
     - pangea-internal
-
-image:
-  name: mcr.microsoft.com/dotnet/sdk:6.0
-  entrypoint: [""]
 
 .dotnet-sdk-base:
   cache:
