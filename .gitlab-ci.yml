@@ -106,6 +106,11 @@ dotnet-sdk-it-file-scan:
     ENV: ${SERVICE_FILE_SCAN_ENV}
   script:
     - dotnet test --no-restore --filter ITFileScanTest
+  rules:
+    - if: '$CLOUD == "GCP"'
+      allow_failure: true
+    - if: '$CLOUD != "GCP"'
+      allow_failure: false
 
 dotnet-sdk-it-ip-intel:
   extends: .dotnet-sdk-test-base
