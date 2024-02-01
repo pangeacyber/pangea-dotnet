@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITFileIntelTest
     {
         private FileIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("file-intel", TestEnvironment.LVE);
 
         public ITFileIntelTest()
         {

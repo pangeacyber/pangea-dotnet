@@ -3,13 +3,13 @@ using PangeaCyber.Net.Audit;
 namespace PangeaCyber.Tests;
 
 ///
-public class ITSignerTests
+public class SignerTest
 {
     private const string PRIVATE_KEY_FILE = "./data/privkey";
 
     LogSigner signer;
 
-    public ITSignerTests()
+    public SignerTest()
     {
         signer = new LogSigner(PRIVATE_KEY_FILE);
     }

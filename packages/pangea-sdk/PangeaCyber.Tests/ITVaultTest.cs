@@ -2,13 +2,14 @@ using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Vault.Models;
 using PangeaCyber.Net.Vault.Requests;
+using PangeaCyber.Tests;
 
 namespace PangeaCyber.Net.Vault.Tests
 {
     public class ITVaultTest
     {
         private readonly VaultClient client;
-        private readonly TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("vault", TestEnvironment.LVE);
         private readonly string time;
         private readonly Random random;
         private const string actor = "CsharpSDKTest";
