@@ -105,7 +105,7 @@ dotnet-sdk-lint:
 
 dotnet-sdk-unit-tests:
   extends: .dotnet-sdk-base
-  stage: unit_test
+  stage: unit_tests
   script:
     - dotnet test --no-restore --filter SignerTest
 
@@ -157,9 +157,10 @@ publish:
 
 stages:
   - lint
+  - unit_tests
   - integration_tests
-  - publish
   - examples
+  - publish
 
 include:
   - /examples/.examples-ci.yml
