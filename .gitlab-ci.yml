@@ -7,7 +7,8 @@ default:
 
 .dotnet-sdk-base:
   cache:
-    key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
+    key:
+      file: /packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json
     paths:
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
@@ -21,8 +22,21 @@ default:
 
 .dotnet-sdk-test-base:
   stage: integration_tests
+  variables:
+  # Set each service test environment
+    SERVICE_AUDIT_ENV: LVE
+    SERVICE_AUTHN_ENV: LVE
+    SERVICE_EMBARGO_ENV: LVE
+    SERVICE_FILE_SCAN_ENV: LVE
+    SERVICE_IP_INTEL_ENV: LVE
+    SERVICE_DOMAIN_INTEL_ENV: LVE
+    SERVICE_URL_INTEL_ENV: LVE
+    SERVICE_FILE_INTEL_ENV: LVE
+    SERVICE_USER_INTEL_ENV: LVE
+    SERVICE_REDACT_ENV: LVE
+    SERVICE_VAULT_ENV: LVE
+
   cache:
-    key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
     paths:
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
@@ -30,8 +44,8 @@ default:
     policy: pull-push
 
   before_script:
-    - echo $ENV
-    - echo $CLOUD
+    - echo ${ENV}
+    - echo ${CLOUD}
   # Update environment variables
   # Domain
     - export PANGEA_INTEGRATION_DOMAIN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_DOMAIN_${ENV}_${CLOUD})"
