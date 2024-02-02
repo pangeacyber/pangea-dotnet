@@ -65,27 +65,37 @@ default:
   parallel:
     matrix:
       - CLOUD: [AWS, GCP]
-      - ENV: ${SERVICE_AUDIT_ENV}
+        ENV: ${SERVICE_AUDIT_ENV}
         TEST: ITAuditTest
-      - ENV: ${SERVICE_AUTHN_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_AUTHN_ENV}
         TEST: ITAuthNTest
-      - ENV: ${SERVICE_EMBARGO_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_EMBARGO_ENV}
         TEST: ITEmbargoTest
-      - ENV: ${SERVICE_DOMAIN_INTEL_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_DOMAIN_INTEL_ENV}
         TEST: ITDomainIntelTest
-      - ENV: ${SERVICE_IP_INTEL_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_IP_INTEL_ENV}
         TEST: ITIPIntelTest
-      - ENV: ${SERVICE_URL_INTEL_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_URL_INTEL_ENV}
         TEST: ITURLIntelTest
-      - ENV: ${SERVICE_USER_INTEL_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_USER_INTEL_ENV}
         TEST: ITUserIntelTest
-      - ENV: ${SERVICE_FILE_INTEL_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_FILE_INTEL_ENV}
         TEST: ITFileIntelTest
-      - ENV: ${SERVICE_FILE_SCAN_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_FILE_SCAN_ENV}
         TEST: ITFileScanTest
-      - ENV: ${SERVICE_REDACT_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_REDACT_ENV}
         TEST: ITRedactTest
-      - ENV: ${SERVICE_VAULT_ENV}
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
