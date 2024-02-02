@@ -65,6 +65,34 @@ default:
   parallel:
     matrix:
       - CLOUD: [AWS, GCP]
+      - ENV: ${SERVICE_AUDIT_ENV}
+        TEST: ITAuditTest
+      - ENV: ${SERVICE_AUTHN_ENV}
+        TEST: ITAuthNTest
+      - ENV: ${SERVICE_EMBARGO_ENV}
+        TEST: ITEmbargoTest
+      - ENV: ${SERVICE_DOMAIN_INTEL_ENV}
+        TEST: ITDomainIntelTest
+      - ENV: ${SERVICE_IP_INTEL_ENV}
+        TEST: ITIPIntelTest
+      - ENV: ${SERVICE_URL_INTEL_ENV}
+        TEST: ITURLIntelTest
+      - ENV: ${SERVICE_USER_INTEL_ENV}
+        TEST: ITUserIntelTest
+      - ENV: ${SERVICE_FILE_INTEL_ENV}
+        TEST: ITFileIntelTest
+      - ENV: ${SERVICE_FILE_SCAN_ENV}
+        TEST: ITFileScanTest
+      - ENV: ${SERVICE_REDACT_ENV}
+        TEST: ITRedactTest
+      - ENV: ${SERVICE_VAULT_ENV}
+        TEST: ITVaultTest
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: '$CLOUD == "GCP" && $TEST == "ITFileScanTest"'
+      allow_failure: true
+    - if: '$CLOUD != "GCP"'
+      allow_failure: false
 
   rules:
     - if: $CI_PIPELINE_SOURCE == "push"
@@ -75,88 +103,16 @@ dotnet-sdk-lint:
   script:
     - dotnet format --verify-no-changes
 
-dotnet-sdk-it-audit:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_AUDIT_ENV}
+dotnet-sdk-unit-tests:
+  extends: .dotnet-sdk-base
+  stage: unit_test
   script:
-    - dotnet test --no-restore --filter ITAuditTest
     - dotnet test --no-restore --filter SignerTest
 
-dotnet-sdk-it-authn:
+dotnet-sdk-integration-tests:
   extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_AUTHN_ENV}
   script:
-    - dotnet test --no-restore --filter ITAuthNTest
-
-dotnet-sdk-it-domain-intel:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_DOMAIN_INTEL_ENV}
-  script:
-    - dotnet test --no-restore --filter ITDomainIntelTest
-
-dotnet-sdk-it-embargo:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_EMBARGO_ENV}
-  script:
-    - dotnet test --no-restore --filter ITEmbargoTest
-
-dotnet-sdk-it-file-intel:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_FILE_INTEL_ENV}
-  script:
-    - dotnet test --no-restore --filter ITFileIntelTest
-
-dotnet-sdk-it-file-scan:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_FILE_SCAN_ENV}
-  script:
-    - dotnet test --no-restore --filter ITFileScanTest
-  rules:
-    - if: '$CLOUD == "GCP"'
-      allow_failure: true
-    - if: '$CLOUD != "GCP"'
-      allow_failure: false
-
-dotnet-sdk-it-ip-intel:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_IP_INTEL_ENV}
-  script:
-    - dotnet test --no-restore --filter ITIPIntelTest
-
-dotnet-sdk-it-redact:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_REDACT_ENV}
-  script:
-    - dotnet test --no-restore --filter ITRedactTest
-
-dotnet-sdk-it-url-intel:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_URL_INTEL_ENV}
-  script:
-    - dotnet test --no-restore --filter ITURLIntelTest
-
-dotnet-sdk-it-user-intel:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_USER_INTEL_ENV}
-  script:
-    - dotnet test --no-restore --filter ITUserIntelTest
-
-dotnet-sdk-it-vault:
-  extends: .dotnet-sdk-test-base
-  variables:
-    ENV: ${SERVICE_VAULT_ENV}
-  script:
-    - dotnet test --no-restore --filter ITVaultTest
+    - dotnet test --no-restore --filter ${TEST}
 
 .dotnet-sdk-staging-tests:
   extends: .dotnet-sdk-test-base
@@ -174,7 +130,6 @@ dotnet-sdk-it-vault:
     SERVICE_USER_INTEL_ENV: STG
     SERVICE_REDACT_ENV: STG
     SERVICE_VAULT_ENV: STG
-
   script:
     - dotnet test --no-restore
 
