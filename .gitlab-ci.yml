@@ -7,8 +7,6 @@ default:
 
 .dotnet-sdk-base:
   cache:
-    key:
-      file: /packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json
     paths:
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
