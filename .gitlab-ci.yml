@@ -98,7 +98,6 @@ default:
         ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
   rules:
-    - if: $CI_PIPELINE_SOURCE == "push"
     - if: '$CLOUD == "GCP" && $TEST == "ITFileScanTest"'
       allow_failure: true
     - if: '$CLOUD != "GCP"'
