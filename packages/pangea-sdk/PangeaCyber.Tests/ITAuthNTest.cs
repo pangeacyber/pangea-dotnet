@@ -30,7 +30,7 @@ public class ITAuthNTest
 {
     static AuthNClient client = default!;
     Config cfg;
-    TestEnvironment environment = TestEnvironment.LVE;
+    private readonly TestEnvironment environment = Helper.LoadTestEnvironment("authn", TestEnvironment.LVE);
     private static Random random = new Random();
     private static readonly string randomValue = random.Next(10000000).ToString();
     private static readonly string emailTest = $"user.email+test{randomValue}@pangea.cloud";

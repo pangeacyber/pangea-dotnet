@@ -7,11 +7,11 @@ namespace PangeaCyber.Tests;
 ///
 public class ITAuditTest
 {
-    private AuditClient generalClient, generalClientNoQueue, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
+    private AuditClient generalClient, signClient, tenantIDClient, signNtenantIDClient, customSchemaClient, customSchemaNSignClient, vaultSignClient;
 
     CustomEvent customEvent;
 
-    private const TestEnvironment environment = TestEnvironment.LVE;
+    private readonly TestEnvironment environment = Helper.LoadTestEnvironment("audit", TestEnvironment.LVE);
 
     private const string ACTOR = "csharp-sdk";
     private const string MSG_NO_SIGNED = "test-message";
@@ -29,12 +29,9 @@ public class ITAuditTest
     {
         // Standard schema clients
         var generalCfg = Config.FromIntegrationEnvironment(environment);
-        var generalCfgNoQueue = Config.FromIntegrationEnvironment(environment);
-        generalCfgNoQueue.QueuedRetryEnabled = false;
         var builder = new AuditClient.Builder(generalCfg);
 
         this.generalClient = builder.Build();
-        generalClientNoQueue = new AuditClient.Builder(generalCfgNoQueue).Build();
 
         this.signClient = builder.WithPrivateKey(PRIVATE_KEY_FILE).Build();
         this.tenantIDClient = builder.WithTenantID(TENANT_ID).Build();

@@ -7,7 +7,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITURLIntelTest
     {
         private URLIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("url-intel", TestEnvironment.LVE);
 
         public ITURLIntelTest()
         {
