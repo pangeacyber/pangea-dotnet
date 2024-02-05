@@ -2,7 +2,7 @@ using PangeaCyber.Net;
 
 namespace PangeaCyber.Tests
 {
-    public class Helper
+    public static class Helper
     {
         public static TestEnvironment LoadTestEnvironment(string serviceName, TestEnvironment def)
         {
