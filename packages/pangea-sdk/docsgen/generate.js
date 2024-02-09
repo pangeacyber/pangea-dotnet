@@ -1,8 +1,13 @@
-const fs = require('fs');
+const fs = require("node:fs");
+const path = require("node:path");
 
 const { XMLParser } = require("fast-xml-parser");
-const sourceXMLPath = "source/PangeaCyber.Net.xml";
-const destinationJSONPath = "./c#_sdk.json";
+
+const sourceXMLPath = path.resolve(__dirname, "source", "PangeaCyber.Net.xml");
+const destinationJSONPath = path.resolve(__dirname, "dotnet_sdk.json");
+
+const TYPE_PARAM_REGEX = /``\d+/g;
+const METHOD_PARAM_REGEX = /{``\d+}/g;
 
 const parseEnumName = (namespace) => {
     const parts = namespace.split(":");
@@ -33,20 +38,20 @@ const parseClassName = (namespace) => {
 
         /**
          * We're going to do something that seems really weird here.
-         * 
+         *
          * The problem we're trying to solve is collating heavily
          * nested classes with one particular service.
-         * 
+         *
          * When we have a qualifiedName such as:
          * PangeaCyber.Net.AuthN.Clients.Agreements
          *                  └──> we want to collate it under a class name of "AuthNClient"
          *                       following the scheme "<service>Client"
-         * 
+         *
          * The situation is we also have qualifiedNames such as:
          * 1) PangeaCyber.Net.Audit.AuditClient
          * 2) PangeaCyber.Net.Intel.DomainIntelClient
          * where we still need to collate them under "AuditClient" and "DomainIntelClient".
-         * 
+         *
          * As a quick and dirty way to collate all of these, we'll use this logic:
          * 1) Split qualifiedName
          * 2) if we have more than 4 elements, use element 2
@@ -75,10 +80,18 @@ const getClasses = (entries) => {
     return classes;
 };
 
+/**
+ * @param {string} className
+ * @param {string} method
+ * @returns {string | undefined}
+ */
 const parseMethodName = (className, method) => {
     const parts = method.split(":");
     if (parts.length === 2) {
+         // HACK: remove type params as they are not supported by the docs site.
         const methodName = parts[1]
+            .replaceAll(METHOD_PARAM_REGEX, "")
+            .replaceAll(TYPE_PARAM_REGEX, "");
         return methodName?.replace(className + ".", "");
     }
 };
@@ -96,7 +109,7 @@ const parseMethodName = (className, method) => {
  * string msg = someCode;\nvar response = await moreCode();
  *
  * @param {string} code
- * @returns string
+ * @returns {string}
  */
 const normalizeCodeExample = (code) => {
     if (typeof code === "undefined") return "";
@@ -223,7 +236,7 @@ try {
     results.push(...enums);
     results.push(...classes);
 
-    fs.writeFileSync(destinationJSONPath, JSON.stringify(results));
+    fs.writeFileSync(destinationJSONPath, JSON.stringify(results, null, 2));
 } catch (err) {
     console.error(err);
 }
