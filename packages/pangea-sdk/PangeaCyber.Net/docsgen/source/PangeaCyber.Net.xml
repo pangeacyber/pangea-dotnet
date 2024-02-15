@@ -4310,7 +4310,7 @@
         <member name="T:PangeaCyber.Net.Config">
             <kind>class</kind>
             <summary>
-            Config
+            Configuration for a Pangea service client.
             </summary>
         </member>
         <member name="F:PangeaCyber.Net.Config.Version">
@@ -4323,69 +4323,115 @@
             <summary>
             Initializes a new instance of the <see cref="T:PangeaCyber.Net.Config" /> class
             </summary>
+            <param name="token">Pangea API token.</param>
+            <param name="domain">Pangea API domain.</param>
         </member>
         <member name="P:PangeaCyber.Net.Config.Token">
-
+            <summary>Pangea API token.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.Domain">
-
+            <summary>Pangea API domain.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.ConfigID">
-            @deprecated set it on Service builder instead
+            <exclude />
         </member>
         <member name="P:PangeaCyber.Net.Config.Environment">
-
+            <summary>Pangea environment.</summary>
+            <remarks>
+            This is intended to facilitate SDK development and should not be touched in everyday usage.
+            </remarks>
         </member>
         <member name="P:PangeaCyber.Net.Config.Insecure">
-
+            <summary>Whether or not to perform requests via plain HTTP, as opposed to secure HTTPS.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.ConnectionTimeout">
-
+            <summary>Time span to wait before a request times out.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.CustomUserAgent">
-
+            <summary>User-Agent string to append to the default one.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.QueuedRetryEnabled">
-            Enable queued request retry support
+            <summary>Whether or not queued request retries are enabled.</summary>
         </member>
         <member name="F:PangeaCyber.Net.Config.PollResultTimeoutSecs">
-            Timeout used to poll results after 202 (in secs)
+            <summary>Timeout used to poll results after a HTTP/202 (in seconds).</summary>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
-
+            <summary>Constructs an API URL from the given service name and endpoint path.</summary>
+            <param name="serviceName">Pangea service name.</param>
+            <param name="path">API endpoint path.</param>
+            <returns>Constructed API URL.</returns>
         </member>
         <member name="M:PangeaCyber.Net.Config.LoadEnvironmentVariable(System.String)">
-
+            <summary>Returns the given environment variable.</summary>
+            <param name="envVarName">Environment variable name.</param>
+            <returns>Environment variable value.</returns>
+            <exception cref="T:PangeaCyber.Net.Exceptions.ConfigException">Environment variable could not be found.</exception>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetTestDomain(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>Returns the Pangea domain for the given test environment.</summary>
+            <param name="environment">Test environment.</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.FromEnvironment(System.String)">
-
+            <summary>
+            Constructs a <see cref="T:PangeaCyber.Net.Config" /> for the given Pangea service, using values from environment variables.
+            </summary>
+            <param name="serviceName">Pangea service name.</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.FromIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Constructs a <see cref="T:PangeaCyber.Net.Config" /> for the given test environment, using values from environment variables.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.FromVaultIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Constructs a <see cref="T:PangeaCyber.Net.Config" /> for the given test environment, using values from environment variables,
+            intended for Vault integration tests specifically.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.FromCustomSchemaIntegrationEnvironment(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Constructs a <see cref="T:PangeaCyber.Net.Config" /> for the given test environment, using values from environment variables,
+            intended for custom schema integration tests specifically.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetTestToken(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Returns a Pangea API token for the given test environment.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetVaultSignatureTestToken(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Returns a Pangea API token for the given test environment, intended for Vault integration tests
+            specifically.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetMultiConfigTestToken(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Returns a Pangea API token for the given test environment, intended for multi-config integration tests
+            specifically.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetCustomSchemaTestToken(PangeaCyber.Net.TestEnvironment)">
-
+            <summary>
+            Returns a Pangea API token for the given test environment, intended for custom schema integration tests
+            specifically.
+            </summary>
+            <param name="environment">Test environment</param>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetConfigID(PangeaCyber.Net.TestEnvironment,System.String,System.Int32)">
-
+            <summary>
+            Returns a Pangea config ID for the given test environment and service.
+            </summary>
+            <param name="environment">Test environment.</param>
+            <param name="service">Pangea service name.</param>
+            <param name="configNumber">Config ID number.</param>
         </member>
         <member name="T:PangeaCyber.Net.Embargo.EmbargoClient">
             <kind>class</kind>
