@@ -149,7 +149,7 @@ publish:
   script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
-    - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
+    - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo -o ./ -p:PackageVersion=$PACKAGE_VERSION
     - cp .secure_files/CodeSigning_CABundle.crt /usr/local/share/ca-certificates
     - update-ca-certificates
     - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --timestamper http://timestamp.sectigo.com --certificate-path .secure_files/pangea.pfx -v d
@@ -158,7 +158,7 @@ publish:
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
-      - PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg
+      - packages/pangea-sdk/PangeaCyber.Net/bin/Release/Pangea.SDK.*.nupkg
   rules:
     - if: $CI_COMMIT_BRANCH == "release"
       changes:
