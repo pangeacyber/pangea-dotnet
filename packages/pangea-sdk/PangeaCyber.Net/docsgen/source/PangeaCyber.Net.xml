@@ -9274,8 +9274,8 @@
             <remarks>Encrypt structured</remarks>
             <operationid>vault_post_v1_key_encrypt_structured</operationid>
             <typeparam name="T">Structured data type.</typeparam>
-            <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
-            <param name="cancellationToken" cref="T:System.Threading.CancellationToken">Cancellation token.</param>
+            <param name="request" type="EncryptStructuredRequest&lt;T&gt;">Request parameters.</param>
+            <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
             <returns type="Response&lt;EncryptStructuredResult&lt;T&gt;&gt;">Encrypted result.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -9293,7 +9293,7 @@
             <remarks>Decrypt structured</remarks>
             <operationid>vault_post_v1_key_decrypt_structured</operationid>
             <typeparam name="T">Structured data type.</typeparam>
-            <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
+            <param name="request" type="EncryptStructuredRequest&lt;T&gt;">Request parameters.</param>
             <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
             <returns type="Response&lt;EncryptStructuredResult&lt;T&gt;&gt;">Decrypted result.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>

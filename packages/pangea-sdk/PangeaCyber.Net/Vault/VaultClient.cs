@@ -574,7 +574,7 @@ namespace PangeaCyber.Net.Vault
         /// <remarks>Encrypt structured</remarks>
         /// <operationid>vault_post_v1_key_encrypt_structured</operationid>
         /// <typeparam name="T">Structured data type.</typeparam>
-        /// <param name="request" type="EncryptStructuredRequest&lt;T&gt">Request parameters.</param>
+        /// <param name="request" type="EncryptStructuredRequest&lt;T&gt;">Request parameters.</param>
         /// <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
         /// <returns type="Response&lt;EncryptStructuredResult&lt;T&gt;&gt;">Encrypted result.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
