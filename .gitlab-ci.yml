@@ -10,7 +10,7 @@ default:
     paths:
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
-      - ".nuget"
+      - "./packages/pangea-sdk/.nuget"
     policy: pull-push
 
   before_script:
