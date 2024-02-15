@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Vault.Models;
@@ -234,6 +235,132 @@ namespace PangeaCyber.Net.Vault.Tests
                     Assert.Fail();
                 }
             }
+        }
+
+        [Fact]
+        public async Task TestSymmetricEncryptingGenerate()
+        {
+
+            SymmetricAlgorithm[] algorithms = {
+                SymmetricAlgorithm.AES128_CFB,
+                SymmetricAlgorithm.AES256_CFB,
+                SymmetricAlgorithm.AES128_CBC,
+                SymmetricAlgorithm.AES256_CBC,
+                SymmetricAlgorithm.AES256_GCM
+            };
+            bool failed = false;
+            KeyPurpose purpose = KeyPurpose.Encryption;
+
+            foreach (SymmetricAlgorithm algorithm in algorithms)
+            {
+                string name = GetName();
+                try
+                {
+                    var generateRequest = new SymmetricGenerateRequest.Builder(
+                        algorithm,
+                        purpose,
+                        name
+                    ).Build();
+
+                    var generateResp = await client.SymmetricGenerate(generateRequest);
+                }
+                catch (PangeaAPIException e)
+                {
+                    Console.WriteLine(string.Format("Failed generate with {0} {1}\n{2}\n\n", algorithm, purpose, e.ToString()));
+                    failed = true;
+                }
+            }
+            Assert.False(failed);
+        }
+
+        [Fact]
+        public async Task TestAsymmetricEncryptingGenerate()
+        {
+            AsymmetricAlgorithm[] algorithms = {
+                AsymmetricAlgorithm.RSA2048_OAEP_SHA1,
+                AsymmetricAlgorithm.RSA2048_OAEP_SHA512,
+                AsymmetricAlgorithm.RSA3072_OAEP_SHA1,
+                AsymmetricAlgorithm.RSA3072_OAEP_SHA256,
+                AsymmetricAlgorithm.RSA3072_OAEP_SHA512,
+                AsymmetricAlgorithm.RSA4096_OAEP_SHA1,
+                AsymmetricAlgorithm.RSA4096_OAEP_SHA256,
+                AsymmetricAlgorithm.RSA4096_OAEP_SHA512,
+            };
+            bool failed = false;
+            KeyPurpose purpose = KeyPurpose.Encryption;
+
+            foreach (AsymmetricAlgorithm algorithm in algorithms)
+            {
+                string name = GetName();
+                try
+                {
+                    var generateRequest = new AsymmetricGenerateRequest.Builder(
+                        algorithm,
+                        purpose,
+                        name
+                    ).Build();
+
+                    var generateResp = await client.AsymmetricGenerate(generateRequest);
+                }
+                catch (PangeaAPIException e)
+                {
+                    Console.WriteLine(string.Format("Failed generate with {0} {1}\n{2}\n\n", algorithm, purpose, e.ToString()));
+                    failed = true;
+                }
+            }
+            Assert.False(failed);
+        }
+
+        [Fact]
+        public async Task TestAsymmetricSigningGenerate()
+        {
+            AsymmetricAlgorithm[] algorithms = {
+                AsymmetricAlgorithm.ED25519,
+                AsymmetricAlgorithm.RSA2048_PKCS1V15_SHA256,
+                AsymmetricAlgorithm.ES256K,
+                AsymmetricAlgorithm.RSA2048_PSS_SHA256,
+                AsymmetricAlgorithm.RSA3072_PSS_SHA256,
+                AsymmetricAlgorithm.RSA4096_PSS_SHA256,
+                AsymmetricAlgorithm.RSA4096_PSS_SHA512,
+                AsymmetricAlgorithm.Ed25519_DILITHIUM2_BETA,
+                AsymmetricAlgorithm.Ed448_DILITHIUM3_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_128F_SHAKE256_SIMPLE_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_128F_SHAKE256_ROBUST_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_192F_SHAKE256_SIMPLE_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_192F_SHAKE256_ROBUST_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_256F_SHAKE256_SIMPLE_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_256F_SHAKE256_ROBUST_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_128F_SHA256_SIMPLE_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_128F_SHA256_ROBUST_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_192F_SHA256_SIMPLE_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_192F_SHA256_ROBUST_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_256F_SHA256_SIMPLE_BETA,
+                AsymmetricAlgorithm.SPHINCSPLUS_256F_SHA256_ROBUST_BETA,
+                AsymmetricAlgorithm.FALCON_1024_BETA
+            };
+            bool failed = false;
+            KeyPurpose purpose = KeyPurpose.Signing;
+
+            foreach (AsymmetricAlgorithm algorithm in algorithms)
+            {
+                string name = GetName();
+                try
+                {
+                    var generateRequest = new AsymmetricGenerateRequest.Builder(
+                        algorithm,
+                        purpose,
+                        name
+                    ).Build();
+
+                    var generateResp = await client.AsymmetricGenerate(generateRequest);
+                }
+                catch (PangeaAPIException e)
+                {
+                    Console.WriteLine(string.Format("Failed generate with {0} {1}\n{2}\n\n", algorithm, purpose, e.ToString()));
+                    failed = true;
+                }
+            }
+            Assert.False(failed);
         }
 
         [Fact]

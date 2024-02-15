@@ -84,5 +84,65 @@ namespace PangeaCyber.Net.Vault.Models
         [EnumMember(Value = "RSA-PSS-4096-SHA512")]
         RSA4096_PSS_SHA512,
 
+        ///
+        [EnumMember(Value = "ED25519-DILITHIUM2-BETA")]
+        Ed25519_DILITHIUM2_BETA,
+
+        ///
+        [EnumMember(Value = "ED448-DILITHIUM3-BETA")]
+        Ed448_DILITHIUM3_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-128F-SHAKE256-SIMPLE-BETA")]
+        SPHINCSPLUS_128F_SHAKE256_SIMPLE_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-128F-SHAKE256-ROBUST-BETA")]
+        SPHINCSPLUS_128F_SHAKE256_ROBUST_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-192F-SHAKE256-SIMPLE-BETA")]
+        SPHINCSPLUS_192F_SHAKE256_SIMPLE_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-192F-SHAKE256-ROBUST-BETA")]
+        SPHINCSPLUS_192F_SHAKE256_ROBUST_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-256F-SHAKE256-SIMPLE-BETA")]
+        SPHINCSPLUS_256F_SHAKE256_SIMPLE_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-256F-SHAKE256-ROBUST-BETA")]
+        SPHINCSPLUS_256F_SHAKE256_ROBUST_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-128F-SHA256-SIMPLE-BETA")]
+        SPHINCSPLUS_128F_SHA256_SIMPLE_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-128F-SHA256-ROBUST-BETA")]
+        SPHINCSPLUS_128F_SHA256_ROBUST_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-192F-SHA256-SIMPLE-BETA")]
+        SPHINCSPLUS_192F_SHA256_SIMPLE_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-192F-SHA256-ROBUST-BETA")]
+        SPHINCSPLUS_192F_SHA256_ROBUST_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-256F-SHA256-SIMPLE-BETA")]
+        SPHINCSPLUS_256F_SHA256_SIMPLE_BETA,
+
+        ///
+        [EnumMember(Value = "SPHINCSPLUS-256F-SHA256-ROBUST-BETA")]
+        SPHINCSPLUS_256F_SHA256_ROBUST_BETA,
+
+        ///
+        [EnumMember(Value = "FALCON-1024-BETA")]
+        FALCON_1024_BETA
+
     }
 }

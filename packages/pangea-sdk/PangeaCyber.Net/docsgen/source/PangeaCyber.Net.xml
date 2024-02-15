@@ -7066,6 +7066,51 @@
         <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.RSA4096_PSS_SHA512">
 
         </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.Ed25519_DILITHIUM2_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.Ed448_DILITHIUM3_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_128F_SHAKE256_SIMPLE_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_128F_SHAKE256_ROBUST_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_192F_SHAKE256_SIMPLE_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_192F_SHAKE256_ROBUST_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_256F_SHAKE256_SIMPLE_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_256F_SHAKE256_ROBUST_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_128F_SHA256_SIMPLE_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_128F_SHA256_ROBUST_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_192F_SHA256_SIMPLE_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_192F_SHA256_ROBUST_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_256F_SHA256_SIMPLE_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.SPHINCSPLUS_256F_SHA256_ROBUST_BETA">
+
+        </member>
+        <member name="F:PangeaCyber.Net.Vault.Models.AsymmetricAlgorithm.FALCON_1024_BETA">
+
+        </member>
         <member name="T:PangeaCyber.Net.Vault.Models.InheritedSettings">
 
         </member>
@@ -9268,32 +9313,14 @@
             </code>
             </example>
         </member>
-        <member name="M:PangeaCyber.Net.Vault.VaultClient.EncryptStructured``1(PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest{``0},System.Threading.CancellationToken)">
-            <kind>method</kind>
-            <summary>Encrypt parts of a JSON object.</summary>
-            <remarks>Encrypt structured</remarks>
-            <operationid>vault_post_v1_key_encrypt_structured</operationid>
-            <typeparam name="T">Structured data type.</typeparam>
-            <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
-            <param name="cancellationToken" cref="T:System.Threading.CancellationToken">Cancellation token.</param>
-            <returns type="Response&lt;EncryptStructuredResult&lt;T&gt;&gt;">Encrypted result.</returns>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
-            <exception cref="T:PangeaCyber.Net.Exceptions.PangeaAPIException">Thrown if the API returns an error response.</exception>
-            <example>
-            <code>
-            var data = new SomeModel { Name = "...", Occupation = "..." };
-            var request = new EncryptStructuredRequest&lt;SomeModel&gt;(encryptionKeyId, data, "$.name");
-            var response = await client.EncryptStructured(request);
-            </code>
-            </example>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:PangeaCyber.Net.Vault.VaultClient.EncryptStructured``1(PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest{``0},System.Threading.CancellationToken)" -->
         <member name="M:PangeaCyber.Net.Vault.VaultClient.DecryptStructured``1(PangeaCyber.Net.Vault.Requests.EncryptStructuredRequest{``0},System.Threading.CancellationToken)">
             <kind>method</kind>
             <summary>Decrypt parts of a JSON object.</summary>
             <remarks>Decrypt structured</remarks>
             <operationid>vault_post_v1_key_decrypt_structured</operationid>
             <typeparam name="T">Structured data type.</typeparam>
-            <param name="request" type="EncryptStructuredRequest{T}">Request parameters.</param>
+            <param name="request" type="EncryptStructuredRequest&lt;T&gt;">Request parameters.</param>
             <param name="cancellationToken" type="CancellationToken">Cancellation token.</param>
             <returns type="Response&lt;EncryptStructuredResult&lt;T&gt;&gt;">Decrypted result.</returns>
             <exception cref="T:PangeaCyber.Net.Exceptions.PangeaException">Thrown if an error occurs during the operation.</exception>
