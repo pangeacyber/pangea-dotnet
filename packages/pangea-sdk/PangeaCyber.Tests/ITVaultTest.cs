@@ -1,4 +1,3 @@
-using System.Net.Mail;
 using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Vault.Models;
