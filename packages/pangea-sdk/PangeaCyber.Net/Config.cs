@@ -61,7 +61,7 @@ namespace PangeaCyber.Net
         /// <summary>Whether or not to perform requests via plain HTTP, as opposed to secure HTTPS.</summary>
         public bool Insecure { get; set; }
 
-        /// <summary>Time span to wait before a request times out.</summary>
+        /// <summary>Time span to wait before a HTTP request times out.</summary>
         public TimeSpan ConnectionTimeout { get; set; }
 
         /// <summary>User-Agent string to append to the default one.</summary>
@@ -70,7 +70,7 @@ namespace PangeaCyber.Net
         /// <summary>Whether or not queued request retries are enabled.</summary>
         public bool QueuedRetryEnabled { get; set; } = true;
 
-        /// <summary>Timeout used to poll results after a HTTP/202 (in seconds).</summary>
+        /// <summary>Timeout for polling results after a HTTP/202 (in seconds).</summary>
         public long PollResultTimeoutSecs = 120;
 
         #endregion Public Properties

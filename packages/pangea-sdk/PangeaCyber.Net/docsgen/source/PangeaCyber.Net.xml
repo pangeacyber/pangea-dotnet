@@ -4345,7 +4345,7 @@
             <summary>Whether or not to perform requests via plain HTTP, as opposed to secure HTTPS.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.ConnectionTimeout">
-            <summary>Time span to wait before a request times out.</summary>
+            <summary>Time span to wait before a HTTP request times out.</summary>
         </member>
         <member name="P:PangeaCyber.Net.Config.CustomUserAgent">
             <summary>User-Agent string to append to the default one.</summary>
@@ -4354,7 +4354,7 @@
             <summary>Whether or not queued request retries are enabled.</summary>
         </member>
         <member name="F:PangeaCyber.Net.Config.PollResultTimeoutSecs">
-            <summary>Timeout used to poll results after a HTTP/202 (in seconds).</summary>
+            <summary>Timeout for polling results after a HTTP/202 (in seconds).</summary>
         </member>
         <member name="M:PangeaCyber.Net.Config.GetServiceUrl(System.String,System.String)">
             <summary>Constructs an API URL from the given service name and endpoint path.</summary>
