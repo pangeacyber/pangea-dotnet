@@ -6,6 +6,246 @@ updates:
       interval: daily
 
   - package-ecosystem: nuget
-    directory: /
+    directory: /examples/Audit/AuditLog
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditLogBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditLogBulkAsync
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditLogCustomSchema
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditLogNsign
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditMulticonfig
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditRoot
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditSearch
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Audit/AuditSearchCustomSchema
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/AuthN/InviteActions
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/AuthN/UserActions
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Embargo/IPCheck
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Embargo/ISOCheck
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/FileScan/Scan_Async
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/FileScan/Scan_RequestUploadURL_Post
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/FileScan/Scan_RequestUploadURL_Put
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/FileScan/Scan_Sync
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/Defang/Defang
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/Domain/Reputation
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/Domain/ReputationBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/File/Reputation
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/File/ReputationBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/File/ReputationFilepath
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/Geolocate
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/GeolocateBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/GetDomain
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/GetDomainBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/IsProxy
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/IsProxyBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/IsVPN
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/IsVPNBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/Reputation
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/IP/ReputationBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/URL/Reputation
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/URL/ReputationBulk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/User/PasswordBreached
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/User/UserBreachedByEmail
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/User/UserBreachedByIP
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/User/UserBreachedByPhone
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Intel/User/UserBreachedByUsername
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Redact/RedactMulticonfig
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Redact/Structured
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Redact/Text
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Vault/Encrypt
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Vault/EncryptStructured
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Vault/Rotate
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /examples/Vault/Sign
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /packages/pangea-sdk/PangeaCyber.Net
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /packages/pangea-sdk/PangeaCyber.Tests
     schedule:
       interval: daily

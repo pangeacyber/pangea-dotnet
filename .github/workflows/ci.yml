@@ -56,6 +56,27 @@ jobs:
         with:
           dotnet-version: 8
 
+  build:
+    needs: [prefetch]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [6, 7, 8]
+    defaults:
+      run:
+        working-directory: ./packages/pangea-sdk
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Build
+        run: dotnet build
+
   examples:
     needs: [setup, prefetch]
     runs-on: ubuntu-latest
