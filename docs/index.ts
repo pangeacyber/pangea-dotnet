@@ -23,15 +23,15 @@ interface Syntax {
 
 interface Item {
   commentId: string;
-  example: string[];
+  example?: string[];
   fullName: string;
   id: string;
   name: string;
   nameWithType: string;
   parent?: string;
-  remarks: string;
+  remarks?: string;
   source?: { id: string }
-  summary: string;
+  summary?: string;
   syntax?: Syntax;
   type: "Class" | "Constructor" | "Enum" | "Field" | "Method" | "Namespace" | "Property";
   uid: string;

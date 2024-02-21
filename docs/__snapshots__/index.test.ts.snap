@@ -3,11 +3,15 @@
 exports[`transform() > supports classes 1`] = `
 {
   "commentId": "T:PangeaCyber.Net.Vault.VaultClient",
+  "example": undefined,
   "fullName": "PangeaCyber.Net.Vault.VaultClient",
   "id": "VaultClient",
   "name": "VaultClient",
   "nameWithType": "VaultClient",
   "parent": "PangeaCyber.Net.Vault",
+  "remarks": undefined,
+  "source": undefined,
+  "summary": undefined,
   "syntax": {
     "content": "public class VaultClient : BaseClient<VaultClient.Builder>",
     "parameters": undefined,
@@ -22,11 +26,15 @@ exports[`transform() > supports classes 1`] = `
 exports[`transform() > supports namespaces 1`] = `
 {
   "commentId": "N:PangeaCyber.Net",
+  "example": undefined,
   "fullName": "PangeaCyber.Net",
   "id": "PangeaCyber.Net",
   "name": "PangeaCyber.Net",
   "nameWithType": "PangeaCyber.Net",
   "parent": undefined,
+  "remarks": undefined,
+  "source": undefined,
+  "summary": undefined,
   "syntax": undefined,
   "type": "Namespace",
   "uid": "PangeaCyber.Net",
