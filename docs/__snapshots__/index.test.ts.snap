@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`transform() > supports classes 1`] = `
+{
+  "commentId": "T:PangeaCyber.Net.Vault.VaultClient",
+  "fullName": "PangeaCyber.Net.Vault.VaultClient",
+  "id": "VaultClient",
+  "name": "VaultClient",
+  "nameWithType": "VaultClient",
+  "parent": "PangeaCyber.Net.Vault",
+  "syntax": {
+    "content": "public class VaultClient : BaseClient<VaultClient.Builder>",
+    "parameters": undefined,
+    "return": undefined,
+    "typeParameters": undefined,
+  },
+  "type": "Class",
+  "uid": "PangeaCyber.Net.Vault.VaultClient",
+}
+`;
+
+exports[`transform() > supports namespaces 1`] = `
+{
+  "commentId": "N:PangeaCyber.Net",
+  "fullName": "PangeaCyber.Net",
+  "id": "PangeaCyber.Net",
+  "name": "PangeaCyber.Net",
+  "nameWithType": "PangeaCyber.Net",
+  "parent": undefined,
+  "syntax": undefined,
+  "type": "Namespace",
+  "uid": "PangeaCyber.Net",
+}
+`;
