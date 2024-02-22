@@ -56,6 +56,100 @@ jobs:
         with:
           dotnet-version: 8
 
+  build-debug:
+    needs: [prefetch]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [6, 7, 8]
+    defaults:
+      run:
+        working-directory: ./packages/pangea-sdk
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Build
+        run: dotnet build
+
+  build-release:
+    needs: [prefetch, build-debug]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 6
+
+      - name: Build
+        run: dotnet build --configuration Release packages/pangea-sdk/
+
+      - name: Upload
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: pangea-dotnet-sdk-package
+          path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
+
+  docs:
+    needs: [build-release]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docs
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8
+
+      - name: Enabled Corepack
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20.10.0
+          cache: yarn
+          cache-dependency-path: ./docs/yarn.lock
+
+      - name: Download locally built Pangea.SDK
+        uses: actions/download-artifact@v4.1.2
+        with:
+          name: pangea-dotnet-sdk-package
+          path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
+
+      - name: Install docfx
+        run: dotnet tool install --global docfx --version 2.75.2
+
+      - name: Run docfx
+        run: docfx metadata docfx.json
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Unit tests
+        run: yarn test
+
+      - name: Generate docs
+        run: yarn generate
+
+      - name: Upload
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: csharp_sdk.json
+          path: ./docs/out/csharp_sdk.json
+
   examples:
     needs: [setup, prefetch]
     runs-on: ubuntu-latest

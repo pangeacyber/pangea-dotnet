@@ -1,0 +1,14 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": ["**/*.csproj"],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "src": "../packages/pangea-sdk/PangeaCyber.Net"
+        }
+      ],
+      "dest": "out/api"
+    }
+  ]
+}
