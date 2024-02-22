@@ -30,3 +30,9 @@ dotnet_diagnostic.IDE0055.severity = warning # Formatting rule
 
 [*.csproj]
 indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.ts]
+indent_size = 2

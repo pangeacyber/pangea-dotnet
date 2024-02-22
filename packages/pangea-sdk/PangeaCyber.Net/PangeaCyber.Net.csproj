@@ -15,11 +15,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
-
-  <!-- Build XML documentation for all combinations of target framework x configuration -->
-  <PropertyGroup>
-    <DocumentationFile>.\docsgen\source\$(AssemblyName).xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
