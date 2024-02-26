@@ -1,7 +1,7 @@
 namespace PangeaCyber.Net.Intel
 {
     /// <summary>Domain Intel client.</summary>
-    /// <remarks>Domain</remarks>
+    /// <remarks>Domain Intel</remarks>
     /// <example>
     /// <code>
     /// var config = new Config("pangea_token", "pangea_domain");
