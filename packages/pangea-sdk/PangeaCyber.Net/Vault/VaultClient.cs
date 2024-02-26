@@ -5,29 +5,36 @@ using PangeaCyber.Net.Vault.Results;
 
 namespace PangeaCyber.Net.Vault
 {
-    /// <kind>class</kind>
-    /// <summary>Vault Client</summary>
+    /// <summary>Vault client.</summary>
+    /// <remarks>Vault</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new VaultClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class VaultClient : BaseClient<VaultClient.Builder>
     {
         /// <summary>Service name.</summary>
         public static string ServiceName { get; } = "vault";
 
-        /// <summary>Constructor</summary>
+        /// <summary>Create a new <see cref="VaultClient"/> using the given builder.</summary>
         /// <param name="builder">Vault client builder.</param>
         public VaultClient(Builder builder) : base(builder, ServiceName)
         {
         }
 
-        /// <summary>Vault client builder.</summary>
+        /// <summary><see cref="VaultClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            /// <summary>Constructor</summary>
+            /// <summary>Create a new <see cref="VaultClient"/> builder.</summary>
             /// <param name="config">Configuration.</param>
             public Builder(Config config) : base(config)
             {
             }
 
-            /// <summary>Build a new Vault client.</summary>
+            /// <summary>Build a <see cref="VaultClient"/>.</summary>
             public VaultClient Build()
             {
                 return new VaultClient(this);

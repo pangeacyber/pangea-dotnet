@@ -1,30 +1,35 @@
 namespace PangeaCyber.Net.Intel
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// IPIntel Client
-    /// </summary>
+    /// <summary>IP Intel client.</summary>
+    /// <remarks>IP Intel</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new IPIntelClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class IPIntelClient : BaseClient<IPIntelClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "ip-intel";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="IPIntelClient"/> using the given builder.</summary>
         public IPIntelClient(Builder builder)
             : base(builder, ServiceName)
         {
         }
 
-        ///
+        /// <summary><see cref="IPIntelClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="IPIntelClient"/> builder.</summary>
             public Builder(Config config)
                 : base(config)
             {
             }
 
-            ///
+            /// <summary>Build an <see cref="IPIntelClient"/>.</summary>
             public IPIntelClient Build()
             {
                 return new IPIntelClient(this);
@@ -250,6 +255,5 @@ namespace PangeaCyber.Net.Intel
         {
             return DoPost<IPReputationBulkResult>("/v2/reputation", request);
         }
-
     }
 }

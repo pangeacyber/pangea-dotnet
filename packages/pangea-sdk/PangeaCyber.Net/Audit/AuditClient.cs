@@ -5,10 +5,15 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.Audit
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// Audit Client
-    /// </summary>
+    /// <summary>Audit client.</summary>
+    /// <remarks>Audit</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new AuditClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class AuditClient : BaseClient<AuditClient.Builder>
     {
         ///
@@ -35,7 +40,7 @@ namespace PangeaCyber.Net.Audit
         ///
         private readonly Dictionary<string, string> PKInfo;
 
-        /// Constructor
+        /// <summary>Create a new <see cref="AuditClient"/> using the given builder.</summary>
         protected AuditClient(Builder builder) : base(builder, ServiceName)
         {
             Signer = !string.IsNullOrEmpty(builder.privateKeyFilename) ? new LogSigner(builder.privateKeyFilename!) : null;
@@ -65,8 +70,6 @@ namespace PangeaCyber.Net.Audit
             }
             return new LogBulkRequest(logEvents, config.Verbose);
         }
-
-
 
         private LogRequest GetLogRequest(IEvent evt, LogConfig config)
         {
@@ -357,7 +360,6 @@ namespace PangeaCyber.Net.Audit
                             treeSizes.Add(LeafIndex.Value);
                         }
                     }
-
                 }
             }
 
@@ -478,48 +480,44 @@ namespace PangeaCyber.Net.Audit
             }
         }
 
-        /// <kind>class</kind>
-        /// <summary>
-        /// AuditClient Builder
-        /// </summary>
+        /// <summary><see cref="AuditClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
+            ///
+            public string? privateKeyFilename;
 
             ///
-            public string? privateKeyFilename = null;
-
-            ///
-            public string? tenantID = null;
+            public string? tenantID;
 
             ///
             public Type customSchemaClass = typeof(StandardEvent);
 
             ///
-            public Dictionary<string, string>? pkInfo = null;
+            public Dictionary<string, string>? pkInfo;
 
             ///
             public string configID = "";
 
-            ///
+            /// <summary>Create a new <see cref="AuditClient"/> builder.</summary>
             public Builder(Config config) : base(config)
             {
             }
 
-            /// Add a private key in case want to use local signature
+            /// <summary>Add a private key in case want to use local signature.</summary>
             public Builder WithPrivateKey(string privateKeyFilename)
             {
                 this.privateKeyFilename = privateKeyFilename;
                 return this;
             }
 
-            /// Add a tenant ID to be sent in each logged event
+            /// <summary>Add a tenant ID to be sent in each logged event.</summary>
             public Builder WithTenantID(string tenantID)
             {
                 this.tenantID = tenantID;
                 return this;
             }
 
-            /// Setup user custom schema
+            /// <summary>Setup user custom schema.</summary>
             public Builder WithCustomSchema<TEventType>() where TEventType : IEvent
             {
                 if (!typeof(IEvent).IsAssignableFrom(typeof(TEventType)))
@@ -531,27 +529,25 @@ namespace PangeaCyber.Net.Audit
                 return this;
             }
 
-            /// Add extra public key information
+            /// <summary>Add extra public key information.</summary>
             public Builder WithPKInfo(Dictionary<string, string> pkInfo)
             {
                 this.pkInfo = pkInfo;
                 return this;
             }
 
-            /// Add extra public key information
+            /// <summary>Add extra public key information.</summary>
             public Builder WithConfigID(string configID)
             {
                 this.configID = configID;
                 return this;
             }
 
-            /// Build an AuditClient
+            /// <summary>Build an <see cref="AuditClient"/>.</summary>
             public AuditClient Build()
             {
                 return new AuditClient(this);
             }
         }
-
     }
-
 }
