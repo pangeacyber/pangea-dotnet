@@ -24,6 +24,5 @@ namespace PangeaCyber.Net.AuthN.Clients
 
             }
         }
-
     }
 }

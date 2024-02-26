@@ -1,30 +1,35 @@
 namespace PangeaCyber.Net.Embargo
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// Embargo Client
-    /// </summary>
+    /// <summary>Embargo client.</summary>
+    /// <remarks>Embargo</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new EmbargoClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class EmbargoClient : BaseClient<EmbargoClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "embargo";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="EmbargoClient"/> using the given builder.</summary>
         public EmbargoClient(Builder builder)
             : base(builder, ServiceName)
         {
         }
 
-        ///
-        public class Builder : BaseClient<EmbargoClient.Builder>.ClientBuilder
+        /// <summary><see cref="EmbargoClient"/> builder.</summary>
+        public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="EmbargoClient"/> builder.</summary>
             public Builder(Config config)
                 : base(config)
             {
             }
 
-            ///
+            /// <summary>Build an <see cref="EmbargoClient"/>.</summary>
             public EmbargoClient Build()
             {
                 return new EmbargoClient(this);

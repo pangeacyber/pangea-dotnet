@@ -4,29 +4,34 @@ using PangeaCyber.Net.FileScan.Models;
 
 namespace PangeaCyber.Net.FileScan
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// FileScan Client
-    /// </summary>
+    /// <summary>File Scan client.</summary>
+    /// <remarks>File Scan</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new FileScanClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class FileScanClient : BaseClient<FileScanClient.Builder>
     {
         ///
         public static readonly string ServiceName = "file-scan";
 
-        ///
+        /// <summary>Create a new <see cref="FileScanClient"/> using the given builder.</summary>
         public FileScanClient(Builder builder) : base(builder, ServiceName)
         {
         }
 
-        ///
+        /// <summary><see cref="FileScanClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="FileScanClient"/> builder.</summary>
             public Builder(Config config) : base(config)
             {
             }
 
-            ///
+            /// <summary>Build a <see cref="FileScanClient"/>.</summary>
             public FileScanClient Build()
             {
                 return new FileScanClient(this);
@@ -138,9 +143,6 @@ namespace PangeaCyber.Net.FileScan
                     Sha256 = fileParams.SHA256;
                 }
             }
-
         }
-
     }
-
 }

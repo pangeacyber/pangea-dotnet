@@ -2,16 +2,21 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.Redact
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// Redact Client
-    /// </summary>
+    /// <summary>Redact client.</summary>
+    /// <remarks>Redact</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new RedactClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class RedactClient : BaseClient<RedactClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "redact";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="RedactClient"/> using the given builder.</summary>
         public RedactClient(Builder builder) : base(builder, ServiceName)
         {
             ConfigID = builder.ConfigID ?? ConfigID;
@@ -65,31 +70,29 @@ namespace PangeaCyber.Net.Redact
             return await this.structuredPost(request);
         }
 
-
-        ///
+        /// <summary><see cref="RedactClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            ///
-            public string? ConfigID = null;
+            /// <summary>Config ID.</summary>
+            public string? ConfigID;
 
-            ///
+            /// <summary>Create a new <see cref="RedactClient"/> builder.</summary>
             public Builder(Config config) : base(config)
             {
             }
 
-            ///
+            /// <summary>Build a <see cref="RedactClient"/>.</summary>
             public RedactClient Build()
             {
                 return new RedactClient(this);
             }
 
-            /// Add extra public key information
+            /// <summary>Add config ID.</summary>
             public Builder WithConfigID(string configID)
             {
                 ConfigID = configID;
                 return this;
             }
-
         }
     }
 }

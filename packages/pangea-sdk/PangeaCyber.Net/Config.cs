@@ -3,7 +3,6 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
 {
-    /// <kind>class</kind>
     /// <summary>
     /// Configuration for a Pangea service client.
     /// </summary>
