@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.FileScan
     /// <summary>
     /// FileScan Client
     /// </summary>
-    public class FileUploader : BaseClient<FileScanClient.Builder>
+    public class FileUploader : BaseClient<FileUploader.Builder>
     {
         ///
         public static readonly string ServiceName = "FileScanFileUploader";

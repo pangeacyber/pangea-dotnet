@@ -20,8 +20,12 @@ namespace PangeaCyber.Net
         PutURL,
 
         ///
-        [EnumMember(Value = "source_url")]
+        [EnumMember(Value = "source-url")]
         SourceURL,
+
+        ///
+        [EnumMember(Value = "dest-url")]
+        DestURL,
 
     }
 }
