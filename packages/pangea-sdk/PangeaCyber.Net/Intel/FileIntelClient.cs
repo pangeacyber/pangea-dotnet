@@ -3,31 +3,36 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.Intel
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// FileIntel Client
-    /// </summary>
+    /// <summary>File Intel client.</summary>
+    /// <remarks>File Intel</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new FileIntelClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class FileIntelClient : BaseClient<FileIntelClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "file-intel";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="FileIntelClient"/> using the given builder.</summary>
         public FileIntelClient(Builder builder)
             : base(builder, ServiceName)
         {
         }
 
-        ///
+        /// <summary><see cref="FileIntelClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="FileIntelClient"/> builder.</summary>
             public Builder(Config config)
                 : base(config)
             {
             }
 
-            ///
+            /// <summary>Build a <see cref="FileIntelClient"/>.</summary>
             public FileIntelClient Build()
             {
                 return new FileIntelClient(this);

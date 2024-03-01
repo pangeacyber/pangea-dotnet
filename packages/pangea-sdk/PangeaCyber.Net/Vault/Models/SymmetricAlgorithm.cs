@@ -29,6 +29,14 @@ namespace PangeaCyber.Net.Vault.Models
         AES256_CFB,
 
         ///
+        [EnumMember(Value = "AES-CBC-128")]
+        AES128_CBC,
+
+        ///
+        [EnumMember(Value = "AES-CBC-256")]
+        AES256_CBC,
+
+        ///
         [EnumMember(Value = "AES-GCM-256")]
         AES256_GCM
     }

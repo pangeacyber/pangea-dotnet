@@ -1,0 +1,38 @@
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+trim_trailing_whitespace = true
+guidelines = 120
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.cs]
+indent_size = 4
+
+# Organize usings.
+# dotnet_separate_import_directive_groups = false
+# dotnet_sort_system_directives_first = true
+# file_header_template = unset
+
+dotnet_diagnostic.IDE0003.severity = none # Remove `this` or `Me` qualification
+dotnet_diagnostic.IDE0009.severity = suggestion # Add `this` or `Me` qualification
+
+# dotnet_diagnostic.IDE0005.severity = warning # Remove unnecessary import
+
+dotnet_diagnostic.IDE0007.severity = suggestion # Use `var` instead of explicit type
+dotnet_diagnostic.IDE0008.severity = none # Use explicit type instead of `var`
+
+dotnet_diagnostic.IDE0047.severity = warning # Remove unnecessary parentheses
+dotnet_diagnostic.IDE0048.severity = warning # Add parentheses for clarity
+dotnet_diagnostic.IDE0055.severity = warning # Formatting rule
+
+[*.csproj]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.ts]
+indent_size = 2

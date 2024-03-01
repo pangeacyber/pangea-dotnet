@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Store.Models;
 using PangeaCyber.Net.Store.Requests;
 using PangeaCyber.Net.Store.Results;

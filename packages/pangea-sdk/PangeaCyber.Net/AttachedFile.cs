@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
 {

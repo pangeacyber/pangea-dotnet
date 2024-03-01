@@ -1,6 +1,6 @@
-# Pangea Dotnet SDK examples
+# Pangea .NET SDK examples
 
-This is a quick example about how you use Pangea Dotnet SDK, set up and run it.
+This is a quick example about how you use Pangea .NET SDK, set up and run it.
 
 ## Setup
 

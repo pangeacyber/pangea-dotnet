@@ -6,9 +6,8 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
 {
-    /// <kind>class</kind>
     /// <summary>
-    /// Client
+    /// Base functionality for Pangea API clients.
     /// </summary>
     public abstract class BaseClient<TBuilder> where TBuilder : BaseClient<TBuilder>.ClientBuilder
     {
@@ -36,22 +35,22 @@ namespace PangeaCyber.Net
         ///
         private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
 
-        ///
+        /// <summary>Client builder.</summary>
         public class ClientBuilder
         {
-            ///
+            /// <summary>Config.</summary>
             public Config config { get; }
 
-            ///
-            public NLog.Logger? logger { get; private set; } = null;
+            /// <summary>Logger.</summary>
+            public NLog.Logger? logger { get; private set; }
 
-            ///
+            /// <summary>Create a new <see cref="ClientBuilder"/>.</summary>
             public ClientBuilder(Config config)
             {
                 this.config = config;
             }
 
-            ///
+            /// <summary>Add the given logger to this builder.</summary>
             public ClientBuilder WithLogger(NLog.Logger _logger)
             {
                 logger = _logger;
@@ -59,7 +58,7 @@ namespace PangeaCyber.Net
             }
         }
 
-        ///
+        /// <summary>Create a new Pangea API client from the given builder and service name.</summary>
         protected BaseClient(ClientBuilder builder, string serviceName)
         {
             this.serviceName = serviceName;
@@ -85,8 +84,7 @@ namespace PangeaCyber.Net
 
         private NLog.Logger GetDefaultLogger()
         {
-            NLog.Logger logger = NLog.LogManager.GetLogger("Pangea");
-            return logger;
+            return NLog.LogManager.GetLogger("Pangea");
         }
 
         private async Task<HttpResponseMessage> DoPost(string path, HttpContent content, CancellationToken cancellationToken = default)
@@ -572,7 +570,6 @@ namespace PangeaCyber.Net
 
             throw new PangeaAPIException(string.Format("{0}: {1}", status, summary), response);
         }
-
     }
 
     class InternalHttpResponse

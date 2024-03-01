@@ -1,4 +1,5 @@
 using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Tests;
 
 namespace PangeaCyber.Net.FileScan.Tests
 {
@@ -6,7 +7,7 @@ namespace PangeaCyber.Net.FileScan.Tests
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
         private FileScanClient client;
-        private readonly TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("file-scan", TestEnvironment.LVE);
 
         public ITFileScanTest()
         {

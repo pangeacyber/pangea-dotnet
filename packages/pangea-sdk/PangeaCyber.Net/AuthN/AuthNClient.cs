@@ -2,28 +2,33 @@ using PangeaCyber.Net.AuthN.Clients;
 
 namespace PangeaCyber.Net.AuthN
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// AuthN Client
-    /// </summary>
+    /// <summary>AuthN client.</summary>
+    /// <remarks>AuthN</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new AuthNClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class AuthNClient : AuthNBaseClient
     {
         ///
-        public User User { get; private set; }
+        public User User { get; }
 
         ///
-        public Flow Flow { get; private set; }
+        public Flow Flow { get; }
 
         ///
-        public Client Client { get; private set; }
+        public Client Client { get; }
 
         ///
-        public Session Session { get; private set; }
+        public Session Session { get; }
 
         ///
-        public Agreements Agreements { get; private set; }
+        public Agreements Agreements { get; }
 
-        ///
+        /// <summary>Create a new <see cref="AuthNClient"/> using the given builder.</summary>
         public AuthNClient(Builder builder) : base(builder)
         {
             User = new User(builder);
@@ -33,15 +38,15 @@ namespace PangeaCyber.Net.AuthN
             Agreements = new Agreements(builder);
         }
 
-        ///
+        /// <summary><see cref="AuthNClient"/> builder.</summary>
         public new class Builder : AuthNBaseClient.Builder
         {
-            ///
+            /// <summary>Create a new <see cref="AuthNClient"/> builder.</summary>
             public Builder(Config config) : base(config)
             {
             }
 
-            ///
+            /// <summary>Build an <see cref="AuthNClient"/>.</summary>
             public AuthNClient Build()
             {
                 return new AuthNClient(this);

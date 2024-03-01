@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Examples;

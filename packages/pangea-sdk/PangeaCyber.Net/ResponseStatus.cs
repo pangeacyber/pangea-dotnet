@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.InteropServices;
 

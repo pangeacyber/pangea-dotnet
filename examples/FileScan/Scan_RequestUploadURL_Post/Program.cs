@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.FileScan;
 using PangeaCyber.Net.Exceptions;
 using System.Text;

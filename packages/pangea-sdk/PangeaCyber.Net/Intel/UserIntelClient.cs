@@ -2,31 +2,36 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.Intel
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// UserIntel Client
-    /// </summary>
+    /// <summary>User Intel client.</summary>
+    /// <remarks>User Intel</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new UserIntelClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class UserIntelClient : BaseClient<UserIntelClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "user-intel";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="UserIntelClient"/> using the given builder.</summary>
         public UserIntelClient(Builder builder)
             : base(builder, ServiceName)
         {
         }
 
-        ///
-        public class Builder : BaseClient<UserIntelClient.Builder>.ClientBuilder
+        /// <summary><see cref="UserIntelClient"/> builder.</summary>
+        public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="UserIntelClient"/> builder.</summary>
             public Builder(Config config)
                 : base(config)
             {
             }
 
-            ///
+            /// <summary>Build an <see cref="UserIntelClient"/>.</summary>
             public UserIntelClient Build()
             {
                 return new UserIntelClient(this);

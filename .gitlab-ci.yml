@@ -1,40 +1,155 @@
 default:
+  image:
+    name: mcr.microsoft.com/dotnet/sdk:6.0@sha256:fdac9ba57a38ffaa6494b93de33983644c44d9e491e4e312f35ddf926c55a073
+    entrypoint: [""]
   tags:
     - pangea-internal
 
-image:
-  name: mcr.microsoft.com/dotnet/sdk:6.0
-  entrypoint: [""]
+.dotnet-sdk-base:
+  cache:
+    paths:
+      - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
+      - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
+      - "./packages/pangea-sdk/.nuget"
+    policy: pull-push
 
-cache:
-  key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
-  paths:
-    - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
-    - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
-    - ".nuget"
-  policy: pull-push
+  before_script:
+    - cd packages/pangea-sdk
+    - dotnet restore --packages .nuget
+    - dotnet build --no-restore --configuration Release
 
-before_script:
-  - cd packages/pangea-sdk
-  - dotnet restore --packages .nuget
-  - dotnet build --no-restore --configuration Release
+.dotnet-sdk-test-base:
+  stage: integration_tests
+  variables:
+  # Set each service test environment
+    SERVICE_AUDIT_ENV: LVE
+    SERVICE_AUTHN_ENV: LVE
+    SERVICE_EMBARGO_ENV: LVE
+    SERVICE_FILE_SCAN_ENV: LVE
+    SERVICE_IP_INTEL_ENV: LVE
+    SERVICE_DOMAIN_INTEL_ENV: LVE
+    SERVICE_URL_INTEL_ENV: LVE
+    SERVICE_FILE_INTEL_ENV: LVE
+    SERVICE_USER_INTEL_ENV: LVE
+    SERVICE_REDACT_ENV: LVE
+    SERVICE_VAULT_ENV: LVE
 
-lint:
+  cache:
+    paths:
+      - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
+      - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
+      - ".nuget"
+    policy: pull-push
+
+  before_script:
+    - echo ${ENV}
+    - echo ${CLOUD}
+    - echo ${TEST}
+
+  # Update environment variables
+  # Domain
+    - export PANGEA_INTEGRATION_DOMAIN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_DOMAIN_${ENV}_${CLOUD})"
+  # Tokens
+    - export PANGEA_INTEGRATION_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_TOKEN_${ENV}_${CLOUD})"
+    - export PANGEA_INTEGRATION_VAULT_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_VAULT_TOKEN_${ENV}_${CLOUD})"
+    - export PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_${ENV}_${CLOUD})"
+    - export PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_${ENV}_${CLOUD})"
+  # Config IDs
+    - export PANGEA_AUDIT_CONFIG_ID_1_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_1_${ENV}_${CLOUD})"
+    - export PANGEA_AUDIT_CONFIG_ID_2_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_2_${ENV}_${CLOUD})"
+    - export PANGEA_REDACT_CONFIG_ID_1_${ENV}="$(eval echo \$PANGEA_REDACT_CONFIG_ID_1_${ENV}_${CLOUD})"
+    - export PANGEA_REDACT_CONFIG_ID_2_${ENV}="$(eval echo \$PANGEA_REDACT_CONFIG_ID_2_${ENV}_${CLOUD})"
+
+    - cd packages/pangea-sdk
+    - dotnet restore --packages .nuget
+    - dotnet build --no-restore --configuration Release
+
+  parallel:
+    matrix:
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_AUDIT_ENV}
+        TEST: ITAuditTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_AUTHN_ENV}
+        TEST: ITAuthNTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_EMBARGO_ENV}
+        TEST: ITEmbargoTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_DOMAIN_INTEL_ENV}
+        TEST: ITDomainIntelTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_IP_INTEL_ENV}
+        TEST: ITIPIntelTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_URL_INTEL_ENV}
+        TEST: ITURLIntelTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_USER_INTEL_ENV}
+        TEST: ITUserIntelTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_FILE_INTEL_ENV}
+        TEST: ITFileIntelTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_FILE_SCAN_ENV}
+        TEST: ITFileScanTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_REDACT_ENV}
+        TEST: ITRedactTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_VAULT_ENV}
+        TEST: ITVaultTest
+  rules:
+    - if: '$CLOUD == "GCP" && $TEST == "ITFileScanTest"'
+      allow_failure: true
+    - if: '$CLOUD == "GCP" && $TEST != "ITFileScanTest"'
+      allow_failure: false
+    - if: '$CLOUD != "GCP"'
+      allow_failure: false
+
+dotnet-sdk-lint:
+  extends: .dotnet-sdk-base
   stage: lint
   script:
     - dotnet format --verify-no-changes
 
-tests:
-  stage: test
+dotnet-sdk-unit-tests:
+  extends: .dotnet-sdk-base
+  stage: unit_tests
+  script:
+    - dotnet test --no-restore --filter SignerTest
+
+dotnet-sdk-integration-tests:
+  extends: .dotnet-sdk-test-base
+  script:
+    - dotnet test --no-restore --filter ${TEST}
+
+.dotnet-sdk-staging-tests:
+  extends: .dotnet-sdk-test-base
+  variables:
+    ENV: STG
+  # Set each service test environment
+    SERVICE_AUDIT_ENV: STG
+    SERVICE_AUTHN_ENV: STG
+    SERVICE_EMBARGO_ENV: STG
+    SERVICE_FILE_SCAN_ENV: STG
+    SERVICE_IP_INTEL_ENV: STG
+    SERVICE_DOMAIN_INTEL_ENV: STG
+    SERVICE_URL_INTEL_ENV: STG
+    SERVICE_FILE_INTEL_ENV: STG
+    SERVICE_USER_INTEL_ENV: STG
+    SERVICE_REDACT_ENV: STG
+    SERVICE_VAULT_ENV: STG
   script:
     - dotnet test --no-restore
 
 publish:
+  extends: .dotnet-sdk-base
   stage: publish
   script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
-    - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo  -o ./ -p:PackageVersion=$PACKAGE_VERSION
+    - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo -o ./ -p:PackageVersion=$PACKAGE_VERSION
     - cp .secure_files/CodeSigning_CABundle.crt /usr/local/share/ca-certificates
     - update-ca-certificates
     - dotnet nuget sign ./PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg --timestamper http://timestamp.sectigo.com --certificate-path .secure_files/pangea.pfx -v d
@@ -43,7 +158,7 @@ publish:
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
-      - PangeaCyber.Net/bin/Release/Pangea.SDK.$PACKAGE_VERSION.nupkg
+      - packages/pangea-sdk/PangeaCyber.Net/bin/Release/Pangea.SDK.*.nupkg
   rules:
     - if: $CI_COMMIT_BRANCH == "release"
       changes:
@@ -52,5 +167,10 @@ publish:
 
 stages:
   - lint
-  - test
+  - unit_tests
+  - integration_tests
+  - examples
   - publish
+
+include:
+  - /examples/.examples-ci.yml

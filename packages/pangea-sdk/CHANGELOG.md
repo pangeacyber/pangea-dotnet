@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Documentation for client builders and constructors.
+
+
+## [3.7.0] - 2024-02-26
+
+### Added 
+
+- Vault service. Post quantum signing algorithms support
+
+### Changed
+
+- Rewrote `README.md`.
+
+
 ## [3.6.0] - 2024-01-11
 
 ### Added
@@ -147,7 +163,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Redact requests builder rename to be called just "Builder"
 
 
-[unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.6.0...main
+[unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.7.0...main
+[3.7.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.5.1...v3.6.0
 [3.5.1]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.5.0...v3.5.1
 [3.5.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.4.0...v3.5.0

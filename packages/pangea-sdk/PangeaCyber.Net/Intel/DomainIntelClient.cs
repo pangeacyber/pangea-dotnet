@@ -1,30 +1,35 @@
 namespace PangeaCyber.Net.Intel
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// DomainIntel Client
-    /// </summary>
+    /// <summary>Domain Intel client.</summary>
+    /// <remarks>Domain Intel</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new DomainIntelClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class DomainIntelClient : BaseClient<DomainIntelClient.Builder>
     {
         ///
         public static string ServiceName { get; } = "domain-intel";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="DomainIntelClient"/> using the given builder.</summary>
         public DomainIntelClient(Builder builder)
             : base(builder, ServiceName)
         {
         }
 
-        ///
+        /// <summary><see cref="DomainIntelClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="DomainIntelClient"/> builder.</summary>
             public Builder(Config config)
                 : base(config)
             {
             }
 
-            ///
+            /// <summary>Build a <see cref="DomainIntelClient"/>.</summary>
             public DomainIntelClient Build()
             {
                 return new DomainIntelClient(this);
@@ -82,6 +87,5 @@ namespace PangeaCyber.Net.Intel
         {
             return DoPost<DomainWhoIsResult>("/v1/whois", request);
         }
-
     }
 }

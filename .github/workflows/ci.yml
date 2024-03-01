@@ -1,0 +1,178 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+  merge_group:
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    outputs:
+      examples-matrix: ${{ steps.examples-matrix.outputs.examples-matrix }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Calculate `examples-matrix` output
+        id: examples-matrix
+        working-directory: ./examples
+        env:
+          JQ_FILTER: >-
+            "examples-matrix=" + (split("\n") | map(select(length > 0)) | tostring)
+        run: find . -type f -name '*.csproj' -printf '%h\n' | cut -c 3- | sort -u | jq -cRrs '${{ env.JQ_FILTER }}' >> "$GITHUB_OUTPUT"
+
+  prefetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8
+
+  build-debug:
+    needs: [prefetch]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [6, 7, 8]
+    defaults:
+      run:
+        working-directory: ./packages/pangea-sdk
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Build
+        run: dotnet build
+
+  build-release:
+    needs: [prefetch, build-debug]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 6
+
+      - name: Build
+        run: dotnet build --configuration Release packages/pangea-sdk/
+
+      - name: Upload
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: pangea-dotnet-sdk-package
+          path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
+
+  docs:
+    needs: [build-release]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docs
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: 8
+
+      - name: Enabled Corepack
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20.10.0
+          cache: yarn
+          cache-dependency-path: ./docs/yarn.lock
+
+      - name: Download locally built Pangea.SDK
+        uses: actions/download-artifact@v4.1.3
+        with:
+          name: pangea-dotnet-sdk-package
+          path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
+
+      - name: Install docfx
+        run: dotnet tool install --global docfx --version 2.75.2
+
+      - name: Run docfx
+        run: docfx metadata docfx.json
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Unit tests
+        run: yarn test
+
+      - name: Generate docs
+        run: yarn generate
+
+      - name: Upload
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: csharp_sdk.json
+          path: ./docs/out/csharp_sdk.json
+
+  examples:
+    needs: [setup, prefetch]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example: ${{ fromJSON(needs.setup.outputs.examples-matrix) }}
+        dotnet-version: [6, 7, 8]
+    defaults:
+      run:
+        working-directory: ./examples/${{ matrix.example }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.0.0
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Build
+        run: dotnet build
+
+      - name: Lint
+        if: matrix.dotnet-version == 8
+        run: dotnet format --verify-no-changes

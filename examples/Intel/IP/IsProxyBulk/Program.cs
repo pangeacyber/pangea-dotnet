@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Intel;
 using PangeaCyber.Net.Exceptions;
 
@@ -36,7 +36,7 @@ class Program
             IPIntelClient client = new IPIntelClient.Builder(clientCfg).Build();
 
             // Create request
-            var req = new IPProxyBulkRequest.Builder(new string[] {"34.201.32.172", "190.28.74.251"})
+            var req = new IPProxyBulkRequest.Builder(new string[] { "34.201.32.172", "190.28.74.251" })
                 .WithProvider("digitalelement")
                 .WithVerbose(true)
                 .WithRaw(true)

@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Intel;
 using PangeaCyber.Net.Exceptions;
 using System;
@@ -37,7 +37,7 @@ class Program
             IPIntelClient client = new IPIntelClient.Builder(clientCfg).Build();
 
             // Create request
-            var req = new IPGeolocateBulkRequest.Builder(new string[] {"93.231.182.110", "190.28.74.251"})
+            var req = new IPGeolocateBulkRequest.Builder(new string[] { "93.231.182.110", "190.28.74.251" })
                 .WithProvider("digitalelement")
                 .WithVerbose(true)
                 .WithRaw(true)

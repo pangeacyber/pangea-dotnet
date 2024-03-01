@@ -1,11 +1,12 @@
 using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Tests;
 
 namespace PangeaCyber.Net.Embargo.Tests
 {
     public class ITEmbargoTest
     {
         private EmbargoClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("embargo", TestEnvironment.LVE);
 
         public ITEmbargoTest()
         {

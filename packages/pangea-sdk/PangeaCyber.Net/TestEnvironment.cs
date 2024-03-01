@@ -1,5 +1,3 @@
-﻿using System;
-
 namespace PangeaCyber.Net
 {
     /// <kind>enum</kind>

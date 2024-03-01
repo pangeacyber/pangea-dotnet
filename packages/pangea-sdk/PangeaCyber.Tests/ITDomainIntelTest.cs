@@ -1,11 +1,12 @@
 using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Tests;
 
 namespace PangeaCyber.Net.Intel.Tests
 {
     public class ITDomainIntelTest
     {
         private DomainIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("domain-intel", TestEnvironment.LVE);
 
         public ITDomainIntelTest()
         {

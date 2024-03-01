@@ -1,4 +1,4 @@
-﻿using PangeaCyber.Net;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Intel;
 using PangeaCyber.Net.Exceptions;
 using System.Resources;
@@ -34,7 +34,7 @@ class Program
             DomainIntelClient client = new DomainIntelClient.Builder(clientCfg).Build();
 
             // Create request
-            var req = new DomainReputationBulkRequest.Builder(new string[] {"pemewizubidob.cafij.co.za", "redbomb.com.tr", "kmbk8.hicp.net"})
+            var req = new DomainReputationBulkRequest.Builder(new string[] { "pemewizubidob.cafij.co.za", "redbomb.com.tr", "kmbk8.hicp.net" })
                 .WithProvider("domaintools")
                 .WithVerbose(true)
                 .WithRaw(true)

@@ -6,7 +6,7 @@ namespace PangeaCyber.Tests.Intel
     public class ITUserIntelTest
     {
         private UserIntelClient client;
-        private TestEnvironment environment = TestEnvironment.LVE;
+        private readonly TestEnvironment environment = Helper.LoadTestEnvironment("user-intel", TestEnvironment.LVE);
 
         public ITUserIntelTest()
         {
