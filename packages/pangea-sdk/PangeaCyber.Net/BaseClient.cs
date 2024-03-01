@@ -335,7 +335,21 @@ namespace PangeaCyber.Net
             byte[] data = await res.Content.ReadAsByteArrayAsync();
             string contentType = res.Content.Headers.ContentType?.MediaType?.ToLowerInvariant() ?? "";
 
-            return new AttachedFile("download.file", contentType, data);
+            // TODO: get filename from Content-Disposition first once enable in backend
+            string filename = GetFilenameFromURL(url);
+
+            if (filename.Equals(""))
+            {
+                filename = "default_filename";
+            }
+
+            return new AttachedFile(filename, contentType, data);
+        }
+
+        private static string GetFilenameFromURL(string url)
+        {
+            string[] parts = url.Split('/');
+            return parts[parts.Length - 1].Split('?')[0];
         }
 
         ///
