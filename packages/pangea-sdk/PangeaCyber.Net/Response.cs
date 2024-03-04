@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using PangeaCyber.Net.Exceptions;
+using System.Net.Http;
 
 namespace PangeaCyber.Net
 {
