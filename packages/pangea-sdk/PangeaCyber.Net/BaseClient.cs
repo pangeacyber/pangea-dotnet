@@ -206,7 +206,7 @@ namespace PangeaCyber.Net
             }
 
             var fileContent = new StreamContent(fileData.File);
-            formData.Add(fileContent, fileData.Name, "file.exe");
+            formData.Add(fileContent, "file");
 
             try
             {
