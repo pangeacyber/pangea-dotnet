@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Documentation for client builders and constructors.
 
+### Changed
+
+- Skip sending `filename` field when posting to presigned URL. Make GCP S3 to return a `BadRequest`
+
 
 ## [3.7.0] - 2024-02-26
 
