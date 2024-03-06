@@ -112,6 +112,12 @@ namespace PangeaCyber.Net.Store
         }
 
         ///
+        public async Task<Response<ShareLinkSendResult>> ShareLinkSend(ShareLinkSendRequest request)
+        {
+            return await DoPost<ShareLinkSendResult>("/v1beta/share/link/send", request);
+        }
+
+        ///
         public class Builder : ClientBuilder
         {
             ///
