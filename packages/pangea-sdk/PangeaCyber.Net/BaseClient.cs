@@ -1,6 +1,7 @@
 using System.Text;
 using Newtonsoft.Json;
 using HttpMultipartParser;
+using System.Net.Http;
 
 using PangeaCyber.Net.Exceptions;
 
