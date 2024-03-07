@@ -1,6 +1,8 @@
-using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using HttpMultipartParser;
+using System.Net.Http;
+
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
@@ -312,6 +314,45 @@ namespace PangeaCyber.Net
         }
 
         ///
+        public async Task<AttachedFile> DownloadFile(string url)
+        {
+            logger.Debug(
+                $"{{\"service\": \"{serviceName}\", \"action\": \"DownloadFile\", \"url\": \"{url}\"}}"
+            );
+
+            HttpResponseMessage res;
+            try
+            {
+                res = await GeneralHttpClient.GetAsync(url);
+            }
+            catch (Exception e)
+            {
+                logger.Error(
+                    $"{{\"service\": \"{serviceName}\", \"action\": \"DownloadFile\", \"url\": \"{url}\", \"message\": \"failed to send request\", \"exception\": \"{e}\"}}"
+                );
+                throw new PangeaException("Failed to send get request", e);
+            }
+
+            byte[] data = await res.Content.ReadAsByteArrayAsync();
+            string contentType = res.Content.Headers.ContentType?.MediaType?.ToLowerInvariant() ?? "";
+
+            // TODO: get filename from Content-Disposition first once enable in backend
+            string filename = GetFilenameFromURL(url);
+
+            if (string.IsNullOrEmpty(filename))
+            {
+                filename = "default_filename";
+            }
+
+            return new AttachedFile(filename, contentType, data);
+        }
+
+        private static string GetFilenameFromURL(string url)
+        {
+            return new Uri(url).Segments.Last();
+        }
+
+        ///
         protected async Task<Response<TResult>> Get<TResult>(string path)
         {
             HttpResponseMessage res = await DoGet(path);
@@ -439,31 +480,33 @@ namespace PangeaCyber.Net
         }
 
         ///
-        private Response<TResult> ParseResponse<TResult>(string body, HttpResponseMessage res, ResponseHeader header)
+        private Response<TResult> ParseResponse<TResult>(InternalHttpResponse res, ResponseHeader header)
         {
             Response<TResult> resultResponse;
             try
             {
-                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(body, GetJsonSerializerSettings()) ?? default!;
+                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(res.Body, GetJsonSerializerSettings()) ?? default!;
             }
             catch (Exception e)
             {
                 logger.Error(
                     $"{{\"service\": \"{serviceName}\", \"action\": \"ParseResponse\", \"message\": \"failed to parse response result\", \"exception\": \"{e}\"}}"
                 );
-                throw new ParseResultFailed("Failed to parse response result", e, header, body);
+                throw new ParseResultFailed("Failed to parse response result", e, header, res.Body);
             }
 
-            resultResponse.HttpResponse = res;
+            resultResponse.HttpResponse = res.HttpResponseMessage;
+            resultResponse.AttachedFiles = res.AttachedFiles;
             return resultResponse;
         }
 
-        private Response<PangeaErrors> ParseErrors(string body, HttpResponseMessage res, ResponseHeader header)
+        private Response<PangeaErrors> ParseErrors(InternalHttpResponse res, ResponseHeader header)
         {
             try
             {
-                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(body, GetJsonSerializerSettings()) ?? default!;
-                response.HttpResponse = res;
+                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(res.Body, GetJsonSerializerSettings()) ?? default!;
+                response.HttpResponse = res.HttpResponseMessage;
+                response.AttachedFiles = res.AttachedFiles;
                 return response;
             }
             catch (Exception e)
@@ -471,14 +514,16 @@ namespace PangeaCyber.Net
                 logger.Error(
                     $"{{\"service\": \"{serviceName}\", \"action\": \"ParseErrors\", \"message\": \"failed to parse response errors\", \"exception\": \"{e}\"}}"
                 );
-                throw new ParseResultFailed("Failed to parse response errors", e, header, body);
+                throw new ParseResultFailed("Failed to parse response errors", e, header, res.Body);
             }
         }
 
         ///
         private async Task<Response<TResult>> CheckResponse<TResult>(HttpResponseMessage res)
         {
-            string body = await res.Content.ReadAsStringAsync();
+            var internalResponse = await InternalHttpResponse.From(res);
+            string body = internalResponse.Body;
+
             logger.Debug(
                 $"{{\"service\": \"{serviceName}\", \"action\": \"checkResponse\", \"response\": {body} }}"
             );
@@ -488,13 +533,13 @@ namespace PangeaCyber.Net
             // If AcceptedResult is a expected result, return it
             if (header.IsOK || new Response<TResult>() is Response<AcceptedResult>)
             {
-                return ParseResponse<TResult>(body, res, header);
+                return ParseResponse<TResult>(internalResponse, header);
             }
 
             // Process Errors
             string summary = header.Summary;
             string status = header.Status;
-            Response<PangeaErrors> response = ParseErrors(body, res, header);
+            Response<PangeaErrors> response = ParseErrors(internalResponse, header);
 
             if (header.Status.Equals(ResponseStatus.ValidationError.ToString()))
             {
@@ -540,4 +585,73 @@ namespace PangeaCyber.Net
             throw new PangeaAPIException(string.Format("{0}: {1}", status, summary), response);
         }
     }
+
+    class InternalHttpResponse
+    {
+
+        public string Body { get; protected set; } = string.Empty;
+        public HttpResponseMessage HttpResponseMessage { get; protected set; } = default!;
+        public List<AttachedFile> AttachedFiles = new();
+
+        ///
+        public static async Task<InternalHttpResponse> From(HttpResponseMessage res)
+        {
+            var InternalResponse = new InternalHttpResponse()
+            {
+                HttpResponseMessage = res,
+            };
+
+            string contentType = res.Content.Headers.ContentType?.MediaType?.ToLowerInvariant() ?? "";
+            if (contentType.StartsWith("multipart/"))
+            {
+                var parser = await MultipartFormDataParser.ParseAsync(await res.Content.ReadAsStreamAsync()).ConfigureAwait(false);
+
+                int partCount = 0;
+                // Loop through all the files
+                foreach (var file in parser.Files)
+                {
+                    Stream data = file.Data;
+
+                    if (partCount == 0)
+                    {
+                        InternalResponse.Body = ReadStreamToString(data);
+                    }
+                    else
+                    {
+                        byte[] fileContent = ReadStreamToByteArray(data);
+                        var attachedFile = new AttachedFile(file.FileName, file.ContentType, fileContent);
+                        InternalResponse.AttachedFiles.Add(attachedFile);
+                    }
+                    partCount++;
+                }
+            }
+            else
+            {
+                InternalResponse.Body = await res.Content.ReadAsStringAsync();
+            }
+
+            return InternalResponse;
+        }
+
+        private static string ReadStreamToString(Stream stream)
+        {
+            stream.Seek(0, SeekOrigin.Begin);
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
+        private static byte[] ReadStreamToByteArray(Stream stream)
+        {
+            stream.Seek(0, SeekOrigin.Begin);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
+    }
+
 }

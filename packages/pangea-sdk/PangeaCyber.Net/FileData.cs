@@ -12,7 +12,7 @@ namespace PangeaCyber.Net
         public string Name { get; set; }
 
         ///
-        public Dictionary<string, string>? Details { get; set; } = null;
+        public Dictionary<string, string>? Details { get; set; } = new();
 
         ///
         public FileData(FileStream file, string name)
