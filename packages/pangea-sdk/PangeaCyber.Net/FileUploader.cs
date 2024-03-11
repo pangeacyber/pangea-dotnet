@@ -1,15 +1,15 @@
 using PangeaCyber.Net.Exceptions;
 
-namespace PangeaCyber.Net.Share
+namespace PangeaCyber.Net
 {
     ///
-    public class ShareFileUploader : BaseClient<ShareFileUploader.Builder>
+    public class FileUploader : BaseClient<FileUploader.Builder>
     {
         ///
-        public static readonly string ServiceName = "ShareFileUploader";
+        public static readonly string ServiceName = "FileUploader";
 
         ///
-        public ShareFileUploader(Builder builder) : base(builder, ServiceName)
+        public FileUploader(Builder builder) : base(builder, ServiceName)
         {
         }
 
@@ -22,9 +22,9 @@ namespace PangeaCyber.Net.Share
             }
 
             ///
-            public ShareFileUploader Build()
+            public FileUploader Build()
             {
-                return new ShareFileUploader(this);
+                return new FileUploader(this);
             }
         }
 
@@ -33,7 +33,7 @@ namespace PangeaCyber.Net.Share
         {
             if (transferMethod == TransferMethod.Multipart)
             {
-                throw new PangeaException($"{transferMethod} not supported. Use Put() instead", null);
+                throw new PangeaException($"{transferMethod} not supported. Use service client instead", null);
             }
 
             if (transferMethod == TransferMethod.PostURL && fileData.Details == null)

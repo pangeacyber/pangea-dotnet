@@ -128,7 +128,7 @@ namespace PangeaCyber.Net.Share.Tests
 
             FileData fileData = new FileData(fileStream, "file", details);
 
-            ShareFileUploader fileUploader = new ShareFileUploader.Builder().Build();
+            FileUploader fileUploader = new FileUploader.Builder().Build();
             await fileUploader.UploadFile(url, TransferMethod.PostURL, fileData);
 
             int maxRetry = 12;
@@ -170,7 +170,7 @@ namespace PangeaCyber.Net.Share.Tests
 
             FileData fileData = new FileData(fileStream, "file");
 
-            ShareFileUploader fileUploader = new ShareFileUploader.Builder().Build();
+            FileUploader fileUploader = new FileUploader.Builder().Build();
             await fileUploader.UploadFile(url, TransferMethod.PutURL, fileData);
 
             int maxRetry = 12;
