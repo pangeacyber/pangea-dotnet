@@ -196,29 +196,27 @@ namespace PangeaCyber.Net
         ///
         protected async Task UploadPresignedURL(string url, TransferMethod transferMethod, FileData fileData)
         {
-            // Create PresignedURL post
-            using var formData = new MultipartFormDataContent();
-
-            if (fileData.Details != null && transferMethod == TransferMethod.PostURL)
-            {
-                foreach (var pair in fileData.Details)
-                {
-                    formData.Add(new StringContent(pair.Value, null, "application/json"), pair.Key);
-                }
-            }
-
-            var fileContent = new StreamContent(fileData.File);
-            formData.Add(fileContent, "file");
 
             try
             {
                 HttpResponseMessage resPSurl;
                 if (transferMethod == TransferMethod.PutURL)
                 {
-                    resPSurl = await GeneralHttpClient.PutAsync(url, formData);
+                    resPSurl = await GeneralHttpClient.PutAsync(url, new StreamContent(fileData.File));
                 }
                 else
                 {
+                    // Create PresignedURL post
+                    using var formData = new MultipartFormDataContent();
+                    if (fileData.Details != null)
+                    {
+                        foreach (var pair in fileData.Details)
+                        {
+                            formData.Add(new StringContent(pair.Value, null, "application/json"), pair.Key);
+                        }
+                    }
+                    var fileContent = new StreamContent(fileData.File);
+                    formData.Add(fileContent, "file");
                     resPSurl = await GeneralHttpClient.PostAsync(url, formData);
                 }
 
