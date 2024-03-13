@@ -334,7 +334,20 @@ namespace PangeaCyber.Net
             byte[] data = await res.Content.ReadAsByteArrayAsync();
             string contentType = res.Content.Headers.ContentType?.MediaType?.ToLowerInvariant() ?? "";
 
-            return new AttachedFile("download.file", contentType, data);
+            // TODO: get filename from Content-Disposition first once enable in backend
+            string filename = GetFilenameFromURL(url);
+
+            if (string.IsNullOrEmpty(filename))
+            {
+                filename = "default_filename";
+            }
+
+            return new AttachedFile(filename, contentType, data);
+        }
+
+        private static string GetFilenameFromURL(string url)
+        {
+            return new Uri(url).Segments.Last();
         }
 
         ///
@@ -574,7 +587,7 @@ namespace PangeaCyber.Net
     class InternalHttpResponse
     {
 
-        public string Body { get; protected set; } = "";
+        public string Body { get; protected set; } = string.Empty;
         public HttpResponseMessage HttpResponseMessage { get; protected set; } = default!;
         public List<AttachedFile> AttachedFiles = new();
 
@@ -599,8 +612,7 @@ namespace PangeaCyber.Net
 
                     if (partCount == 0)
                     {
-                        string result = ReadStreamToString(data);
-                        InternalResponse.Body = result;
+                        InternalResponse.Body = ReadStreamToString(data);
                     }
                     else
                     {

@@ -480,6 +480,12 @@ namespace PangeaCyber.Net.Audit
             }
         }
 
+        /// TODO: Docs
+        public async Task<Response<DownloadResult>> DownloadResults(DownloadRequest request)
+        {
+            return await DoPost<DownloadResult>("/v1/download_results", request);
+        }
+
         /// <summary><see cref="AuditClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
@@ -548,6 +554,7 @@ namespace PangeaCyber.Net.Audit
             {
                 return new AuditClient(this);
             }
+
         }
     }
 }

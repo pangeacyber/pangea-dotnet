@@ -6,7 +6,7 @@
   "engines": {
     "node": "18 || >=20"
   },
-  "packageManager": "yarn@4.1.0",
+  "packageManager": "yarn@4.1.1",
   "scripts": {
     "generate": "tsimp bin.ts > out/csharp_sdk.json",
     "test": "vitest run --coverage"
@@ -18,10 +18,10 @@
   "devDependencies": {
     "@tsconfig/node20": "20.1.2",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "20.11.24",
+    "@types/node": "20.11.25",
     "@vitest/coverage-v8": "1.3.1",
     "tsimp": "2.0.11",
-    "typescript": "5.3.3",
+    "typescript": "5.4.2",
     "vitest": "1.3.1"
   }
 }
