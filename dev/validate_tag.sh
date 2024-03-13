@@ -17,6 +17,10 @@ fi
 # Trim the 'v'.
 GIT_TAG="${GIT_TAG:1}"
 
+# Move to repo root.
+PARENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P)
+pushd "$PARENT_PATH/.."
+
 CSPROJ_VERSION=$(grep -Eo "<Version>.+<\/Version>" packages/pangea-sdk/PangeaCyber.Net/PangeaCyber.Net.csproj)
 
 if [[ ! "$CSPROJ_VERSION" == *"$GIT_TAG"* ]]; then
