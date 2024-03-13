@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `ItemState` to `Vault.Requests.UpdateRequest`.
 - `attributes` field in `/list-resources` and `/list-subjects` endpoint
+- Sanitize service support
 
 ### Changed
 
