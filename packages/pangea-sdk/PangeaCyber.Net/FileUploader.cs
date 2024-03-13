@@ -38,7 +38,7 @@ namespace PangeaCyber.Net
 
             if (transferMethod == TransferMethod.PostURL && fileData.Details == null)
             {
-                throw new PangeaException($"Should set FileParams in order to use {transferMethod} transfer method", null);
+                throw new PangeaException($"Should set FileData in order to use {transferMethod} transfer method", null);
             }
             await UploadPresignedURL(url, transferMethod, fileData);
         }
