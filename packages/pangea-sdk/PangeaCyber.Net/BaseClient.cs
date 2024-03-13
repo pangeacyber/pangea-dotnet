@@ -196,7 +196,6 @@ namespace PangeaCyber.Net
         ///
         protected async Task UploadPresignedURL(string url, TransferMethod transferMethod, FileData fileData)
         {
-
             try
             {
                 HttpResponseMessage resPSurl;
