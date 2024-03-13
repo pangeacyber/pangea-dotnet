@@ -33,6 +33,7 @@ default:
     SERVICE_USER_INTEL_ENV: LVE
     SERVICE_REDACT_ENV: LVE
     SERVICE_VAULT_ENV: LVE
+    SERVICE_SANITIZE_ENV: LVE
 
   cache:
     paths:
@@ -99,6 +100,9 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
+      - CLOUD: [AWS]  # FIXME: Add GCP when supported
+        ENV: ${SERVICE_SANITIZE_ENV}
+        TEST: ITSanitizeTest
   rules:
     - if: '$CLOUD == "GCP" && $TEST == "ITFileScanTest"'
       allow_failure: true
