@@ -43,7 +43,7 @@ namespace PangeaCyber.Net.Sanitize
 
         ///
         [JsonIgnore]
-        public TransferMethod? TransferMethodRequest
+        public TransferMethod? RequestTransferMethod
         {
             get { return TransferMethod; }
             set

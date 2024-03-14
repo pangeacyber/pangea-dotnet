@@ -44,7 +44,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         Enabled = true,
                         OutputFolder = "sdk_test/sanitize/"
                     },
-                    TransferMethodRequest = TransferMethod.PostURL,
+                    RequestTransferMethod = TransferMethod.PostURL,
                     UploadedFileName = "uploaded_file",
                 }, file);
             Assert.True(response.IsOK);
@@ -100,7 +100,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     {
                         Enabled = false,
                     },
-                    TransferMethodRequest = TransferMethod.PostURL,
+                    RequestTransferMethod = TransferMethod.PostURL,
                     UploadedFileName = "uploaded_file",
                 }, file);
 
@@ -160,7 +160,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         Enabled = true,
                         OutputFolder = "sdk_test/sanitize/"
                     },
-                    TransferMethodRequest = TransferMethod.Multipart,
+                    RequestTransferMethod = TransferMethod.Multipart,
                     UploadedFileName = "uploaded_file",
                 }, file);
             Assert.True(response.IsOK);
@@ -195,7 +195,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             var response = await client.Sanitize(
                 new SanitizeRequest()
                 {
-                    TransferMethodRequest = TransferMethod.PostURL,
+                    RequestTransferMethod = TransferMethod.PostURL,
                     UploadedFileName = "uploaded_file",
                 }, file);
             Assert.True(response.IsOK);
@@ -258,7 +258,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                             Enabled = true,
                             OutputFolder = "sdk_test/sanitize/"
                         },
-                        TransferMethodRequest = TransferMethod.PostURL,
+                        RequestTransferMethod = TransferMethod.PostURL,
                         UploadedFileName = "uploaded_file",
                     }, file);
 
@@ -348,7 +348,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         Enabled = true,
                         OutputFolder = "sdk_test/sanitize/"
                     },
-                    TransferMethodRequest = TransferMethod.PostURL,
+                    RequestTransferMethod = TransferMethod.PostURL,
                     UploadedFileName = "uploaded_file",
                     CRC32c = fileParams.CRC32C,
                     SHA256 = fileParams.SHA256,
@@ -444,7 +444,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         Enabled = true,
                         OutputFolder = "sdk_test/sanitize/"
                     },
-                    TransferMethodRequest = TransferMethod.PutURL,
+                    RequestTransferMethod = TransferMethod.PutURL,
                     UploadedFileName = "uploaded_file",
                 });
 
