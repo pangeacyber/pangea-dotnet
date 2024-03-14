@@ -480,10 +480,31 @@ namespace PangeaCyber.Net.Audit
             }
         }
 
-        /// TODO: Docs
-        public async Task<Response<DownloadResult>> DownloadResults(DownloadRequest request)
+        /// <summary>Get all search results as a compressed (gzip) CSV file.</summary>
+        /// <remarks>Download search results</remarks>
+        /// <operationid>audit_post_v1_download_results</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>URL where search results can be downloaded.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var response = await client.DownloadResults(
+        ///     new DownloadRequest
+        ///     {
+        ///         ResultID = "pas_[...]",
+        ///         Format = DownloadFormat.CSV
+        ///     }
+        /// );
+        /// </code>
+        /// </example>
+        public async Task<Response<DownloadResult>> DownloadResults(
+            DownloadRequest request,
+            CancellationToken cancellationToken = default
+        )
         {
-            return await DoPost<DownloadResult>("/v1/download_results", request);
+            return await DoPost<DownloadResult>("/v1/download_results", request, cancellationToken: cancellationToken);
         }
 
         /// <summary><see cref="AuditClient"/> builder.</summary>

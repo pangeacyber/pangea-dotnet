@@ -2,15 +2,11 @@ using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.Audit
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// DownloadResult
-    /// </summary>
+    /// <summary>Downloaded search results.</summary>
     public sealed class DownloadResult
     {
-        ///
+        /// <summary>URL where search results can be downloaded.</summary>
         [JsonProperty("dest_url")]
-        public String DestURL { get; private set; } = default!;
-
+        public string DestURL { get; private set; } = default!;
     }
 }
