@@ -1,5 +1,6 @@
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
+using PangeaCyber.Net.Audit.Models;
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Tests;
@@ -846,7 +847,7 @@ public class ITAuditTest
     [Fact]
     public async Task TestDownloadResults()
     {
-        int searchLimit = 10;
+        const int searchLimit = 10;
         SearchRequest req = new SearchRequest.Builder("message:\"\"")
                                 .WithMaxResults(searchLimit)
                                 .WithOrder("asc")
@@ -859,8 +860,13 @@ public class ITAuditTest
         Assert.True(searchResponse.Result.Count <= searchLimit);
         Assert.True(searchResponse.Result.Count > 0);
 
-
-        var downloadResponse = await generalClient.DownloadResults(new DownloadRequest(searchResponse.Result.ID, Net.Audit.Models.DownloadFormat.CSV));
+        var downloadResponse = await generalClient.DownloadResults(
+            new DownloadRequest
+            {
+                ResultID = searchResponse.Result.ID,
+                Format = DownloadFormat.CSV
+            }
+        );
         Assert.NotEmpty(downloadResponse.Result.DestURL);
 
         var file = await generalClient.DownloadFile(downloadResponse.Result.DestURL);
