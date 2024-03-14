@@ -68,6 +68,10 @@ namespace PangeaCyber.Net.Share
                 request.Size ??= fileParams.Size;
                 name = "file";
             }
+            else if (Utils.GetFileSize(file) == 0)
+            {
+                request.Size = 0;
+            }
 
             var fileData = new FileData(file, name);
             return await DoPost<PutResult>("/v1beta/put", request, new PostConfig.Builder().WithFileData(fileData).Build());

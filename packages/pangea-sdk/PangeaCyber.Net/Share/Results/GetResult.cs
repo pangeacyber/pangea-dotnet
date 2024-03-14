@@ -14,6 +14,6 @@ namespace PangeaCyber.Net.Share.Results
 
         ///
         [JsonProperty("dest_url")]
-        public string? DestUrl { get; set; }
+        public string? DestURL { get; set; }
     }
 }

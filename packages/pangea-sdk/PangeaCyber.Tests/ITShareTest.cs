@@ -9,6 +9,7 @@ namespace PangeaCyber.Net.Share.Tests
     public class ITShareTest
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
+        private const string ZERO_BYTES_FILE_PATH = "./data/zerobytes.txt";
         private ShareClient client;
         private readonly TestEnvironment environment = Helper.LoadTestEnvironment("share", TestEnvironment.LVE);
 
@@ -84,6 +85,80 @@ namespace PangeaCyber.Net.Share.Tests
             );
 
             Assert.True(respPut.IsOK);
+            string id = respPut.Result.Object.ID;
+            Assert.NotNull(id);
+            Assert.NotEmpty(id);
+
+            var respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.Multipart,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);
+            Assert.Single(respGet.AttachedFiles);
+            // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
+
+            respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.DestURL,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.NotNull(respGet.Result.DestURL);
+            Assert.Empty(respGet.AttachedFiles);
+        }
+
+        [Fact]
+        public async Task TestPutZeroBytesTransferMethodPostURL()
+        {
+            string name = $"{time}_file_zero_bytes_post_url";
+            var fileStream = new FileStream(ZERO_BYTES_FILE_PATH, FileMode.Open);
+
+            var respPut = await client.Put(
+                new PutRequest
+                {
+                    Name = name,
+                    RequestTransferMethod = TransferMethod.PostURL
+                },
+                fileStream
+            );
+
+            Assert.True(respPut.IsOK);
+            string id = respPut.Result.Object.ID;
+            Assert.NotNull(id);
+            Assert.NotEmpty(id);
+
+            var respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.Multipart,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);
+            Assert.Single(respGet.AttachedFiles);
+            // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
+
+            respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.DestURL,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);    // No URL because empty file
+            Assert.Empty(respGet.AttachedFiles);
         }
 
         [Fact]
@@ -102,7 +177,82 @@ namespace PangeaCyber.Net.Share.Tests
             );
 
             Assert.True(respPut.IsOK);
+            string id = respPut.Result.Object.ID;
+            Assert.NotNull(id);
+            Assert.NotEmpty(id);
+
+            var respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.Multipart,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);
+            Assert.Single(respGet.AttachedFiles);
+            // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
+
+            respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.DestURL,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.NotNull(respGet.Result.DestURL);
+            Assert.Empty(respGet.AttachedFiles);
         }
+
+        [Fact]
+        public async Task TestPutZeroByteTransferMethodMultipart()
+        {
+            string name = $"{time}_file_zero_bytes_multipart";
+            var fileStream = new FileStream(ZERO_BYTES_FILE_PATH, FileMode.Open);
+
+            var respPut = await client.Put(
+                new PutRequest
+                {
+                    Name = name,
+                    RequestTransferMethod = TransferMethod.Multipart
+                },
+                fileStream
+            );
+
+            Assert.True(respPut.IsOK);
+            string id = respPut.Result.Object.ID;
+            Assert.NotNull(id);
+            Assert.NotEmpty(id);
+
+            var respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.Multipart,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);
+            Assert.Single(respGet.AttachedFiles);
+            // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
+
+            respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.DestURL,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);
+            Assert.Empty(respGet.AttachedFiles);
+        }
+
 
         [Fact]
         public async Task TestFileScanSplitUploadPost()

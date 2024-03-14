@@ -9,7 +9,7 @@ namespace PangeaCyber.Net.Share.Requests
     {
         ///
         [JsonProperty("id")]
-        public string? Id { get; set; }
+        public string? ID { get; set; }
 
         ///
         [JsonProperty("path")]
