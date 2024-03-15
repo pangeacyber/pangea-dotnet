@@ -103,8 +103,7 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_SHARE_ENV}
         TEST: ITShareTest
-  rules:
-      allow_failure: false
+  allow_failure: false
 
 dotnet-sdk-lint:
   extends: .dotnet-sdk-base
