@@ -5,9 +5,8 @@ namespace PangeaCyber.Net.Share.Models
     ///
     public class FilterList : Filter
     {
-
         ///
-        public FilterMatch<string> Folder { get; private set; }
+        public FilterMatch<string> Folder { get; }
 
         ///
         public FilterList()
