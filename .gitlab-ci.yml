@@ -5,7 +5,7 @@ default:
   tags:
     - pangea-internal
 
-.dotnet-sdk-base:
+.sdk-base:
   cache:
     paths:
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
@@ -18,7 +18,7 @@ default:
     - dotnet restore --packages .nuget
     - dotnet build --no-restore --configuration Release
 
-.dotnet-sdk-test-base:
+.sdk-test-base:
   stage: integration_tests
   variables:
   # Set each service test environment
@@ -46,15 +46,15 @@ default:
     - echo ${CLOUD}
     - echo ${TEST}
 
-  # Update environment variables
-  # Domain
+    # Update environment variables
+    # Domain
     - export PANGEA_INTEGRATION_DOMAIN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_DOMAIN_${ENV}_${CLOUD})"
-  # Tokens
+    # Tokens
     - export PANGEA_INTEGRATION_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_TOKEN_${ENV}_${CLOUD})"
     - export PANGEA_INTEGRATION_VAULT_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_VAULT_TOKEN_${ENV}_${CLOUD})"
     - export PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_CUSTOM_SCHEMA_TOKEN_${ENV}_${CLOUD})"
     - export PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_${ENV}="$(eval echo \$PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_${ENV}_${CLOUD})"
-  # Config IDs
+    # Config IDs
     - export PANGEA_AUDIT_CONFIG_ID_1_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_1_${ENV}_${CLOUD})"
     - export PANGEA_AUDIT_CONFIG_ID_2_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_2_${ENV}_${CLOUD})"
     - export PANGEA_REDACT_CONFIG_ID_1_${ENV}="$(eval echo \$PANGEA_REDACT_CONFIG_ID_1_${ENV}_${CLOUD})"
@@ -100,32 +100,32 @@ default:
         ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
   rules:
-    - if: '$CLOUD == "GCP" && $TEST == "ITFileScanTest"'
+    - if: $CI_COMMIT_BRANCH && '$CLOUD == "GCP" && $TEST == "ITFileScanTest"'
       allow_failure: true
-    - if: '$CLOUD == "GCP" && $TEST != "ITFileScanTest"'
+    - if: $CI_COMMIT_BRANCH && '$CLOUD == "GCP" && $TEST != "ITFileScanTest"'
       allow_failure: false
-    - if: '$CLOUD != "GCP"'
+    - if: $CI_COMMIT_BRANCH && '$CLOUD != "GCP"'
       allow_failure: false
 
-dotnet-sdk-lint:
-  extends: .dotnet-sdk-base
+sdk-lint:
+  extends: .sdk-base
   stage: lint
   script:
     - dotnet format --verify-no-changes
 
-dotnet-sdk-unit-tests:
-  extends: .dotnet-sdk-base
+sdk-unit-tests:
+  extends: .sdk-base
   stage: unit_tests
   script:
     - dotnet test --no-restore --filter SignerTest
 
-dotnet-sdk-integration-tests:
-  extends: .dotnet-sdk-test-base
+sdk-integration-tests:
+  extends: .sdk-test-base
   script:
     - dotnet test --no-restore --filter ${TEST}
 
-.dotnet-sdk-staging-tests:
-  extends: .dotnet-sdk-test-base
+.sdk-staging-tests:
+  extends: .sdk-test-base
   variables:
     ENV: STG
   # Set each service test environment
@@ -144,9 +144,10 @@ dotnet-sdk-integration-tests:
     - dotnet test --no-restore
 
 publish:
-  extends: .dotnet-sdk-base
+  extends: .sdk-base
   stage: publish
   script:
+    - bash ../../dev/validate_tag.sh $CI_COMMIT_TAG
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
     - PACKAGE_VERSION=`cat VERSION`
     - dotnet pack ./PangeaCyber.Net/ -c Release --no-build --nologo -o ./ -p:PackageVersion=$PACKAGE_VERSION
@@ -160,10 +161,7 @@ publish:
     paths:
       - packages/pangea-sdk/PangeaCyber.Net/bin/Release/Pangea.SDK.*.nupkg
   rules:
-    - if: $CI_COMMIT_BRANCH == "release"
-      changes:
-        - packages/pangea-sdk/**/*
-      when: on_success
+    - if: $CI_COMMIT_TAG
 
 stages:
   - lint
