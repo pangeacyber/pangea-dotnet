@@ -35,6 +35,7 @@ default:
     SERVICE_REDACT_ENV: LVE
     SERVICE_SANITIZE_ENV: LVE
     SERVICE_VAULT_ENV: LVE
+    SERVICE_SHARE_ENV: LVE
 
   before_script:
     - echo ${ENV}
@@ -101,6 +102,9 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_SHARE_ENV}
+        TEST: ITShareTest
   rules:
     - if: '$CI_COMMIT_BRANCH && $CLOUD == "GCP" && $TEST == "ITFileScanTest"'
       allow_failure: true
