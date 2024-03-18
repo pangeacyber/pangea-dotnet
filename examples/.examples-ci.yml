@@ -74,3 +74,5 @@ examples:
   script:
     - cd examples/${EXAMPLE}
     - dotnet run
+  rules:
+    - if: $CI_COMMIT_BRANCH
