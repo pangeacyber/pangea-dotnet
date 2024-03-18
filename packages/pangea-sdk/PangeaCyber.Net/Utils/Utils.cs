@@ -134,5 +134,16 @@ namespace PangeaCyber.Net
             file.Seek(0, SeekOrigin.Begin);
             return new FileParams(size, sha256hash, crcHash);
         }
+
+        ///
+        public static long GetFileSize(FileStream file)
+        {
+            file.Seek(0, SeekOrigin.Begin);
+            file.Seek(0, SeekOrigin.End);
+            long size = file.Position;
+            file.Seek(0, SeekOrigin.Begin);
+            return size;
+        }
+
     }
 }
