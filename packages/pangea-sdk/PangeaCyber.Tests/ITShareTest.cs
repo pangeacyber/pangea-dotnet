@@ -482,12 +482,12 @@ namespace PangeaCyber.Net.Share.Tests
             Assert.NotEmpty(downloadedFile.FileContent);
 
             // Create share link
-            List<Authenticator> authenticators = new List<Authenticator>
+            var authenticators = new List<Authenticator>
             {
                 new Authenticator(AuthenticatorType.Password, "somepassword")
             };
 
-            List<ShareLinkCreateItem> linkList = new List<ShareLinkCreateItem>
+            var linkList = new List<ShareLinkCreateItem>
             {
                 new ShareLinkCreateItem {
                     Targets = new List<string> { folderID },

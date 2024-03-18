@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.Share.Requests
     {
         ///
         [JsonProperty("links")]
-        public List<ShareLinkSendItem> Links { get; set; }
+        public IList<ShareLinkSendItem> Links { get; set; }
 
         ///
         [JsonProperty("sender_email")]
@@ -16,14 +16,13 @@ namespace PangeaCyber.Net.Share.Requests
 
         ///
         [JsonProperty("sender_name")]
-        public string? SenderName { get; set; } = null;
+        public string? SenderName { get; set; }
 
         ///
-        public ShareLinkSendRequest(List<ShareLinkSendItem> links, string senderEmail)
+        public ShareLinkSendRequest(IList<ShareLinkSendItem> links, string senderEmail)
         {
             this.Links = links;
             this.SenderEmail = senderEmail;
         }
-
     }
 }
