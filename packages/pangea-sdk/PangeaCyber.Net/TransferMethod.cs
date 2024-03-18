@@ -1,11 +1,10 @@
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
 
 namespace PangeaCyber.Net
 {
     ///
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum TransferMethod
     {
         ///
