@@ -3,25 +3,15 @@ using PangeaCyber.Net.Audit.Models;
 
 namespace PangeaCyber.Net.Audit
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// DownloadRequest
-    /// </summary>
-    public class DownloadRequest : BaseRequest
+    /// <summary>DownloadRequest</summary>
+    public sealed class DownloadRequest : BaseRequest
     {
-        ///
+        /// <summary>ID returned by the search API.</summary>
         [JsonProperty("result_id", Required = Required.Always)]
-        public String ResultID { get; set; } = default!;
+        public string ResultID { get; set; } = default!;
 
-        ///
+        /// <summary>Format for the records.</summary>
         [JsonProperty("format")]
-        public DownloadFormat? Format { get; set; } = null;
-
-        ///
-        public DownloadRequest(String resultID, DownloadFormat? format = null)
-        {
-            ResultID = resultID;
-            Format = format;
-        }
+        public DownloadFormat? Format { get; set; }
     }
 }
