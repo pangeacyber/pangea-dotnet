@@ -83,7 +83,6 @@ namespace PangeaCyber.Net.Sanitize
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var file = new FileStream("/path/to/file.pdf", FileMode.Open, FileAccess.Read);
         /// var presignedUrl = await client.RequestUploadURL(
         ///     new SanitizeRequest()
         ///     {
