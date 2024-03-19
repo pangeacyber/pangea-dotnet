@@ -53,7 +53,7 @@ namespace PangeaCyber.Net.Sanitize
 
             if (tm == TransferMethod.Multipart)
             {
-                throw new PangeaException($"{tm} not supported. Use Scan() instead", null);
+                throw new PangeaException($"{tm} not supported. Use Sanitize() instead", null);
             }
 
             if (tm == TransferMethod.PostURL && (request.SHA256 == null || request.CRC32c == null || request.Size == null))
