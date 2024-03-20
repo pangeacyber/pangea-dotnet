@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## 3.8.0-beta.2 - 2024-03-20
+
+- Sanitize service support.
+
 ## 3.8.0-beta.1 - 2024-03-18
 
 ### Added
 
 - Documentation for client builders and constructors.
 - Audit /download_results endpoint support
-- Sanitize service support
+- Secure Share support.
 
 ### Fixed
 
