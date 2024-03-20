@@ -37,7 +37,10 @@ namespace PangeaCyber.Net.Sanitize
             }
         }
 
-        /// <summary>Apply file sanitization actions according to specified rules. Beta API.</summary>
+        /// <summary>
+        /// Apply file sanitization actions according to specified rules.
+        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// </summary>
         /// <remarks>Sanitize</remarks>
         /// <operationid>sanitize_post_v1beta_sanitize</operationid>
         /// <param name="request">Request parameters.</param>
@@ -74,7 +77,10 @@ namespace PangeaCyber.Net.Sanitize
             return await DoPost<SanitizeResult>("/v1beta/sanitize", request, new PostConfig.Builder().WithFileData(fileData).Build());
         }
 
-        /// <summary>Apply file sanitization actions according to specified rules via a presigned URL. Beta API.</summary>
+        /// <summary>
+        /// Apply file sanitization actions according to specified rules via a presigned URL.
+        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// </summary>
         /// <remarks>Sanitize via presigned URL</remarks>
         /// <operationid>sanitize_post_v1beta_sanitize 2</operationid>
         /// <param name="request">Request parameters.</param>
