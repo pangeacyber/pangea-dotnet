@@ -39,9 +39,9 @@ namespace PangeaCyber.Net.Sanitize
 
         /// <summary>
         /// Apply file sanitization actions according to specified rules.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Sanitize</remarks>
+        /// <remarks>Sanitize (Beta)</remarks>
         /// <operationid>sanitize_post_v1beta_sanitize</operationid>
         /// <param name="request">Request parameters.</param>
         /// <param name="file">File to sanitize.</param>
@@ -79,9 +79,9 @@ namespace PangeaCyber.Net.Sanitize
 
         /// <summary>
         /// Apply file sanitization actions according to specified rules via a presigned URL.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Sanitize via presigned URL</remarks>
+        /// <remarks>Sanitize via presigned URL (Beta)</remarks>
         /// <operationid>sanitize_post_v1beta_sanitize 2</operationid>
         /// <param name="request">Request parameters.</param>
         /// <returns>A presigned URL.</returns>
