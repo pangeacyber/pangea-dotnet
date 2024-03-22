@@ -15,6 +15,8 @@ framework that's compatible with these.
 
 ## Installation
 
+#### GA releases
+
 Via .NET CLI:
 
 ```bash
@@ -27,10 +29,32 @@ Via PackageReference:
 <PackageReference Include="Pangea.SDK" Version="*" />
 ```
 
+<a name="beta-releases"></a>
+
+#### Beta releases
+
+Pre-release versions may be available with the `beta` denotation in the version
+number. These releases serve to preview beta services and APIs. Per Semantic
+Versioning, they are considered unstable and do not carry the same compatibility
+guarantees as stable releases. [Beta changelog][].
+
+Via .NET CLI:
+
+```bash
+$ dotnet add package Pangea.SDK --version 3.8.0-beta.2
+```
+
+Via PackageReference:
+
+```xml
+<PackageReference Include="Pangea.SDK" Version="3.8.0-beta.2" />
+```
+
 ## Usage
 
 - [Documentation][]
-- [Examples][]
+- [GA Examples][]
+- [Beta Examples][]
 
 General usage would be to create a token for a service through the
 [Pangea Console][] and then construct an API client for that respective service.
@@ -75,7 +99,8 @@ guarantees as stable releases.
 
 
    [Documentation]: https://pangea.cloud/docs/sdk/csharp/
-   [Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
+   [GA Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
+   [Beta Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/beta/examples
    [Pangea Console]: https://console.pangea.cloud/
    [Slack]: https://pangea.cloud/join-slack/
    [Secure Audit Log]: https://pangea.cloud/docs/audit
