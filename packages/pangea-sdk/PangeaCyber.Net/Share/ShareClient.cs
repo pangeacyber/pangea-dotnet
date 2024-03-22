@@ -29,9 +29,9 @@ namespace PangeaCyber.Net.Share
         /// <summary>
         /// Delete object by ID or path. If both are supplied, the path must match that of the object represented by
         /// the ID.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Delete</remarks>
+        /// <remarks>Delete (Beta)</remarks>
         /// <operationid>share_post_v1beta_delete</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -50,9 +50,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Create a folder, either by name or path and parent_id.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Create a folder</remarks>
+        /// <remarks>Create a folder (Beta)</remarks>
         /// <operationid>share_post_v1beta_folder_create</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -74,9 +74,9 @@ namespace PangeaCyber.Net.Share
         /// <summary>
         /// Get object. If both ID and path are supplied, the call will fail if the target object doesn't match both
         /// properties.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Get an object</remarks>
+        /// <remarks>Get an object (Beta)</remarks>
         /// <operationid>share_post_v1beta_folder_create</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -98,9 +98,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Get an archive file of multiple objects.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Get archive</remarks>
+        /// <remarks>Get archive (Beta)</remarks>
         /// <operationid>share_post_v1beta_get_archive</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -123,9 +123,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Update a file.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Update a file</remarks>
+        /// <remarks>Update a file (Beta)</remarks>
         /// <operationid>share_post_v1beta_update</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -150,9 +150,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// List or filter/search records.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List</remarks>
+        /// <remarks>List (Beta)</remarks>
         /// <operationid>share_post_v1beta_list</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -168,9 +168,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Upload a file.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Upload a file</remarks>
+        /// <remarks>Upload a file (Beta)</remarks>
         /// <operationid>share_post_v1beta_put</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -208,9 +208,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Request an upload URL.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Request upload URL</remarks>
+        /// <remarks>Request upload URL (Beta)</remarks>
         /// <operationid>share_post_v1beta_put 2</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -240,9 +240,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Create a share link.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Create share links</remarks>
+        /// <remarks>Create share links (Beta)</remarks>
         /// <operationid>share_post_v1beta_share_link_create</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -278,9 +278,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Get a share link.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Get share link</remarks>
+        /// <remarks>Get share link (Beta)</remarks>
         /// <operationid>share_post_v1beta_share_link_get</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -301,9 +301,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Look up share links by filter options.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List share links</remarks>
+        /// <remarks>List share links (Beta)</remarks>
         /// <operationid>share_post_v1beta_share_link_list</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -319,9 +319,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Delete share links.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Delete share links</remarks>
+        /// <remarks>Delete share links (Beta)</remarks>
         /// <operationid>share_post_v1beta_share_link_delete</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
@@ -342,9 +342,9 @@ namespace PangeaCyber.Net.Share
 
         /// <summary>
         /// Send share links.
-        /// <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases"><strong>Beta API</strong></see>.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Send share links</remarks>
+        /// <remarks>Send share links (Beta)</remarks>
         /// <operationid>share_post_v1beta_share_link_send</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
