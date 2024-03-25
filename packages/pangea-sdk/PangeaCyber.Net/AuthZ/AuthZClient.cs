@@ -4,36 +4,48 @@ using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.AuthZ
 {
-    /// <kind>class</kind>
-    /// <summary>
-    /// AuthZ Client
-    /// </summary>
+    /// <summary>AuthZ client.</summary>
+    /// <remarks>AuthZ (Beta)</remarks>
+    /// <example>
+    /// <code>
+    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var builder = new AuthZClient.Builder(config);
+    /// var client = builder.Build();
+    /// </code>
+    /// </example>
     public class AuthZClient : BaseClient<AuthZClient.Builder>
     {
-        ///
+        /// <summary>Service name.</summary>
         public static string ServiceName { get; } = "authz";
 
-        /// Constructor
+        /// <summary>Create a new <see cref="AuthZClient"/> using the given builder.</summary>
+        /// <param name="builder">AuthZ client builder.</param>
         public AuthZClient(Builder builder) : base(builder, ServiceName) { }
 
-        /// <kind>method</kind>
         /// <summary>
-        /// Create tuples in the AuthZ Service.
+        /// Create tuples in the AuthZ Service. The request will fail if there is no schema or the tuples do not
+        /// validate against the schema.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Create tuples.</remarks>
+        /// <remarks>Create tuples. (Beta)</remarks>
         /// <operationid>authz_post_v1beta_tuple_create</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthZ.Requests.TupleCreateRequest">The request to the '/tuple/create' endpoint.</param>
+        /// <param name="request">The request to the '/tuple/create' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Response&lt;TupleCreateResult&gt;</returns>
+        /// <returns>Empty result.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var request = new TupleCreateRequest
-        /// {
-        ///     new Net.AuthZ.Models.Tuple[] { tuple1, tuple2, tuple3, tuple4 }
-        /// };
-        /// var response = await client.TupleCreate(request);
+        /// var request = new TupleCreateRequest(
+        ///     new Net.AuthZ.Models.Tuple[] {
+        ///         new(
+        ///             new Resource("folder") { ID = "folder1" },
+        ///             "owner",
+        ///             new Subject("user") { ID = "user_1" }
+        ///         )
+        ///     }
+        /// );
+        /// await client.TupleCreate(request);
         /// </code>
         /// </example>
         public async Task<Response<TupleCreateResult>> TupleCreate(TupleCreateRequest request, CancellationToken cancellationToken = default)
@@ -41,20 +53,21 @@ namespace PangeaCyber.Net.AuthZ
             return await DoPost<TupleCreateResult>("/v1beta/tuple/create", request, cancellationToken: cancellationToken);
         }
 
-        /// <kind>method</kind>
         /// <summary>
-        /// Return a paginated list of filtered tuples.
+        /// Return a paginated list of filtered tuples. The filter is given in terms of a tuple. Fill out the fields
+        /// that you want to filter. If the filter is empty it will return all the tuples.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List tuples.</remarks>
+        /// <remarks>List tuples. (Beta)</remarks>
         /// <operationid>authz_post_v1beta_tuple_list</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthZ.Requests.TupleListRequest">The request to the '/tuple/list' endpoint.</param>
+        /// <param name="request">The request to the '/tuple/list' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Response&lt;TupleListResult&gt;</returns>
+        /// <returns>List of tuples.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// filter = new FilterTupleList();
+        /// var filter = new FilterTupleList();
         /// filter.SubjectNamespace.Set("user);
         /// filter.SubjectID.Set("user_id");
         /// var request = new TupleListRequest
@@ -73,24 +86,29 @@ namespace PangeaCyber.Net.AuthZ
             return await DoPost<TupleListResult>("/v1beta/tuple/list", request, cancellationToken: cancellationToken);
         }
 
-        /// <kind>method</kind>
         /// <summary>
         /// Delete tuples in the AuthZ Service.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Delete tuples.</remarks>
+        /// <remarks>Delete tuples. (Beta)</remarks>
         /// <operationid>authz_post_v1beta_tuple_delete</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthZ.Requests.TupleDeleteRequest">The request to the '/tuple/delete' endpoint.</param>
+        /// <param name="request">The request to the '/tuple/delete' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Response&lt;TupleDeleteResult&gt;</returns>
+        /// <returns>Empty result.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var request = new TupleDeleteRequest
-        /// {
-        ///     new Net.AuthZ.Models.Tuple[] { tuple1 }
-        /// };
-        /// var response = await client.TupleDelete(request);
+        /// var request = new TupleDeleteRequest(
+        ///     new Net.AuthZ.Models.Tuple[] {
+        ///         new(
+        ///             new Resource("folder") { ID = "folder1" },
+        ///             "owner",
+        ///             new Subject("user") { ID = "user_1" }
+        ///         )
+        ///     }
+        /// );
+        /// await client.TupleDelete(request);
         /// </code>
         /// </example>
         public async Task<Response<TupleDeleteResult>> TupleDelete(TupleDeleteRequest request, CancellationToken cancellationToken = default)
@@ -98,37 +116,24 @@ namespace PangeaCyber.Net.AuthZ
             return await DoPost<TupleDeleteResult>("/v1beta/tuple/delete", request, cancellationToken: cancellationToken);
         }
 
-        /// <kind>method</kind>
         /// <summary>
         /// Check if a subject has permission to perform an action on the resource.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Perform a check request.</remarks>
+        /// <remarks>Perform a check request. (Beta)</remarks>
         /// <operationid>authz_post_v1beta_check</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthZ.Requests.CheckRequest">The request to the '/check' endpoint.</param>
+        /// <param name="request">The request to the '/check' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Response&lt;CheckResult&gt;</returns>
+        /// <returns>Result of the authorization check.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var request = new CheckRequest
-        /// {
-        ///     Resource = new Resource
-        ///     {
-        ///         // Provide Resource details here
-        ///     },
-        ///     Action = "action_here",
-        ///     Subject = new Subject
-        ///     {
-        ///         // Provide Subject details here
-        ///     },
-        ///     Debug = true, // Optional: Set to true for detailed analysis
-        ///     Attributes = new Dictionary&lt;string, object&gt;
-        ///     {
-        ///         // Provide additional attributes here
-        ///     }
-        /// };
-        /// var response = await client.Check(request);
+        /// var response = await client.Check(new CheckRequest(
+        ///     new Resource("folder") { ID = "folder1" },
+        ///     "editor",
+        ///     new Subject("user") { ID = "user_1" }
+        /// ));
         /// </code>
         /// </example>
         public async Task<Response<CheckResult>> Check(CheckRequest request, CancellationToken cancellationToken = default)
@@ -136,30 +141,25 @@ namespace PangeaCyber.Net.AuthZ
             return await DoPost<CheckResult>("/v1beta/check", request, cancellationToken: cancellationToken);
         }
 
-        /// <kind>method</kind>
         /// <summary>
-        /// Given a namespace, action, and subject, list all the resources in the namespace
-        /// that the subject has the action with.
+        /// Given a namespace, action, and subject, list all the resources in the namespace that the subject has access
+        /// to the action with.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List resources.</remarks>
+        /// <remarks>List resources. (Beta)</remarks>
         /// <operationid>authz_post_v1beta_list-resources</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthZ.Requests.ListResourcesRequest">The request to the '/list-resources' endpoint.</param>
+        /// <param name="request">The request to the '/list-resources' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Response&lt;ListResourcesResult&gt;</returns>
+        /// <returns>List of resources.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var request = new ListResourcesRequest
-        /// {
-        ///     Namespace = "namespace_here",
-        ///     Action = "action_here",
-        ///     Subject = new Subject
-        ///     {
-        ///         // Provide Subject details here
-        ///     }
-        /// };
-        /// var response = await client.ListResources(request);
+        /// var response = await client.ListResources(new ListResourcesRequest(
+        ///     "folder",
+        ///     "update",
+        ///     new Subject("user") { ID = "user_1" }
+        /// ));
         /// </code>
         /// </example>
         public async Task<Response<ListResourcesResult>> ListResources(ListResourcesRequest request, CancellationToken cancellationToken = default)
@@ -167,28 +167,24 @@ namespace PangeaCyber.Net.AuthZ
             return await DoPost<ListResourcesResult>("/v1beta/list-resources", request, cancellationToken: cancellationToken);
         }
 
-        /// <kind>method</kind>
         /// <summary>
-        /// Given a resource and an action, return the list of subjects who have the given action to the given resource.
+        /// Given a resource and an action, return the list of subjects who have access to the action for the given
+        /// resource.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List subjects.</remarks>
+        /// <remarks>List subjects. (Beta)</remarks>
         /// <operationid>authz_post_v1beta_list-subjects</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthZ.Requests.ListSubjectsRequest">The request to the '/list-subjects' endpoint.</param>
+        /// <param name="request">The request to the '/list-subjects' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Response&lt;ListSubjectsResult&gt;</returns>
+        /// <returns>List of subjects.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var request = new ListSubjectsRequest
-        /// {
-        ///     Resource = new Resource
-        ///     {
-        ///         // Provide Resource details here
-        ///     },
-        ///     Action = "action_here"
-        /// };
-        /// var response = await client.ListSubjects(request);
+        /// var response = await client.ListSubjects(new ListSubjectsRequest(
+        ///     new Resource("folder") { ID = "folder_1" },
+        ///     "update"
+        /// ));
         /// </code>
         /// </example>
         public async Task<Response<ListSubjectsResult>> ListSubjects(ListSubjectsRequest request, CancellationToken cancellationToken = default)
@@ -196,15 +192,15 @@ namespace PangeaCyber.Net.AuthZ
             return await DoPost<ListSubjectsResult>("/v1beta/list-subjects", request, cancellationToken: cancellationToken);
         }
 
-        ///
+        /// <summary><see cref="AuthZClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
-            ///
+            /// <summary>Create a new <see cref="AuthZClient"/> builder.</summary>
             public Builder(Config config) : base(config)
             {
             }
 
-            ///
+            /// <summary>Build a <see cref="AuthZClient"/>.</summary>
             public AuthZClient Build()
             {
                 return new AuthZClient(this);

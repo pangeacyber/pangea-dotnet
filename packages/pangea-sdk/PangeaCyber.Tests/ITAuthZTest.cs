@@ -1,33 +1,28 @@
-using System.Reflection;
 using PangeaCyber.Net;
 using PangeaCyber.Net.AuthZ;
 using PangeaCyber.Net.AuthZ.Models;
 using PangeaCyber.Net.AuthZ.Requests;
-using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Tests;
 
-///
 public class ITAuthZTest
 {
-    private AuthZClient client;
+    private readonly AuthZClient client;
     private readonly TestEnvironment environment = Helper.LoadTestEnvironment("authz", TestEnvironment.LVE);
 
-    string time;
+    readonly string time;
 
-    string folder1;
-    string folder2;
-    string user1;
-    string user2;
+    readonly string folder1;
+    readonly string folder2;
+    readonly string user1;
+    readonly string user2;
 
-    string namespace_folder;
-    string namespace_user;
-    string relation_owner;
-    string relation_editor;
-    string relation_reader;
+    readonly string namespace_folder;
+    readonly string namespace_user;
+    readonly string relation_owner;
+    readonly string relation_editor;
+    readonly string relation_reader;
 
-
-    ///
     public ITAuthZTest()
     {
         var config = Config.FromIntegrationEnvironment(environment);
