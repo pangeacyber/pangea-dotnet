@@ -35,6 +35,7 @@ default:
     SERVICE_VAULT_ENV: LVE
     SERVICE_SANITIZE_ENV: LVE
     SERVICE_SHARE_ENV: LVE
+    SERVICE_AUTHZ_ENV: LVE
 
   cache:
     paths:
@@ -107,6 +108,9 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_SHARE_ENV}
         TEST: ITShareTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_AUTHZ_ENV}
+        TEST: ITAuthZTest
   rules:
     - if: $CI_COMMIT_BRANCH
 
