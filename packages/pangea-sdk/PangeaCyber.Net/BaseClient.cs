@@ -4,6 +4,7 @@ using HttpMultipartParser;
 using System.Net.Http;
 
 using PangeaCyber.Net.Exceptions;
+using System.Net.Http.Headers;
 
 namespace PangeaCyber.Net
 {
@@ -200,9 +201,9 @@ namespace PangeaCyber.Net
         ///
         protected async Task UploadPresignedURL(string url, TransferMethod transferMethod, FileData fileData)
         {
+            HttpResponseMessage resPSurl;
             try
             {
-                HttpResponseMessage resPSurl;
                 if (transferMethod == TransferMethod.PutURL)
                 {
                     resPSurl = await GeneralHttpClient.PutAsync(url, new StreamContent(fileData.File));
@@ -218,19 +219,29 @@ namespace PangeaCyber.Net
                             formData.Add(new StringContent(pair.Value, null, "application/json"), pair.Key);
                         }
                     }
-                    var fileContent = new StreamContent(fileData.File);
-                    formData.Add(fileContent, "file");
-                    resPSurl = await GeneralHttpClient.PostAsync(url, formData);
-                }
 
-                if (resPSurl.StatusCode < System.Net.HttpStatusCode.OK || resPSurl.StatusCode >= System.Net.HttpStatusCode.Ambiguous)
-                {
-                    throw new PresignedURLException("Failed upload to presigned URL", null, await resPSurl.Content.ReadAsStringAsync());
+                    var fileStream = new StreamContent(fileData.File);
+                    fileStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+                    {
+                        Name = "file",
+                        FileName = "filename;"
+                    };
+                    // It seems to be a bug in MultipartFormDataContent.Add() that does not allow to add a StreamContent with name and filename.
+                    // When trying to do it, it also add additional stuff that break the request.
+                    // The key is to set Name and FileName manually like above. But that's not enough, it's also necessary to add ";" at
+                    // the end of "FileName" value, any other case you'll get "Malformed multipart body." as a response from GCP Storage.
+                    formData.Add(fileStream);
+                    resPSurl = await GeneralHttpClient.PostAsync(url, formData);
                 }
             }
             catch (Exception e)
             {
                 throw new PresignedURLException("Failed upload to presigned URL", e, null);
+            }
+
+            if (resPSurl.StatusCode < System.Net.HttpStatusCode.OK || resPSurl.StatusCode >= System.Net.HttpStatusCode.Ambiguous)
+            {
+                throw new PresignedURLException("Failed upload to presigned URL", null, await resPSurl.Content.ReadAsStringAsync());
             }
         }
 

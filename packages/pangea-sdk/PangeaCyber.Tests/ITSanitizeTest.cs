@@ -15,7 +15,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             client = new SanitizeClient.Builder(config).Build();
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [Fact(Timeout = 120 * 1000)]
         public async Task TestSanitizeAndShare()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -72,7 +72,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.False(response.Result.Data.MaliciousFile);
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [Fact(Timeout = 120 * 1000)]
         public async Task TestSanitizeNoShare()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -131,7 +131,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             var attachedFile = await client.DownloadFile(response.Result.DestURL);
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [Fact(Timeout = 120 * 1000)]
         public async Task TestSanitizeMultipart()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -188,7 +188,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.False(response.Result.Data.MaliciousFile);
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [Fact(Timeout = 120 * 1000)]
         public async Task TestSanitizeAllDefaults()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -222,7 +222,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             var attachedFile = await client.DownloadFile(response.Result.DestURL);
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [Fact(Timeout = 120 * 1000)]
         public async Task TestSanitize_AsyncPollResult()
         {
             Config config = Config.FromIntegrationEnvironment(environment);

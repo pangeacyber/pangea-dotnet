@@ -9,6 +9,7 @@ namespace PangeaCyber.Net.Share.Tests
     public class ITShareTest
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
+        private const string TESTFILE_PATH_18MB = "./data/interactive3.pdf";
         private const string ZERO_BYTES_FILE_PATH = "./data/zerobytes.txt";
         private ShareClient client;
         private readonly TestEnvironment environment = Helper.LoadTestEnvironment("share", TestEnvironment.LVE);
@@ -79,6 +80,52 @@ namespace PangeaCyber.Net.Share.Tests
                 new PutRequest
                 {
                     Name = name,
+                    RequestTransferMethod = TransferMethod.PostURL
+                },
+                fileStream
+            );
+
+            Assert.True(respPut.IsOK);
+            string id = respPut.Result.Object.ID;
+            Assert.NotNull(id);
+            Assert.NotEmpty(id);
+
+            var respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.Multipart,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.Null(respGet.Result.DestURL);
+            Assert.Single(respGet.AttachedFiles);
+            // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
+
+            respGet = await client.Get(
+                new GetRequest
+                {
+                    ID = id,
+                    RequestTransferMethod = TransferMethod.DestURL,
+                }
+            );
+
+            Assert.True(respGet.IsOK);
+            Assert.NotNull(respGet.Result.DestURL);
+            Assert.Empty(respGet.AttachedFiles);
+        }
+
+        [Fact]
+        public async Task TestPut18MBfileTransferMethodPostURL()
+        {
+            string path = $"/sdk/tests/dotnet/{time}_file_post_url";
+            var fileStream = new FileStream(TESTFILE_PATH_18MB, FileMode.Open);
+
+            var respPut = await client.Put(
+                new PutRequest
+                {
+                    Path = path,
                     RequestTransferMethod = TransferMethod.PostURL
                 },
                 fileStream
