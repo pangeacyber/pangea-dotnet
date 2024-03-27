@@ -41,13 +41,13 @@ guarantees as stable releases. [Beta changelog][].
 Via .NET CLI:
 
 ```bash
-$ dotnet add package Pangea.SDK --version 3.8.0-beta.2
+$ dotnet add package Pangea.SDK --version 3.8.0-beta.3
 ```
 
 Via PackageReference:
 
 ```xml
-<PackageReference Include="Pangea.SDK" Version="3.8.0-beta.2" />
+<PackageReference Include="Pangea.SDK" Version="3.8.0-beta.3" />
 ```
 
 ## Usage
