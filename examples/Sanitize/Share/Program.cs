@@ -11,6 +11,7 @@ var file = new FileStream("./sample.pdf", FileMode.Open, FileAccess.Read);
 var response = await client.Sanitize(
     new SanitizeRequest()
     {
+        RequestTransferMethod = TransferMethod.PostURL,
         ShareOutput = new ShareOutput
         {
             Enabled = true,
