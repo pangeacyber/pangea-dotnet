@@ -16,6 +16,7 @@ examples:
           - Audit/AuditSearchCustomSchema
           - AuthN/InviteActions
           - AuthN/UserActions
+          - AuthZ/FolderUser
           - Embargo/IPCheck
           - Embargo/ISOCheck
           - FileScan/Scan_Async
@@ -61,6 +62,7 @@ examples:
     - export PANGEA_AUDIT_MULTICONFIG_TOKEN="${PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_LVE_AWS}"
     - export PANGEA_AUDIT_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
     - export PANGEA_AUTHN_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
+    - export PANGEA_AUTHZ_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
     - export PANGEA_DOMAIN_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
     - export PANGEA_DOMAIN="${PANGEA_INTEGRATION_DOMAIN_LVE_AWS}"
     - export PANGEA_EMBARGO_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
