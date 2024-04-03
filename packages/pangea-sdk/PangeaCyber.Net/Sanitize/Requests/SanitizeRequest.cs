@@ -41,11 +41,10 @@ namespace PangeaCyber.Net.Sanitize
         [JsonProperty("uploaded_file_name")]
         public string? UploadedFileName { get; set; }
 
-        ///
+        /// <inheritdoc cref="BaseRequest.TransferMethod" />
         [JsonIgnore]
-        public TransferMethod? RequestTransferMethod
+        public TransferMethod RequestTransferMethod
         {
-            get { return TransferMethod; }
             set
             {
                 TransferMethod = value;
@@ -53,6 +52,9 @@ namespace PangeaCyber.Net.Sanitize
         }
 
         ///
-        public SanitizeRequest() { }
+        public SanitizeRequest()
+        {
+            RequestTransferMethod = Net.TransferMethod.PostURL;
+        }
     }
 }
