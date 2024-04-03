@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The `PangeaCyber.Net.dll` assembly is now strong-named.
 
+### Fixed
+
+- Sanitize now defaults to the post-url transfer method.
+
 ## [3.11.0] - 2024-07-12
 
 ### Added
