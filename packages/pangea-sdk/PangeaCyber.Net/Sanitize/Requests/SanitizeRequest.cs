@@ -45,7 +45,6 @@ namespace PangeaCyber.Net.Sanitize
         [JsonIgnore]
         public TransferMethod RequestTransferMethod
         {
-            get { return TransferMethod ?? Net.TransferMethod.PostURL; }
             set
             {
                 TransferMethod = value;
