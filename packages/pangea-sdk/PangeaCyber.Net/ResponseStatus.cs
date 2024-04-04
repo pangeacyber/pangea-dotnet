@@ -1,7 +1,3 @@
-using System;
-using static System.Net.Mime.MediaTypeNames;
-using System.Runtime.InteropServices;
-
 namespace PangeaCyber.Net
 {
     /// <kind>enum</kind>
@@ -36,7 +32,11 @@ namespace PangeaCyber.Net
         TreeNotFound,
         ///
         IPNotFound,
-        /// 
-        Accepted
+
+        /// <summary>The request has not yet completed. The result can be fetched from the async response endpoint when it is ready.</summary>
+        Accepted,
+
+        /// <summary>The URL passed in the request did not resolve to an existing resource.</summary>
+        NotFound
     }
 }

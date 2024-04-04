@@ -874,4 +874,44 @@ public class ITAuditTest
         // FIXME: Commented due to Permission denied
         // file.Save("./", file.Filename);
     }
+
+    [Fact]
+    public async Task TestExportDownload()
+    {
+        var exportResponse = await generalClient.Export(new ExportRequest
+        {
+            End = DateTimeOffset.Now,
+            Verbose = false,
+        });
+        Assert.Equal(nameof(ResponseStatus.Accepted), exportResponse.Status);
+
+        // Note that the export can easily take dozens of minutes, if not longer,
+        // so we don't actually wait for the results on CI. Instead we just poll
+        // it once and then attempt the download, even when we know it isn't
+        // ready yet, just to verify that the core of the functions are working.
+        try
+        {
+            await generalClient.PollResult<object>(exportResponse.RequestId);
+        }
+        catch (PangeaAPIException error)
+        {
+            Assert.Equal(nameof(ResponseStatus.Accepted), error.Response.Status);
+        }
+
+        try
+        {
+            await generalClient.DownloadResults(new DownloadRequest { RequestID = exportResponse.RequestId });
+        }
+        catch (PangeaAPIException error) when (error.Response.Status == nameof(ResponseStatus.Accepted) || error.Response.Status == nameof(ResponseStatus.NotFound))
+        {
+            // "Accepted" is reasonable since we barely polled at all.
+            //
+            // "NotFound" is possible if this test runs while an export is
+            // already in progress, since the request ID from the current run
+            // does not match the original request ID that started the export in
+            // a previous run.
+            //
+            // So we only catch and ignore these two exceptions. Anything else should fail the test.
+        }
+    }
 }
