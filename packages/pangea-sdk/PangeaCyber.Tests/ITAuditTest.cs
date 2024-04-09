@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Audit.Models;
@@ -873,5 +874,88 @@ public class ITAuditTest
 
         // FIXME: Commented due to Permission denied
         // file.Save("./", file.Filename);
+    }
+
+    [Fact]
+    public async Task TestLogStream()
+    {
+        var input = new LogStreamRequest
+        {
+            Logs = new List<LogStreamEvent>
+            {
+                new LogStreamEvent
+                {
+                    LogId = "some log ID",
+                    Data = new LogStreamEventData
+                    {
+                        ClientId = "test client ID",
+                        Date = DateTimeOffset.UtcNow,
+                        Description = "Create a log stream",
+                        Ip = "127.0.0.1",
+                        Type = "some_type",
+                        UserAgent = "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0",
+                        UserId = "test user ID"
+                    }
+                }
+            }
+        };
+
+        var config = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var configId = Config.GetConfigID(environment, AuditClient.ServiceName, 3);
+        var client = new AuditClient.Builder(config).WithConfigID(configId).Build();
+
+        var response = await client.LogStream(input);
+        Assert.Equal(nameof(ResponseStatus.Success), response.Status);
+    }
+
+    private sealed class LogStreamEventData
+    {
+        [JsonProperty("date")]
+        public DateTimeOffset Date { get; set; }
+
+        [JsonProperty("type")]
+        public string? Type { get; set; }
+
+        [JsonProperty("description")]
+        public string? Description { get; set; }
+
+        [JsonProperty("client_id")]
+        public string? ClientId { get; set; }
+
+        [JsonProperty("ip")]
+        public string? Ip { get; set; }
+
+        [JsonProperty("user_agent")]
+        public string? UserAgent { get; set; }
+
+        [JsonProperty("user_id")]
+        public string? UserId { get; set; }
+
+        [JsonProperty("connection", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Connection { get; set; }
+
+        [JsonProperty("connection_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ConnectionId { get; set; }
+
+        [JsonProperty("strategy", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Strategy { get; set; }
+
+        [JsonProperty("strategy_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string? StrategyType { get; set; }
+    }
+
+    private sealed class LogStreamEvent
+    {
+        [JsonProperty("log_id")]
+        public string? LogId { get; set; }
+
+        [JsonProperty("data")]
+        public LogStreamEventData? Data { get; set; }
+    }
+
+    private sealed class LogStreamRequest : BaseRequest
+    {
+        [JsonProperty("logs")]
+        public IEnumerable<LogStreamEvent> Logs { get; set; } = Enumerable.Empty<LogStreamEvent>();
     }
 }
