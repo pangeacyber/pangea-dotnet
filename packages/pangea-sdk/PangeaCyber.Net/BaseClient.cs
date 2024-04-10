@@ -1,8 +1,9 @@
-using System.Text;
-using Newtonsoft.Json;
-using HttpMultipartParser;
+using System.Globalization;
 using System.Net.Http;
-
+using System.Text;
+using HttpMultipartParser;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net
@@ -35,6 +36,22 @@ namespace PangeaCyber.Net
 
         ///
         private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
+
+        /// <summary>JSON serialization settings.</summary>
+        private static readonly JsonSerializerSettings JsonSerializeSettings = new()
+        {
+            Converters = new JsonConverter[] {
+                new IsoDateTimeConverter
+                {
+                    Culture = CultureInfo.InvariantCulture,
+                    DateTimeStyles = DateTimeStyles.AdjustToUniversal,
+                    DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+                }
+            },
+            DateParseHandling = DateParseHandling.None,
+            DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+            NullValueHandling = NullValueHandling.Ignore,
+        };
 
         /// <summary>Client builder.</summary>
         public class ClientBuilder
@@ -107,8 +124,7 @@ namespace PangeaCyber.Net
         {
             try
             {
-                var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-                return JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings);
+                return JsonConvert.SerializeObject(request, Formatting.Indented, JsonSerializeSettings);
             }
             catch (Exception e)
             {
@@ -418,13 +434,12 @@ namespace PangeaCyber.Net
             long start = DateTimeOffset.Now.ToUnixTimeSeconds();
             long delay;
 
-            var jsonSettings = GetJsonSerializerSettings();
             string body = await response.Content.ReadAsStringAsync();
             ResponseHeader header;
 
             try
             {
-                header = JsonConvert.DeserializeObject<ResponseHeader>(body, jsonSettings) ?? default!;
+                header = JsonConvert.DeserializeObject<ResponseHeader>(body, JsonSerializeSettings) ?? default!;
             }
             catch (Exception e)
             {
@@ -457,16 +472,11 @@ namespace PangeaCyber.Net
             return response;
         }
 
-        private JsonSerializerSettings GetJsonSerializerSettings()
-        {
-            return new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-        }
-
         private ResponseHeader ParseHeader(string body)
         {
             try
             {
-                return JsonConvert.DeserializeObject<ResponseHeader>(body, GetJsonSerializerSettings()) ?? default!;
+                return JsonConvert.DeserializeObject<ResponseHeader>(body, JsonSerializeSettings) ?? default!;
             }
             catch (Exception e)
             {
@@ -483,7 +493,7 @@ namespace PangeaCyber.Net
             Response<TResult> resultResponse;
             try
             {
-                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(res.Body, GetJsonSerializerSettings()) ?? default!;
+                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(res.Body, JsonSerializeSettings) ?? default!;
             }
             catch (Exception e)
             {
@@ -502,7 +512,7 @@ namespace PangeaCyber.Net
         {
             try
             {
-                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(res.Body, GetJsonSerializerSettings()) ?? default!;
+                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(res.Body, JsonSerializeSettings) ?? default!;
                 response.HttpResponse = res.HttpResponseMessage;
                 response.AttachedFiles = res.AttachedFiles;
                 return response;
