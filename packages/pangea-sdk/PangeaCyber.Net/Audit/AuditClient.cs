@@ -507,6 +507,39 @@ namespace PangeaCyber.Net.Audit
             return await DoPost<DownloadResult>("/v1/download_results", request, cancellationToken: cancellationToken);
         }
 
+        /// <summary>
+        /// This API allows 3rd party vendors (like Auth0) to stream events to this endpoint where the structure of the
+        /// payload varies across different vendors.
+        /// </summary>
+        /// <remarks>Log streaming endpoint</remarks>
+        /// <operationid>audit_post_v1_log_stream</operationid>
+        /// <param name="data">Event data. The exact schema of this will vary by vendor.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A Pangea response.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// // Extend `BaseRequest` and model what the streaming data looks like.
+        /// private sealed class LogStreamRequest : BaseRequest
+        /// {
+        ///     [JsonProperty("logs")]
+        ///     public IEnumerable&lt;LogStreamEvent&gt; Logs { get; set; } = Enumerable.Empty&lt;LogStreamEvent&gt;();
+        /// }
+        ///
+        /// // Then later on, log it like so:
+        /// var input = new LogStreamRequest { /* ... */ };
+        /// var response = await client.LogStream(input);
+        /// </code>
+        /// </example>
+        public async Task<Response<object>> LogStream(
+            BaseRequest data,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<object>("/v1/log_stream", data, cancellationToken: cancellationToken);
+        }
+
         /// <summary><see cref="AuditClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
