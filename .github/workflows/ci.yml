@@ -126,7 +126,7 @@ jobs:
           cache-dependency-path: ./docs/yarn.lock
 
       - name: Download locally built Pangea.SDK
-        uses: actions/download-artifact@v4.1.4
+        uses: actions/download-artifact@v4.1.5
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
