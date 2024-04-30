@@ -9,8 +9,8 @@ namespace PangeaCyber.Net.AuthZ.Models
     public enum TupleOrderBy
     {
         ///
-        [EnumMember(Value = "resource_namespace")]
-        ResourceNamespace,
+        [EnumMember(Value = "resource_type")]
+        ResourceType,
 
         ///
         [EnumMember(Value = "resource_id")]
@@ -21,8 +21,8 @@ namespace PangeaCyber.Net.AuthZ.Models
         Relation,
 
         ///
-        [EnumMember(Value = "subject_namespace")]
-        SubjectNamespace,
+        [EnumMember(Value = "subject_type")]
+        SubjectType,
 
         ///
         [EnumMember(Value = "subject_id")]
@@ -32,5 +32,4 @@ namespace PangeaCyber.Net.AuthZ.Models
         [EnumMember(Value = "subject_action")]
         SubjectAction
     }
-
 }
