@@ -1,9 +1,9 @@
+using PangeaCyber.Net;
 using PangeaCyber.Net.AuthN;
 using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
 using PangeaCyber.Net.AuthN.Results;
 using PangeaCyber.Net.Exceptions;
-using PangeaCyber.Net;
 
 namespace PangeaCyber.Tests;
 
@@ -54,7 +54,7 @@ public class ITAuthNTest
     }
 
     [Fact]
-    public async void TestCycle()
+    public async Task TestCycle()
     {
         await TestA_UserActions(client);
         await TestB_ClientSessionList_n_Invalidate(client);
@@ -68,7 +68,6 @@ public class ITAuthNTest
     {
         var data = new FlowRestartData.Builder().Build();
     }
-
 
     [Fact]
     public async Task TestAgreementsCycleEULA()
