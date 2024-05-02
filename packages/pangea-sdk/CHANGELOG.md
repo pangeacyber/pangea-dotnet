@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Documentation for client builders and constructors.
 - Audit /download_results endpoint support
+- Support for Secure Audit Log's log stream API.
 - Support for Secure Audit Log's export API.
 
 ### Fixed

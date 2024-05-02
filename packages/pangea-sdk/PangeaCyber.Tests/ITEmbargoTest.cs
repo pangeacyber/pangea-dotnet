@@ -14,7 +14,7 @@ namespace PangeaCyber.Net.Embargo.Tests
         }
 
         [Fact]
-        public async void TestISOCheckSanctionedCountry()
+        public async Task TestISOCheckSanctionedCountry()
         {
             Response<EmbargoSanctions> response = await client.ISOCheck("CU");
             Assert.True(response.IsOK);
@@ -27,17 +27,17 @@ namespace PangeaCyber.Net.Embargo.Tests
         }
 
         [Fact]
-        public async void TestISOCheckNoSanctionedCountry()
+        public async Task TestISOCheckNoSanctionedCountry()
         {
             Response<EmbargoSanctions> response = await client.ISOCheck("AR");
             Assert.True(response.IsOK);
 
             EmbargoSanctions result = response.Result;
-            Assert.True(result.Count == 0);
+            Assert.Equal(0, result.Count);
         }
 
         [Fact]
-        public async void TestIPCheckSanctionedCountry()
+        public async Task TestIPCheckSanctionedCountry()
         {
             Response<EmbargoSanctions> response = await client.IPCheck("213.24.238.26");
             Assert.True(response.IsOK);
@@ -53,7 +53,7 @@ namespace PangeaCyber.Net.Embargo.Tests
         }
 
         [Fact]
-        public async void TestEmptyIP()
+        public async Task TestEmptyIP()
         {
             await Assert.ThrowsAsync<ValidationException>(async () =>
             {
@@ -62,7 +62,7 @@ namespace PangeaCyber.Net.Embargo.Tests
         }
 
         [Fact]
-        public async void TestPrintError()
+        public async Task TestPrintError()
         {
             try
             {
@@ -77,7 +77,7 @@ namespace PangeaCyber.Net.Embargo.Tests
         }
 
         [Fact]
-        public async void TestUnauthorized()
+        public async Task TestUnauthorized()
         {
             Config cfg = Config.FromIntegrationEnvironment(environment);
             cfg = new Config("notarealtoken", cfg.Domain);

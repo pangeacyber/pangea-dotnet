@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.4
 
       - name: Calculate `examples-matrix` output
         id: examples-matrix
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0
@@ -69,7 +69,7 @@ jobs:
         working-directory: ./packages/pangea-sdk
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0
@@ -95,7 +95,7 @@ jobs:
         run: dotnet build --configuration Release packages/pangea-sdk/
 
       - name: Upload
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
@@ -108,7 +108,7 @@ jobs:
         working-directory: ./docs
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0
@@ -126,7 +126,7 @@ jobs:
           cache-dependency-path: ./docs/yarn.lock
 
       - name: Download locally built Pangea.SDK
-        uses: actions/download-artifact@v4.1.4
+        uses: actions/download-artifact@v4.1.7
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
@@ -147,7 +147,7 @@ jobs:
         run: yarn generate
 
       - name: Upload
-        uses: actions/upload-artifact@v4.3.1
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: csharp_sdk.json
           path: ./docs/out/csharp_sdk.json
@@ -164,7 +164,7 @@ jobs:
         working-directory: ./examples/${{ matrix.example }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v4.1.4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4.0.0

@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Audit.Models;
@@ -876,42 +877,120 @@ public class ITAuditTest
     }
 
     [Fact]
+    public async Task TestLogStream()
+    {
+        var input = new LogStreamRequest
+        {
+            Logs = new List<LogStreamEvent>
+            {
+                new LogStreamEvent
+                {
+                    LogId = "some log ID",
+                    Data = new LogStreamEventData
+                    {
+                        ClientId = "test client ID",
+                        Date = DateTimeOffset.UtcNow,
+                        Description = "Create a log stream",
+                        Ip = "127.0.0.1",
+                        Type = "some_type",
+                        UserAgent = "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0",
+                        UserId = "test user ID"
+                    }
+                }
+            }
+        };
+
+        var config = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var configId = Config.GetConfigID(environment, AuditClient.ServiceName, 3);
+        var client = new AuditClient.Builder(config).WithConfigID(configId).Build();
+
+        var response = await client.LogStream(input);
+        Assert.Equal(nameof(ResponseStatus.Success), response.Status);
+    }
+
+    [Fact]
     public async Task TestExportDownload()
     {
         var exportResponse = await generalClient.Export(new ExportRequest
         {
-            End = DateTimeOffset.Now,
+            Start = DateTimeOffset.UtcNow.AddDays(-1),
+            End = DateTimeOffset.UtcNow,
             Verbose = false,
         });
         Assert.Equal(nameof(ResponseStatus.Accepted), exportResponse.Status);
 
-        // Note that the export can easily take dozens of minutes, if not longer,
-        // so we don't actually wait for the results on CI. Instead we just poll
-        // it once and then attempt the download, even when we know it isn't
-        // ready yet, just to verify that the core of the functions are working.
-        try
+        for (int retry = 0; retry < 10; retry++)
         {
-            await generalClient.PollResult<object>(exportResponse.RequestId);
-        }
-        catch (PangeaAPIException error)
-        {
-            Assert.Equal(nameof(ResponseStatus.Accepted), error.Response.Status);
+            try
+            {
+                var response = await generalClient.PollResult<object>(exportResponse.RequestId);
+                if (response.IsOK)
+                {
+                    break;
+                }
+            }
+            catch (PangeaAPIException error) when (error.Response.Status == nameof(ResponseStatus.Accepted) || error.Response.Status == nameof(ResponseStatus.NotFound))
+            {
+                // Allow.
+            }
+
+            await Task.Delay(3 * 1000);
         }
 
-        try
-        {
-            await generalClient.DownloadResults(new DownloadRequest { RequestID = exportResponse.RequestId });
-        }
-        catch (PangeaAPIException error) when (error.Response.Status == nameof(ResponseStatus.Accepted) || error.Response.Status == nameof(ResponseStatus.NotFound))
-        {
-            // "Accepted" is reasonable since we barely polled at all.
-            //
-            // "NotFound" is possible if this test runs while an export is
-            // already in progress, since the request ID from the current run
-            // does not match the original request ID that started the export in
-            // a previous run.
-            //
-            // So we only catch and ignore these two exceptions. Anything else should fail the test.
-        }
+        var dlResponse = await generalClient.DownloadResults(new DownloadRequest { RequestID = exportResponse.RequestId });
+        Assert.True(dlResponse.IsOK);
+        Assert.NotNull(dlResponse.Result.DestURL);
+        Assert.NotEmpty(dlResponse.Result.DestURL);
+    }
+
+    private sealed class LogStreamEventData
+    {
+        [JsonProperty("date")]
+        public DateTimeOffset Date { get; set; }
+
+        [JsonProperty("type")]
+        public string? Type { get; set; }
+
+        [JsonProperty("description")]
+        public string? Description { get; set; }
+
+        [JsonProperty("client_id")]
+        public string? ClientId { get; set; }
+
+        [JsonProperty("ip")]
+        public string? Ip { get; set; }
+
+        [JsonProperty("user_agent")]
+        public string? UserAgent { get; set; }
+
+        [JsonProperty("user_id")]
+        public string? UserId { get; set; }
+
+        [JsonProperty("connection", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Connection { get; set; }
+
+        [JsonProperty("connection_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ConnectionId { get; set; }
+
+        [JsonProperty("strategy", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Strategy { get; set; }
+
+        [JsonProperty("strategy_type", NullValueHandling = NullValueHandling.Ignore)]
+        public string? StrategyType { get; set; }
+    }
+
+    private sealed class LogStreamEvent
+    {
+        [JsonProperty("log_id")]
+        public string? LogId { get; set; }
+
+        [JsonProperty("data")]
+        public LogStreamEventData? Data { get; set; }
+    }
+
+    private sealed class LogStreamRequest : BaseRequest
+    {
+        [JsonProperty("logs")]
+        public IEnumerable<LogStreamEvent> Logs { get; set; } = Enumerable.Empty<LogStreamEvent>();
     }
 }
