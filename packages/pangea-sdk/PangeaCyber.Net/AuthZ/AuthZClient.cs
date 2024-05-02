@@ -28,7 +28,7 @@ namespace PangeaCyber.Net.AuthZ
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
         /// <remarks>Create tuples. (Beta)</remarks>
-        /// <operationid>authz_post_v1beta_tuple_create</operationid>
+        /// <operationid>authz_post_v1_tuple_create</operationid>
         /// <param name="request">The request to the '/tuple/create' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Empty result.</returns>
@@ -50,7 +50,7 @@ namespace PangeaCyber.Net.AuthZ
         /// </example>
         public async Task<Response<TupleCreateResult>> TupleCreate(TupleCreateRequest request, CancellationToken cancellationToken = default)
         {
-            return await DoPost<TupleCreateResult>("/v1beta/tuple/create", request, cancellationToken: cancellationToken);
+            return await DoPost<TupleCreateResult>("/v1/tuple/create", request, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace PangeaCyber.Net.AuthZ
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
         /// <remarks>List tuples. (Beta)</remarks>
-        /// <operationid>authz_post_v1beta_tuple_list</operationid>
+        /// <operationid>authz_post_v1_tuple_list</operationid>
         /// <param name="request">The request to the '/tuple/list' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>List of tuples.</returns>
@@ -68,7 +68,7 @@ namespace PangeaCyber.Net.AuthZ
         /// <example>
         /// <code>
         /// var filter = new FilterTupleList();
-        /// filter.SubjectNamespace.Set("user);
+        /// filter.SubjectType.Set("user);
         /// filter.SubjectID.Set("user_id");
         /// var request = new TupleListRequest
         /// {
@@ -76,14 +76,14 @@ namespace PangeaCyber.Net.AuthZ
         ///     Size = 10, // Optional: Set the size of the result set
         ///     Last = "token123", // Optional: Set the last token from a previous response
         ///     Order = ItemOrder.Desc, // Optional: Set the order (asc or desc)
-        ///     OrderBy = TupleOrderBy.ResourceNamespace // Optional: Set the field to order results by
+        ///     OrderBy = TupleOrderBy.ResourceType // Optional: Set the field to order results by
         /// };
         /// var response = await client.TupleList(request);
         /// </code>
         /// </example>
         public async Task<Response<TupleListResult>> TupleList(TupleListRequest request, CancellationToken cancellationToken = default)
         {
-            return await DoPost<TupleListResult>("/v1beta/tuple/list", request, cancellationToken: cancellationToken);
+            return await DoPost<TupleListResult>("/v1/tuple/list", request, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace PangeaCyber.Net.AuthZ
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
         /// <remarks>Delete tuples. (Beta)</remarks>
-        /// <operationid>authz_post_v1beta_tuple_delete</operationid>
+        /// <operationid>authz_post_v1_tuple_delete</operationid>
         /// <param name="request">The request to the '/tuple/delete' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Empty result.</returns>
@@ -113,7 +113,7 @@ namespace PangeaCyber.Net.AuthZ
         /// </example>
         public async Task<Response<TupleDeleteResult>> TupleDelete(TupleDeleteRequest request, CancellationToken cancellationToken = default)
         {
-            return await DoPost<TupleDeleteResult>("/v1beta/tuple/delete", request, cancellationToken: cancellationToken);
+            return await DoPost<TupleDeleteResult>("/v1/tuple/delete", request, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace PangeaCyber.Net.AuthZ
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
         /// <remarks>Perform a check request. (Beta)</remarks>
-        /// <operationid>authz_post_v1beta_check</operationid>
+        /// <operationid>authz_post_v1_check</operationid>
         /// <param name="request">The request to the '/check' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Result of the authorization check.</returns>
@@ -138,16 +138,16 @@ namespace PangeaCyber.Net.AuthZ
         /// </example>
         public async Task<Response<CheckResult>> Check(CheckRequest request, CancellationToken cancellationToken = default)
         {
-            return await DoPost<CheckResult>("/v1beta/check", request, cancellationToken: cancellationToken);
+            return await DoPost<CheckResult>("/v1/check", request, cancellationToken: cancellationToken);
         }
 
         /// <summary>
-        /// Given a namespace, action, and subject, list all the resources in the namespace that the subject has access
+        /// Given a type, action, and subject, list all the resources of the type that the subject has access
         /// to the action with.
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
         /// <remarks>List resources. (Beta)</remarks>
-        /// <operationid>authz_post_v1beta_list-resources</operationid>
+        /// <operationid>authz_post_v1_list-resources</operationid>
         /// <param name="request">The request to the '/list-resources' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>List of resources.</returns>
@@ -164,7 +164,7 @@ namespace PangeaCyber.Net.AuthZ
         /// </example>
         public async Task<Response<ListResourcesResult>> ListResources(ListResourcesRequest request, CancellationToken cancellationToken = default)
         {
-            return await DoPost<ListResourcesResult>("/v1beta/list-resources", request, cancellationToken: cancellationToken);
+            return await DoPost<ListResourcesResult>("/v1/list-resources", request, cancellationToken: cancellationToken);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace PangeaCyber.Net.AuthZ
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
         /// <remarks>List subjects. (Beta)</remarks>
-        /// <operationid>authz_post_v1beta_list-subjects</operationid>
+        /// <operationid>authz_post_v1_list-subjects</operationid>
         /// <param name="request">The request to the '/list-subjects' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>List of subjects.</returns>
@@ -189,7 +189,7 @@ namespace PangeaCyber.Net.AuthZ
         /// </example>
         public async Task<Response<ListSubjectsResult>> ListSubjects(ListSubjectsRequest request, CancellationToken cancellationToken = default)
         {
-            return await DoPost<ListSubjectsResult>("/v1beta/list-subjects", request, cancellationToken: cancellationToken);
+            return await DoPost<ListSubjectsResult>("/v1/list-subjects", request, cancellationToken: cancellationToken);
         }
 
         /// <summary><see cref="AuthZClient"/> builder.</summary>

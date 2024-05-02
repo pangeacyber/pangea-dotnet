@@ -11,7 +11,6 @@ namespace PangeaCyber.Net.AuthZ.Models
     {
         ///
         [JsonProperty("path")]
-        public DebugPath[] Path { get; set; } = { };
-
+        public DebugPath[] Path { get; set; } = Array.Empty<DebugPath>();
     }
 }
