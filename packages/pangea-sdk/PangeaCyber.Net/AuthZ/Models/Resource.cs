@@ -10,18 +10,17 @@ namespace PangeaCyber.Net.AuthZ.Models
     public class Resource
     {
         ///
-        [JsonProperty("namespace")]
-        public string Namespace { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         ///
         [JsonProperty("id")]
-        public string? ID { get; set; } = default!;
+        public string? ID { get; set; }
 
         ///
-        public Resource(string _namespace)
+        public Resource(string type)
         {
-            Namespace = _namespace;
+            Type = type;
         }
-
     }
 }

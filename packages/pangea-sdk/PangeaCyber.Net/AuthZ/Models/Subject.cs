@@ -10,23 +10,21 @@ namespace PangeaCyber.Net.AuthZ.Models
     public class Subject
     {
         ///
-        [JsonProperty("namespace")]
-        public string Namespace { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         ///
         [JsonProperty("id")]
-        public string? ID { get; set; } = default!;
+        public string? ID { get; set; }
 
         ///
         [JsonProperty("action")]
-        public string? Action { get; set; } = default!;
-
+        public string? Action { get; set; }
 
         ///
-        public Subject(string _namespace)
+        public Subject(string type)
         {
-            Namespace = _namespace;
+            Type = type;
         }
-
     }
 }
