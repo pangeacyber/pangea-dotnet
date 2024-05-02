@@ -11,8 +11,8 @@ namespace PangeaCyber.Net.AuthZ.Requests
     public class ListResourcesRequest : BaseRequest
     {
         ///
-        [JsonProperty("namespace")]
-        public string Namespace { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         ///
         [JsonProperty("action")]
@@ -23,9 +23,9 @@ namespace PangeaCyber.Net.AuthZ.Requests
         public Subject Subject { get; set; }
 
         ///
-        public ListResourcesRequest(string _namespace, string action, Subject subject)
+        public ListResourcesRequest(string type, string action, Subject subject)
         {
-            Namespace = _namespace;
+            Type = type;
             Action = action;
             Subject = subject;
         }

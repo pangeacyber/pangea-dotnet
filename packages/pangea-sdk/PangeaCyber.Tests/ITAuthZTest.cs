@@ -17,8 +17,8 @@ public class ITAuthZTest
     readonly string user1;
     readonly string user2;
 
-    readonly string namespace_folder;
-    readonly string namespace_user;
+    readonly string type_folder;
+    readonly string type_user;
     readonly string relation_owner;
     readonly string relation_editor;
     readonly string relation_reader;
@@ -33,8 +33,8 @@ public class ITAuthZTest
         user1 = "user_1_" + time;
         user2 = "user_2_" + time;
 
-        namespace_folder = "folder";
-        namespace_user = "user";
+        type_folder = "folder";
+        type_user = "user";
         relation_owner = "owner";
         relation_editor = "editor";
         relation_reader = "reader";
@@ -43,19 +43,19 @@ public class ITAuthZTest
     [Fact]
     public async Task TestIntegration()
     {
-        var resource1 = new Resource(namespace_folder)
+        var resource1 = new Resource(type_folder)
         {
             ID = folder1
         };
-        var resource2 = new Resource(namespace_folder)
+        var resource2 = new Resource(type_folder)
         {
             ID = folder2
         };
-        var subject1 = new Subject(namespace_user)
+        var subject1 = new Subject(type_user)
         {
             ID = user1
         };
-        var subject2 = new Subject(namespace_user)
+        var subject2 = new Subject(type_user)
         {
             ID = user2
         };
@@ -74,7 +74,7 @@ public class ITAuthZTest
 
         // Tuple list with resource
         var filter = new FilterTupleList();
-        filter.ResourceNamespace.Set(namespace_folder);
+        filter.ResourceType.Set(type_folder);
         filter.ResourceID.Set(folder1);
 
         var listResp = await client.TupleList(
@@ -90,7 +90,7 @@ public class ITAuthZTest
 
         // Tuple list with subject
         filter = new FilterTupleList();
-        filter.SubjectNamespace.Set(namespace_user);
+        filter.SubjectType.Set(type_user);
         filter.SubjectID.Set(user1);
 
         listResp = await client.TupleList(
@@ -136,7 +136,7 @@ public class ITAuthZTest
 
         // List resources
         var listResourcesResp = await client.ListResources(
-            new ListResourcesRequest(namespace_folder, relation_editor, subject2)
+            new ListResourcesRequest(type_folder, relation_editor, subject2)
         );
 
         Assert.Single(listResourcesResp.Result.IDs);

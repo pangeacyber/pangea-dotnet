@@ -10,8 +10,8 @@ namespace PangeaCyber.Net.AuthZ.Models
     public class DebugPath
     {
         ///
-        [JsonProperty("namespace")]
-        public string Namespace { get; set; } = default!;
+        [JsonProperty("type")]
+        public string Type { get; set; } = default!;
 
         ///
         [JsonProperty("id")]
@@ -19,6 +19,6 @@ namespace PangeaCyber.Net.AuthZ.Models
 
         ///
         [JsonProperty("action")]
-        public string? Action { get; set; } = default!;
+        public string? Action { get; set; }
     }
 }
