@@ -919,7 +919,8 @@ public class ITAuditTest
         });
         Assert.Equal(nameof(ResponseStatus.Accepted), exportResponse.Status);
 
-        for (int retry = 0; retry < 10; retry++)
+        const int maxRetries = 10;
+        for (int retry = 0; retry < maxRetries; retry++)
         {
             try
             {
@@ -934,6 +935,7 @@ public class ITAuditTest
                 // Allow.
             }
 
+            Assert.True(retry < maxRetries - 1, "exceeded maximum retries");
             await Task.Delay(3 * 1000);
         }
 
