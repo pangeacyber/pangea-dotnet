@@ -908,6 +908,43 @@ public class ITAuditTest
         Assert.Equal(nameof(ResponseStatus.Success), response.Status);
     }
 
+    [Fact]
+    public async Task TestExportDownload()
+    {
+        var exportResponse = await generalClient.Export(new ExportRequest
+        {
+            Start = DateTimeOffset.UtcNow.AddDays(-1),
+            End = DateTimeOffset.UtcNow,
+            Verbose = false,
+        });
+        Assert.Equal(nameof(ResponseStatus.Accepted), exportResponse.Status);
+
+        const int maxRetries = 10;
+        for (int retry = 0; retry < maxRetries; retry++)
+        {
+            try
+            {
+                var response = await generalClient.PollResult<object>(exportResponse.RequestId);
+                if (response.IsOK)
+                {
+                    break;
+                }
+            }
+            catch (PangeaAPIException error) when (error.Response.Status == nameof(ResponseStatus.Accepted) || error.Response.Status == nameof(ResponseStatus.NotFound))
+            {
+                // Allow.
+            }
+
+            Assert.True(retry < maxRetries - 1, "exceeded maximum retries");
+            await Task.Delay(3 * 1000);
+        }
+
+        var dlResponse = await generalClient.DownloadResults(new DownloadRequest { RequestID = exportResponse.RequestId });
+        Assert.True(dlResponse.IsOK);
+        Assert.NotNull(dlResponse.Result.DestURL);
+        Assert.NotEmpty(dlResponse.Result.DestURL);
+    }
+
     private sealed class LogStreamEventData
     {
         [JsonProperty("date")]

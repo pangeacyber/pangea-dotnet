@@ -1,9 +1,7 @@
-using System.Text;
 using System.Security.Cryptography;
-using PangeaCyber.Net.FileScan.Models;
+using System.Text;
 using Force.Crc32;
-using Org.BouncyCastle.Utilities;
-using Org.BouncyCastle.Tls;
+using PangeaCyber.Net.FileScan.Models;
 
 namespace PangeaCyber.Net
 {
