@@ -7,22 +7,23 @@ namespace PangeaCyber.Net.AuthN.Requests
     /// </summary>
     public class UserAuthenticatorsListRequest : BaseRequest
     {
-        /// <summary>
-        /// Gets or sets the id property.
-        /// </summary>
+        /// <summary>The identity of a user or a service.</summary>
         [JsonProperty("id")]
         public string? ID { get; private set; }
 
-        /// <summary>
-        /// Gets or sets the email property.
-        /// </summary>
+        /// <summary>An email address.</summary>
         [JsonProperty("email")]
         public string? Email { get; private set; }
+
+        /// <summary>A username.</summary>
+        [JsonProperty("username")]
+        public string? Username { get; private set; }
 
         private UserAuthenticatorsListRequest(Builder builder)
         {
             ID = builder.ID;
             Email = builder.Email;
+            Username = builder.Username;
         }
 
         /// <summary>
@@ -30,15 +31,14 @@ namespace PangeaCyber.Net.AuthN.Requests
         /// </summary>
         public class Builder
         {
-            /// <summary>
-            /// Gets or sets the id property.
-            /// </summary>
+            /// <inheritdoc cref="UserAuthenticatorsListRequest.ID" />
             public string? ID { get; private set; }
 
-            /// <summary>
-            /// Gets or sets the email property.
-            /// </summary>
+            /// <inheritdoc cref="UserAuthenticatorsListRequest.Email" />
             public string? Email { get; private set; }
+
+            /// <inheritdoc cref="UserAuthenticatorsListRequest.Username" />
+            public string? Username { get; private set; }
 
             /// <summary>
             /// Sets the id property.
@@ -55,6 +55,13 @@ namespace PangeaCyber.Net.AuthN.Requests
             public Builder WithEmail(string email)
             {
                 Email = email;
+                return this;
+            }
+
+            /// <summary>Sets the username property.</summary>
+            public Builder WithUsername(string username)
+            {
+                Username = username;
                 return this;
             }
 

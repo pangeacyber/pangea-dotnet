@@ -36,11 +36,11 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// Profile profile = new Profile();
         /// profile.FirstName = "Joe";
         /// profile.LastName = "User";
-        /// 
+        ///
         /// var request = new UserCreateRequest
         ///     .Builder("joe.user@pangea.cloud", profile)
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.User.Create(request);
         /// </code>
         /// </example>
@@ -49,46 +49,61 @@ namespace PangeaCyber.Net.AuthN.Clients
             return await DoPost<UserCreateResult>("/v2/user/create", request);
         }
 
-        /// <kind>method</kind>
         /// <summary>Delete a user by email address.</summary>
         /// <remarks>Delete User - Email</remarks>
         /// <operationid>authn_post_v2_user_delete 1</operationid>
-        /// <param name="email" type="string">An email address</param>
-        /// <returns>Response&lt;UserDeleteResult&gt;</returns>
+        /// <param name="email">An email address</param>
+        /// <returns>An empty object.</returns>
         /// <example>
         /// <code>
         /// await client.User.DeleteByEmail("joe.user@pangea.cloud");
         /// </code>
         /// </example>
-        public async Task<Response<UserDeleteResult>> DeleteByEmail(string email)
+        public async Task<Response<object>> DeleteByEmail(string email)
         {
             var request = new UserDeleteByEmailRequest(email);
-            return await DoPost<UserDeleteResult>("/v2/user/delete", request);
+            return await DoPost<object>("/v2/user/delete", request);
         }
 
-        /// <kind>method</kind>
         /// <summary>Delete a user by ID.</summary>
         /// <remarks>Delete User - ID</remarks>
         /// <operationid>authn_post_v2_user_delete 2</operationid>
-        /// <param name="id" type="string">The identity of a user or a service</param>
-        /// <returns>Response&lt;UserDeleteResult&gt;</returns>
+        /// <param name="id">The identity of a user or a service</param>
+        /// <returns>An empty object.</returns>
         /// <example>
         /// <code>
         /// await client.User.DeleteByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
         /// </code>
         /// </example>
-        public async Task<Response<UserDeleteResult>> DeleteByID(string id)
+        public async Task<Response<object>> DeleteByID(string id)
         {
             var request = new UserDeleteByIDRequest(id);
-            return await DoPost<UserDeleteResult>("/v2/user/delete", request);
+            return await DoPost<object>("/v2/user/delete", request);
         }
 
-        /// <kind>method</kind>
+        /// <summary>Delete a user by username.</summary>
+        /// <remarks>Delete User - Username</remarks>
+        /// <operationid>authn_post_v2_user_delete 3</operationid>
+        /// <param name="username">A username.</param>
+        /// <returns>An empty object.</returns>
+        /// <example>
+        /// <code>
+        /// await client.User.DeleteByUsername("foobar");
+        /// </code>
+        /// </example>
+        public async Task<Response<object>> DeleteByUsername(string username)
+        {
+            return await DoPost<object>(
+                "/v2/user/delete",
+                new UserDeleteByUsernameRequest { Username = username }
+            );
+        }
+
         /// <summary>Update user's settings.</summary>
         /// <remarks>Update user's settings</remarks>
         /// <operationid>authn_post_v2_user_update</operationid>
-        /// <param name="request" type="string">The identity of a user or a service</param>
-        /// <returns>Response&lt;UserDeleteResult&gt;</returns>
+        /// <param name="request">Request parameters.</param>
+        /// <returns>The updated user.</returns>
         /// <example>
         /// <code>
         /// var request = new UserUpdateRequest
@@ -96,7 +111,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         ///     .WithEmail("joe.user@pangea.cloud")
         ///     .WithDisabled(true)
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.User.Update(request);
         /// </code>
         /// </example>
@@ -115,12 +130,12 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <code>
         /// var request = new UserInviteRequest
         ///     .Builder(
-        ///         "admin@pangea.cloud", 
-        ///         "joe.user@pangea.cloud", 
-        ///         "https://www.myserver.com/callback", 
+        ///         "admin@pangea.cloud",
+        ///         "joe.user@pangea.cloud",
+        ///         "https://www.myserver.com/callback",
         ///         "pcb_zurr3lkcwdp5keq73htsfpcii5k4zgm7")
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.User.Invite(request);
         /// </code>
         /// </example>
@@ -138,7 +153,7 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// <example>
         /// <code>
         /// var request = new UserListRequest.Builder().Build();
-        /// 
+        ///
         /// var response = await client.User.List(request);
         /// </code>
         /// </example>
@@ -149,6 +164,7 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserDeleteByEmailRequest : BaseRequest
         {
+            /// <summary>An email address.</summary>
             [JsonProperty("email")]
             public string Email { get; private set; }
 
@@ -160,6 +176,7 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserDeleteByIDRequest : BaseRequest
         {
+            /// <summary>The id of a user or a service.</summary>
             [JsonProperty("id")]
             public string ID { get; private set; }
 
@@ -169,5 +186,11 @@ namespace PangeaCyber.Net.AuthN.Clients
             }
         }
 
+        internal sealed class UserDeleteByUsernameRequest : BaseRequest
+        {
+            /// <summary>A username.</summary>
+            [JsonProperty("username")]
+            public string Username { get; set; } = default!;
+        }
     }
 }
