@@ -70,6 +70,19 @@ namespace PangeaCyber.Net.Redact
             return await this.structuredPost(request);
         }
 
+        /// <kind>method</kind>
+        /// <summary>Decrypt or unredact fpe redactions.</summary>
+        /// <remarks>Unredact</remarks>
+        /// <operationid>redact_post_v1_unredact</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Redact.UnredactRequest">UnredactRequest with redacted data</param>
+        /// <returns>Response&lt;UnredactResult&gt;</returns>
+        /// <exception cref="PangeaException"></exception>
+        /// <exception cref="PangeaAPIException"></exception>
+        public async Task<Response<UnredactResult>> Unredact(UnredactRequest request)
+        {
+            return await DoPost<UnredactResult>("/v1/unredact", request);
+        }
+
         /// <summary><see cref="RedactClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
