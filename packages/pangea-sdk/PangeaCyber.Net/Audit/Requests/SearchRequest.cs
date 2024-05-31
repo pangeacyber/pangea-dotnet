@@ -147,7 +147,7 @@ namespace PangeaCyber.Net.Audit
             }
 
             ///
-            public Builder WithReturnContext(bool? rc)
+            public Builder WithReturnContext(bool rc)
             {
                 ReturnContext = rc;
                 return this;
