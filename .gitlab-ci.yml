@@ -1,6 +1,6 @@
 default:
   image:
-    name: mcr.microsoft.com/dotnet/sdk:6.0@sha256:395350db14774c83226459118e615b2e322e8f26e32a09b51fd93692c09a8781
+    name: mcr.microsoft.com/dotnet/sdk:6.0@sha256:1b72e5b70921e0f487fd3b8cd5365e7e056fd9f3a3d8f4f131d31a333cf33154
     entrypoint: [""]
   tags:
     - pangea-internal
