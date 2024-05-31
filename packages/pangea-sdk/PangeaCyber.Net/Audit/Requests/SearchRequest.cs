@@ -41,6 +41,10 @@ namespace PangeaCyber.Net.Audit
         [JsonProperty("verbose")]
         public bool? Verbose { get; set; }
 
+        /// <summary>Return the context data needed to decrypt secure audit events that have been redacted with format preserving encryption.</summary>
+        [JsonProperty("return_context")]
+        public bool? ReturnContext { get; set; }
+
         ///
         private SearchRequest(Builder builder)
         {
@@ -53,6 +57,7 @@ namespace PangeaCyber.Net.Audit
             MaxResults = builder.MaxResults;
             SearchRestriction = builder.SearchRestriction;
             Verbose = builder.Verbose;
+            ReturnContext = builder.ReturnContext;
         }
 
         ///
@@ -76,6 +81,8 @@ namespace PangeaCyber.Net.Audit
             public SearchRestriction? SearchRestriction { get; set; }
             ///
             public bool? Verbose { get; set; }
+            ///
+            public bool? ReturnContext { get; set; }
 
             ///
             public Builder(string query)
@@ -136,6 +143,13 @@ namespace PangeaCyber.Net.Audit
             public Builder WithVerbose(bool? verbose)
             {
                 Verbose = verbose;
+                return this;
+            }
+
+            ///
+            public Builder WithReturnContext(bool rc)
+            {
+                ReturnContext = rc;
                 return this;
             }
 

@@ -17,11 +17,16 @@ namespace PangeaCyber.Net.Audit
         [JsonProperty("offset")]
         public int? Offset { get; }
 
+        /// <summary>Return the context data needed to decrypt secure audit events that have been redacted with format preserving encryption.</summary>
+        [JsonProperty("return_context")]
+        public bool? ReturnContext { get; set; }
+
         private ResultRequest(Builder builder)
         {
             Id = builder.Id;
             Limit = builder.Limit;
             Offset = builder.Offset;
+            ReturnContext = builder.ReturnContext;
         }
 
         ///
@@ -33,6 +38,8 @@ namespace PangeaCyber.Net.Audit
             public int? Limit { get; private set; }
             ///
             public int? Offset { get; private set; }
+            ///
+            public bool? ReturnContext { get; set; }
 
             ///
             public Builder(string id)
@@ -51,6 +58,13 @@ namespace PangeaCyber.Net.Audit
             public Builder WithOffset(int? offset)
             {
                 Offset = offset;
+                return this;
+            }
+
+            ///
+            public Builder WithReturnContext(bool rc)
+            {
+                ReturnContext = rc;
                 return this;
             }
 

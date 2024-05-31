@@ -17,5 +17,9 @@ namespace PangeaCyber.Net.Audit
         /// <summary>Format for the records.</summary>
         [JsonProperty("format")]
         public DownloadFormat? Format { get; set; }
+
+        /// <summary>Return the context data needed to decrypt secure audit events that have been redacted with format preserving encryption.</summary>
+        [JsonProperty("return_context")]
+        public bool? ReturnContext { get; set; }
     }
 }

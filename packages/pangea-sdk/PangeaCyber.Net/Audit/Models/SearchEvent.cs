@@ -47,6 +47,10 @@ namespace PangeaCyber.Net.Audit
         public EventVerification SignatureVerification { get; private set; } = EventVerification.NotVerified;
 
         ///
+        [JsonProperty("fpe_context")]
+        public string? FPEContext { get; private set; } = default!;
+
+        ///
         public void VerifySignature()
         {
             if (this.EventEnvelope != null)
