@@ -74,7 +74,7 @@ namespace PangeaCyber.Net.Redact
         /// <summary>Decrypt or unredact fpe redactions.</summary>
         /// <remarks>Unredact</remarks>
         /// <operationid>redact_post_v1_unredact</operationid>
-        /// <param name="request" type="PangeaCyber.Net.Redact.UnredactRequest">UnredactRequest with redacted data</param>
+        /// <param name="request">UnredactRequest with redacted data</param>
         /// <returns>Response&lt;UnredactResult&gt;</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
