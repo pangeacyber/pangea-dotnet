@@ -14,9 +14,9 @@ namespace PangeaCyber.Net.Redact
         ///
         public int? MaskedFromRight { get; set; } = default!;
         ///
-        public List<string>? CharsToIgnore { get; set; } = default!;
+        public List<char>? CharsToIgnore { get; set; } = default!;
         ///
-        public List<string>? MaskingChar { get; set; } = default!;
+        public List<char>? MaskingChar { get; set; } = default!;
 
         ///
         private PartialMasking() { }
