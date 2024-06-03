@@ -6,10 +6,11 @@ namespace PangeaCyber.Net.Redact
     /// <summary>
     /// RedactTextResult
     /// </summary>
-    public sealed class UnredactResult
+    /// <typeparam name="T">Structured data type.</typeparam>
+    public sealed class UnredactResult<T>
     {
         ///
         [JsonProperty("data")]
-        public object data { get; private set; } = default!;
+        public T data { get; private set; } = default!;
     }
 }

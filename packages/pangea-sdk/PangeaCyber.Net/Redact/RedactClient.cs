@@ -74,13 +74,14 @@ namespace PangeaCyber.Net.Redact
         /// <summary>Decrypt or unredact fpe redactions.</summary>
         /// <remarks>Unredact</remarks>
         /// <operationid>redact_post_v1_unredact</operationid>
+        /// <typeparam name="T">Structured data type.</typeparam>
         /// <param name="request">UnredactRequest with redacted data</param>
         /// <returns>The unredacted data.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
-        public async Task<Response<UnredactResult>> Unredact(UnredactRequest request)
+        public async Task<Response<UnredactResult<T>>> Unredact<T>(UnredactRequest request)
         {
-            return await DoPost<UnredactResult>("/v1/unredact", request);
+            return await DoPost<UnredactResult<T>>("/v1/unredact", request);
         }
 
         /// <summary><see cref="RedactClient"/> builder.</summary>
