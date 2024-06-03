@@ -75,7 +75,7 @@ namespace PangeaCyber.Net.Redact
         /// <remarks>Unredact</remarks>
         /// <operationid>redact_post_v1_unredact</operationid>
         /// <param name="request">UnredactRequest with redacted data</param>
-        /// <returns>Response&lt;UnredactResult&gt;</returns>
+        /// <returns>The unredacted data.</returns>
         /// <exception cref="PangeaException"></exception>
         /// <exception cref="PangeaAPIException"></exception>
         public async Task<Response<UnredactResult>> Unredact(UnredactRequest request)
