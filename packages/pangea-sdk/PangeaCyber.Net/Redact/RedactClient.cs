@@ -79,7 +79,7 @@ namespace PangeaCyber.Net.Redact
         /// <returns>The unredacted data.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
-        public async Task<Response<UnredactResult<T>>> Unredact<T>(UnredactRequest request)
+        public async Task<Response<UnredactResult<T>>> Unredact<T>(UnredactRequest<T> request)
         {
             return await DoPost<UnredactResult<T>>("/v1/unredact", request);
         }

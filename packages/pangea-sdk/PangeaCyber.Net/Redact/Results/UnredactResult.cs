@@ -4,7 +4,7 @@ namespace PangeaCyber.Net.Redact
 {
     /// <kind>class</kind>
     /// <summary>
-    /// RedactTextResult
+    /// UnredactResult
     /// </summary>
     /// <typeparam name="T">Structured data type.</typeparam>
     public sealed class UnredactResult<T>
