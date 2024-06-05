@@ -27,9 +27,9 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// await client.User.Authenticators.Delete(request);
         /// </code>
         /// </example>
-        public async Task<Response<object>> Delete(UserAuthenticatorsDeleteRequest request)
+        public async Task<Response<UserAuthenticatorsDeleteResult>> Delete(UserAuthenticatorsDeleteRequest request)
         {
-            return await DoPost<object>("/v2/user/authenticators/delete", request);
+            return await DoPost<UserAuthenticatorsDeleteResult>("/v2/user/authenticators/delete", request);
         }
 
         /// <summary>Get user authenticators.</summary>

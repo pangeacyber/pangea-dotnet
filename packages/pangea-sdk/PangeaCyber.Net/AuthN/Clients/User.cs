@@ -59,10 +59,10 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// await client.User.DeleteByEmail("joe.user@pangea.cloud");
         /// </code>
         /// </example>
-        public async Task<Response<object>> DeleteByEmail(string email)
+        public async Task<Response<UserDeleteResult>> DeleteByEmail(string email)
         {
             var request = new UserDeleteByEmailRequest(email);
-            return await DoPost<object>("/v2/user/delete", request);
+            return await DoPost<UserDeleteResult>("/v2/user/delete", request);
         }
 
         /// <summary>Delete a user by ID.</summary>
@@ -75,10 +75,10 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// await client.User.DeleteByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
         /// </code>
         /// </example>
-        public async Task<Response<object>> DeleteByID(string id)
+        public async Task<Response<UserDeleteResult>> DeleteByID(string id)
         {
             var request = new UserDeleteByIDRequest(id);
-            return await DoPost<object>("/v2/user/delete", request);
+            return await DoPost<UserDeleteResult>("/v2/user/delete", request);
         }
 
         /// <summary>Delete a user by username.</summary>
@@ -91,9 +91,9 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// await client.User.DeleteByUsername("foobar");
         /// </code>
         /// </example>
-        public async Task<Response<object>> DeleteByUsername(string username)
+        public async Task<Response<UserDeleteResult>> DeleteByUsername(string username)
         {
-            return await DoPost<object>(
+            return await DoPost<UserDeleteResult>(
                 "/v2/user/delete",
                 new UserDeleteByUsernameRequest { Username = username }
             );
