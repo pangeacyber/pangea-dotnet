@@ -37,6 +37,10 @@ namespace PangeaCyber.Net.Redact
         public bool? ReturnResult { get; private set; }
 
         ///
+        [JsonProperty("redaction_method_overrides")]
+        public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
+
+        ///
         protected RedactStructuredRequest(Builder builder)
         {
             this.Data = builder.Data;
@@ -46,6 +50,7 @@ namespace PangeaCyber.Net.Redact
             this.Rules = builder.Rules;
             this.Rulesets = builder.Rulesets;
             this.ReturnResult = builder.ReturnResult;
+            this.RedactionMethodOverrides = builder.RedactionMethodOverrides;
         }
 
         /// <kind>class</kind>
@@ -74,6 +79,9 @@ namespace PangeaCyber.Net.Redact
 
             ///
             public bool? ReturnResult { get; private set; } = null;
+
+            ///
+            public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
 
             ///
             public Builder(Object data)
@@ -120,6 +128,13 @@ namespace PangeaCyber.Net.Redact
             public Builder WithReturnResult(bool returnResult)
             {
                 this.ReturnResult = returnResult;
+                return this;
+            }
+
+            ///
+            public Builder WithRedactionMethodOverrides(RedactionMethodOverrides rmo)
+            {
+                this.RedactionMethodOverrides = rmo;
                 return this;
             }
 
