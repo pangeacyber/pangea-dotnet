@@ -582,5 +582,50 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.Equal(key, decrypted.Result.ID);
             Assert.NotNull(decrypted.Result.StructuredData);
         }
+
+        [Fact]
+        public async Task TestEncryptTransform()
+        {
+            // Test data.
+            const string plainText = "123-4567-8901";
+            const string tweak = "MTIzMTIzMT==";
+
+            // Generate an encryption key.
+            var generateRequest = new SymmetricGenerateRequest.Builder(
+                SymmetricAlgorithm.AES256_FF3_1,
+                KeyPurpose.FPE,
+                GetName()
+            ).Build();
+            var generateResp = await client.SymmetricGenerate(generateRequest);
+            Assert.NotNull(generateResp);
+            var key = generateResp.Result.ID;
+
+            // Encrypt.
+            var request = new EncryptTransformRequest
+            {
+                ID = key,
+                Alphabet = TransformAlphabet.ALPHANUMERIC,
+                Tweak = tweak,
+                PlainText = plainText
+            };
+            var encrypted = await client.EncryptTransform(request);
+            Assert.NotNull(encrypted);
+            Assert.Equal(key, encrypted.Result.ID);
+            Assert.Equal(plainText.Length, encrypted.Result.CipherText.Length);
+
+            // Decrypt what we encrypted.
+            var decryptRequest = new DecryptTransformRequest
+            {
+                ID = key,
+                Alphabet = TransformAlphabet.ALPHANUMERIC,
+                Tweak = tweak,
+                CipherText = encrypted.Result.CipherText,
+            };
+            var decrypted = await client.DecryptTransform(decryptRequest);
+            Assert.NotNull(decrypted);
+            Assert.Equal(key, decrypted.Result.ID);
+            Assert.NotNull(decrypted.Result.PlainText);
+            Assert.Equal(plainText, decrypted.Result.PlainText);
+        }
     }
 }

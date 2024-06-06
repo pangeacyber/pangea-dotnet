@@ -633,5 +633,69 @@ namespace PangeaCyber.Net.Vault
                 cancellationToken: cancellationToken
             );
         }
+
+        /// <summary>Encrypt using a format-preserving algorithm (FPE).</summary>
+        /// <remarks>Encrypt transform</remarks>
+        /// <operationid>vault_post_v1_key_encrypt_transform</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Encrypted result.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var request = new EncryptTransformRequest
+        /// {
+        ///     ID = "pvi_[...]",
+        ///     PlainText = "123-4567-8901",
+        ///     Tweak = "MTIzMTIzMT==",
+        ///     Alphabet = TransformAlphabet.ALPHANUMERIC
+        /// };
+        /// var encrypted = await client.EncryptTransform(request);
+        /// </code>
+        /// </example>
+        public async Task<Response<EncryptTransformResult>> EncryptTransform(
+            EncryptTransformRequest request,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<EncryptTransformResult>(
+                "/v1/key/encrypt/transform",
+                request,
+                cancellationToken: cancellationToken
+            );
+        }
+
+        /// <summary>Decrypt using a format-preserving algorithm (FPE).</summary>
+        /// <remarks>Decrypt transform</remarks>
+        /// <operationid>vault_post_v1_key_decrypt_transform</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Decrypted result.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var request = new DecryptTransformRequest
+        /// {
+        ///     ID = "pvi_[...]",
+        ///     CipherText = "123-4567-8901",
+        ///     Tweak = "MTIzMTIzMT==",
+        ///     Alphabet = TransformAlphabet.ALPHANUMERIC
+        /// };
+        /// var decrypted = await client.DecryptTransform(decryptRequest);
+        /// </code>
+        /// </example>
+        public async Task<Response<DecryptTransformResult>> DecryptTransform(
+            DecryptTransformRequest request,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<DecryptTransformResult>(
+                "/v1/key/decrypt/transform",
+                request,
+                cancellationToken: cancellationToken
+            );
+        }
     }
 }

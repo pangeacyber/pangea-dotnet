@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace PangeaCyber.Net.Vault.Models
 {
-    ///
+    /// <summary>Symmetric signing algorithms.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum SymmetricAlgorithm
     {
@@ -38,6 +38,14 @@ namespace PangeaCyber.Net.Vault.Models
 
         ///
         [EnumMember(Value = "AES-GCM-256")]
-        AES256_GCM
+        AES256_GCM,
+
+        /// <summary>128-bit encryption using the FF3-1 algorithm. Beta feature.</summary>
+        [EnumMember(Value = "AES-FF3-1-128-BETA")]
+        AES128_FF3_1,
+
+        /// <summary>256-bit encryption using the FF3-1 algorithm. Beta feature.</summary>
+        [EnumMember(Value = "AES-FF3-1-256-BETA")]
+        AES256_FF3_1,
     }
 }
