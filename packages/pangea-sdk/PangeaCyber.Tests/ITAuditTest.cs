@@ -689,7 +689,7 @@ public class ITAuditTest
     }
 
     [Fact]
-    public async Task TestLogUnathorized()
+    public async Task TestLogUnauthorized()
     {
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
