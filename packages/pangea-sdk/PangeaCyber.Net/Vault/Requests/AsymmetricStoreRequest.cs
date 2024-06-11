@@ -26,6 +26,10 @@ namespace PangeaCyber.Net.Vault.Requests
         [JsonProperty("private_key")]
         public string EncodedPrivateKey { get; set; }
 
+        /// <summary>Whether the key is exportable or not.</summary>
+        [JsonProperty("exportable")]
+        public bool Exportable { get; set; }
+
         ///
         protected AsymmetricStoreRequest(Builder builder)
             : base(builder)
@@ -35,6 +39,7 @@ namespace PangeaCyber.Net.Vault.Requests
             Purpose = builder.Purpose;
             EncodedPublicKey = builder.EncodedPublicKey;
             EncodedPrivateKey = builder.EncodedPrivateKey;
+            Exportable = builder.Exportable;
         }
 
         ///
@@ -51,6 +56,9 @@ namespace PangeaCyber.Net.Vault.Requests
 
             ///
             public string EncodedPrivateKey { get; private set; }
+
+            /// <inheritdoc cref="AsymmetricStoreRequest.Exportable" />
+            internal bool Exportable { get; set; }
 
             ///
             public Builder(
@@ -77,6 +85,13 @@ namespace PangeaCyber.Net.Vault.Requests
             public Builder WithPurpose(KeyPurpose purpose)
             {
                 Purpose = purpose;
+                return this;
+            }
+
+            /// <inheritdoc cref="Exportable" />
+            public Builder WithExportable(bool exportable)
+            {
+                Exportable = exportable;
                 return this;
             }
         }

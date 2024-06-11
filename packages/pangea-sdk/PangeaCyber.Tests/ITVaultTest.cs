@@ -627,5 +627,43 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.NotNull(decrypted.Result.PlainText);
             Assert.Equal(plainText, decrypted.Result.PlainText);
         }
+
+        [Fact]
+        public async Task TestExport()
+        {
+            // Generate an exportable key.
+            var generateRequest = new AsymmetricGenerateRequest.Builder(
+                AsymmetricAlgorithm.RSA4096_OAEP_SHA512,
+                KeyPurpose.Encryption,
+                GetName()
+            ).WithExportable(true).Build();
+            var generated = await client.AsymmetricGenerate(generateRequest);
+            var key = generated.Result.ID;
+            Assert.NotNull(key);
+
+            // Export it
+            var actual = await client.Export(new ExportRequest(id: key));
+            Assert.Equal(key, actual.Result.ID);
+            Assert.NotNull(actual.Result.PublicKey);
+            Assert.NotNull(actual.Result.PrivateKey);
+
+            // Store it under a new name, again as exportable.
+            var storeRequest = new AsymmetricStoreRequest.Builder(
+                actual.Result.PrivateKey,
+                actual.Result.PublicKey,
+                AsymmetricAlgorithm.RSA4096_OAEP_SHA512,
+                KeyPurpose.Encryption,
+                GetName()
+            ).WithExportable(true).Build();
+            var stored = await client.AsymmetricStore(storeRequest);
+            var storedKey = stored.Result.ID;
+            Assert.NotNull(storedKey);
+
+            // Should still be able to export it.
+            actual = await client.Export(new ExportRequest(id: storedKey));
+            Assert.Equal(storedKey, actual.Result.ID);
+            Assert.NotNull(actual.Result.PublicKey);
+            Assert.NotNull(actual.Result.PrivateKey);
+        }
     }
 }

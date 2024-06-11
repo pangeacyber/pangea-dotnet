@@ -34,6 +34,10 @@ namespace PangeaCyber.Net.Vault.Requests
         [JsonProperty("expiration")]
         public string? Expiration { get; set; }
 
+        /// <summary>Whether the key is exportable or not.</summary>
+        [JsonProperty("exportable")]
+        public bool Exportable { get; set; }
+
         ///
         protected CommonGenerateRequest(TBuilder builder)
         {
@@ -44,6 +48,7 @@ namespace PangeaCyber.Net.Vault.Requests
             RotationFrequency = builder.RotationFrequency;
             RotationState = builder.RotationState;
             Expiration = builder.Expiration;
+            Exportable = builder.Exportable;
         }
 
         ///
@@ -72,6 +77,9 @@ namespace PangeaCyber.Net.Vault.Requests
 
             ///
             public string? Expiration { get; private set; }
+
+            /// <inheritdoc cref="AsymmetricStoreRequest.Exportable" />
+            internal bool Exportable { get; set; }
 
             ///
             public CommonBuilder(string name)
@@ -138,6 +146,13 @@ namespace PangeaCyber.Net.Vault.Requests
             public TBuilder WithExpiration(string expiration)
             {
                 Expiration = expiration;
+                return (TBuilder)this;
+            }
+
+            /// <inheritdoc cref="Exportable" />
+            public TBuilder WithExportable(bool exportable)
+            {
+                Exportable = exportable;
                 return (TBuilder)this;
             }
         }

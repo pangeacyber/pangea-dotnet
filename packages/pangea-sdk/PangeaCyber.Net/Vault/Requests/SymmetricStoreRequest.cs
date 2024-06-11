@@ -22,6 +22,10 @@ namespace PangeaCyber.Net.Vault.Requests
         [JsonProperty("purpose")]
         public KeyPurpose Purpose { get; private set; }
 
+        /// <summary>Whether the key is exportable or not.</summary>
+        [JsonProperty("exportable")]
+        public bool Exportable { get; set; }
+
         ///
         public SymmetricStoreRequest(Builder builder)
             : base(builder)
@@ -30,6 +34,7 @@ namespace PangeaCyber.Net.Vault.Requests
             Algorithm = builder.Algorithm;
             EncodedSymmetricKey = builder.EncodedSymmetricKey;
             Purpose = builder.Purpose;
+            Exportable = builder.Exportable;
         }
 
         ///
@@ -43,6 +48,9 @@ namespace PangeaCyber.Net.Vault.Requests
 
             ///
             public KeyPurpose Purpose { get; private set; }
+
+            /// <inheritdoc cref="AsymmetricStoreRequest.Exportable" />
+            internal bool Exportable { get; set; }
 
             ///
             public Builder(string encodedSymmetricKey, SymmetricAlgorithm algorithm, KeyPurpose purpose, string name)
@@ -63,6 +71,13 @@ namespace PangeaCyber.Net.Vault.Requests
             public Builder WithPurpose(KeyPurpose purpose)
             {
                 Purpose = purpose;
+                return this;
+            }
+
+            /// <inheritdoc cref="Exportable" />
+            public Builder WithExportable(bool exportable)
+            {
+                Exportable = exportable;
                 return this;
             }
         }
