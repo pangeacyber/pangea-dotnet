@@ -1,4 +1,8 @@
+using System.Text;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Encodings;
+using Org.BouncyCastle.Crypto.Engines;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Vault.Models;
 using PangeaCyber.Net.Vault.Requests;
@@ -633,26 +637,43 @@ namespace PangeaCyber.Net.Vault.Tests
         {
             // Generate an exportable key.
             var generateRequest = new AsymmetricGenerateRequest.Builder(
-                AsymmetricAlgorithm.RSA4096_OAEP_SHA512,
-                KeyPurpose.Encryption,
+                AsymmetricAlgorithm.ED25519,
+                KeyPurpose.Signing,
                 GetName()
             ).WithExportable(true).Build();
             var generated = await client.AsymmetricGenerate(generateRequest);
             var key = generated.Result.ID;
             Assert.NotNull(key);
 
+            // Generate a RSA key pair.
+            var keyPair = Crypto.GenerateRsaKeyPair(4096);
+            var publicKey = Crypto.AsymmetricPemExport(keyPair.Public);
+
             // Export it
-            var actual = await client.Export(new ExportRequest(id: key));
+            var actual = await client.Export(new ExportRequest(id: key)
+            {
+                EncryptionAlgorithm = ExportEncryptionAlgorithm.RSA4096_OAEP_SHA512,
+                EncryptionKey = publicKey
+            });
             Assert.Equal(key, actual.Result.ID);
-            Assert.NotNull(actual.Result.PublicKey);
-            Assert.NotNull(actual.Result.PrivateKey);
+            Assert.True(actual.Result.Encrypted);
+            var decodedPublicKey = Utils.Base64UrlDecode(actual.Result.PublicKey);
+            var cipher = new OaepEncoding(new RsaEngine(), new Sha512Digest());
+            Assert.Equal(
+                generated.Result.EncodedPublicKey,
+                Encoding.UTF8.GetString(Crypto.AsymmetricDecrypt(cipher, keyPair.Private, decodedPublicKey))
+            );
+            var decodedPrivateKey = Utils.Base64UrlDecode(actual.Result.PrivateKey);
+            var decryptedPrivateKey = Encoding.UTF8.GetString(
+                Crypto.AsymmetricDecrypt(cipher, keyPair.Private, decodedPrivateKey)
+            );
 
             // Store it under a new name, again as exportable.
             var storeRequest = new AsymmetricStoreRequest.Builder(
-                actual.Result.PrivateKey,
-                actual.Result.PublicKey,
-                AsymmetricAlgorithm.RSA4096_OAEP_SHA512,
-                KeyPurpose.Encryption,
+                decryptedPrivateKey,
+                generated.Result.EncodedPublicKey,
+                AsymmetricAlgorithm.ED25519,
+                KeyPurpose.Signing,
                 GetName()
             ).WithExportable(true).Build();
             var stored = await client.AsymmetricStore(storeRequest);

@@ -5,10 +5,9 @@ using PangeaCyber.Net.FileScan.Models;
 
 namespace PangeaCyber.Net
 {
-    ///
-    public class Utils
+    /// <summary>Utilities.</summary>
+    public static class Utils
     {
-
         ///
         public static string StringToStringB64(string input)
         {
@@ -27,6 +26,28 @@ namespace PangeaCyber.Net
 
             // Decode byte array to string
             return Encoding.UTF8.GetString(bytes);
+        }
+
+        /// <summary>
+        /// Base 64 decoding with an URL and filename safe alphabet. Also known as "base64url".
+        /// Supports decoding without padding.
+        /// </summary>
+        /// <remarks><see href="https://datatracker.ietf.org/doc/html/rfc4648#section-5" /></remarks>
+        /// <param name="base64">Base 64 encoded string.</param>
+        /// <returns>Base 64 decoded bytes.</returns>
+        public static byte[] Base64UrlDecode(string base64)
+        {
+            base64 = base64
+                .Replace('_', '/')
+                .Replace('-', '+');
+
+            switch (base64.Length % 4)
+            {
+                case 2: base64 += "=="; break;
+                case 3: base64 += "="; break;
+            }
+
+            return Convert.FromBase64String(base64);
         }
 
         ///
