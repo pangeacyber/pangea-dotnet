@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Encodings;
@@ -657,13 +658,13 @@ namespace PangeaCyber.Net.Vault.Tests
             });
             Assert.Equal(key, actual.Result.ID);
             Assert.True(actual.Result.Encrypted);
-            var decodedPublicKey = Utils.Base64UrlDecode(actual.Result.PublicKey);
+            var decodedPublicKey = Base64UrlEncoder.DecodeBytes(actual.Result.PublicKey);
             var cipher = new OaepEncoding(new RsaEngine(), new Sha512Digest());
             Assert.Equal(
                 generated.Result.EncodedPublicKey,
                 Encoding.UTF8.GetString(Crypto.AsymmetricDecrypt(cipher, keyPair.Private, decodedPublicKey))
             );
-            var decodedPrivateKey = Utils.Base64UrlDecode(actual.Result.PrivateKey);
+            var decodedPrivateKey = Base64UrlEncoder.DecodeBytes(actual.Result.PrivateKey);
             var decryptedPrivateKey = Encoding.UTF8.GetString(
                 Crypto.AsymmetricDecrypt(cipher, keyPair.Private, decodedPrivateKey)
             );
