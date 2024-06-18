@@ -370,7 +370,7 @@ public class ITAuthNTest
         catch (PangeaAPIException e)
         {
             Console.WriteLine(e.ToString());
-            Assert.True(false);
+            throw;
         }
     }
 
@@ -408,7 +408,7 @@ public class ITAuthNTest
         catch (PangeaAPIException e)
         {
             Console.WriteLine(e.ToString());
-            Assert.True(false);
+            throw;
         }
     }
 
@@ -442,6 +442,10 @@ public class ITAuthNTest
                     Console.WriteLine(e.ToString());
                 }
             }
+
+            // Expire password
+            var expirePasswordResponse = await client.Client.Password.Expire(userID);
+            Assert.True(expirePasswordResponse.IsOK, "password expiration was unsuccessful");
         }
         catch (PangeaAPIException e)
         {
