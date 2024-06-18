@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using PangeaCyber.Net.AuthN.Results;
+using PangeaCyber.Net.Exceptions;
 
 namespace PangeaCyber.Net.AuthN.Clients
 {
@@ -34,6 +35,28 @@ namespace PangeaCyber.Net.AuthN.Clients
             return await DoPost<ClientPasswordChangeResult>("/v2/client/password/change", request);
         }
 
+        /// <summary>Expire a user's password.</summary>
+        /// <remarks>Expire a user's password</remarks>
+        /// <operationid>authn_post_v2_user_password_expire</operationid>
+        /// <param name="id">The identity of a user or a service.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>An empty object.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// await client.Client.Password.Expire("pui_[...]");
+        /// </code>
+        /// </example>
+        public async Task<Response<object>> Expire(string id, CancellationToken cancellationToken = default)
+        {
+            return await DoPost<object>(
+                "/v2/user/password/expire",
+                new ExpirePasswordRequest(id),
+                cancellationToken: cancellationToken
+            );
+        }
+
         internal class ClientPasswordChangeRequest : BaseRequest
         {
             [JsonProperty("token")]
@@ -50,6 +73,18 @@ namespace PangeaCyber.Net.AuthN.Clients
                 Token = token;
                 OldPassword = oldPassword;
                 NewPassword = newPassword;
+            }
+        }
+
+        internal sealed class ExpirePasswordRequest : BaseRequest
+        {
+            /// <summary>The identity of a user or a service.</summary>
+            [JsonProperty("id")]
+            public string ID { get; private set; }
+
+            public ExpirePasswordRequest(string id)
+            {
+                this.ID = id;
             }
         }
     }
