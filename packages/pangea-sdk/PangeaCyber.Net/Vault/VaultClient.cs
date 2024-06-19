@@ -697,5 +697,40 @@ namespace PangeaCyber.Net.Vault
                 cancellationToken: cancellationToken
             );
         }
+
+        /// <summary>Export a symmetric or asymmetric key.</summary>
+        /// <remarks>Export</remarks>
+        /// <operationid>vault_post_v1_export</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Exported result.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// // Generate an exportable key.
+        /// var generateRequest = new AsymmetricGenerateRequest.Builder(
+        ///     AsymmetricAlgorithm.RSA4096_PSS_SHA512,
+        ///     KeyPurpose.Encryption,
+        ///     "a-name-for-the-key"
+        /// ).WithExportable(true).Build();
+        /// var generated = await client.AsymmetricGenerate(generateRequest);
+        /// var key = generated.Result.ID;
+        ///
+        /// // Then it can be exported whenever needed.
+        /// var exported = await client.Export(new ExportRequest(id: key));
+        /// </code>
+        /// </example>
+        public async Task<Response<ExportResult>> Export(
+            ExportRequest request,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<ExportResult>(
+                "/v1/export",
+                request,
+                cancellationToken: cancellationToken
+            );
+        }
     }
 }

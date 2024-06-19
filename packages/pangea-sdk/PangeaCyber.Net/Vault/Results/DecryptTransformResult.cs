@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace PangeaCyber.Net.Vault.Results
 {
     /// <summary>Result of an decrypt transform request.</summary>
-    public sealed class DecryptTransformResult : BaseRequest
+    public sealed class DecryptTransformResult
     {
         /// <summary>The ID of the item.</summary>
         [JsonProperty("id")]

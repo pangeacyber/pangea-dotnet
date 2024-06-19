@@ -64,5 +64,9 @@ namespace PangeaCyber.Net.Vault.Models
         ///
         [JsonProperty("purpose")]
         public string? Purpose { get; set; }
+
+        /// <summary>Whether the key is exportable or not</summary>
+        [JsonProperty("exportable")]
+        public bool? Exportable { get; set; }
     }
 }

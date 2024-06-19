@@ -5,10 +5,9 @@ using PangeaCyber.Net.FileScan.Models;
 
 namespace PangeaCyber.Net
 {
-    ///
-    public class Utils
+    /// <summary>Utilities.</summary>
+    public static class Utils
     {
-
         ///
         public static string StringToStringB64(string input)
         {
