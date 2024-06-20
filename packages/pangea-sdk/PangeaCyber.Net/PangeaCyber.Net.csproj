@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Pangea.SDK</PackageId>
-    <Version>3.9.0</Version>
+    <Version>3.10.0</Version>
     <Authors>Pangea Cyber Corporation</Authors>
     <Company>Pangea Cyber Corporation</Company>
     <Description>.NET SDK to access Pangea API services on pangea.cloud</Description>
