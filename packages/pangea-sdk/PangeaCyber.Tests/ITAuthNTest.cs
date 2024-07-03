@@ -40,8 +40,12 @@ public class ITAuthNTest
     private static readonly string passwordOld = "My1s+Password";
     private static readonly string passwordNew = "My1s+Password_new";
     private static readonly string cbURI = "https://someurl.com/callbacklink";
-    private static readonly Profile profileOld = new Profile("Name", "User");
-    private static readonly Profile profileNew = new Profile
+    private static readonly Profile profileOld = new()
+    {
+        { "first_name", "Name" },
+        { "last_name", "User" }
+    };
+    private static readonly Profile profileNew = new()
     {
         { "first_name", "NameUpdated" }
     };
