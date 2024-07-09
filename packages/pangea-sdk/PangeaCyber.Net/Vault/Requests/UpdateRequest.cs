@@ -42,6 +42,10 @@ namespace PangeaCyber.Net.Vault.Requests
         [JsonProperty("expiration")]
         public string? Expiration { get; private set; }
 
+        /// <summary>The new state of the item.</summary>
+        [JsonProperty("item_state")]
+        public ItemState? ItemState { get; private set; }
+
         ///
         public UpdateRequest(Builder builder)
         {
@@ -54,6 +58,7 @@ namespace PangeaCyber.Net.Vault.Requests
             RotationState = builder.RotationState;
             RotationGracePeriod = builder.RotationGracePeriod;
             Expiration = builder.Expiration;
+            ItemState = builder.ItemState;
         }
 
         ///
@@ -79,6 +84,9 @@ namespace PangeaCyber.Net.Vault.Requests
             public string? Expiration { get; private set; }
             ///
             public string? RotationGracePeriod { get; private set; }
+
+            /// <inheritdoc cref="UpdateRequest.ItemState"/>
+            public ItemState? ItemState { get; private set; }
 
             ///
             public Builder(string id)
@@ -152,6 +160,13 @@ namespace PangeaCyber.Net.Vault.Requests
             public Builder WithRotationGracePeriod(string rotationGracePeriod)
             {
                 RotationGracePeriod = rotationGracePeriod;
+                return this;
+            }
+
+            /// <inheritdoc cref="ItemState"/>
+            public Builder WithItemState(ItemState itemState)
+            {
+                ItemState = itemState;
                 return this;
             }
         }
