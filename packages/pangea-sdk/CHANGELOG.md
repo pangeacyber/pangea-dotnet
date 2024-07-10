@@ -7,10 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `"state"` and other new properties to `AuthN.Models.Authenticator`.
+
 ### Changed
 
 - The `FirstName` and `LastName` properties of `AuthN.Models.Profile` are now
   deprecated.
+- `Enable` in `AuthN.Models.Authenticator` has been renamed to `Enabled`. The
+  previous name did not match the name used in the API's response schema and
+  JSON deserialization was not set up correctly, so `Enable` was unusable
+  anyways.
 
 ## [3.10.0] - 2024-06-20
 
