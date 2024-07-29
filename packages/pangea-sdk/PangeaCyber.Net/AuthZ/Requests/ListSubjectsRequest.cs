@@ -19,6 +19,10 @@ namespace PangeaCyber.Net.AuthZ.Requests
         public string Action { get; set; }
 
         ///
+        [JsonProperty("attributes")]
+        public Dictionary<string, object>? Attributes { get; set; }
+
+        ///
         public ListSubjectsRequest(Resource resource, string action)
         {
             Resource = resource;
