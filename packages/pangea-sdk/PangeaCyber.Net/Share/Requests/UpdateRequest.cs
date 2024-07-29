@@ -47,5 +47,9 @@ namespace PangeaCyber.Net.Share.Requests
         ///
         [JsonProperty("updated_at")]
         public string? UpdatedAt { get; set; }
+
+        /// <summary>The bucket to use, if not the default.</summary>
+        [JsonProperty("bucket_id")]
+        public string? BucketID { get; set; }
     }
 }

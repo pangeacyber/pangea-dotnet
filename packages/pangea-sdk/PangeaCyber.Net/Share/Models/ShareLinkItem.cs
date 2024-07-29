@@ -13,11 +13,9 @@ namespace PangeaCyber.Net.Share.Models
         [JsonProperty("id")]
         public string ID { get; set; } = default!;
 
-        /// <summary>
-        /// Gets or sets the ID of the storage pool.
-        /// </summary>
-        [JsonProperty("storage_pool_id")]
-        public string StoragePoolID { get; set; } = default!;
+        /// <summary>The ID of a share bucket resource.</summary>
+        [JsonProperty("bucket_id")]
+        public string BucketID { get; set; } = default!;
 
         /// <summary>
         /// Gets or sets the list of targets.
