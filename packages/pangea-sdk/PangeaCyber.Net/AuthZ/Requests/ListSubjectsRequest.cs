@@ -18,7 +18,7 @@ namespace PangeaCyber.Net.AuthZ.Requests
         [JsonProperty("action")]
         public string Action { get; set; }
 
-        ///
+        /// <summary>A JSON object of attribute data.</summary>
         [JsonProperty("attributes")]
         public Dictionary<string, object>? Attributes { get; set; }
 
