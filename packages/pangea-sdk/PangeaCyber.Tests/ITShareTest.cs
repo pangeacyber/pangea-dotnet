@@ -38,6 +38,14 @@ namespace PangeaCyber.Net.Share.Tests
             AddTags.Add("tag3");
         }
 
+        [Fact]
+        public async Task TestBuckets()
+        {
+            var response = await client.Buckets();
+            Assert.True(response.IsOK);
+            Assert.NotEmpty(response.Result.Buckets);
+        }
+
 
         [Fact(Timeout = 60 * 1000)]
         public async Task TestFolder()

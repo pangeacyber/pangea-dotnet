@@ -10,9 +10,6 @@ namespace PangeaCyber.Net.Share.Models
         public FilterMatch<string> ID { get; private set; }
 
         ///
-        public FilterMatch<string> StoragePoolID { get; private set; }
-
-        ///
         public FilterMatch<string> Target { get; private set; }
 
         ///
@@ -40,7 +37,6 @@ namespace PangeaCyber.Net.Share.Models
         public FilterShareLinkList()
         {
             ID = new FilterMatch<string>("id", this);
-            StoragePoolID = new FilterMatch<string>("storage_pool_id", this);
             Target = new FilterMatch<string>("target", this);
             LinkType = new FilterMatch<string>("link_type", this);
             Link = new FilterMatch<string>("link", this);

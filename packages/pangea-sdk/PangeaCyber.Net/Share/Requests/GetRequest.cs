@@ -15,6 +15,10 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("path")]
         public string? Path { get; set; }
 
+        /// <summary>The bucket to use, if not the default.</summary>
+        [JsonProperty("bucket_id")]
+        public string? BucketID { get; set; }
+
         ///
         [JsonIgnore]
         public TransferMethod? RequestTransferMethod
