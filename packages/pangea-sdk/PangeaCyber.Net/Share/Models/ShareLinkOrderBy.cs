@@ -16,11 +16,9 @@ namespace PangeaCyber.Net.Share.Models
         [EnumMember(Value = "id")]
         Id,
 
-        /// <summary>
-        /// Order by storage pool ID.
-        /// </summary>
-        [EnumMember(Value = "storage_pool_id")]
-        StoragePoolId,
+        /// <summary>Order by bucket ID.</summary>
+        [EnumMember(Value = "bucket_id")]
+        BucketId,
 
         /// <summary>
         /// Order by share link target.

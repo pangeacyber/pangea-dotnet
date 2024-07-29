@@ -27,6 +27,24 @@ namespace PangeaCyber.Net.Share
         }
 
         /// <summary>
+        /// Get information on the accessible buckets.
+        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
+        /// </summary>
+        /// <remarks>Buckets (Beta)</remarks>
+        /// <operationid>share_post_v1beta_buckets</operationid>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var response = await client.Buckets();
+        /// </code>
+        /// </example>
+        public async Task<Response<BucketsResult>> Buckets()
+        {
+            return await DoPost<BucketsResult>("/v1beta/buckets", new BaseRequest());
+        }
+
+        /// <summary>
         /// Delete object by ID or path. If both are supplied, the path must match that of the object represented by
         /// the ID.
         /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.

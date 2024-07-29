@@ -60,6 +60,9 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("tags")]
         public Tags? Tags { get; set; }
 
+        /// <summary>The bucket to use, if not the default.</summary>
+        [JsonProperty("bucket_id")]
+        public string? BucketID { get; set; }
 
         ///
         [JsonIgnore]

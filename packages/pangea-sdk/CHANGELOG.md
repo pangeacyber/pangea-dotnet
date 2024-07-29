@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Multiple bucket ID support to Share.
+
 ### Fixed
 
 - Sanitize now defaults to the post-url transfer method.
