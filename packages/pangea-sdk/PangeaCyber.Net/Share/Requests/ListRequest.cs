@@ -6,6 +6,14 @@ namespace PangeaCyber.Net.Share.Requests
     ///
     public class ListRequest : BaseRequest
     {
+        /// <summary>The bucket to use, if not the default.</summary>
+        [JsonProperty("bucket_id")]
+        public string? BucketID { get; set; }
+
+        /// <summary>If true, include the `external_bucket_key` in results.</summary>
+        [JsonProperty("include_external_bucket_key")]
+        public bool IncludeExternalBucketKey { get; set; }
+
         /// <summary>
         ///
         /// </summary>

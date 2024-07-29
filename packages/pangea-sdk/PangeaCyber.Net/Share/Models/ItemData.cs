@@ -90,5 +90,9 @@ namespace PangeaCyber.Net.Share.Models
         /// </summary>
         [JsonProperty("parent_id")]
         public string? ParentID { get; set; }
+
+        /// <summary>The key in the external bucket that contains this file.</summary>
+        [JsonProperty("external_bucket_key")]
+        public string? ExternalBucketKey { get; set; }
     }
 }
