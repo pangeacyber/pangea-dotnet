@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `ItemState` to `Vault.Requests.UpdateRequest`.
+- `attributes` field in `/list-resources` and `/list-subjects` endpoint
 
 ## [3.11.0] - 2024-07-12
 
