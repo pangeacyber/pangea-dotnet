@@ -7,15 +7,15 @@ namespace PangeaCyber.Net.Share.Requests
     /// </summary>
     public class DeleteRequest : BaseRequest
     {
-        ///
+        /// <summary> The ID of the object to delete.</summary>
         [JsonProperty("id")]
         public string? ID { get; set; }
 
-        ///
+        /// <summary> If true, delete a folder even if it's not empty. Deletes the contents of folder as well.</summary>
         [JsonProperty("force")]
         public bool? Force { get; set; }
 
-        ///
+        /// <summary> The path of the object to delete.</summary>
         [JsonProperty("path")]
         public string? Path { get; set; }
 

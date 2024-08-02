@@ -7,7 +7,7 @@ namespace PangeaCyber.Net.Share.Results
     /// </summary>
     public class DeleteResult
     {
-        ///
+        /// <summary> Number of objects deleted.</summary>
         [JsonProperty("count")]
         public int Count { get; set; }
     }

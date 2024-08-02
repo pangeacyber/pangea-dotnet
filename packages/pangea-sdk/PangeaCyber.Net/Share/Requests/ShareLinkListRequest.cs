@@ -14,22 +14,26 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("filter")]
         public FilterShareLinkList Filter { get; set; } = new FilterShareLinkList();
 
-        ///
+        /// <summary>
+        /// Reflected value from a previous response to obtain the next page of results.
+        /// </summary>
         [JsonProperty("last")]
         public string Last { get; set; } = default!;
 
-        ///
+        /// <summary>
+        /// Order results asc(ending) or desc(ending).
+        /// </summary>
         [JsonProperty("order")]
         public ItemOrder? Order { get; set; }
 
         /// <summary>
-        ///
+        /// Which field to order results by.
         /// </summary>
         [JsonProperty("order_by")]
         public ShareLinkOrderBy? OrderBy { get; set; }
 
         /// <summary>
-        ///
+        /// Maximum results to include in the response.
         /// </summary>
         [JsonProperty("size")]
         public int? Size { get; set; }

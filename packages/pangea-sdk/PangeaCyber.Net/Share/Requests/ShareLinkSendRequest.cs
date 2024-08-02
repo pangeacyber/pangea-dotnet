@@ -10,11 +10,15 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("links")]
         public IList<ShareLinkSendItem> Links { get; set; }
 
-        ///
+        /// <summary>
+        /// An email address
+        /// </summary>
         [JsonProperty("sender_email")]
         public string SenderEmail { get; set; }
 
-        ///
+        /// <summary>
+        /// The sender name information. Can be sender's full name for example.
+        /// </summary>
         [JsonProperty("sender_name")]
         public string? SenderName { get; set; }
 
