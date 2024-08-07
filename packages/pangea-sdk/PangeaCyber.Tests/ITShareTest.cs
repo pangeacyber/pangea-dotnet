@@ -199,7 +199,7 @@ namespace PangeaCyber.Net.Share.Tests
             );
 
             Assert.True(respGet.IsOK);
-            Assert.Null(respGet.Result.DestURL);
+            Assert.NotNull(respGet.Result.DestURL);
             Assert.Single(respGet.AttachedFiles);
             // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
 
@@ -291,7 +291,7 @@ namespace PangeaCyber.Net.Share.Tests
             );
 
             Assert.True(respGet.IsOK);
-            Assert.Null(respGet.Result.DestURL);
+            Assert.NotNull(respGet.Result.DestURL);
             Assert.Single(respGet.AttachedFiles);
             // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
 
