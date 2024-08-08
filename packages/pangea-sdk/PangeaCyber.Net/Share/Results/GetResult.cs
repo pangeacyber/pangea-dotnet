@@ -12,7 +12,7 @@ namespace PangeaCyber.Net.Share.Results
         [JsonProperty("object")]
         public ItemData Object { get; set; } = new ItemData();
 
-        ///
+        /// <summary> A URL where the file can be downloaded from. (transfer_method: dest-url)</summary>
         [JsonProperty("dest_url")]
         public string? DestURL { get; set; }
     }
