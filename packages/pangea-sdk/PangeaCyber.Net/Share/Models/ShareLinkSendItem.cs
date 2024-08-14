@@ -27,8 +27,5 @@ namespace PangeaCyber.Net.Share.Models
             this.ID = id;
             this.Email = email;
         }
-
     }
-
-
 }

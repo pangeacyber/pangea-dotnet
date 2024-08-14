@@ -62,10 +62,22 @@ namespace PangeaCyber.Net.Share.Models
         public Tags? Tags { get; set; }
 
         /// <summary>
+        /// Protected (read-only) flags.
+        /// </summary>
+        [JsonProperty("tags_protected")]
+        public Tags? TagsProtected { get; set; }
+
+        /// <summary>
         /// Gets or sets the item metadata (optional).
         /// </summary>
         [JsonProperty("metadata")]
         public Metadata? Metadata { get; set; }
+
+        /// <summary>
+        /// Protected (read-only) metadata.
+        /// </summary>
+        [JsonProperty("metadata_protected")]
+        public Metadata? MetadataProtected { get; set; }
 
         /// <summary>
         /// Gets or sets the MD5 hash (optional).
