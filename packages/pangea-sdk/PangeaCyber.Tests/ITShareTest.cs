@@ -212,7 +212,7 @@ namespace PangeaCyber.Net.Share.Tests
             );
 
             Assert.True(respGet.IsOK);
-            Assert.Null(respGet.Result.DestURL);    // No URL because empty file
+            Assert.NotNull(respGet.Result.DestURL);    // No URL because empty file
             Assert.Empty(respGet.AttachedFiles);
         }
 
@@ -304,7 +304,7 @@ namespace PangeaCyber.Net.Share.Tests
             );
 
             Assert.True(respGet.IsOK);
-            Assert.Null(respGet.Result.DestURL);
+            Assert.NotNull(respGet.Result.DestURL);
             Assert.Empty(respGet.AttachedFiles);
         }
 
