@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `ItemState` to `Vault.Requests.UpdateRequest`.
 
+### Changed
+
+- The `PangeaCyber.Net.dll` assembly is now strong-named.
+
 ## [3.11.0] - 2024-07-12
 
 ### Added
