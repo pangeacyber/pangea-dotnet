@@ -12,7 +12,9 @@ namespace PangeaCyber.Net.Sanitize.Tests
 
         public ITSanitizeTest()
         {
-            Config config = Config.FromIntegrationEnvironment(environment);
+            // The Sanitize config in the regular org was obsoleted by a breaking change, so the custom schema org is
+            // used instead.
+            var config = Config.FromCustomSchemaIntegrationEnvironment(environment);
             client = new SanitizeClient.Builder(config).Build();
         }
 
