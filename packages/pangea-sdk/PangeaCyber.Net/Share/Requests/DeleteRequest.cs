@@ -15,10 +15,6 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("force")]
         public bool? Force { get; set; }
 
-        /// <summary> The path of the object to delete.</summary>
-        [JsonProperty("path")]
-        public string? Path { get; set; }
-
         /// <summary>The bucket to use, if not the default.</summary>
         [JsonProperty("bucket_id")]
         public string? BucketID { get; set; }

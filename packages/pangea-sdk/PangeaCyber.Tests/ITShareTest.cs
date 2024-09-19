@@ -53,7 +53,7 @@ namespace PangeaCyber.Net.Share.Tests
             var respCreate = await client.FolderCreate(
                 new FolderCreateRequest
                 {
-                    Path = FolderDelete
+                    Folder = FolderDelete
                 }
             );
 
@@ -358,7 +358,7 @@ namespace PangeaCyber.Net.Share.Tests
             var respCreate = await client.FolderCreate(
                 new FolderCreateRequest
                 {
-                    Path = FolderFiles
+                    Folder = FolderFiles
                 }
             );
 
@@ -372,18 +372,17 @@ namespace PangeaCyber.Net.Share.Tests
             var respPutPath = await client.Put(
                 new PutRequest
                 {
-                    Path = path,
+                    Folder = path,
                     RequestTransferMethod = TransferMethod.Multipart,
                 },
                 fileStream
             );
 
             Assert.True(respPutPath.IsOK);
-            Assert.Equal(folderID, respPutPath.Result.Object.ParentID);
             Assert.Null(respPutPath.Result.Object.Metadata);
             Assert.Null(respPutPath.Result.Object.Tags);
-            Assert.Null(respPutPath.Result.Object.MD5);
-            Assert.Null(respPutPath.Result.Object.SHA512);
+            Assert.NotNull(respPutPath.Result.Object.MD5);
+            Assert.NotNull(respPutPath.Result.Object.SHA512);
             Assert.NotNull(respPutPath.Result.Object.SHA256);
 
             // Upload a file with parent id and name
@@ -406,8 +405,8 @@ namespace PangeaCyber.Net.Share.Tests
             Assert.Equal(folderID, respPutID.Result.Object.ParentID);
             Assert.Equal(Metadata, respPutID.Result.Object.Metadata);
             Assert.Equal(Tags, respPutID.Result.Object.Tags);
-            Assert.Null(respPutID.Result.Object.MD5);
-            Assert.Null(respPutID.Result.Object.SHA512);
+            Assert.NotNull(respPutID.Result.Object.MD5);
+            Assert.NotNull(respPutID.Result.Object.SHA512);
             Assert.NotNull(respPutID.Result.Object.SHA256);
 
 
