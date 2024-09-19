@@ -42,8 +42,7 @@ namespace PangeaCyber.Net.Share
         }
 
         /// <summary>
-        /// Delete object by ID or path. If both are supplied, the path must match that of the object represented by
-        /// the ID.
+        /// Delete object by ID.
         /// </summary>
         /// <remarks>Delete</remarks>
         /// <operationid>share_post_v1_delete</operationid>
@@ -74,7 +73,7 @@ namespace PangeaCyber.Net.Share
         /// var response = await client.FolderCreate(
         ///     new FolderCreateRequest
         ///     {
-        ///         Path = "/path/to/new/folder"
+        ///         Folder = "/path/to/new/folder"
         ///     }
         /// );
         /// </code>
@@ -85,8 +84,7 @@ namespace PangeaCyber.Net.Share
         }
 
         /// <summary>
-        /// Get object. If both ID and path are supplied, the call will fail if the target object doesn't match both
-        /// properties.
+        /// Get object.
         /// </summary>
         /// <remarks>Get an object</remarks>
         /// <operationid>share_post_v1_folder_create</operationid>

@@ -11,10 +11,6 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("id")]
         public string? ID { get; set; }
 
-        /// <summary>The path of the object to retrieve.</summary>
-        [JsonProperty("path")]
-        public string? Path { get; set; }
-
         /// <summary>If the file was protected with a password, the password to decrypt with.</summary>
         [JsonProperty("password")]
         public string? Password { get; set; }
