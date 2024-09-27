@@ -33,6 +33,13 @@ namespace PangeaCyber.Net.Sanitize
         [JsonProperty("redact")]
         public bool? Redact { get; set; }
 
+        /// <summary>
+        /// If redact is enabled, avoids redacting the file and instead returns
+        /// the PII analysis engine results.Only works if redact is enabled.
+        /// </summary>
+        [JsonProperty("redact_detect_only")]
+        public bool? RedactDetectOnly { get; set; }
+
         /// <summary>Remove file attachments (PDF only).</summary>
         [JsonProperty("remove_attachments")]
         public bool? RemoveAttachments { get; set; }
