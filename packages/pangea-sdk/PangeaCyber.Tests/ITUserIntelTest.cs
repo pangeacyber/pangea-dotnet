@@ -169,6 +169,22 @@ namespace PangeaCyber.Tests.Intel
         }
 
         [Fact]
+        public async Task TestUserBreached_ByDomainBulk()
+        {
+            var response = await client.BreachedBulk(
+                new UserBreachedBulkRequest.Builder()
+                    .WithDomains(new string[] { "example.com" })
+                    .WithRaw(true)
+                    .Build());
+            Assert.True(response.IsOK);
+
+            var data = response.Result.Data;
+            Assert.Null(response.Result.Parameters);
+            Assert.NotNull(response.Result.RawData);
+            Assert.Single(data);
+        }
+
+        [Fact]
         public async Task TestUserPasswordBreached_1()
         {
             var response = await client.Breached(new UserPasswordBreachedRequest.Builder(HashType.SHA256, "5baa6").Build());
