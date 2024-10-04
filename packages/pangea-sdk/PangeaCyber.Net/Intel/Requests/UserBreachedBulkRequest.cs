@@ -17,7 +17,7 @@ namespace PangeaCyber.Net.Intel
         [JsonProperty("ips")]
         public string[]? Ips { get; set; }
 
-        ///
+        /// <summary>Search for user under these domains.</summary>
         [JsonProperty("domains")]
         public string[]? Domains { get; set; }
 
@@ -54,7 +54,7 @@ namespace PangeaCyber.Net.Intel
             public string[]? Usernames { get; set; }
             ///
             public string[]? Ips { get; set; }
-            ///
+            /// <summary>Search for user under these domains.</summary>
             public string[]? Domains { get; set; }
             ///
             public string[]? PhoneNumbers { get; set; }
@@ -90,7 +90,7 @@ namespace PangeaCyber.Net.Intel
                 return this;
             }
 
-            ///
+            /// <summary>Search for user under these domains.</summary>
             public Builder WithDomains(string[] domains)
             {
                 Domains = domains;
