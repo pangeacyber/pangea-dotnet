@@ -62,7 +62,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<StateChangeResult>> StateChange(string id, int version, ItemVersionState state)
         {
-            return await DoPost<StateChangeResult>("/v2beta/state/change", new StateChangeRequest(id, version, state));
+            return await DoPost<StateChangeResult>("/v2/state/change", new StateChangeRequest(id, version, state));
         }
 
         /// <kind>method</kind>
@@ -80,7 +80,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<DeleteResult>> Delete(string id)
         {
-            return await DoPost<DeleteResult>("/v2beta/delete", new DeleteRequest(id));
+            return await DoPost<DeleteResult>("/v2/delete", new DeleteRequest(id));
         }
 
         /// <kind>method</kind>
@@ -103,7 +103,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<GetResult>> Get(GetRequest request)
         {
-            return await DoPost<GetResult>("/v2beta/get", request);
+            return await DoPost<GetResult>("/v2/get", request);
         }
 
         /// <kind>method</kind>
@@ -123,7 +123,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<GetBulkResult>> GetBulk(GetBulkRequest request)
         {
-            return await DoPost<GetBulkResult>("/v2beta/get_bulk", request);
+            return await DoPost<GetBulkResult>("/v2/get_bulk", request);
         }
 
         /// <kind>method</kind>
@@ -144,7 +144,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<ListResult>> List(ListRequest request)
         {
-            return await DoPost<ListResult>("/v2beta/list", request);
+            return await DoPost<ListResult>("/v2/list", request);
         }
 
         /// <kind>method</kind>
@@ -168,7 +168,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<UpdateResult>> Update(UpdateRequest request)
         {
-            return await DoPost<UpdateResult>("/v2beta/update", request);
+            return await DoPost<UpdateResult>("/v2/update", request);
         }
 
         /// <kind>method</kind>
@@ -191,7 +191,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<SecretStoreResult>> SecretStore(SecretStoreRequest request)
         {
-            return await DoPost<SecretStoreResult>("/v2beta/secret/store", request);
+            return await DoPost<SecretStoreResult>("/v2/secret/store", request);
         }
 
         /// <kind>method</kind>
@@ -216,7 +216,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<SecretRotateResult>> SecretRotate(SecretRotateRequest request)
         {
-            return await DoPost<SecretRotateResult>("/v2beta/secret/rotate", request);
+            return await DoPost<SecretRotateResult>("/v2/secret/rotate", request);
         }
 
         /// <kind>method</kind>
@@ -242,7 +242,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<SymmetricGenerateResult>> SymmetricGenerate(SymmetricGenerateRequest request)
         {
-            return await DoPost<SymmetricGenerateResult>("/v2beta/key/generate", request);
+            return await DoPost<SymmetricGenerateResult>("/v2/key/generate", request);
         }
 
         /// <kind>method</kind>
@@ -268,7 +268,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<AsymmetricGenerateResult>> AsymmetricGenerate(AsymmetricGenerateRequest request)
         {
-            return await DoPost<AsymmetricGenerateResult>("/v2beta/key/generate", request);
+            return await DoPost<AsymmetricGenerateResult>("/v2/key/generate", request);
         }
 
         /// <kind>method</kind>
@@ -296,7 +296,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<AsymmetricStoreResult>> AsymmetricStore(AsymmetricStoreRequest request)
         {
-            return await DoPost<AsymmetricStoreResult>("/v2beta/key/store", request);
+            return await DoPost<AsymmetricStoreResult>("/v2/key/store", request);
         }
 
         /// <kind>method</kind>
@@ -323,7 +323,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<SymmetricStoreResult>> SymmetricStore(SymmetricStoreRequest request)
         {
-            return await DoPost<SymmetricStoreResult>("/v2beta/key/store", request);
+            return await DoPost<SymmetricStoreResult>("/v2/key/store", request);
         }
 
         /// <kind>method</kind>
@@ -349,7 +349,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<KeyRotateResult>> KeyRotate(KeyRotateRequest request)
         {
-            return await DoPost<KeyRotateResult>("/v2beta/key/rotate", request);
+            return await DoPost<KeyRotateResult>("/v2/key/rotate", request);
         }
 
         /// <kind>method</kind>
@@ -375,7 +375,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<EncryptResult>> Encrypt(EncryptRequest request)
         {
-            return await DoPost<EncryptResult>("/v2beta/encrypt", request);
+            return await DoPost<EncryptResult>("/v2/encrypt", request);
         }
 
         /// <kind>method</kind>
@@ -401,7 +401,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<DecryptResult>> Decrypt(DecryptRequest request)
         {
-            return await DoPost<DecryptResult>("/v2beta/decrypt", request);
+            return await DoPost<DecryptResult>("/v2/decrypt", request);
         }
 
         /// <kind>method</kind>
@@ -426,7 +426,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<SignResult>> Sign(SignRequest request)
         {
-            return await DoPost<SignResult>("/v2beta/sign", request);
+            return await DoPost<SignResult>("/v2/sign", request);
         }
 
         /// <kind>method</kind>
@@ -449,7 +449,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<JWTSignResult>> JWTSign(string id, string payload)
         {
-            return await DoPost<JWTSignResult>("/v2beta/jwt/sign", new JWTSignRequest(id, payload));
+            return await DoPost<JWTSignResult>("/v2/jwt/sign", new JWTSignRequest(id, payload));
         }
 
         /// <kind>method</kind>
@@ -475,7 +475,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<VerifyResult>> Verify(VerifyRequest request)
         {
-            return await DoPost<VerifyResult>("/v2beta/verify", request);
+            return await DoPost<VerifyResult>("/v2/verify", request);
         }
 
         /// <kind>method</kind>
@@ -498,7 +498,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<JWTVerifyResult>> JWTVerify(JWTVerifyRequest request)
         {
-            return await DoPost<JWTVerifyResult>("/v2beta/jwt/verify", request);
+            return await DoPost<JWTVerifyResult>("/v2/jwt/verify", request);
         }
 
         /// <kind>method</kind>
@@ -522,7 +522,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<JWKGetResult>> JWKGet(JWKGetRequest request)
         {
-            return await DoPost<JWKGetResult>("/v2beta/jwk/get", request);
+            return await DoPost<JWKGetResult>("/v2/jwk/get", request);
         }
 
         /// <kind>method</kind>
@@ -547,7 +547,7 @@ namespace PangeaCyber.Net.Vault
         /// </example>
         public async Task<Response<FolderCreateResult>> FolderCreate(FolderCreateRequest request)
         {
-            return await DoPost<FolderCreateResult>("/v2beta/folder/create", request);
+            return await DoPost<FolderCreateResult>("/v2/folder/create", request);
         }
 
         /// <kind>method</kind>
@@ -573,7 +573,7 @@ namespace PangeaCyber.Net.Vault
         )
         {
             return await DoPost<EncryptStructuredResult<T>>(
-                "/v2beta/encrypt_structured",
+                "/v2/encrypt_structured",
                 request,
                 cancellationToken: cancellationToken
             );
@@ -602,7 +602,7 @@ namespace PangeaCyber.Net.Vault
         )
         {
             return await DoPost<EncryptStructuredResult<T>>(
-                "/v2beta/decrypt_structured",
+                "/v2/decrypt_structured",
                 request,
                 cancellationToken: cancellationToken
             );
@@ -634,7 +634,7 @@ namespace PangeaCyber.Net.Vault
         )
         {
             return await DoPost<EncryptTransformResult>(
-                "/v2beta/encrypt_transform",
+                "/v2/encrypt_transform",
                 request,
                 cancellationToken: cancellationToken
             );
@@ -666,7 +666,7 @@ namespace PangeaCyber.Net.Vault
         )
         {
             return await DoPost<DecryptTransformResult>(
-                "/v2beta/decrypt_transform",
+                "/v2/decrypt_transform",
                 request,
                 cancellationToken: cancellationToken
             );
@@ -701,7 +701,7 @@ namespace PangeaCyber.Net.Vault
         )
         {
             return await DoPost<ExportResult>(
-                "/v2beta/export",
+                "/v2/export",
                 request,
                 cancellationToken: cancellationToken
             );
