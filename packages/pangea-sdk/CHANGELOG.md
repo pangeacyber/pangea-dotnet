@@ -28,7 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - The `PangeaCyber.Net.dll` assembly is now strong-named.
-- Vault v2 APIs support.
 
 ### Fixed
 
