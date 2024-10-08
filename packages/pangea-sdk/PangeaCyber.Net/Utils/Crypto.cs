@@ -1,7 +1,12 @@
 using System.Globalization;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.Modes;
+using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
+using PangeaCyber.Net.Vault.Results;
 using PemWriter = Org.BouncyCastle.OpenSsl.PemWriter;
 
 namespace PangeaCyber.Net
@@ -9,6 +14,18 @@ namespace PangeaCyber.Net
     /// <summary>Cryptography utilities.</summary>
     public static class Crypto
     {
+
+        /// <summary>
+        /// Initial value size on AES GCM
+        /// </summary>
+        public const int AES_GCM_IV_SIZE = 12;
+
+        /// <summary>
+        /// AES GCM tag size
+        /// </summary>
+        public const int AES_GCM_TAG_SIZE = 16;
+
+
         /// <summary>
         /// Generates a new RSA key pair of the given key size.
         /// </summary>
@@ -62,5 +79,151 @@ namespace PangeaCyber.Net
             pem.Writer.Flush();
             return buffer.ToString();
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="password"></param>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
+        public static string KEMDecrypt(ExportResult result, string password, AsymmetricKeyParameter privateKey)
+        {
+            // Decide which field to decrypt, just once should be pressent
+            var cipherEncoded = result.PrivateKey;
+            if (cipherEncoded == null)
+            {
+                cipherEncoded = result.Key;
+            }
+            if (cipherEncoded == null)
+            {
+                throw new Exception("'PrivateKey' or 'Key' should not null");
+            }
+
+            var cipherDecoded = Convert.FromBase64String(cipherEncoded);
+            var cipher = cipherDecoded.Skip(AES_GCM_IV_SIZE).Take(cipherDecoded.Length - AES_GCM_IV_SIZE).ToArray();
+            var iv = cipherDecoded.Take(AES_GCM_IV_SIZE).ToArray();
+            var decodedEncryptedSalt = Convert.FromBase64String(result.EncryptedSalt);
+
+            var decrypted = KEMDecrypt(
+                cipher,
+                decodedEncryptedSalt,
+                iv,
+                privateKey,
+                result.AsymmetricAlgorithm!,
+                result.SymmetricAlgorithm!,
+                password,
+                result.HashAlgorithm!,
+                result.IterationCount,
+                result.KDF
+            );
+
+            return System.Text.Encoding.UTF8.GetString(decrypted);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <param name="encryptedSalt"></param>
+        /// <param name="iv"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="asymmetricAlgorithm"></param>
+        /// <param name="symmetricAlgorithm"></param>
+        /// <param name="password"></param>
+        /// <param name="hashAlgorithm"></param>
+        /// <param name="iterationCount"></param>
+        /// <param name="kdf"></param>
+        /// <returns></returns>
+        public static byte[] KEMDecrypt(
+            byte[] cipherText,
+            byte[] encryptedSalt,
+            byte[] iv,
+            AsymmetricKeyParameter privateKey,
+            string asymmetricAlgorithm,
+            string symmetricAlgorithm,
+            string password,
+            string hashAlgorithm,
+            int iterationCount,
+            string kdf
+        )
+        {
+
+            // FIXME: compare against enum value
+            if (symmetricAlgorithm != "AES-GCM-256")
+            {
+                throw new Exception(string.Format("invalid symmetricAlgorithm: {0}", symmetricAlgorithm));
+            }
+
+            // FIXME: compare against enum value
+            if (asymmetricAlgorithm != "RSA-NO-PADDING-4096-KEM")
+            {
+                throw new Exception(string.Format("invalid asymmetricAlgorithm: {0}", symmetricAlgorithm));
+            }
+
+            if (kdf != "pbkdf2")
+            {
+                throw new Exception(string.Format("invalid kdf: {0}", kdf));
+            }
+
+            if (hashAlgorithm != "sha512")
+            {
+                throw new Exception(string.Format("invalid hashAlgorithm: {0}", hashAlgorithm));
+            }
+            var hashAlgorithmName = KeyDerivationPrf.HMACSHA512;
+
+            // Decrypt no padding
+            byte[] salt = RSADecryptNoPadding(encryptedSalt, privateKey);
+            var keyLength = GetKeyLength(symmetricAlgorithm);
+            var symmetricKey = KeyDerivation.Pbkdf2(password, salt, hashAlgorithmName, iterationCount, keyLength);
+
+            var plainText = AESGCMDecrypt(symmetricKey, cipherText, iv, null);
+            return plainText;
+        }
+
+        private static byte[] RSADecryptNoPadding(byte[] cipherText, AsymmetricKeyParameter privateKey)
+        {
+            var rsaEngine = new RsaEngine();
+            rsaEngine.Init(false, privateKey); // false = decryption mode
+            return rsaEngine.ProcessBlock(cipherText, 0, cipherText.Length);
+        }
+
+        /// <summary>
+        /// AES GCM Decryption
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="cipherText"></param>
+        /// <param name="nonce"></param>
+        /// <param name="associatedData"></param>
+        /// <returns></returns>
+        public static byte[] AESGCMDecrypt(byte[] key, byte[] cipherText, byte[] nonce, byte[]? associatedData)
+        {
+            var plaintextBytes = new byte[cipherText.Length - AES_GCM_TAG_SIZE];
+
+            var cipher = new GcmBlockCipher(new AesEngine());
+            var parameters = new AeadParameters(new KeyParameter(key), AES_GCM_TAG_SIZE * 8, nonce, associatedData);
+            cipher.Init(false, parameters);
+
+            var offset = cipher.ProcessBytes(cipherText, 0, cipherText.Length, plaintextBytes, 0);
+            cipher.DoFinal(plaintextBytes, offset);
+
+            return plaintextBytes;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="algorithm"></param>
+        /// <returns></returns>
+        public static int GetKeyLength(string algorithm)
+        {
+            if (algorithm == "AES-GCM-256")
+            {
+                return 32;
+            }
+
+            throw new Exception(string.Format("unknown algorithm: %s", algorithm));
+        }
+
     }
 }
