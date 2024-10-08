@@ -89,7 +89,7 @@ namespace PangeaCyber.Net
         /// <returns></returns>
         public static string KEMDecrypt(ExportResult result, string password, AsymmetricKeyParameter privateKey)
         {
-            // Decide which field to decrypt, just once should be pressent
+            // Decide which field to decrypt, only one should be present.
             var cipherEncoded = result.PrivateKey;
             if (cipherEncoded == null)
             {
@@ -97,7 +97,7 @@ namespace PangeaCyber.Net
             }
             if (cipherEncoded == null)
             {
-                throw new Exception("'PrivateKey' or 'Key' should not null");
+                throw new Exception("At least one of 'PrivateKey' or 'Key' should not be null.");
             }
 
             var cipherDecoded = Convert.FromBase64String(cipherEncoded);
