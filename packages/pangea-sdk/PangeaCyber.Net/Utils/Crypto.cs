@@ -18,12 +18,12 @@ namespace PangeaCyber.Net
         /// <summary>
         /// Initial value size on AES GCM
         /// </summary>
-        public const int AES_GCM_IV_SIZE = 12;
+        private const int AES_GCM_IV_SIZE = 12;
 
         /// <summary>
         /// AES GCM tag size
         /// </summary>
-        public const int AES_GCM_TAG_SIZE = 16;
+        private const int AES_GCM_TAG_SIZE = 16;
 
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace PangeaCyber.Net
         /// <param name="iterationCount"></param>
         /// <param name="kdf"></param>
         /// <returns></returns>
-        public static byte[] KEMDecrypt(
+        private static byte[] KEMDecrypt(
             byte[] cipherText,
             byte[] encryptedSalt,
             byte[] iv,
@@ -173,19 +173,11 @@ namespace PangeaCyber.Net
             var hashAlgorithmName = KeyDerivationPrf.HMACSHA512;
 
             // Decrypt no padding
-            byte[] salt = RSADecryptNoPadding(encryptedSalt, privateKey);
+            var salt = AsymmetricDecrypt(new RsaEngine(), privateKey, encryptedSalt);
             var keyLength = GetKeyLength(symmetricAlgorithm);
             var symmetricKey = KeyDerivation.Pbkdf2(password, salt, hashAlgorithmName, iterationCount, keyLength);
 
-            var plainText = AESGCMDecrypt(symmetricKey, cipherText, iv, null);
-            return plainText;
-        }
-
-        private static byte[] RSADecryptNoPadding(byte[] cipherText, AsymmetricKeyParameter privateKey)
-        {
-            var rsaEngine = new RsaEngine();
-            rsaEngine.Init(false, privateKey); // false = decryption mode
-            return rsaEngine.ProcessBlock(cipherText, 0, cipherText.Length);
+            return AESGCMDecrypt(symmetricKey, cipherText, iv, null);
         }
 
         /// <summary>
@@ -196,7 +188,7 @@ namespace PangeaCyber.Net
         /// <param name="nonce"></param>
         /// <param name="associatedData"></param>
         /// <returns></returns>
-        public static byte[] AESGCMDecrypt(byte[] key, byte[] cipherText, byte[] nonce, byte[]? associatedData)
+        private static byte[] AESGCMDecrypt(byte[] key, byte[] cipherText, byte[] nonce, byte[]? associatedData)
         {
             var plaintextBytes = new byte[cipherText.Length - AES_GCM_TAG_SIZE];
 
@@ -215,7 +207,7 @@ namespace PangeaCyber.Net
         /// </summary>
         /// <param name="algorithm"></param>
         /// <returns></returns>
-        public static int GetKeyLength(string algorithm)
+        private static int GetKeyLength(string algorithm)
         {
             if (algorithm == "AES-GCM-256")
             {
