@@ -1,18 +1,7 @@
-using Newtonsoft.Json;
+using PangeaCyber.Net.Vault.Models;
 
 namespace PangeaCyber.Net.Vault.Results
 {
     ///
-    public class UpdateResult
-    {
-        ///
-        [JsonProperty("id")]
-        public string ID { get; set; } = default!;
-
-        ///
-        public UpdateResult()
-        {
-        }
-
-    }
+    public class UpdateResult : ItemData { }
 }

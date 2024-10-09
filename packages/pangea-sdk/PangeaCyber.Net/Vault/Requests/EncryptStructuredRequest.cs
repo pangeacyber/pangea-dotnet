@@ -47,38 +47,5 @@ namespace PangeaCyber.Net.Vault.Requests
             this.Filter = filter;
         }
 
-        /// <summary>Builder for <see cref="EncryptStructuredRequest{T}" />.</summary>
-        public sealed class Builder
-        {
-            private readonly EncryptStructuredRequest<T> Result;
-
-            /// <summary>Constructor.</summary>
-            /// <param name="id">
-            /// The ID of the key to use. It must be an item of type `symmetric_key` or `asymmetric_key` and purpose
-            /// `encryption`.
-            /// </param>
-            /// <param name="structuredData">Structured data for applying bulk operations.</param>
-            /// <param name="filter">
-            /// A filter expression. It must point to string elements of the `structured_data` field.
-            /// </param>
-            public Builder(string id, T structuredData, string filter)
-            {
-                this.Result = new EncryptStructuredRequest<T>(id, structuredData, filter);
-            }
-
-            /// <summary>Add item version.</summary>
-            /// <param name="version">Item version.</param>
-            public Builder WithVersion(int version)
-            {
-                this.Result.Version = version;
-                return this;
-            }
-
-            /// <summary>Returns the finished <see cref="EncryptStructuredRequest{T}" />.</summary>
-            public EncryptStructuredRequest<T> Build()
-            {
-                return this.Result;
-            }
-        }
     }
 }

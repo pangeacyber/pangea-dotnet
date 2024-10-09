@@ -18,6 +18,22 @@ namespace PangeaCyber.Net.Vault.Models
 
         ///
         [EnumMember(Value = "secret")]
-        Secret
+        Secret,
+
+        ///
+        [EnumMember(Value = "pangea_token")]
+        PangeaToken,
+
+        ///
+        [EnumMember(Value = "folder")]
+        Folder,
+
+        ///
+        [EnumMember(Value = "pangea_client_secret")]
+        PangeaClientSecret,
+
+        ///
+        [EnumMember(Value = "pangea_platform_client_secret")]
+        PangeaPlatformClientSecret
     }
 }

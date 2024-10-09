@@ -22,8 +22,8 @@ namespace PangeaCyber.Net.Vault.Models
         Purpose,
 
         ///
-        [EnumMember(Value = "expiration")]
-        Expiration,
+        [EnumMember(Value = "disabled_at")]
+        DisabledAt,
 
         ///
         [EnumMember(Value = "last_rotated")]

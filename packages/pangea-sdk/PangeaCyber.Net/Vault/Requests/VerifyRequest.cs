@@ -5,66 +5,41 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class VerifyRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The ID of the item
+        /// </summary>
         [JsonProperty("id")]
-        public string ID { get; private set; }
+        public string ID { get; set; }
 
-        ///
+        /// <summary>
+        /// A message to be verified
+        /// </summary>
         [JsonProperty("message")]
-        public string Message { get; private set; }
+        public string Message { get; set; }
 
-        ///
+        /// <summary>
+        /// The message signature
+        /// </summary>
         [JsonProperty("signature")]
-        public string Signature { get; private set; }
+        public string Signature { get; set; }
 
-        ///
+        /// <summary>
+        /// The item version
+        /// </summary>
         [JsonProperty("version")]
-        public int? Version { get; private set; }
+        public int? Version { get; set; }
 
-        ///
-        private VerifyRequest(Builder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">The ID of the item</param>
+        /// <param name="message">A message to be verified</param>
+        /// <param name="signature">The message signature</param>
+        public VerifyRequest(string id, string message, string signature)
         {
-            ID = builder.ID;
-            Message = builder.Message;
-            Signature = builder.Signature;
-            Version = builder.Version;
-        }
-
-        ///
-        public class Builder
-        {
-            ///
-            public string ID { get; private set; }
-
-            ///
-            public string Message { get; private set; }
-
-            ///
-            public string Signature { get; private set; }
-
-            ///
-            public int? Version { get; private set; }
-
-            ///
-            public Builder(string id, string message, string signature)
-            {
-                ID = id;
-                Message = message;
-                Signature = signature;
-            }
-
-            ///
-            public Builder WithVersion(int version)
-            {
-                Version = version;
-                return this;
-            }
-
-            ///
-            public VerifyRequest Build()
-            {
-                return new VerifyRequest(this);
-            }
+            ID = id;
+            Message = message;
+            Signature = signature;
         }
     }
 }

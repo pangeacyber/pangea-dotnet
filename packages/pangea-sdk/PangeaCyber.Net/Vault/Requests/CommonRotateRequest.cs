@@ -4,63 +4,33 @@ using PangeaCyber.Net.Vault.Models;
 namespace PangeaCyber.Net.Vault.Requests
 {
     ///
-    public class CommonRotateRequest<TBuilder> : BaseRequest where TBuilder : CommonRotateRequest<TBuilder>.CommonBuilder
+    public class CommonRotateRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The ID of the key
+        /// </summary>
         [JsonProperty("id")]
         public string ID { get; set; }
 
-        ///
+        /// <summary>
+        /// State to which the previous version should transition upon rotation
+        /// </summary>
         [JsonProperty("rotation_state")]
         public ItemVersionState? RotationState { get; set; }
 
-        ///
+        /// <summary>
+        /// Period of time between item rotations, never to disable rotation or inherited to inherit the value from the parent folder or from the default settings (format: a positive number followed by a time period (secs, mins, hrs, days, weeks, months, years) or an abbreviation
+        /// </summary>
         [JsonProperty("rotation_frequency")]
         public string? RotationFrequency { get; set; }
 
-        ///
-        protected CommonRotateRequest(CommonBuilder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        protected CommonRotateRequest(string id)
         {
-            ID = builder.ID;
-            RotationState = builder.RotationState;
-            RotationFrequency = builder.RotationFrequency;
-        }
-
-        ///
-        public abstract class CommonBuilder
-        {
-            ///
-            public string ID { get; protected set; }
-            ///
-            public ItemVersionState? RotationState { get; protected set; }
-            ///
-            public string? RotationFrequency { get; protected set; }
-
-            ///
-            protected CommonBuilder(string id)
-            {
-                ID = id;
-            }
-
-            ///
-            public CommonRotateRequest<TBuilder> Build()
-            {
-                return new CommonRotateRequest<TBuilder>((TBuilder)this);
-            }
-
-            ///
-            public TBuilder WithRotationState(ItemVersionState rotationState)
-            {
-                RotationState = rotationState;
-                return (TBuilder)this;
-            }
-
-            ///
-            public TBuilder WithRotationFrequency(string rotationFrequency)
-            {
-                RotationFrequency = rotationFrequency;
-                return (TBuilder)this;
-            }
+            ID = id;
         }
     }
 }

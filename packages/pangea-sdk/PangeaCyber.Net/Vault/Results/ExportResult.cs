@@ -11,15 +11,15 @@ namespace PangeaCyber.Net.Vault.Results
 
         /// <summary>The item version. Defaults to the current version.</summary>
         [JsonProperty("version")]
-        public string Version { get; set; } = default!;
+        public int Version { get; set; } = default!;
 
         /// <summary>The type of the key.</summary>
         [JsonProperty("type")]
         public string Type { get; set; } = default!;
 
-        /// <summary>The state of the item.</summary>
-        [JsonProperty("item_state")]
-        public string ItemState { get; set; } = default!;
+        /// <summary>True if the item is enabled.</summary>
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; } = default!;
 
         /// <summary>The algorithm of the key.</summary>
         [JsonProperty("algorithm")]
@@ -38,12 +38,34 @@ namespace PangeaCyber.Net.Vault.Results
         public string Key { get; set; } = default!;
 
         /// <summary>
-        /// Whether exported key(s) are encrypted with encryption_key sent on the
-        /// request or not. If encrypted, the result is sent in base64, any other
-        /// case they are in PEM format plain text.
+        /// Encryption format of the exported key(s). It could be none if returned in plain text, asymmetric if it is encrypted just with the public key sent in asymmetric_public_key, or kem if it was encrypted using KEM protocol.
         /// </summary>
-        [JsonProperty("encrypted")]
-        public bool Encrypted { get; set; } = default!;
+        [JsonProperty("encryption_type")]
+        public string EncryptionType { get; set; } = default!;
+
+        /// <summary>The algorithm of the public key used to encrypt exported material.</summary>
+        [JsonProperty("asymmetric_algorithm")]
+        public string AsymmetricAlgorithm { get; set; } = default!;
+
+        /// <summary>The algorithm of the symmetric key used to encrypt exported material.</summary>
+        [JsonProperty("symmetric_algorithm")]
+        public string SymmetricAlgorithm { get; set; } = default!;
+
+        /// <summary>Key derivation function used to derivate the symmetric key when `encryption_type` is `kem`.</summary>
+        [JsonProperty("kdf")]
+        public string KDF { get; set; } = default!;
+
+        /// <summary>Hash algorithm used to derivate the symmetric key when `encryption_type` is `kem`.</summary>
+        [JsonProperty("hash_algorithm")]
+        public string HashAlgorithm { get; set; } = default!;
+
+        /// <summary>Salt used to derivate the symmetric key when `encryption_type` is `kem`, encrypted with the public key provided in `asymmetric_key`.</summary>
+        [JsonProperty("encrypted_salt")]
+        public string EncryptedSalt { get; set; } = default!;
+
+        /// <summary>Iteration count used to derivate the symmetric key when `encryption_type` is `kem`.</summary>
+        [JsonProperty("iteration_count")]
+        public int IterationCount { get; set; } = default!;
 
         /// <summary>Constructor.</summary>
         public ExportResult()

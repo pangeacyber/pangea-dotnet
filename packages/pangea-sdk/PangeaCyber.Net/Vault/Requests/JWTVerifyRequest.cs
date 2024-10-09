@@ -5,33 +5,20 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class JWTVerifyRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The signed JSON Web Token (JWS)
+        /// </summary>
         [JsonProperty("jws")]
-        public string JWS { get; private set; }
+        public string JWS { get; set; }
 
-        ///
-        private JWTVerifyRequest(Builder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="jws">The signed JSON Web Token (JWS)</param>
+        public JWTVerifyRequest(string jws)
         {
-            JWS = builder.JWS;
+            JWS = jws;
         }
 
-        ///
-        public class Builder
-        {
-            ///
-            public string JWS { get; private set; }
-
-            ///
-            public Builder(string jws)
-            {
-                JWS = jws;
-            }
-
-            ///
-            public JWTVerifyRequest Build()
-            {
-                return new JWTVerifyRequest(this);
-            }
-        }
     }
 }

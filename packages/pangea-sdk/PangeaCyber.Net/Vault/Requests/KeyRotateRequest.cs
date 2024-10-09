@@ -4,70 +4,34 @@ using PangeaCyber.Net.Vault.Models;
 namespace PangeaCyber.Net.Vault.Requests
 {
     ///
-    public class KeyRotateRequest : CommonRotateRequest<KeyRotateRequest.Builder>
+    public class KeyRotateRequest : CommonRotateRequest
     {
-        ///
+        /// <summary>
+        /// The public key (in PEM format)
+        /// </summary>
         [JsonProperty("public_key")]
-        public string? EncodedPublicKey { get; private set; }
+        public string? EncodedPublicKey { get; set; }
 
-        ///
+        /// <summary>
+        /// The private key (in PEM format)
+        /// </summary>
         [JsonProperty("private_key")]
-        public string? EncodedPrivateKey { get; private set; }
+        public string? EncodedPrivateKey { get; set; }
 
-        ///
+        /// <summary>
+        /// The key material
+        /// </summary>
         [JsonProperty("key")]
-        public string? EncodedSymmetricKey { get; private set; }
+        public string? EncodedSymmetricKey { get; set; }
 
-        ///
-        protected KeyRotateRequest(Builder builder) : base(builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">Item ID to be rotated</param>
+        /// <param name="rotationState">State to which the previous version should transition upon rotation</param>
+        public KeyRotateRequest(string id, ItemVersionState rotationState) : base(id)
         {
-            EncodedPublicKey = builder.EncodedPublicKey;
-            EncodedPrivateKey = builder.EncodedPrivateKey;
-            EncodedSymmetricKey = builder.EncodedSymmetricKey;
-        }
-
-        ///
-        public class Builder : CommonRotateRequest<Builder>.CommonBuilder
-        {
-            ///
-            public string? EncodedPublicKey { get; private set; }
-            ///
-            public string? EncodedPrivateKey { get; private set; }
-            ///
-            public string? EncodedSymmetricKey { get; private set; }
-
-            ///
-            public Builder(string id, ItemVersionState rotationState) : base(id)
-            {
-                RotationState = rotationState;
-            }
-
-            ///
-            public new KeyRotateRequest Build()
-            {
-                return new KeyRotateRequest(this);
-            }
-
-            ///
-            public Builder WithEncodedPublicKey(string encodedPublicKey)
-            {
-                EncodedPublicKey = encodedPublicKey;
-                return this;
-            }
-
-            ///
-            public Builder WithEncodedPrivateKey(string encodedPrivateKey)
-            {
-                EncodedPrivateKey = encodedPrivateKey;
-                return this;
-            }
-
-            ///
-            public Builder WithEncodedSymmetricKey(string encodedSymmetricKey)
-            {
-                EncodedSymmetricKey = encodedSymmetricKey;
-                return this;
-            }
+            RotationState = rotationState;
         }
     }
 }

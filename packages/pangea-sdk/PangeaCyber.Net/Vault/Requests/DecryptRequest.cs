@@ -5,69 +5,39 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class DecryptRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The item ID
+        /// </summary>
         [JsonProperty("id")]
-        public string ID { get; private set; }
+        public string ID { get; set; }
 
-        ///
+        /// <summary>
+        /// A message encrypted by Vault (Base64 encoded)
+        /// </summary>
         [JsonProperty("cipher_text")]
-        public string CipherText { get; private set; }
+        public string CipherText { get; set; }
 
-        ///
+        /// <summary>
+        /// The item version
+        /// </summary>
         [JsonProperty("version")]
-        public int? Version { get; private set; }
+        public int? Version { get; set; }
 
-        ///
+        /// <summary>
+        /// User provided authentication data
+        /// </summary>
         [JsonProperty("additional_data")]
-        public string? AdditionalData { get; private set; }
+        public string? AdditionalData { get; set; }
 
-        ///
-        protected DecryptRequest(Builder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">The item ID to decrypt with</param>
+        /// <param name="cipherText">Encrypted message to decrypt</param>
+        public DecryptRequest(string id, string cipherText)
         {
-            ID = builder.ID;
-            CipherText = builder.CipherText;
-            Version = builder.Version;
-            AdditionalData = builder.AdditionalData;
-        }
-
-        ///
-        public class Builder
-        {
-            ///
-            public string ID { get; private set; }
-            ///
-            public string CipherText { get; private set; }
-            ///
-            public int? Version { get; private set; }
-            ///
-            public string? AdditionalData { get; private set; }
-
-            ///
-            public Builder(string id, string cipherText)
-            {
-                ID = id;
-                CipherText = cipherText;
-            }
-
-            ///
-            public DecryptRequest Build()
-            {
-                return new DecryptRequest(this);
-            }
-
-            ///
-            public Builder WithVersion(int? version)
-            {
-                Version = version;
-                return this;
-            }
-
-            ///
-            public Builder WithAdditionalData(string additionalData)
-            {
-                AdditionalData = additionalData;
-                return this;
-            }
+            ID = id;
+            CipherText = cipherText;
         }
     }
 }

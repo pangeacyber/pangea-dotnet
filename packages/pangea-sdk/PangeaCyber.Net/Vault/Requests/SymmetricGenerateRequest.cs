@@ -4,65 +4,37 @@ using PangeaCyber.Net.Vault.Models;
 namespace PangeaCyber.Net.Vault.Requests
 {
     ///
-    public class SymmetricGenerateRequest : CommonGenerateRequest<SymmetricGenerateRequest.Builder>
+    public class SymmetricGenerateRequest : CommonGenerateRequest
     {
-        ///
+        /// <summary>
+        /// Item type
+        /// </summary>
         [JsonProperty("type")]
-        public ItemType Type { get; private set; }
+        public ItemType Type { get; set; }
 
-        ///
+        /// <summary>
+        /// The algorithm of the key
+        /// </summary>
         [JsonProperty("algorithm")]
-        public SymmetricAlgorithm Algorithm { get; private set; }
+        public SymmetricAlgorithm Algorithm { get; set; }
 
-        ///
+        /// <summary>
+        /// The purpose of the key
+        /// </summary>
         [JsonProperty("purpose")]
-        public KeyPurpose Purpose { get; private set; }
+        public KeyPurpose Purpose { get; set; }
 
-        ///
-        public SymmetricGenerateRequest(Builder builder)
-            : base(builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="algorithm">The algorithm of the key</param>
+        /// <param name="purpose">The purpose of the key</param>
+        /// <param name="name">Name of the item</param>
+        public SymmetricGenerateRequest(SymmetricAlgorithm algorithm, KeyPurpose purpose, string name) : base(name)
         {
             Type = ItemType.SymmetricKey;
-            Algorithm = builder.Algorithm;
-            Purpose = builder.Purpose;
-        }
-
-        ///
-        public class Builder : CommonGenerateRequest<Builder>.CommonBuilder
-        {
-            ///
-            public SymmetricAlgorithm Algorithm { get; private set; }
-
-            ///
-            public KeyPurpose Purpose { get; private set; }
-
-            ///
-            public Builder(SymmetricAlgorithm algorithm, KeyPurpose purpose, string name)
-                : base(name)
-            {
-                Algorithm = algorithm;
-                Purpose = purpose;
-            }
-
-            ///
-            public new SymmetricGenerateRequest Build()
-            {
-                return new SymmetricGenerateRequest(this);
-            }
-
-            ///
-            public Builder WithAlgorithm(SymmetricAlgorithm algorithm)
-            {
-                Algorithm = algorithm;
-                return this;
-            }
-
-            ///
-            public Builder WithPurpose(KeyPurpose purpose)
-            {
-                Purpose = purpose;
-                return this;
-            }
+            Algorithm = algorithm;
+            Purpose = purpose;
         }
     }
 }

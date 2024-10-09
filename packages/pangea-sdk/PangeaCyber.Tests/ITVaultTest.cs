@@ -42,32 +42,41 @@ namespace PangeaCyber.Net.Vault.Tests
             string dataB64 = Utils.StringToStringB64(message);
 
             // Encrypt 1
-            var encryptResponse1 = await client.Encrypt(new EncryptRequest.Builder(id, dataB64).Build());
+            var encryptResponse1 = await client.Encrypt(new EncryptRequest(id, dataB64));
             Assert.Equal(id, encryptResponse1.Result.ID);
             Assert.Equal(1, encryptResponse1.Result.Version);
             Assert.NotNull(encryptResponse1.Result.CipherText);
 
             // Rotate
-            var rotateResponse = await client.KeyRotate(new KeyRotateRequest.Builder(id, ItemVersionState.Suspended).Build());
-            Assert.Equal(2, rotateResponse.Result.Version);
+            var rotateResponse = await client.KeyRotate(new KeyRotateRequest(id, ItemVersionState.Suspended));
+            Assert.Equal(2, rotateResponse.Result.NumVersions);
             Assert.Equal(id, rotateResponse.Result.ID);
 
             // Encrypt 2
-            var encryptResponse2 = await client.Encrypt(new EncryptRequest.Builder(id, dataB64).WithVersion(2).Build());
+            var encryptResponse2 = await client.Encrypt(new EncryptRequest(id, dataB64)
+            {
+                Version = 2
+            });
             Assert.Equal(id, encryptResponse1.Result.ID);
             Assert.Equal(2, encryptResponse2.Result.Version);
             Assert.NotNull(encryptResponse2.Result.CipherText);
 
             // Decrypt 1
-            var decryptResponse1 = await client.Decrypt(new DecryptRequest.Builder(id, encryptResponse1.Result.CipherText).WithVersion(1).Build());
+            var decryptResponse1 = await client.Decrypt(new DecryptRequest(id, encryptResponse1.Result.CipherText)
+            {
+                Version = 1
+            });
             Assert.Equal(dataB64, decryptResponse1.Result.PlainText);
 
             // Decrypt 2
-            var decryptResponse2 = await client.Decrypt(new DecryptRequest.Builder(id, encryptResponse2.Result.CipherText).WithVersion(2).Build());
+            var decryptResponse2 = await client.Decrypt(new DecryptRequest(id, encryptResponse2.Result.CipherText)
+            {
+                Version = 2
+            });
             Assert.Equal(dataB64, decryptResponse2.Result.PlainText);
 
             // Decrypt default
-            var decryptResponseDefault = await client.Decrypt(new DecryptRequest.Builder(id, encryptResponse2.Result.CipherText).Build());
+            var decryptResponseDefault = await client.Decrypt(new DecryptRequest(id, encryptResponse2.Result.CipherText));
             Assert.Equal(dataB64, decryptResponseDefault.Result.PlainText);
 
             // Add failure cases. Wrong ID, wrong version, etc.
@@ -77,7 +86,10 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.Equal(id, stateChangeResponse.Result.ID);
 
             // Decrypt after revoke
-            var decryptResponseAfterSuspend = await client.Decrypt(new DecryptRequest.Builder(id, encryptResponse1.Result.CipherText).WithVersion(1).Build());
+            var decryptResponseAfterSuspend = await client.Decrypt(new DecryptRequest(id, encryptResponse1.Result.CipherText)
+            {
+                Version = 1
+            });
             Assert.Equal(dataB64, decryptResponseAfterSuspend.Result.PlainText);
         }
 
@@ -87,34 +99,37 @@ namespace PangeaCyber.Net.Vault.Tests
             string data = Utils.StringToStringB64(message);
 
             // Sign 1
-            var signResponse1 = await client.Sign(new SignRequest.Builder(id, data).Build());
+            var signResponse1 = await client.Sign(new SignRequest(id, data));
             Assert.Equal(1, signResponse1.Result.Version);
             Assert.NotNull(signResponse1.Result.Signature);
 
             // Rotate
-            var rotateResponse = await client.KeyRotate(new KeyRotateRequest.Builder(id, ItemVersionState.Suspended).Build());
-            Assert.Equal(2, rotateResponse.Result.Version);
-            Assert.NotNull(rotateResponse.Result.EncodedPublicKey);
+            var rotateResponse = await client.KeyRotate(new KeyRotateRequest(id, ItemVersionState.Suspended));
+            Assert.Equal(2, rotateResponse.Result.NumVersions);
+            Assert.NotNull(rotateResponse.Result);
 
             // Sign 2
-            var signResponse2 = await client.Sign(new SignRequest.Builder(id, data).Build());
+            var signResponse2 = await client.Sign(new SignRequest(id, data));
             Assert.Equal(2, signResponse2.Result.Version);
             Assert.NotNull(signResponse2.Result.Signature);
 
             // Verify 1
-            var verifyResponse1 = await client.Verify(new VerifyRequest.Builder(id, data, signResponse1.Result.Signature).WithVersion(1).Build());
+            var verifyResponse1 = await client.Verify(new VerifyRequest(id, data, signResponse1.Result.Signature)
+            {
+                Version = 1
+            });
             Assert.Equal(1, verifyResponse1.Result.Version);
             Assert.True(verifyResponse1.Result.ValidSignature);
 
             // Verify 2
-            var verifyResponse2 = await client.Verify(new VerifyRequest.Builder(id, data, signResponse2.Result.Signature).Build());
+            var verifyResponse2 = await client.Verify(new VerifyRequest(id, data, signResponse2.Result.Signature));
             Assert.Equal(2, verifyResponse2.Result.Version);
             Assert.True(verifyResponse2.Result.ValidSignature);
 
             // TODO: Add failure cases
 
             // Wrong signature. Use signature of version 1 and try to verify with default version (2)
-            var verifyResponseBad = await client.Verify(new VerifyRequest.Builder(id, data, signResponse1.Result.Signature).Build());
+            var verifyResponseBad = await client.Verify(new VerifyRequest(id, data, signResponse1.Result.Signature));
             Assert.False(verifyResponseBad.Result.ValidSignature);
 
             // Suspend key
@@ -122,7 +137,10 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.Equal(id, stateChangeResponse.Result.ID);
 
             // Verify after revoke
-            var verifyResponseAfterSuspend = await client.Verify(new VerifyRequest.Builder(id, data, signResponse1.Result.Signature).WithVersion(1).Build());
+            var verifyResponseAfterSuspend = await client.Verify(new VerifyRequest(id, data, signResponse1.Result.Signature)
+            {
+                Version = 1,
+            });
             Assert.Equal(1, verifyResponseAfterSuspend.Result.Version);
             Assert.True(verifyResponseAfterSuspend.Result.ValidSignature);
         }
@@ -138,39 +156,45 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.NotNull(signResponse1.Result.JWS);
 
             // Rotate
-            var rotateResponse = await client.KeyRotate(new KeyRotateRequest.Builder(id, ItemVersionState.Suspended).Build());
-            Assert.Equal(2, rotateResponse.Result.Version);
+            var rotateResponse = await client.KeyRotate(new KeyRotateRequest(id, ItemVersionState.Suspended));
+            Assert.Equal(2, rotateResponse.Result.NumVersions);
 
             // Sign 2
             var signResponse2 = await client.JWTSign(id, payload);
             Assert.NotNull(signResponse2.Result.JWS);
 
             // Verify 1
-            var verifyResponse1 = await client.JWTVerify(new JWTVerifyRequest.Builder(signResponse1.Result.JWS).Build());
+            var verifyResponse1 = await client.JWTVerify(new JWTVerifyRequest(signResponse1.Result.JWS));
             Assert.True(verifyResponse1.Result.ValidSignature);
 
             // Verify 2
-            var verifyResponse2 = await client.JWTVerify(new JWTVerifyRequest.Builder(signResponse2.Result.JWS).Build());
+            var verifyResponse2 = await client.JWTVerify(new JWTVerifyRequest(signResponse2.Result.JWS));
             Assert.True(verifyResponse2.Result.ValidSignature);
 
             // Gets default
-            var getResponse = await client.JWKGet(new JWKGetRequest.Builder(id).Build());
+            var getResponse = await client.JWKGet(new JWKGetRequest(id));
             Assert.Single(getResponse.Result.Keys);
 
             // Gets all
-            getResponse = await client.JWKGet(new JWKGetRequest.Builder(id).WithVersion("all").Build());
+            getResponse = await client.JWKGet(new JWKGetRequest(id)
+            {
+                Version = "all"
+            });
             Assert.Equal(2, getResponse.Result.Keys.Length);
 
             // Gets -1
-            getResponse = await client.JWKGet(new JWKGetRequest.Builder(id).WithVersion("-1").Build());
-            Assert.Equal(2, getResponse.Result.Keys.Length);
+            getResponse = await client.JWKGet(new JWKGetRequest(id)
+            {
+                Version = "-1"
+            });
+            Assert.Single(getResponse.Result.Keys);
 
             // Suspend key
             var stateChangeResponse = await client.StateChange(id, 1, ItemVersionState.Deactivated);
             Assert.Equal(id, stateChangeResponse.Result.ID);
 
             // Verify after revoke
-            var verifyResponseAfterSuspend = await client.JWTVerify(new JWTVerifyRequest.Builder(signResponse1.Result.JWS).Build());
+            var verifyResponseAfterSuspend = await client.JWTVerify(new JWTVerifyRequest(signResponse1.Result.JWS));
             Assert.True(verifyResponseAfterSuspend.Result.ValidSignature);
         }
 
@@ -185,19 +209,19 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.NotNull(signResponse1.Result.JWS);
 
             // Rotate
-            var rotateResponse = await client.KeyRotate(new KeyRotateRequest.Builder(id, ItemVersionState.Suspended).Build());
-            Assert.Equal(2, rotateResponse.Result.Version);
+            var rotateResponse = await client.KeyRotate(new KeyRotateRequest(id, ItemVersionState.Suspended));
+            Assert.Equal(2, rotateResponse.Result.NumVersions);
 
             // Sign 2
             var signResponse2 = await client.JWTSign(id, payload);
             Assert.NotNull(signResponse2.Result.JWS);
 
             // Verify 1
-            var verifyResponse1 = await client.JWTVerify(new JWTVerifyRequest.Builder(signResponse1.Result.JWS).Build());
+            var verifyResponse1 = await client.JWTVerify(new JWTVerifyRequest(signResponse1.Result.JWS));
             Assert.True(verifyResponse1.Result.ValidSignature);
 
             // Verify 2
-            var verifyResponse2 = await client.JWTVerify(new JWTVerifyRequest.Builder(signResponse2.Result.JWS).Build());
+            var verifyResponse2 = await client.JWTVerify(new JWTVerifyRequest(signResponse2.Result.JWS));
             Assert.True(verifyResponse2.Result.ValidSignature);
 
             // Suspend key
@@ -205,7 +229,7 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.Equal(id, stateChangeResponse.Result.ID);
 
             // Verify after revoke
-            var verifyResponseAfterSuspend = await client.JWTVerify(new JWTVerifyRequest.Builder(signResponse1.Result.JWS).Build());
+            var verifyResponseAfterSuspend = await client.JWTVerify(new JWTVerifyRequest(signResponse1.Result.JWS));
             Assert.True(verifyResponseAfterSuspend.Result.ValidSignature);
         }
 
@@ -221,15 +245,15 @@ namespace PangeaCyber.Net.Vault.Tests
                 string name = GetName();
                 try
                 {
-                    var generateRequest = new SymmetricGenerateRequest.Builder(
+                    var generateRequest = new SymmetricGenerateRequest(
                         algorithm,
                         KeyPurpose.Encryption,
                         name
-                    ).Build();
+                    );
 
                     var generateResp = await client.SymmetricGenerate(generateRequest);
                     Assert.NotNull(generateResp.Result.ID);
-                    Assert.Equal(1, generateResp.Result.Version);
+                    Assert.Equal(1, generateResp.Result.NumVersions);
                     await EncryptingCycle(generateResp.Result.ID);
                     Console.WriteLine(string.Format("Finished TestAESEncryptingLifeCycle with {0}", algorithm));
                 }
@@ -260,11 +284,11 @@ namespace PangeaCyber.Net.Vault.Tests
                 string name = GetName();
                 try
                 {
-                    var generateRequest = new SymmetricGenerateRequest.Builder(
+                    var generateRequest = new SymmetricGenerateRequest(
                         algorithm,
                         purpose,
                         name
-                    ).Build();
+                    );
 
                     var generateResp = await client.SymmetricGenerate(generateRequest);
                 }
@@ -298,11 +322,11 @@ namespace PangeaCyber.Net.Vault.Tests
                 string name = GetName();
                 try
                 {
-                    var generateRequest = new AsymmetricGenerateRequest.Builder(
+                    var generateRequest = new AsymmetricGenerateRequest(
                         algorithm,
                         purpose,
                         name
-                    ).Build();
+                    );
 
                     var generateResp = await client.AsymmetricGenerate(generateRequest);
                 }
@@ -350,11 +374,11 @@ namespace PangeaCyber.Net.Vault.Tests
                 string name = GetName();
                 try
                 {
-                    var generateRequest = new AsymmetricGenerateRequest.Builder(
+                    var generateRequest = new AsymmetricGenerateRequest(
                         algorithm,
                         purpose,
                         name
-                    ).Build();
+                    );
 
                     var generateResp = await client.AsymmetricGenerate(generateRequest);
                 }
@@ -373,17 +397,14 @@ namespace PangeaCyber.Net.Vault.Tests
             string name = GetName();
             try
             {
-                var generateRequest = new AsymmetricGenerateRequest.Builder(
+                // Generate
+                var generateResp = await client.AsymmetricGenerate(new AsymmetricGenerateRequest(
                     AsymmetricAlgorithm.ED25519,
                     KeyPurpose.Signing,
                     name
-                ).Build();
-
-                // Generate
-                var generateResp = await client.AsymmetricGenerate(generateRequest);
-                Assert.NotNull(generateResp.Result.EncodedPublicKey);
+                ));
                 Assert.NotNull(generateResp.Result.ID);
-                Assert.Equal(1, generateResp.Result.Version);
+                Assert.Equal(1, generateResp.Result.NumVersions);
                 await AsymSigningCycle(generateResp.Result.ID);
             }
             catch (PangeaAPIException e)
@@ -405,14 +426,13 @@ namespace PangeaCyber.Net.Vault.Tests
                 string name = GetName();
                 try
                 {
-                    var generateRequest = new AsymmetricGenerateRequest.Builder(algorithm, purpose, name)
-                        .Build();
+                    var generateRequest = new AsymmetricGenerateRequest(algorithm, purpose, name)
+                        ;
 
                     // Generate
                     var generateResp = await client.AsymmetricGenerate(generateRequest);
-                    Assert.NotNull(generateResp.Result.EncodedPublicKey);
                     Assert.NotNull(generateResp.Result.ID);
-                    Assert.Equal(1, generateResp.Result.Version);
+                    Assert.Equal(1, generateResp.Result.NumVersions);
                     await JwtAsymSigningCycle(generateResp.Result.ID);
                     Console.WriteLine(string.Format("Finished TestJWTAsymESSigningLifeCycle with {0}", algorithm));
                 }
@@ -437,13 +457,13 @@ namespace PangeaCyber.Net.Vault.Tests
                 string name = GetName();
                 try
                 {
-                    var generateRequest = new SymmetricGenerateRequest.Builder(algorithm, purpose, name)
-                        .Build();
+                    var generateRequest = new SymmetricGenerateRequest(algorithm, purpose, name)
+                        ;
 
                     // Generate
                     var generateResp = await client.SymmetricGenerate(generateRequest);
                     Assert.NotNull(generateResp.Result.ID);
-                    Assert.Equal(1, generateResp.Result.Version);
+                    Assert.Equal(1, generateResp.Result.NumVersions);
                     await JwtSymSigningCycle(generateResp.Result.ID);
                     Console.WriteLine(string.Format("Finished TestJWTAsymHSSigningLifeCycle with {0}", algorithm));
                 }
@@ -463,23 +483,29 @@ namespace PangeaCyber.Net.Vault.Tests
             string name = GetName();
             try
             {
-                var storeResponse = await client.SecretStore(new SecretStoreRequest.Builder(secretV1, name).Build());
-                Assert.Equal(secretV1, storeResponse.Result.Secret);
-                Assert.Equal(1, storeResponse.Result.Version);
+
+                var storeResponse = await client.SecretStore(
+                    new SecretStoreRequest(name)
+                    {
+                        Type = ItemType.Secret,
+                        Secret = secretV1,
+                    });
+                Assert.Equal(1, storeResponse.Result.ItemVersions?[0].Version);
                 Assert.NotNull(storeResponse.Result.ID);
 
                 var rotateResponse = await client.SecretRotate(
-                    new SecretRotateRequest.Builder(storeResponse.Result.ID, secretV2)
-                        .WithRotationState(ItemVersionState.Suspended)
-                        .Build()
+                    new SecretRotateRequest(storeResponse.Result.ID)
+                    {
+                        Secret = secretV2,
+                        RotationState = ItemVersionState.Suspended
+                    }
                 );
 
-                Assert.Equal(secretV2, rotateResponse.Result.Secret);
-                Assert.Equal(2, rotateResponse.Result.Version);
+                Assert.Equal(2, rotateResponse.Result.NumVersions);
                 Assert.Equal(storeResponse.Result.ID, rotateResponse.Result.ID);
 
-                var getResponse = await client.Get(new GetRequest.Builder(storeResponse.Result.ID).Build());
-                Assert.Equal(secretV2, getResponse.Result.CurrentVersion?.Secret);
+                var getResponse = await client.Get(new GetRequest(storeResponse.Result.ID));
+                Assert.Equal(secretV2, getResponse.Result.ItemVersions?[0].Secret);
 
                 var stateChangeResponse = await client.StateChange(
                     storeResponse.Result.ID,
@@ -487,10 +513,10 @@ namespace PangeaCyber.Net.Vault.Tests
                     ItemVersionState.Deactivated
                 );
                 Assert.Equal(storeResponse.Result.ID, stateChangeResponse.Result.ID);
-                Assert.Equal("deactivated", stateChangeResponse.Result.State);
+                Assert.Equal("deactivated", stateChangeResponse.Result.ItemVersions?[0].State);
 
-                var getResponse2 = await client.Get(new GetRequest.Builder(storeResponse.Result.ID).Build());
-                Assert.NotNull(getResponse2.Result.CurrentVersion?.Secret);
+                var getResponse2 = await client.Get(new GetRequest(storeResponse.Result.ID));
+                Assert.NotNull(getResponse2.Result.ItemVersions?[0].Secret);
             }
             catch (PangeaAPIException e)
             {
@@ -510,21 +536,24 @@ namespace PangeaCyber.Net.Vault.Tests
             {
                 // Create parent
                 var createParentResp = await client.FolderCreate(
-                    new FolderCreateRequest.Builder(FOLDER_PARENT, "/").Build()
+                    new FolderCreateRequest(FOLDER_PARENT, "/")
                 );
                 string parentID = createParentResp.Result.ID;
                 Assert.NotNull(parentID);
 
                 // Create folder
                 var createFolderResp = await client.FolderCreate(
-                    new FolderCreateRequest.Builder(FOLDER_NAME, FOLDER_PARENT).Build()
+                    new FolderCreateRequest(FOLDER_NAME, FOLDER_PARENT)
                 );
                 string folderID = createFolderResp.Result.ID;
                 Assert.NotNull(folderID);
 
                 // Update name
                 var updateResp = await client.Update(
-                    new UpdateRequest.Builder(folderID).WithName(FOLDER_NAME_NEW).Build()
+                    new UpdateRequest(folderID)
+                    {
+                        Name = FOLDER_NAME_NEW
+                    }
                 );
                 Assert.Equal(folderID, updateResp.Result.ID);
 
@@ -534,8 +563,11 @@ namespace PangeaCyber.Net.Vault.Tests
                     { "folder", FOLDER_PARENT }
                 };
 
-                var listResp = await client.List(new ListRequest.Builder().WithFilter(filter).Build());
-                Assert.Equal(1, listResp.Result.Count);
+                var listResp = await client.List(new ListRequest()
+                {
+                    Filter = filter,
+                });
+                Assert.Single(listResp.Result.Items);
                 Assert.Equal(folderID, listResp.Result.Items[0].ID);
                 Assert.Equal(FOLDER_NAME_NEW, listResp.Result.Items[0].Name);
 
@@ -565,11 +597,11 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.NotNull(data);
 
             // Generate an encryption key.
-            var generateRequest = new SymmetricGenerateRequest.Builder(
+            var generateRequest = new SymmetricGenerateRequest(
                 SymmetricAlgorithm.AES256_CFB,
                 KeyPurpose.Encryption,
                 GetName()
-            ).Build();
+            );
             var generateResp = await client.SymmetricGenerate(generateRequest);
             Assert.NotNull(generateResp);
             var key = generateResp.Result.ID;
@@ -596,11 +628,11 @@ namespace PangeaCyber.Net.Vault.Tests
             const string tweak = "MTIzMTIzMT==";
 
             // Generate an encryption key.
-            var generateRequest = new SymmetricGenerateRequest.Builder(
+            var generateRequest = new SymmetricGenerateRequest(
                 SymmetricAlgorithm.AES256_FF3_1,
                 KeyPurpose.FPE,
                 GetName()
-            ).Build();
+            );
             var generateResp = await client.SymmetricGenerate(generateRequest);
             Assert.NotNull(generateResp);
             var key = generateResp.Result.ID;
@@ -637,12 +669,14 @@ namespace PangeaCyber.Net.Vault.Tests
         public async Task TestExport()
         {
             // Generate an exportable key.
-            var generateRequest = new AsymmetricGenerateRequest.Builder(
+            var generated = await client.AsymmetricGenerate(new AsymmetricGenerateRequest(
                 AsymmetricAlgorithm.ED25519,
                 KeyPurpose.Signing,
                 GetName()
-            ).WithExportable(true).Build();
-            var generated = await client.AsymmetricGenerate(generateRequest);
+            )
+            {
+                Exportable = true,
+            });
             var key = generated.Result.ID;
             Assert.NotNull(key);
 
@@ -650,34 +684,55 @@ namespace PangeaCyber.Net.Vault.Tests
             var keyPair = Crypto.GenerateRsaKeyPair(4096);
             var publicKey = Crypto.AsymmetricPemExport(keyPair.Public);
 
-            // Export it
+            // Export in plain text
+            var exportPlain = await client.Export(new ExportRequest(id: key));
+            Assert.Equal(key, exportPlain.Result.ID);
+            Assert.Equal(exportPlain.Result.EncryptionType, ExportEncryptionType.none.ToString());
+            var cipher = new OaepEncoding(new RsaEngine(), new Sha512Digest());
+            Assert.NotEmpty(exportPlain.Result.PublicKey);
+
+            // Export it encrypted asymmetric
             var actual = await client.Export(new ExportRequest(id: key)
             {
-                EncryptionAlgorithm = ExportEncryptionAlgorithm.RSA4096_OAEP_SHA512,
-                EncryptionKey = publicKey
+                AsymmetricAlgorithm = ExportEncryptionAlgorithm.RSA4096_OAEP_SHA512,
+                AsymmetricPublicKey = publicKey
             });
             Assert.Equal(key, actual.Result.ID);
-            Assert.True(actual.Result.Encrypted);
-            var decodedPublicKey = Base64UrlEncoder.DecodeBytes(actual.Result.PublicKey);
-            var cipher = new OaepEncoding(new RsaEngine(), new Sha512Digest());
-            Assert.Equal(
-                generated.Result.EncodedPublicKey,
-                Encoding.UTF8.GetString(Crypto.AsymmetricDecrypt(cipher, keyPair.Private, decodedPublicKey))
-            );
-            var decodedPrivateKey = Base64UrlEncoder.DecodeBytes(actual.Result.PrivateKey);
+            Assert.Equal(actual.Result.EncryptionType, ExportEncryptionType.asymmetric.ToString());
+            Assert.Equal(exportPlain.Result.PublicKey, actual.Result.PublicKey);
+
+            var encryptedPrivateKeyBytes = Convert.FromBase64String(actual.Result.PrivateKey);
             var decryptedPrivateKey = Encoding.UTF8.GetString(
-                Crypto.AsymmetricDecrypt(cipher, keyPair.Private, decodedPrivateKey)
+                Crypto.AsymmetricDecrypt(cipher, keyPair.Private, encryptedPrivateKeyBytes)
             );
+            Assert.Equal(exportPlain.Result.PrivateKey, decryptedPrivateKey);
+
+            // Export kem encrypted
+            var password = "mypassword";
+            actual = await client.Export(new ExportRequest(id: key)
+            {
+                AsymmetricAlgorithm = ExportEncryptionAlgorithm.RSA4096_NO_PADDING_KEM,
+                AsymmetricPublicKey = publicKey,
+                KEMPassword = password,
+            });
+            Assert.Equal(key, actual.Result.ID);
+            Assert.Equal(actual.Result.EncryptionType, ExportEncryptionType.kem.ToString());
+            Assert.Equal(exportPlain.Result.PublicKey, actual.Result.PublicKey);
+
+            decryptedPrivateKey = Crypto.KEMDecrypt(actual.Result, password, keyPair.Private);
+            Assert.Equal(exportPlain.Result.PrivateKey, decryptedPrivateKey);
 
             // Store it under a new name, again as exportable.
-            var storeRequest = new AsymmetricStoreRequest.Builder(
+            var stored = await client.AsymmetricStore(new AsymmetricStoreRequest(
                 decryptedPrivateKey,
-                generated.Result.EncodedPublicKey,
+                exportPlain.Result.PublicKey,
                 AsymmetricAlgorithm.ED25519,
                 KeyPurpose.Signing,
                 GetName()
-            ).WithExportable(true).Build();
-            var stored = await client.AsymmetricStore(storeRequest);
+            )
+            {
+                Exportable = true
+            });
             var storedKey = stored.Result.ID;
             Assert.NotNull(storedKey);
 
