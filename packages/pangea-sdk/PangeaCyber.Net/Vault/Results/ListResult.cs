@@ -11,12 +11,6 @@ namespace PangeaCyber.Net.Vault.Results
         public List<ListItemData> Items { get; set; } = default!;
 
         /// <summary>
-        /// Total number of items matching the given query
-        /// </summary>
-        [JsonProperty("count")]
-        public int Count { get; set; }
-
-        /// <summary>
         /// Internal ID returned in the previous look up response. Used for pagination.
         /// </summary>
         [JsonProperty("last")]

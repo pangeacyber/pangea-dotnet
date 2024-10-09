@@ -567,7 +567,7 @@ namespace PangeaCyber.Net.Vault.Tests
                 {
                     Filter = filter,
                 });
-                Assert.Equal(1, listResp.Result.Count);
+                Assert.Single(listResp.Result.Items);
                 Assert.Equal(folderID, listResp.Result.Items[0].ID);
                 Assert.Equal(FOLDER_NAME_NEW, listResp.Result.Items[0].Name);
 
