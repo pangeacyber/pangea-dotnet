@@ -206,6 +206,10 @@ namespace PangeaCyber.Net
         {
             var resPangea = await SimplePost(path, request);
             var response = await CheckResponse<AcceptedResult>(resPangea);
+            if (response.IsOK)
+            {
+                return response;
+            }
             return await PollPresignedURL(response);
         }
 
@@ -249,6 +253,10 @@ namespace PangeaCyber.Net
         private async Task<HttpResponseMessage> FullUploadPresignedURL(string path, BaseRequest request, FileData fileData)
         {
             var acceptedResponse = await RequestPresignedURL(path, request);
+            if (acceptedResponse.IsOK)
+            {
+                return acceptedResponse.HttpResponse;
+            }
 
             // UploadURL shouldn't be null here
             string url = acceptedResponse.Result.PostURL ?? "null upload url";
