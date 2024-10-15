@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 4.0.0 - 2024-10-15
+
 ### Added
 
 - Vault KEM export support.
@@ -22,11 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Detect-only Redact for Sanitize.
 - Support for `domains` field in `v2/user/breached` endpoint in User Intel service.
-- Vault KEM export support.
-
-### Changed
-
-- The minimum supported version of .NET Framework is now v4.6.2.
 
 ## 3.12.0 - 2024-09-25
 
