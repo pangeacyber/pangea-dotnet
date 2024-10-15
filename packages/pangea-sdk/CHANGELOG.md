@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Vault KEM export support.
+
+### Changed
+
+- Vault v2 APIs support.
+- The minimum supported version of .NET Framework is now v4.6.2.
+
 ## 3.13.0 - 2024-10-15
 
 ### Added
@@ -17,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Vault v2 APIs support.
+- The minimum supported version of .NET Framework is now v4.6.2.
 
 ## 3.12.0 - 2024-09-25
 
