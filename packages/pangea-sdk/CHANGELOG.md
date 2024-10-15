@@ -13,14 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Detect-only Redact for Sanitize.
 - Support for `domains` field in `v2/user/breached` endpoint in User Intel service.
+- Vault KEM export support.
+
+### Changed
+
+- Vault v2 APIs support.
 
 ## 3.12.0 - 2024-09-25
 
 ### Added
 
 - `ItemState` to `Vault.Requests.UpdateRequest`.
-- `attributes` field in `/list-resources` and `/list-subjects` endpoint
-- Sanitize service support
+- `attributes` field in `/list-resources` and `/list-subjects` endpoint.
+- Sanitize service support.
 
 ### Changed
 

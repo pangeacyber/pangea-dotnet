@@ -1,23 +1,7 @@
-using Newtonsoft.Json;
+using PangeaCyber.Net.Vault.Models;
 
 namespace PangeaCyber.Net.Vault.Results
 {
     ///
-    public class CommonGenerateResult
-    {
-        ///
-        [JsonProperty("type")]
-        public string Type { get; set; } = default!;
-
-        ///
-        [JsonProperty("id")]
-        public string ID { get; set; } = default!;
-
-        ///
-        [JsonProperty("version")]
-        public int Version { get; set; }
-
-        ///
-        public CommonGenerateResult() { }
-    }
+    public class CommonGenerateResult : ItemData { }
 }

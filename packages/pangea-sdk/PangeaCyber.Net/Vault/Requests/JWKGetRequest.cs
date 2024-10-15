@@ -5,48 +5,25 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class JWKGetRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The item ID
+        /// </summary>
         [JsonProperty("id")]
-        public string ID { get; private set; }
+        public string ID { get; set; }
 
-        ///
+        /// <summary>
+        /// The key version(s). all for all versions, num for a specific version, -num for the num latest versions
+        /// </summary>
         [JsonProperty("version")]
-        public string? Version { get; private set; }
+        public string? Version { get; set; }
 
-        ///
-        private JWKGetRequest(Builder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        public JWKGetRequest(string id)
         {
-            ID = builder.ID;
-            Version = builder.Version;
-        }
-
-        ///
-        public class Builder
-        {
-            ///
-            public string ID { get; private set; }
-
-            ///
-            public string? Version { get; private set; }
-
-            ///
-            public Builder(string id)
-            {
-                ID = id;
-            }
-
-            ///
-            public Builder WithVersion(string version)
-            {
-                Version = version;
-                return this;
-            }
-
-            ///
-            public JWKGetRequest Build()
-            {
-                return new JWKGetRequest(this);
-            }
+            ID = id;
         }
     }
 }

@@ -15,12 +15,16 @@ namespace PangeaCyber.Net.Vault.Requests
         public string? Version { get; set; }
 
         /// <summary>Public key in PEM format used to encrypt exported key(s).</summary>
-        [JsonProperty("encryption_key")]
-        public string? EncryptionKey { get; set; }
+        [JsonProperty("asymmetric_public_key")]
+        public string? AsymmetricPublicKey { get; set; }
 
         /// <summary>The algorithm of the public key.</summary>
-        [JsonProperty("encryption_algorithm")]
-        public ExportEncryptionAlgorithm? EncryptionAlgorithm { get; set; }
+        [JsonProperty("asymmetric_algorithm")]
+        public ExportEncryptionAlgorithm? AsymmetricAlgorithm { get; set; }
+
+        /// <summary>Password to derive symmetric key when kem exported.</summary>
+        [JsonProperty("kem_password")]
+        public string? KEMPassword { get; set; }
 
         /// <summary>Constructor</summary>
         public ExportRequest(string id)

@@ -1,17 +1,7 @@
-using Newtonsoft.Json;
+using PangeaCyber.Net.Vault.Models;
 
 namespace PangeaCyber.Net.Vault.Results
 {
     ///
-    public class FolderCreateResult
-    {
-        ///
-        [JsonProperty("id")]
-        public string ID { get; set; } = default!;
-
-        ///
-        public FolderCreateResult()
-        {
-        }
-    }
+    public class FolderCreateResult : ItemData { }
 }

@@ -3,42 +3,20 @@ using Newtonsoft.Json;
 namespace PangeaCyber.Net.Vault.Requests
 {
     ///
-    public class SecretRotateRequest : CommonRotateRequest<SecretRotateRequest.Builder>
+    public class SecretRotateRequest : CommonRotateRequest
     {
         ///
         [JsonProperty("secret")]
-        public string? Secret { get; private set; }
+        public string? Secret { get; set; }
+
+        /// <summary>
+        /// Grace period for the previous version of the secret
+        /// </summary>
+        [JsonProperty("rotation_grace_period")]
+        public string? RotationGracePeriod { get; set; }
 
         ///
-        protected SecretRotateRequest(Builder builder) : base(builder)
-        {
-            Secret = builder.Secret;
-        }
+        public SecretRotateRequest(string id) : base(id) { }
 
-        ///
-        public class Builder : CommonRotateRequest<Builder>.CommonBuilder
-        {
-            ///
-            public string? Secret { get; private set; }
-
-            ///
-            public Builder(string id, string secret) : base(id)
-            {
-                Secret = secret;
-            }
-
-            ///
-            public new SecretRotateRequest Build()
-            {
-                return new SecretRotateRequest(this);
-            }
-
-            ///
-            public Builder WithSecret(string secret)
-            {
-                Secret = secret;
-                return this;
-            }
-        }
     }
 }

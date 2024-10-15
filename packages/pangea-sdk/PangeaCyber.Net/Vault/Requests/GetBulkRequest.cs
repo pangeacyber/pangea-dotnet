@@ -4,7 +4,7 @@ using PangeaCyber.Net.Vault.Models;
 namespace PangeaCyber.Net.Vault.Requests
 {
     ///
-    public class ListRequest : BaseRequest
+    public class GetBulkRequest : BaseRequest
     {
         /// <summary>
         /// A set of filters to help you customize your search.
@@ -35,6 +35,5 @@ namespace PangeaCyber.Net.Vault.Requests
         /// </summary>
         [JsonProperty("order_by")]
         public ItemOrderBy? OrderBy { get; set; }
-
     }
 }
