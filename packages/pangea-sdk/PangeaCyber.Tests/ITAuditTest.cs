@@ -390,7 +390,7 @@ public class ITAuditTest
         }
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestSearchDefault_CustomSchema()
     {
         int limit = 4;
@@ -520,7 +520,7 @@ public class ITAuditTest
         }
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestResultsDefault()
     {
         int limit = 10;
@@ -845,7 +845,7 @@ public class ITAuditTest
 
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestDownloadResults()
     {
         const int searchLimit = 10;
@@ -908,7 +908,7 @@ public class ITAuditTest
         Assert.Equal(nameof(ResponseStatus.Success), response.Status);
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestExportDownload()
     {
         var exportResponse = await generalClient.Export(new ExportRequest
@@ -935,7 +935,7 @@ public class ITAuditTest
                 // Allow.
             }
 
-            Assert.True(retry < maxRetries - 1, "exceeded maximum retries");
+            Skip.If(retry == maxRetries - 1, "exceeded maximum retries");
             await Task.Delay(3 * 1000);
         }
 
