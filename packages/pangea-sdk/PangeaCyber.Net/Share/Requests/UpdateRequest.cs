@@ -12,9 +12,11 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("id")]
         public string ID { get; set; } = default!;
 
-        ///<summary>An alternative to ID for identifying the target file.</summary>
-        [JsonProperty("path")]
-        public string? Path { get; set; }
+        /// <summary>
+        /// Set the parent (folder). Leave blank for the root folder. Path must resolve to <c>parent_id</c> if also set.
+        /// </summary>
+        [JsonProperty("folder")]
+        public string? Folder { get; set; }
 
         ///<summary>A list of Metadata key/values to set in the object. If a provided key exists, the value will be replaced.</summary>
         [JsonProperty("add_metadata")]

@@ -13,12 +13,11 @@ namespace PangeaCyber.Net.AuthN.Clients
         ///
         public UserProfile(AuthNClient.Builder builder) : base(builder) { }
 
-        /// <kind>method</kind>
         /// <summary>Get user's information by email.</summary>
         /// <remarks>Get user - email</remarks>
         /// <operationid>authn_post_v2_user_profile_get 1</operationid>
-        /// <param name="email" type="string"></param>
-        /// <returns>Response&lt;UserProfileGetResult&gt;</returns>
+        /// <param name="email">An email address.</param>
+        /// <returns>User's profile.</returns>
         /// <example>
         /// <code>
         /// var response = await client.User.Profile.GetByEmail("joe.user@pangea.cloud");
@@ -26,16 +25,17 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// </example>
         public async Task<Response<UserProfileGetResult>> GetByEmail(string email)
         {
-            var request = new UserProfileGetRequest(email, null);
-            return await DoPost<UserProfileGetResult>("/v2/user/profile/get", request);
+            return await DoPost<UserProfileGetResult>(
+                "/v2/user/profile/get",
+                new UserProfileGetRequest { Email = email }
+            );
         }
 
-        /// <kind>method</kind>
         /// <summary>Get user's information by id.</summary>
         /// <remarks>Get user - id</remarks>
         /// <operationid>authn_post_v2_user_profile_get 2</operationid>
-        /// <param name="id" type="string"></param>
-        /// <returns>Response&lt;UserProfileGetResult&gt;</returns>
+        /// <param name="id">The identity of a user or a service.</param>
+        /// <returns>User's profile.</returns>
         /// <example>
         /// <code>
         /// var response = await client.User.Profile.GetByID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5");
@@ -43,28 +43,47 @@ namespace PangeaCyber.Net.AuthN.Clients
         /// </example>
         public async Task<Response<UserProfileGetResult>> GetByID(string id)
         {
-            var request = new UserProfileGetRequest(null, id);
-            return await DoPost<UserProfileGetResult>("/v2/user/profile/get", request);
+            return await DoPost<UserProfileGetResult>(
+                "/v2/user/profile/get",
+                new UserProfileGetRequest { ID = id }
+            );
         }
 
-        /// <kind>method</kind>
+        /// <summary>Get user's information by username.</summary>
+        /// <remarks>Get user - username</remarks>
+        /// <operationid>authn_post_v2_user_profile_get 3</operationid>
+        /// <param name="username">A username.</param>
+        /// <returns>User's profile.</returns>
+        /// <example>
+        /// <code>
+        /// var response = await client.User.Profile.GetByUsername("foobar");
+        /// </code>
+        /// </example>
+        public async Task<Response<UserProfileGetResult>> GetByUsername(string username)
+        {
+            return await DoPost<UserProfileGetResult>(
+                "/v2/user/profile/get",
+                new UserProfileGetRequest { Username = username }
+            );
+        }
+
         /// <summary>Update user's information by identity or email.</summary>
         /// <remarks>Update user</remarks>
         /// <operationid>authn_post_v2_user_profile_update</operationid>
-        /// <param name="request" type="PangeaCyber.Net.AuthN.Requests.UserProfileUpdateRequest"></param>
-        /// <returns>Response&lt;UserProfileUpdateResult&gt;</returns>
+        /// <param name="request">Request parameters.</param>
+        /// <returns>Updated user profile.</returns>
         /// <example>
         /// <code>
         /// Profile updatedProfile = new Profile()
         /// {
         ///     { "country", "Argentina" }
         /// };
-        /// 
+        ///
         /// var request = new UserProfileUpdateRequest
         ///     .Builder(updatedProfile)
         ///     .WithID("pui_xpkhwpnz2cmegsws737xbsqnmnuwtbm5")
         ///     .Build();
-        /// 
+        ///
         /// var response = await client.User.Profile.Update(request);
         /// </code>
         /// </example>
@@ -75,17 +94,17 @@ namespace PangeaCyber.Net.AuthN.Clients
 
         internal sealed class UserProfileGetRequest : BaseRequest
         {
+            /// <summary>An email address.</summary>
             [JsonProperty("email")]
-            public string? Email { get; private set; }
+            public string? Email { get; set; }
 
+            /// <summary>The identity of a user or a service.</summary>
             [JsonProperty("id")]
-            public string? ID { get; private set; }
+            public string? ID { get; set; }
 
-            public UserProfileGetRequest(string? email, string? id)
-            {
-                Email = email;
-                ID = id;
-            }
+            /// <summary>A username.</summary>
+            [JsonProperty("username")]
+            public string? Username { get; set; }
         }
     }
 }

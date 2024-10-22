@@ -28,9 +28,12 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("parent_id")]
         public string? ParentId { get; set; }
 
-        ///<summary>An optional path where the file should be placed. It will auto-create directories if necessary.</summary>
-        [JsonProperty("path")]
-        public string? Path { get; set; }
+        ///<summary>
+        ///The path to the parent folder. Leave blank for the root folder. Path must resolve to <c>parent_id</c> if also
+        ///set.
+        ///</summary>
+        [JsonProperty("folder")]
+        public string? Folder { get; set; }
 
         ///<summary>An optional password to protect the file with. Downloading the file will require this password.</summary>
         [JsonProperty("password")]

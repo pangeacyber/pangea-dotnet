@@ -5,57 +5,33 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class SignRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The ID of the item
+        /// </summary>
         [JsonProperty("id")]
-        public string ID { get; private set; }
+        public string ID { get; set; }
 
-        ///
+        /// <summary>
+        /// The message to be signed
+        /// </summary>
         [JsonProperty("message")]
-        public string Message { get; private set; }
+        public string Message { get; set; }
 
-        ///
+        /// <summary>
+        /// The item version
+        /// </summary>
         [JsonProperty("version")]
-        public int? Version { get; private set; }
+        public int? Version { get; set; }
 
-        ///
-        private SignRequest(Builder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">The ID of the item</param>
+        /// <param name="message">The message to be signed</param>
+        public SignRequest(string id, string message)
         {
-            ID = builder.ID;
-            Message = builder.Message;
-            Version = builder.Version;
-        }
-
-        ///
-        public class Builder
-        {
-            ///
-            public string ID { get; private set; }
-
-            ///
-            public string Message { get; private set; }
-
-            ///
-            public int? Version { get; private set; }
-
-            ///
-            public Builder(string id, string message)
-            {
-                ID = id;
-                Message = message;
-            }
-
-            ///
-            public Builder WithVersion(int? version)
-            {
-                Version = version;
-                return this;
-            }
-
-            ///
-            public SignRequest Build()
-            {
-                return new SignRequest(this);
-            }
+            ID = id;
+            Message = message;
         }
     }
 }

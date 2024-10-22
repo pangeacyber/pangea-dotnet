@@ -1,8 +1,9 @@
-using System.Text;
-using Newtonsoft.Json;
-using HttpMultipartParser;
+using System.Globalization;
 using System.Net.Http;
-
+using System.Text;
+using HttpMultipartParser;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using PangeaCyber.Net.Exceptions;
 using System.Net.Http.Headers;
 
@@ -36,6 +37,22 @@ namespace PangeaCyber.Net
 
         ///
         private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
+
+        /// <summary>JSON serialization settings.</summary>
+        private static readonly JsonSerializerSettings JsonSerializeSettings = new()
+        {
+            Converters = new JsonConverter[] {
+                new IsoDateTimeConverter
+                {
+                    Culture = CultureInfo.InvariantCulture,
+                    DateTimeStyles = DateTimeStyles.AdjustToUniversal,
+                    DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+                }
+            },
+            DateParseHandling = DateParseHandling.None,
+            DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+            NullValueHandling = NullValueHandling.Ignore,
+        };
 
         /// <summary>Client builder.</summary>
         public class ClientBuilder
@@ -108,8 +125,7 @@ namespace PangeaCyber.Net
         {
             try
             {
-                var jsonSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-                return JsonConvert.SerializeObject(request, Formatting.Indented, jsonSettings);
+                return JsonConvert.SerializeObject(request, Formatting.Indented, JsonSerializeSettings);
             }
             catch (Exception e)
             {
@@ -201,9 +217,9 @@ namespace PangeaCyber.Net
         ///
         protected async Task UploadPresignedURL(string url, TransferMethod transferMethod, FileData fileData)
         {
-            HttpResponseMessage resPSurl;
             try
             {
+                HttpResponseMessage resPSurl;
                 if (transferMethod == TransferMethod.PutURL)
                 {
                     resPSurl = await GeneralHttpClient.PutAsync(url, new StreamContent(fileData.File));
@@ -219,29 +235,19 @@ namespace PangeaCyber.Net
                             formData.Add(new StringContent(pair.Value, null, "application/json"), pair.Key);
                         }
                     }
-
-                    var fileStream = new StreamContent(fileData.File);
-                    fileStream.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
-                    {
-                        Name = "file",
-                        FileName = "filename;"
-                    };
-                    // It seems to be a bug in MultipartFormDataContent.Add() that does not allow to add a StreamContent with name and filename.
-                    // When trying to do it, it also add additional stuff that break the request.
-                    // The key is to set Name and FileName manually like above. But that's not enough, it's also necessary to add ";" at
-                    // the end of "FileName" value, any other case you'll get "Malformed multipart body." as a response from GCP Storage.
-                    formData.Add(fileStream);
+                    var fileContent = new StreamContent(fileData.File);
+                    formData.Add(fileContent, "file");
                     resPSurl = await GeneralHttpClient.PostAsync(url, formData);
+                }
+
+                if (resPSurl.StatusCode < System.Net.HttpStatusCode.OK || resPSurl.StatusCode >= System.Net.HttpStatusCode.Ambiguous)
+                {
+                    throw new PresignedURLException("Failed upload to presigned URL", null, await resPSurl.Content.ReadAsStringAsync());
                 }
             }
             catch (Exception e)
             {
                 throw new PresignedURLException("Failed upload to presigned URL", e, null);
-            }
-
-            if (resPSurl.StatusCode < System.Net.HttpStatusCode.OK || resPSurl.StatusCode >= System.Net.HttpStatusCode.Ambiguous)
-            {
-                throw new PresignedURLException("Failed upload to presigned URL", null, await resPSurl.Content.ReadAsStringAsync());
             }
         }
 
@@ -436,13 +442,12 @@ namespace PangeaCyber.Net
             long start = DateTimeOffset.Now.ToUnixTimeSeconds();
             long delay;
 
-            var jsonSettings = GetJsonSerializerSettings();
             string body = await response.Content.ReadAsStringAsync();
             ResponseHeader header;
 
             try
             {
-                header = JsonConvert.DeserializeObject<ResponseHeader>(body, jsonSettings) ?? default!;
+                header = JsonConvert.DeserializeObject<ResponseHeader>(body, JsonSerializeSettings) ?? default!;
             }
             catch (Exception e)
             {
@@ -475,16 +480,11 @@ namespace PangeaCyber.Net
             return response;
         }
 
-        private JsonSerializerSettings GetJsonSerializerSettings()
-        {
-            return new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, DateParseHandling = DateParseHandling.None, DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK" };
-        }
-
         private ResponseHeader ParseHeader(string body)
         {
             try
             {
-                return JsonConvert.DeserializeObject<ResponseHeader>(body, GetJsonSerializerSettings()) ?? default!;
+                return JsonConvert.DeserializeObject<ResponseHeader>(body, JsonSerializeSettings) ?? default!;
             }
             catch (Exception e)
             {
@@ -501,7 +501,7 @@ namespace PangeaCyber.Net
             Response<TResult> resultResponse;
             try
             {
-                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(res.Body, GetJsonSerializerSettings()) ?? default!;
+                resultResponse = JsonConvert.DeserializeObject<Response<TResult>>(res.Body, JsonSerializeSettings) ?? default!;
             }
             catch (Exception e)
             {
@@ -520,7 +520,7 @@ namespace PangeaCyber.Net
         {
             try
             {
-                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(res.Body, GetJsonSerializerSettings()) ?? default!;
+                var response = JsonConvert.DeserializeObject<Response<PangeaErrors>>(res.Body, JsonSerializeSettings) ?? default!;
                 response.HttpResponse = res.HttpResponseMessage;
                 response.AttachedFiles = res.AttachedFiles;
                 return response;

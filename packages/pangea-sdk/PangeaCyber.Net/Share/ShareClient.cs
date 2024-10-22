@@ -26,12 +26,9 @@ namespace PangeaCyber.Net.Share
             ConfigID = builder.ConfigID ?? ConfigID;
         }
 
-        /// <summary>
-        /// Get information on the accessible buckets.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Buckets (Beta)</remarks>
-        /// <operationid>share_post_v1beta_buckets</operationid>
+        /// <summary>Get information on the accessible buckets.</summary>
+        /// <remarks>Buckets</remarks>
+        /// <operationid>share_post_v1_buckets</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -41,16 +38,14 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<BucketsResult>> Buckets()
         {
-            return await DoPost<BucketsResult>("/v1beta/buckets", new BaseRequest());
+            return await DoPost<BucketsResult>("/v1/buckets", new BaseRequest());
         }
 
         /// <summary>
-        /// Delete object by ID or path. If both are supplied, the path must match that of the object represented by
-        /// the ID.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
+        /// Delete object by ID.
         /// </summary>
-        /// <remarks>Delete (Beta)</remarks>
-        /// <operationid>share_post_v1beta_delete</operationid>
+        /// <remarks>Delete</remarks>
+        /// <operationid>share_post_v1_delete</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -63,15 +58,14 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<DeleteResult>> Delete(DeleteRequest request)
         {
-            return await DoPost<DeleteResult>("/v1beta/delete", request);
+            return await DoPost<DeleteResult>("/v1/delete", request);
         }
 
         /// <summary>
         /// Create a folder, either by name or path and parent_id.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Create a folder (Beta)</remarks>
-        /// <operationid>share_post_v1beta_folder_create</operationid>
+        /// <remarks>Create a folder</remarks>
+        /// <operationid>share_post_v1_folder_create</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -79,23 +73,21 @@ namespace PangeaCyber.Net.Share
         /// var response = await client.FolderCreate(
         ///     new FolderCreateRequest
         ///     {
-        ///         Path = "/path/to/new/folder"
+        ///         Folder = "/path/to/new/folder"
         ///     }
         /// );
         /// </code>
         /// </example>
         public async Task<Response<FolderCreateResult>> FolderCreate(FolderCreateRequest request)
         {
-            return await DoPost<FolderCreateResult>("/v1beta/folder/create", request);
+            return await DoPost<FolderCreateResult>("/v1/folder/create", request);
         }
 
         /// <summary>
-        /// Get object. If both ID and path are supplied, the call will fail if the target object doesn't match both
-        /// properties.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
+        /// Get object.
         /// </summary>
-        /// <remarks>Get an object (Beta)</remarks>
-        /// <operationid>share_post_v1beta_folder_create</operationid>
+        /// <remarks>Get an object</remarks>
+        /// <operationid>share_post_v1_folder_create</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -111,15 +103,14 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<GetResult>> Get(GetRequest request)
         {
-            return await DoPost<GetResult>("/v1beta/get", request);
+            return await DoPost<GetResult>("/v1/get", request);
         }
 
         /// <summary>
         /// Get an archive file of multiple objects.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Get archive (Beta)</remarks>
-        /// <operationid>share_post_v1beta_get_archive</operationid>
+        /// <remarks>Get archive</remarks>
+        /// <operationid>share_post_v1_get_archive</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -136,15 +127,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<GetArchiveResult>> GetArchive(GetArchiveRequest request)
         {
-            return await DoPost<GetArchiveResult>("/v1beta/get_archive", request);
+            return await DoPost<GetArchiveResult>("/v1/get_archive", request);
         }
 
-        /// <summary>
-        /// Update a file.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Update a file (Beta)</remarks>
-        /// <operationid>share_post_v1beta_update</operationid>
+        /// <summary>Update a file.</summary>
+        /// <remarks>Update a file</remarks>
+        /// <operationid>share_post_v1_update</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -163,15 +151,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<UpdateResult>> Update(UpdateRequest request)
         {
-            return await DoPost<UpdateResult>("/v1beta/update", request);
+            return await DoPost<UpdateResult>("/v1/update", request);
         }
 
-        /// <summary>
-        /// List or filter/search records.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>List (Beta)</remarks>
-        /// <operationid>share_post_v1beta_list</operationid>
+        /// <summary>List or filter/search records.</summary>
+        /// <remarks>List</remarks>
+        /// <operationid>share_post_v1_list</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -181,15 +166,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<ListResult>> List(ListRequest request)
         {
-            return await DoPost<ListResult>("/v1beta/list", request);
+            return await DoPost<ListResult>("/v1/list", request);
         }
 
-        /// <summary>
-        /// Upload a file.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Upload a file (Beta)</remarks>
-        /// <operationid>share_post_v1beta_put</operationid>
+        /// <summary>Upload a file.</summary>
+        /// <remarks>Upload a file</remarks>
+        /// <operationid>share_post_v1_put</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -221,15 +203,12 @@ namespace PangeaCyber.Net.Share
             }
 
             var fileData = new FileData(file, name);
-            return await DoPost<PutResult>("/v1beta/put", request, new PostConfig.Builder().WithFileData(fileData).Build());
+            return await DoPost<PutResult>("/v1/put", request, new PostConfig.Builder().WithFileData(fileData).Build());
         }
 
-        /// <summary>
-        /// Request an upload URL.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Request upload URL (Beta)</remarks>
-        /// <operationid>share_post_v1beta_put 2</operationid>
+        /// <summary>Request an upload URL.</summary>
+        /// <remarks>Request upload URL</remarks>
+        /// <operationid>share_post_v1_put 2</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -253,15 +232,12 @@ namespace PangeaCyber.Net.Share
             }
 
             // TODO: Check additional params
-            return await RequestPresignedURL("/v1beta/put", request);
+            return await RequestPresignedURL("/v1/put", request);
         }
 
-        /// <summary>
-        /// Create a share link.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Create share links (Beta)</remarks>
-        /// <operationid>share_post_v1beta_share_link_create</operationid>
+        /// <summary>Create a share link.</summary>
+        /// <remarks>Create share links</remarks>
+        /// <operationid>share_post_v1_share_link_create</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -291,15 +267,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<ShareLinkCreateResult>> ShareLinkCreate(ShareLinkCreateRequest request)
         {
-            return await DoPost<ShareLinkCreateResult>("/v1beta/share/link/create", request);
+            return await DoPost<ShareLinkCreateResult>("/v1/share/link/create", request);
         }
 
-        /// <summary>
-        /// Get a share link.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Get share link (Beta)</remarks>
-        /// <operationid>share_post_v1beta_share_link_get</operationid>
+        /// <summary>Get a share link.</summary>
+        /// <remarks>Get share link</remarks>
+        /// <operationid>share_post_v1_share_link_get</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -314,15 +287,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<ShareLinkGetResult>> ShareLinkGet(ShareLinkGetRequest request)
         {
-            return await DoPost<ShareLinkGetResult>("/v1beta/share/link/get", request);
+            return await DoPost<ShareLinkGetResult>("/v1/share/link/get", request);
         }
 
-        /// <summary>
-        /// Look up share links by filter options.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>List share links (Beta)</remarks>
-        /// <operationid>share_post_v1beta_share_link_list</operationid>
+        /// <summary>Look up share links by filter options.</summary>
+        /// <remarks>List share links</remarks>
+        /// <operationid>share_post_v1_share_link_list</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -332,15 +302,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<ShareLinkListResult>> ShareLinkList(ShareLinkListRequest request)
         {
-            return await DoPost<ShareLinkListResult>("/v1beta/share/link/list", request);
+            return await DoPost<ShareLinkListResult>("/v1/share/link/list", request);
         }
 
-        /// <summary>
-        /// Delete share links.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Delete share links (Beta)</remarks>
-        /// <operationid>share_post_v1beta_share_link_delete</operationid>
+        /// <summary>Delete share links.</summary>
+        /// <remarks>Delete share links</remarks>
+        /// <operationid>share_post_v1_share_link_delete</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -355,15 +322,12 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<ShareLinkDeleteResult>> ShareLinkDelete(ShareLinkDeleteRequest request)
         {
-            return await DoPost<ShareLinkDeleteResult>("/v1beta/share/link/delete", request);
+            return await DoPost<ShareLinkDeleteResult>("/v1/share/link/delete", request);
         }
 
-        /// <summary>
-        /// Send share links.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
-        /// </summary>
-        /// <remarks>Send share links (Beta)</remarks>
-        /// <operationid>share_post_v1beta_share_link_send</operationid>
+        /// <summary>Send share links.</summary>
+        /// <remarks>Send share links</remarks>
+        /// <operationid>share_post_v1_share_link_send</operationid>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
@@ -378,7 +342,7 @@ namespace PangeaCyber.Net.Share
         /// </example>
         public async Task<Response<ShareLinkSendResult>> ShareLinkSend(ShareLinkSendRequest request)
         {
-            return await DoPost<ShareLinkSendResult>("/v1beta/share/link/send", request);
+            return await DoPost<ShareLinkSendResult>("/v1/share/link/send", request);
         }
 
         /// <summary><see cref="ShareClient"/> builder.</summary>

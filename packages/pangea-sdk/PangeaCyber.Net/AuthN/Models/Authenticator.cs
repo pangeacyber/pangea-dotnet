@@ -2,50 +2,58 @@ using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.AuthN.Models
 {
-    /// <summary>
-    ///
-    /// </summary>
-    public class Authenticator
+    /// <summary>Authenticator.</summary>
+    public sealed class Authenticator
     {
-        /// <summary>
-        /// Gets or sets the id property.
-        /// </summary>
+        /// <summary>An ID for an authenticator.</summary>
         [JsonProperty("id")]
-        public string Id { get; private set; } = default!;
+        public string Id { get; set; } = default!;
 
-        /// <summary>
-        /// Gets or sets the type property.
-        /// </summary>
+        /// <summary>An authentication mechanism.</summary>
         [JsonProperty("type")]
-        public string Type { get; private set; } = default!;
+        public string Type { get; set; } = default!;
 
-        /// <summary>
-        /// Gets or sets the enable property.
-        /// </summary>
-        [JsonProperty("enable")]
-        public bool Enable { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the provider property.
-        /// </summary>
+        /// <summary>Provider.</summary>
         [JsonProperty("provider")]
-        public string? Provider { get; private set; }
+        public string? Provider { get; set; }
 
-        /// <summary>
-        /// Gets or sets the rpid property.
-        /// </summary>
+        /// <summary>Provider name.</summary>
+        [JsonProperty("provider_name")]
+        public string? ProviderName { get; set; }
+
+        /// <summary>RPID.</summary>
         [JsonProperty("rpid")]
-        public string? Rpid { get; private set; }
+        public string? Rpid { get; set; }
 
-        /// <summary>
-        /// Gets or sets the phase property.
-        /// </summary>
+        /// <summary>Enabled.</summary>
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; } = default!;
+
+        /// <summary>Phase.</summary>
         [JsonProperty("phase")]
-        public string? Phase { get; private set; }
+        public string? Phase { get; set; }
 
-        /// <summary>
-        /// Default constructor for <see cref="Authenticator"/>.
-        /// </summary>
+        /// <summary>Enrolling browser.</summary>
+        [JsonProperty("enrolling_browser")]
+        public string? EnrollingBrowser { get; set; }
+
+        /// <summary>Enrolling IP.</summary>
+        [JsonProperty("enrolling_ip")]
+        public string? EnrollingIp { get; set; }
+
+        /// <summary>A time in ISO-8601 format.</summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; } = default!;
+
+        /// <summary>A time in ISO-8601 format.</summary>
+        [JsonProperty("updated_at")]
+        public string UpdatedAt { get; set; } = default!;
+
+        /// <summary>State.</summary>
+        [JsonProperty("state")]
+        public string? State { get; set; }
+
+        /// <summary>Default constructor for <see cref="Authenticator"/>.</summary>
         public Authenticator() { }
     }
 }

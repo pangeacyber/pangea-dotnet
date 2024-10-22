@@ -16,7 +16,7 @@ var folder = $"/sdk_examples/{time}";
 // Create a folder.
 var folderCreateResponse = await client.FolderCreate(new FolderCreateRequest
 {
-    Path = folder
+    Folder = folder
 });
 var folderId = folderCreateResponse.Result.Object.ID;
 Console.WriteLine($"Created folder with ID '{folderId}'.");

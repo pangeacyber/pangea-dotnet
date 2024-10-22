@@ -8,9 +8,7 @@ namespace PangeaCyber.Net.AuthN.Results
     /// </summary>
     public class UserAuthenticatorsListResult
     {
-        /// <summary>
-        /// Gets or sets the authenticators property.
-        /// </summary>
+        /// <summary>A list of authenticators.</summary>
         [JsonProperty("authenticators")]
         public Authenticator[] Authenticators { get; private set; } = default!;
 

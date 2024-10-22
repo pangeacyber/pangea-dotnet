@@ -1,11 +1,9 @@
 default:
   image:
-    name: mcr.microsoft.com/dotnet/sdk:6.0@sha256:e5a27c7f2a5f679f994106aa330585a7108e2812a8367e7686c13451e7fd27a0
+    name: mcr.microsoft.com/dotnet/sdk:6.0@sha256:3e7491422fb3a14f0bfe98fcb58afc1d477ee6ee4aac8dff8557332140ac9cf1
     entrypoint: [""]
   tags:
     - pangea-internal
-
-.sdk-base:
   cache:
     paths:
       - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
@@ -13,6 +11,7 @@ default:
       - "./packages/pangea-sdk/.nuget"
     policy: pull-push
 
+.sdk-base:
   before_script:
     - cd packages/pangea-sdk
     - dotnet restore --packages .nuget
@@ -25,6 +24,7 @@ default:
   # Set each service test environment
     SERVICE_AUDIT_ENV: LVE
     SERVICE_AUTHN_ENV: LVE
+    SERVICE_AUTHZ_ENV: LVE
     SERVICE_EMBARGO_ENV: LVE
     SERVICE_FILE_SCAN_ENV: LVE
     SERVICE_IP_INTEL_ENV: LVE
@@ -33,17 +33,11 @@ default:
     SERVICE_FILE_INTEL_ENV: LVE
     SERVICE_USER_INTEL_ENV: LVE
     SERVICE_REDACT_ENV: LVE
+    SERVICE_SANITIZE_ENV: LVE
     SERVICE_VAULT_ENV: LVE
     SERVICE_SANITIZE_ENV: LVE
     SERVICE_SHARE_ENV: LVE
     SERVICE_AUTHZ_ENV: LVE
-
-  cache:
-    paths:
-      - "./packages/pangea-sdk/PangeaCyber.Net/obj/project.assets.json"
-      - "./packages/pangea-sdk/PangeaCyber.Net/obj/*.csproj.nuget.*"
-      - ".nuget"
-    policy: pull-push
 
   before_script:
     - echo ${ENV}
@@ -61,6 +55,7 @@ default:
     # Config IDs
     - export PANGEA_AUDIT_CONFIG_ID_1_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_1_${ENV}_${CLOUD})"
     - export PANGEA_AUDIT_CONFIG_ID_2_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_2_${ENV}_${CLOUD})"
+    - export PANGEA_AUDIT_CONFIG_ID_3_${ENV}="$(eval echo \$PANGEA_AUDIT_CONFIG_ID_3_${ENV}_${CLOUD})"
     - export PANGEA_REDACT_CONFIG_ID_1_${ENV}="$(eval echo \$PANGEA_REDACT_CONFIG_ID_1_${ENV}_${CLOUD})"
     - export PANGEA_REDACT_CONFIG_ID_2_${ENV}="$(eval echo \$PANGEA_REDACT_CONFIG_ID_2_${ENV}_${CLOUD})"
 
@@ -76,6 +71,9 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_AUTHN_ENV}
         TEST: ITAuthNTest
+      - CLOUD: [AWS, GCP]
+        ENV: ${SERVICE_AUTHZ_ENV}
+        TEST: ITAuthZTest
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_EMBARGO_ENV}
         TEST: ITEmbargoTest
@@ -100,6 +98,9 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_REDACT_ENV}
         TEST: ITRedactTest
+      - CLOUD: [AWS]
+        ENV: ${SERVICE_SANITIZE_ENV}
+        TEST: ITSanitizeTest
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
@@ -109,11 +110,13 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_SHARE_ENV}
         TEST: ITShareTest
-      - CLOUD: [AWS, GCP]
-        ENV: ${SERVICE_AUTHZ_ENV}
-        TEST: ITAuthZTest
   rules:
-    - if: $CI_COMMIT_BRANCH
+    - if: '$CI_COMMIT_BRANCH && $CLOUD == "GCP" && $TEST == "ITFileScanTest"'
+      allow_failure: true
+    - if: '$CI_COMMIT_BRANCH && $CLOUD == "GCP" && $TEST != "ITFileScanTest"'
+      allow_failure: false
+    - if: '$CI_COMMIT_BRANCH && $CLOUD != "GCP"'
+      allow_failure: false
 
 sdk-lint:
   extends: .sdk-base

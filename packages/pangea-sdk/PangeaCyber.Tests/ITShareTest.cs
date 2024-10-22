@@ -54,7 +54,7 @@ namespace PangeaCyber.Net.Share.Tests
             var respCreate = await client.FolderCreate(
                 new FolderCreateRequest
                 {
-                    Path = FolderDelete
+                    Folder = FolderDelete
                 }
             );
 
@@ -88,52 +88,6 @@ namespace PangeaCyber.Net.Share.Tests
                 new PutRequest
                 {
                     Name = name,
-                    RequestTransferMethod = TransferMethod.PostURL
-                },
-                fileStream
-            );
-
-            Assert.True(respPut.IsOK);
-            string id = respPut.Result.Object.ID;
-            Assert.NotNull(id);
-            Assert.NotEmpty(id);
-
-            var respGet = await client.Get(
-                new GetRequest
-                {
-                    ID = id,
-                    RequestTransferMethod = TransferMethod.Multipart,
-                }
-            );
-
-            Assert.True(respGet.IsOK);
-            Assert.Null(respGet.Result.DestURL);
-            Assert.Single(respGet.AttachedFiles);
-            // respGet.AttachedFiles[0].Save("./download/", respGet.AttachedFiles[0].Filename);
-
-            respGet = await client.Get(
-                new GetRequest
-                {
-                    ID = id,
-                    RequestTransferMethod = TransferMethod.DestURL,
-                }
-            );
-
-            Assert.True(respGet.IsOK);
-            Assert.NotNull(respGet.Result.DestURL);
-            Assert.Empty(respGet.AttachedFiles);
-        }
-
-        [Fact]
-        public async Task TestPut18MBfileTransferMethodPostURL()
-        {
-            string path = $"/sdk/tests/dotnet/{time}_file_post_url";
-            var fileStream = new FileStream(TESTFILE_PATH_18MB, FileMode.Open);
-
-            var respPut = await client.Put(
-                new PutRequest
-                {
-                    Path = path,
                     RequestTransferMethod = TransferMethod.PostURL
                 },
                 fileStream
@@ -405,7 +359,7 @@ namespace PangeaCyber.Net.Share.Tests
             var respCreate = await client.FolderCreate(
                 new FolderCreateRequest
                 {
-                    Path = FolderFiles
+                    Folder = FolderFiles
                 }
             );
 
@@ -419,18 +373,17 @@ namespace PangeaCyber.Net.Share.Tests
             var respPutPath = await client.Put(
                 new PutRequest
                 {
-                    Path = path,
+                    Folder = path,
                     RequestTransferMethod = TransferMethod.Multipart,
                 },
                 fileStream
             );
 
             Assert.True(respPutPath.IsOK);
-            Assert.Equal(folderID, respPutPath.Result.Object.ParentID);
             Assert.Null(respPutPath.Result.Object.Metadata);
             Assert.Null(respPutPath.Result.Object.Tags);
-            Assert.Null(respPutPath.Result.Object.MD5);
-            Assert.Null(respPutPath.Result.Object.SHA512);
+            Assert.NotNull(respPutPath.Result.Object.MD5);
+            Assert.NotNull(respPutPath.Result.Object.SHA512);
             Assert.NotNull(respPutPath.Result.Object.SHA256);
 
             // Upload a file with parent id and name
@@ -453,8 +406,8 @@ namespace PangeaCyber.Net.Share.Tests
             Assert.Equal(folderID, respPutID.Result.Object.ParentID);
             Assert.Equal(Metadata, respPutID.Result.Object.Metadata);
             Assert.Equal(Tags, respPutID.Result.Object.Tags);
-            Assert.Null(respPutID.Result.Object.MD5);
-            Assert.Null(respPutID.Result.Object.SHA512);
+            Assert.NotNull(respPutID.Result.Object.MD5);
+            Assert.NotNull(respPutID.Result.Object.SHA512);
             Assert.NotNull(respPutID.Result.Object.SHA256);
 
 

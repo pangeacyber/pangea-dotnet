@@ -1,9 +1,9 @@
+using PangeaCyber.Net;
 using PangeaCyber.Net.AuthN;
 using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
 using PangeaCyber.Net.AuthN.Results;
 using PangeaCyber.Net.Exceptions;
-using PangeaCyber.Net;
 
 namespace PangeaCyber.Tests;
 
@@ -40,8 +40,12 @@ public class ITAuthNTest
     private static readonly string passwordOld = "My1s+Password";
     private static readonly string passwordNew = "My1s+Password_new";
     private static readonly string cbURI = "https://someurl.com/callbacklink";
-    private static readonly Profile profileOld = new Profile("Name", "User");
-    private static readonly Profile profileNew = new Profile
+    private static readonly Profile profileOld = new()
+    {
+        { "first_name", "Name" },
+        { "last_name", "User" }
+    };
+    private static readonly Profile profileNew = new()
     {
         { "first_name", "NameUpdated" }
     };
@@ -54,7 +58,7 @@ public class ITAuthNTest
     }
 
     [Fact]
-    public async void TestCycle()
+    public async Task TestCycle()
     {
         await TestA_UserActions(client);
         await TestB_ClientSessionList_n_Invalidate(client);
@@ -68,7 +72,6 @@ public class ITAuthNTest
     {
         var data = new FlowRestartData.Builder().Build();
     }
-
 
     [Fact]
     public async Task TestAgreementsCycleEULA()
@@ -371,7 +374,7 @@ public class ITAuthNTest
         catch (PangeaAPIException e)
         {
             Console.WriteLine(e.ToString());
-            Assert.True(false);
+            throw;
         }
     }
 
@@ -409,7 +412,7 @@ public class ITAuthNTest
         catch (PangeaAPIException e)
         {
             Console.WriteLine(e.ToString());
-            Assert.True(false);
+            throw;
         }
     }
 
@@ -443,6 +446,10 @@ public class ITAuthNTest
                     Console.WriteLine(e.ToString());
                 }
             }
+
+            // Expire password
+            var expirePasswordResponse = await client.Client.Password.Expire(userID);
+            Assert.True(expirePasswordResponse.IsOK, "password expiration was unsuccessful");
         }
         catch (PangeaAPIException e)
         {

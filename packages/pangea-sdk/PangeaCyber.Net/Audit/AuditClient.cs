@@ -504,7 +504,81 @@ namespace PangeaCyber.Net.Audit
             CancellationToken cancellationToken = default
         )
         {
+            if (string.IsNullOrWhiteSpace(request.RequestID) && string.IsNullOrWhiteSpace(request.ResultID))
+            {
+                throw new ArgumentException("must pass a request ID or a result ID");
+            }
+
             return await DoPost<DownloadResult>("/v1/download_results", request, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>
+        /// This API allows 3rd party vendors (like Auth0) to stream events to this endpoint where the structure of the
+        /// payload varies across different vendors.
+        /// </summary>
+        /// <remarks>Log streaming endpoint</remarks>
+        /// <operationid>audit_post_v1_log_stream</operationid>
+        /// <param name="data">Event data. The exact schema of this will vary by vendor.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A Pangea response.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// // Extend `BaseRequest` and model what the streaming data looks like.
+        /// private sealed class LogStreamRequest : BaseRequest
+        /// {
+        ///     [JsonProperty("logs")]
+        ///     public IEnumerable&lt;LogStreamEvent&gt; Logs { get; set; } = Enumerable.Empty&lt;LogStreamEvent&gt;();
+        /// }
+        ///
+        /// // Then later on, log it like so:
+        /// var input = new LogStreamRequest { /* ... */ };
+        /// var response = await client.LogStream(input);
+        /// </code>
+        /// </example>
+        public async Task<Response<object>> LogStream(
+            BaseRequest data,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<object>("/v1/log_stream", data, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>Bulk export of data from the Secure Audit Log, with optional filtering.</summary>
+        /// <remarks>Export from the audit log</remarks>
+        /// <operationid>audit_post_v1_export</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        /// <example>
+        /// <code>
+        /// var response = await client.Export(new ExportRequest
+        /// {
+        ///     End = DateTimeOffset.Now,
+        ///     Verbose = false,
+        /// });
+        /// </code>
+        /// </example>
+        public async Task<Response<object>> Export(
+            ExportRequest request,
+            CancellationToken cancellationToken = default
+        )
+        {
+            try
+            {
+                return await DoPost<object>(
+                    "/v1/export",
+                    request,
+                    new PostConfig.Builder().WithPollResult(false).Build(),
+                    cancellationToken: cancellationToken
+                );
+            }
+            catch (AcceptedRequestException error)
+            {
+                return new Response<object>(error.Response, error.AcceptedResult);
+            }
         }
 
         /// <summary><see cref="AuditClient"/> builder.</summary>

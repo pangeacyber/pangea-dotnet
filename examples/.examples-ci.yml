@@ -55,6 +55,7 @@ examples:
           - Share/MetadataTagsArchive
           - Vault/Encrypt
           - Vault/EncryptStructured
+          - Vault/EncryptTransform
           - Vault/Rotate
           - Vault/Sign
   image: mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}

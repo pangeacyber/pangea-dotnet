@@ -5,7 +5,7 @@ using PangeaCyber.Net.Exceptions;
 namespace PangeaCyber.Net.AuthZ
 {
     /// <summary>AuthZ client.</summary>
-    /// <remarks>AuthZ (Beta)</remarks>
+    /// <remarks>AuthZ</remarks>
     /// <example>
     /// <code>
     /// var config = new Config("pangea_token", "pangea_domain");
@@ -25,9 +25,8 @@ namespace PangeaCyber.Net.AuthZ
         /// <summary>
         /// Create tuples in the AuthZ Service. The request will fail if there is no schema or the tuples do not
         /// validate against the schema.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Create tuples. (Beta)</remarks>
+        /// <remarks>Create tuples.</remarks>
         /// <operationid>authz_post_v1_tuple_create</operationid>
         /// <param name="request">The request to the '/tuple/create' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -56,9 +55,8 @@ namespace PangeaCyber.Net.AuthZ
         /// <summary>
         /// Return a paginated list of filtered tuples. The filter is given in terms of a tuple. Fill out the fields
         /// that you want to filter. If the filter is empty it will return all the tuples.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List tuples. (Beta)</remarks>
+        /// <remarks>List tuples.</remarks>
         /// <operationid>authz_post_v1_tuple_list</operationid>
         /// <param name="request">The request to the '/tuple/list' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -88,9 +86,8 @@ namespace PangeaCyber.Net.AuthZ
 
         /// <summary>
         /// Delete tuples in the AuthZ Service.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Delete tuples. (Beta)</remarks>
+        /// <remarks>Delete tuples.</remarks>
         /// <operationid>authz_post_v1_tuple_delete</operationid>
         /// <param name="request">The request to the '/tuple/delete' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -118,9 +115,8 @@ namespace PangeaCyber.Net.AuthZ
 
         /// <summary>
         /// Check if a subject has permission to perform an action on the resource.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Perform a check request. (Beta)</remarks>
+        /// <remarks>Perform a check request.</remarks>
         /// <operationid>authz_post_v1_check</operationid>
         /// <param name="request">The request to the '/check' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -144,9 +140,8 @@ namespace PangeaCyber.Net.AuthZ
         /// <summary>
         /// Given a type, action, and subject, list all the resources of the type that the subject has access
         /// to the action with.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List resources. (Beta)</remarks>
+        /// <remarks>List resources.</remarks>
         /// <operationid>authz_post_v1_list-resources</operationid>
         /// <param name="request">The request to the '/list-resources' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -170,9 +165,8 @@ namespace PangeaCyber.Net.AuthZ
         /// <summary>
         /// Given a resource and an action, return the list of subjects who have access to the action for the given
         /// resource.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>List subjects. (Beta)</remarks>
+        /// <remarks>List subjects.</remarks>
         /// <operationid>authz_post_v1_list-subjects</operationid>
         /// <param name="request">The request to the '/list-subjects' endpoint.</param>
         /// <param name="cancellationToken">Cancellation token.</param>

@@ -5,33 +5,19 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class DeleteRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// The item ID
+        /// </summary>
         [JsonProperty("id")]
-        public string ID { get; private set; }
+        public string ID { get; set; }
 
-        ///
-        private DeleteRequest(Builder builder)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
+        public DeleteRequest(string id)
         {
-            ID = builder.ID;
-        }
-
-        ///
-        public class Builder
-        {
-            ///
-            public string ID { get; private set; }
-
-            ///
-            public Builder(string id)
-            {
-                ID = id;
-            }
-
-            ///
-            public DeleteRequest Build()
-            {
-                return new DeleteRequest(this);
-            }
+            ID = id;
         }
     }
 }

@@ -6,93 +6,35 @@ namespace PangeaCyber.Net.Vault.Requests
     ///
     public class ListRequest : BaseRequest
     {
-        ///
+        /// <summary>
+        /// A set of filters to help you customize your search.
+        /// </summary>
         [JsonProperty("filter")]
-        public Dictionary<string, string>? Filter { get; private set; }
+        public Dictionary<string, string>? Filter { get; set; }
 
-        ///
+        /// <summary>
+        /// Internal ID returned in the previous look up response. Used for pagination.
+        /// </summary>
         [JsonProperty("last")]
-        public string? Last { get; private set; }
+        public string? Last { get; set; }
 
-        ///
+        /// <summary>
+        /// Maximum number of items in the response
+        /// </summary>
         [JsonProperty("size")]
-        public int? Size { get; private set; }
+        public int? Size { get; set; }
 
-        ///
+        /// <summary>
+        /// Ordering direction
+        /// </summary>
         [JsonProperty("order")]
-        public ItemOrder? Order { get; private set; }
+        public ItemOrder? Order { get; set; }
 
-        ///
+        /// <summary>
+        /// Property used to order the results
+        /// </summary>
         [JsonProperty("order_by")]
-        public ItemOrderBy? OrderBy { get; private set; }
+        public ItemOrderBy? OrderBy { get; set; }
 
-        ///
-        protected ListRequest(Builder builder)
-        {
-            Filter = builder.Filter;
-            Last = builder.Last;
-            Size = builder.Size;
-            Order = builder.Order;
-            OrderBy = builder.OrderBy;
-        }
-
-        ///
-        public class Builder
-        {
-            ///
-            public Dictionary<string, string>? Filter { get; private set; }
-            ///
-            public string? Last { get; private set; }
-            ///
-            public int? Size { get; private set; }
-            ///
-            public ItemOrder? Order { get; private set; }
-            ///
-            public ItemOrderBy? OrderBy { get; private set; }
-
-            ///
-            public Builder() { }
-
-            ///
-            public ListRequest Build()
-            {
-                return new ListRequest(this);
-            }
-
-            ///
-            public Builder WithFilter(Dictionary<string, string> filter)
-            {
-                Filter = filter;
-                return this;
-            }
-
-            ///
-            public Builder WithLast(string last)
-            {
-                Last = last;
-                return this;
-            }
-
-            ///
-            public Builder WithSize(int size)
-            {
-                Size = size;
-                return this;
-            }
-
-            ///
-            public Builder WithOrder(ItemOrder order)
-            {
-                Order = order;
-                return this;
-            }
-
-            ///
-            public Builder WithOrderBy(ItemOrderBy orderBy)
-            {
-                OrderBy = orderBy;
-                return this;
-            }
-        }
     }
 }

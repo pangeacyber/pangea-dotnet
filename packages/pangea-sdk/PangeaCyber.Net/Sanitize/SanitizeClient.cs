@@ -39,10 +39,9 @@ namespace PangeaCyber.Net.Sanitize
 
         /// <summary>
         /// Apply file sanitization actions according to specified rules.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Sanitize (Beta)</remarks>
-        /// <operationid>sanitize_post_v1beta_sanitize</operationid>
+        /// <remarks>Sanitize</remarks>
+        /// <operationid>sanitize_post_v1_sanitize</operationid>
         /// <param name="request">Request parameters.</param>
         /// <param name="file">File to sanitize.</param>
         /// <returns>The sanitized file and information on the sanitization that was performed.</returns>
@@ -74,15 +73,14 @@ namespace PangeaCyber.Net.Sanitize
             }
 
             var fileData = new FileData(file, name);
-            return await DoPost<SanitizeResult>("/v1beta/sanitize", request, new PostConfig.Builder().WithFileData(fileData).Build());
+            return await DoPost<SanitizeResult>("/v1/sanitize", request, new PostConfig.Builder().WithFileData(fileData).Build());
         }
 
         /// <summary>
         /// Apply file sanitization actions according to specified rules via a presigned URL.
-        /// How to install a <see href="https://pangea.cloud/docs/sdk/csharp/#beta-releases">Beta release</see>.
         /// </summary>
-        /// <remarks>Sanitize via presigned URL (Beta)</remarks>
-        /// <operationid>sanitize_post_v1beta_sanitize 2</operationid>
+        /// <remarks>Sanitize via presigned URL</remarks>
+        /// <operationid>sanitize_post_v1_sanitize 2</operationid>
         /// <param name="request">Request parameters.</param>
         /// <returns>A presigned URL.</returns>
         /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
@@ -117,7 +115,7 @@ namespace PangeaCyber.Net.Sanitize
                 throw new PangeaException($"Should set SHA256, CRC32c and Size in order to use {tm} transfer method", null);
             }
 
-            return await RequestPresignedURL("/v1beta/sanitize", request);
+            return await RequestPresignedURL("/v1/sanitize", request);
         }
     }
 }

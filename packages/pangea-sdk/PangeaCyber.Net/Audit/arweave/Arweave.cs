@@ -51,7 +51,6 @@ namespace PangeaCyber.Net.Audit.arweave
 
         private string getQuery(int[] treeSizes)
         {
-            List<int> list = treeSizes.ToList();
             string sizes = string.Join(", ", Array.ConvertAll(treeSizes, ele => String.Format("\"{0}\"", ele)));
 
             string query = @"

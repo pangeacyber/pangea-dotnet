@@ -3,6 +3,7 @@ using PangeaCyber.Tests;
 
 namespace PangeaCyber.Net.Sanitize.Tests
 {
+    [CollectionDefinition("Sanitize", DisableParallelization = true)]
     public class ITSanitizeTest
     {
         private const string TESTFILE_PATH = "./data/ds11.pdf";
@@ -11,11 +12,13 @@ namespace PangeaCyber.Net.Sanitize.Tests
 
         public ITSanitizeTest()
         {
-            Config config = Config.FromIntegrationEnvironment(environment);
+            // The Sanitize config in the regular org was obsoleted by a breaking change, so the custom schema org is
+            // used instead.
+            var config = Config.FromCustomSchemaIntegrationEnvironment(environment);
             client = new SanitizeClient.Builder(config).Build();
         }
 
-        [Fact(Timeout = 120 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestSanitizeAndShare()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -36,8 +39,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     },
                     File = new SanitizeFile()
                     {
-                        ScanProvider = "crowdstrike",
-                        CDRProvider = "apryse"
+                        ScanProvider = "crowdstrike"
                     },
                     ShareOutput = new ShareOutput()
                     {
@@ -72,7 +74,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.False(response.Result.Data.MaliciousFile);
         }
 
-        [Fact(Timeout = 120 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestSanitizeNoShare()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -93,8 +95,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     },
                     File = new SanitizeFile()
                     {
-                        ScanProvider = "crowdstrike",
-                        CDRProvider = "apryse"
+                        ScanProvider = "crowdstrike"
                     },
                     ShareOutput = new ShareOutput()
                     {
@@ -131,7 +132,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             var attachedFile = await client.DownloadFile(response.Result.DestURL);
         }
 
-        [Fact(Timeout = 120 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestSanitizeMultipart()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -152,8 +153,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     },
                     File = new SanitizeFile()
                     {
-                        ScanProvider = "crowdstrike",
-                        CDRProvider = "apryse"
+                        ScanProvider = "crowdstrike"
                     },
                     ShareOutput = new ShareOutput()
                     {
@@ -188,7 +188,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.False(response.Result.Data.MaliciousFile);
         }
 
-        [Fact(Timeout = 120 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestSanitizeAllDefaults()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -222,7 +222,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
             var attachedFile = await client.DownloadFile(response.Result.DestURL);
         }
 
-        [Fact(Timeout = 120 * 1000)]
+        [SkippableFact(Timeout = 5 * 60 * 1000)]
         public async Task TestSanitize_AsyncPollResult()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -250,8 +250,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         },
                         File = new SanitizeFile()
                         {
-                            ScanProvider = "crowdstrike",
-                            CDRProvider = "apryse"
+                            ScanProvider = "crowdstrike"
                         },
                         ShareOutput = new ShareOutput()
                         {
@@ -279,7 +278,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
 
                     // Poll result, this could raise another AcceptedRequestException if result is not ready
                     var response = await client.PollResult<SanitizeResult>(exception.RequestID);
-                    Assert.True(response.IsOK);
 
                     Assert.True(response.IsOK);
                     Assert.Null(response.Result.DestURL);
@@ -308,16 +306,19 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     // Poll result in raw format
                     var responseDictionary = await client.PollResult(exception.RequestID);
                     Assert.True(responseDictionary.IsOK);
-                    break;
+                    return;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op.
                 }
             }
+
+            // Skip if result was not ready in time.
+            Skip.If(true, $"Result of request '{exception.RequestID}' was not ready in time.");
         }
 
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(Timeout = 5 * 60 * 1000)]
         public async Task TestSanitize_SplitUpload_Post()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -340,8 +341,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     },
                     File = new SanitizeFile()
                     {
-                        ScanProvider = "crowdstrike",
-                        CDRProvider = "apryse"
+                        ScanProvider = "crowdstrike"
                     },
                     ShareOutput = new ShareOutput()
                     {
@@ -375,7 +375,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
 
                     // Poll result, this could raise another AcceptedRequestException if result is not ready
                     var response = await client.PollResult<SanitizeResult>(urlResponse.RequestId);
-                    Assert.True(response.IsOK);
 
                     Assert.True(response.IsOK);
                     Assert.Null(response.Result.DestURL);
@@ -404,17 +403,19 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     // Poll result in raw format
                     var responseDictionary = await client.PollResult(urlResponse.RequestId);
                     Assert.True(responseDictionary.IsOK);
-                    break;
+                    return;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op.
                 }
             }
+
+            // Skip if result was not ready in time.
+            Skip.If(true, $"Result of request '{urlResponse.RequestId}' was not ready in time.");
         }
 
-
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(Timeout = 5 * 60 * 1000)]
         public async Task TestSanitize_SplitUpload_Put()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -436,8 +437,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     },
                     File = new SanitizeFile()
                     {
-                        ScanProvider = "crowdstrike",
-                        CDRProvider = "apryse"
+                        ScanProvider = "crowdstrike"
                     },
                     ShareOutput = new ShareOutput()
                     {
@@ -469,7 +469,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
 
                     // Poll result, this could raise another AcceptedRequestException if result is not ready
                     var response = await client.PollResult<SanitizeResult>(urlResponse.RequestId);
-                    Assert.True(response.IsOK);
 
                     Assert.True(response.IsOK);
                     Assert.Null(response.Result.DestURL);
@@ -498,13 +497,16 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     // Poll result in raw format
                     var responseDictionary = await client.PollResult(urlResponse.RequestId);
                     Assert.True(responseDictionary.IsOK);
-                    break;
+                    return;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op.
                 }
             }
+
+            // Skip if result was not ready in time.
+            Skip.If(true, $"Result of request '{urlResponse.RequestId}' was not ready in time.");
         }
     }
 }

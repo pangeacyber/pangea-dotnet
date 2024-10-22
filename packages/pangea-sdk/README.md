@@ -5,12 +5,12 @@
 <br />
 
 [![documentation](https://img.shields.io/badge/documentation-pangea-blue?style=for-the-badge&labelColor=551B76)][Documentation]
-[![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)][Slack]
+[![Discourse](https://img.shields.io/badge/Discourse-4A154B?style=for-the-badge&logo=discourse&logoColor=white)][Discourse]
 
 # Pangea .NET SDK
 
 A .NET SDK for integrating with Pangea services.
-Supports .NET 6, .NET Standard 2.0, .NET Framework v4.6.1, and any other target
+Supports .NET 6, .NET Standard 2.0, .NET Framework v4.6.2, and any other target
 framework that's compatible with these.
 
 ## Installation
@@ -41,13 +41,13 @@ guarantees as stable releases. [Beta changelog][].
 Via .NET CLI:
 
 ```bash
-$ dotnet add package Pangea.SDK --version 3.8.0-beta.4
+$ dotnet add package Pangea.SDK --version 3.8.0-beta.3
 ```
 
 Via PackageReference:
 
 ```xml
-<PackageReference Include="Pangea.SDK" Version="3.8.0-beta.4" />
+<PackageReference Include="Pangea.SDK" Version="3.8.0-beta.3" />
 ```
 
 ## Usage
@@ -87,20 +87,10 @@ var logConfig = new LogConfig.Builder()
 var response = await client.Log(event, logConfig);
 ```
 
-<a name="beta-releases"></a>
-
-## Beta releases
-
-Pre-release versions may be available with the `beta` denotation in the version
-number. These releases serve to preview beta services and APIs. Per Semantic
-Versioning, they are considered unstable and do not carry the same compatibility
-guarantees as stable releases.
-
-
-
    [Documentation]: https://pangea.cloud/docs/sdk/csharp/
    [GA Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
    [Beta Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/beta/examples
    [Pangea Console]: https://console.pangea.cloud/
-   [Slack]: https://pangea.cloud/join-slack/
+   [Discourse]: https://l.pangea.cloud/Jd4wlGs
    [Secure Audit Log]: https://pangea.cloud/docs/audit
+   [Beta changelog]: https://github.com/pangeacyber/pangea-dotnet/blob/beta/packages/pangea-sdk/CHANGELOG.md

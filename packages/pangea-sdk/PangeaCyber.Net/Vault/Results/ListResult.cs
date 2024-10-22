@@ -10,23 +10,10 @@ namespace PangeaCyber.Net.Vault.Results
         [JsonProperty("items")]
         public List<ListItemData> Items { get; set; } = default!;
 
-        ///
-        [JsonProperty("count")]
-        public int Count { get; set; }
-
-        ///
+        /// <summary>
+        /// Internal ID returned in the previous look up response. Used for pagination.
+        /// </summary>
         [JsonProperty("last")]
         public string? Last { get; set; }
-
-        ///
-        public ListResult()
-        {
-        }
-
-        ///
-        public List<ListItemData> GetItems()
-        {
-            return Items;
-        }
     }
 }

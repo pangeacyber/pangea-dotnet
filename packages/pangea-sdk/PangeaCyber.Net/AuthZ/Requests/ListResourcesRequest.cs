@@ -22,6 +22,10 @@ namespace PangeaCyber.Net.AuthZ.Requests
         [JsonProperty("subject")]
         public Subject Subject { get; set; }
 
+        /// <summary>A JSON object of attribute data.</summary>
+        [JsonProperty("attributes")]
+        public Dictionary<string, object>? Attributes { get; set; }
+
         ///
         public ListResourcesRequest(string type, string action, Subject subject)
         {

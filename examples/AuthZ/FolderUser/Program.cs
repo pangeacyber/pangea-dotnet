@@ -25,7 +25,7 @@ await client.TupleCreate(new TupleCreateRequest(new[] { tuple }));
 
 // Find the tuple that was just created.
 var filter = new FilterTupleList();
-filter.ResourceNamespace.Set("folder");
+filter.ResourceType.Set("folder");
 filter.ResourceID.Set(folderId);
 var listResponse = await client.TupleList(new TupleListRequest() { Filter = filter });
 _ = listResponse.Result.Tuples;

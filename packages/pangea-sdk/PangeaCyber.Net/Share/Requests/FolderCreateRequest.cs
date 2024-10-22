@@ -19,9 +19,9 @@ namespace PangeaCyber.Net.Share.Models
         [JsonProperty("parent_id")]
         public string? ParentId { get; set; }
 
-        /// <summary> An case-sensitive path to an object. Contains a sequence of path segments delimited by the / character. Any path ending in a / character refers to a folder.</summary>
-        [JsonProperty("path")]
-        public string? Path { get; set; }
+        /// <summary>The folder to place the folder in. Must match `parent_id` if also set.</summary>
+        [JsonProperty("folder")]
+        public string? Folder { get; set; }
 
         /// <summary> A list of user-defined tags.</summary>
         [JsonProperty("tags")]

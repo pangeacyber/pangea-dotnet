@@ -5,7 +5,94 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## Unreleased
+
+## 4.1.0 - 2024-10-16
+
+### Added
+
+- Secure Share support.
+- Multiple bucket ID support to Share.
+- `metadata_protected` and `tags_protected` support to Share `ItemData`
+- `password` and `password_algorithm` support to Share
+- Filter fields to `filter_list` on Share service
+- `objects` field to Share `GetArchiveResult`
+- `title` and `message` to Share `ShareCreateLinkItem` 
+
+## 4.0.0 - 2024-10-15
+
+### Added
+
+- Vault KEM export support.
+
+### Changed
+
+- Vault v2 APIs support.
+- The minimum supported version of .NET Framework is now v4.6.2.
+
+## 3.13.0 - 2024-10-15
+
+### Added
+
+- Detect-only Redact for Sanitize.
+- Support for `domains` field in `v2/user/breached` endpoint in User Intel service.
+
+## 3.12.0 - 2024-09-25
+
+### Added
+
+- `ItemState` to `Vault.Requests.UpdateRequest`.
+- `attributes` field in `/list-resources` and `/list-subjects` endpoint.
+- Sanitize service support.
+
+### Changed
+
+- The `PangeaCyber.Net.dll` assembly is now strong-named.
+
+### Fixed
+
+- Sanitize now defaults to the post-url transfer method.
+
+## [3.11.0] - 2024-07-12
+
+### Added
+
+- `"state"` and other new properties to `AuthN.Models.Authenticator`.
+
+### Changed
+
+- The `FirstName` and `LastName` properties of `AuthN.Models.Profile` are now
+  deprecated.
+- `Enable` in `AuthN.Models.Authenticator` has been renamed to `Enabled`. The
+  previous name did not match the name used in the API's response schema and
+  JSON deserialization was not set up correctly, so `Enable` was unusable
+  anyways.
+
+## [3.10.0] - 2024-06-20
+
+### Added
+
+- Vault `/export` support.
+- AuthN user password expiration support.
+
+## [3.9.0] - 2024-06-07
+
+### Added
+
+- `fpe_context` field in Audit search events
+- `return_context` support in Audit `/search`, `/results` and `/download` endpoints
+- Redact `/unredact` endpoint support
+- `redaction_method_overrides` field support in `/redact` and `redact_structured` endpoints
+- AuthN usernames support.
+- Support for format-preserving encryption.
+
+### Removed
+
+- Beta tags from AuthZ.
+
+## [3.8.0] - 2024-05-10
+
+Note that Sanitize and Secure Share did not make it into this release.
 
 ### Added
 
