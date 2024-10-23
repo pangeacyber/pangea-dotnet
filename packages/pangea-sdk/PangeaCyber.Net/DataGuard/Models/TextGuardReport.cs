@@ -9,17 +9,17 @@ namespace PangeaCyber.Net.DataGuard.Models;
 public sealed class TextGuardReport
 {
     /// <summary>Domain Intel.</summary>
-    public IntelResults domainIntel { get; set; } = default!;
+    public IntelResults DomainIntel { get; set; } = default!;
 
     /// <summary>IP Intel.</summary>
-    public IntelResults ipIntel { get; set; } = default!;
+    public IntelResults IpIntel { get; set; } = default!;
 
     /// <summary>Redact.</summary>
-    public RedactReport redact { get; set; } = default!;
+    public RedactReport Redact { get; set; } = default!;
 
     /// <summary>URL Intel.</summary>
-    public IntelResults urlIntel { get; set; } = default!;
+    public IntelResults UrlIntel { get; set; } = default!;
 
     /// <summary>User Intel.</summary>
-    public UserBreachedData userIntel { get; set; } = default!;
+    public UserBreachedData UserIntel { get; set; } = default!;
 }
