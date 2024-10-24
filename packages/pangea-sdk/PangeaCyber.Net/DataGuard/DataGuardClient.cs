@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.DataGuard;
 /// <example>
 /// <code>
 /// var config = new Config("pangea_token", "pangea_domain");
-/// var builder = new DataGuard.Builder(config);
+/// var builder = new DataGuardClient.Builder(config);
 /// var client = builder.Build();
 /// </code>
 /// </example>
@@ -47,7 +47,7 @@ public class DataGuardClient : BaseClient<DataGuardClient.Builder>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
     /// <code>
-    /// var response = await client.GuardText("TODO");
+    /// var response = await client.GuardText(new TextGuardRequest("hello world"));
     /// </code>
     /// </example>
     public Task<Response<TextGuardResult>> GuardText(TextGuardRequest request, CancellationToken cancellationToken = default)
@@ -56,14 +56,14 @@ public class DataGuardClient : BaseClient<DataGuardClient.Builder>
     }
 
     /// <kind>method</kind>
-    /// <summary>Guard text.</summary>
-    /// <remarks>Text guard (Beta)</remarks>
-    /// <operationid>data_guard_post_v1_text_guard</operationid>
+    /// <summary>Guard file.</summary>
+    /// <remarks>File guard (Beta)</remarks>
+    /// <operationid>data_guard_post_v1_file_guard</operationid>
     /// <param name="request">Request parameters.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
     /// <code>
-    /// var response = await client.GuardText("TODO");
+    /// var response = await client.GuardFile(new FileGuardRequest("https://pangea.cloud/robots.txt"));
     /// </code>
     /// </example>
     public Task<Response<object>> GuardFile(FileGuardRequest request, CancellationToken cancellationToken = default)
