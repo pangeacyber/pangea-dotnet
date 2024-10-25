@@ -8,11 +8,14 @@ namespace PangeaCyber.Net.PromptGuard.Results;
 public sealed class GuardResult
 {
     /// <summary>Prompt injection detected.</summary>
-    public bool PromptInjectionDetected { get; set; }
+    public bool Detected { get; set; }
 
     /// <summary>Prompt injection type.</summary>
-    public string? PromptInjectionType { get; set; }
+    public string? Type { get; set; }
 
     /// <summary>Prompt injection detector.</summary>
-    public string? PromptInjectionDetector { get; set; }
+    public string? Detector { get; set; }
+
+    /// <summary>Confidence.</summary>
+    public int Confidence { get; set; }
 }

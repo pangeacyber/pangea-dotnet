@@ -28,7 +28,7 @@ public sealed class TextGuardSecurityIssues
     public int MaliciousUrlCount { get; set; }
 
     /// <summary>
-    /// Redacted items count.
+    /// Matched rules count.
     /// </summary>
-    public int RedactedItemCount { get; set; }
+    public int MatchedRulesCount { get; set; }
 }

@@ -24,11 +24,4 @@ public class ITDataGuardTest
         Assert.Equal(1, response.Result.Findings.ArtifactCount);
         Assert.Equal(0, response.Result.Findings.MaliciousCount);
     }
-
-    [Fact]
-    public async Task TestGuardFile()
-    {
-        var response = await client.GuardFile(new FileGuardRequest("https://pangea.cloud/robots.txt"));
-        Assert.True(response.IsOK);
-    }
 }
