@@ -34,20 +34,20 @@ Via PackageReference:
 #### Beta releases
 
 Pre-release versions may be available with the `beta` denotation in the version
-number. These releases serve to preview beta services and APIs. Per Semantic
-Versioning, they are considered unstable and do not carry the same compatibility
-guarantees as stable releases. [Beta changelog][].
+number. These releases serve to preview Beta and Early Access services and APIs.
+Per Semantic Versioning, they are considered unstable and do not carry the same
+compatibility guarantees as stable releases. [Beta changelog][].
 
 Via .NET CLI:
 
 ```bash
-$ dotnet add package Pangea.SDK --version 3.8.0-beta.3
+$ dotnet add package Pangea.SDK --version 4.2.0-beta.1
 ```
 
 Via PackageReference:
 
 ```xml
-<PackageReference Include="Pangea.SDK" Version="3.8.0-beta.3" />
+<PackageReference Include="Pangea.SDK" Version="4.2.0-beta.1" />
 ```
 
 ## Usage
