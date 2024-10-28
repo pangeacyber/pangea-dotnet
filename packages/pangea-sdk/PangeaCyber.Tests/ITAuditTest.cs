@@ -612,7 +612,7 @@ public class ITAuditTest
         }
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestResultsNoVerify()
     {
         int searchLimit = 10;
@@ -698,7 +698,7 @@ public class ITAuditTest
         await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.Log(evt, new LogConfig.Builder().Build()));
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestSearchValidationException()
     {
         int searchLimit = 100;
