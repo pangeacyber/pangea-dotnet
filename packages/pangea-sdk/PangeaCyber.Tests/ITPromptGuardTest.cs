@@ -19,7 +19,7 @@ public class ITPromptGuardTest
             }
         ));
         Assert.True(response.IsOK);
-        Assert.False(response.Result.PromptInjectionDetected);
+        Assert.False(response.Result.Detected);
 
         response = await client.Guard(new GuardRequest(
             new[] {
@@ -27,8 +27,8 @@ public class ITPromptGuardTest
             }
         ));
         Assert.True(response.IsOK);
-        Assert.True(response.Result.PromptInjectionDetected);
-        Assert.NotNull(response.Result.PromptInjectionType);
-        Assert.NotNull(response.Result.PromptInjectionDetector);
+        Assert.True(response.Result.Detected);
+        Assert.NotNull(response.Result.Type);
+        Assert.NotNull(response.Result.Detector);
     }
 }

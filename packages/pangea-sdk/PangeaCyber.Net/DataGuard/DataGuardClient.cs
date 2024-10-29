@@ -42,7 +42,7 @@ public class DataGuardClient : BaseClient<DataGuardClient.Builder>
     /// <kind>method</kind>
     /// <summary>Guard text.</summary>
     /// <remarks>Text guard (Beta)</remarks>
-    /// <operationid>data_guard_post_v1_text_guard</operationid>
+    /// <operationid>data_guard_post_v1beta_text_guard</operationid>
     /// <param name="request">Request parameters.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
@@ -52,22 +52,6 @@ public class DataGuardClient : BaseClient<DataGuardClient.Builder>
     /// </example>
     public Task<Response<TextGuardResult>> GuardText(TextGuardRequest request, CancellationToken cancellationToken = default)
     {
-        return DoPost<TextGuardResult>("/v1/text/guard", request, cancellationToken: cancellationToken);
-    }
-
-    /// <kind>method</kind>
-    /// <summary>Guard file.</summary>
-    /// <remarks>File guard (Beta)</remarks>
-    /// <operationid>data_guard_post_v1_file_guard</operationid>
-    /// <param name="request">Request parameters.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <example>
-    /// <code>
-    /// var response = await client.GuardFile(new FileGuardRequest("https://pangea.cloud/robots.txt"));
-    /// </code>
-    /// </example>
-    public Task<Response<object>> GuardFile(FileGuardRequest request, CancellationToken cancellationToken = default)
-    {
-        return DoPost<object>("/v1/file/guard", request, cancellationToken: cancellationToken);
+        return DoPost<TextGuardResult>("/v1beta/text/guard", request, cancellationToken: cancellationToken);
     }
 }
