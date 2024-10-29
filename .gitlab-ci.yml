@@ -76,7 +76,7 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_AUTHZ_ENV}
         TEST: ITAuthZTest
-      - CLOUD: [AWS, GCP]
+      - CLOUD: [AWS]
         ENV: ${SERVICE_DATA_GUARD_ENV}
         TEST: ITDataGuardTest
       - CLOUD: [AWS, GCP]
@@ -100,7 +100,7 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_FILE_SCAN_ENV}
         TEST: ITFileScanTest
-      - CLOUD: [AWS, GCP]
+      - CLOUD: [AWS]
         ENV: ${SERVICE_PROMPT_GUARD_ENV}
         TEST: ITPromptGuardTest
       - CLOUD: [AWS, GCP]

@@ -42,7 +42,7 @@ public class PromptGuardClient : BaseClient<PromptGuardClient.Builder>
     /// <kind>method</kind>
     /// <summary>Guard messages.</summary>
     /// <remarks>Guard (Beta)</remarks>
-    /// <operationid>prompt_guard_post_v1_guard</operationid>
+    /// <operationid>prompt_guard_post_v1beta_guard</operationid>
     /// <param name="request">Request parameters.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
@@ -56,6 +56,6 @@ public class PromptGuardClient : BaseClient<PromptGuardClient.Builder>
     /// </example>
     public Task<Response<GuardResult>> Guard(GuardRequest request, CancellationToken cancellationToken = default)
     {
-        return DoPost<GuardResult>("/v1/guard", request, cancellationToken: cancellationToken);
+        return DoPost<GuardResult>("/v1beta/guard", request, cancellationToken: cancellationToken);
     }
 }
