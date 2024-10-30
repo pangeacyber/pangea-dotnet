@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using PangeaCyber.Net.Redact;
 
-namespace PangeaCyber.Net.DataGuard.Models;
+namespace PangeaCyber.Net.AIGuard.Models;
 
 /// <summary>Redact report.</summary>
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]

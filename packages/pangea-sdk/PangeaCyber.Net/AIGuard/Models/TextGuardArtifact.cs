@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace PangeaCyber.Net.DataGuard.Models;
+namespace PangeaCyber.Net.AIGuard.Models;
 
 /// <summary>Text guard artifact.</summary>
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
