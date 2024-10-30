@@ -1,13 +1,13 @@
 using PangeaCyber.Net;
-using PangeaCyber.Net.DataGuard;
-using PangeaCyber.Net.DataGuard.Requests;
+using PangeaCyber.Net.AIGuard;
+using PangeaCyber.Net.AIGuard.Requests;
 
 namespace PangeaCyber.Tests;
 
-public class ITDataGuardTest
+public class ITAIGuardTest
 {
-    private static readonly TestEnvironment environment = Helper.LoadTestEnvironment("data-guard", TestEnvironment.LVE);
-    private static readonly DataGuardClient client = new DataGuardClient.Builder(Config.FromIntegrationEnvironment(environment)).Build();
+    private static readonly TestEnvironment environment = Helper.LoadTestEnvironment("ai-guard", TestEnvironment.LVE);
+    private static readonly AIGuardClient client = new AIGuardClient.Builder(Config.FromIntegrationEnvironment(environment)).Build();
 
     [Fact]
     public async Task TestGuardText()
