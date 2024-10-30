@@ -121,7 +121,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4.1.0
         with:
-          node-version: 20.10.0
+          node-version: 20
           cache: yarn
           cache-dependency-path: ./docs/yarn.lock
 
@@ -132,7 +132,7 @@ jobs:
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
 
       - name: Install docfx
-        run: dotnet tool install --global docfx --version 2.75.2
+        run: dotnet tool install --global docfx --version 2.77.0
 
       - name: Run docfx
         run: docfx metadata docfx.json

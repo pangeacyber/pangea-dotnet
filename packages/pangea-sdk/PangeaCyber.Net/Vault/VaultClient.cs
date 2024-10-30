@@ -118,7 +118,13 @@ namespace PangeaCyber.Net.Vault
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// TODO:
+        /// var response = await client.GetBulk(new()
+        /// {
+        ///     Filter = new Dictionary&lt;string, string&gt;()
+        ///     {
+        ///         { "id", "pvi_123" }
+        ///     }
+        /// });
         /// </code>
         /// </example>
         public async Task<Response<GetBulkResult>> GetBulk(GetBulkRequest request)
