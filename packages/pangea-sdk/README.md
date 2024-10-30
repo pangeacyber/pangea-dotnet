@@ -34,9 +34,9 @@ Via PackageReference:
 #### Beta releases
 
 Pre-release versions may be available with the `beta` denotation in the version
-number. These releases serve to preview beta services and APIs. Per Semantic
-Versioning, they are considered unstable and do not carry the same compatibility
-guarantees as stable releases. [Beta changelog][].
+number. These releases serve to preview Beta and Early Access services and APIs.
+Per Semantic Versioning, they are considered unstable and do not carry the same
+compatibility guarantees as stable releases. [Beta changelog][].
 
 Via .NET CLI:
 
