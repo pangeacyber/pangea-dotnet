@@ -1,48 +1,48 @@
-using PangeaCyber.Net.DataGuard.Requests;
-using PangeaCyber.Net.DataGuard.Results;
+using PangeaCyber.Net.AIGuard.Requests;
+using PangeaCyber.Net.AIGuard.Results;
 
-namespace PangeaCyber.Net.DataGuard;
+namespace PangeaCyber.Net.AIGuard;
 
-/// <summary>Data Guard API client.</summary>
-/// <remarks>Data Guard</remarks>
+/// <summary>AI Guard API client.</summary>
+/// <remarks>AI Guard</remarks>
 /// <example>
 /// <code>
 /// var config = new Config("pangea_token", "pangea_domain");
-/// var builder = new DataGuardClient.Builder(config);
+/// var builder = new AIGuardClient.Builder(config);
 /// var client = builder.Build();
 /// </code>
 /// </example>
-public class DataGuardClient : BaseClient<DataGuardClient.Builder>
+public class AIGuardClient : BaseClient<AIGuardClient.Builder>
 {
     /// <summary>Service name.</summary>
-    public const string ServiceName = "data-guard";
+    public const string ServiceName = "ai-guard";
 
-    /// <summary>Create a new <see cref="DataGuardClient"/> using the given builder.</summary>
-    public DataGuardClient(Builder builder)
+    /// <summary>Create a new <see cref="AIGuardClient"/> using the given builder.</summary>
+    public AIGuardClient(Builder builder)
         : base(builder, ServiceName)
     {
     }
 
-    /// <summary><see cref="DataGuardClient"/> builder.</summary>
+    /// <summary><see cref="AIGuardClient"/> builder.</summary>
     public class Builder : ClientBuilder
     {
-        /// <summary>Create a new <see cref="DataGuardClient"/> builder.</summary>
+        /// <summary>Create a new <see cref="AIGuardClient"/> builder.</summary>
         public Builder(Config config)
             : base(config)
         {
         }
 
-        /// <summary>Build an <see cref="DataGuardClient"/>.</summary>
-        public DataGuardClient Build()
+        /// <summary>Build an <see cref="AIGuardClient"/>.</summary>
+        public AIGuardClient Build()
         {
-            return new DataGuardClient(this);
+            return new AIGuardClient(this);
         }
     }
 
     /// <kind>method</kind>
     /// <summary>Guard text.</summary>
     /// <remarks>Text guard (Beta)</remarks>
-    /// <operationid>data_guard_post_v1beta_text_guard</operationid>
+    /// <operationid>ai_guard_post_v1beta_text_guard</operationid>
     /// <param name="request">Request parameters.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
