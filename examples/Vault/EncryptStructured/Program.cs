@@ -11,11 +11,11 @@ var client = new VaultClient.Builder(cfg).Build();
 // First create an encryption key, either from the Pangea Console or programmatically as below.
 var time = DateTimeOffset.UtcNow.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture);
 var generateResponse = await client.SymmetricGenerate(
-    new SymmetricGenerateRequest.Builder(
+    new SymmetricGenerateRequest(
         SymmetricAlgorithm.AES256_CFB,
         KeyPurpose.Encryption,
-        $".NET structured encrypt example {time}"
-    ).Build()
+        $".NET_structured_encrypt_example_{time}"
+    )
 );
 var encryptionKeyId = generateResponse.Result.ID;
 

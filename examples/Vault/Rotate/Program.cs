@@ -20,29 +20,34 @@ class Program
 
             // Create client with builder
             VaultClient client = new VaultClient.Builder(cfg).Build();
-            string name = "my secret's name " + time;
+            string name = "my_secret_s_name_" + time;
             string secretV1 = "mysecret";
             string secretV2 = "mynewsecret";
 
             Console.WriteLine("Store...");
-            var storeRequest = new SecretStoreRequest.Builder(secretV1, name).Build();
+            var storeRequest = new SecretStoreRequest(name)
+                {
+                    Type = ItemType.Secret,
+                    Secret = secretV1,
+                };
             var storeResponse = await client.SecretStore(storeRequest);
 
             Console.WriteLine("Store result ID: " + storeResponse.Result.ID);
-            Console.WriteLine("Store version: " + storeResponse.Result.Version);
+            Console.WriteLine("Store version: " + storeResponse.Result.ItemVersions?[0]?.Version);
 
             Console.WriteLine("Rotate...");
-            var rotateRequest = new SecretRotateRequest.Builder(storeResponse.Result.ID, secretV2)
-                .WithRotationState(ItemVersionState.Suspended)
-                .Build();
+            var rotateRequest = new SecretRotateRequest(storeResponse.Result.ID){
+                Secret = secretV2,
+                RotationState = ItemVersionState.Suspended
+            };
             var rotateResponse = await client.SecretRotate(rotateRequest);
-            Console.WriteLine("Rotate version: " + rotateResponse.Result.Version);
+            Console.WriteLine("Rotate version: " + rotateResponse.Result.ItemVersions?[0]?.Version);
 
             Console.WriteLine("Get...");
-            var getRequest = new GetRequest.Builder(storeResponse.Result.ID).Build();
+            var getRequest = new GetRequest(storeResponse.Result.ID);
             var getResponse = await client.Get(getRequest);
 
-            Console.WriteLine("Get version: " + getResponse.Result.CurrentVersion?.Version);
+            Console.WriteLine("Get version: " + getResponse.Result.ItemVersions?[0]?.Version);
             Console.WriteLine("Success!");
         }
         catch (PangeaAPIException e)

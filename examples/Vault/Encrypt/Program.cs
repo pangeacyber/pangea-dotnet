@@ -20,14 +20,14 @@ class Program
 
             // Create client with builder
             VaultClient client = new VaultClient.Builder(cfg).Build();
-            string name = "my key's name " + time;
+            string name = "my_key_s_name_" + time;
 
             Console.WriteLine("Create key...");
-            SymmetricGenerateRequest generateRequest = new SymmetricGenerateRequest.Builder(
+            SymmetricGenerateRequest generateRequest = new SymmetricGenerateRequest(
                 SymmetricAlgorithm.AES128_CFB,
                 KeyPurpose.Encryption,
                 name
-            ).Build();
+            );
 
             var generateResp = await client.SymmetricGenerate(generateRequest);
             string id = generateResp.Result.ID ?? default!;
@@ -39,12 +39,14 @@ class Program
             Console.WriteLine($"Original text to encrypt: {dataB64}");
 
             // Encrypt
-            var encryptResponse = await client.Encrypt(new EncryptRequest.Builder(id, dataB64).Build());
+            var encryptResponse = await client.Encrypt(new EncryptRequest(id, dataB64));
             Console.WriteLine("Cipher text: " + encryptResponse.Result.CipherText);
 
             Console.WriteLine("Decrypt...");
             // Decrypt
-            var decryptResponse1 = await client.Decrypt(new DecryptRequest.Builder(id, encryptResponse.Result.CipherText).WithVersion(1).Build());
+            var decryptResponse1 = await client.Decrypt(new DecryptRequest(id, encryptResponse.Result.CipherText) {
+                Version = 1,
+            });
 
             Console.WriteLine($"Recovered text: {decryptResponse1.Result.PlainText}");
 
