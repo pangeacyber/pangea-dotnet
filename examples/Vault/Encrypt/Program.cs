@@ -44,7 +44,8 @@ class Program
 
             Console.WriteLine("Decrypt...");
             // Decrypt
-            var decryptResponse1 = await client.Decrypt(new DecryptRequest(id, encryptResponse.Result.CipherText) {
+            var decryptResponse1 = await client.Decrypt(new DecryptRequest(id, encryptResponse.Result.CipherText)
+            {
                 Version = 1,
             });
 
