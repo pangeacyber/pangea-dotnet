@@ -26,17 +26,18 @@ class Program
 
             Console.WriteLine("Store...");
             var storeRequest = new SecretStoreRequest(name)
-                {
-                    Type = ItemType.Secret,
-                    Secret = secretV1,
-                };
+            {
+                Type = ItemType.Secret,
+                Secret = secretV1,
+            };
             var storeResponse = await client.SecretStore(storeRequest);
 
             Console.WriteLine("Store result ID: " + storeResponse.Result.ID);
             Console.WriteLine("Store version: " + storeResponse.Result.ItemVersions?[0]?.Version);
 
             Console.WriteLine("Rotate...");
-            var rotateRequest = new SecretRotateRequest(storeResponse.Result.ID){
+            var rotateRequest = new SecretRotateRequest(storeResponse.Result.ID)
+            {
                 Secret = secretV2,
                 RotationState = ItemVersionState.Suspended
             };
