@@ -40,7 +40,7 @@ class Program
             string url = urlResponse.Result.PutURL ?? "undefined url";    // This case should never happen
 
             // Create uploader and upload file
-            var uploader = new PangeaCyber.Net.FileScan.FileUploader.Builder().Build();
+            var uploader = new PangeaCyber.Net.FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PutURL, fileData);
 
             // Let's poll the result
