@@ -23,11 +23,11 @@ var tweak = "MTIzMTIzMT==";
 // Generate an encryption key.
 var time = DateTimeOffset.UtcNow.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture);
 var generated = await vault.SymmetricGenerate(
-    new SymmetricGenerateRequest.Builder(
+    new SymmetricGenerateRequest(
         SymmetricAlgorithm.AES256_FF3_1,
         KeyPurpose.FPE,
         $"dotnet-fpe-example-{time}"
-    ).Build()
+    )
 );
 var keyId = generated.Result.ID;
 

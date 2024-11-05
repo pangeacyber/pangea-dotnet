@@ -442,6 +442,7 @@ public class ITAuditTest
         int limit = 10;
         SearchRequest req = new SearchRequest.Builder("message:\"\"")
                             .WithMaxResults(limit)
+                            .WithLimit(limit)
                             .WithOrder("asc")
                             .Build();
 
@@ -464,6 +465,7 @@ public class ITAuditTest
         int limit = 10;
         SearchRequest req = new SearchRequest.Builder("message:\"\"")
                             .WithMaxResults(limit)
+                            .WithLimit(limit)
                             .WithOrder("asc")
                             .Build();
 
@@ -486,6 +488,7 @@ public class ITAuditTest
         int limit = 10;
         SearchRequest req = new SearchRequest.Builder("message:" + MSG_SIGNED_LOCAL + " status:" + STATUS_SIGNED)
                             .WithMaxResults(limit)
+                            .WithLimit(limit)
                             .WithOrder("desc")
                             .Build();
 
@@ -506,6 +509,7 @@ public class ITAuditTest
         int limit = 10;
         SearchRequest req = new SearchRequest.Builder("message:" + MSG_CUSTOM_SCHEMA_SIGNED_LOCAL)
                             .WithMaxResults(limit)
+                            .WithLimit(limit)
                             .WithOrder("desc")
                             .Build();
 
