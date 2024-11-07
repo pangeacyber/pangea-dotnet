@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## Changed.
+
+- Deprecated `PangeaCyber.Net.FileScan.FileUploader`; use
+`PangeaCyber.Net.FileUploader` instead.
+
 ## 4.1.0 - 2024-10-16
 
 ### Added
