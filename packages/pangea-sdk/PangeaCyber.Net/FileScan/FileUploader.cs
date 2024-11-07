@@ -6,6 +6,7 @@ namespace PangeaCyber.Net.FileScan
     /// <summary>
     /// FileScan Client
     /// </summary>
+    [Obsolete("Use PangeaCyber.Net.FileUploader instead.")]
     public class FileUploader : BaseClient<FileUploader.Builder>
     {
         ///
