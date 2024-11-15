@@ -29,6 +29,10 @@ namespace PangeaCyber.Net.Intel
         [JsonProperty("end")]
         public string? End { get; set; }
 
+        /// A token given in the raw response from SpyCloud. Post this back to paginate results
+        [JsonProperty("cursor")]
+        public string? Cursor { get; set; }
+
         ///
         public UserBreachedRequest(Builder builder) : base(builder)
         {
@@ -38,6 +42,7 @@ namespace PangeaCyber.Net.Intel
             PhoneNumber = builder.PhoneNumber;
             Start = builder.Start;
             End = builder.End;
+            Cursor = builder.Cursor;
         }
 
         ///
@@ -55,6 +60,8 @@ namespace PangeaCyber.Net.Intel
             public string? Start { get; set; }
             ///
             public string? End { get; set; }
+            ///
+            public string? Cursor { get; set; }
 
             ///
             public new UserBreachedRequest Build()
@@ -101,6 +108,13 @@ namespace PangeaCyber.Net.Intel
             public Builder WithEnd(string end)
             {
                 End = end;
+                return this;
+            }
+
+            ///
+            public Builder WithCursor(string cursor)
+            {
+                Cursor = cursor;
                 return this;
             }
         }

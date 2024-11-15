@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-## Changed.
+### Added
+
+- Support for `cursor` field on `v1/user/breached` of `user-intel`
+
+### Changed.
 
 - Deprecated `PangeaCyber.Net.FileScan.FileUploader`; use
 `PangeaCyber.Net.FileUploader` instead.
