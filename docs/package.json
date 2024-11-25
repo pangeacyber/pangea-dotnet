@@ -21,7 +21,7 @@
     "@types/node": "20.17.6",
     "@vitest/coverage-v8": "2.1.5",
     "tsimp": "2.0.12",
-    "typescript": "5.5.4",
+    "typescript": "5.7.2",
     "vitest": "2.1.5"
   }
 }
