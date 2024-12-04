@@ -33,6 +33,10 @@ namespace PangeaCyber.Net.Intel
         [JsonProperty("cursor")]
         public string? Cursor { get; set; }
 
+        /// Filter for records that match one of the given severities
+        [JsonProperty("severity")]
+        public string[]? Severity { get; set; }
+
         ///
         public UserBreachedRequest(Builder builder) : base(builder)
         {
@@ -43,6 +47,7 @@ namespace PangeaCyber.Net.Intel
             Start = builder.Start;
             End = builder.End;
             Cursor = builder.Cursor;
+            Severity = builder.Severity;
         }
 
         ///
@@ -62,6 +67,8 @@ namespace PangeaCyber.Net.Intel
             public string? End { get; set; }
             ///
             public string? Cursor { get; set; }
+            ///
+            public string[]? Severity { get; set; }
 
             ///
             public new UserBreachedRequest Build()
@@ -115,6 +122,13 @@ namespace PangeaCyber.Net.Intel
             public Builder WithCursor(string cursor)
             {
                 Cursor = cursor;
+                return this;
+            }
+
+            ///
+            public Builder WithSeverity(string[] severity)
+            {
+                Severity = severity;
                 return this;
             }
         }
