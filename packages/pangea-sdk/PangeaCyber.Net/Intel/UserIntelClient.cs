@@ -122,6 +122,23 @@ namespace PangeaCyber.Net.Intel
             return DoPost<UserPasswordBreachedBulkResult>("/v2/password/breached", request);
         }
 
+        /// <kind>method</kind>
+        /// <summary>Given a provider specific breach ID, find details about the breach.</summary>
+        /// <remarks>Look up information about a specific breach</remarks>
+        /// <operationid>user_intel_post_v1_breach</operationid>
+        /// <param name="request" type="PangeaCyber.Net.Intel.BreachRequest">BreachRequest with the breach ID to be looked up</param>
+        /// <returns>Response&lt;BreachResult&gt;</returns>
+        /// <example>
+        /// <code>
+        /// var request = new BreachRequest("66111");
+        /// var response = await client.Breach(request);
+        /// </code>
+        /// </example>
+        public Task<Response<BreachResult>> Breach(BreachRequest request)
+        {
+            return DoPost<BreachResult>("/v1/breach", request);
+        }
+
         ///
         public static PasswordStatus IsPasswordBreached(UserPasswordBreachedResult result, string hash)
         {
