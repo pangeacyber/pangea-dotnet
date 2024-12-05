@@ -32,6 +32,16 @@ namespace PangeaCyber.Net.Redact
         [JsonProperty("redaction_method_overrides")]
         public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
 
+        /// <summary>
+        /// Is this redact call going to be used in an LLM request?
+        /// </summary>
+        [JsonProperty("llm_request")]
+        public bool? LLMrequest { get; private set; }
+
+        ///
+        [JsonProperty("vault_parameters")]
+        public VaultParameters? VaultParameters { get; private set; }
+
         ///
         protected RedactTextRequest(Builder builder)
         {
@@ -41,6 +51,8 @@ namespace PangeaCyber.Net.Redact
             this.Rulesets = builder.Rulesets;
             this.ReturnResult = builder.ReturnResult;
             this.RedactionMethodOverrides = builder.RedactionMethodOverrides;
+            this.LLMrequest = builder.LLMrequest;
+            this.VaultParameters = builder.VaultParameters;
         }
 
         /// <kind>class</kind>
@@ -66,6 +78,12 @@ namespace PangeaCyber.Net.Redact
 
             ///
             public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
+
+            ///
+            public bool? LLMrequest { get; private set; } = null;
+
+            ///
+            public VaultParameters? VaultParameters { get; private set; } = null;
 
             ///
             public Builder(string text)
@@ -105,6 +123,20 @@ namespace PangeaCyber.Net.Redact
             public Builder WithRedactionMethodOverrides(RedactionMethodOverrides rmo)
             {
                 this.RedactionMethodOverrides = rmo;
+                return this;
+            }
+
+            ///
+            public Builder WithLLMrequest(bool llmRequest)
+            {
+                this.LLMrequest = llmRequest;
+                return this;
+            }
+
+            ///
+            public Builder WithVaultParameters(VaultParameters vaultParameters)
+            {
+                this.VaultParameters = vaultParameters;
                 return this;
             }
 
