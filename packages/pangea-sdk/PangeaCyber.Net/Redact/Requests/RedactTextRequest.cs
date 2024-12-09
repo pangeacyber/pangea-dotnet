@@ -36,7 +36,7 @@ namespace PangeaCyber.Net.Redact
         /// Is this redact call going to be used in an LLM request?
         /// </summary>
         [JsonProperty("llm_request")]
-        public bool? LLMrequest { get; private set; }
+        public bool? LLMRequest { get; private set; }
 
         ///
         [JsonProperty("vault_parameters")]
@@ -51,7 +51,7 @@ namespace PangeaCyber.Net.Redact
             this.Rulesets = builder.Rulesets;
             this.ReturnResult = builder.ReturnResult;
             this.RedactionMethodOverrides = builder.RedactionMethodOverrides;
-            this.LLMrequest = builder.LLMrequest;
+            this.LLMRequest = builder.LLMRequest;
             this.VaultParameters = builder.VaultParameters;
         }
 
@@ -80,7 +80,7 @@ namespace PangeaCyber.Net.Redact
             public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
 
             ///
-            public bool? LLMrequest { get; private set; } = null;
+            public bool? LLMRequest { get; private set; } = null;
 
             ///
             public VaultParameters? VaultParameters { get; private set; } = null;
@@ -129,7 +129,7 @@ namespace PangeaCyber.Net.Redact
             ///
             public Builder WithLLMrequest(bool llmRequest)
             {
-                this.LLMrequest = llmRequest;
+                this.LLMRequest = llmRequest;
                 return this;
             }
 
