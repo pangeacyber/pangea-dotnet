@@ -11,6 +11,10 @@ namespace PangeaCyber.Net.Share.Models
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        /// <summary>Duration until files within this folder are automatically deleted.</summary>
+        [JsonProperty("file_ttl")]
+        public string? FileTtl { get; set; }
+
         /// <summary> A set of string-based key/value pairs used to provide additional data about an object.</summary>
         [JsonProperty("metadata")]
         public Metadata? Metadata { get; set; }
