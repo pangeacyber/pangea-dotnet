@@ -34,6 +34,10 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("add_tags")]
         public Tags? AddTags { get; set; }
 
+        /// <summary>Set the file TTL.</summary>
+        [JsonProperty("file_ttl")]
+        public string? FileTtl { get; set; }
+
         ///<summary>Sets the object's Name.</summary>
         [JsonProperty("name")]
         public string? Name { get; set; }

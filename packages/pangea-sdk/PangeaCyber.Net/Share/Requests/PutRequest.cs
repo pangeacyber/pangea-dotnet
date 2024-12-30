@@ -35,6 +35,10 @@ namespace PangeaCyber.Net.Share.Requests
         [JsonProperty("folder")]
         public string? Folder { get; set; }
 
+        /// <summary>The TTL before expiry for the file.</summary>
+        [JsonProperty("file_ttl")]
+        public string? FileTtl { get; set; }
+
         ///<summary>An optional password to protect the file with. Downloading the file will require this password.</summary>
         [JsonProperty("password")]
         public string? Password { get; set; }
