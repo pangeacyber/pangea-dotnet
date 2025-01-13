@@ -106,5 +106,23 @@ namespace PangeaCyber.Net.Share.Models
         /// <summary>The key in the external bucket that contains this file.</summary>
         [JsonProperty("external_bucket_key")]
         public string? ExternalBucketKey { get; set; }
+
+        /// <summary>The explicit file TTL setting for this object.</summary>
+        [JsonProperty("file_ttl")]
+        public string? FileTtl { get; set; }
+
+        /// <summary>
+        /// The effective file TTL setting for this object, either explicitly
+        /// set or inherited (see file_ttl_from_id.)
+        /// </summary>
+        [JsonProperty("file_ttl_effective")]
+        public string? FileTtlEffective { get; set; }
+
+        /// <summary>
+        /// The ID of the object the expiry / TTL is set from. Either a service
+        /// configuration, the object itself, or a parent folder.
+        /// </summary>
+        [JsonProperty("file_ttl_from_id")]
+        public string? FileTtlFromId { get; set; }
     }
 }

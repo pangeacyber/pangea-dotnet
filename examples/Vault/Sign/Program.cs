@@ -20,25 +20,25 @@ class Program
 
             // Create client with builder
             VaultClient client = new VaultClient.Builder(cfg).Build();
-            string name = "my key's name " + time;
+            string name = "my_key_s_name_" + time;
             string dataToSign = Utils.StringToStringB64("thisisamessagetosign");
 
             // Generate key pair
             Console.WriteLine("Generate key...");
-            var generateRequest = new AsymmetricGenerateRequest.Builder(AsymmetricAlgorithm.ED25519, KeyPurpose.Signing, name).Build();
+            var generateRequest = new AsymmetricGenerateRequest(AsymmetricAlgorithm.ED25519, KeyPurpose.Signing, name);
             var generateResp = await client.AsymmetricGenerate(generateRequest);
             string id = generateResp.Result.ID ?? default!;
             Console.WriteLine("Key ID: " + id);
 
             // Sign
             Console.WriteLine("Sign...");
-            var signRequest = new SignRequest.Builder(id, dataToSign).Build();
+            var signRequest = new SignRequest(id, dataToSign);
             var signResp = await client.Sign(signRequest);
             string signatureBase64 = signResp.Result.Signature;
 
             // Verify
             Console.WriteLine("Verify...");
-            var verifyRequest = new VerifyRequest.Builder(id, dataToSign, signatureBase64).Build();
+            var verifyRequest = new VerifyRequest(id, dataToSign, signatureBase64);
             var verifyResp = await client.Verify(verifyRequest);
 
             if (verifyResp.Result.ValidSignature)

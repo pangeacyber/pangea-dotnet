@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.1.0
+        uses: actions/setup-dotnet@v4.2.0
         with:
           dotnet-version: 8
 
@@ -72,7 +72,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.1.0
+        uses: actions/setup-dotnet@v4.2.0
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
@@ -87,7 +87,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.1.0
+        uses: actions/setup-dotnet@v4.2.0
         with:
           dotnet-version: 6
 
@@ -95,7 +95,7 @@ jobs:
         run: dotnet build --configuration Release packages/pangea-sdk/
 
       - name: Upload
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4.6.0
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
@@ -111,7 +111,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.1.0
+        uses: actions/setup-dotnet@v4.2.0
         with:
           dotnet-version: 8
 
@@ -121,7 +121,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4.1.0
         with:
-          node-version: 20.10.0
+          node-version: 20
           cache: yarn
           cache-dependency-path: ./docs/yarn.lock
 
@@ -132,7 +132,7 @@ jobs:
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
 
       - name: Install docfx
-        run: dotnet tool install --global docfx --version 2.75.2
+        run: dotnet tool install --global docfx --version 2.77.0
 
       - name: Run docfx
         run: docfx metadata docfx.json
@@ -147,7 +147,7 @@ jobs:
         run: yarn generate
 
       - name: Upload
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4.6.0
         with:
           name: csharp_sdk.json
           path: ./docs/out/csharp_sdk.json
@@ -167,7 +167,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.1.0
+        uses: actions/setup-dotnet@v4.2.0
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 

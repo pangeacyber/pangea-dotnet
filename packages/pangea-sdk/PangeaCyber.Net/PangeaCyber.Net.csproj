@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Pangea.SDK</PackageId>
-    <Version>4.2.0-beta.2</Version>
+    <Version>4.3.0</Version>
     <Authors>Pangea Cyber Corporation</Authors>
     <Company>Pangea Cyber Corporation</Company>
     <Description>.NET SDK to access Pangea API services on pangea.cloud</Description>
@@ -31,11 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.5.0" />
     <PackageReference Include="Crc32.NET" Version="1.2.0" />
     <PackageReference Include="HttpMultipartParser" Version="5.1.0" />
-    <PackageReference Include="MimeKit" Version="4.8.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="6.0.35" />
+    <PackageReference Include="MimeKit" Version="4.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="6.0.36" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.3.4" />
   </ItemGroup>

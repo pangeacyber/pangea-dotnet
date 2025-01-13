@@ -33,6 +33,10 @@ namespace PangeaCyber.Net.Intel
         [JsonProperty("end")]
         public string? End { get; set; }
 
+        /// Filter for records that match one of the given severities
+        [JsonProperty("severity")]
+        public string[]? Severity { get; set; }
+
         ///
         public UserBreachedBulkRequest(Builder builder) : base(builder)
         {
@@ -43,6 +47,7 @@ namespace PangeaCyber.Net.Intel
             PhoneNumbers = builder.PhoneNumbers;
             Start = builder.Start;
             End = builder.End;
+            Severity = builder.Severity;
         }
 
         ///
@@ -62,6 +67,9 @@ namespace PangeaCyber.Net.Intel
             public string? Start { get; set; }
             ///
             public string? End { get; set; }
+
+            ///
+            public string[]? Severity { get; set; }
 
             ///
             public new UserBreachedBulkRequest Build()
@@ -115,6 +123,13 @@ namespace PangeaCyber.Net.Intel
             public Builder WithEnd(string end)
             {
                 End = end;
+                return this;
+            }
+
+            ///
+            public Builder WithSeverity(string[] severity)
+            {
+                Severity = severity;
                 return this;
             }
         }

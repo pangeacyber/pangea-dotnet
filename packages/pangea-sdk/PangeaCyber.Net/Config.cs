@@ -14,7 +14,7 @@ namespace PangeaCyber.Net
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "4.2.0-beta.2";
+        public const string Version = "4.3.0";
 
         #endregion Constants
 
@@ -162,7 +162,7 @@ namespace PangeaCyber.Net
             return new Config(token, domain)
             {
                 CustomUserAgent = "test",
-                ConnectionTimeout = new TimeSpan(0, 0, 60)
+                ConnectionTimeout = new TimeSpan(0, 0, 120)
             };
         }
 
@@ -177,7 +177,7 @@ namespace PangeaCyber.Net
             string domain = GetTestDomain(environment);
             return new Config(token, domain)
             {
-                ConnectionTimeout = new TimeSpan(0, 0, 60),
+                ConnectionTimeout = new TimeSpan(0, 0, 120),
                 CustomUserAgent = "test"
             };
         }
