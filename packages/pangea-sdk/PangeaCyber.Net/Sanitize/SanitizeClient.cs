@@ -49,7 +49,7 @@ namespace PangeaCyber.Net.Sanitize
         /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
         /// <example>
         /// <code>
-        /// var file = new FileStream("/path/to/file.pdf", FileMode.Open, FileAccess.Read);
+        /// var file = new FileStream("/path/to/file.txt", FileMode.Open, FileAccess.Read);
         /// var response = await client.Sanitize(
         ///     new SanitizeRequest()
         ///     {
