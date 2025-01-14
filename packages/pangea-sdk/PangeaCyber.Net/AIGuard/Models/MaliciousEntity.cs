@@ -17,7 +17,7 @@ public sealed class MaliciousEntity
     public bool? Redacted { get; set; }
 
     /// <summary>The starting position of the entity in the text.</summary>
-    public float? StartPos { get; set; }
+    public int? StartPos { get; set; }
 
     /// <summary>Raw data associated with the analysis.</summary>
     public Dictionary<string, object>? Raw { get; set; }

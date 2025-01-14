@@ -17,5 +17,5 @@ public sealed class PiiEntity
     public bool Redacted { get; set; }
 
     /// <summary>The starting position of the entity in the text.</summary>
-    public float? StartPos { get; set; }
+    public int? StartPos { get; set; }
 }
