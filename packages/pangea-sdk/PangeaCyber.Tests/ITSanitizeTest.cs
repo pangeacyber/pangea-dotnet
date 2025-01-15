@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
     [CollectionDefinition("Sanitize", DisableParallelization = true)]
     public class ITSanitizeTest
     {
-        private const string TESTFILE_PATH = "./data/ds11.pdf";
+        private const string TESTFILE_PATH = "./data/test-sanitize.txt";
         private SanitizeClient client;
         private readonly TestEnvironment environment = Helper.LoadTestEnvironment("sanitize", TestEnvironment.LVE);
 
@@ -33,8 +33,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         DomainIntelProvider = "crowdstrike",
                         Defang = true,
                         DefangThreshold = 20,
-                        RemoveAttachments = true,
-                        RemoveInteractive = true,
                         Redact = true,
                     },
                     File = new SanitizeFile()
@@ -67,10 +65,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
             Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
-            Assert.NotNull(response.Result.Data.CDR);
-            Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-            Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
-
             Assert.False(response.Result.Data.MaliciousFile);
         }
 
@@ -89,8 +83,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         DomainIntelProvider = "crowdstrike",
                         Defang = true,
                         DefangThreshold = 20,
-                        RemoveAttachments = true,
-                        RemoveInteractive = true,
                         Redact = true,
                     },
                     File = new SanitizeFile()
@@ -123,10 +115,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
             Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
-            Assert.NotNull(response.Result.Data.CDR);
-            Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-            Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
-
             Assert.False(response.Result.Data.MaliciousFile);
 
             var attachedFile = await client.DownloadFile(response.Result.DestURL);
@@ -147,8 +135,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         DomainIntelProvider = "crowdstrike",
                         Defang = true,
                         DefangThreshold = 20,
-                        RemoveAttachments = true,
-                        RemoveInteractive = true,
                         Redact = true,
                     },
                     File = new SanitizeFile()
@@ -181,10 +167,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
             Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
-            Assert.NotNull(response.Result.Data.CDR);
-            Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-            Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
-
             Assert.False(response.Result.Data.MaliciousFile);
         }
 
@@ -213,10 +195,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
             Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
             Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
-            Assert.NotNull(response.Result.Data.CDR);
-            Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-            Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
-
             Assert.False(response.Result.Data.MaliciousFile);
 
             var attachedFile = await client.DownloadFile(response.Result.DestURL);
@@ -244,8 +222,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                             DomainIntelProvider = "crowdstrike",
                             Defang = true,
                             DefangThreshold = 20,
-                            RemoveAttachments = true,
-                            RemoveInteractive = true,
                             Redact = true,
                         },
                         File = new SanitizeFile()
@@ -297,10 +273,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
                     Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
-                    Assert.NotNull(response.Result.Data.CDR);
-                    Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-                    Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
-
                     Assert.False(response.Result.Data.MaliciousFile);
 
                     // Poll result in raw format
@@ -335,8 +307,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         DomainIntelProvider = "crowdstrike",
                         Defang = true,
                         DefangThreshold = 20,
-                        RemoveAttachments = true,
-                        RemoveInteractive = true,
                         Redact = true,
                     },
                     File = new SanitizeFile()
@@ -394,10 +364,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
                     Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
-                    Assert.NotNull(response.Result.Data.CDR);
-                    Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-                    Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
-
                     Assert.False(response.Result.Data.MaliciousFile);
 
                     // Poll result in raw format
@@ -431,8 +397,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                         DomainIntelProvider = "crowdstrike",
                         Defang = true,
                         DefangThreshold = 20,
-                        RemoveAttachments = true,
-                        RemoveInteractive = true,
                         Redact = true,
                     },
                     File = new SanitizeFile()
@@ -447,7 +411,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     RequestTransferMethod = TransferMethod.PutURL,
                     UploadedFileName = "uploaded_file",
                 });
-
 
             Assert.Null(urlResponse.Result.PostURL);
             Assert.Empty(urlResponse.Result.PostFormData);
@@ -487,10 +450,6 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     Assert.Equal(response.Result.Data.Defang.DefangedCount, 0);
                     Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
                     Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
-
-                    Assert.NotNull(response.Result.Data.CDR);
-                    Assert.Equal(response.Result.Data.CDR.FileAttachmentsRemoved, 0);
-                    Assert.Equal(response.Result.Data.CDR.InteractiveContentsRemoved, 0);
 
                     Assert.False(response.Result.Data.MaliciousFile);
 

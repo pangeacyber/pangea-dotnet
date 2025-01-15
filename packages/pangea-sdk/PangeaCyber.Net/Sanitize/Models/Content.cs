@@ -40,14 +40,6 @@ namespace PangeaCyber.Net.Sanitize
         [JsonProperty("redact_detect_only")]
         public bool? RedactDetectOnly { get; set; }
 
-        /// <summary>Remove file attachments (PDF only).</summary>
-        [JsonProperty("remove_attachments")]
-        public bool? RemoveAttachments { get; set; }
-
-        /// <summary>Remove interactive content (PDF only).</summary>
-        [JsonProperty("remove_interactive")]
-        public bool? RemoveInteractive { get; set; }
-
         /// <summary>Constructor.</summary>
         public Content() { }
     }

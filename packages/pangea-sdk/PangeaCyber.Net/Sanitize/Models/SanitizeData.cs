@@ -17,10 +17,6 @@ namespace PangeaCyber.Net.Sanitize
         [JsonProperty("malicious_file")]
         public bool? MaliciousFile { get; set; }
 
-        /// <summary>Content Disarm and Reconstruct.</summary>
-        [JsonProperty("cdr")]
-        public CDR? CDR { get; set; }
-
         /// <summary>Constructor.</summary>
         public SanitizeData() { }
     }
