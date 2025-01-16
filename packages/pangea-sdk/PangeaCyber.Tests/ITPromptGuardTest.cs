@@ -15,11 +15,11 @@ public class ITPromptGuardTest
     {
         var response = await client.Guard(new GuardRequest(
             new[] {
-                new Message { Role = "user", Content = "how are you?" }
+                new Message { Role = "user", Content = "what was pangea?" }
             }
         ));
         Assert.True(response.IsOK);
-        Assert.False(response.Result.Detected);
+        Assert.False(response.Result.Detected, "injection should not be detected");
 
         response = await client.Guard(new GuardRequest(
             new[] {
@@ -27,8 +27,8 @@ public class ITPromptGuardTest
             }
         ));
         Assert.True(response.IsOK);
-        Assert.True(response.Result.Detected);
+        Assert.True(response.Result.Detected, "injection should be detected");
         Assert.NotNull(response.Result.Type);
-        Assert.NotNull(response.Result.Detector);
+        Assert.NotNull(response.Result.Analyzer);
     }
 }
