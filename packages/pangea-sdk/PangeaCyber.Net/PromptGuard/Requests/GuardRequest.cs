@@ -8,8 +8,11 @@ namespace PangeaCyber.Net.PromptGuard.Requests;
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
 public sealed class GuardRequest : BaseRequest
 {
-    /// <summary>Messages.</summary>
+    /// <summary>Prompt content and role array</summary>
     public IEnumerable<Message> Messages { get; set; }
+
+    /// <summary>Specific analyzers to be used in the call</summary>
+    public IEnumerable<string>? Analyzers { get; set; }
 
     /// <summary>Constructor.</summary>
     public GuardRequest(IEnumerable<Message> messages)
