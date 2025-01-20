@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using PangeaCyber.Net.PromptGuard.Models;
 
 namespace PangeaCyber.Net.PromptGuard.Results;
 
@@ -18,4 +19,10 @@ public sealed class GuardResult
 
     /// <summary>Percent of confidence in the detection result, ranging from 0 to 100</summary>
     public int Confidence { get; set; }
+
+    /// <summary>Extra information about the detection result</summary>
+    public string? Info { get; set; }
+
+    /// <summary>List of classification results with labels and confidence scores</summary>
+    public IList<Classification> Classifications { get; set; } = new List<Classification>();
 }
