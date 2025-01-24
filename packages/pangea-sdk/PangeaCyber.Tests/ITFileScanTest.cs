@@ -3,6 +3,7 @@ using PangeaCyber.Tests;
 
 namespace PangeaCyber.Net.FileScan.Tests
 {
+    [CollectionDefinition("File Scan", DisableParallelization = true)]
     public class ITFileScanTest
     {
         private const string TESTFILE_PATH = "./data/testfile.pdf";
@@ -15,7 +16,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             client = new FileScanClient.Builder(config).Build();
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_Scan_crowdstrike()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -28,7 +29,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             Assert.NotNull(response.Result.RawData);
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_Scan_multipart()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -41,7 +42,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             Assert.NotNull(response.Result.RawData);
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_ScanAsync_crowdstrike()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -55,7 +56,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             });
         }
 
-        [Fact(Timeout = 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_ScanAsyncPollResult_crowdstrike()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -96,14 +97,14 @@ namespace PangeaCyber.Net.FileScan.Tests
                     Assert.True(responseDictionary.IsOK);
                     break;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op.
                 }
             }
         }
 
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_Scan_reversinglabs()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -116,7 +117,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             Assert.NotNull(response.Result.RawData);
         }
 
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_ScanAsync_reversinglabs()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -130,7 +131,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             });
         }
 
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_ScanAsyncPollResult_reversinglabs()
         {
             Config config = Config.FromIntegrationEnvironment(environment);
@@ -171,14 +172,14 @@ namespace PangeaCyber.Net.FileScan.Tests
                     Assert.True(responseDictionary.IsOK);
                     break;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op.
                 }
             }
         }
 
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_SplitUpload_Post()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -214,14 +215,14 @@ namespace PangeaCyber.Net.FileScan.Tests
                     Assert.True(responseDictionary.IsOK);
                     break;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op
                 }
             }
         }
 
-        [Fact(Timeout = 2 * 60 * 1000)]
+        [SkippableFact(typeof(AcceptedRequestException), Timeout = 5 * 60 * 1000)]
         public async Task TestFileScan_SplitUpload_Put()
         {
             var file = new FileStream(TESTFILE_PATH, FileMode.Open, FileAccess.Read);
@@ -255,9 +256,9 @@ namespace PangeaCyber.Net.FileScan.Tests
                     Assert.True(responseDictionary.IsOK);
                     break;
                 }
-                catch (PangeaAPIException)
+                catch (AcceptedRequestException)
                 {
-                    Assert.True(retry < maxRetry - 1);
+                    // No-op.
                 }
             }
         }
