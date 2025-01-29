@@ -53,7 +53,8 @@ namespace PangeaCyber.Net
 
         /// <summary>Pangea environment.</summary>
         /// <remarks>
-        /// This is intended to facilitate SDK development and should not be touched in everyday usage.
+        /// If set to "local", then <see cref="Domain"/> must be the full host (i.e., hostname and port) for the
+        /// Pangea service that this <see cref="Config"/> will be used for.
         /// </remarks>
         public string Environment { get; set; }
 
@@ -84,7 +85,7 @@ namespace PangeaCyber.Net
             StringBuilder b = new();
             b.Append(!Insecure ? "https://" : "http://");
 
-            if (!Environment.Equals("local", StringComparison.CurrentCultureIgnoreCase))
+            if (!Environment.Equals("local", StringComparison.InvariantCultureIgnoreCase))
             {
                 b.Append(serviceName);
                 b.Append('.');
