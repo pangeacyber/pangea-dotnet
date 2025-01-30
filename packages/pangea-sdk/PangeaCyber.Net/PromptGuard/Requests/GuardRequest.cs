@@ -14,6 +14,12 @@ public sealed class GuardRequest : BaseRequest
     /// <summary>Specific analyzers to be used in the call</summary>
     public IEnumerable<string>? Analyzers { get; set; }
 
+    /// <summary>Boolean to enable classification of the content</summary>
+    public bool? Classify { get; set; }
+
+    /// <summary>Threshold for the confidence score to consider the prompt as malicious</summary>
+    public double? Threshold { get; set; }
+
     /// <summary>Constructor.</summary>
     public GuardRequest(IEnumerable<Message> messages)
     {
