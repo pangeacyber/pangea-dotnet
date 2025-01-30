@@ -17,8 +17,8 @@ public sealed class GuardResult
     /// <summary>Prompt Analyzers for identifying and rejecting properties of prompts</summary>
     public string? Analyzer { get; set; }
 
-    /// <summary>Percent of confidence in the detection result, ranging from 0 to 100</summary>
-    public int Confidence { get; set; }
+    /// <summary>Percent of confidence in the detection result, ranging from 0 to 1</summary>
+    public double Confidence { get; set; }
 
     /// <summary>Extra information about the detection result</summary>
     public string? Info { get; set; }
