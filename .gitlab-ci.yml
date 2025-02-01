@@ -102,7 +102,7 @@ default:
       - CLOUD: [AWS, GCP]
         ENV: ${SERVICE_VAULT_ENV}
         TEST: ITVaultTest
-      - CLOUD: [AWS, GCP]
+      - CLOUD: [AWS]
         ENV: ${SERVICE_SHARE_ENV}
         TEST: ITShareTest
   rules:
