@@ -365,7 +365,7 @@ public class ITAuditTest
     //     await Assert.ThrowsAsync<ValidationException>(async () => await client.Log(evt));
     // }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestSearchDefault()
     {
         int limit = 4;
