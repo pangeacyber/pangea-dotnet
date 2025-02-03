@@ -40,7 +40,10 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     }
 
     /// <kind>method</kind>
-    /// <summary>Guard text.</summary>
+    /// <summary>
+    /// Analyze and redact text to avoid manipulation of the model, addition of malicious content, and other undesirable
+    /// data transfers.
+    /// </summary>
     /// <remarks>Text guard (Beta)</remarks>
     /// <operationid>ai_guard_post_v1beta_text_guard</operationid>
     /// <param name="request">Request parameters.</param>
@@ -50,8 +53,30 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     /// var response = await client.GuardText(new TextGuardRequest("hello world"));
     /// </code>
     /// </example>
-    public Task<Response<TextGuardResult>> GuardText(TextGuardRequest request, CancellationToken cancellationToken = default)
+    public Task<Response<TextGuardResult<object>>> GuardText(TextGuardRequest request, CancellationToken cancellationToken = default)
     {
-        return DoPost<TextGuardResult>("/v1beta/text/guard", request, cancellationToken: cancellationToken);
+        return DoPost<TextGuardResult<object>>("/v1beta/text/guard", request, cancellationToken: cancellationToken);
+    }
+
+    /// <kind>method</kind>
+    /// <summary>
+    /// Analyze and redact text to avoid manipulation of the model, addition of malicious content, and other undesirable
+    /// data transfers.
+    /// </summary>
+    /// <remarks>Text guard (Beta)</remarks>
+    /// <operationid>ai_guard_post_v1beta_text_guard</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <example>
+    /// <code>
+    /// var response = await client.GuardText(new MessagesGuardRequest&lt;IEnumerable&lt;IDictionary&lt;string, string&gt;&gt;&gt;(new[]
+    /// {
+    ///     new Dictionary&lt;string, string&gt; { { "role", "user" }, { "content", "what was pangea?" } }
+    /// }));
+    /// </code>
+    /// </example>
+    public Task<Response<TextGuardResult<TMessages>>> GuardText<TMessages>(MessagesGuardRequest<TMessages> request, CancellationToken cancellationToken = default)
+    {
+        return DoPost<TextGuardResult<TMessages>>("/v1beta/text/guard", request, cancellationToken: cancellationToken);
     }
 }

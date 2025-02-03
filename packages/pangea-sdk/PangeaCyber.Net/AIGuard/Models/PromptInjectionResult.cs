@@ -7,6 +7,9 @@ namespace PangeaCyber.Net.AIGuard.Models;
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
 public sealed class PromptInjectionResult
 {
+    /// <summary>Action</summary>
+    public DetectorAction Action { get; set; }
+
     /// <summary>List of analyzer responses that were triggered.</summary>
     public List<AnalyzerResponse> AnalyzerResponses { get; set; } = default!;
 }
