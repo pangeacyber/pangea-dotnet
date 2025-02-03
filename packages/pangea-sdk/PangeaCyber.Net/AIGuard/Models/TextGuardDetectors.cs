@@ -15,4 +15,19 @@ public sealed class TextGuardDetectors
 
     /// <summary>Malicious entity detection results.</summary>
     public TextGuardDetector<MaliciousEntityResult>? MaliciousEntity { get; set; }
+
+    /// <summary>Secrets detection</summary>
+    public TextGuardDetector<SecretsEntityResult>? SecretsDetection { get; set; }
+
+    /// <summary>Profanity and toxicity</summary>
+    public TextGuardDetector<object>? ProfanityAndToxicity { get; set; }
+
+    /// <summary>Custom entity</summary>
+    public TextGuardDetector<object>? CustomEntity { get; set; }
+
+    /// <summary>Language detection</summary>
+    public TextGuardDetector<LanguageDetectionResult>? LanguageDetection { get; set; }
+
+    /// <summary>Code detection</summary>
+    public TextGuardDetector<CodeDetectionResult>? CodeDetection { get; set; }
 }

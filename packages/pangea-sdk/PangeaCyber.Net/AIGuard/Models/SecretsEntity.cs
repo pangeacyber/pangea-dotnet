@@ -3,19 +3,22 @@ using Newtonsoft.Json.Serialization;
 
 namespace PangeaCyber.Net.AIGuard.Models;
 
-/// <summary>Represents a PII (Personally Identifiable Information) entity.</summary>
+/// <summary>Secrets entity</summary>
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-public sealed class PiiEntity
+public sealed class SecretsEntity
 {
-    /// <summary>The type of PII entity.</summary>
+    /// <summary>Type</summary>
     public string Type { get; set; } = default!;
 
-    /// <summary>The value of the PII entity.</summary>
+    /// <summary>Value</summary>
     public string Value { get; set; } = default!;
 
     /// <summary>Action</summary>
     public DetectorAction Action { get; set; }
 
-    /// <summary>The starting position of the entity in the text.</summary>
+    /// <summary>Start position</summary>
     public int? StartPos { get; set; }
+
+    /// <summary>Redacted value</summary>
+    public string RedactedValue { get; set; } = default!;
 }

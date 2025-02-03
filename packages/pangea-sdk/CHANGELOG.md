@@ -10,10 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Prompt Guard: `classify` and `threshold` parameters.
+- AI Guard: support for structured input.
+- AI Guard: more detectors.
 
 ### Changed
 
 - Clarified what `Config.Environment` affects.
+- AI Guard: replaced `redacted` with `action`.
 
 ## 4.4.0-beta.2 - 2025-01-21
 
