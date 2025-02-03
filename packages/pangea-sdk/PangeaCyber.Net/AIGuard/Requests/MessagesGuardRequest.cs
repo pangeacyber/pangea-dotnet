@@ -3,15 +3,15 @@ using Newtonsoft.Json.Serialization;
 
 namespace PangeaCyber.Net.AIGuard.Requests;
 
-/// <summary>Text guard request.</summary>
+/// <summary>Messages guard request</summary>
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-public sealed class TextGuardRequest : BaseRequest
+public sealed class MessagesGuardRequest<TMessages> : BaseRequest
 {
     /// <summary>
-    /// Text to be scanned by AI Guard for PII, sensitive data, malicious content, and other data types defined by the
-    /// configuration. Supports processing up to 10KB of text.
+    /// Structured data to be scanned by AI Guard for PII, sensitive data, malicious content, and other data types
+    /// defined by the configuration. Supports processing up to 10KB of text.
     /// </summary>
-    public string? Text { get; set; }
+    public TMessages Messages { get; set; }
 
     /// <summary>
     /// Recipe key of a configuration of data types and settings defined in the Pangea User Console. It specifies the
@@ -22,9 +22,9 @@ public sealed class TextGuardRequest : BaseRequest
     /// <summary>Setting this value to true will provide a detailed analysis of the text data</summary>
     public bool Debug { get; set; }
 
-    /// <summary>Constructor</summary>
-    public TextGuardRequest(string text)
+    /// <summary>Constructor.</summary>
+    public MessagesGuardRequest(TMessages messages)
     {
-        Text = text ?? throw new ArgumentNullException(nameof(text));
+        Messages = messages ?? throw new ArgumentNullException(nameof(messages));
     }
 }

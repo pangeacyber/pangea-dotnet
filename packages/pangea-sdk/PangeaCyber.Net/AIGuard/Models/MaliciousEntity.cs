@@ -13,8 +13,8 @@ public sealed class MaliciousEntity
     /// <summary>The value of the malicious entity.</summary>
     public string Value { get; set; } = default!;
 
-    /// <summary>Whether the entity was redacted.</summary>
-    public bool? Redacted { get; set; }
+    /// <summary>Action</summary>
+    public DetectorAction Action { get; set; }
 
     /// <summary>The starting position of the entity in the text.</summary>
     public int? StartPos { get; set; }
