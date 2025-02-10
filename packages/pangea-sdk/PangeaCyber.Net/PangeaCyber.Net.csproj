@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.5.0" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.5.1" />
     <PackageReference Include="Crc32.NET" Version="1.2.0" />
     <PackageReference Include="HttpMultipartParser" Version="5.1.0" />
     <PackageReference Include="MimeKit" Version="4.10.0" />
