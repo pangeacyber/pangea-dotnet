@@ -14,7 +14,7 @@ public sealed class SecretsEntity
     public string Value { get; set; } = default!;
 
     /// <summary>Action</summary>
-    public DetectorAction Action { get; set; }
+    public string Action { get; set; } = default!;
 
     /// <summary>Start position</summary>
     public int? StartPos { get; set; }
