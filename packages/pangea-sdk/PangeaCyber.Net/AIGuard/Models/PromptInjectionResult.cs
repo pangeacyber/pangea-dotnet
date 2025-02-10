@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class PromptInjectionResult
 {
     /// <summary>Action</summary>
-    public DetectorAction Action { get; set; }
+    public string Action { get; set; } = default!;
 
     /// <summary>List of analyzer responses that were triggered.</summary>
     public List<AnalyzerResponse> AnalyzerResponses { get; set; } = default!;
