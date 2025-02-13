@@ -44,8 +44,8 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     /// Analyze and redact text to avoid manipulation of the model, addition of malicious content, and other undesirable
     /// data transfers.
     /// </summary>
-    /// <remarks>Text guard (Beta)</remarks>
-    /// <operationid>ai_guard_post_v1beta_text_guard</operationid>
+    /// <remarks>Text guard</remarks>
+    /// <operationid>ai_guard_post_v1_text_guard</operationid>
     /// <param name="request">Request parameters.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
@@ -55,7 +55,7 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     /// </example>
     public Task<Response<TextGuardResult<object>>> GuardText(TextGuardRequest request, CancellationToken cancellationToken = default)
     {
-        return DoPost<TextGuardResult<object>>("/v1beta/text/guard", request, cancellationToken: cancellationToken);
+        return DoPost<TextGuardResult<object>>("/v1/text/guard", request, cancellationToken: cancellationToken);
     }
 
     /// <kind>method</kind>
@@ -63,8 +63,8 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     /// Analyze and redact text to avoid manipulation of the model, addition of malicious content, and other undesirable
     /// data transfers.
     /// </summary>
-    /// <remarks>Text guard (Beta)</remarks>
-    /// <operationid>ai_guard_post_v1beta_text_guard</operationid>
+    /// <remarks>Text guard</remarks>
+    /// <operationid>ai_guard_post_v1_text_guard</operationid>
     /// <param name="request">Request parameters.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <example>
@@ -77,6 +77,6 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     /// </example>
     public Task<Response<TextGuardResult<TMessages>>> GuardText<TMessages>(MessagesGuardRequest<TMessages> request, CancellationToken cancellationToken = default)
     {
-        return DoPost<TextGuardResult<TMessages>>("/v1beta/text/guard", request, cancellationToken: cancellationToken);
+        return DoPost<TextGuardResult<TMessages>>("/v1/text/guard", request, cancellationToken: cancellationToken);
     }
 }
