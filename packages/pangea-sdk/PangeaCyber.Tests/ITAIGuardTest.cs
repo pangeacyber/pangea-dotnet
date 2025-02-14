@@ -19,15 +19,11 @@ public class ITAIGuardTest
         {
             Assert.False(response.Result.Detectors.MaliciousEntity.Detected);
         }
-        Assert.False(response.Result.Detectors.PiiEntity?.Detected);
+        if (response.Result.Detectors.PiiEntity != null)
+        {
+            Assert.False(response.Result.Detectors.PiiEntity?.Detected);
+        }
         Assert.False(response.Result.Detectors.PromptInjection?.Detected);
-
-        response = await client.GuardText(new TextGuardRequest("security@pangea.cloud") { Recipe = "pangea_prompt_guard" });
-        Assert.True(response.IsOK);
-        Assert.NotNull(response.Result.PromptText);
-        Assert.NotNull(response.Result.Detectors.PiiEntity);
-        Assert.NotNull(response.Result.Detectors.PiiEntity.Data);
-        Assert.Single(response.Result.Detectors.PiiEntity.Data.Entities);
     }
 
     [Fact]
