@@ -4,15 +4,15 @@ using PangeaCyber.Net.AIGuard.Models;
 
 namespace PangeaCyber.Net.AIGuard.Requests;
 
-/// <summary>Text guard request.</summary>
+/// <summary>LLM input guard request</summary>
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-public sealed class TextGuardRequest : BaseRequest
+public sealed class LlmInputGuardRequest<T> : BaseRequest
 {
     /// <summary>
-    /// Text to be scanned by AI Guard for PII, sensitive data, malicious content, and other data types defined by the
-    /// configuration. Supports processing up to 10KB of text.
+    /// Structured full llm payload data to be scanned by AI Guard for PII, sensitive data, malicious content, and other
+    /// data types defined by the configuration. Supports processing up to 10KB of JSON text.
     /// </summary>
-    public string? Text { get; set; }
+    public T LlmInput { get; set; }
 
     /// <summary>
     /// Recipe key of a configuration of data types and settings defined in the Pangea User Console. It specifies the
@@ -29,9 +29,9 @@ public sealed class TextGuardRequest : BaseRequest
     /// <summary>Additional fields to include in activity log</summary>
     public LogFields? LogFields { get; set; }
 
-    /// <summary>Constructor</summary>
-    public TextGuardRequest(string text)
+    /// <summary>Constructor.</summary>
+    public LlmInputGuardRequest(T llmInput)
     {
-        Text = text ?? throw new ArgumentNullException(nameof(text));
+        LlmInput = llmInput ?? throw new ArgumentNullException(nameof(llmInput));
     }
 }
