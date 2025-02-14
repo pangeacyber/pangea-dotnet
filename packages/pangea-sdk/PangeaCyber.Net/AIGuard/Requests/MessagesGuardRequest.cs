@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using PangeaCyber.Net.AIGuard.Models;
 
 namespace PangeaCyber.Net.AIGuard.Requests;
 
@@ -21,6 +22,12 @@ public sealed class MessagesGuardRequest<TMessages> : BaseRequest
 
     /// <summary>Setting this value to true will provide a detailed analysis of the text data</summary>
     public bool Debug { get; set; }
+
+    /// <summary>Short string hint for the LLM Provider information</summary>
+    public string? LlmInfo { get; set; }
+
+    /// <summary>Additional fields to include in activity log</summary>
+    public LogFields? LogFields { get; set; }
 
     /// <summary>Constructor.</summary>
     public MessagesGuardRequest(TMessages messages)
