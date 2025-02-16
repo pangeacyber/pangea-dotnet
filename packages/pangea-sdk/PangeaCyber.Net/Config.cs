@@ -14,7 +14,7 @@ namespace PangeaCyber.Net
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "4.3.0";
+        public const string Version = "4.4.0";
 
         #endregion Constants
 
