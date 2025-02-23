@@ -586,7 +586,7 @@ public class ITAuditTest
         }
     }
 
-    [Fact]
+    [SkippableFact(typeof(AcceptedRequestException))]
     public async Task TestResultsVerify_CustomSchema()
     {
         int searchLimit = 10;
