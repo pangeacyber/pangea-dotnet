@@ -1,13 +1,13 @@
 using PangeaCyber.Net;
-using PangeaCyber.Net.Redact;
 using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Net.Redact;
 
 namespace PangeaCyber.Tests;
 
 ///
 public class ITRedactTest
 {
-    private RedactClient client;
+    private readonly RedactClient client;
     private readonly TestEnvironment environment = Helper.LoadTestEnvironment("redact", TestEnvironment.LVE);
 
     ///
@@ -49,7 +49,6 @@ public class ITRedactTest
         Assert.Equal(2, response.Result.Count);
         Assert.NotNull(response.Result.Report);
     }
-
 
     [Fact]
     public async Task TestRedactStructured()
@@ -127,7 +126,6 @@ public class ITRedactTest
         Assert.NotNull(response.Result.Report);
     }
 
-
     [Fact]
     public async Task TestRedactStructured_4()
     {
@@ -161,7 +159,7 @@ public class ITRedactTest
         {
             { "Name", "Jenny Jenny" },
             { "Phone", "This is its number: 415-867-5309" },
-            { "IP", "Its ip is 127.0.0.1"}
+            { "IP", "Its ip is 127.0.0.1" }
         };
 
         var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithRules(new[] { "IP_ADDRESS" }).WithReturnResult(true).Build());
@@ -169,19 +167,19 @@ public class ITRedactTest
 
         var expected = new Dictionary<string, object>
         {
-            { "Name", "<PERSON>" },
-            { "Phone", "This is its number: <PHONE_NUMBER>" },
-            { "IP", "Its ip is <IP_ADDRESS>"}
+            { "Name", "Jenny Jenny" },
+            { "Phone", "This is its number: 415-867-5309" },
+            { "IP", "Its ip is <IP_ADDRESS>" }
         };
 
         Assert.True(response.IsOK);
         Assert.Equal(expected, converted);
-        Assert.Equal(3, response.Result.Count);
+        Assert.Equal(1, response.Result.Count);
         Assert.Null(response.Result.Report);
     }
 
     [Fact]
-    public async Task testRedactTextUnauthorized()
+    public async Task TestRedactTextUnauthorized()
     {
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
@@ -208,7 +206,7 @@ public class ITRedactTest
     public async Task TestRedactMultiConfig_1()
     {
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        String ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 1);
+        var ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 1);
         var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());
@@ -223,7 +221,7 @@ public class ITRedactTest
     public async Task TestLogMultiConfig_2()
     {
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        String ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 2);
+        var ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 2);
         var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());

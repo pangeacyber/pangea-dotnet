@@ -34,8 +34,8 @@ namespace PangeaCyber.Net.Sanitize
         public bool? Redact { get; set; }
 
         /// <summary>
-        /// If redact is enabled, avoids redacting the file and instead returns
-        /// the PII analysis engine results.Only works if redact is enabled.
+        /// If redact is enabled, avoids redacting the file and instead returns the PII analysis engine results. Only
+        /// works if redact is enabled.
         /// </summary>
         [JsonProperty("redact_detect_only")]
         public bool? RedactDetectOnly { get; set; }

@@ -223,6 +223,7 @@ namespace PangeaCyber.Net.Sanitize.Tests
                             Defang = true,
                             DefangThreshold = 20,
                             Redact = true,
+                            RedactDetectOnly = true,
                         },
                         File = new SanitizeFile()
                         {
@@ -262,14 +263,13 @@ namespace PangeaCyber.Net.Sanitize.Tests
                     Assert.NotNull(response.Result.Data);
 
                     Assert.NotNull(response.Result.Data.Redact);
-                    Assert.True(response.Result.Data.Redact.RedactionCount > 0);
                     Assert.NotNull(response.Result.Data.Redact.SummaryCounts);
                     Assert.NotEmpty(response.Result.Data.Redact.SummaryCounts);
 
                     Assert.NotNull(response.Result.Data.Defang);
-                    Assert.True(response.Result.Data.Defang.ExternalDomainsCount > 0);
-                    Assert.True(response.Result.Data.Defang.ExternalURLsCount > 0);
-                    Assert.Equal(response.Result.Data.Defang.DefangedCount, 0);
+                    Assert.Equal(1, response.Result.Data.Defang.ExternalDomainsCount);
+                    Assert.Equal(1, response.Result.Data.Defang.ExternalURLsCount);
+                    Assert.Equal(0, response.Result.Data.Defang.DefangedCount);
                     Assert.NotNull(response.Result.Data.Defang.DomainIntelSummary);
                     Assert.NotEmpty(response.Result.Data.Defang.DomainIntelSummary);
 
