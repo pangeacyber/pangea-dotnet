@@ -95,7 +95,7 @@ jobs:
         run: dotnet build --configuration Release packages/pangea-sdk/
 
       - name: Upload
-        uses: actions/upload-artifact@v4.6.0
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
@@ -147,7 +147,7 @@ jobs:
         run: yarn generate
 
       - name: Upload
-        uses: actions/upload-artifact@v4.6.0
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: csharp_sdk.json
           path: ./docs/out/csharp_sdk.json
