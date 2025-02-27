@@ -741,5 +741,48 @@ namespace PangeaCyber.Net.Vault.Tests
             Assert.NotNull(actual.Result.PublicKey);
             Assert.NotNull(actual.Result.PrivateKey);
         }
+
+
+        [Fact]
+        public async Task TestListAndDelete()
+        {
+            var itemCounter = 0;
+            string? last = null;
+            var startTimeMs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+            while (itemCounter < 500)
+            {
+                // List
+                var filter = new Dictionary<string, string>()
+                {
+                    { "name__contains", actor }
+                };
+
+                var listResp = await client.List(new ListRequest()
+                {
+                    Filter = filter,
+                    Last = last,
+                });
+
+                if (listResp.Result.Items.Count == 0)
+                {
+                    break;
+                }
+
+                foreach (var item in listResp.Result.Items)
+                {
+                    // Delete
+                    var deleteResp = await client.Delete(item.ID);
+                    Assert.Equal(item.ID, deleteResp.Result.ID);
+                    itemCounter++;
+                }
+
+                last = listResp.Result.Last;
+            }
+
+            var endTimeMs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            Console.WriteLine($"Deleted {itemCounter} items in {endTimeMs - startTimeMs} ms");
+            Console.WriteLine($"Average delete time per item: {(endTimeMs - startTimeMs) / itemCounter} ms");
+        }
     }
 }
