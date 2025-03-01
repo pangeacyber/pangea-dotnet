@@ -350,7 +350,7 @@ __metadata:
     "@types/js-yaml": "npm:4.0.9"
     "@types/node": "npm:20.17.19"
     "@vitest/coverage-v8": "npm:3.0.7"
-    fast-xml-parser: "npm:5.0.6"
+    fast-xml-parser: "npm:5.0.7"
     js-yaml: "npm:4.1.0"
     tsimp: "npm:2.0.12"
     typescript: "npm:5.7.3"
@@ -969,14 +969,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-xml-parser@npm:5.0.6":
-  version: 5.0.6
-  resolution: "fast-xml-parser@npm:5.0.6"
+"fast-xml-parser@npm:5.0.7":
+  version: 5.0.7
+  resolution: "fast-xml-parser@npm:5.0.7"
   dependencies:
     strnum: "npm:^2.0.4"
   bin:
     fxparser: src/cli/cli.js
-  checksum: 10c0/71e8eeb158dbf54221e511c54a101999a5023ce32327eeda2d706fe542ee15cf15942bc84d1ab50f19bd9d1496feaf97fbb4f3afac118808b85148b9bbd45f42
+  checksum: 10c0/32aa3d1fe350ae23616fefa553a01bd3370dd03b5090503adc53b1c0f8aa53682681bfb58e2d208c494381dbae4d600b57116466df6e0e8bb73e8d85d45dd4eb
   languageName: node
   linkType: hard
 
