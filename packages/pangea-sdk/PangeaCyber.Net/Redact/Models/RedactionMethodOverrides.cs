@@ -2,10 +2,9 @@ using Newtonsoft.Json;
 
 namespace PangeaCyber.Net.Redact
 {
-    ///
+    /// <summary>This field allows users to specify the redaction method per rule and its various parameters.</summary>
     public class RedactionMethodOverrides
     {
-
         ///
         [JsonProperty("masking_type")]
         public RedactType RedactionType { get; set; } = default!;
