@@ -8,143 +8,49 @@ namespace PangeaCyber.Net.Redact
     /// </summary>
     public class RedactTextRequest : BaseRequest
     {
-        ///
+        /// <summary>The text data to redact</summary>
         [JsonProperty("text")]
         public string Text { get; private set; }
 
-        ///
+        /// <summary>
+        /// Setting this value to true will provide a detailed analysis of the redacted data and the rules that caused
+        /// redaction
+        /// </summary>
         [JsonProperty("debug")]
-        public bool? Debug { get; private set; }
+        public bool? Debug { get; set; }
 
-        ///
+        /// <summary>An array of redact rule short names</summary>
         [JsonProperty("rules")]
-        public string[]? Rules { get; private set; }
+        public string[]? Rules { get; set; }
 
-        ///
+        /// <summary>An array of redact ruleset short names</summary>
         [JsonProperty("rulesets")]
-        public string[]? Rulesets { get; private set; }
+        public string[]? Rulesets { get; set; }
 
-        ///
+        /// <summary>Setting this value to false will omit the redacted result only returning count</summary>
         [JsonProperty("return_result")]
-        public bool? ReturnResult { get; private set; }
+        public bool? ReturnResult { get; set; }
 
-        ///
+        /// <summary>
+        /// This field allows users to specify the redaction method per rule and its various parameters.
+        /// </summary>
         [JsonProperty("redaction_method_overrides")]
-        public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
+        public IDictionary<string, RedactionMethodOverrides>? RedactionMethodOverrides { get; set; }
 
         /// <summary>
         /// Is this redact call going to be used in an LLM request?
         /// </summary>
         [JsonProperty("llm_request")]
-        public bool? LLMRequest { get; private set; }
+        public bool? LLMRequest { get; set; }
 
         ///
         [JsonProperty("vault_parameters")]
-        public VaultParameters? VaultParameters { get; private set; }
+        public VaultParameters? VaultParameters { get; set; }
 
-        ///
-        protected RedactTextRequest(Builder builder)
+        /// <summary>Constructor.</summary>
+        public RedactTextRequest(string text)
         {
-            this.Text = builder.Text;
-            this.Debug = builder.Debug;
-            this.Rules = builder.Rules;
-            this.Rulesets = builder.Rulesets;
-            this.ReturnResult = builder.ReturnResult;
-            this.RedactionMethodOverrides = builder.RedactionMethodOverrides;
-            this.LLMRequest = builder.LLMRequest;
-            this.VaultParameters = builder.VaultParameters;
-        }
-
-        /// <kind>class</kind>
-        /// <summary>
-        /// RedactTextRequestBuilder
-        /// </summary>
-        public class Builder
-        {
-            ///
-            public string Text { get; private set; }
-
-            ///
-            public bool? Debug { get; private set; }
-
-            ///
-            public string[]? Rules { get; private set; }
-
-            ///
-            public string[]? Rulesets { get; private set; }
-
-            ///
-            public bool? ReturnResult { get; private set; }
-
-            ///
-            public RedactionMethodOverrides? RedactionMethodOverrides { get; private set; }
-
-            ///
-            public bool? LLMRequest { get; private set; } = null;
-
-            ///
-            public VaultParameters? VaultParameters { get; private set; } = null;
-
-            ///
-            public Builder(string text)
-            {
-                this.Text = text;
-            }
-
-            ///
-            public Builder WithDebug(bool debug)
-            {
-                this.Debug = debug;
-                return this;
-            }
-
-            ///
-            public Builder WithRules(string[] rules)
-            {
-                this.Rules = rules;
-                return this;
-            }
-
-            ///
-            public Builder WithRulesets(string[] rulesets)
-            {
-                this.Rulesets = rulesets;
-                return this;
-            }
-
-            ///
-            public Builder WithReturnResult(bool returnResult)
-            {
-                this.ReturnResult = returnResult;
-                return this;
-            }
-
-            ///
-            public Builder WithRedactionMethodOverrides(RedactionMethodOverrides rmo)
-            {
-                this.RedactionMethodOverrides = rmo;
-                return this;
-            }
-
-            ///
-            public Builder WithLLMrequest(bool llmRequest)
-            {
-                this.LLMRequest = llmRequest;
-                return this;
-            }
-
-            ///
-            public Builder WithVaultParameters(VaultParameters vaultParameters)
-            {
-                this.VaultParameters = vaultParameters;
-                return this;
-            }
-
-            ///
-            public RedactTextRequest Build()
-            {
-                return new RedactTextRequest(this);
-            }
+            this.Text = text ?? throw new ArgumentNullException(nameof(text));
         }
     }
 }

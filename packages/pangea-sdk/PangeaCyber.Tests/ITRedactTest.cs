@@ -20,7 +20,7 @@ public class ITRedactTest
     [Fact]
     public async Task TestRedactText()
     {
-        var response = await client.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());
+        var response = await client.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { ReturnResult = true });
 
         Assert.True(response.IsOK);
         Assert.Equal("<PERSON>... <PHONE_NUMBER>", response.Result.RedactedText);
@@ -31,7 +31,7 @@ public class ITRedactTest
     [Fact]
     public async Task TestRedactText_2()
     {
-        var response = await client.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).WithDebug(true).Build());
+        var response = await client.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { Debug = true, ReturnResult = true });
 
         Assert.True(response.IsOK);
         Assert.Equal("<PERSON>... <PHONE_NUMBER>", response.Result.RedactedText);
@@ -42,7 +42,7 @@ public class ITRedactTest
     [Fact]
     public async Task TestRedactText_3()
     {
-        var response = await client.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(false).WithDebug(true).Build());
+        var response = await client.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { Debug = true, ReturnResult = false });
 
         Assert.True(response.IsOK);
         Assert.Null(response.Result.RedactedText);
@@ -60,7 +60,7 @@ public class ITRedactTest
             { "IP", "Its ip is 127.0.0.1"}
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest(data) { ReturnResult = true });
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>
@@ -86,7 +86,7 @@ public class ITRedactTest
             { "IP", "Its ip is 127.0.0.1"}
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest(data) { Format = "json", ReturnResult = true });
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>
@@ -111,7 +111,7 @@ public class ITRedactTest
             { "IP", "Its ip is 127.0.0.1"}
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithDebug(true).WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest(data) { Debug = true, Format = "json", ReturnResult = true });
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>
@@ -136,7 +136,7 @@ public class ITRedactTest
             { "IP", "Its ip is 127.0.0.1"}
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithJsonp(new String[] { "Phone" }).WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest(data) { Format = "json", Jsonp = ["Phone"], ReturnResult = true });
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>
@@ -162,7 +162,7 @@ public class ITRedactTest
             { "IP", "Its ip is 127.0.0.1" }
         };
 
-        var response = await client.RedactStructured(new RedactStructuredRequest.Builder(data).WithFormat("json").WithRules(new[] { "IP_ADDRESS" }).WithReturnResult(true).Build());
+        var response = await client.RedactStructured(new RedactStructuredRequest(data) { Format = "json", Rules = ["IP_ADDRESS"], ReturnResult = true });
         var converted = ((Newtonsoft.Json.Linq.JObject)response.Result.RedactedData).ToObject<Dictionary<string, object>>();
 
         var expected = new Dictionary<string, object>
@@ -184,7 +184,7 @@ public class ITRedactTest
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
         var fakeClient = new RedactClient.Builder(cfg).Build();
-        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build()));
+        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { ReturnResult = true }));
     }
 
     [Fact]
@@ -199,7 +199,7 @@ public class ITRedactTest
         Config cfg = Config.FromIntegrationEnvironment(environment);
         cfg.Token = "notarealtoken";
         var fakeClient = new RedactClient.Builder(cfg).Build();
-        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactStructured(new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build()));
+        await Assert.ThrowsAsync<UnauthorizedException>(async () => await fakeClient.RedactStructured(new RedactStructuredRequest(data) { ReturnResult = true }));
     }
 
     [Fact]
@@ -209,7 +209,7 @@ public class ITRedactTest
         var ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 1);
         var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
-        var response = await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());
+        var response = await clientMultiConfig.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { ReturnResult = true });
 
         Assert.True(response.IsOK);
         Assert.Equal("<PERSON>... <PHONE_NUMBER>", response.Result.RedactedText);
@@ -224,7 +224,7 @@ public class ITRedactTest
         var ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 2);
         var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
-        var response = await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build());
+        var response = await clientMultiConfig.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { ReturnResult = true });
 
         Assert.True(response.IsOK);
         Assert.Equal("<PERSON>... <PHONE_NUMBER>", response.Result.RedactedText);
@@ -238,6 +238,6 @@ public class ITRedactTest
         var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
         var clientMultiConfig = new RedactClient.Builder(cfg).Build();
 
-        await Assert.ThrowsAsync<PangeaAPIException>(async () => await clientMultiConfig.RedactText(new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build()));
+        await Assert.ThrowsAsync<PangeaAPIException>(async () => await clientMultiConfig.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { ReturnResult = true }));
     }
 }

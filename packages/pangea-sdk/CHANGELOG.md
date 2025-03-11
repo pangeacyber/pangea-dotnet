@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - The minimum supported .NET version is now v8.
+- Redact: simplified models and added more documentation.
 
 ### Removed
 
