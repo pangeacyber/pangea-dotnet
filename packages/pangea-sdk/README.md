@@ -10,7 +10,7 @@
 # Pangea .NET SDK
 
 A .NET SDK for integrating with Pangea services.
-Supports .NET 6, .NET Standard 2.0, .NET Framework v4.6.2, and any other target
+Supports .NET 8, .NET Standard 2.0, .NET Framework v4.6.2, and any other target
 framework that's compatible with these.
 
 ## Installation
@@ -41,13 +41,13 @@ compatibility guarantees as stable releases. [Beta changelog][].
 Via .NET CLI:
 
 ```bash
-$ dotnet add package Pangea.SDK --version 4.2.0-beta.1
+$ dotnet add package Pangea.SDK --version 4.4.0-beta.2
 ```
 
 Via PackageReference:
 
 ```xml
-<PackageReference Include="Pangea.SDK" Version="4.2.0-beta.1" />
+<PackageReference Include="Pangea.SDK" Version="4.4.0-beta.2" />
 ```
 
 ## Usage

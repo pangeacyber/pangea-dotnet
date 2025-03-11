@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+
+- The minimum supported .NET version is now v8.
+
 ### Removed
 
 - AI Guard: `LlmInput` and `LlmInfo`.
