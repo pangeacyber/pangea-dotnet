@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using PangeaCyber.Net.AuthN.Models;
-using PangeaCyber.Net.Filters;
 
 namespace PangeaCyber.Net.AuthN.Requests
 {
@@ -58,17 +57,6 @@ namespace PangeaCyber.Net.AuthN.Requests
             public CommonSessionListRequest<TBuilder> Build()
             {
                 return new CommonSessionListRequest<TBuilder>((TBuilder)this);
-            }
-
-            /// @deprecated use WithFilter(FilterSessionList filter) instead
-            public TBuilder WithFilter(Filter filter)
-            {
-                Filter = new FilterSessionList();
-                foreach (var kvp in filter)
-                {
-                    Filter.Add(kvp.Key, kvp.Value);
-                }
-                return (TBuilder)this;
             }
 
             ///

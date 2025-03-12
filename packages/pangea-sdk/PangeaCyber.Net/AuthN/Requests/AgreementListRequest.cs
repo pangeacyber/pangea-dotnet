@@ -58,17 +58,6 @@ namespace PangeaCyber.Net.AuthN.Requests
                 return new AgreementListRequest(this);
             }
 
-            /// @deprecated user WithFilter(FilterAgreementList filter) instead
-            public Builder WithFilter(Dictionary<string, string> filter)
-            {
-                Filter = new FilterAgreementList();
-                foreach (var kvp in filter)
-                {
-                    Filter.Add(kvp.Key, kvp.Value);
-                }
-                return this;
-            }
-
             ///
             public Builder WithFilter(FilterAgreementList filter)
             {

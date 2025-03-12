@@ -53,12 +53,6 @@ namespace PangeaCyber.Net.Audit
             {
                 ConfigID = builder.configID;
             }
-#pragma warning disable CS0618 // Type or member is obsolete
-            else if (!string.IsNullOrEmpty(builder.config.ConfigID))
-            {
-                ConfigID = builder.config.ConfigID;
-            }
-#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         private LogBulkRequest GetLogBulkRequest(IEvent[] events, LogConfig config)

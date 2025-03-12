@@ -47,10 +47,6 @@ namespace PangeaCyber.Net
         /// <summary>Pangea API domain.</summary>
         public string Domain { get; set; }
 
-        /// <exclude />
-        [Obsolete("Set config ID when building service clients instead.")]
-        public string ConfigID { get; set; } = default!;
-
         /// <summary>Pangea environment.</summary>
         /// <remarks>
         /// If set to "local", then <see cref="Domain"/> must be the full host (i.e., hostname and port) for the
