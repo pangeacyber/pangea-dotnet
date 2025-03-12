@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Deprecated APIs like `Config.ConfigID`, `Profile.FirstName`, and
+  `PangeaCyber.Net.FileScan.FileUploader`.
 - AI Guard: `LlmInput` and `LlmInfo`.
 
 ## 4.4.0 - 2025-02-16
