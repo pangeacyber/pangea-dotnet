@@ -4,8 +4,7 @@
 
 <br />
 
-[![documentation](https://img.shields.io/badge/documentation-pangea-blue?style=for-the-badge&labelColor=551B76)][Documentation]
-[![Discourse](https://img.shields.io/badge/Discourse-4A154B?style=for-the-badge&logo=discourse&logoColor=white)][Discourse]
+[![Documentation](https://img.shields.io/badge/documentation-pangea-blue?style=for-the-badge&labelColor=551B76)][Documentation]
 
 # Pangea .NET SDK
 
@@ -91,6 +90,5 @@ var response = await client.Log(event, logConfig);
    [GA Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
    [Beta Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/beta/examples
    [Pangea Console]: https://console.pangea.cloud/
-   [Discourse]: https://l.pangea.cloud/Jd4wlGs
    [Secure Audit Log]: https://pangea.cloud/docs/audit
    [Beta changelog]: https://github.com/pangeacyber/pangea-dotnet/blob/beta/packages/pangea-sdk/CHANGELOG.md
