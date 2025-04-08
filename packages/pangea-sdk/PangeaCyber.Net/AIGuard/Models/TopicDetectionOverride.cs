@@ -11,5 +11,5 @@ public sealed class TopicDetectionOverride
     public bool? Disabled { get; set; }
 
     /// <summary>Block list.</summary>
-    public List<string>? BlockList { get; set; }
+    public List<string>? Block { get; set; }
 }
