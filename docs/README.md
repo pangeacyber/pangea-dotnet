@@ -15,7 +15,7 @@ works like so:
 
 - Node.js v20.10.0 or higher.
 - yarn v4 or higher.
-- .NET SDK 6.0 or higher.
+- .NET SDK 8.0 or higher.
 - docfx (`dotnet tool install --global docfx`)
 
 ## Instructions

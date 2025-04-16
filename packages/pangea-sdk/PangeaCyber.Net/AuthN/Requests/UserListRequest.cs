@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using PangeaCyber.Net.AuthN.Models;
-using PangeaCyber.Net.Filters;
 
 namespace PangeaCyber.Net.AuthN.Requests
 {
@@ -52,17 +51,6 @@ namespace PangeaCyber.Net.AuthN.Requests
 
             ///
             public Builder() { }
-
-            /// @deprecated use WithFilter(FilterUserList filter) instead
-            public Builder WithFilter(Filter filter)
-            {
-                Filter = new FilterUserList();
-                foreach (var kvp in filter)
-                {
-                    Filter.Add(kvp.Key, kvp.Value);
-                }
-                return this;
-            }
 
             ///
             public Builder WithFilter(FilterUserList filter)

@@ -30,7 +30,7 @@ async function main() {
   const rawXmlDocs = await readFile(
     resolve(
       __dirname,
-      "../packages/pangea-sdk/PangeaCyber.Net/bin/Release/net6.0/PangeaCyber.Net.xml",
+      "../packages/pangea-sdk/PangeaCyber.Net/bin/Release/net8.0/PangeaCyber.Net.xml",
     ),
     { encoding: "utf8" },
   );

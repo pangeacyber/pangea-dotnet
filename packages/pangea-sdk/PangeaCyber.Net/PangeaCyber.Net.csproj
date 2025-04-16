@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Pangea.SDK</PackageId>
-    <Version>4.4.0-beta.2</Version>
+    <Version>4.4.0</Version>
     <Authors>Pangea Cyber Corporation</Authors>
     <Company>Pangea Cyber Corporation</Company>
     <Description>.NET SDK to access Pangea API services on pangea.cloud</Description>
@@ -9,7 +9,7 @@
     <PackageTags>Pangea, Audit, Log, Logging</PackageTags>
     <RepositoryUrl>https://github.com/pangeacyber/pangea-dotnet</RepositoryUrl>
     <LangVersion>10.0</LangVersion>
-    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net6.0;netstandard2.0;net462</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net8.0;netstandard2.0;net462</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -25,16 +25,11 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.5.1" />
     <PackageReference Include="Crc32.NET" Version="1.2.0" />
     <PackageReference Include="HttpMultipartParser" Version="5.1.0" />
-    <PackageReference Include="MimeKit" Version="4.10.0" />
+    <PackageReference Include="MimeKit" Version="4.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="6.0.36" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.4.0" />

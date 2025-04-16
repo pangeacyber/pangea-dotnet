@@ -14,7 +14,7 @@ namespace PangeaCyber.Net
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "4.4.0-beta.2";
+        public const string Version = "4.4.0";
 
         #endregion Constants
 
@@ -46,10 +46,6 @@ namespace PangeaCyber.Net
 
         /// <summary>Pangea API domain.</summary>
         public string Domain { get; set; }
-
-        /// <exclude />
-        [Obsolete("Set config ID when building service clients instead.")]
-        public string ConfigID { get; set; } = default!;
 
         /// <summary>Pangea environment.</summary>
         /// <remarks>

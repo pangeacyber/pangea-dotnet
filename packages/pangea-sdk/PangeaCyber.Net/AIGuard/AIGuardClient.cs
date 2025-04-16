@@ -79,18 +79,4 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     {
         return DoPost<TextGuardResult<TMessages>>("/v1/text/guard", request, cancellationToken: cancellationToken);
     }
-
-    /// <kind>method</kind>
-    /// <summary>
-    /// Analyze and redact text to avoid manipulation of the model, addition of malicious content, and other undesirable
-    /// data transfers.
-    /// </summary>
-    /// <remarks>Text guard</remarks>
-    /// <operationid>ai_guard_post_v1_text_guard</operationid>
-    /// <param name="request">Request parameters.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    public Task<Response<TextGuardResult<T>>> GuardText<T>(LlmInputGuardRequest<T> request, CancellationToken cancellationToken = default)
-    {
-        return DoPost<TextGuardResult<T>>("/v1/text/guard", request, cancellationToken: cancellationToken);
-    }
 }

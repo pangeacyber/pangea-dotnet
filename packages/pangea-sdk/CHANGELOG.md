@@ -9,10 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Prompt Guard: `classify` parameter.
-- AI Guard: support for structured input.
-- AI Guard: more detectors.
-- AI Guard: support for `llm_input`, `llm_info`, and `log_fields`.
+- AI Guard: topic detector.
+- AI Guard: `ignore_recipe` in detector overrides.
+
+### Changed
+
+- The minimum supported .NET version is now v8.
+- Redact: simplified models and added more documentation.
+
+### Removed
+
+- Deprecated APIs like `Config.ConfigID`, `Profile.FirstName`, and
+  `PangeaCyber.Net.FileScan.FileUploader`.
+- AI Guard: `LlmInput` and `LlmInfo`.
+
+## 4.4.0 - 2025-02-16
+
+### Added
+
+- AI Guard and Prompt Guard services.
 
 ### Changed
 
