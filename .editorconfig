@@ -9,6 +9,7 @@ guidelines = 120
 trim_trailing_whitespace = false
 
 [*.cs]
+insert_final_newline = true
 indent_size = 4
 
 # Organize usings.

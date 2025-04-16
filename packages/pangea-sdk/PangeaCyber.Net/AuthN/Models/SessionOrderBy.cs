@@ -13,7 +13,7 @@ namespace PangeaCyber.Net.AuthN.Models
 
         ///
         [JsonProperty("created_at")]
-        CreatetAt,
+        CreatedAt,
 
         ///
         [JsonProperty("type")]
