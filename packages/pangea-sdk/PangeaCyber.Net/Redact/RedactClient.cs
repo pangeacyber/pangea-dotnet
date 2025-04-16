@@ -84,6 +84,26 @@ namespace PangeaCyber.Net.Redact
             return await DoPost<UnredactResult<T>>("/v1/unredact", request);
         }
 
+        /// <summary>Get a service config.</summary>
+        /// <remarks>Get a service config.</remarks>
+        /// <operationid>redact_post_v1beta_config</operationid>
+        /// <param name="id">Config ID</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>The service config.</returns>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        public async Task<Response<ServiceConfig>> GetServiceConfig(
+            string id,
+            CancellationToken cancellationToken = default
+        )
+        {
+            return await DoPost<ServiceConfig>(
+                "/v1beta/config",
+                new GetServiceConfigRequest { Id = id },
+                cancellationToken: cancellationToken
+            );
+        }
+
         /// <summary><see cref="RedactClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {
