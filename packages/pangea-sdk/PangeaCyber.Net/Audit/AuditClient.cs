@@ -575,6 +575,66 @@ namespace PangeaCyber.Net.Audit
             }
         }
 
+        /// <summary>Get a service config.</summary>
+        /// <remarks>Get a service config.</remarks>
+        /// <operationid>audit_post_v1beta_config</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        public async Task<Response<ServiceConfig>> GetServiceConfig(GetServiceConfigRequest request, CancellationToken cancellationToken = default)
+        {
+            return await this.DoPost<ServiceConfig>("/v1beta/config", request, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>Create a service config.</summary>
+        /// <remarks>Create a service config.</remarks>
+        /// <operationid>audit_post_v1beta_config_create</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        public async Task<Response<ServiceConfig>> CreateServiceConfig(CreateServiceConfigRequest request, CancellationToken cancellationToken = default)
+        {
+            return await this.DoPost<ServiceConfig>("/v1beta/config/create", request, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>Update a service config.</summary>
+        /// <remarks>Update a service config.</remarks>
+        /// <operationid>audit_post_v1beta_config_update</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        public async Task<Response<ServiceConfig>> UpdateServiceConfig(UpdateServiceConfigRequest request, CancellationToken cancellationToken = default)
+        {
+            return await this.DoPost<ServiceConfig>("/v1beta/config/update", request, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>Delete a service config.</summary>
+        /// <remarks>Delete a service config.</remarks>
+        /// <operationid>audit_post_v1beta_config_delete</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        public async Task<Response<ServiceConfig>> DeleteServiceConfig(DeleteServiceConfigRequest request, CancellationToken cancellationToken = default)
+        {
+            return await this.DoPost<ServiceConfig>("/v1beta/config/delete", request, cancellationToken: cancellationToken);
+        }
+
+        /// <summary>List service configs.</summary>
+        /// <remarks>List service configs.</remarks>
+        /// <operationid>audit_post_v1beta_config_list</operationid>
+        /// <param name="request">Request parameters.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <exception cref="PangeaException">Thrown if an error occurs during the operation.</exception>
+        /// <exception cref="PangeaAPIException">Thrown if the API returns an error response.</exception>
+        public async Task<Response<ServiceConfigListResult>> ListServiceConfigs(ListServiceConfigsRequest request, CancellationToken cancellationToken = default)
+        {
+            return await this.DoPost<ServiceConfigListResult>("/v1beta/config/list", request, cancellationToken: cancellationToken);
+        }
+
         /// <summary><see cref="AuditClient"/> builder.</summary>
         public class Builder : ClientBuilder
         {

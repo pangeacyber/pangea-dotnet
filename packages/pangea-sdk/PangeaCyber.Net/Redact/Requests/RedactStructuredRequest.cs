@@ -46,7 +46,7 @@ namespace PangeaCyber.Net.Redact
         /// This field allows users to specify the redaction method per rule and its various parameters.
         /// </summary>
         [JsonProperty("redaction_method_overrides")]
-        public IDictionary<string, RedactionMethodOverrides>? RedactionMethodOverrides { get; set; }
+        public IDictionary<string, Redaction>? RedactionMethodOverrides { get; set; }
 
         /// <summary>
         /// Is this redact call going to be used in an LLM request?
