@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - AI Guard: topic detector.
 - AI Guard: `ignore_recipe` in detector overrides.
+- Management: new API client.
+- Redact: config APIs.
+- Secure Audit Log: config APIs.
 
 ### Changed
 
@@ -74,7 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed.
 
 - Deprecated `PangeaCyber.Net.FileScan.FileUploader`; use
-`PangeaCyber.Net.FileUploader` instead.
+  `PangeaCyber.Net.FileUploader` instead.
 
 ## 4.2.0-beta.2 - 2024-10-30
 
@@ -100,7 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `password` and `password_algorithm` support to Share
 - Filter fields to `filter_list` on Share service
 - `objects` field to Share `GetArchiveResult`
-- `title` and `message` to Share `ShareCreateLinkItem` 
+- `title` and `message` to Share `ShareCreateLinkItem`
 
 ## 4.0.0 - 2024-10-15
 
@@ -184,7 +187,7 @@ Note that Sanitize and Secure Share did not make it into this release.
 - `password` and `password_algorithm` support to Share
 - Filter fields to `filter_list` on Share service
 - `objects` field to Share `GetArchiveResult`
-- `title` and `message` to Share `ShareCreateLinkItem` 
+- `title` and `message` to Share `ShareCreateLinkItem`
 
 ### Fixed
 
@@ -222,17 +225,15 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - Skip sending `filename` field when posting to presigned URL. Make GCP S3 to return a `BadRequest`
 
-
 ## [3.7.0] - 2024-02-26
 
-### Added 
+### Added
 
 - Vault service. Post quantum signing algorithms support
 
 ### Changed
 
 - Rewrote `README.md`.
-
 
 ## [3.6.0] - 2024-01-11
 
@@ -246,7 +247,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - Update `FileScanUploadURLRequest` namespace to `PangeaCyber.Net.FileScan`
 
-
 ## [3.5.0] - 2023-12-18
 
 ### Added
@@ -256,7 +256,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 - URL Intel /v2/reputation support
 - Domain Intel /v2/reputation support
 - User Intel /v2/user/breached and /v2/password/breached support
-
 
 ## [3.4.0] - 2023-12-07
 
@@ -272,7 +271,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - put_url, post_url, post_form_data fields in 202 result
 
-
 ## [3.3.0] - 2023-11-28
 
 ### Added
@@ -286,13 +284,11 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - Audit bulk async does not poll result by default
 
-
 ## [3.2.0] - 2023-11-15
 
 ### Added
 
 - Support for audit /v2/log and /v2/log_async endpoints
-
 
 ## [3.1.0] - 2023-11-09
 
@@ -311,7 +307,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - AuthN v1 support
 
-
 ## [2.4.0] - 2023-09-26
 
 ### Added
@@ -324,14 +319,12 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - Deprecated config_id in PangeaConfig. Now is set in service initialization.
 
-
 ## [2.3.0] - 2023-09-05
 
 ### Added
 
 - Redact rulesets field support
 - FileScan service support
-
 
 ## [2.2.0] - 2023-07-28
 
@@ -348,7 +341,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 
 - Audit public key format export in log signer
 
-
 ## [2.1.0] - 2023-07-26
 
 ### Added
@@ -359,7 +351,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 - AuthN service support
 - Audit service examples
 - Redact service examples
-
 
 ## [2.0.0] - 2023-07-14
 
@@ -372,7 +363,6 @@ Note that Sanitize and Secure Share did not make it into this release.
 ### Changed
 
 - Redact requests builder rename to be called just "Builder"
-
 
 [unreleased]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.7.0...main
 [3.7.0]: https://github.com/pangeacyber/pangea-dotnet/compare/v3.6.0...v3.7.0

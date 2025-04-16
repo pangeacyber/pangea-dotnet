@@ -31,7 +31,7 @@ namespace PangeaCyber.Net.Redact
 
         ///
         [JsonProperty("masking_char")]
-        public List<char>? MaskingChar { get; set; } = default!;
+        public char? MaskingChar { get; set; } = default!;
 
         ///
         private PartialMasking() { }

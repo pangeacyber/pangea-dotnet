@@ -39,7 +39,7 @@ namespace PangeaCyber.Net
         private readonly PostConfig DefaultPostConfig = new PostConfig.Builder().Build();
 
         /// <summary>JSON serialization settings.</summary>
-        private static readonly JsonSerializerSettings JsonSerializeSettings = new()
+        protected static readonly JsonSerializerSettings JsonSerializeSettings = new()
         {
             Converters = new JsonConverter[] {
                 new IsoDateTimeConverter
@@ -106,6 +106,18 @@ namespace PangeaCyber.Net
             return NLog.LogManager.GetLogger("Pangea");
         }
 
+        protected async Task<HttpResponseMessage> DoDelete(string path, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PangeaHttpClient.DeleteAsync(path, cancellationToken);
+            }
+            catch (Exception e)
+            {
+                throw new PangeaException("Failed to send DELETE request", e);
+            }
+        }
+
         private async Task<HttpResponseMessage> DoPost(string path, HttpContent content, CancellationToken cancellationToken = default)
         {
             try
@@ -134,7 +146,7 @@ namespace PangeaCyber.Net
         }
 
         ///
-        private async Task<HttpResponseMessage> SimplePost(
+        protected async Task<HttpResponseMessage> SimplePost(
             string path,
             BaseRequest request,
             FileData? fileData = null,
@@ -382,11 +394,20 @@ namespace PangeaCyber.Net
         }
 
         ///
-        protected async Task<HttpResponseMessage> DoGet(string path, CancellationToken cancellationToken = default)
+        protected async Task<HttpResponseMessage> DoGet(
+            string path,
+            IReadOnlyDictionary<string, string>? query = null,
+            CancellationToken cancellationToken = default
+        )
         {
             logger.Debug(
                 $"{{\"service\": \"{serviceName}\", \"action\": \"get\", \"path\": \"{path}\"}}"
             );
+
+            if (query != null)
+            {
+                path += "?" + string.Join("&", query.Select(kv => $"{kv.Key}={kv.Value}"));
+            }
 
             HttpResponseMessage res;
             try
@@ -469,7 +490,7 @@ namespace PangeaCyber.Net
 
                 delay = GetDelay(retryCounter, start);
                 await Task.Delay(TimeSpan.FromSeconds(delay), cancellationToken);
-                response = await DoGet(path, cancellationToken);
+                response = await DoGet(path, cancellationToken: cancellationToken);
                 retryCounter++;
             }
 
