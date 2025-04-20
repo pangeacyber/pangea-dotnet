@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.AuthZ
     /// <remarks>AuthZ</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new AuthZClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

@@ -17,7 +17,7 @@ namespace PangeaCyber.Net
         public class Builder : ClientBuilder
         {
             ///
-            public Builder() : base(new Config("", ""))
+            public Builder() : base(new Config(string.Empty))
             {
             }
 

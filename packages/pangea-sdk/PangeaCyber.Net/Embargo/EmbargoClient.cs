@@ -4,7 +4,7 @@ namespace PangeaCyber.Net.Embargo
     /// <remarks>Embargo</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new EmbargoClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

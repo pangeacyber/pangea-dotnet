@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Intel
     /// <remarks>User Intel</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new UserIntelClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

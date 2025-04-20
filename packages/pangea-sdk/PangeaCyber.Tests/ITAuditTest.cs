@@ -729,7 +729,7 @@ public class ITAuditTest
                             .WithStatus(STATUS_NO_SIGNED)
                             .Build();
 
-        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
         String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
         var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
@@ -755,9 +755,9 @@ public class ITAuditTest
                             .WithStatus(STATUS_NO_SIGNED)
                             .Build();
 
-        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
-        String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 2);
-        var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
+        var configId = Config.GetConfigID(environment, AuditClient.ServiceName, 2);
+        var client = new AuditClient.Builder(cfg).WithConfigID(configId).Build();
 
         var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());
 
@@ -779,7 +779,7 @@ public class ITAuditTest
         StandardEvent? evt = new StandardEvent.Builder(MSG_NO_SIGNED)
                             .Build();
 
-        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
         var client = new AuditClient.Builder(cfg).Build();
 
         await Assert.ThrowsAsync<PangeaAPIException>(async () => await client.Log(evt, new LogConfig.Builder().Build()));
@@ -904,7 +904,7 @@ public class ITAuditTest
             }
         };
 
-        var config = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var config = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
         var configId = Config.GetConfigID(environment, AuditClient.ServiceName, 3);
         var client = new AuditClient.Builder(config).WithConfigID(configId).Build();
 
