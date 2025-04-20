@@ -205,7 +205,7 @@ public class ITRedactTest
     [Fact]
     public async Task TestRedactMultiConfig_1()
     {
-        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
         var ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 1);
         var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
@@ -220,7 +220,7 @@ public class ITRedactTest
     [Fact]
     public async Task TestLogMultiConfig_2()
     {
-        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
         var ConfigID = Config.GetConfigID(environment, RedactClient.ServiceName, 2);
         var clientMultiConfig = new RedactClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
@@ -235,7 +235,7 @@ public class ITRedactTest
     [Fact]
     public async Task TestMultiConfigWithoutConfigID()
     {
-        var cfg = new Config(Config.GetMultiConfigTestToken(environment), Config.GetTestDomain(environment));
+        var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
         var clientMultiConfig = new RedactClient.Builder(cfg).Build();
 
         await Assert.ThrowsAsync<PangeaAPIException>(async () => await clientMultiConfig.RedactText(new RedactTextRequest("Jenny Jenny... 415-867-5309") { ReturnResult = true }));

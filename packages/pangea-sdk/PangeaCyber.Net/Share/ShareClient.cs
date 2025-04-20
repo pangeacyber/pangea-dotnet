@@ -9,7 +9,7 @@ namespace PangeaCyber.Net.Share
     /// <remarks>Secure Share</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new ShareClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

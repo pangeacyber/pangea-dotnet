@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Sanitize
     /// <remarks>Sanitize</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new SanitizeClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

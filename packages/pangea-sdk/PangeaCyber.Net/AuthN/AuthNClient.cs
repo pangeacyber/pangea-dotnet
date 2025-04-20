@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.AuthN
     /// <remarks>AuthN</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new AuthNClient.Builder(config);
     /// var client = builder.Build();
     /// </code>
