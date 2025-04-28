@@ -277,7 +277,7 @@ namespace PangeaCyber.Net.Intel.Tests
         public async Task TestUnauthorized()
         {
             Config cfg = Config.FromIntegrationEnvironment(environment);
-            cfg = new Config("notarealtoken", cfg.Domain);
+            cfg = new Config("notarealtoken") { Domain = cfg.Domain };
             DomainIntelClient fakeClient = new DomainIntelClient.Builder(cfg).Build();
 
             await Assert.ThrowsAsync<UnauthorizedException>(async () =>

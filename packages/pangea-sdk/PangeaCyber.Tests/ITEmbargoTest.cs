@@ -80,7 +80,7 @@ namespace PangeaCyber.Net.Embargo.Tests
         public async Task TestUnauthorized()
         {
             Config cfg = Config.FromIntegrationEnvironment(environment);
-            cfg = new Config("notarealtoken", cfg.Domain);
+            cfg = new Config("notarealtoken") { Domain = cfg.Domain };
             EmbargoClient fakeClient = new EmbargoClient.Builder(cfg).Build();
 
             await Assert.ThrowsAsync<UnauthorizedException>(async () =>

@@ -66,9 +66,7 @@ public class ITAuthZTest
         var tuple4 = new Net.AuthZ.Models.Tuple(resource2, relation_owner, subject2);
 
         // Tuple Create
-        var createResp = await client.TupleCreate(new TupleCreateRequest(
-            new Net.AuthZ.Models.Tuple[] { tuple1, tuple2, tuple3, tuple4 }
-        ));
+        var createResp = await client.TupleCreate(new TupleCreateRequest([tuple1, tuple2, tuple3, tuple4]));
 
         Assert.Null(createResp.Result);
 
@@ -104,11 +102,7 @@ public class ITAuthZTest
         Assert.Equal(2, listResp.Result.Tuples.Length);
 
         // Tuple delete
-        var deleteResp = await client.TupleDelete(
-            new TupleDeleteRequest(
-                new Net.AuthZ.Models.Tuple[] { tuple1 }
-            )
-        );
+        var deleteResp = await client.TupleDelete(new TupleDeleteRequest([tuple1]));
         Assert.Null(deleteResp.Result);
 
         // Check no debug
@@ -147,5 +141,21 @@ public class ITAuthZTest
         );
 
         Assert.Single(listSubjectsResp.Result.Subjects);
+    }
+
+    [Fact]
+    public async Task TestExpiresAt()
+    {
+        var resource = new Resource(type_folder) { ID = folder1 };
+        var subject = new Subject(type_user) { ID = user1 };
+        var tuple1 = new Net.AuthZ.Models.Tuple(resource, relation_reader, subject)
+        {
+            ExpiresAt = DateTimeOffset.UtcNow.AddDays(30)
+        };
+
+        var response = await client.TupleCreate(new TupleCreateRequest([tuple1]));
+
+        Assert.NotNull(response);
+        Assert.True(response.IsOK);
     }
 }

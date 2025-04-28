@@ -4,7 +4,7 @@ namespace PangeaCyber.Net.Intel
     /// <remarks>URL Intel</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new URLIntelClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

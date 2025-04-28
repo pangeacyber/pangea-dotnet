@@ -1,6 +1,6 @@
 using PangeaCyber.Net;
-using PangeaCyber.Net.Intel;
 using PangeaCyber.Net.Exceptions;
+using PangeaCyber.Net.Intel;
 
 namespace PangeaCyber.Tests.Intel
 {
@@ -278,7 +278,7 @@ namespace PangeaCyber.Tests.Intel
         public async Task TestUnauthorized()
         {
             var cfg = Config.FromIntegrationEnvironment(TestEnvironment.LVE);
-            cfg = new Config("notarealtoken", cfg.Domain);
+            cfg = new Config("notarealtoken") { Domain = cfg.Domain };
             var fakeClient = new FileIntelClient.Builder(cfg).Build();
             await Assert.ThrowsAsync<UnauthorizedException>(async () =>
             {

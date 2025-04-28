@@ -6,7 +6,7 @@ namespace PangeaCyber.Net.Redact
     /// <remarks>Redact</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new RedactClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

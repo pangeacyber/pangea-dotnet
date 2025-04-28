@@ -9,7 +9,7 @@ namespace PangeaCyber.Net.Vault
     /// <remarks>Vault</remarks>
     /// <example>
     /// <code>
-    /// var config = new Config("pangea_token", "pangea_domain");
+    /// var config = new Config("pangea_token");
     /// var builder = new VaultClient.Builder(config);
     /// var client = builder.Build();
     /// </code>

@@ -46,7 +46,7 @@ namespace PangeaCyber.Net
                 {
                     Culture = CultureInfo.InvariantCulture,
                     DateTimeStyles = DateTimeStyles.AdjustToUniversal,
-                    DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"
+                    DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFF'Z'"
                 }
             },
             DateParseHandling = DateParseHandling.None,
