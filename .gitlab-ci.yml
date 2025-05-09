@@ -145,4 +145,4 @@ stages:
   - publish
 
 include:
-  - /examples/.examples-ci.yml
+  - /examples/.gitlab-ci.yml
