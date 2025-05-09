@@ -4,17 +4,15 @@ using PangeaCyber.Net.Exceptions;
 
 class Program
 {
-
     static async Task Main(string[] args)
     {
-        // Audit sample
         try
         {
             // Load client config. Can create it manually with Config constructor and setters
             var redactConfig = Config.FromEnvironment(RedactClient.ServiceName);
 
             // Create RedactClient with builder
-            RedactClient redactClient = new RedactClient.Builder(redactConfig).Build();
+            var redactClient = new RedactClient.Builder(redactConfig).Build();
 
             // Load structured data to redact
             var data = new Dictionary<string, string>();
@@ -22,7 +20,10 @@ class Program
             data.Add("Contact", "My phone number is 123-456-7890");
 
             // Create request to be send with text to redact
-            var structuredRequest = new RedactStructuredRequest.Builder(data).WithReturnResult(true).Build();
+            var structuredRequest = new RedactStructuredRequest(data)
+            {
+                ReturnResult = true
+            };
 
             // Send request
             var structuredResponse = await redactClient.RedactStructured(structuredRequest);
