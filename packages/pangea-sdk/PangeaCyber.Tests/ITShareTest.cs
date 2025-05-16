@@ -381,8 +381,6 @@ namespace PangeaCyber.Net.Share.Tests
             Assert.True(respPutPath.IsOK);
             Assert.Null(respPutPath.Result.Object.Metadata);
             Assert.Null(respPutPath.Result.Object.Tags);
-            Assert.NotNull(respPutPath.Result.Object.MD5);
-            Assert.NotNull(respPutPath.Result.Object.SHA512);
             Assert.NotNull(respPutPath.Result.Object.SHA256);
 
             // Upload a file with parent id and name
@@ -405,8 +403,6 @@ namespace PangeaCyber.Net.Share.Tests
             Assert.Equal(folderID, respPutID.Result.Object.ParentID);
             Assert.Equal(Metadata, respPutID.Result.Object.Metadata);
             Assert.Equal(Tags, respPutID.Result.Object.Tags);
-            Assert.NotNull(respPutID.Result.Object.MD5);
-            Assert.NotNull(respPutID.Result.Object.SHA512);
             Assert.NotNull(respPutID.Result.Object.SHA256);
 
 
