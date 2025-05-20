@@ -5,7 +5,6 @@ using PangeaCyber.Net.Exceptions;
 
 class Program
 {
-
     static async Task Main(string[] args)
     {
         try
@@ -17,7 +16,10 @@ class Program
             RedactClient redactClient = new RedactClient.Builder(redactConfig).Build();
 
             // Create request to be send with text to redact
-            var request = new RedactTextRequest.Builder("Jenny Jenny... 415-867-5309").WithReturnResult(true).Build();
+            var request = new RedactTextRequest("Jenny Jenny... 415-867-5309")
+            {
+                ReturnResult = true
+            };
 
             // Send request
             var redactResponse = await redactClient.RedactText(request);
