@@ -1,9 +1,12 @@
+using System;
+using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.AuthZ;
 using PangeaCyber.Net.AuthZ.Models;
 using PangeaCyber.Net.AuthZ.Requests;
+using Xunit;
 
-namespace PangeaCyber.Tests;
+namespace PangeaCyber.Tests.Integration;
 
 public class ITAuthZTest
 {
@@ -26,7 +29,7 @@ public class ITAuthZTest
     public ITAuthZTest()
     {
         var config = Config.FromIntegrationEnvironment(environment);
-        this.client = new AuthZClient.Builder(config).Build();
+        client = new AuthZClient.Builder(config).Build();
         time = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         folder1 = "folder_1_" + time;
         folder2 = "folder_2_" + time;

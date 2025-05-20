@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Redact;
+using Xunit;
 
-namespace PangeaCyber.Tests;
+namespace PangeaCyber.Tests.Integration;
 
 ///
 public class ITRedactTest
@@ -14,7 +17,7 @@ public class ITRedactTest
     public ITRedactTest()
     {
         var config = Config.FromIntegrationEnvironment(environment);
-        this.client = new RedactClient.Builder(config).Build();
+        client = new RedactClient.Builder(config).Build();
     }
 
     [Fact]

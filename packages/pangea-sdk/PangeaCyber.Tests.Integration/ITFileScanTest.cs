@@ -1,7 +1,11 @@
+using System.IO;
+using System.Threading.Tasks;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Exceptions;
-using PangeaCyber.Tests;
+using PangeaCyber.Net.FileScan;
+using Xunit;
 
-namespace PangeaCyber.Net.FileScan.Tests
+namespace PangeaCyber.Tests.Integration
 {
     [CollectionDefinition("File Scan", DisableParallelization = true)]
     public class ITFileScanTest
@@ -190,7 +194,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             var fileData = new FileData(file, "file", urlResponse.Result.PostFormData);
             string url = urlResponse.Result.PostURL ?? "undefined url";    // This case should never happen
 
-            var uploader = new Net.FileUploader.Builder().Build();
+            var uploader = new FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PostURL, fileData);
 
             int maxRetry = 24;
@@ -231,7 +235,7 @@ namespace PangeaCyber.Net.FileScan.Tests
             var fileData = new FileData(file, "file");
             string url = urlResponse.Result.PutURL ?? "undefined url";    // This case should never happen
 
-            var uploader = new Net.FileUploader.Builder().Build();
+            var uploader = new FileUploader.Builder().Build();
             await uploader.UploadFile(url, TransferMethod.PutURL, fileData);
 
             int maxRetry = 24;

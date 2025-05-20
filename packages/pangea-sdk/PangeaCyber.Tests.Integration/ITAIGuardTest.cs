@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.AIGuard;
 using PangeaCyber.Net.AIGuard.Requests;
+using Xunit;
 
-namespace PangeaCyber.Tests;
+namespace PangeaCyber.Tests.Integration;
 
 public class ITAIGuardTest
 {

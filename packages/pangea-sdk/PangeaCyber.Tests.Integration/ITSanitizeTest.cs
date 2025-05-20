@@ -1,7 +1,11 @@
+using System.IO;
+using System.Threading.Tasks;
+using PangeaCyber.Net;
 using PangeaCyber.Net.Exceptions;
-using PangeaCyber.Tests;
+using PangeaCyber.Net.Sanitize;
+using Xunit;
 
-namespace PangeaCyber.Net.Sanitize.Tests
+namespace PangeaCyber.Tests.Integration
 {
     [CollectionDefinition("Sanitize", DisableParallelization = true)]
     public class ITSanitizeTest

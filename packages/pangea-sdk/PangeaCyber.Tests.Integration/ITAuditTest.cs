@@ -1,10 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Audit.Models;
 using PangeaCyber.Net.Exceptions;
+using Xunit;
 
-namespace PangeaCyber.Tests;
+namespace PangeaCyber.Tests.Integration;
 
 ///
 public class ITAuditTest
@@ -33,22 +38,22 @@ public class ITAuditTest
         var generalCfg = Config.FromIntegrationEnvironment(environment);
         var builder = new AuditClient.Builder(generalCfg);
 
-        this.generalClient = builder.Build();
+        generalClient = builder.Build();
 
-        this.signClient = builder.WithPrivateKey(PRIVATE_KEY_FILE).Build();
-        this.tenantIDClient = builder.WithTenantID(TENANT_ID).Build();
-        this.signNtenantIDClient = builder.WithTenantID(TENANT_ID).WithPrivateKey(PRIVATE_KEY_FILE).Build();
+        signClient = builder.WithPrivateKey(PRIVATE_KEY_FILE).Build();
+        tenantIDClient = builder.WithTenantID(TENANT_ID).Build();
+        signNtenantIDClient = builder.WithTenantID(TENANT_ID).WithPrivateKey(PRIVATE_KEY_FILE).Build();
 
         // Vault client
         var vaultCfg = Config.FromVaultIntegrationEnvironment(environment);
-        this.vaultSignClient = new AuditClient.Builder(vaultCfg).Build();
+        vaultSignClient = new AuditClient.Builder(vaultCfg).Build();
 
         // Custom schema clients
         var customSchemaCfg = Config.FromCustomSchemaIntegrationEnvironment(environment);
-        this.customSchemaClient = new AuditClient.Builder(customSchemaCfg).WithCustomSchema<CustomEvent>().Build();
-        this.customSchemaNSignClient = new AuditClient.Builder(customSchemaCfg).WithCustomSchema<CustomEvent>().WithPrivateKey(PRIVATE_KEY_FILE).Build();
+        customSchemaClient = new AuditClient.Builder(customSchemaCfg).WithCustomSchema<CustomEvent>().Build();
+        customSchemaNSignClient = new AuditClient.Builder(customSchemaCfg).WithCustomSchema<CustomEvent>().WithPrivateKey(PRIVATE_KEY_FILE).Build();
 
-        this.customEvent =
+        customEvent =
             new CustomEvent.Builder(MSG_CUSTOM_SCHEMA_NO_SIGNED)
                 .WithFieldInt(1)
                 .WithFieldBool(true)
@@ -80,7 +85,7 @@ public class ITAuditTest
     [Fact]
     public async Task TestLog_CustomSchema()
     {
-        var response = await customSchemaClient.Log(this.customEvent, new LogConfig.Builder().WithVerify(false).Build());
+        var response = await customSchemaClient.Log(customEvent, new LogConfig.Builder().WithVerify(false).Build());
 
         Assert.True(response.IsOK);
         Assert.Null(response.Result.EventEnvelope);
@@ -730,7 +735,7 @@ public class ITAuditTest
                             .Build();
 
         var cfg = new Config(Config.GetMultiConfigTestToken(environment)) { Domain = Config.GetTestDomain(environment) };
-        String ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
+        string ConfigID = Config.GetConfigID(environment, AuditClient.ServiceName, 1);
         var client = new AuditClient.Builder(cfg).WithConfigID(ConfigID).Build();
 
         var response = await client.Log(evt, new LogConfig.Builder().WithVerify(false).WithVerbose(true).Build());

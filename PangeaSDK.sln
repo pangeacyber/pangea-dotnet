@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PangeaCyber.Net", "packages\pangea-sdk\PangeaCyber.Net\PangeaCyber.Net.csproj", "{F001C62A-DF27-D7A3-09C7-DCD35CF6DCE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PangeaCyber.Tests", "packages\pangea-sdk\PangeaCyber.Tests\PangeaCyber.Tests.csproj", "{6D13035D-69B4-8F09-FF83-29F8E32841E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{B36A84DF-456D-A817-6EDD-3EC3E7F6E11F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditLog", "examples\Audit\AuditLog\AuditLog.csproj", "{12485A26-2715-E424-B336-F246A1733061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditLogBulk", "examples\Audit\AuditLogBulk\AuditLogBulk.csproj", "{2B934321-55DE-18B7-1946-DA93B7651804}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PangeaCyber.Tests.Integration", "packages\pangea-sdk\PangeaCyber.Tests.Integration\PangeaCyber.Tests.Integration.csproj", "{BB831E06-4AF3-9567-36EB-3DB00F4192AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F001C62A-DF27-D7A3-09C7-DCD35CF6DCE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F001C62A-DF27-D7A3-09C7-DCD35CF6DCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F001C62A-DF27-D7A3-09C7-DCD35CF6DCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F001C62A-DF27-D7A3-09C7-DCD35CF6DCE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D13035D-69B4-8F09-FF83-29F8E32841E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D13035D-69B4-8F09-FF83-29F8E32841E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D13035D-69B4-8F09-FF83-29F8E32841E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D13035D-69B4-8F09-FF83-29F8E32841E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12485A26-2715-E424-B336-F246A1733061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12485A26-2715-E424-B336-F246A1733061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12485A26-2715-E424-B336-F246A1733061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12485A26-2715-E424-B336-F246A1733061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B934321-55DE-18B7-1946-DA93B7651804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B934321-55DE-18B7-1946-DA93B7651804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B934321-55DE-18B7-1946-DA93B7651804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B934321-55DE-18B7-1946-DA93B7651804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12485A26-2715-E424-B336-F246A1733061} = {B36A84DF-456D-A817-6EDD-3EC3E7F6E11F}
+		{2B934321-55DE-18B7-1946-DA93B7651804} = {B36A84DF-456D-A817-6EDD-3EC3E7F6E11F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92858937-69F2-45EA-884F-1208C9C64632}
+	EndGlobalSection
+EndGlobal
