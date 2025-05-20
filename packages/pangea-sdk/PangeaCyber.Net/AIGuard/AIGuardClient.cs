@@ -1,3 +1,4 @@
+using PangeaCyber.Net.AIGuard.Models;
 using PangeaCyber.Net.AIGuard.Requests;
 using PangeaCyber.Net.AIGuard.Results;
 
@@ -78,5 +79,60 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
     public Task<Response<TextGuardResult<TMessages>>> GuardText<TMessages>(MessagesGuardRequest<TMessages> request, CancellationToken cancellationToken = default)
     {
         return DoPost<TextGuardResult<TMessages>>("/v1/text/guard", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>ai_guard_post_v1beta_config</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<ServiceConfig>> GetServiceConfig(
+        GetServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<ServiceConfig>("/v1beta/config", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>ai_guard_post_v1beta_config_create</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<ServiceConfig>> CreateServiceConfig(
+        CreateServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<ServiceConfig>("/v1beta/config/create", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>ai_guard_post_v1beta_config_update</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<ServiceConfig>> UpdateServiceConfig(
+        UpdateServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<ServiceConfig>("/v1beta/config/update", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>ai_guard_post_v1beta_config_delete</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<ServiceConfig>> DeleteServiceConfig(
+        DeleteServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<ServiceConfig>("/v1beta/config/delete", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>ai_guard_post_v1beta_config_list</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<ListServiceConfigsResult>> ListServiceConfigs(
+        ListServiceConfigsRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<ListServiceConfigsResult>("/v1beta/config/list", request, cancellationToken: cancellationToken);
     }
 }
