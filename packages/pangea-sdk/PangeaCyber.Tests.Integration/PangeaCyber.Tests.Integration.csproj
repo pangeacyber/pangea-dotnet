@@ -1,25 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
+    <AssemblyTitle>PangeaCyber.Tests.Integration</AssemblyTitle>
+    <AssemblyName>PangeaCyber.Tests.Integration</AssemblyName>
+    <PackageId>PangeaCyber.Tests.Integration</PackageId>
     <TargetFramework>net8.0</TargetFramework>
+    <SignAssembly>false</SignAssembly>
     <Nullable>enable</Nullable>
-    <IsPackable>false</IsPackable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.10.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.0" />
     <PackageReference Include="Xunit.SkippableFact" Version="1.5.23" />
-    <PackageReference Include="coverlet.collector" Version="6.0.4">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PangeaCyber.Net\PangeaCyber.Net.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,9 +27,4 @@
     <Content Include="NLog.config" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\PangeaCyber.Net\PangeaCyber.Net.csproj" />
-  </ItemGroup>
-
 </Project>

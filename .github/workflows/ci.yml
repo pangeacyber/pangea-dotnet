@@ -29,26 +29,8 @@ env:
   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-
-    outputs:
-      examples-matrix: ${{ steps.examples-matrix.outputs.examples-matrix }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4.2.2
-
-      - name: Calculate `examples-matrix` output
-        id: examples-matrix
-        working-directory: ./examples
-        env:
-          JQ_FILTER: >-
-            "examples-matrix=" + (split("\n") | map(select(length > 0)) | tostring)
-        run: find . -type f -name '*.csproj' -printf '%h\n' | cut -c 3- | sort -u | jq -cRrs '${{ env.JQ_FILTER }}' >> "$GITHUB_OUTPUT"
-
   prefetch:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
@@ -57,16 +39,33 @@ jobs:
         uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: 8
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - run: dotnet restore --locked-mode
+
+  lint:
+    needs: [prefetch]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.3.1
+        with:
+          dotnet-version: 8
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - run: dotnet format --verify-no-changes
 
   build-debug:
     needs: [prefetch]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         dotnet-version: [8, 9]
-    defaults:
-      run:
-        working-directory: ./packages/pangea-sdk
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
@@ -75,13 +74,15 @@ jobs:
         uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
 
       - name: Build
         run: dotnet build
 
   build-release:
     needs: [prefetch, build-debug]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
@@ -90,9 +91,11 @@ jobs:
         uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: 8
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
 
       - name: Build
-        run: dotnet build --configuration Release packages/pangea-sdk/
+        run: dotnet build --configuration Release
 
       - name: Upload
         uses: actions/upload-artifact@v4.6.2
@@ -100,9 +103,25 @@ jobs:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
 
+  test-unit:
+    needs: [prefetch, build-debug]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4.3.1
+        with:
+          dotnet-version: 8
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
+
+      - run: dotnet test packages/pangea-sdk/PangeaCyber.Tests
+
   docs:
     needs: [build-release]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: ./docs
@@ -114,6 +133,8 @@ jobs:
         uses: actions/setup-dotnet@v4.3.1
         with:
           dotnet-version: 8
+          cache: true
+          cache-dependency-path: '**/packages.lock.json'
 
       - name: Enabled Corepack
         run: corepack enable
@@ -151,29 +172,3 @@ jobs:
         with:
           name: csharp_sdk.json
           path: ./docs/out/csharp_sdk.json
-
-  examples:
-    needs: [setup, prefetch]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        example: ${{ fromJSON(needs.setup.outputs.examples-matrix) }}
-        dotnet-version: [6, 8]
-    defaults:
-      run:
-        working-directory: ./examples/${{ matrix.example }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4.2.2
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-
-      - name: Build
-        run: dotnet build
-
-      - name: Lint
-        if: matrix.dotnet-version == 8
-        run: dotnet format --verify-no-changes

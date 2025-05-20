@@ -1,8 +1,8 @@
 using PangeaCyber.Net.Audit;
+using Xunit;
 
 namespace PangeaCyber.Tests;
 
-///
 public class SignerTest
 {
     private const string PRIVATE_KEY_FILE = "./data/privkey";

@@ -1,4 +1,6 @@
+using System;
 using PangeaCyber.Net;
+using Xunit;
 
 namespace PangeaCyber.Tests
 {

@@ -1,5 +1,5 @@
 examples:
-  stage: examples
+  needs: []
   retry: 2
   parallel:
     matrix:

@@ -1,9 +1,11 @@
+using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.PromptGuard;
 using PangeaCyber.Net.PromptGuard.Models;
 using PangeaCyber.Net.PromptGuard.Requests;
+using Xunit;
 
-namespace PangeaCyber.Tests;
+namespace PangeaCyber.Tests.Integration;
 
 public class ITPromptGuardTest
 {

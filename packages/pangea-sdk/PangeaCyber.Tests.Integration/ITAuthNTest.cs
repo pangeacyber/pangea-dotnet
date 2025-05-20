@@ -1,11 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.AuthN;
 using PangeaCyber.Net.AuthN.Models;
 using PangeaCyber.Net.AuthN.Requests;
 using PangeaCyber.Net.AuthN.Results;
 using PangeaCyber.Net.Exceptions;
+using Xunit;
 
-namespace PangeaCyber.Tests;
+namespace PangeaCyber.Tests.Integration;
 
 public static class Extentions
 {
@@ -85,7 +90,7 @@ public class ITAuthNTest
         await AgreementsCycle(AgreementType.PrivacyPolicy);
     }
 
-    private async Task AgreementsCycle(AgreementType type)
+    private static async Task AgreementsCycle(AgreementType type)
     {
         string name = $"{type}_{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
         string text = "This is agreement text";
@@ -228,7 +233,7 @@ public class ITAuthNTest
 
             if (result != null)
             {
-                flowPhase = (result.FlowPhase != null) ? result.FlowPhase : "phase_completed";
+                flowPhase = result.FlowPhase != null ? result.FlowPhase : "phase_completed";
                 choices = result.FlowChoices;
             }
             else
@@ -330,8 +335,8 @@ public class ITAuthNTest
             Assert.Equal(userID, profileUpdateResp.Result.ID);
             Assert.Equal(emailTest, profileUpdateResp.Result.Email);
             Profile finalProfile = new Profile();
-            Extentions.Merge(finalProfile, profileOld);
-            Extentions.Merge(finalProfile, profileNew);
+            finalProfile.Merge(profileOld);
+            finalProfile.Merge(profileNew);
             Assert.Equal(finalProfile, profileUpdateResp.Result.Profile);
 
             // User update

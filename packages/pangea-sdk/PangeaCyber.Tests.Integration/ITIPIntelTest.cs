@@ -1,8 +1,10 @@
+using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Exceptions;
 using PangeaCyber.Net.Intel;
+using Xunit;
 
-namespace PangeaCyber.Tests.Intel
+namespace PangeaCyber.Tests.Integration
 {
     public class ITIPIntelTest
     {
