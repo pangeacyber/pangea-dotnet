@@ -1,0 +1,15 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace PangeaCyber.Net.PromptGuard.Models;
+
+[JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
+public sealed class ServiceConfig
+{
+    public string? Id { get; set; }
+    public string? Version { get; set; }
+    public Dictionary<string, bool>? Analyzers { get; set; }
+    public decimal? MaliciousDetectionThreshold { get; set; }
+    public decimal? BenignDetectionThreshold { get; set; }
+    public AuditDataActivityConfig? AuditDataActivity { get; set; }
+}
