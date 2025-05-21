@@ -58,4 +58,59 @@ public class PromptGuardClient : BaseClient<PromptGuardClient.Builder>
     {
         return DoPost<GuardResult>("/v1/guard", request, cancellationToken: cancellationToken);
     }
+
+    /// <operationid>prompt_guard_post_v1beta_config</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<object>> GetServiceConfig(
+        GetServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<object>("/v1beta/config", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>prompt_guard_post_v1beta_config_create</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<object>> CreateServiceConfig(
+        CreateServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<object>("/v1beta/config/create", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>prompt_guard_post_v1beta_config_update</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<object>> UpdateServiceConfig(
+        UpdateServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<object>("/v1beta/config/update", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>prompt_guard_post_v1beta_config_delete</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<object>> DeleteServiceConfig(
+        DeleteServiceConfigRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<object>("/v1beta/config/delete", request, cancellationToken: cancellationToken);
+    }
+
+    /// <operationid>prompt_guard_post_v1beta_config_list</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<ListServiceConfigsResult>> ListServiceConfigs(
+        ListServiceConfigsRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return DoPost<ListServiceConfigsResult>("/v1beta/config/list", request, cancellationToken: cancellationToken);
+    }
 }

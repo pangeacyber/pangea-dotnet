@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using PangeaCyber.Net.AIGuard.Models;
+using PangeaCyber.Net.PromptGuard.Models;
 
-namespace PangeaCyber.Net.AIGuard.Results;
+namespace PangeaCyber.Net.PromptGuard.Results;
 
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
 public sealed class ListServiceConfigsResult
