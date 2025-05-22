@@ -13,7 +13,7 @@ public sealed class Config
     /// Version of the package.
     /// </summary>
     /// <value>Version of the package.</value>
-    public const string Version = "5.2.0-beta.1";
+    public const string Version = "5.2.0-beta.2";
 
     #endregion Constants
 
