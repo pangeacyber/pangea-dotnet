@@ -57,8 +57,8 @@
       },
       "BouncyCastle.Cryptography": {
         "type": "Transitive",
-        "resolved": "2.6.0",
-        "contentHash": "Pz6gFg5m0sVoGle5iLFZTSfyplQoaoTHV7soT4EX8dxyZyqTYMCOfeI/2iMDL+U3z8Ww2FHTrH6QVA+ct32A+g=="
+        "resolved": "2.6.1",
+        "contentHash": "vZsG2YILhthgRqO+ZVgRff4ZFKKTl0v7kqaVBLCtRvpREhfBP33pcWrdA3PRYgWuFL1RxiUFvjMUHTdBZlJcoA=="
       },
       "Crc32.NET": {
         "type": "Transitive",
@@ -246,7 +246,7 @@
       "Pangea.SDK": {
         "type": "Project",
         "dependencies": {
-          "BouncyCastle.Cryptography": "[2.6.0, )",
+          "BouncyCastle.Cryptography": "[2.6.1, )",
           "Crc32.NET": "[1.2.0, )",
           "HttpMultipartParser": "[5.1.0, )",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[6.0.36, )",
