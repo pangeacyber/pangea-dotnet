@@ -129,7 +129,7 @@ namespace PangeaCyber.Net.Audit.arweave
             return response;
         }
 
-        private async Task<HttpResponseMessage> doGet(string url)
+        private async Task<HttpResponseMessage?> doGet(string url)
         {
             using var localClient = new HttpClient();
             HttpResponseMessage httpResponse;
@@ -140,7 +140,7 @@ namespace PangeaCyber.Net.Audit.arweave
             }
             catch (Exception)
             {
-                return default!;
+                return default;
             }
 
             if (httpResponse.StatusCode == System.Net.HttpStatusCode.Found)
@@ -150,16 +150,21 @@ namespace PangeaCyber.Net.Audit.arweave
 
             if (httpResponse.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                return default!;
+                return default;
             }
 
             return httpResponse;
         }
 
-        private async Task<PublishedRoot> doGetRoot(string nodeID)
+        private async Task<PublishedRoot?> doGetRoot(string nodeID)
         {
-            HttpResponseMessage httpResponse = await doGet(getTransactionURL(nodeID));
-            string body = await httpResponse.Content.ReadAsStringAsync();
+            var httpResponse = await doGet(getTransactionURL(nodeID));
+            if (httpResponse == null)
+            {
+                return default;
+            }
+
+            var body = await httpResponse.Content.ReadAsStringAsync();
             PublishedRoot root;
             try
             {
@@ -168,7 +173,7 @@ namespace PangeaCyber.Net.Audit.arweave
             }
             catch (Exception)
             {
-                return default!;
+                return default;
             }
 
             return root;
@@ -199,7 +204,7 @@ namespace PangeaCyber.Net.Audit.arweave
 
                     if (value != null)
                     {
-                        PublishedRoot root = await doGetRoot(nodeID);
+                        var root = await doGetRoot(nodeID);
                         if (root != null)
                         {
                             try
