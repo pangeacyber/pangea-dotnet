@@ -8,5 +8,5 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class SecretsEntityResult
 {
     /// <summary>Entities</summary>
-    public List<SecretsEntity> Entities { get; set; } = default!;
+    public required List<SecretsEntity> Entities { get; set; }
 }
