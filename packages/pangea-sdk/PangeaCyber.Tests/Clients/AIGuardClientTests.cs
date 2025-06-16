@@ -52,9 +52,10 @@ public sealed class AIGuardClientTests
         await CheckTestServer();
 
         var client = new AIGuardClient.Builder(new Config("token") { BaseUrlTemplate = "http://localhost:4010" }).Build();
-        var response = await client.GetServiceConfig(new GetServiceConfigRequest("123"));
+        var response = await client.GetServiceConfig(new GetServiceConfigRequest("pci_6zr62lzlvnsrz37kt2yqnwr2qmyurtpa"));
         Assert.NotNull(response);
         Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
         Assert.NotNull(response.Result);
     }
 
@@ -64,9 +65,10 @@ public sealed class AIGuardClientTests
         await CheckTestServer();
 
         var client = new AIGuardClient.Builder(new Config("token") { BaseUrlTemplate = "http://localhost:4010" }).Build();
-        var response = await client.CreateServiceConfig(new CreateServiceConfigRequest("123"));
+        var response = await client.CreateServiceConfig(new CreateServiceConfigRequest("pci_6zr62lzlvnsrz37kt2yqnwr2qmyurtpa"));
         Assert.NotNull(response);
         Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
         Assert.NotNull(response.Result);
     }
 
@@ -76,9 +78,10 @@ public sealed class AIGuardClientTests
         await CheckTestServer();
 
         var client = new AIGuardClient.Builder(new Config("token") { BaseUrlTemplate = "http://localhost:4010" }).Build();
-        var response = await client.UpdateServiceConfig(new UpdateServiceConfigRequest("id", "name"));
+        var response = await client.UpdateServiceConfig(new UpdateServiceConfigRequest("pci_6zr62lzlvnsrz37kt2yqnwr2qmyurtpa", "name"));
         Assert.NotNull(response);
         Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
         Assert.NotNull(response.Result);
     }
 
@@ -88,9 +91,10 @@ public sealed class AIGuardClientTests
         await CheckTestServer();
 
         var client = new AIGuardClient.Builder(new Config("token") { BaseUrlTemplate = "http://localhost:4010" }).Build();
-        var response = await client.DeleteServiceConfig(new DeleteServiceConfigRequest("123"));
+        var response = await client.DeleteServiceConfig(new DeleteServiceConfigRequest("pci_6zr62lzlvnsrz37kt2yqnwr2qmyurtpa"));
         Assert.NotNull(response);
         Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
         Assert.NotNull(response.Result);
     }
 
@@ -111,6 +115,7 @@ public sealed class AIGuardClientTests
         });
         Assert.NotNull(response);
         Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
         Assert.NotNull(response.Result);
         Assert.NotNull(response.Result.Items);
     }
