@@ -108,6 +108,19 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
         return response;
     }
 
+    /// <summary>
+    /// Analyze and redact text to avoid manipulation of the model, addition of
+    /// malicious content, and other undesirable data transfers.
+    /// </summary>
+    /// <remarks>Guard LLM input and output</remarks>
+    /// <operationid>ai_guard_post_v1_guard</operationid>
+    /// <param name="request">Request parameters.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    public Task<Response<GuardResult>> Guard(GuardRequest request, CancellationToken cancellationToken = default)
+    {
+        return DoPost<GuardResult>("/v1/guard", request, cancellationToken: cancellationToken);
+    }
+
     private sealed class RelevantContent
     {
         public List<Message> RelevantMessages { get; }
