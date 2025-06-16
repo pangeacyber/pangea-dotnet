@@ -47,6 +47,33 @@ public sealed class AIGuardClientTests
     }
 
     [SkippableFact]
+    public async Task Guard()
+    {
+        await CheckTestServer();
+
+        var client = new AIGuardClient.Builder(new Config("token") { BaseUrlTemplate = "http://localhost:4010" }).Build();
+        var response = await client.Guard(new GuardRequest()
+        {
+            Messages = [
+                new MultimodalMessage
+                {
+                    Role = "user",
+                    Content = [
+                        new TextContent { Text = "hello world" },
+                        new ImageContent { ImageSrc = "https://example.org/favicon.ico" }
+                    ]
+                }
+            ],
+            Recipe = "recipe",
+            Debug = true
+        });
+        Assert.NotNull(response);
+        Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
+        Assert.NotNull(response.Result);
+    }
+
+    [SkippableFact]
     public async Task GetServiceConfig()
     {
         await CheckTestServer();
