@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,31 @@ public sealed class AIGuardClientTests
         });
         Assert.NotNull(response);
         Assert.True(response.IsOK);
+        Assert.NotNull(response.Result);
+    }
+
+    [SkippableFact]
+    public async Task Guard()
+    {
+        await CheckTestServer();
+
+        var client = new AIGuardClient.Builder(new Config("token") { BaseUrlTemplate = "http://localhost:4010" }).Build();
+        var response = await client.Guard(new GuardRequest()
+        {
+            Input = new Dictionary<string, object> {
+                { "messages", new List<IDictionary<string, string>> {
+                    new Dictionary<string, string> {
+                        { "role", "user" },
+                        { "content", "hello world" }
+                    }
+                } }
+            },
+            Recipe = "recipe",
+            Debug = true
+        });
+        Assert.NotNull(response);
+        Assert.True(response.IsOK);
+        Assert.True(response.HttpResponse.IsSuccessStatusCode);
         Assert.NotNull(response.Result);
     }
 }
