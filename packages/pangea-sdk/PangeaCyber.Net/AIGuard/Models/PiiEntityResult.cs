@@ -8,5 +8,5 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class PiiEntityResult
 {
     /// <summary>List of PII entities found.</summary>
-    public List<PiiEntity> Entities { get; set; } = default!;
+    public required List<PiiEntity> Entities { get; set; }
 }

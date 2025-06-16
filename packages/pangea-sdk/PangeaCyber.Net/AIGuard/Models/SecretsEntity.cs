@@ -8,17 +8,17 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class SecretsEntity
 {
     /// <summary>Type</summary>
-    public string Type { get; set; } = default!;
+    public required string Type { get; set; }
 
     /// <summary>Value</summary>
-    public string Value { get; set; } = default!;
+    public required string Value { get; set; }
 
     /// <summary>Action</summary>
-    public string Action { get; set; } = default!;
+    public required string Action { get; set; }
 
     /// <summary>Start position</summary>
     public int? StartPos { get; set; }
 
     /// <summary>Redacted value</summary>
-    public string RedactedValue { get; set; } = default!;
+    public required string RedactedValue { get; set; }
 }
