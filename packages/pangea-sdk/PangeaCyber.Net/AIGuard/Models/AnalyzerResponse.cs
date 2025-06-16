@@ -8,7 +8,7 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class AnalyzerResponse
 {
     /// <summary>The analyzer name.</summary>
-    public string Analyzer { get; set; } = default!;
+    public required string Analyzer { get; set; }
 
     /// <summary>The confidence score.</summary>
     public float Confidence { get; set; }

@@ -8,13 +8,13 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class MaliciousEntity
 {
     /// <summary>The type of malicious entity.</summary>
-    public string Type { get; set; } = default!;
+    public required string Type { get; set; }
 
     /// <summary>The value of the malicious entity.</summary>
-    public string Value { get; set; } = default!;
+    public required string Value { get; set; }
 
     /// <summary>Action</summary>
-    public string Action { get; set; } = default!;
+    public required string Action { get; set; }
 
     /// <summary>The starting position of the entity in the text.</summary>
     public int? StartPos { get; set; }

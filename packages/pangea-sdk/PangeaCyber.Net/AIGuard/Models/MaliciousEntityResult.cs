@@ -8,5 +8,5 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class MaliciousEntityResult
 {
     /// <summary>List of malicious entities found.</summary>
-    public List<MaliciousEntity> Entities { get; set; } = default!;
+    public required List<MaliciousEntity> Entities { get; set; }
 }

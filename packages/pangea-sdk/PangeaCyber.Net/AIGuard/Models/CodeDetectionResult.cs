@@ -8,8 +8,8 @@ namespace PangeaCyber.Net.AIGuard.Models;
 public sealed class CodeDetectionResult
 {
     /// <summary>Language</summary>
-    public string Language { get; set; } = default!;
+    public required string Language { get; set; }
 
     /// <summary>Action</summary>
-    public string Action { get; set; } = default!;
+    public required string Action { get; set; }
 }
