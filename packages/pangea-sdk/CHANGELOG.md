@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Failed requests are now retried up to two times by default.
+
 ### Fixed
 
 - Audit: a `NullReferenceException` that could happen during verification.
