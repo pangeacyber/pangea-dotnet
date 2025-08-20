@@ -102,6 +102,8 @@ The SDK supports the following configuration options via `Config`:
   service-specific paths.
 - `ConnectionTimeout` — Time span to wait before a HTTP request times out.
 - `CustomUserAgent` — User-Agent string to append to the default one.
+- `MaxRetries` — Maximum number of retries to attempt. When set to 0, the client
+  only makes one request. By default, the client retries two times.
 - `QueuedRetryEnabled` — Whether or not queued request retries are enabled.
 - `PollResultTimeoutSecs` — Timeout for polling results after a HTTP/202 (in
   seconds).
