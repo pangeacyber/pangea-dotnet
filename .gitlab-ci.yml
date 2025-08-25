@@ -109,7 +109,7 @@ publish:
   script:
     - bash ./dev/validate_tag.sh $CI_COMMIT_TAG
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
-    - PACKAGE_VERSION=`cat VERSION`
+    - PACKAGE_VERSION=`cat ./packages/pangea-sdk/VERSION`
     - dotnet pack ./packages/pangea-sdk/PangeaCyber.Net/ -c Release --no-build --nologo -o ./ -p:PackageVersion=$PACKAGE_VERSION
     - cp .secure_files/CodeSigning_CABundle.crt /usr/local/share/ca-certificates
     - update-ca-certificates
