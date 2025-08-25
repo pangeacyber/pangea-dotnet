@@ -171,7 +171,7 @@ jobs:
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
 
       - name: Install docfx
-        run: dotnet tool install --global docfx --version 2.77.0
+        run: dotnet tool install --global docfx --version 2.78.3
 
       - name: Run docfx
         run: docfx metadata docfx.json
