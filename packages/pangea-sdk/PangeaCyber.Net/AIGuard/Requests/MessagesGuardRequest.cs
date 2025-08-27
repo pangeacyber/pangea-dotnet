@@ -6,13 +6,13 @@ namespace PangeaCyber.Net.AIGuard.Requests;
 
 /// <summary>Messages guard request</summary>
 [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-public sealed class MessagesGuardRequest<TMessages> : BaseRequest
+public sealed class MessagesGuardRequest : BaseRequest
 {
     /// <summary>
     /// Structured data to be scanned by AI Guard for PII, sensitive data, malicious content, and other data types
     /// defined by the configuration. Supports processing up to 10KB of text.
     /// </summary>
-    public TMessages Messages { get; set; }
+    public IEnumerable<Message> Messages { get; set; }
 
     /// <summary>
     /// Recipe key of a configuration of data types and settings defined in the Pangea User Console. It specifies the
@@ -27,7 +27,7 @@ public sealed class MessagesGuardRequest<TMessages> : BaseRequest
     public LogFields? LogFields { get; set; }
 
     /// <summary>Constructor.</summary>
-    public MessagesGuardRequest(TMessages messages)
+    public MessagesGuardRequest(IEnumerable<Message> messages)
     {
         Messages = messages ?? throw new ArgumentNullException(nameof(messages));
     }
