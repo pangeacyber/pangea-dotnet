@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.AIGuard;
+using PangeaCyber.Net.AIGuard.Models;
 using PangeaCyber.Net.AIGuard.Requests;
 using Xunit;
 
@@ -32,11 +33,26 @@ public class ITAIGuardTest
     [Fact]
     public async Task TestGuardMessages()
     {
-        var response = await client.GuardText(new MessagesGuardRequest<IEnumerable<IDictionary<string, string>>>(new[]
-        {
-            new Dictionary<string, string> { { "role", "user" }, { "content", "what was pangea?" } }
-        }));
+        var response = await client.GuardText(new MessagesGuardRequest([
+            new() { Role = "user", Content = "what was pangea?" }
+        ]));
         Assert.True(response.IsOK);
         Assert.NotNull(response.Result.PromptMessages);
+    }
+
+    [Fact]
+    public async Task TestRelevantContent()
+    {
+        var response = await client.GuardText(new MessagesGuardRequest([
+            new() { Role = "system", Content = "what was pangea?" },
+            new() { Role = "user", Content = "what was pangea?" },
+            new() { Role = "context", Content = "what was pangea?" },
+            new() { Role = "assistant", Content = "what was pangea?" },
+            new() { Role = "tool", Content = "what was pangea?" },
+            new() { Role = "context", Content = "what was pangea?" },
+        ]), onlyRelevantContent: true);
+        Assert.True(response.IsOK);
+        Assert.NotNull(response.Result.PromptMessages);
+        Assert.Equal(6, response.Result.PromptMessages.Count);
     }
 }
