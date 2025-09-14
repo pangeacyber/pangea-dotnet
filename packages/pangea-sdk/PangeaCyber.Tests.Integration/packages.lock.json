@@ -130,8 +130,8 @@
       },
       "NLog": {
         "type": "Transitive",
-        "resolved": "6.0.3",
-        "contentHash": "5RMrpvadysflvDOi5ozD7aK1P+YL2DyZbQSxzE8qBKkw2pxPNOQA6vJtumcT6SuzE9qxhwGkQwMkLLaKnALwiw=="
+        "resolved": "6.0.4",
+        "contentHash": "Xr+lIk1ZlTTFXEqnxQVLxrDqZlt2tm5X+/AhJbaY2emb/dVtGDiU5QuEtj3gHtwV/SWlP/rJ922I/BPuOJXlRw=="
       },
       "System.Buffers": {
         "type": "Transitive",
@@ -209,7 +209,7 @@
           "HttpMultipartParser": "[5.1.0, )",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[6.0.36, )",
           "MimeKit": "[4.13.0, )",
-          "NLog": "[6.0.3, )",
+          "NLog": "[6.0.4, )",
           "Newtonsoft.Json": "[13.0.3, )"
         }
       }
