@@ -3,7 +3,7 @@ examples:
   retry: 2
   parallel:
     matrix:
-      - DOTNET_VERSION: ['6.0']
+      - DOTNET_VERSION: ['8.0']
         EXAMPLE:
           - Audit/AuditLog
           - Audit/AuditLogBulk
