@@ -58,6 +58,12 @@ public sealed class Config
     /// <summary>User-Agent string to append to the default one.</summary>
     public string CustomUserAgent { get; set; } = default!;
 
+    /// <summary>
+    /// Maximum number of retries to attempt. When set to 0, the client only
+    /// makes one request. By default, the client retries two times.
+    /// </summary>
+    public int MaxRetries { get; set; } = 2;
+
     /// <summary>Whether or not queued request retries are enabled.</summary>
     public bool QueuedRetryEnabled { get; set; } = true;
 

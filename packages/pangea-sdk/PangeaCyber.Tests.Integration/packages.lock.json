@@ -25,9 +25,9 @@
       },
       "xunit.runner.visualstudio": {
         "type": "Direct",
-        "requested": "[3.1.1, )",
-        "resolved": "3.1.1",
-        "contentHash": "gNu2zhnuwjq5vQlU4S7yK/lfaKZDLmtcu+vTjnhfTlMAUYn+Hmgu8IIX0UCwWepYkk+Szx03DHx1bDnc9Fd+9w=="
+        "requested": "[3.1.4, )",
+        "resolved": "3.1.4",
+        "contentHash": "5mj99LvCqrq3CNi06xYdyIAXOEh+5b33F2nErCzI5zWiDdLHXiPXEWFSUAF8zlIv0ZWqjZNCwHTQeAPYbF3pCg=="
       },
       "Xunit.SkippableFact": {
         "type": "Direct",
@@ -41,8 +41,8 @@
       },
       "BouncyCastle.Cryptography": {
         "type": "Transitive",
-        "resolved": "2.6.1",
-        "contentHash": "vZsG2YILhthgRqO+ZVgRff4ZFKKTl0v7kqaVBLCtRvpREhfBP33pcWrdA3PRYgWuFL1RxiUFvjMUHTdBZlJcoA=="
+        "resolved": "2.6.2",
+        "contentHash": "7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w=="
       },
       "Crc32.NET": {
         "type": "Transitive",
@@ -108,8 +108,8 @@
       },
       "MimeKit": {
         "type": "Transitive",
-        "resolved": "4.12.0",
-        "contentHash": "PFUHfs6BZxKYM/QPJksAwXphbJf0SEfdSfsoQ6p6yvFRaJPofFJMBiotWhFRrdSUzfp6C6K49EjBIqIwZ2TJqA==",
+        "resolved": "4.13.0",
+        "contentHash": "oa4JuhAzJydHnPCc/XWeyBUGd3uiVyWW0NXqOVgkXEHjbHlPVBssklK3mpw9sokjzAaBGdj0bceFsr+NXvAukA==",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.5.1",
           "System.Security.Cryptography.Pkcs": "8.0.1"
@@ -130,8 +130,8 @@
       },
       "NLog": {
         "type": "Transitive",
-        "resolved": "5.5.0",
-        "contentHash": "FCH8s7GWlonH5JXV9/EpeNJ8pRZQMVZOSWX3JrHPU8rzdHJhS5+lUGGvJIUOtzkGV1clYBFR0WXOI5FnUwVCMA=="
+        "resolved": "6.0.4",
+        "contentHash": "Xr+lIk1ZlTTFXEqnxQVLxrDqZlt2tm5X+/AhJbaY2emb/dVtGDiU5QuEtj3gHtwV/SWlP/rJ922I/BPuOJXlRw=="
       },
       "System.Buffers": {
         "type": "Transitive",
@@ -204,12 +204,12 @@
       "Pangea.SDK": {
         "type": "Project",
         "dependencies": {
-          "BouncyCastle.Cryptography": "[2.6.1, )",
+          "BouncyCastle.Cryptography": "[2.6.2, )",
           "Crc32.NET": "[1.2.0, )",
           "HttpMultipartParser": "[5.1.0, )",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[6.0.36, )",
-          "MimeKit": "[4.12.0, )",
-          "NLog": "[5.5.0, )",
+          "MimeKit": "[4.13.0, )",
+          "NLog": "[6.0.4, )",
           "Newtonsoft.Json": "[13.0.3, )"
         }
       }

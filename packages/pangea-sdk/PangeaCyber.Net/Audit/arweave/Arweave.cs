@@ -83,7 +83,7 @@ namespace PangeaCyber.Net.Audit.arweave
             return query;
         }
 
-        private async Task<GraphqlOutput> DoPostGraphql(int[] treeSizes)
+        private async Task<GraphqlOutput?> DoPostGraphql(int[] treeSizes)
         {
             var request = new ArweaveRequest(getQuery(treeSizes));
             string body;
@@ -94,7 +94,7 @@ namespace PangeaCyber.Net.Audit.arweave
             }
             catch (Exception)
             {
-                return default!;
+                return default;
             }
 
             using var localClient = new HttpClient();
@@ -107,12 +107,12 @@ namespace PangeaCyber.Net.Audit.arweave
             }
             catch (Exception)
             {
-                return default!;
+                return default;
             }
 
             if (httpResponse.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                return default!;
+                return default;
             }
 
             body = await httpResponse.Content.ReadAsStringAsync();
@@ -124,7 +124,7 @@ namespace PangeaCyber.Net.Audit.arweave
             }
             catch (Exception)
             {
-                return default!;
+                return default;
             }
             return response;
         }
@@ -184,9 +184,9 @@ namespace PangeaCyber.Net.Audit.arweave
         {
             Dictionary<int, PublishedRoot> publishedRoots = new Dictionary<int, PublishedRoot>();
 
-            GraphqlOutput response = DoPostGraphql(treeSizes).Result;
+            var response = await DoPostGraphql(treeSizes);
 
-            if (response.Data != null)
+            if (response?.Data != null)
             {
                 foreach (Edge edge in response.Data.Transactions.Edges)
                 {

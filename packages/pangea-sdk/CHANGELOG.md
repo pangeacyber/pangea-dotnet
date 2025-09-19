@@ -9,7 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- AI Guard: `onlyRelevantContent` parameter which allows for sending only
+  relevant messages to AI Guard.
 - AI Guard: multimodal guard.
+
+## 5.2.0 - 2025-08-25
+
+### Added
+
+- Failed requests are now retried up to two times by default.
+
+### Fixed
+
+- Audit: a `NullReferenceException` that could happen during verification.
+- Redact: incorrect `RedactionMethodOverrides.RedactionType` serialization.
 
 ## 5.2.0-beta.2 - 2025-05-22
 
@@ -17,11 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - AI Guard: config APIs.
 - Prompt Guard: config APIs.
-
-### Fixed
-
-- Audit: a `NullReferenceException` that could happen during verification.
-- Redact: incorrect `RedactionMethodOverrides.RedactionType` serialization.
 
 ## 5.2.0-beta.1 - 2025-04-28
 

@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 8
           cache: true
@@ -49,10 +49,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 8
           cache: true
@@ -68,10 +68,10 @@ jobs:
         dotnet-version: [8, 9]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
           cache: true
@@ -85,10 +85,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 8
           cache: true
@@ -108,10 +108,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 8
           cache: true
@@ -124,12 +124,12 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - run: corepack enable
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 8
           cache: true
@@ -145,10 +145,10 @@ jobs:
         working-directory: ./docs
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4.3.1
+        uses: actions/setup-dotnet@v5.0.0
         with:
           dotnet-version: 8
           cache: true
@@ -158,20 +158,20 @@ jobs:
         run: corepack enable
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4.4.0
+        uses: actions/setup-node@v5.0.0
         with:
-          node-version: 20
+          node-version: 20.19.5
           cache: yarn
           cache-dependency-path: ./docs/yarn.lock
 
       - name: Download locally built Pangea.SDK
-        uses: actions/download-artifact@v4.3.0
+        uses: actions/download-artifact@v5.0.0
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
 
       - name: Install docfx
-        run: dotnet tool install --global docfx --version 2.77.0
+        run: dotnet tool install --global docfx --version 2.78.3
 
       - name: Run docfx
         run: docfx metadata docfx.json

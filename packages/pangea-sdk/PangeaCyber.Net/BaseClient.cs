@@ -89,7 +89,7 @@ namespace PangeaCyber.Net
                 userAgent += " " + config.CustomUserAgent;
             }
 
-            PangeaHttpClient = new HttpClient();
+            PangeaHttpClient = new HttpClient(new RetryHandler(config.MaxRetries));
             GeneralHttpClient = new HttpClient();
             PangeaHttpClient.BaseAddress = config.GetServiceUrl(serviceName, string.Empty);
             PangeaHttpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);

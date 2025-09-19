@@ -40,13 +40,13 @@ compatibility guarantees as stable releases. [Beta changelog][].
 Via .NET CLI:
 
 ```bash
-$ dotnet add package Pangea.SDK --version 5.2.0-beta.1
+$ dotnet add package Pangea.SDK --version 5.2.0-beta.2
 ```
 
 Via PackageReference:
 
 ```xml
-<PackageReference Include="Pangea.SDK" Version="5.2.0-beta.1" />
+<PackageReference Include="Pangea.SDK" Version="5.2.0-beta.2" />
 ```
 
 ## Usage
@@ -86,9 +86,31 @@ var logConfig = new LogConfig.Builder()
 var response = await client.Log(event, logConfig);
 ```
 
-   [Documentation]: https://pangea.cloud/docs/sdk/csharp/
-   [GA Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
-   [Beta Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/beta/examples
-   [Pangea Console]: https://console.pangea.cloud/
-   [Secure Audit Log]: https://pangea.cloud/docs/audit
-   [Beta changelog]: https://github.com/pangeacyber/pangea-dotnet/blob/beta/packages/pangea-sdk/CHANGELOG.md
+## Configuration
+
+The SDK supports the following configuration options via `Config`:
+
+- `Token` — Pangea API token.
+- `BaseUrlTemplate` — Template for constructing the base URL for API requests.
+  The placeholder `{SERVICE_NAME}` will be replaced with the service name slug.
+  This is a more powerful version of `Domain` that allows for setting more than
+  just the host of the API server. Defaults to
+  `https://{SERVICE_NAME}.aws.us.pangea.cloud`.
+- `Domain` — Base domain for API requests. This is a weaker version of
+  `BaseUrlTemplate` that only allows for setting the host of the API server. Use
+  `BaseUrlTemplate` for more control over the URL, such as setting
+  service-specific paths.
+- `ConnectionTimeout` — Time span to wait before a HTTP request times out.
+- `CustomUserAgent` — User-Agent string to append to the default one.
+- `MaxRetries` — Maximum number of retries to attempt. When set to 0, the client
+  only makes one request. By default, the client retries two times.
+- `QueuedRetryEnabled` — Whether or not queued request retries are enabled.
+- `PollResultTimeoutSecs` — Timeout for polling results after a HTTP/202 (in
+  seconds).
+
+[Documentation]: https://pangea.cloud/docs/sdk/csharp/
+[GA Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/main/examples
+[Beta Examples]: https://github.com/pangeacyber/pangea-dotnet/tree/beta/examples
+[Pangea Console]: https://console.pangea.cloud/
+[Secure Audit Log]: https://pangea.cloud/docs/audit
+[Beta changelog]: https://github.com/pangeacyber/pangea-dotnet/blob/beta/packages/pangea-sdk/CHANGELOG.md
