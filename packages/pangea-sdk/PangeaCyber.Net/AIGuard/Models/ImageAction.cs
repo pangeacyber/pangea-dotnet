@@ -4,9 +4,9 @@ using Newtonsoft.Json.Serialization;
 
 namespace PangeaCyber.Net.AIGuard.Models;
 
-/// <summary>Action to take when prompt injection is detected.</summary>
+/// <summary>Action to take on detection.</summary>
 [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
-public enum PromptInjectionAction
+public enum ImageAction
 {
     /// <summary>Report the detection.</summary>
     Report,
