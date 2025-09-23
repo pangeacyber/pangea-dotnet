@@ -19,6 +19,9 @@ public sealed class Overrides
     /// <summary>Gibberish overrides.</summary>
     public GibberishOverride? Gibberish { get; set; }
 
+    /// <summary>Image overrides.</summary>
+    public ImageOverride? Image { get; set; }
+
     /// <summary>Language detection overrides.</summary>
     public LanguageDetectionOverride? LanguageDetection { get; set; }
 

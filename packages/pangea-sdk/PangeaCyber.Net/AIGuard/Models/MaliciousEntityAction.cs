@@ -1,10 +1,11 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace PangeaCyber.Net.AIGuard.Models;
 
 /// <summary>Action to take when malicious entities are detected.</summary>
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
 public enum MaliciousEntityAction
 {
     /// <summary>Report the detection.</summary>

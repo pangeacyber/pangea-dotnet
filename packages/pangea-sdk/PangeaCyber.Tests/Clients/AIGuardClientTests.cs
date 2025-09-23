@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PangeaCyber.Net;
 using PangeaCyber.Net.AIGuard;
 using PangeaCyber.Net.AIGuard.Requests;
+using PangeaCyber.Net.AIGuard.Models;
 using Xunit;
 
 namespace PangeaCyber.Tests.Clients;
@@ -60,7 +61,17 @@ public sealed class AIGuardClientTests
                 } }
             },
             Recipe = "recipe",
-            Debug = true
+            Debug = true,
+            Overrides = new Overrides()
+            {
+                Image = new ImageOverride()
+                {
+                    Disabled = false,
+                    Action = ImageAction.Report,
+                    Topics = ["test"],
+                    Threshold = 0.5
+                }
+            }
         });
         Assert.NotNull(response);
         Assert.True(response.IsOK);
