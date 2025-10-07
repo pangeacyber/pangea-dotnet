@@ -1,7 +1,7 @@
+using PangeaCyber.Examples;
 using PangeaCyber.Net;
 using PangeaCyber.Net.Audit;
 using PangeaCyber.Net.Exceptions;
-using PangeaCyber.Examples;
 
 class Program
 {
@@ -21,7 +21,10 @@ class Program
             var domain = Config.LoadEnvironmentVariable("PANGEA_DOMAIN");
 
             // Create service config with domain and token
-            var config = new Config(token, domain);
+            var config = new Config(token)
+            {
+                Domain = domain
+            };
 
             // Create AuditClient with builder
             var client = new AuditClient.Builder(config)

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditLogBulk", "examples\Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PangeaCyber.Tests.Integration", "packages\pangea-sdk\PangeaCyber.Tests.Integration\PangeaCyber.Tests.Integration.csproj", "{BB831E06-4AF3-9567-36EB-3DB00F4192AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditLogCustomSchema", "examples\Audit\AuditLogCustomSchema\AuditLogCustomSchema.csproj", "{DD0B4B09-ECAB-6755-CA0B-A03459009A85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB831E06-4AF3-9567-36EB-3DB00F4192AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0B4B09-ECAB-6755-CA0B-A03459009A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0B4B09-ECAB-6755-CA0B-A03459009A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0B4B09-ECAB-6755-CA0B-A03459009A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0B4B09-ECAB-6755-CA0B-A03459009A85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{12485A26-2715-E424-B336-F246A1733061} = {B36A84DF-456D-A817-6EDD-3EC3E7F6E11F}
 		{2B934321-55DE-18B7-1946-DA93B7651804} = {B36A84DF-456D-A817-6EDD-3EC3E7F6E11F}
+		{DD0B4B09-ECAB-6755-CA0B-A03459009A85} = {B36A84DF-456D-A817-6EDD-3EC3E7F6E11F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92858937-69F2-45EA-884F-1208C9C64632}
