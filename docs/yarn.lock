@@ -363,7 +363,7 @@ __metadata:
   dependencies:
     "@tsconfig/node20": "npm:20.1.6"
     "@types/js-yaml": "npm:4.0.9"
-    "@types/node": "npm:20.19.21"
+    "@types/node": "npm:20.19.23"
     "@vitest/coverage-v8": "npm:3.2.4"
     fast-xml-parser: "npm:5.3.0"
     js-yaml: "npm:4.1.0"
@@ -571,12 +571,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.19.21":
-  version: 20.19.21
-  resolution: "@types/node@npm:20.19.21"
+"@types/node@npm:20.19.23":
+  version: 20.19.23
+  resolution: "@types/node@npm:20.19.23"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/a5bedcc71b363abfa425c01e69696820736614dfba03d2363df6d306d2ee6f7619b370c72b4ec75d992e5d76eaccdcdeb362276cac1cd01756db6dec2eb8227c
+  checksum: 10c0/a230f2ad8a5c10f3c5b2e31112e49b61f2cc9e7eacb95960b555ef133c0276c52b7f3841af744762ce355009fc03520ab7af5645cd877ab8699e45412bccf9b8
   languageName: node
   linkType: hard
 
