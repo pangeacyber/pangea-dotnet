@@ -98,7 +98,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Upload
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v5.0.0
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
@@ -165,7 +165,7 @@ jobs:
           cache-dependency-path: ./docs/yarn.lock
 
       - name: Download locally built Pangea.SDK
-        uses: actions/download-artifact@v5.0.0
+        uses: actions/download-artifact@v6.0.0
         with:
           name: pangea-dotnet-sdk-package
           path: ./packages/pangea-sdk/PangeaCyber.Net/bin/Release
@@ -186,7 +186,7 @@ jobs:
         run: yarn generate
 
       - name: Upload
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v5.0.0
         with:
           name: csharp_sdk.json
           path: ./docs/out/csharp_sdk.json
