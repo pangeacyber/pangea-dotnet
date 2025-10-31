@@ -63,15 +63,15 @@
       },
       "Microsoft.AspNetCore.Cryptography.Internal": {
         "type": "Transitive",
-        "resolved": "6.0.36",
-        "contentHash": "VKG4S0q9FD2ciaiGjj5CU4BcvBAlbBSDpfsdHhwZOD5CmQm40qTNZCWZZOPgmBnZ0hwYjLnyYtg8BDXTPOPdNw=="
+        "resolved": "9.0.10",
+        "contentHash": "Z/q6pA2ss/k2SlAUWocZoHvswrXzORcpcbhNyAz4uKUFnOW3Z2fR+ks5a6W1cxLXG4/qDuvqlBLzFrPjC8CJVQ=="
       },
       "Microsoft.AspNetCore.Cryptography.KeyDerivation": {
         "type": "Transitive",
-        "resolved": "6.0.36",
-        "contentHash": "us+xlkbdZlB/hl2XTxvk2QOPVUzj++WW+zPEwsXIBfkZ23pMFOHlMbhVqKRe3lUphM8vJS4ZH0m4Xvgm0Qdi4Q==",
+        "resolved": "9.0.10",
+        "contentHash": "RdG6CIyQaR7hTq+na1zqDYJWxCVxHOxn898Vr6pwk9fI+qzeJPUw9txdRkrAjpbkeT9MV+RJzKpzSnVIQLjm7Q==",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.36"
+          "Microsoft.AspNetCore.Cryptography.Internal": "9.0.10"
         }
       },
       "Microsoft.CodeCoverage": {
@@ -207,7 +207,7 @@
           "BouncyCastle.Cryptography": "[2.6.2, )",
           "Crc32.NET": "[1.2.0, )",
           "HttpMultipartParser": "[5.1.0, )",
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[6.0.36, )",
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[9.0.10, )",
           "MimeKit": "[4.14.0, )",
           "NLog": "[6.0.5, )",
           "Newtonsoft.Json": "[13.0.4, )"
