@@ -18,7 +18,7 @@
   "devDependencies": {
     "@tsconfig/node20": "20.1.6",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "20.19.23",
+    "@types/node": "24.9.2",
     "@vitest/coverage-v8": "4.0.4",
     "tsimp": "2.0.12",
     "typescript": "5.9.3",
