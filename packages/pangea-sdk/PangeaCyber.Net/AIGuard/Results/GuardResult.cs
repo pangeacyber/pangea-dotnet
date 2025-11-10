@@ -20,7 +20,7 @@ public sealed class GuardResult
     public string? Recipe { get; set; }
 
     /// <summary>Result of the recipe analyzing and input prompt.</summary>
-    public required TextGuardDetectors Detectors { get; set; }
+    public required GuardDetectors Detectors { get; set; }
 
     /// <summary>
     /// If an FPE redaction method returned results, this will be the context

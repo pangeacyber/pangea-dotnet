@@ -206,7 +206,7 @@ public class AIGuardClient : BaseClient<AIGuardClient.Builder>
         var patched = new List<Message>();
         for (var i = 0; i < original.Count; i++)
         {
-            patched.Add(transformedMap.TryGetValue(i, out Message value) ? value : original[i]);
+            patched.Add(transformedMap.TryGetValue(i, out var value) ? value : original[i]);
         }
 
         return patched;
