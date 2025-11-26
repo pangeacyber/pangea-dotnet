@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5.0.0
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5.0.0
@@ -68,7 +68,7 @@ jobs:
         dotnet-version: [8, 9]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5.0.0
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5.0.0
@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5.0.0
@@ -124,7 +124,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - run: corepack enable
 
@@ -145,7 +145,7 @@ jobs:
         working-directory: ./docs
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5.0.1
+        uses: actions/checkout@v6.0.0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5.0.0
