@@ -19,9 +19,9 @@
     "@tsconfig/node20": "20.1.7",
     "@types/js-yaml": "4.0.9",
     "@types/node": "24.10.1",
-    "@vitest/coverage-v8": "4.0.9",
+    "@vitest/coverage-v8": "4.0.14",
     "tsimp": "2.0.12",
     "typescript": "5.9.3",
-    "vitest": "4.0.9"
+    "vitest": "4.0.14"
   }
 }
