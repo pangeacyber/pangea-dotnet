@@ -3,7 +3,7 @@ examples:
   retry: 2
   parallel:
     matrix:
-      - DOTNET_VERSION: ['8.0']
+      - DOTNET_VERSION: ["8.0"]
         EXAMPLE:
           - Audit/AuditLog
           - Audit/AuditLogBulk
@@ -49,8 +49,6 @@ examples:
           - Redact/RedactMulticonfig
           - Redact/Structured
           - Redact/Text
-          - Sanitize/NoShare
-          - Sanitize/Share
           - Share/FolderFileLink
           - Share/MetadataTagsArchive
           - Vault/Encrypt
@@ -76,7 +74,6 @@ examples:
     - export PANGEA_REDACT_CONFIG_ID="${PANGEA_REDACT_CONFIG_ID_1_LVE_AWS}"
     - export PANGEA_REDACT_MULTICONFIG_TOKEN="${PANGEA_INTEGRATION_MULTI_CONFIG_TOKEN_LVE_AWS}"
     - export PANGEA_REDACT_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
-    - export PANGEA_SANITIZE_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
     - export PANGEA_SHARE_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
     - export PANGEA_URL_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
     - export PANGEA_USER_INTEL_TOKEN="${PANGEA_INTEGRATION_TOKEN_LVE_AWS}"
