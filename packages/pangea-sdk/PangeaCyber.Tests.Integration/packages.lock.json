@@ -111,10 +111,10 @@
       },
       "MimeKit": {
         "type": "Transitive",
-        "resolved": "4.14.0",
-        "contentHash": "g0LtsMC8DCTkc030C3UgVqbltOJmV5cz4AX8ASowz2ZA+lxopXSYtC1XXYmenxy606aWFLwi5Xy4cC/zyYjbjQ==",
+        "resolved": "4.15.0",
+        "contentHash": "+KVUJwHIp1aVPyVjcadAH1M9QkAwLflLujzySAS4N//AqSYjD+wMo2a3PkYu5XDibSuhlAg5sIh/DVNwVNGiVw==",
         "dependencies": {
-          "BouncyCastle.Cryptography": "2.6.1",
+          "BouncyCastle.Cryptography": "2.6.2",
           "System.Security.Cryptography.Pkcs": "8.0.1"
         }
       },
@@ -216,7 +216,7 @@
           "Crc32.NET": "[1.2.0, )",
           "HttpMultipartParser": "[5.1.0, )",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[10.0.1, )",
-          "MimeKit": "[4.14.0, )",
+          "MimeKit": "[4.15.0, )",
           "NLog": "[6.0.7, )",
           "Newtonsoft.Json": "[13.0.4, )"
         }
