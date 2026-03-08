@@ -70,11 +70,11 @@
       },
       "HttpMultipartParser": {
         "type": "Transitive",
-        "resolved": "5.1.0",
-        "contentHash": "/Jb/lWNX+rX7hOMmWJw6d/bVSegOm12s+SIDXDNxl9thfhxZfNMJT+/Nq78pa5e43y+18Apxzh8XzRAjYmT13A==",
+        "resolved": "10.0.0",
+        "contentHash": "/1hHkZSQs/JJuGcpNNS9aVodce6H8/iEGoHA/1ua7kJAo46XA9DbbCoI//JDB03qprvT00AaV/4VwfMFO7lcAg==",
         "dependencies": {
-          "Microsoft.IO.RecyclableMemoryStream": "2.2.0",
-          "System.Buffers": "4.5.1"
+          "Microsoft.IO.RecyclableMemoryStream": "3.0.1",
+          "System.Buffers": "4.6.1"
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal": {
@@ -126,8 +126,8 @@
       },
       "Microsoft.IO.RecyclableMemoryStream": {
         "type": "Transitive",
-        "resolved": "2.2.0",
-        "contentHash": "uyjY/cqomw1irT4L7lDeg4sJ36MsjHg3wKqpGrBAdzvZaxo85yMF+sAA9RIzTV92fDxuUzjqksMqA0+SNMkMgA=="
+        "resolved": "3.0.1",
+        "contentHash": "s/s20YTVY9r9TPfTrN5g8zPF1YhwxyqO6PxUkrYTGI2B+OGPe9AdajWZrLhFqXIvqIW23fnUE4+ztrUWNU1+9g=="
       },
       "Microsoft.NETCore.Platforms": {
         "type": "Transitive",
@@ -180,8 +180,8 @@
       },
       "System.Buffers": {
         "type": "Transitive",
-        "resolved": "4.5.1",
-        "contentHash": "Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg=="
+        "resolved": "4.6.1",
+        "contentHash": "N8GXpmiLMtljq7gwvyS+1QvKT/W2J8sNAvx+HVg4NGmsG/H+2k/y9QI23auLJRterrzCiDH+IWAw4V/GPwsMlw=="
       },
       "System.Collections.Immutable": {
         "type": "Transitive",
@@ -256,7 +256,7 @@
         "dependencies": {
           "BouncyCastle.Cryptography": "[2.6.2, )",
           "Crc32.NET": "[1.2.0, )",
-          "HttpMultipartParser": "[5.1.0, )",
+          "HttpMultipartParser": "[10.0.0, )",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "[10.0.3, )",
           "MimeKit": "[4.15.1, )",
           "NLog": "[6.1.0, )",
